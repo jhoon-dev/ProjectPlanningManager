@@ -9,3 +9,8 @@
 *.ppmworkspace.lock
 __pycache__/
 aqtinstall.log
+# Local browser automation, scratch space, and root-level report previews.
+# Keep durable regression evidence under docs/validation tracked.
+/.playwright-mcp/
+/tmp/
+/leveling-selection-qa/
