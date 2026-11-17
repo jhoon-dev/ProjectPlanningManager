@@ -9,6 +9,7 @@
 #include "ui/ResourceComparisonDialog.h"
 #include "ui/WorkspaceDialog.h"
 #include "ui/UpdateUi.h"
+#include "ui/WeeklyUpdateDialog.h"
 #include "updates/UpdateController.h"
 #include <QAction>
 #include <QApplication>
@@ -129,7 +130,8 @@ private slots:
         QTest::addColumn<QString>("kind");
         QTest::addColumn<QSize>("size");
         QTest::addColumn<bool>("dark");
-        for (const auto &kind : {"report", "comparison", "cost", "resource", "recovery", "workspace", "update"})
+        for (const auto &kind :
+             {"report", "comparison", "cost", "resource", "recovery", "workspace", "update", "weekly"})
             for (const auto &size : {QSize(640, 480), QSize(1024, 650), QSize(1440, 900)})
                 for (bool dark : {false, true}) {
                     const auto name = QString("%1-%2-%3").arg(kind).arg(size.width()).arg(dark ? "dark" : "light");
@@ -178,6 +180,8 @@ private slots:
         else if (kind == "recovery")
             dialog = std::make_unique<jobs::RecoveryDialog>(jobs::JsonRecoveryStore(directory.path()), nullptr,
                                                             jobs::RecoveryScan{});
+        else if (kind == "weekly")
+            dialog = std::make_unique<jobs::WeeklyUpdateDialog>(document);
         else if (kind == "workspace")
             dialog = std::make_unique<jobs::WorkspaceDialog>(workspace);
         else {

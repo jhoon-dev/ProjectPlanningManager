@@ -3,6 +3,7 @@
 #include "ui/EditorUi.h"
 #include "ui/TaskInput.h"
 #include "ui/ComparisonDialog.h"
+#include "ui/WeeklyUpdateDialog.h"
 #include <QAction>
 #include <algorithm>
 #include <QCheckBox>
@@ -42,6 +43,7 @@ void MainWindow::refreshTracking() {
     statusEdit_->setEnabled(writable);
     progressEdit_->setEnabled(writable && p->statusAt.has_value() && !selectedTask_.empty());
     comparison_->setEnabled(p.has_value());
+    weeklyUpdate_->setEnabled(p.has_value());
     const QSignalBlocker block(baselineChoice_);
     baselineChoice_->clear();
     baselineChoice_->addItem("간트: 기준선 없음", QString{});
@@ -164,23 +166,38 @@ void MainWindow::editStatusAt() {
         refresh();
 }
 void MainWindow::reportProgress() {
-    if (!document_.project() || document_.readOnly() || !document_.project()->statusAt || selectedTask_.empty())
+    editTaskProgress(selectedTask_, this, false);
+}
+void MainWindow::showWeeklyUpdate() {
+    if (!document_.project())
         return;
+    WeeklyUpdateDialog dialog(document_, this);
+    dialog.editStatus = [this] { editStatusAt(); };
+    dialog.editProgress = [this](const std::string &id, QWidget *parent, bool next) {
+        return editTaskProgress(id, parent, next);
+    };
+    dialog.exec();
+    refresh();
+}
+bool MainWindow::editTaskProgress(const std::string &id, QWidget *parent, bool continueNext) {
+    if (!document_.project() || document_.readOnly() || !document_.project()->statusAt || id.empty())
+        return false;
     const auto &p = *document_.project();
     const Task *task = nullptr;
     for (const auto &t : p.tasks)
-        if (t.id == selectedTask_)
+        if (t.id == id)
             task = &t;
     if (!task)
-        return;
+        return false;
     const bool workBased = usesWork(*task);
     const auto sourceId = p.documentId;
     const auto sourceRevision = p.revision;
     const auto sourceSession = document_.sessionGeneration();
     const auto taskId = task->id;
     const auto *previous = progressAsOf(p, taskId);
-    QDialog dialog(this);
+    QDialog dialog(parent);
     dialog.setObjectName("progressDialog");
+    dialog.setProperty("progressTaskId", qs(taskId));
     dialog.setWindowTitle("작업 실적 입력 · 새 보고/정정");
     dialog.resize(960, 620);
     auto *layout = new QFormLayout(&dialog);
@@ -282,6 +299,10 @@ void MainWindow::reportProgress() {
     error->setObjectName("progressError");
     layout->addRow(error);
     auto *buttons = new QDialogButtonBox(QDialogButtonBox::Save | QDialogButtonBox::Cancel, &dialog);
+    if (continueNext) {
+        buttons->button(QDialogButtonBox::Save)->setText("저장 후 다음 대상");
+        buttons->button(QDialogButtonBox::Cancel)->setText("목록으로 (초안 취소)");
+    }
     layout->addRow(buttons);
     connect(buttons, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
     connect(buttons, &QDialogButtonBox::accepted, &dialog, [&] {
@@ -326,8 +347,11 @@ void MainWindow::reportProgress() {
         }
     });
     prepareEditorDialog(dialog);
-    if (dialog.exec() == QDialog::Accepted)
+    if (dialog.exec() == QDialog::Accepted) {
         refresh();
+        return true;
+    }
+    return false;
 }
 void MainWindow::showComparison() {
     if (!document_.project())

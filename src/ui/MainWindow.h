@@ -75,7 +75,7 @@ private:
     void editTaskConstraints();
     void showScheduleIssues();
     QAction *addWbs_, *renameWbs_, *moveWbs_, *removeWbs_, *assignWbs_;
-    QAction *baselineSave_, *statusEdit_, *progressEdit_, *comparison_;
+    QAction *baselineSave_, *statusEdit_, *progressEdit_, *comparison_, *weeklyUpdate_;
     QComboBox *baselineChoice_;
     std::string selectedBaseline_;
     bool baselinePreparing_ = false;
@@ -186,6 +186,8 @@ private:
     void saveBaseline();
     void editStatusAt();
     void reportProgress();
+    bool editTaskProgress(const std::string &taskId, QWidget *parent, bool continueNext);
+    void showWeeklyUpdate();
     void showComparison();
     void refreshTracking();
     void report(const std::exception &error);

@@ -1,0 +1,25 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+      Start 210: async_editing_ui
+      Start 233: undo_contract
+ 1/10 Test #233: undo_contract ....................   Passed   13.49 sec
+      Start 190: dialog_layout
+ 2/10 Test #190: dialog_layout ....................   Passed    9.45 sec
+      Start 218: task_editing_ui
+ 3/10 Test #218: task_editing_ui ..................   Passed    5.12 sec
+      Start 225: effort_ui
+ 4/10 Test #225: effort_ui ........................   Passed    5.32 sec
+      Start 261: tracking_ui
+ 5/10 Test #210: async_editing_ui .................   Passed   37.92 sec
+      Start 260: weekly_update_ui
+ 6/10 Test #261: tracking_ui ......................   Passed    4.53 sec
+      Start 226: duration_units_ui
+ 7/10 Test #260: weekly_update_ui .................   Passed    3.25 sec
+      Start 254: tracking_file
+ 8/10 Test #254: tracking_file ....................   Passed    0.59 sec
+      Start 253: tracking_contract
+ 9/10 Test #253: tracking_contract ................   Passed    0.28 sec
+10/10 Test #226: duration_units_ui ................   Passed    2.50 sec
+
+100% tests passed out of 10
+
+Total Test time (real) =  42.59 sec

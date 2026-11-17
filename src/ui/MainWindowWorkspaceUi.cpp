@@ -58,6 +58,7 @@ void MainWindow::setupWorkspaceUi(QToolBar *tools, QComboBox *zoom) {
     taskButton->setMenu(taskMenu);
     tools->addWidget(taskButton);
     tools->addSeparator();
+    add(weeklyUpdate_, "주간 갱신", QStyle::SP_FileDialogDetailedView);
     add(calculate_, "일정 계산 · F9", QStyle::SP_MediaPlay);
     for (auto *action : {cancelCalculation_, cancelEdit_}) {
         auto *button = new QToolButton(tools);

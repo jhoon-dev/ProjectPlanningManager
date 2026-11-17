@@ -1,0 +1,9 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+    Start 190: dialog_layout
+1/2 Test #190: dialog_layout ....................   Passed    9.98 sec
+    Start 260: weekly_update_ui
+2/2 Test #260: weekly_update_ui .................   Passed    2.56 sec
+
+100% tests passed out of 2
+
+Total Test time (real) =  12.62 sec

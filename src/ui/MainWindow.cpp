@@ -353,6 +353,8 @@ MainWindow::MainWindow(Document &document, JsonRecoveryStore *recoveryStore, Des
         connect(a, &QAction::triggered, this, [this, callback = std::move(callback)] { runAfterEdit(callback); });
         return a;
     };
+    weeklyUpdate_ = trackingAction("주간 갱신…", [this] { showWeeklyUpdate(); });
+    weeklyUpdate_->setObjectName("weeklyUpdate");
     baselineSave_ = trackingAction("기준선 저장", [this] { saveBaseline(); });
     statusEdit_ = trackingAction("상태일 설정", [this] { editStatusAt(); });
     progressEdit_ = trackingAction("선택 작업 실적", [this] { reportProgress(); });
