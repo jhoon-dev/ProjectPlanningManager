@@ -201,7 +201,7 @@ int main(int argc, char **argv) {
               "start sort lost canonical tie order");
         sort->setCurrentIndex(1);
         select(table, 0, 1, 0);
-        QApplication::clipboard()->setText("Alpha edited\t3\t1\r\nBravo edited\t0\t2SS+30m\r\n");
+        QApplication::clipboard()->setText("Alpha edited\t3h\t1\r\nBravo edited\t0\t2SS+30m\r\n");
         focus(window, table);
         QTest::keySequence(table, QKeySequence::Paste);
         settle(window);

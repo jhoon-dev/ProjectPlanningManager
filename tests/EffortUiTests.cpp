@@ -155,10 +155,10 @@ int main(int argc, char **argv) {
         QTimer::singleShot(30, [&] {
             auto *d = QApplication::activeModalWidget();
             callback(d && d->objectName() == "progressDialog", "progress dialog absent");
-            callback(!d->findChild<QSpinBox *>("remainingMinutes")->isEnabled(),
+            callback(!d->findChild<QLineEdit *>("remainingMinutes")->isEnabled(),
                      "work report requires invented duration");
             d->findChild<QLineEdit *>("actualStart")->setText("2026-10-26 09:00");
-            d->findChild<QSpinBox *>("actualMinutes")->setValue(180);
+            d->findChild<QLineEdit *>("actualMinutes")->setText("180m");
             d->findChild<QLineEdit *>("remainingWorkHours")->setText("5");
             d->findChild<QLineEdit *>("progressReporter")->setText("PM");
             d->findChild<QLineEdit *>("progressReason")->setText("공수 확인");
@@ -214,8 +214,8 @@ int main(int argc, char **argv) {
                 auto *d = QApplication::activeModalWidget();
                 callback(d && d->objectName() == "progressDialog", "not-started progress dialog absent");
                 callback(d->findChild<QLineEdit *>("actualStart")->text().isEmpty() &&
-                             !d->findChild<QSpinBox *>("remainingMinutes")->isEnabled() &&
-                             d->findChild<QSpinBox *>("remainingMinutes")->value() == 0,
+                             !d->findChild<QLineEdit *>("remainingMinutes")->isEnabled() &&
+                             d->findChild<QLineEdit *>("remainingMinutes")->text() == "0d",
                          "not-started UI invented start or remaining duration");
                 d->findChild<QLineEdit *>("remainingWorkHours")->setText("8");
                 d->findChild<QLineEdit *>("progressReporter")->setText("PM");

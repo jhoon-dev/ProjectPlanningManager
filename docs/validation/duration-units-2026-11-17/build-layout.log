@@ -1,0 +1,6 @@
+[1/6] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/TaskTableModel.cpp.obj
+[2/6] Linking CXX static library libjobs_ui.a
+[3/6] Linking CXX executable jobs_task_table_model_tests.exe
+[4/6] Linking CXX executable jobs_dialog_layout_tests.exe
+[5/6] Linking CXX executable jobs_duration_input_tests.exe
+[6/6] Linking CXX executable PPM.exe

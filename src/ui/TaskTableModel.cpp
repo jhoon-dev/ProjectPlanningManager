@@ -2,6 +2,7 @@
 #include "formatting/QtDiagnosticText.h"
 #include "formatting/PlanTokens.h"
 #include "ui/TaskTableModel.h"
+#include "ui/TaskInput.h"
 #include "domain/FormulaFields.h"
 #include "calculation/WorkCalendar.h"
 #include <QBrush>
@@ -17,7 +18,7 @@ QString qs(const std::string &value) {
     return QString::fromUtf8(value);
 }
 const QStringList headers{"작업명",
-                          "기간(h / m)",
+                          "기간",
                           "선행(행·종류±지연)",
                           "시작",
                           "완료",
@@ -56,6 +57,8 @@ int TaskTableModel::columnForKey(const std::string &key) const {
     return -1;
 }
 QVariant TaskTableModel::headerData(int section, Qt::Orientation orientation, int role) const {
+    if (role == Qt::ToolTipRole && orientation == Qt::Horizontal && section == 1)
+        return "기간: 숫자=일(d), h=시간, m=분 · 각 작업 달력의 하루 근무량으로 환산 · 셀에 마우스를 올려 기준 확인";
     if (role != Qt::DisplayRole || section < 0)
         return {};
     if (orientation == Qt::Horizontal)
@@ -114,12 +117,10 @@ QString TaskTableModel::text(const Task &task, int column) const {
                 return {};
             EvaluationScope scope({}, renderCache_);
             WorkCalendar calendar(plan_, task);
-            return QString::number(calendar.offset(planned->second.finish) - calendar.offset(planned->second.start)) +
-                   "m";
+            return taskDurationText(calendar.offset(planned->second.finish) - calendar.offset(planned->second.start),
+                                    taskDayMinutes(plan_, task));
         }
-        return !task.durationMinutes            ? QString{}
-               : *task.durationMinutes % 3 == 0 ? QString::number(double(*task.durationMinutes) / 60, 'g', 12)
-                                                : QString::number(*task.durationMinutes) + "m";
+        return task.durationMinutes ? taskDurationText(*task.durationMinutes, taskDayMinutes(plan_, task)) : QString{};
     case 2: {
         QStringList edges;
         for (const auto &edge : dependencies(task)) {
@@ -198,6 +199,8 @@ QVariant TaskTableModel::data(const QModelIndex &index, int role) const {
     if (role == Qt::ForegroundRole)
         return conflict ? QVariant(QBrush(QColor("#662015"))) : late ? QVariant(QBrush(QColor("#653b00"))) : QVariant{};
     if (role == Qt::ToolTipRole) {
+        if (column == 1)
+            return taskDurationHelp(plan_, task) + (text(task, 1).isEmpty() ? QString{} : "\n계획: " + text(task, 1));
         if (column >= 14) {
             const auto key = columnKey(column);
             const auto *f = customField(plan_, key);
@@ -243,7 +246,16 @@ bool TaskTableModel::setData(const QModelIndex &index, const QVariant &value, in
         return false;
     const auto &task = plan_.tasks.at(rows_[std::size_t(index.row())]);
     const auto input = index.column() >= 14 ? value.toString() : value.toString().trimmed();
-    if (input == data(index, Qt::EditRole).toString()) {
+    const auto current = data(index, Qt::EditRole).toString();
+    bool unchanged = input == current;
+    if (!unchanged && index.column() == 1)
+        try {
+            const auto day = taskDayMinutes(plan_, task);
+            unchanged = taskDurationInput(input, day) == taskDurationInput(current, day);
+        } catch (const std::exception &) {
+            // Invalid drafts still go through the normal validation/error path.
+        }
+    if (unchanged) {
         if (unchangedEditRequested)
             unchangedEditRequested(task.id, index.column());
         return true;

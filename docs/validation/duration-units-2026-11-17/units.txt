@@ -1,0 +1,17 @@
+********* Start testing of DurationInputTests *********
+Config: Using QtTest library 6.8.3, Qt 6.8.3 (x86_64-little_endian-llp64 shared (dynamic) release build; by GCC 13.1.0), windows 11
+PASS   : DurationInputTests::initTestCase()
+PASS   : DurationInputTests::exactUnits()
+PASS   : DurationInputTests::exactDisplayRoundtrip()
+QWARN  : DurationInputTests::sevenHourWorkflow() QFontDatabase: Cannot find font directory C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/lib/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QWARN  : DurationInputTests::sevenHourWorkflow() This plugin does not support propagateSizeHints()
+QWARN  : DurationInputTests::sevenHourWorkflow() This plugin does not support propagateSizeHints()
+QWARN  : DurationInputTests::sevenHourWorkflow() This plugin does not support propagateSizeHints()
+QWARN  : DurationInputTests::sevenHourWorkflow() This plugin does not support propagateSizeHints()
+QWARN  : DurationInputTests::sevenHourWorkflow() This plugin does not support propagateSizeHints()
+QWARN  : DurationInputTests::sevenHourWorkflow() This plugin does not support propagateSizeHints()
+PASS   : DurationInputTests::sevenHourWorkflow()
+PASS   : DurationInputTests::cleanupTestCase()
+Totals: 5 passed, 0 failed, 0 skipped, 0 blacklisted, 619ms
+********* Finished testing of DurationInputTests *********

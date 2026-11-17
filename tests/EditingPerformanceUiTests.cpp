@@ -91,7 +91,7 @@ int main(int argc, char **argv) {
         app.processEvents();
         const auto scroll = table->verticalScrollBar()->value();
         const auto id = cellText(table, 500, 8);
-        setCellText(table, 500, 1, "3");
+        setCellText(table, 500, 1, "3h");
         app.processEvents();
         check(document.project()->tasks[500].durationMinutes == 180 && table->currentRow() == 500 &&
                   cellText(table, 500, 8) == id && table->verticalScrollBar()->value() == scroll,

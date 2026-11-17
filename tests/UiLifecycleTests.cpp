@@ -89,8 +89,8 @@ int main(int argc, char *argv[]) {
         auto *table = taskTable(window);
         setCellText(table, 0, 0, "편집된 설계");
         check(doc.dirty() && doc.project()->tasks[0].name == "편집된 설계", "table edit failed");
-        setCellText(table, 0, 1, "8");
-        setCellText(table, 1, 1, "4");
+        setCellText(table, 0, 1, "8h");
+        setCellText(table, 1, 1, "4h");
         setCellText(table, 2, 1, "1m");
         setCellText(table, 1, 2, "1");
         check(doc.project()->tasks[0].durationMinutes == 480 && doc.project()->tasks[2].durationMinutes == 1 &&
@@ -110,7 +110,7 @@ int main(int argc, char *argv[]) {
         waitResult();
         check(doc.calculation()->status == jobs::CalculationStatus::Valid && cellText(table, 0, 3) != "미계산",
               "calculation UI failed");
-        setCellText(table, 0, 1, "16");
+        setCellText(table, 0, 1, "16h");
         check(doc.calculation()->status == jobs::CalculationStatus::Stale && cellText(table, 0, 3) == "미계산",
               "stale dates remained visible");
         trigger(window, "일정 계산");

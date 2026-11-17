@@ -1,6 +1,7 @@
 #include "formatting/QtDiagnosticText.h"
 #include "ui/MainWindow.h"
 #include "ui/EditorUi.h"
+#include "ui/TaskInput.h"
 #include "ui/ComparisonDialog.h"
 #include <QAction>
 #include <algorithm>
@@ -192,18 +193,24 @@ void MainWindow::reportProgress() {
     finish->setObjectName("actualFinish");
     start->setPlaceholderText("YYYY-MM-DD HH:mm · 미착수면 빈칸");
     finish->setPlaceholderText("YYYY-MM-DD HH:mm · 미완료면 빈칸");
-    auto *actual = new QSpinBox(&dialog);
-    actual->setRange(0, 5000000);
-    actual->setSuffix(" 분");
+    const auto dayMinutes = taskDayMinutes(p, *task);
+    auto *durationHint = new QLabel(taskDurationHelp(p, *task), &dialog);
+    durationHint->setObjectName("progressDurationHelp");
+    durationHint->setWordWrap(true);
+    layout->addRow(durationHint);
+    auto *actual = new QLineEdit(&dialog);
     actual->setObjectName("actualMinutes");
-    auto *remaining = new QSpinBox(&dialog);
-    remaining->setRange(0, 5000000);
-    remaining->setSuffix(" 분");
+    auto *remaining = new QLineEdit(&dialog);
     remaining->setObjectName("remainingMinutes");
-    actual->setValue(previous ? int(previous->actualDurationMinutes) : 0);
-    remaining->setValue(int(previous ? previous->remainingMinutes : task->durationMinutes.value_or(0)));
+    actual->setText(taskDurationText(previous ? previous->actualDurationMinutes : 0, dayMinutes));
+    remaining->setText(
+        taskDurationText(previous ? previous->remainingMinutes : task->durationMinutes.value_or(0), dayMinutes));
+    for (auto *field : {actual, remaining}) {
+        field->setPlaceholderText("예: 2d / 16h / 960m · 숫자=일");
+        field->setToolTip(taskDurationHelp(p, *task));
+    }
     if (workBased) {
-        remaining->setValue(0);
+        remaining->setText("0d");
         remaining->setEnabled(false);
         remaining->setToolTip("공수 기준 작업은 명시 잔여 공수로 예측합니다. 잔여 기간을 공수로 역산하지 않습니다.");
     }
@@ -213,8 +220,8 @@ void MainWindow::reportProgress() {
     reason->setObjectName("progressReason");
     layout->addRow("실제 시작", start);
     layout->addRow("실제 완료", finish);
-    layout->addRow("실제 소요 근무분", actual);
-    layout->addRow("잔여 근무분", remaining);
+    layout->addRow("실제 소요 기간", actual);
+    layout->addRow("잔여 기간", remaining);
     auto *remainingWork =
         new QLineEdit(previous && previous->remainingWorkUnitMinutes
                           ? QString::number(double(*previous->remainingWorkUnitMinutes) / 6000.0, 'f', 4)
@@ -232,7 +239,7 @@ void MainWindow::reportProgress() {
         workBased
             ? "공수 기준: 잔여 기간은 사용하지 않습니다. 명시 잔여 공수로 예측하며 기간 진척률은 미산정입니다.\n완료는 "
               "실제 시작·완료와 잔여 공수 0을 함께 보고합니다. 기존 보고는 이력으로 보존됩니다."
-            : "8시간=480분. 완료는 실제 시작·완료와 잔여 0을 함께 입력합니다.\n기간 진척은 실제 소요/(실제 "
+            : "완료는 실제 시작·완료와 잔여 0을 함께 입력합니다.\n기간 진척은 실제 소요/(실제 "
               "소요+잔여)입니다. 기존 보고는 이력으로 보존됩니다.",
         &dialog);
     progressNote->setWordWrap(true);
@@ -240,8 +247,8 @@ void MainWindow::reportProgress() {
     auto *history = new QTableWidget(0, 9, &dialog);
     history->setObjectName("progressHistory");
     history->setMaximumHeight(180);
-    history->setHorizontalHeaderLabels({"상태일", "실제 시작", "실제 완료", "실제(분)", "잔여(분)", "보고자", "사유",
-                                        "기록(UTC)", "명시 잔여 공수(h)"});
+    history->setHorizontalHeaderLabels({"상태일", "실제 시작", "실제 완료", "실제(d/h/m)", "잔여(d/h/m)", "보고자",
+                                        "사유", "기록(UTC)", "명시 잔여 공수(h)"});
     history->setEditTriggers(QAbstractItemView::NoEditTriggers);
     history->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     for (const auto &e : p.progress)
@@ -251,8 +258,8 @@ void MainWindow::reportProgress() {
             QStringList values{qs(e.statusAt),
                                e.actualStart ? qs(*e.actualStart) : "—",
                                e.actualFinish ? qs(*e.actualFinish) : "—",
-                               QString::number(e.actualDurationMinutes),
-                               QString::number(e.remainingMinutes),
+                               taskDurationText(e.actualDurationMinutes, dayMinutes),
+                               taskDurationText(e.remainingMinutes, dayMinutes),
                                qs(e.reporter),
                                qs(e.reason),
                                qs(e.recordedAt),
@@ -261,8 +268,10 @@ void MainWindow::reportProgress() {
                                    : "미보고"};
             for (int col = 0; col < values.size(); ++col) {
                 auto *item = new QTableWidgetItem(values[col]);
-                item->setToolTip("ID: " + qs(e.id) + "\n이전 보고: " + qs(e.previousEntryId) +
-                                 "\n원본 문서: " + qs(e.sourceDocumentId));
+                item->setToolTip("ID: " + qs(e.id) + "\n이전 보고: " + qs(e.previousEntryId) + "\n원본 문서: " +
+                                 qs(e.sourceDocumentId) + "\n기간 표시는 현재 작업 달력 기준 · 실제 " +
+                                 QString::number(e.actualDurationMinutes) + "분 / 잔여 " +
+                                 QString::number(e.remainingMinutes) + "분");
                 history->setItem(row, col, item);
             }
         }
@@ -280,12 +289,16 @@ void MainWindow::reportProgress() {
         e.taskId = taskId;
         e.actualStart = optional(start->text());
         e.actualFinish = optional(finish->text());
-        e.actualDurationMinutes = actual->value();
-        e.remainingMinutes = remaining->value();
         e.reporter = str(reporter->text().trimmed());
         e.reason = str(reason->text().trimmed());
         e.recordedAt = utcNow();
         try {
+            const auto actualValue = taskDurationInput(actual->text(), dayMinutes);
+            const auto remainingValue = taskDurationInput(remaining->text(), dayMinutes);
+            if (!actualValue || !remainingValue)
+                throw AppError(ErrorCode::TASKINPUT_001, {});
+            e.actualDurationMinutes = *actualValue;
+            e.remainingMinutes = workBased ? 0 : *remainingValue;
             if (!document_.project() || document_.project()->documentId != sourceId ||
                 document_.project()->revision != sourceRevision || document_.sessionGeneration() != sourceSession)
                 throw AppError(ErrorCode::MAINWINDOWTRACKING_001, {});
@@ -309,7 +322,7 @@ void MainWindow::reportProgress() {
                     buttons->button(QDialogButtonBox::Save)->setEnabled(!pending);
                 });
         } catch (const std::exception &ex) {
-            error->setText(qErrorText(ex));
+            showEditorError(*error, ex);
         }
     });
     prepareEditorDialog(dialog);

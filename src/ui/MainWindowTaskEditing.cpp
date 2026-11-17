@@ -245,6 +245,18 @@ std::vector<std::string> MainWindow::selectedTaskIds() const {
     return ids;
 }
 void MainWindow::updateTaskActions() {
+    if (auto *hint = findChild<QLabel *>("durationInputHint")) {
+        hint->setText("기간: 숫자=일(d) · 시간(h) · 분(m) · 작업을 선택하면 하루 환산 기준이 표시됩니다.");
+        hint->setToolTip({});
+        if (document_.project())
+            for (const auto &task : document_.project()->tasks)
+                if (task.id == selectedTask_) {
+                    const auto help = taskDurationHelp(*document_.project(), task);
+                    hint->setText(help.section('\n', 0, 0) + " · 기간: 숫자=일(d), h=시간, m=분 · 예: 2d / 16h / 960m");
+                    hint->setToolTip(help);
+                    break;
+                }
+    }
     if (!insertTasks_)
         return;
     const bool writable = document_.project() && !document_.readOnly();
@@ -527,9 +539,9 @@ void MainWindow::pasteCells() {
                                        const auto current = currentPeriod(task);
                                        // A computed work period can exceed the duration-input limit.
                                        if (usesWork(task) && current &&
-                                           value.trimmed() == QString::number(*current) + "m")
+                                           value.trimmed() == taskDurationText(*current, taskDayMinutes(p, task)))
                                            continue;
-                                       const auto requested = taskDurationInput(value);
+                                       const auto requested = taskDurationInput(value, taskDayMinutes(p, task));
                                        if (requested != current)
                                            e.duration.emplace(requested);
                                    } else

@@ -64,7 +64,7 @@ void unchangedEditor(jobs::JsonProjectStore &store, const std::string &path, boo
         view->setCurrentCell(0, 1);
         edit->trigger();
         auto *editor = view->findChild<QLineEdit *>();
-        check(editor && editor->isVisible() && editor->text() == (fixedUnits ? "960m" : "11m"),
+        check(editor && editor->isVisible() && editor->text() == (fixedUnits ? "2d" : "11m"),
               "computed duration editor did not open");
         if (enter)
             QTest::keyClick(editor, Qt::Key_Return);
@@ -77,7 +77,13 @@ void unchangedEditor(jobs::JsonProjectStore &store, const std::string &path, boo
                   doc.undoLabel() == undo && doc.redoLabel() == redo && doc.canRedo() && bytes(path) == saved,
               "unchanged editor mutated work, units, basis, revision, calculation, file or history");
     }
-    check(setCellText(view, 0, 1, fixedUnits ? "8" : "20m"), "changed duration edit rejected");
+    if (fixedUnits)
+        for (const auto &equivalent : {"2", "16h", "960m"}) {
+            check(setCellText(view, 0, 1, equivalent), "equivalent duration unit rejected");
+            check(*doc.project() == source && doc.canRedo() && doc.historyBytes() == history && bytes(path) == saved,
+                  "equivalent duration unit changed work basis, history or file");
+        }
+    check(setCellText(view, 0, 1, fixedUnits ? "8h" : "20m"), "changed duration edit rejected");
     waitFor([&] { return doc.project()->revision != source.revision && !cancel->isEnabled(); });
     check(doc.dirty() && !doc.canRedo(), "real edit did not create history");
     if (fixedUnits)
@@ -111,7 +117,7 @@ void periods(jobs::JsonProjectStore &store, bool fixedUnits, bool nominal, bool 
     options.generatedAt = "2026-10-30T00:00:00Z";
     sync();
     check(doc.calculation()->status == jobs::CalculationStatus::Incomplete && duration(0).isEmpty() &&
-              duration(1) == "1" && duration(2).isEmpty(),
+              duration(1) == "0.125d" && duration(2).isEmpty(),
           "incomplete plan exposed nominal work duration or hid known input duration");
     const auto incomplete = jobs::buildReport(*doc.project(), options);
     check(std::holds_alternative<std::monostate>(reportTable(incomplete, "schedule").rows[0][3].value) &&
@@ -120,7 +126,7 @@ void periods(jobs::JsonProjectStore &store, bool fixedUnits, bool nominal, bool 
           "incomplete report used ignored nominal duration or lost known duration");
     doc.setDuration(2, 60);
     sync();
-    check(doc.calculation()->status == jobs::CalculationStatus::Valid && duration(0) == "960m",
+    check(doc.calculation()->status == jobs::CalculationStatus::Valid && duration(0) == "2d",
           "plan duration did not use work, assignment and split calendar");
     const auto valid = jobs::buildReport(*doc.project(), options);
     check(std::get<std::int64_t>(reportTable(valid, "schedule").rows[0][3].value) == 960,
@@ -139,11 +145,11 @@ void periods(jobs::JsonProjectStore &store, bool fixedUnits, bool nominal, bool 
     doc.recordProgress(entry);
     sync();
     check(doc.calculation()->status == jobs::CalculationStatus::Valid && doc.calculation()->isForecast &&
-              duration(0) == "960m" &&
+              duration(0) == "2d" &&
               model.data(model.index(0, 4)).toString() == QString::fromStdString(*entry.actualFinish),
           "forecast duration did not retain plan independently from actual dates");
     model.synchronize({1, 0});
-    check(duration(1) == "960m", "filtered/reordered view lost planned duration identity");
+    check(duration(1) == "2d", "filtered/reordered view lost planned duration identity");
     doc.setDuration(2, {});
     model.synchronize({0, 1, 2});
     check(duration(0).isEmpty(), "invalidated forecast retained cached duration");
@@ -162,7 +168,7 @@ void forecastUi(jobs::JsonProjectStore &store, bool nominal) {
     jobs::MainWindow window(doc);
     window.show();
     auto *view = taskTable(window);
-    check(cellText(view, 0, 1) == "960m", "UI plan duration fixture incorrect");
+    check(cellText(view, 0, 1) == "2d", "UI plan duration fixture incorrect");
     doc.setStatusAt("2026-10-26 09:00");
     for (auto *action : window.findChildren<QAction *>())
         if (action->shortcut() == QKeySequence(Qt::Key_F9)) {
@@ -170,7 +176,7 @@ void forecastUi(jobs::JsonProjectStore &store, bool nominal) {
             break;
         }
     waitFor([&] { return cellText(view, 0, 6) == "예측 임계"; });
-    check(cellText(view, 0, 1) == "960m", "worker forecast replaced computed plan duration with nominal input");
+    check(cellText(view, 0, 1) == "2d", "worker forecast replaced computed plan duration with nominal input");
     window.hide();
 }
 void modelNoopGuards(jobs::JsonProjectStore &store, const std::string &path) {
@@ -185,16 +191,16 @@ void modelNoopGuards(jobs::JsonProjectStore &store, const std::string &path) {
         return false;
     };
     QSignalSpy changes(&model, &QAbstractItemModel::dataChanged);
-    check(model.setData(model.index(0, 1), " 8 ") && calls == 0 && changes.isEmpty(),
+    check(model.setData(model.index(0, 1), " 1d ") && calls == 0 && changes.isEmpty(),
           "unchanged value dispatched callback or unnecessary notification");
     check(!model.setData(model.index(0, 1), "bad") && calls == 1, "changed invalid input bypassed edit validation");
     doc.renameTask(0, "Changed");
-    check(!model.setData(model.index(0, 1), "8"), "stale unchanged edit bypassed revision guard");
+    check(!model.setData(model.index(0, 1), "1d"), "stale unchanged edit bypassed revision guard");
     doc.saveAs(path);
     doc.open(path, true);
-    check(!model.setData(model.index(0, 1), "8"), "unchanged edit bypassed session guard");
+    check(!model.setData(model.index(0, 1), "1d"), "unchanged edit bypassed session guard");
     model.synchronize({0});
-    check(!model.setData(model.index(0, 1), "8"), "unchanged edit bypassed readonly guard");
+    check(!model.setData(model.index(0, 1), "1d"), "unchanged edit bypassed readonly guard");
 }
 } // namespace
 int main(int argc, char **argv) {

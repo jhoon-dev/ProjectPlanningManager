@@ -115,8 +115,8 @@ int main(int argc, char *argv[]) {
             if (!dialog)
                 return;
             dialog->findChild<QLineEdit *>("actualStart")->setText("2026-10-26 09:00");
-            dialog->findChild<QSpinBox *>("actualMinutes")->setValue(480);
-            dialog->findChild<QSpinBox *>("remainingMinutes")->setValue(960);
+            dialog->findChild<QLineEdit *>("actualMinutes")->setText("8h");
+            dialog->findChild<QLineEdit *>("remainingMinutes")->setText("2d");
             dialog->findChild<QLineEdit *>("progressReporter")->setText("현장 담당자");
             dialog->findChild<QLineEdit *>("progressReason")->setText("잔여 16시간 보고");
             dialog->findChild<QDialogButtonBox *>()->button(QDialogButtonBox::Save)->click();
@@ -124,6 +124,9 @@ int main(int argc, char *argv[]) {
         trigger(window, "선택 작업 실적");
         check(doc.project()->progress.size() == 1 && doc.project()->baselines[0] == frozen,
               "progress UI changed baseline");
+        check(doc.project()->progress.back().actualDurationMinutes == 480 &&
+                  doc.project()->progress.back().remainingMinutes == 960,
+              "duration units did not preserve exact progress minutes");
         auto recalculate = [&] {
             trigger(window, "일정 계산(&C)");
             for (int i = 0; i < 300; ++i) {
@@ -187,7 +190,7 @@ int main(int argc, char *argv[]) {
             callbackCheck(dialog->findChild<QTableWidget *>("progressHistory")->rowCount() == 1,
                           "report history absent");
             dialog->findChild<QLineEdit *>("actualFinish")->setText("2026-10-29 18:00");
-            dialog->findChild<QSpinBox *>("remainingMinutes")->setValue(0);
+            dialog->findChild<QLineEdit *>("remainingMinutes")->setText("0m");
             dialog->findChild<QLineEdit *>("progressReason")->setText("검증 후 정정");
             auto *save = dialog->findChild<QDialogButtonBox *>()->button(QDialogButtonBox::Save);
             save->click();
@@ -197,7 +200,7 @@ int main(int argc, char *argv[]) {
                               !dialog->findChild<QLabel *>("progressError")->text().isEmpty(),
                           "invalid report mutated state / no field error");
             dialog->findChild<QLineEdit *>("actualFinish")->clear();
-            dialog->findChild<QSpinBox *>("remainingMinutes")->setValue(1200);
+            dialog->findChild<QLineEdit *>("remainingMinutes")->setText("1200m");
             save->click();
         });
         trigger(window, "선택 작업 실적");

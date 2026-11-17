@@ -531,6 +531,10 @@ MainWindow::MainWindow(Document &document, JsonRecoveryStore *recoveryStore, Des
     wbsSummary_->setObjectName("wbsSummary");
     wbsSummary_->setWordWrap(true);
     layout->addWidget(wbsSummary_);
+    auto *durationHint = new QLabel("기간: 숫자=일(d) · 시간(h) · 분(m) · 예: 2d / 16h / 960m", central);
+    durationHint->setObjectName("durationInputHint");
+    durationHint->setWordWrap(true);
+    layout->addWidget(durationHint);
     documentNotice_ = new QLabel(central);
     documentNotice_->setObjectName("documentNotice");
     documentNotice_->setTextFormat(Qt::PlainText);
@@ -609,7 +613,8 @@ MainWindow::MainWindow(Document &document, JsonRecoveryStore *recoveryStore, Des
     diagnostics_->setObjectName("calculationDiagnostics");
     diagnostics_->setAccessibleName("계산 상태 및 진단");
     auto *note = new QLabel(
-        "기본 월–금 09–12 / 13–18 · 프로젝트 메뉴에서 작업 달력 등록/배정 · 기간: 시간(8, 1.5) 또는 분(1m), 빈칸=미정, "
+        "기본 월–금 09–12 / 13–18 · 기간: 숫자=일(d), 시간(h), 분(m). 예: 2d / 16h / 960m · "
+        "d는 각 작업 달력의 하루 근무량(기본 8h) · 빈칸=미정, "
         "0=마일스톤\n선행: 프로젝트 행 번호 1, 2SS+2h, 3FF-30m, 4SF+1d · d=480 근무분 · 지연/선행=후행 달력 기준 · "
         "F9=전체 계산\n간트: 빨강+[임계/예측 임계]=계획/잔여 임계, 파랑=여유 작업, 초록+[실제]=실제 완료, ◆=마일스톤, "
         "회색=기준선, "

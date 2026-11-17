@@ -1,0 +1,21 @@
+[1/22] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\build-numbered-summary && C:\Users\dow\AppData\Roaming\Python\Python314\site-packages\cmake\data\bin\cmake.exe -DSOURCE_DIR=C:/Users/dow/Development/ToolMoa/ProjectPlanningManager -DOUTPUT=C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/BuildIdentity.h -P C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/scripts/WriteBuildIdentity.cmake"
+[2/22] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowTracking.cpp.obj
+[3/22] Building CXX object CMakeFiles/jobs_wbs_gantt_ui_tests.dir/tests/WbsGanttUiTests.cpp.obj
+[4/22] Linking CXX static library libjobs_ui.a
+[5/22] Automatic MOC for target jobs_duration_input_tests
+[6/21] Linking CXX executable jobs_dialog_layout_tests.exe
+[7/21] Linking CXX executable PPM.exe
+[8/21] Building CXX object CMakeFiles/jobs_async_editing_ui_tests.dir/tests/AsyncEditingUiTests.cpp.obj
+[9/21] Linking CXX executable jobs_task_table_model_tests.exe
+[10/21] Linking CXX executable jobs_task_editing_ui_tests.exe
+[11/21] Linking CXX executable jobs_async_editing_ui_tests.exe
+[12/21] Building CXX object CMakeFiles/jobs_duration_input_tests.dir/tests/DurationInputTests.cpp.obj
+[13/21] Linking CXX executable jobs_effort_ui_tests.exe
+[14/21] Linking CXX executable jobs_duration_display_tests.exe
+[15/21] Linking CXX executable jobs_duration_followup_tests.exe
+[16/21] Linking CXX executable jobs_duration_input_tests.exe
+[17/21] Linking CXX executable jobs_pdm_ui_tests.exe
+[18/21] Linking CXX executable jobs_editing_performance_ui_tests.exe
+[19/21] Linking CXX executable jobs_ui_tests.exe
+[20/21] Linking CXX executable jobs_wbs_gantt_ui_tests.exe
+[21/21] Linking CXX executable jobs_tracking_ui_tests.exe

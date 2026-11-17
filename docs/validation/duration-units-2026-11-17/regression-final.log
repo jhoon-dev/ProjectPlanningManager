@@ -1,0 +1,43 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+      Start 210: async_editing_ui
+      Start 228: duration_paste_pending_sort
+ 1/19 Test #228: duration_paste_pending_sort ......   Passed    8.56 sec
+      Start 233: undo_contract
+ 2/19 Test #233: undo_contract ....................   Passed    8.50 sec
+      Start 223: effort_edit_regressions
+ 3/19 Test #223: effort_edit_regressions ..........   Passed    5.90 sec
+      Start 227: duration_edit_display
+ 4/19 Test #210: async_editing_ui .................   Passed   25.00 sec
+      Start 190: dialog_layout
+ 5/19 Test #227: duration_edit_display ............   Passed    5.59 sec
+      Start 218: task_editing_ui
+ 6/19 Test #190: dialog_layout ....................   Passed    7.15 sec
+      Start 225: effort_ui
+ 7/19 Test #218: task_editing_ui ..................   Passed    3.79 sec
+      Start 222: effort_work_calendar_split
+ 8/19 Test #225: effort_ui ........................   Passed    3.29 sec
+      Start 260: tracking_ui
+ 9/19 Test #222: effort_work_calendar_split .......   Passed    3.17 sec
+      Start 258: ui_lifecycle
+10/19 Test #260: tracking_ui ......................   Passed    3.62 sec
+      Start 236: editing_performance_ui
+11/19 Test #258: ui_lifecycle .....................   Passed    3.54 sec
+      Start 259: wbs_gantt_ui
+12/19 Test #236: editing_performance_ui ...........   Passed    2.57 sec
+      Start 232: pdm_calendar_ui
+13/19 Test #259: wbs_gantt_ui .....................   Passed    2.58 sec
+      Start 231: pdm_calendar_contract
+14/19 Test #232: pdm_calendar_ui ..................   Passed    2.17 sec
+      Start 226: duration_units_ui
+15/19 Test #231: pdm_calendar_contract ............   Passed    2.20 sec
+      Start 209: task_table_model_contract
+16/19 Test #209: task_table_model_contract ........   Passed    0.59 sec
+      Start 254: tracking_file
+17/19 Test #226: duration_units_ui ................   Passed    1.60 sec
+      Start 253: tracking_contract
+18/19 Test #253: tracking_contract ................   Passed    0.14 sec
+19/19 Test #254: tracking_file ....................   Passed    0.45 sec
+
+100% tests passed out of 19
+
+Total Test time (real) =  45.61 sec

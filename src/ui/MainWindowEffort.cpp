@@ -2,6 +2,7 @@
 #include "formatting/PlanTokens.h"
 #include "ui/MainWindow.h"
 #include "ui/EditorUi.h"
+#include "ui/TaskInput.h"
 #include "calculation/Effort.h"
 #include <QComboBox>
 #include <QDialog>
@@ -40,7 +41,7 @@ EffortPreview previewEffort(const Project &snapshot, const Task &task,
                 calculationCheckpoint();
                 return {duration, work,
                         "현재 계획: " + QString::fromStdString(row.start) + " → " + QString::fromStdString(row.finish) +
-                            " · 활성 기간 " + QString::number(duration) + "분 · 공수 " +
+                            " · 활성 기간 " + taskDurationText(duration, taskDayMinutes(snapshot, task)) + " · 공수 " +
                             QString::number(double(work) / 6000.0, 'f', 4) + "h"};
             }
         return {{}, {}, "선택 작업이 없습니다."};
@@ -90,10 +91,16 @@ void MainWindow::editTaskEffort() {
     basis->addItem("공수 입력", "work");
     basis->setCurrentIndex(usesWork(task) ? 1 : 0);
     form->addRow("이번 변경의 입력 기준", basis);
-    auto *duration = new QLineEdit(task.durationMinutes ? QString::number(*task.durationMinutes) : QString{});
+    const auto dayMinutes = taskDayMinutes(*snapshot, task);
+    auto *duration =
+        new QLineEdit(task.durationMinutes ? taskDurationText(*task.durationMinutes, dayMinutes) : QString{});
     duration->setObjectName("effortDuration");
-    duration->setPlaceholderText("근무분 정수 · 미정이면 빈칸");
-    form->addRow("기간 (근무분)", duration);
+    duration->setPlaceholderText("예: 2d / 16h / 960m · 숫자=일 · 빈칸=미정");
+    duration->setToolTip(taskDurationHelp(*snapshot, task));
+    form->addRow("기간 (d/h/m)", duration);
+    auto *durationHelp = new QLabel(taskDurationHelp(*snapshot, task));
+    durationHelp->setWordWrap(true);
+    form->addRow(durationHelp);
     auto *work = new QLineEdit(task.workUnitMinutes ? QString::number(double(*task.workUnitMinutes) / 6000.0, 'f', 4)
                                                     : QString{});
     work->setObjectName("effortHours");
@@ -191,7 +198,7 @@ void MainWindow::editTaskEffort() {
         if (!choiceChanged && !workChanged && !usesWork(task) && result.work)
             work->setText(QString::number(double(*result.work) / 6000.0, 'f', 4));
         if (!choiceChanged && !durationChanged && usesWork(task) && result.duration)
-            duration->setText(QString::number(*result.duration));
+            duration->setText(taskDurationText(*result.duration, dayMinutes));
         fillingPreview = false;
     });
     previewTimer->start();
@@ -206,13 +213,7 @@ void MainWindow::editTaskEffort() {
             auto minutes = task.durationMinutes, hours = task.workUnitMinutes;
             bool okay = false;
             if (duration->isEnabled()) {
-                minutes.reset();
-                if (!duration->text().trimmed().isEmpty()) {
-                    const auto value = duration->text().trimmed().toLongLong(&okay);
-                    if (!okay || value < 0 || value > 5000000)
-                        throw AppError(ErrorCode::MAINWINDOWEFFORT_002, {});
-                    minutes = value;
-                }
+                minutes = taskDurationInput(duration->text(), dayMinutes);
             }
             if (work->isEnabled()) {
                 hours.reset();

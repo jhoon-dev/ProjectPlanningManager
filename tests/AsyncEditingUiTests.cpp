@@ -142,7 +142,7 @@ int main(int argc, char **argv) {
         heartbeat.start();
         QElapsedTimer elapsed;
         elapsed.start();
-        check(setCellText(table, 0, 1, "2") && controller->busy() && cancel->isEnabled(),
+        check(setCellText(table, 0, 1, "2h") && controller->busy() && cancel->isEnabled(),
               "inverse edit was synchronous or cancel unavailable");
         check(editProgress->isVisible() && !editProgress->text().isEmpty(), "busy edit progress is hidden");
         const double enqueueMs = double(elapsed.nsecsElapsed()) / 1000000;
@@ -168,7 +168,7 @@ int main(int argc, char **argv) {
         std::cout << "stage: responsive running cancellation" << std::endl;
         // Let a worker finish without delivering its queued GUI completion, then cancel.
         heartbeat.stop();
-        check(setCellText(table, 0, 1, "2"), "late-cancel edit rejected");
+        check(setCellText(table, 0, 1, "2h"), "late-cancel edit rejected");
         const auto watchers = controller->findChildren<QFutureWatcherBase *>();
         check(!watchers.isEmpty(), "worker watcher missing");
         auto *watcher = watchers.back();
@@ -185,7 +185,7 @@ int main(int argc, char **argv) {
         measuredPhase = true;
         heartbeatClock.restart();
         elapsed.restart();
-        setCellText(table, 0, 1, "2");
+        setCellText(table, 0, 1, "2h");
         check(wait([&] { return !controller->busy(); }) && document.project()->tasks[0].durationMinutes == 120 &&
                   document.project()->tasks[0].workUnitMinutes == 6000 &&
                   document.project()->assignments[0].units == 50,
@@ -199,16 +199,16 @@ int main(int argc, char **argv) {
                   !document.dirty(),
               "asynchronous edit was not one undo");
         before = *document.project();
-        setCellText(table, 0, 1, "3");
+        setCellText(table, 0, 1, "3h");
         setCellText(table, 1, 0, "Concurrent name");
         check(wait([&] { return !controller->busy(); }) && document.project()->tasks[1].name == "Concurrent name" &&
                   document.project()->tasks[0] == before.tasks[0],
               "background edit overwrote a concurrent edit");
         action(window, "undoEdit")->trigger();
         const auto revision = document.project()->revision;
-        setCellText(table, 0, 1, "2");
-        setCellText(table, 0, 1, "2.5");
-        setCellText(table, 0, 1, "3");
+        setCellText(table, 0, 1, "2h");
+        setCellText(table, 0, 1, "2.5h");
+        setCellText(table, 0, 1, "3h");
         check(wait([&] { return !controller->busy(); }) && document.project()->revision == revision + 1 &&
                   document.project()->tasks[0].durationMinutes == 180 &&
                   document.project()->tasks[0].workUnitMinutes == 6000 &&
@@ -218,13 +218,13 @@ int main(int argc, char **argv) {
         action(window, "undoEdit")->trigger();
         document.save();
         before = *document.project();
-        setCellText(table, 0, 1, "2");
+        setCellText(table, 0, 1, "2h");
         document.open(path);
         check(wait([&] { return !controller->busy(); }) && *document.project() == before,
               "reload with identical ID/revision accepted stale session");
         std::cout << "stage: stale session, concurrent and latest-only edits" << std::endl;
         const auto savedBefore = bytes(path);
-        editDuration(table, "2");
+        editDuration(table, "2h");
         save(window)->trigger();
         check(controller->busy() && bytes(path) == savedBefore, "save ran before pending cell edit");
         check(wait([&] { return !controller->busy(); }) && !document.dirty() &&
@@ -234,13 +234,13 @@ int main(int argc, char **argv) {
         before = *document.project();
         const auto savedAfter = bytes(path);
         const auto history = document.historyBytes();
-        editDuration(table, "3");
+        editDuration(table, "3h");
         save(window)->trigger();
         cancel->trigger();
         check(wait([&] { return !controller->busy(); }) && *document.project() == before && bytes(path) == savedAfter &&
                   document.historyBytes() == history,
               "cancelled cell edit still executed queued save/history");
-        editDuration(table, "2.5");
+        editDuration(table, "2.5h");
         calculate(window)->trigger();
         check(wait([&] {
                   return !controller->busy() && document.calculation() &&
@@ -260,9 +260,9 @@ int main(int argc, char **argv) {
               "Gantt effort resize did not prepare/recalculate asynchronously");
         before = *document.project();
         table->setCurrentCell(0, 1);
-        QApplication::clipboard()->setText("2");
+        QApplication::clipboard()->setText("2h");
         auto *paste = action(window, "pasteTaskCells");
-        check(wait([&] { return QApplication::clipboard()->text() == "2" && paste->isEnabled(); }),
+        check(wait([&] { return QApplication::clipboard()->text() == "2h" && paste->isEnabled(); }),
               "native clipboard/paste action did not become ready");
         paste->trigger();
         check(controller->busy(), "fixed-work paste did not submit asynchronous preparation");
@@ -308,7 +308,7 @@ int main(int argc, char **argv) {
             // Flush initial native expose/paint events before monitoring a worker.
             QTest::qWait(1);
             dialog->findChild<QLineEdit *>("actualStart")->setText("2026-10-26 09:00");
-            dialog->findChild<QSpinBox *>("actualMinutes")->setValue(30);
+            dialog->findChild<QLineEdit *>("actualMinutes")->setText("30m");
             auto *remaining = dialog->findChild<QLineEdit *>("remainingWorkHours");
             remaining->setText("0.5");
             dialog->findChild<QLineEdit *>("progressReporter")->setText("PM");
@@ -405,7 +405,7 @@ int main(int argc, char **argv) {
         dying = new jobs::MainWindow(temporary);
         dying->show();
         app.processEvents();
-        setCellText(taskTable(*dying), 0, 1, "3");
+        setCellText(taskTable(*dying), 0, 1, "3h");
         auto *dyingController =
             dynamic_cast<jobs::AsyncEditController *>(dying->findChild<QObject *>("asyncEditController"));
         auto dyingControl = dyingController->control();
@@ -427,7 +427,7 @@ int main(int argc, char **argv) {
                 dying = nullptr;
             }
         });
-        setCellText(taskTable(*dying), 0, 1, "3");
+        setCellText(taskTable(*dying), 0, 1, "3h");
         check(wait([&] { return !dying; }) && temporary.project()->tasks[0].durationMinutes == 180,
               "view destruction during prepared commit retained callbacks");
         temporary.unsubscribe(commitDestructionObserver);

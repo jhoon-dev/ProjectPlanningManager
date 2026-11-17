@@ -102,7 +102,7 @@ void pasteRoundtrip(jobs::JsonProjectStore &store, const std::string &path, bool
     paste(window, "Rejected\tinvalid\t");
     check(*doc.project() == beforeBad, "invalid paste partially applied a name or duration");
     view->setCurrentCell(0, 1);
-    paste(window, fixedUnits ? "8" : "20m");
+    paste(window, fixedUnits ? "8h" : "20m");
     check(doc.project()->revision == beforeBad.revision + 1, "actual duration paste was skipped");
     if (fixedUnits)
         check(!doc.project()->tasks[0].workDriven && !doc.project()->tasks[0].workUnitMinutes &&

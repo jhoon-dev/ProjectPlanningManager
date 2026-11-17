@@ -73,7 +73,7 @@ int main(int argc, char* argv[]) {
         check(table->rowCount() == 1 && table->model()->headerData(0, Qt::Vertical).toString() == "2" && cellText(table, 0, 2) == "1", "filtered global row/FS identity mismatch");
         check(count(gantt, "task") == 1 && count(gantt, "dependency") == 0 && bar(gantt, b)->toolTip().contains("WBS 밖 선행: 1"),
               "filtered Gantt hid external dependency evidence");
-        setCellText(table, 0, 1, "24");
+        setCellText(table, 0, 1, "24h");
         check(doc.project()->tasks[1].durationMinutes == 1440 && doc.project()->tasks[0].durationMinutes == 480 && count(gantt, "task") == 0,
               "filtered edit changed wrong task / kept stale Gantt");
         auto recalculate = [&] {

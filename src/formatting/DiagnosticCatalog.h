@@ -978,7 +978,8 @@ inline constexpr Entry entries[]{
     {"STATUS_DATE_REQUIRED", "실적 보고 전에 상태일을 설정하세요.",
      "Set the project status date before recording progress."},
     {"TASKINPUT_001",
-     "기간은 0~5,000,000 정수 근무분으로 환산되는 시간(예: 8, 1.5) 또는 분(1m)입니다. 빈칸은 미정입니다.",
+     "기간은 일(2d 또는 2), 시간(16h), 분(960m)으로 입력하세요. 작업 달력의 하루 근무량으로 환산하며 "
+     "0~5,000,000 정수 근무분이어야 합니다. 소수 분·경과일(ed)은 지원하지 않습니다. 빈칸은 미정입니다.",
      "The operation could not be completed. Review the related inputs."},
     {"TASKINPUT_002", "선행 입력은 프로젝트 원본 행 번호입니다: 1, 2SS+2h, 3FF-30m (d=480 근무분).",
      "The operation could not be completed. Review the related inputs."},

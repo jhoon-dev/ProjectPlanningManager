@@ -162,7 +162,7 @@ bool MainWindow::editTaskCell(std::string id, int column, const QString &text) {
         if (column == 0)
             document_.renameTask(row, text.toUtf8().toStdString());
         else if (column == 1) {
-            const auto duration = taskDurationInput(text);
+            const auto duration = taskDurationInput(text, taskDayMinutes(*document_.project(), *found));
             if (hasInverseDuration(id)) {
                 submitEdit(DurationEdit{std::move(id), duration}, "고정 공수 기간 역산");
                 return true;
