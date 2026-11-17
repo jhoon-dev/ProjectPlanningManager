@@ -1,0 +1,92 @@
+{
+  "format": "JOBS",
+  "payload": {
+    "assignments": [
+      {
+        "resourceId": "technician",
+        "taskId": "C",
+        "units": 100
+      },
+      {
+        "resourceId": "technician",
+        "taskId": "D",
+        "units": 100
+      }
+    ],
+    "baselines": [],
+    "calculationProfile": "native-fs0-workminutes-v1",
+    "calendar": "standard-mon-fri-8h-v1",
+    "costEntries": [],
+    "costProfile": "cost-day-minor-half-up-v1",
+    "currency": "KRW",
+    "derivedFrom": "",
+    "documentId": "weekly-ux-fixture-20261117",
+    "holidays": [],
+    "name": "설비 구축 주간 점검",
+    "progress": [],
+    "resources": [
+      {
+        "exceptions": [],
+        "id": "technician",
+        "maxUnits": 100,
+        "name": "설치 기술자",
+        "rates": [],
+        "type": "labor"
+      }
+    ],
+    "revision": 1,
+    "scenarios": [],
+    "startDate": "2026-11-09",
+    "statusAt": null,
+    "taskCosts": [],
+    "tasks": [
+      {
+        "durationMinutes": 960,
+        "id": "A",
+        "name": "설계 검토",
+        "predecessors": [],
+        "wbsId": ""
+      },
+      {
+        "durationMinutes": 960,
+        "id": "B",
+        "name": "부품 준비",
+        "predecessors": [
+          "A"
+        ],
+        "wbsId": ""
+      },
+      {
+        "durationMinutes": 960,
+        "id": "C",
+        "name": "조립",
+        "predecessors": [
+          "B"
+        ],
+        "wbsId": ""
+      },
+      {
+        "durationMinutes": 960,
+        "id": "D",
+        "name": "현장 설치 준비",
+        "predecessors": [
+          "B"
+        ],
+        "wbsId": ""
+      },
+      {
+        "durationMinutes": 480,
+        "id": "E",
+        "name": "시운전",
+        "predecessors": [
+          "C",
+          "D"
+        ],
+        "wbsId": ""
+      }
+    ],
+    "wbsNodes": []
+  },
+  "schemaVersion": 9,
+  "sha256": "86a1c56165b894745319b079d67fce9dc0d43337e1ede24426dbbf9d16d98914"
+}
