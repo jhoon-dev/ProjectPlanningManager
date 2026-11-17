@@ -25,6 +25,7 @@ void MainWindow::updateHistoryActions() {
     undo_->setToolTip(QString::fromStdString(document_.historyNotice()));
     redo_->setToolTip(QString::fromStdString(document_.historyNotice()));
     setWindowModified(document_.dirty());
+    refreshWorkflowUi();
     if (autosaveNow_)
         autosaveNow_->setEnabled(autosave_ && autosave_->enabled() && !autosave_->busy() && document_.dirty() &&
                                  !document_.readOnly());

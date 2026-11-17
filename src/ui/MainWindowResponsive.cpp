@@ -257,6 +257,7 @@ void MainWindow::refreshWbsSummary() {
     wbsSummary_->setToolTip(details);
 }
 void MainWindow::refreshStatus() {
+    refreshWorkflowUi();
     const auto &result = document_.calculation();
     const bool valid = result && result->status == CalculationStatus::Valid;
     statusBar()->showMessage(

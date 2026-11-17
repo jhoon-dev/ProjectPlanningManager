@@ -177,6 +177,8 @@ void MainWindow::showWeeklyUpdate() {
         return editTaskProgress(id, parent, next);
     };
     dialog.exec();
+    if (dialog.recalculationRequested())
+        calculateSchedule();
     refresh();
 }
 bool MainWindow::editTaskProgress(const std::string &id, QWidget *parent, bool continueNext) {

@@ -1,0 +1,4 @@
+PASS: reporting and explicit reforecast leave on-disk input unchanged until file save
+PASS: explicit file save adds exactly one correction for B; no report from cancelled D/E
+PASS: schema, task inputs, baseline, status and existing progress/leveling history preserved
+Saved SHA-256: 43b342a55ce7eecbdf52079870786001a89ca4f2af3306cacecb85ec704bb6d1

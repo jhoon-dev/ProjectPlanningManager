@@ -1,6 +1,7 @@
 #include "ui/MainWindow.h"
 #include "ui/GanttView.h"
 #include "ui/EditorUi.h"
+#include "ui/AsyncEditController.h"
 #include <QAction>
 #include <QComboBox>
 #include <QHBoxLayout>
@@ -127,6 +128,43 @@ void MainWindow::setupWorkspaceUi(QToolBar *tools, QComboBox *zoom) {
     view->addWidget(baselineChoice_);
     layout->insertLayout(3, view);
 
+    workflow_ = new QWidget(centralWidget());
+    workflow_->setObjectName("workflowStatus");
+    auto *workflowRow = new QHBoxLayout(workflow_);
+    workflowRow->setContentsMargins(8, 6, 8, 6);
+    auto *states = new QVBoxLayout;
+    states->setSpacing(2);
+    auto *stateRow = new QHBoxLayout;
+    fileState_ = new QLabel(workflow_);
+    fileState_->setObjectName("fileSaveState");
+    scheduleState_ = new QLabel(workflow_);
+    scheduleState_->setObjectName("scheduleFreshnessState");
+    for (auto *label : {fileState_, scheduleState_}) {
+        label->setTextFormat(Qt::PlainText);
+        label->setWordWrap(true);
+        stateRow->addWidget(label, 1);
+    }
+    states->addLayout(stateRow);
+    workflowHint_ = new QLabel(workflow_);
+    workflowHint_->setObjectName("workflowNextStep");
+    workflowHint_->setTextFormat(Qt::PlainText);
+    workflowHint_->setWordWrap(true);
+    states->addWidget(workflowHint_);
+    workflowRow->addLayout(states, 1);
+    workflowSave_ = new QToolButton(workflow_);
+    workflowSave_->setObjectName("workflowSave");
+    workflowSave_->setText("파일 저장");
+    connect(workflowSave_, &QToolButton::clicked, save_, &QAction::trigger);
+    workflowCalculate_ = new QToolButton(workflow_);
+    workflowCalculate_->setObjectName("workflowCalculate");
+    workflowCalculate_->setText("일정 계산 · F9");
+    connect(workflowCalculate_, &QToolButton::clicked, calculate_, &QAction::trigger);
+    for (auto *button : {workflowSave_, workflowCalculate_}) {
+        alignEditorControl(*button, controlHeight);
+        workflowRow->addWidget(button);
+    }
+    layout->insertWidget(layout->indexOf(documentNotice_) + 1, workflow_);
+
     auto *diagnosticBar = new QHBoxLayout;
     diagnosticBar->setObjectName("workspaceDiagnosticRow");
     auto *status = new QLabel(centralWidget());
@@ -197,6 +235,10 @@ void MainWindow::setupWorkspaceUi(QToolBar *tools, QComboBox *zoom) {
         "QToolBar QToolButton { padding: 6px 8px; }"
         "QLabel#projectTitle { font-size: 21px; font-weight: 600; padding: 2px 0; }"
         "QLabel#documentNotice { padding: 6px; border: 1px solid palette(mid); }"
+        "QWidget#workflowStatus { border: 1px solid palette(mid); border-radius: 4px; }"
+        "QWidget#workflowStatus QLabel, QWidget#workflowStatus QToolButton { border: 0; }"
+        "QLabel#fileSaveState, QLabel#scheduleFreshnessState { font-weight: 600; }"
+        "QWidget#workflowStatus QToolButton { padding: 6px 8px; background: palette(button); }"
         "QLineEdit#taskSearch { padding: 6px 8px; border: 1px solid palette(mid); border-radius: 4px; }"
         "QWidget#planningWorkspace QComboBox { padding: 4px 6px; }"
         "QTreeWidget#wbsTree::item { height: 28px; }"
@@ -206,6 +248,7 @@ void MainWindow::setupWorkspaceUi(QToolBar *tools, QComboBox *zoom) {
         "QLineEdit#taskSearch:focus { border: 1px solid palette(highlight); }");
 }
 void MainWindow::refreshWorkspaceUi() {
+    refreshWorkflowUi();
     const auto &project = document_.project();
     if (auto *fit = findChild<QAction *>("fitGanttSchedule"))
         fit->setEnabled(gantt_->hasSchedule());
@@ -221,5 +264,58 @@ void MainWindow::refreshWorkspaceUi() {
         summary_->setToolTip({});
         documentNotice_->hide();
     }
+}
+void MainWindow::refreshWorkflowUi() {
+    if (!workflow_)
+        return;
+    const auto &p = document_.project();
+    workflow_->setVisible(p.has_value() && property("workspaceLayoutMode").toInt() != 1);
+    if (!p)
+        return;
+    const bool pending = editController_ && editController_->busy();
+    const bool saveNeeded = document_.dirty() || document_.path().empty() || document_.requiresSaveAs();
+    const bool copy = document_.readOnly() || document_.requiresSaveAs();
+    fileState_->setText(document_.readOnly()         ? "파일 · 읽기 전용"
+                        : document_.requiresSaveAs() ? "파일 · 새 파일에 저장 필요"
+                        : document_.path().empty()   ? "파일 · 처음 저장 필요"
+                        : document_.dirty()          ? "파일 · 미저장 변경 있음"
+                                                     : "파일 · 저장됨");
+    fileState_->setToolTip(QString::fromStdString(document_.path()) +
+                           "\n파일 상태는 입력의 저장 여부입니다. 자동복구 저장과 일정 계산은 별개입니다.");
+    workflowSave_->setText(copy ? "사본 저장…" : "파일 저장");
+    workflowSave_->setEnabled(!pending);
+    workflowSave_->setToolTip("입력과 보고 이력을 파일에 저장합니다. 일정 계산은 별도로 실행합니다.");
+    workflowCalculate_->setText(p->statusAt ? "재예측 · F9" : "일정 계산 · F9");
+    workflowCalculate_->setEnabled(!calculating_ && !pending);
+    workflowCalculate_->setToolTip("현재 입력으로 일정을 계산합니다. 파일은 저장하지 않습니다.");
+    const auto &result = document_.calculation();
+    QString hint;
+    if (pending) {
+        scheduleState_->setText("일정 · 편집 적용 대기 중");
+        hint = "편집이 끝나면 파일 저장과 일정 계산 상태를 다시 확인하세요.";
+    } else if (calculating_) {
+        scheduleState_->setText("일정 · 계산 중");
+        hint = "현재 입력으로 계산 중입니다. 파일 저장 여부는 왼쪽에서 따로 확인하세요.";
+    } else if (!result || result->status == CalculationStatus::Stale ||
+               result->status == CalculationStatus::Cancelled) {
+        scheduleState_->setText(!result ? "일정 · 계산 필요"
+                                : result->status == CalculationStatus::Stale ? "일정 · 재계산 필요 (이전 결과 오래됨)"
+                                                                             : "일정 · 계산 취소됨 · 다시 계산 필요");
+        hint = saveNeeded
+                   ? "다음: 입력을 파일에 저장하고, 오른쪽 버튼으로 현재 입력의 일정을 계산하세요."
+                   : "다음: 오른쪽 버튼으로 현재 입력의 일정을 계산하세요. 저장·재열기만으로 계산되지는 않습니다.";
+    } else if (result->status == CalculationStatus::Valid) {
+        scheduleState_->setText(result->isForecast ? "일정 · 현재 입력의 재예측 완료" : "일정 · 현재 입력의 계산 완료");
+        hint = saveNeeded ? "다음: 계산은 완료됐습니다. 입력·보고 이력을 보존하려면 파일을 저장하세요."
+                          : "입력 저장과 일정 계산이 완료됐습니다. 기준선 비교·자원 검토·보고로 이어갈 수 있습니다.";
+    } else {
+        scheduleState_->setText(result->status == CalculationStatus::Conflict ? "일정 · 계산 충돌 · 완료일 없음"
+                                                                              : "일정 · 입력 불완전 · 완료일 없음");
+        hint = "다음: 진단 보기에서 원인을 확인하고 입력을 수정한 뒤 다시 계산하세요. 파일 저장은 별도로 수행합니다.";
+    }
+    if (document_.readOnly())
+        hint += " 읽기 전용 입력을 보존하려면 사본으로 저장하세요.";
+    workflowHint_->setText(hint);
+    workflowHint_->setToolTip(hint);
 }
 } // namespace jobs

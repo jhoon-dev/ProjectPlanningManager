@@ -6,7 +6,8 @@
 다음 개선은 [실제 Windows 화면 점검](21-weekly-update-ux-review.md)의 UX-W01~07 순서를 따른다.
 상태일 입력창 UX-W01, [기간 입력·표시 UX-W02](../validation/duration-units-2026-11-17/README.md),
 [주간 갱신·연속 입력 UX-W03](../validation/weekly-update-flow-2026-11-17/README.md)는 Windows 수정·검증을 완료했다.
-다음 후보는 UX-W04 저장·재예측 상태와 다음 행동 안내다. 아래 2026-11-06 재점검과 엔진 증분은
+[UX-W04 저장·재예측 상태와 다음 행동 안내](../validation/save-reforecast-flow-2026-11-17/README.md)도 Windows 수정·검증했다.
+다음 후보는 UX-W05 기준선·예측·자원 조정 결과 요약이다. 아래 2026-11-06 재점검과 엔진 증분은
 당시의 기능 상태를 설명하며 현재 UX 개선 순서를 대체하지 않는다. 실제 MSP/P6 왕복은 계속 별도 미완료다.
 
 **현재 상태와 다음 순서는 [2026-11-06 재점검](18-remaining-priorities-review.md)을 우선한다.** 아래 최초 비교의 “후속” 표기는 당시 스냅샷이다. 객체 필드·기간별 배정률·인쇄/네트워크 확장·다중 XER·활동/자원/통합 작업공간·조직/위험/자동화와 선택 서버 인증·동기화·HTTP·주기 실행의 지원 부분은 구현되었다. 계획 공수 입력에 이어 자원 그룹/필터·고정 기간 날짜별 잔여 공수·숫자 계산식 필드를 구현했다. [검증](../validation/professional-fields-2026-11-06/README.md). 외부 UDF 매핑 등 계약 밖 후속은 유지한다.

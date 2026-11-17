@@ -125,6 +125,13 @@ WeeklyUpdateDialog::WeeklyUpdateDialog(Document &document, QWidget *parent)
     edit_->setObjectName("weeklyEditProgress");
     next_ = buttons->addButton("다음 미보고 대상 선택", QDialogButtonBox::ActionRole);
     next_->setObjectName("weeklyNext");
+    recalculate_ = buttons->addButton("입력 마치고 재예측", QDialogButtonBox::ActionRole);
+    recalculate_->setObjectName("weeklyRecalculate");
+    recalculate_->setToolTip("주간 갱신 창을 닫고 현재 입력으로 재예측합니다. 파일 저장은 별도입니다.");
+    connect(recalculate_, &QPushButton::clicked, this, [this] {
+        recalculationRequested_ = true;
+        accept();
+    });
     layout->addWidget(buttons);
     connect(buttons, &QDialogButtonBox::rejected, this, &QDialog::reject);
     connect(filter_, &QComboBox::currentIndexChanged, this, [this] { reload(); });
@@ -268,6 +275,7 @@ void WeeklyUpdateDialog::selected() {
     for (int r = 0; r < tasks_->rowCount(); ++r)
         pending |= tasks_->item(r, 0)->data(Qt::UserRole + 1).toBool();
     next_->setEnabled(p && p->statusAt && !editing_ && pending);
+    recalculate_->setEnabled(p && p->statusAt && !editing_);
     details_->setText("작업을 선택하세요. 입력 내용은 작업별로 저장하며 파일 저장은 주 창에서 별도로 수행합니다.");
     if (!p)
         return;
@@ -317,7 +325,7 @@ void WeeklyUpdateDialog::editSelected() {
     editing_ = false;
     reload(last);
     notice_->setText(QString("이번 입력에서 %1건을 제출했습니다. 취소·미입력 작업은 자동 보고하지 않습니다.\n"
-                             "파일 저장과 F9 재예측은 주 창에서 진행하세요.")
+                             "입력 마치고 재예측으로 현재 일정을 계산하세요. 파일 저장은 별도입니다.")
                          .arg(saved));
 }
 } // namespace jobs

@@ -53,6 +53,10 @@ private:
     QSplitter *workspaceSplit_ = nullptr;
     void setupWorkspaceUi(QToolBar *, QComboBox *);
     void refreshWorkspaceUi();
+    void refreshWorkflowUi();
+    QWidget *workflow_ = nullptr;
+    QLabel *fileState_ = nullptr, *scheduleState_ = nullptr, *workflowHint_ = nullptr;
+    QToolButton *workflowSave_ = nullptr, *workflowCalculate_ = nullptr;
     QPlainTextEdit *diagnostics_ = nullptr;
     QLabel *editingHelp_ = nullptr;
     QAction *save_, *saveAs_, *add_;

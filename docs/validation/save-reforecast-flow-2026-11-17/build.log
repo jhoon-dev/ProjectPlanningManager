@@ -1,0 +1,41 @@
+[1/45] Automatic MOC for target jobs_updates
+[2/43] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\build-numbered-summary && C:\Users\dow\AppData\Roaming\Python\Python314\site-packages\cmake\data\bin\cmake.exe -DSOURCE_DIR=C:/Users/dow/Development/ToolMoa/ProjectPlanningManager -DOUTPUT=C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/BuildIdentity.h -P C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/scripts/WriteBuildIdentity.cmake"
+[3/43] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowTracking.cpp.obj
+[4/43] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowResources.cpp.obj
+[5/43] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowCosts.cpp.obj
+[6/43] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindow.cpp.obj
+[7/43] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowCalendars.cpp.obj
+[8/43] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowRecovery.cpp.obj
+[9/43] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowConstraints.cpp.obj
+[10/43] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowEffort.cpp.obj
+[11/43] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowTaskEditing.cpp.obj
+[12/43] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/WeeklyUpdateDialog.cpp.obj
+[13/43] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowXml.cpp.obj
+[14/43] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowAsync.cpp.obj
+[15/43] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowXer.cpp.obj
+[16/43] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowResponsive.cpp.obj
+[17/43] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowWorkspace.cpp.obj
+[18/43] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/DesktopWorkspace.cpp.obj
+[19/43] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowWorkspaceUi.cpp.obj
+[20/43] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowClassification.cpp.obj
+[21/43] Linking CXX static library libjobs_ui.a
+[22/43] Building CXX object CMakeFiles/JOBS.dir/src/main.cpp.obj
+[23/43] Automatic MOC for target jobs_dialog_layout_tests
+[24/42] Automatic MOC for target jobs_workspace_presentation_tests
+[25/42] Building CXX object CMakeFiles/jobs_tracking_ui_tests.dir/tests/TrackingUiTests.cpp.obj
+[26/42] Automatic MOC for target jobs_weekly_update_ui_tests
+[27/41] Building CXX object CMakeFiles/jobs_workspace_presentation_tests.dir/jobs_workspace_presentation_tests_autogen/mocs_compilation.cpp.obj
+[28/41] Automatic MOC for target jobs_workflow_ui_tests
+[29/41] Building CXX object CMakeFiles/jobs_async_editing_ui_tests.dir/tests/AsyncEditingUiTests.cpp.obj
+[30/41] Building CXX object CMakeFiles/jobs_workflow_ui_tests.dir/jobs_workflow_ui_tests_autogen/mocs_compilation.cpp.obj
+[31/41] Building CXX object CMakeFiles/jobs_dialog_layout_tests.dir/tests/DialogLayoutTests.cpp.obj
+[32/41] Building CXX object CMakeFiles/jobs_workspace_presentation_tests.dir/tests/WorkspacePresentationTests.cpp.obj
+[33/41] Building CXX object CMakeFiles/jobs_weekly_update_ui_tests.dir/tests/WeeklyUpdateUiTests.cpp.obj
+[34/41] Building CXX object CMakeFiles/jobs_workflow_ui_tests.dir/tests/WorkflowUiTests.cpp.obj
+[35/41] Linking CXX executable jobs_dialog_layout_tests.exe
+[36/41] Linking CXX executable PPM.exe
+[37/41] Linking CXX executable jobs_workspace_presentation_tests.exe
+[38/41] Linking CXX executable jobs_async_editing_ui_tests.exe
+[39/41] Linking CXX executable jobs_weekly_update_ui_tests.exe
+[40/41] Linking CXX executable jobs_tracking_ui_tests.exe
+[41/41] Linking CXX executable jobs_workflow_ui_tests.exe
