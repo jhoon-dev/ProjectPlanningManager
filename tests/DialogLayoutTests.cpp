@@ -3,6 +3,7 @@
 #include "ui/CostAnalysisDialog.h"
 #include "ui/DesktopWorkspace.h"
 #include "ui/EditorUi.h"
+#include "ui/MainWindow.h"
 #include "ui/RecoveryDialog.h"
 #include "ui/ReportDialog.h"
 #include "ui/ResourceComparisonDialog.h"
@@ -12,6 +13,9 @@
 #include <QAction>
 #include <QApplication>
 #include <QComboBox>
+#include <QCheckBox>
+#include <QDateTimeEdit>
+#include <QDialogButtonBox>
 #include <QDir>
 #include <QFormLayout>
 #include <QFrame>
@@ -26,11 +30,82 @@
 #include <QTabWidget>
 #include <QTableView>
 #include <QTest>
+#include <QTimer>
 #include <algorithm>
 
 class DialogLayoutTests : public QObject {
     Q_OBJECT
 private slots:
+    void statusDialogInitialLayout_data() {
+        QTest::addColumn<double>("fontScale");
+        QTest::newRow("default-font") << 1.0;
+        QTest::newRow("larger-font-125") << 1.25;
+        QTest::newRow("larger-font-150") << 1.5;
+    }
+    void statusDialogInitialLayout() {
+        QFETCH(double, fontScale);
+        const auto originalFont = QApplication::font();
+        const auto restoreFont = qScopeGuard([&] { QApplication::setFont(originalFont); });
+        auto font = originalFont;
+        font.setPointSizeF(font.pointSizeF() * fontScale);
+        QApplication::setFont(font);
+        jobs::JsonProjectStore store;
+        jobs::Document document(store);
+        document.create("주간 갱신", "2026-11-09", {"설계 검토"});
+        jobs::MainWindow window(document);
+        window.show();
+        QAction *action = nullptr;
+        for (auto *candidate : window.findChildren<QAction *>())
+            if (candidate->text() == "상태일 설정")
+                action = candidate;
+        QVERIFY(action);
+        // Exercise the real entry point without resizing the dialog in the test.
+        bool visited = false;
+        QTimer::singleShot(4000, &window, [] {
+            if (auto *dialog = qobject_cast<QDialog *>(QApplication::activeModalWidget()))
+                dialog->reject();
+        });
+        QTimer::singleShot(60, &window, [&] {
+            auto *dialog = qobject_cast<QDialog *>(QApplication::activeModalWidget());
+            QVERIFY(dialog);
+            const auto close = qScopeGuard([&] { dialog->reject(); });
+            visited = true;
+            auto *scroll = dialog->findChild<QScrollArea *>("editorScrollArea");
+            auto *date = dialog->findChild<QDateTimeEdit *>("statusAt");
+            auto *clear = dialog->findChild<QCheckBox *>("clearStatusAt");
+            auto *buttons = dialog->findChild<QDialogButtonBox *>();
+            QVERIFY(scroll && date && clear && buttons);
+            QCOMPARE(date->font().pointSizeF(), font.pointSizeF());
+            QCOMPARE(scroll->horizontalScrollBar()->maximum(), 0);
+            QCOMPARE(scroll->verticalScrollBar()->maximum(), 0);
+            for (auto *control : {static_cast<QWidget *>(date), static_cast<QWidget *>(clear)}) {
+                const QRect bounds(control->mapTo(scroll->viewport(), QPoint()), control->size());
+                QVERIFY(scroll->viewport()->rect().contains(bounds));
+                QVERIFY(control->width() >= control->minimumSizeHint().width());
+            }
+            QVERIFY(clear->width() >= clear->sizeHint().width());
+            bool explanationVisible = false;
+            for (auto *label : dialog->findChildren<QLabel *>())
+                if (label->text().startsWith("미완료 잔여 작업")) {
+                    const QRect bounds(label->mapTo(scroll->viewport(), QPoint()), label->size());
+                    QVERIFY(scroll->viewport()->rect().contains(bounds));
+                    const auto needed = label->fontMetrics().boundingRect(
+                        QRect(0, 0, label->contentsRect().width(), 10000), Qt::TextWordWrap, label->text());
+                    QVERIFY(label->contentsRect().height() >= needed.height());
+                    explanationVisible = true;
+                }
+            QVERIFY(explanationVisible);
+            QVERIFY(!scroll->isAncestorOf(buttons));
+            for (auto role : {QDialogButtonBox::Ok, QDialogButtonBox::Cancel}) {
+                auto *button = buttons->button(role);
+                QVERIFY(button && button->isVisible());
+                QVERIFY(dialog->rect().contains(QRect(button->mapTo(dialog, QPoint()), button->size())));
+            }
+        });
+        action->trigger();
+        QVERIFY(visited);
+        QVERIFY(!document.project()->statusAt);
+    }
     void longChoiceNamesDoNotForceWindowWidth() {
         QDialog dialog;
         auto *form = new QFormLayout(&dialog);

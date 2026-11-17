@@ -5,6 +5,7 @@
 #include <QAction>
 #include <QApplication>
 #include <QComboBox>
+#include <QCheckBox>
 #include <QDateTimeEdit>
 #include <QDialog>
 #include <QDialogButtonBox>
@@ -207,6 +208,49 @@ int main(int argc, char *argv[]) {
         baseline("재승인");
         check(doc.project()->baselines[0] == frozen && doc.project()->baselines[1].version == 2,
               "new baseline replaced old");
+        auto editStatus = [&](auto edit) {
+            QTimer::singleShot(50, [edit] {
+                auto *dialog = qobject_cast<QDialog *>(QApplication::activeModalWidget());
+                callbackCheck(dialog, "status dialog missing on reentry");
+                edit(*dialog);
+            });
+            trigger(window, "상태일 설정");
+        };
+        const auto beforeStatusChange = *doc.project();
+        editStatus([&](QDialog &dialog) {
+            auto *date = dialog.findChild<QDateTimeEdit *>("statusAt");
+            callbackCheck(date->dateTime().toString("yyyy-MM-dd HH:mm").toStdString() == *beforeStatusChange.statusAt,
+                          "status dialog did not restore the applied date");
+            date->setDateTime(date->dateTime().addDays(2));
+            dialog.findChild<QCheckBox *>("clearStatusAt")->setChecked(true);
+            dialog.findChild<QDialogButtonBox *>()->button(QDialogButtonBox::Cancel)->click();
+        });
+        check(*doc.project() == beforeStatusChange, "cancelling status edits changed input or history");
+        editStatus([](QDialog &dialog) {
+            dialog.findChild<QCheckBox *>("clearStatusAt")->setChecked(true);
+            dialog.findChild<QDialogButtonBox *>()->button(QDialogButtonBox::Ok)->click();
+        });
+        check(!doc.project()->statusAt && doc.project()->progress == beforeStatusChange.progress &&
+                  doc.project()->baselines == beforeStatusChange.baselines,
+              "clearing status lost progress or baseline history");
+        const auto clearedStatus = *doc.project();
+        editStatus([](QDialog &dialog) {
+            callbackCheck(!dialog.findChild<QCheckBox *>("clearStatusAt")->isChecked() &&
+                              dialog.findChild<QDateTimeEdit *>("statusAt")->dateTime().toString("yyyy-MM-dd HH:mm") ==
+                                  "2026-10-26 18:00",
+                          "cleared status dialog did not reopen in its default input state");
+            dialog.findChild<QDialogButtonBox *>()->button(QDialogButtonBox::Cancel)->click();
+        });
+        check(*doc.project() == clearedStatus, "reopening and cancelling restored a cleared status");
+        editStatus([](QDialog &dialog) {
+            dialog.findChild<QDateTimeEdit *>("statusAt")
+                ->setDateTime(QDateTime(QDate(2026, 10, 26), QTime(18, 0), QTimeZone::UTC));
+            dialog.findChild<QDialogButtonBox *>()->button(QDialogButtonBox::Ok)->click();
+        });
+        check(doc.project()->statusAt == beforeStatusChange.statusAt &&
+                  doc.project()->progress == beforeStatusChange.progress &&
+                  doc.project()->baselines == beforeStatusChange.baselines,
+              "setting status after clearing changed preserved history");
         recalculate();
         window.grab().save("tracking-main-smoke.png");
         const auto path = dir.filePath("tracking-ui.ppm");

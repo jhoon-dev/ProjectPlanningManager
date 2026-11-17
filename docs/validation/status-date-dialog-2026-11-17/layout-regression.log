@@ -1,0 +1,12 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+    Start 190: dialog_layout
+1/1 Test #190: dialog_layout ....................***Failed    7.56 sec
+
+
+0% tests passed, 1 tests failed out of 1
+
+Total Test time (real) =   7.60 sec
+
+The following tests FAILED:
+	190 - dialog_layout (Failed)
+Errors while running CTest

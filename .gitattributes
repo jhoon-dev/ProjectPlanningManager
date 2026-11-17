@@ -23,3 +23,4 @@ packaging/licenses/** -text -whitespace
 docs/validation/windows-installer-2026-10-28/*.jobs -text
 # Keep raw walkthrough evidence (including native CRLF) and hashes stable on checkout.
 docs/validation/weekly-update-ux-2026-11-17/** -text -whitespace
+docs/validation/status-date-dialog-2026-11-17/** -text -whitespace

@@ -153,6 +153,11 @@ void MainWindow::editStatusAt() {
             error->setText(qErrorText(e));
         }
     });
+    // Size the form before the shared editor moves its body into a scroll area.
+    // The spanning checkbox must also fit when the application font is enlarged.
+    const auto margins = layout->contentsMargins();
+    dialog.resize(std::max(560, clear->sizeHint().width() + margins.left() + margins.right() + 32),
+                  std::max(280, dialog.fontMetrics().height() * 12));
     prepareEditorDialog(dialog);
     if (dialog.exec() == QDialog::Accepted)
         refresh();

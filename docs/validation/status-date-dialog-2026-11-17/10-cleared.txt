@@ -1,0 +1,125 @@
+Window: "설비 구축 주간 점검* — PPM", App: PPM.exe.
+	0 window (창) (settable, string) 설비 구축 주간 점검* — PPM Secondary Actions: Raise ID: QApplication.QMainWindow
+		1 title bar (제목 표시줄) (settable, string) Value: 설비 구축 주간 점검* — PPM - Project Planning Manager
+			2 menu bar (메뉴 모음) 시스템 ID: MenuBar
+				3 menu item (메뉴 항목) 시스템
+			4 button (단추) 최소화
+			5 button (단추) 최대화
+			6 button (단추) 닫기
+		7 menu bar (메뉴 모음) (settable, string) ID: QApplication.QMainWindow.QMenuBar
+			8 menu item (메뉴 항목) (settable, string) 파일(F) ID: QApplication.QMainWindow.QMenuBar.QAction
+			9 menu item (메뉴 항목) (settable, string) 편집(E) ID: QApplication.QMainWindow.QMenuBar.QAction
+			10 menu item (메뉴 항목) (settable, string) 프로젝트(P) ID: QApplication.QMainWindow.QMenuBar.QAction
+			11 menu item (메뉴 항목) (settable, string) WBS(W) ID: QApplication.QMainWindow.QMenuBar.QAction
+			12 menu item (메뉴 항목) (settable, string) 추적(T) ID: QApplication.QMainWindow.QMenuBar.QAction
+			13 menu item (메뉴 항목) (settable, string) 자원(R) ID: QApplication.QMainWindow.QMenuBar.QAction
+			14 menu item (메뉴 항목) (settable, string) 원가(C) ID: QApplication.QMainWindow.QMenuBar.QAction
+			15 menu item (메뉴 항목) (settable, string) 보고서(B) ID: QApplication.QMainWindow.QMenuBar.QAction
+			16 menu item (메뉴 항목) (settable, string) 자동 저장·복구(A) ID: QApplication.QMainWindow.QMenuBar.QAction
+			17 menu item (메뉴 항목) (settable, string) 보기(V) ID: QApplication.QMainWindow.QMenuBar.QAction
+			18 menu item (메뉴 항목) (settable, string) 설정(S) ID: QApplication.QMainWindow.QMenuBar.QAction
+		19 toolbar (도구 모음) (settable, string) ID: QApplication.QMainWindow.primaryTools
+			20 button (단추) (settable, string) 새로 만들기 ID: QApplication.QMainWindow.primaryTools.QToolButton
+			21 button (단추) (settable, string) 열기 ID: QApplication.QMainWindow.primaryTools.QToolButton
+			22 button (단추) (settable, string) 저장 ID: QApplication.QMainWindow.primaryTools.QToolButton
+			23 group (그룹) (settable, string) ID: QApplication.QMainWindow.primaryTools.QToolBarSeparator
+			24 button (단추) (settable, string) 실행 취소 ID: QApplication.QMainWindow.primaryTools.QToolButton
+			25 button (단추) (disabled, settable, string) 다시 실행 ID: QApplication.QMainWindow.primaryTools.QToolButton
+			26 group (그룹) (settable, string) ID: QApplication.QMainWindow.primaryTools.QToolBarSeparator
+			27 button (단추) (settable, string) 작업 추가 ID: QApplication.QMainWindow.primaryTools.QToolButton
+			28 button (단추) (settable, string) 선택 작업 편집 메뉴 ID: QApplication.QMainWindow.primaryTools.selectedTaskMenu
+			29 group (그룹) (settable, string) ID: QApplication.QMainWindow.primaryTools.QToolBarSeparator
+			30 button (단추) (settable, string) 일정 계산 · F9 ID: QApplication.QMainWindow.primaryTools.QToolButton
+			31 button (단추) (settable, string) 분석·보고 ID: QApplication.QMainWindow.primaryTools.analysisMenu
+			32 group (그룹) (settable, string) ID: QApplication.QMainWindow.primaryTools.QWidget
+			33 button (단추) (settable, string) 도움말 · F1 ID: QApplication.QMainWindow.primaryTools.QToolButton
+		34 status bar (상태 표시줄) 미저장 변경 있음 · 유효한 최신 일정 없음 ID: QApplication.QMainWindow.QStatusBar
+			35 thumb (위치 조정) (settable, string) ID: QApplication.QMainWindow.QStatusBar.QSizeGrip
+			36 text (텍스트) 자동복구 저장 대기 · 원본 파일 보존 ID: QApplication.QMainWindow.QStatusBar.autosaveStatus
+		37 group (그룹) (settable, string) ID: QApplication.QMainWindow.planningWorkspace
+			38 text (텍스트) 설비 구축 주간 점검 ID: QApplication.QMainWindow.planningWorkspace.projectTitle
+			39 text (텍스트) 시작 2026-11-09 · 작업 5개 · 기준선 1개 · 상태일 미설정 · 현재 계획 ID: QApplication.QMainWindow.planningWorkspace.QLabel
+			40 text (텍스트) 범위: 설비 구축 주간 점검 · 전체 작업 · 작업 5개 · 기간 합계 72h · 기간 미정 0개 ID: QApplication.QMainWindow.planningWorkspace.wbsSummary
+			41 custom (사용자 지정) (settable, string) ID: QApplication.QMainWindow.planningWorkspace.planningSplit
+				42 group (그룹) (settable, string) 간트 일정 · 표와 같은 작업 선택 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.ganttView
+					43 group (그룹) (settable, string) ID: QApplication.QMainWindow.planningWorkspace.planningSplit.ganttView.QWidget
+					44 group (그룹) (settable, string) ID: QApplication.QMainWindow.planningWorkspace.planningSplit.ganttView.qt_scrollarea_hcontainer
+						45 scroll bar (스크롤 막대) (settable, float) Value: 0 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.ganttView.qt_scrollarea_hcontainer.QScrollBar
+					46 group (그룹) (settable, string) ID: QApplication.QMainWindow.planningWorkspace.planningSplit.ganttView.qt_scrollarea_vcontainer
+						47 scroll bar (스크롤 막대) (settable, float) Value: 0 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.ganttView.qt_scrollarea_vcontainer.QScrollBar
+				48 table (TABLE) (settable, string) 프로젝트 작업 목록 Description: 프로젝트 작업 목록 Value: 프로젝트 작업 목록 ID: 프로젝트 작업 목록
+					49 pane (창) (selectable, settable, string) ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					50 header (머리글) (selectable, settable, string) 작업명 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					51 header (머리글) (selectable, settable, string) 기간(h / m) ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					52 header (머리글) (selectable, settable, string) 선행(행·종류±지연) ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					53 header (머리글) (selectable, settable, string) 시작 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					54 header (머리글) (selectable, settable, string) 완료 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					55 header (머리글) (selectable, settable, string) 총여유(h) ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					56 header (머리글) (selectable, settable, string) 임계/상태 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					57 header (머리글) (selectable, settable, string) 자원 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					58 header (머리글) (selectable, settable, string) 안정 ID ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					59 header (머리글) (selectable, settable, string) 작업 달력 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					60 header (머리글) (selectable, settable, string) 제약 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					61 header (머리글) (selectable, settable, string) 마감일 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					62 header (머리글) (selectable, settable, string) 작업 유형 · 입력 공수(h) ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					63 header (머리글) (selectable, settable, string) 분할 중단 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					64 header (머리글) (selectable, settable, string) 1 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					65 data item (항목) (selectable, settable, string) 설계 검토 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					66 data item (항목) (selectable, settable, string) 16 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					67 data item (항목) (selectable, settable, string) ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					68 data item (항목) (selectable, settable, string) 미계산 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					69 data item (항목) (selectable, settable, string) 미계산 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					70 data item (항목) (selectable, settable, string) — ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					71 data item (항목) (selectable, settable, string) — ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					72 header (머리글) (selectable, settable, string) 2 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					73 data item (항목) (selectable, settable, string) 부품 준비 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					74 data item (항목) (selectable, settable, string) 16 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					75 data item (항목) (selectable, settable, string) 1 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					76 data item (항목) (selectable, settable, string) 미계산 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					77 data item (항목) (selectable, settable, string) 미계산 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					78 data item (항목) (selectable, settable, string) — ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					79 data item (항목) (selectable, settable, string) — ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					80 header (머리글) (selectable, settable, string) 3 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					81 data item (항목) (selectable, settable, string) 조립 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					82 data item (항목) (selectable, settable, string) 16 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					83 data item (항목) (selectable, settable, string) 2 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					84 data item (항목) (selectable, settable, string) 미계산 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					85 data item (항목) (selectable, settable, string) 미계산 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					86 data item (항목) (selectable, settable, string) — ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					87 data item (항목) (selectable, settable, string) — ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					88 header (머리글) (selectable, settable, string) 4 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					89 data item (항목) (selectable, settable, string) 현장 설치 준비 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					90 data item (항목) (selectable, settable, string) 16 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					91 data item (항목) (selectable, settable, string) 2 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					92 data item (항목) (selectable, settable, string) 미계산 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					93 data item (항목) (selectable, settable, string) 미계산 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					94 data item (항목) (selectable, settable, string) — ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					95 data item (항목) (selectable, settable, string) — ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					96 header (머리글) (selectable, settable, string) 5 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					97 data item (항목) (selectable, settable, string) 시운전 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					98 data item (항목) (selectable, settable, string) 8 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					99 data item (항목) (selectable, settable, string) 3,4 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					100 data item (항목) (selectable, settable, string) 미계산 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					101 data item (항목) (selectable, settable, string) 미계산 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					102 data item (항목) (selectable, settable, string) — ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+					103 data item (항목) (selectable, settable, string) — ID: QApplication.QMainWindow.planningWorkspace.planningSplit.taskTable
+				104 tree (트리) (settable, string) WBS 탐색 Description: WBS 탐색 Value: WBS 탐색 ID: WBS 탐색
+					105 header (머리글) (selectable, settable, string) WBS · 프로젝트 구조 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.wbsTree
+					106 tree item (콘솔 트리) (selectable, settable, string) 설비 구축 주간 점검 · 전체 작업 ID: QApplication.QMainWindow.planningWorkspace.planningSplit.wbsTree
+				107 thumb (위치 조정) (settable, string) ID: QApplication.QMainWindow.planningWorkspace.planningSplit.qt_splithandle_
+				108 thumb (위치 조정) (settable, string) ID: QApplication.QMainWindow.planningWorkspace.planningSplit.qt_splithandle_
+			109 text field (편집) (settable, string) 작업 이름·ID 검색 ID: QApplication.QMainWindow.planningWorkspace.taskSearch
+			110 combo box (콤보 상자) (settable, string) 작업 필터 Value: 전체 작업 ID: QApplication.QMainWindow.planningWorkspace.taskFilter
+			111 combo box (콤보 상자) (settable, string) 작업 정렬 Value: 프로젝트 원본 순서 ID: QApplication.QMainWindow.planningWorkspace.taskSort
+			112 button (단추) (settable, string) 보기 초기화 ID: QApplication.QMainWindow.planningWorkspace.resetTaskView
+			113 text (텍스트) 표시 5 / WBS 범위 5 ID: QApplication.QMainWindow.planningWorkspace.taskViewStatus
+			114 checkbox (확인란) (settable, string) WBS 탐색 ID: QApplication.QMainWindow.planningWorkspace.toggleWbs
+			115 text (텍스트) 간트 배율 ID: QApplication.QMainWindow.planningWorkspace.QLabel
+			116 button (단추) (disabled, settable, string) 선택 보기 ID: QApplication.QMainWindow.planningWorkspace.QToolButton
+			117 button (단추) (disabled, settable, string) 전체 맞춤 ID: QApplication.QMainWindow.planningWorkspace.QToolButton
+			118 combo box (콤보 상자) (settable, string) 간트 배율 Value: 일 ID: QApplication.QMainWindow.planningWorkspace.ganttZoom
+			119 combo box (콤보 상자) (settable, string) 간트 비교 기준선 Value: v1 · 최초 계획 ID: QApplication.QMainWindow.planningWorkspace.baselineChoice
+			120 text (텍스트) 미계산 · F9로 계산 ID: QApplication.QMainWindow.planningWorkspace.calculationStatus
+			121 checkbox (확인란) (settable, string) 진단 보기 ID: QApplication.QMainWindow.planningWorkspace.toggleDiagnostics
+
+The focused UI element is 109 text field (편집) (settable, string) 작업 이름·ID 검색 ID: QApplication.QMainWindow.planningWorkspace.taskSearch.
