@@ -14,7 +14,7 @@ namespace jobs {
 class LevelingWitnessDialog;
 class ResourceComparisonDialog final : public QDialog {
 public:
-    ResourceComparisonDialog(Document &, QWidget *parent = nullptr);
+    ResourceComparisonDialog(Document &, QWidget *parent = nullptr, const std::string &baselineId = {});
     ~ResourceComparisonDialog() override;
     void reject() override;
 
@@ -32,7 +32,10 @@ private:
     std::uint64_t witnessListener_ = 0;
     QLineEdit *reason_;
     QLabel *summary_;
-    QTableWidget *tasks_, *before_, *after_, *other_;
+    QComboBox *baseline_;
+    QTableWidget *outcomes_;
+    QLabel *outcomeState_;
+    QTableWidget *tasks_, *before_, *after_, *other_, *current_;
     QPlainTextEdit *diagnostics_;
     std::optional<Project> source_;
     std::optional<LevelingResult> result_;

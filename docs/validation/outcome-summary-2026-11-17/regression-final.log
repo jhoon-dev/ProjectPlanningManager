@@ -1,0 +1,25 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+      Start 181: leveling_selection_ui
+      Start 165: progress_leveling_ui
+ 1/10 Test #165: progress_leveling_ui .............   Passed    5.61 sec
+      Start 263: tracking_ui
+ 2/10 Test #181: leveling_selection_ui ............   Passed    7.56 sec
+      Start 251: resource_ui
+ 3/10 Test #263: tracking_ui ......................   Passed    5.80 sec
+      Start 154: leveling_decision_contract
+ 4/10 Test #251: resource_ui ......................   Passed    5.85 sec
+      Start 193: workspace_presentation
+ 5/10 Test #154: leveling_decision_contract .......   Passed    5.08 sec
+      Start 190: dialog_layout
+ 6/10 Test #193: workspace_presentation ...........   Passed    5.36 sec
+      Start 262: outcome_summary_ui
+ 7/10 Test #262: outcome_summary_ui ...............   Passed    3.16 sec
+      Start 180: leveling_selection_contract
+ 8/10 Test #180: leveling_selection_contract ......   Passed    0.77 sec
+      Start 253: tracking_contract
+ 9/10 Test #253: tracking_contract ................   Passed    0.21 sec
+10/10 Test #190: dialog_layout ....................   Passed    8.89 sec
+
+100% tests passed out of 10
+
+Total Test time (real) =  26.61 sec

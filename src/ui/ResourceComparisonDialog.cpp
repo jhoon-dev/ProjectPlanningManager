@@ -1,6 +1,8 @@
 #include "formatting/QtDiagnosticText.h"
 #include "ui/ResourceComparisonDialog.h"
 #include "ui/LevelingWitnessDialog.h"
+#include "ui/OutcomeSummary.h"
+#include "ui/LevelingDecisionDialog.h"
 #include "calculation/WorkCalendar.h"
 #include <QComboBox>
 #include <QSpinBox>
@@ -16,6 +18,7 @@
 #include <QFutureWatcher>
 #include <QDateTime>
 #include <QSignalBlocker>
+#include <QToolButton>
 #include <QColor>
 #include <QtConcurrent/QtConcurrentRun>
 #include <unordered_map>
@@ -111,6 +114,8 @@ std::int64_t overload(const ResourceLoad &l) {
     return n;
 }
 QString overloadText(const ResourceLoad &l) {
+    if (l.days.empty() && l.status != CalculationStatus::Valid)
+        return "미정 · 유효한 부하 없음";
     return std::any_of(l.days.begin(), l.days.end(), [](const auto &d) { return !d.capacity; })
                ? "미정 (알려진 구간 " + hours(overload(l)) + "h)"
                : hours(overload(l)) + "h";
@@ -120,14 +125,24 @@ struct Computed {
     std::optional<LevelingResult> other;
     std::optional<Project> otherProject;
     QString error;
+    ScheduleResult applied;
+    ResourceLoad appliedLoad;
 };
 } // namespace
-ResourceComparisonDialog::ResourceComparisonDialog(Document &doc, QWidget *parent)
+ResourceComparisonDialog::ResourceComparisonDialog(Document &doc, QWidget *parent, const std::string &baselineId)
     : QDialog(parent), document_(doc), sourceSession_(doc.sessionGeneration()) {
     setObjectName("resourceComparisonDialog");
     setWindowTitle("기간별 자원 부하 · 평준화 시나리오 비교");
     resize(1480, 850);
     auto *layout = new QVBoxLayout(this);
+    baseline_ = new QComboBox(this);
+    baseline_->setObjectName("levelingBaseline");
+    baseline_->setAccessibleName("완료일 편차 기준선");
+    baseline_->addItem("기준선 없음 · 완료일 편차 미정", QString{});
+    for (const auto &base : doc.project()->baselines)
+        baseline_->addItem("v" + QString::number(base.version) + " · " + qs(base.name), qs(base.id));
+    baseline_->setCurrentIndex(std::max(0, baseline_->findData(qs(baselineId))));
+    layout->addWidget(baseline_);
     auto *sources = new QHBoxLayout;
     layout->addLayout(sources);
     sourceChoice_ = new QComboBox(this);
@@ -180,9 +195,26 @@ ResourceComparisonDialog::ResourceComparisonDialog(Document &doc, QWidget *paren
     summary_->setObjectName("levelingSummary");
     summary_->setTextFormat(Qt::PlainText);
     summary_->setWordWrap(true);
-    summary_->setMinimumHeight(125);
     summary_->setTextInteractionFlags(Qt::TextSelectableByMouse);
     layout->addWidget(summary_);
+    outcomeState_ = new QLabel(this);
+    outcomeState_->setObjectName("levelingAdoptionState");
+    outcomeState_->setTextFormat(Qt::PlainText);
+    outcomeState_->setWordWrap(true);
+    layout->addWidget(outcomeState_);
+    outcomes_ = outcomeTable(this, "levelingOutcomes");
+    layout->addWidget(outcomes_);
+    auto *summaryLinks = new QHBoxLayout;
+    auto *advanced = new QToolButton(this);
+    advanced->setText("계산 출처·전체 진단 펼치기");
+    advanced->setObjectName("levelingAdvanced");
+    advanced->setCheckable(true);
+    auto *history = new QPushButton("채택·해제 이력…", this);
+    history->setObjectName("levelingHistory");
+    summaryLinks->addWidget(history);
+    summaryLinks->addWidget(advanced);
+    summaryLinks->addStretch();
+    layout->addLayout(summaryLinks);
     auto *tabs = new QTabWidget(this);
     tabs->setObjectName("resourceTabs");
     layout->addWidget(tabs, 1);
@@ -198,11 +230,23 @@ ResourceComparisonDialog::ResourceComparisonDialog(Document &doc, QWidget *paren
     tabs->addTab(after_, "A 평준화 후");
     other_ = table(this, "loadOther", columns);
     tabs->addTab(other_, "B 평준화 후");
+    current_ = table(this, "loadCurrent", columns);
+    tabs->addTab(current_, "현재 적용 부하");
     diagnostics_ = new QPlainTextEdit(this);
     diagnostics_->setObjectName("levelingDiagnostics");
     diagnostics_->setReadOnly(true);
     diagnostics_->setMaximumHeight(110);
     layout->addWidget(diagnostics_);
+    summary_->hide();
+    diagnostics_->hide();
+    connect(advanced, &QToolButton::toggled, this, [this](bool show) {
+        summary_->setVisible(show);
+        diagnostics_->setVisible(show);
+    });
+    connect(history, &QPushButton::clicked, this, [this] {
+        LevelingDecisionDialog dialog(document_, this);
+        dialog.exec();
+    });
     auto *note = new QLabel("전체 작업 범위 · 작업 유형/공수와 수동 분할·작업/자원 달력 준수 · 자원에 따른 자동 추가 "
                             "분할 없음 · 원본보다 앞당기지 않음 · 같은 우선순위는 행 순서\n상태일 설정 시 잔여 수요만 "
                             "비교하고 실제 날짜는 고정합니다. 부하 공수는 자원별 인시/장비시입니다. 부하 표는 수요가 "
@@ -253,6 +297,20 @@ ResourceComparisonDialog::ResourceComparisonDialog(Document &doc, QWidget *paren
     connect(horizon_, &QSpinBox::valueChanged, this, [this] { invalidate(); });
     connect(sourceChoice_, &QComboBox::currentIndexChanged, this, [this] { recalculate(); });
     connect(otherChoice_, &QComboBox::currentIndexChanged, this, [this] { recalculate(); });
+    connect(baseline_, &QComboBox::currentIndexChanged, this, [this] { recalculate(); });
+    connect(outcomes_, &QTableWidget::currentCellChanged, this, [this, tabs](int row) {
+        // Summary rows lead to their matching evidence; a stored B never shares A's load table.
+        if (row == 1)
+            tabs->setCurrentWidget(before_);
+        else if (row == 2)
+            tabs->setCurrentWidget(current_);
+        else if (row == 3)
+            tabs->setCurrentWidget(after_);
+        else if (row == 4)
+            tabs->setCurrentWidget(other_);
+        else
+            tabs->setCurrentWidget(tasks_);
+    });
     connect(save_, &QPushButton::clicked, this, [this] { saveScenario(); });
     connect(witnessA_, &QPushButton::clicked, this, [this] { openWitness(false); });
     connect(witnessB_, &QPushButton::clicked, this, [this] { openWitness(true); });
@@ -265,6 +323,11 @@ ResourceComparisonDialog::ResourceComparisonDialog(Document &doc, QWidget *paren
             witnessB_->setEnabled(false);
             witnessA_->setToolTip("문서가 변경되었습니다. 평준화 비교를 다시 계산하세요.");
             witnessB_->setToolTip(witnessA_->toolTip());
+            outcomes_->setRowCount(0);
+            outcomeState_->setText(
+                "입력이 변경되어 이전 비교는 오래됐습니다. 부하 계산 / 평준화 비교를 다시 실행하세요.");
+            adopt_->setEnabled(false);
+            save_->setEnabled(false);
         }
     });
     recalculate();
@@ -294,8 +357,12 @@ void ResourceComparisonDialog::invalidate() {
     before_->setRowCount(0);
     after_->setRowCount(0);
     other_->setRowCount(0);
+    current_->setRowCount(0);
     diagnostics_->clear();
     summary_->setText("조건을 변경했습니다. 부하 계산 / 평준화 비교를 실행하세요.");
+    outcomes_->setRowCount(0);
+    outcomeState_->setText((document_.project() ? outcomeAdoption(*document_.project()) : QString("프로젝트 없음")) +
+                           "\n조건 변경 · 비교를 다시 계산하세요.");
 }
 void ResourceComparisonDialog::recalculate() {
     if (posting_ || !document_.project())
@@ -327,174 +394,224 @@ void ResourceComparisonDialog::recalculate() {
     auto priority = str(priority_->currentData().toString());
     int horizon = horizon_->value();
     summary_->setText("자원 수요·시나리오 계산 중…");
+    outcomeState_->setText(outcomeAdoption(current) + "\n완료일·부하 비교 계산 중…");
     auto *watcher = new QFutureWatcher<Computed>(this);
-    connect(watcher, &QFutureWatcher<Computed>::finished, this,
-            [this, watcher, generation, snapshot, current, selected, session, replayPolicy] {
-                auto computed = watcher->result();
-                watcher->deleteLater();
-                if (generation != generation_)
-                    return;
-                cancel_->setEnabled(false);
-                if (!computed.error.isEmpty()) {
-                    summary_->setText(computed.error);
-                    return;
+    connect(
+        watcher, &QFutureWatcher<Computed>::finished, this,
+        [this, watcher, generation, snapshot, current, selected, session, replayPolicy] {
+            auto computed = watcher->result();
+            watcher->deleteLater();
+            if (generation != generation_)
+                return;
+            cancel_->setEnabled(false);
+            if (!computed.error.isEmpty()) {
+                summary_->setText(computed.error);
+                outcomeState_->setText(computed.error);
+                return;
+            }
+            if (!document_.project() || document_.sessionGeneration() != session ||
+                document_.project()->documentId != current.documentId ||
+                document_.project()->revision != current.revision) {
+                summary_->setText("계산 중 문서가 변경되었습니다. 다시 계산하세요.");
+                outcomeState_->setText(summary_->text());
+                return;
+            }
+            source_ = snapshot;
+            result_ = computed.main;
+            anchor_ = current;
+            sourceSession_ = session;
+            candidatePolicy_ = replayPolicy.empty() ? levelingPolicyFor(snapshot) : replayPolicy;
+            const auto &r = *result_;
+            adopt_->setEnabled(!document_.readOnly() && sameLevelingSource(snapshot, current) &&
+                               r.leveled.status == CalculationStatus::Valid &&
+                               r.after.status == CalculationStatus::Valid);
+            save_->setEnabled(selected.empty() && !document_.readOnly());
+            auto finish = [](const ScheduleResult &s) { return s.projectFinish ? qs(*s.projectFinish) : "—"; };
+            auto units = [&](const ResourceLoad &l) {
+                std::map<std::string, std::int64_t> totals;
+                for (const auto &d : l.days)
+                    for (const auto &resource : snapshot.resources)
+                        if (resource.id == d.resourceId)
+                            totals[resource.type] += d.demandUnitMinutes;
+                return "인력 " + work(totals["labor"]) + " 인시 · 장비 " + work(totals["equipment"]) + " 장비시";
+            };
+            QString summary =
+                "A 원본 rev " + QString::number(snapshot.revision) + " · " + qs(snapshot.documentId) + " · " +
+                (snapshot.statusAt ? "잔여 예측 / 상태일 " + qs(*snapshot.statusAt) : "계획") + "\n완료: 원본 " +
+                finish(r.original) + " → A " + finish(r.leveled) + " · " +
+                state(r.leveled.status == CalculationStatus::Valid ? r.after.status : r.leveled.status) +
+                "\n배정 작업 " + QString::number(r.before.assignedTasks) + "/" + QString::number(r.before.totalTasks) +
+                " · 자원별 과부하 시간 합계 " + overloadText(r.before) + " → " +
+                (r.leveled.status == CalculationStatus::Valid ? overloadText(r.after) : "—") + " · 수요 " +
+                units(r.before) + (r.leveled.status == CalculationStatus::Valid ? " → " + units(r.after) : "") +
+                "\n정책 " + qs(r.leveled.calculationPolicy) + " · 탐색 " + QString::number(r.horizonWorkDays) +
+                " 기본 달력 근무일 · 채택은 검증 후 명시 적용 · 일정 입력 변경 시 채택 해제";
+            if (snapshot.progressPolicy)
+                summary += "\n진척 정책 " + qs(snapshot.progressPolicy->policy) + " · 담당자 " +
+                           qs(snapshot.progressPolicy->adoptedBy) + " · " + qs(snapshot.progressPolicy->reason) +
+                           (snapshot.statusAt ? "" : " · 비활성");
+            if (current.planLeveling || current.remainingLeveling)
+                summary += "\n현재 " + QString(current.planLeveling ? "계획" : "잔여 예측") +
+                           " 평준화 채택 중 · 비교 원본은 채택 전 논리 일정";
+            if (!sameLevelingSource(snapshot, current))
+                summary += "\nA 입력이 현재 일정과 다릅니다. 현재 일정으로 직접 채택할 수 없습니다.";
+            if (computed.other && computed.otherProject) {
+                summary +=
+                    "\nB 원본 rev " + QString::number(computed.otherProject->revision) + " · " +
+                    qs(computed.other->priority) + " / " + QString::number(computed.other->horizonWorkDays) +
+                    " 근무일 · 완료 " + finish(computed.other->leveled) + " · " +
+                    state(computed.other->leveled.status == CalculationStatus::Valid ? computed.other->after.status
+                                                                                     : computed.other->leveled.status);
+                if (static_cast<const PlanInput &>(snapshot) !=
+                        static_cast<const PlanInput &>(*computed.otherProject) ||
+                    snapshot.statusAt != computed.otherProject->statusAt ||
+                    snapshot.progress != computed.otherProject->progress)
+                    summary += " · A/B 입력이 다릅니다: 우선순위만의 효과로 해석할 수 없습니다.";
+            }
+            summary_->setText(summary);
+            const auto *baseline = outcomeBaseline(current, str(baseline_->currentData().toString()));
+            const auto *calendar = baseline ? &baseline->input : static_cast<const PlanInput *>(&current);
+            const auto baseFinish = baseline ? std::optional<std::string>{baseline->projectFinish} : std::nullopt;
+            const auto originalFinish = outcomeFinish(r.original);
+            const bool same = sameLevelingSource(snapshot, current);
+            const auto &active = current.remainingLeveling ? current.remainingLeveling : current.planLeveling;
+            const bool matches = same && active && active->priority == r.priority &&
+                                 active->horizonWorkDays == r.horizonWorkDays && active->policy == candidatePolicy_;
+            outcomes_->setRowCount(0);
+            outcomeState_->setText(outcomeAdoption(current) + "\n" + outcomeCoverage(current) +
+                                   QString("\nA: %1 · 배정 작업 %2/%3 · 행 선택 → 해당 일정/부하 탭 · 편차는 기준선 "
+                                           "달력 근무시간 (+지연 / −앞당김)")
+                                       .arg(same ? "현재 입력과 같음" : "현재 입력과 다름 · 직접 채택 불가")
+                                       .arg(r.before.assignedTasks)
+                                       .arg(r.before.totalTasks));
+            outcomeRow(outcomes_, "선택 기준선", baseFinish, calendar, baseFinish, {},
+                       baseline ? "승인·동결 계획" : "기준선 없음", "별도 검증 필요");
+            outcomeRow(outcomes_, "A 조정 전", originalFinish, calendar, baseFinish, originalFinish,
+                       snapshot.statusAt ? "잔여 논리 예측" : "논리 계획", overloadText(r.before));
+            outcomeRow(outcomes_, "현재 적용 일정", outcomeFinish(computed.applied), calendar, baseFinish,
+                       same ? originalFinish : std::nullopt, state(computed.appliedLoad.status),
+                       outcomeLoad(computed.appliedLoad));
+            outcomeRow(outcomes_, "검토 후보 A", outcomeFinish(r.leveled), calendar, baseFinish, originalFinish,
+                       state(r.leveled.status == CalculationStatus::Valid ? r.after.status : r.leveled.status) +
+                           (matches ? " · 현재 채택 설정과 일치"
+                            : same  ? " · 미채택 후보"
+                                    : " · 현재 입력과 다름"),
+                       r.leveled.status == CalculationStatus::Valid ? overloadText(r.after) : "—");
+            if (computed.other && computed.otherProject) {
+                const bool equalInput = static_cast<const PlanInput &>(snapshot) ==
+                                            static_cast<const PlanInput &>(*computed.otherProject) &&
+                                        snapshot.statusAt == computed.otherProject->statusAt &&
+                                        snapshot.progress == computed.otherProject->progress;
+                outcomeRow(
+                    outcomes_, "저장된 B · 비교용", outcomeFinish(computed.other->leveled), calendar, baseFinish,
+                    equalInput ? originalFinish : std::nullopt,
+                    state(computed.other->leveled.status == CalculationStatus::Valid ? computed.other->after.status
+                                                                                     : computed.other->leveled.status) +
+                        (equalInput ? " · A와 같은 입력" : " · A/B 입력 다름"),
+                    computed.other->leveled.status == CalculationStatus::Valid ? overloadText(computed.other->after)
+                                                                               : "—");
+            }
+            fillLoad(before_, snapshot, r.before);
+            fillLoad(after_, snapshot, r.after);
+            fillLoad(current_, current, computed.appliedLoad);
+            if (computed.otherProject && computed.other)
+                fillLoad(other_, *computed.otherProject, computed.other->after);
+            std::unordered_map<std::string, const TaskSchedule *> original, leveled, other;
+            for (const auto &row : r.original.tasks)
+                original.emplace(row.taskId, &row);
+            for (const auto &row : r.leveled.tasks)
+                leveled.emplace(row.taskId, &row);
+            if (computed.other)
+                for (const auto &row : computed.other->leveled.tasks)
+                    other.emplace(row.taskId, &row);
+            std::vector<Task> all = snapshot.tasks;
+            if (computed.otherProject)
+                for (const auto &t : computed.otherProject->tasks)
+                    if (std::none_of(all.begin(), all.end(), [&](const auto &a) { return a.id == t.id; }))
+                        all.push_back(t);
+            using CalendarKey = std::pair<std::string, std::vector<std::pair<std::string, std::string>>>;
+            std::map<CalendarKey, WorkCalendar> taskCalendars;
+            tasks_->setRowCount(int(all.size()));
+            for (int i = 0; i < tasks_->rowCount(); ++i) {
+                const auto &t = all[std::size_t(i)];
+                const auto *a = original.contains(t.id) ? original.at(t.id) : nullptr;
+                const auto *b = leveled.contains(t.id) ? leveled.at(t.id) : nullptr;
+                const auto *c = other.contains(t.id) ? other.at(t.id) : nullptr;
+                QString delay = "—";
+                if (a && b) {
+                    CalendarKey key{t.calendarId, {}};
+                    if (isEffort(snapshot))
+                        for (const auto &gap : t.breaks)
+                            key.second.emplace_back(gap.start, gap.finish);
+                    const auto &calendar = taskCalendars.try_emplace(std::move(key), snapshot, t).first->second;
+                    delay = hours(calendar.offset(b->remainingStart.value_or(b->start)) -
+                                  calendar.offset(a->remainingStart.value_or(a->start)));
                 }
-                if (!document_.project() || document_.sessionGeneration() != session ||
-                    document_.project()->documentId != current.documentId ||
-                    document_.project()->revision != current.revision) {
-                    summary_->setText("계산 중 문서가 변경되었습니다. 다시 계산하세요.");
-                    return;
+                const auto *actual = progressAsOf(snapshot, t.id);
+                QStringList values{qs(t.name),
+                                   a ? qs(a->start) : "—",
+                                   a ? qs(a->finish) : "—",
+                                   b ? qs(b->start) : "—",
+                                   b ? qs(b->finish) : "—",
+                                   delay,
+                                   c ? qs(c->start) : "—",
+                                   c ? qs(c->finish) : "—",
+                                   actual && actual->actualStart ? "고정 보존" : "—",
+                                   b && hasScheduleFloat(r.leveled, *b) ? hours(b->totalFloatMinutes) : "—",
+                                   b && hasScheduleFloat(r.leveled, *b) ? hours(b->freeFloatMinutes) : "—",
+                                   b && hasScheduleFloat(r.leveled, *b) ? (b->critical ? "평준화 임계" : "평준화 여유")
+                                                                        : "미산정"};
+                for (int col = 0; col < values.size(); ++col) {
+                    auto *item = new QTableWidgetItem(values[col]);
+                    item->setData(Qt::UserRole, qs(t.id));
+                    item->setToolTip(qs(t.id));
+                    tasks_->setItem(i, col, item);
                 }
-                source_ = snapshot;
-                result_ = computed.main;
-                anchor_ = current;
-                sourceSession_ = session;
-                candidatePolicy_ = replayPolicy.empty() ? levelingPolicyFor(snapshot) : replayPolicy;
-                const auto &r = *result_;
-                adopt_->setEnabled(!document_.readOnly() && sameLevelingSource(snapshot, current) &&
-                                   r.leveled.status == CalculationStatus::Valid &&
-                                   r.after.status == CalculationStatus::Valid);
-                save_->setEnabled(selected.empty() && !document_.readOnly());
-                auto finish = [](const ScheduleResult &s) { return s.projectFinish ? qs(*s.projectFinish) : "—"; };
-                auto units = [&](const ResourceLoad &l) {
-                    std::map<std::string, std::int64_t> totals;
-                    for (const auto &d : l.days)
-                        for (const auto &resource : snapshot.resources)
-                            if (resource.id == d.resourceId)
-                                totals[resource.type] += d.demandUnitMinutes;
-                    return "인력 " + work(totals["labor"]) + " 인시 · 장비 " + work(totals["equipment"]) + " 장비시";
-                };
-                QString summary =
-                    "A 원본 rev " + QString::number(snapshot.revision) + " · " + qs(snapshot.documentId) + " · " +
-                    (snapshot.statusAt ? "잔여 예측 / 상태일 " + qs(*snapshot.statusAt) : "계획") + "\n완료: 원본 " +
-                    finish(r.original) + " → A " + finish(r.leveled) + " · " +
-                    state(r.leveled.status == CalculationStatus::Valid ? r.after.status : r.leveled.status) +
-                    "\n배정 작업 " + QString::number(r.before.assignedTasks) + "/" +
-                    QString::number(r.before.totalTasks) + " · 자원별 과부하 시간 합계 " + overloadText(r.before) +
-                    " → " + (r.leveled.status == CalculationStatus::Valid ? overloadText(r.after) : "—") + " · 수요 " +
-                    units(r.before) + (r.leveled.status == CalculationStatus::Valid ? " → " + units(r.after) : "") +
-                    "\n정책 " + qs(r.leveled.calculationPolicy) + " · 탐색 " + QString::number(r.horizonWorkDays) +
-                    " 기본 달력 근무일 · 채택은 검증 후 명시 적용 · 일정 입력 변경 시 채택 해제";
-                if (snapshot.progressPolicy)
-                    summary += "\n진척 정책 " + qs(snapshot.progressPolicy->policy) + " · 담당자 " +
-                               qs(snapshot.progressPolicy->adoptedBy) + " · " + qs(snapshot.progressPolicy->reason) +
-                               (snapshot.statusAt ? "" : " · 비활성");
-                if (current.planLeveling || current.remainingLeveling)
-                    summary += "\n현재 " + QString(current.planLeveling ? "계획" : "잔여 예측") +
-                               " 평준화 채택 중 · 비교 원본은 채택 전 논리 일정";
-                if (!sameLevelingSource(snapshot, current))
-                    summary += "\nA 입력이 현재 일정과 다릅니다. 현재 일정으로 직접 채택할 수 없습니다.";
-                if (computed.other && computed.otherProject) {
-                    summary += "\nB 원본 rev " + QString::number(computed.otherProject->revision) + " · " +
-                               qs(computed.other->priority) + " / " + QString::number(computed.other->horizonWorkDays) +
-                               " 근무일 · 완료 " + finish(computed.other->leveled) + " · " +
-                               state(computed.other->leveled.status == CalculationStatus::Valid
-                                         ? computed.other->after.status
-                                         : computed.other->leveled.status);
-                    if (static_cast<const PlanInput &>(snapshot) !=
-                            static_cast<const PlanInput &>(*computed.otherProject) ||
-                        snapshot.statusAt != computed.otherProject->statusAt ||
-                        snapshot.progress != computed.otherProject->progress)
-                        summary += " · A/B 입력이 다릅니다: 우선순위만의 효과로 해석할 수 없습니다.";
+            }
+            QStringList messages;
+            auto append = [&](const QString &label, const std::vector<Diagnostic> &ds) {
+                for (const auto &d : ds) {
+                    QStringList ids;
+                    for (const auto &id : d.taskIds)
+                        ids << qs(id);
+                    messages << label + " [" + qs(d.code) + "] " + qs(diagnosticMessage(d)) +
+                                    (ids.empty() ? "" : " · " + ids.join(", "));
                 }
-                summary_->setText(summary);
-                fillLoad(before_, snapshot, r.before);
-                fillLoad(after_, snapshot, r.after);
-                if (computed.otherProject && computed.other)
-                    fillLoad(other_, *computed.otherProject, computed.other->after);
-                std::unordered_map<std::string, const TaskSchedule *> original, leveled, other;
-                for (const auto &row : r.original.tasks)
-                    original.emplace(row.taskId, &row);
-                for (const auto &row : r.leveled.tasks)
-                    leveled.emplace(row.taskId, &row);
-                if (computed.other)
-                    for (const auto &row : computed.other->leveled.tasks)
-                        other.emplace(row.taskId, &row);
-                std::vector<Task> all = snapshot.tasks;
-                if (computed.otherProject)
-                    for (const auto &t : computed.otherProject->tasks)
-                        if (std::none_of(all.begin(), all.end(), [&](const auto &a) { return a.id == t.id; }))
-                            all.push_back(t);
-                using CalendarKey = std::pair<std::string, std::vector<std::pair<std::string, std::string>>>;
-                std::map<CalendarKey, WorkCalendar> taskCalendars;
-                tasks_->setRowCount(int(all.size()));
-                for (int i = 0; i < tasks_->rowCount(); ++i) {
-                    const auto &t = all[std::size_t(i)];
-                    const auto *a = original.contains(t.id) ? original.at(t.id) : nullptr;
-                    const auto *b = leveled.contains(t.id) ? leveled.at(t.id) : nullptr;
-                    const auto *c = other.contains(t.id) ? other.at(t.id) : nullptr;
-                    QString delay = "—";
-                    if (a && b) {
-                        CalendarKey key{t.calendarId, {}};
-                        if (isEffort(snapshot))
-                            for (const auto &gap : t.breaks)
-                                key.second.emplace_back(gap.start, gap.finish);
-                        const auto &calendar = taskCalendars.try_emplace(std::move(key), snapshot, t).first->second;
-                        delay = hours(calendar.offset(b->remainingStart.value_or(b->start)) -
-                                      calendar.offset(a->remainingStart.value_or(a->start)));
-                    }
-                    const auto *actual = progressAsOf(snapshot, t.id);
-                    QStringList values{qs(t.name),
-                                       a ? qs(a->start) : "—",
-                                       a ? qs(a->finish) : "—",
-                                       b ? qs(b->start) : "—",
-                                       b ? qs(b->finish) : "—",
-                                       delay,
-                                       c ? qs(c->start) : "—",
-                                       c ? qs(c->finish) : "—",
-                                       actual && actual->actualStart ? "고정 보존" : "—",
-                                       b && hasScheduleFloat(r.leveled, *b) ? hours(b->totalFloatMinutes) : "—",
-                                       b && hasScheduleFloat(r.leveled, *b) ? hours(b->freeFloatMinutes) : "—",
-                                       b && hasScheduleFloat(r.leveled, *b)
-                                           ? (b->critical ? "평준화 임계" : "평준화 여유")
-                                           : "미산정"};
-                    for (int col = 0; col < values.size(); ++col) {
-                        auto *item = new QTableWidgetItem(values[col]);
-                        item->setData(Qt::UserRole, qs(t.id));
-                        item->setToolTip(qs(t.id));
-                        tasks_->setItem(i, col, item);
-                    }
-                }
-                QStringList messages;
-                auto append = [&](const QString &label, const std::vector<Diagnostic> &ds) {
-                    for (const auto &d : ds) {
-                        QStringList ids;
-                        for (const auto &id : d.taskIds)
-                            ids << qs(id);
-                        messages << label + " [" + qs(d.code) + "] " + qs(diagnosticMessage(d)) +
-                                        (ids.empty() ? "" : " · " + ids.join(", "));
-                    }
-                };
-                append("A 원본 일정", r.original.diagnostics);
-                append("A 원본 부하", r.before.diagnostics);
-                append("A 평준화", r.diagnostics);
-                append("A 결과", r.after.diagnostics);
-                if (computed.other)
-                    append("B 평준화", computed.other->diagnostics);
-                diagnostics_->setPlainText(messages.join('\n'));
-                auto evidence = [](const ScheduleResult &schedule) {
-                    return schedule.status == CalculationStatus::Valid && schedule.levelingFloatCalculated &&
-                           schedule.levelingWitnesses && !schedule.levelingWitnesses->tasks.empty();
-                };
-                witnessA_->setEnabled(evidence(r.leveled));
-                witnessA_->setToolTip(
-                    witnessA_->isEnabled()
-                        ? "현재 날짜와 작업별 총여유 재배치 날짜를 비교합니다."
-                        : "이 결과에는 구간 재분할 증인이 없습니다. 미산정 사유와 계산 기준은 진단에서 확인하세요.");
-                if (computed.other && computed.otherProject) {
-                    witnessB_->setEnabled(evidence(computed.other->leveled));
-                    witnessOther_ = std::move(computed.other->leveled);
-                    witnessOtherSource_ = std::move(computed.otherProject);
-                }
-                witnessB_->setToolTip(witnessB_->isEnabled()
-                                          ? "저장된 B 입력의 검증된 총여유 재배치 날짜를 비교합니다."
-                                          : "B 비교를 선택하고 구간 재분할 증인이 있는 결과를 계산하세요.");
-            });
-    watcher->setFuture(QtConcurrent::run([snapshot, priority, horizon, secondary, replayPolicy, control = control_] {
+            };
+            append("A 원본 일정", r.original.diagnostics);
+            append("A 원본 부하", r.before.diagnostics);
+            append("A 평준화", r.diagnostics);
+            append("A 결과", r.after.diagnostics);
+            if (computed.other)
+                append("B 평준화", computed.other->diagnostics);
+            diagnostics_->setPlainText(messages.join('\n'));
+            auto evidence = [](const ScheduleResult &schedule) {
+                return schedule.status == CalculationStatus::Valid && schedule.levelingFloatCalculated &&
+                       schedule.levelingWitnesses && !schedule.levelingWitnesses->tasks.empty();
+            };
+            witnessA_->setEnabled(evidence(r.leveled));
+            witnessA_->setToolTip(
+                witnessA_->isEnabled()
+                    ? "현재 날짜와 작업별 총여유 재배치 날짜를 비교합니다."
+                    : "이 결과에는 구간 재분할 증인이 없습니다. 미산정 사유와 계산 기준은 진단에서 확인하세요.");
+            if (computed.other && computed.otherProject) {
+                witnessB_->setEnabled(evidence(computed.other->leveled));
+                witnessOther_ = std::move(computed.other->leveled);
+                witnessOtherSource_ = std::move(computed.otherProject);
+            }
+            witnessB_->setToolTip(witnessB_->isEnabled()
+                                      ? "저장된 B 입력의 검증된 총여유 재배치 날짜를 비교합니다."
+                                      : "B 비교를 선택하고 구간 재분할 증인이 있는 결과를 계산하세요.");
+        });
+    watcher->setFuture(QtConcurrent::run([snapshot, current, selected, priority, horizon, secondary, replayPolicy,
+                                          control = control_] {
         Computed c;
         try {
             EvaluationScope evaluation(control);
             c.main = levelResources(snapshot, priority, horizon, replayPolicy);
+            c.applied = selected.empty() && !current.planLeveling && !current.remainingLeveling ? c.main.original
+                                                                                                : calculate(current);
+            c.appliedLoad = resourceLoad(current, c.applied);
             if (secondary) {
                 c.otherProject = scenarioProject(*secondary);
                 c.other =
@@ -560,6 +677,7 @@ void ResourceComparisonDialog::applySelection(bool clear) {
         priority_->setEnabled(false);
         horizon_->setEnabled(false);
         summary_->setText("평준화 채택 / 해제 검증 중…");
+        outcomeState_->setText(summary_->text());
         auto *watcher = new QFutureWatcher<std::shared_ptr<Document::PreparedEdit>>(this);
         connect(watcher, &QFutureWatcher<std::shared_ptr<Document::PreparedEdit>>::finished, this, [this, watcher] {
             auto prepared = watcher->result();
@@ -581,6 +699,7 @@ void ResourceComparisonDialog::applySelection(bool clear) {
                                   : state == EditState::Cancelled
                                       ? "평준화 채택 / 해제를 취소했습니다."
                                       : "문서가 변경되어 적용하지 않았습니다. 다시 계산하세요.");
+                outcomeState_->setText(summary_->text());
             }
         });
         watcher->setFuture(QtConcurrent::run([request = std::move(request), control = control_]() mutable {
@@ -588,6 +707,7 @@ void ResourceComparisonDialog::applySelection(bool clear) {
         }));
     } catch (const std::exception &e) {
         diagnostics_->setPlainText(qErrorText(e));
+        outcomeState_->setText(qErrorText(e));
     }
 }
 void ResourceComparisonDialog::closeWitnesses() {
@@ -643,6 +763,7 @@ void ResourceComparisonDialog::saveScenario() {
         recalculate();
     } catch (const std::exception &e) {
         diagnostics_->setPlainText(qErrorText(e));
+        outcomeState_->setText(qErrorText(e));
     }
 }
 } // namespace jobs

@@ -163,6 +163,14 @@ void MainWindow::setupWorkspaceUi(QToolBar *tools, QComboBox *zoom) {
         alignEditorControl(*button, controlHeight);
         workflowRow->addWidget(button);
     }
+    auto *compare = new QToolButton(workflow_);
+    compare->setObjectName("workflowCompare");
+    comparison_->setIconText("결과 비교");
+    compare->setDefaultAction(comparison_);
+    compare->setText("결과 비교");
+    compare->setToolTip("기준선·예측·현재 채택 완료일과 편차를 비교하고 작업·자원 근거를 확인합니다.");
+    alignEditorControl(*compare, controlHeight);
+    workflowRow->addWidget(compare);
     layout->insertWidget(layout->indexOf(documentNotice_) + 1, workflow_);
 
     auto *diagnosticBar = new QHBoxLayout;

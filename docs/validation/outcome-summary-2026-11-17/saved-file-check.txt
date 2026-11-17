@@ -1,0 +1,5 @@
+PASS: browsing and adoption leave the explicit saved file unchanged until Ctrl+S
+PASS: explicit save adds only remaining adoption, one decision and revision
+PASS: schema, tasks, 6 progress entries, baseline, assignments, status and prior decisions preserved
+PASS: new decision links prior history and records selection/reason/source revision
+Saved SHA-256: 667b44e0831ecd92a0cf6b98f486d694b7b1123b0cf9c48d817e29480d60865c

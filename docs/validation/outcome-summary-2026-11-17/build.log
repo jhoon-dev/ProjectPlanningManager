@@ -1,0 +1,25 @@
+[1/29] Automatic MOC for target jobs_updates
+[2/27] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowTracking.cpp.obj
+[3/27] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowResources.cpp.obj
+[4/27] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/ComparisonDialog.cpp.obj
+[5/27] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/OutcomeSummary.cpp.obj
+[6/27] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/ResourceComparisonDialog.cpp.obj
+[7/27] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowWorkspaceUi.cpp.obj
+[8/27] Linking CXX static library libjobs_ui.a
+[9/27] Building CXX object CMakeFiles/jobs_progress_leveling_ui_tests.dir/tests/ProgressLevelingUiTests.cpp.obj
+[10/27] Automatic MOC for target jobs_workspace_presentation_tests
+[11/26] Automatic MOC for target jobs_dialog_layout_tests
+[12/25] Building CXX object CMakeFiles/jobs_leveling_selection_ui_tests.dir/tests/LevelingSelectionUiTests.cpp.obj
+[13/25] Automatic MOC for target jobs_outcome_summary_ui_tests
+[14/25] Building CXX object CMakeFiles/jobs_outcome_summary_ui_tests.dir/jobs_outcome_summary_ui_tests_autogen/mocs_compilation.cpp.obj
+[15/25] Building CXX object CMakeFiles/jobs_resource_ui_tests.dir/tests/ResourceUiTests.cpp.obj
+[16/25] Linking CXX executable PPM.exe
+[17/25] Building CXX object CMakeFiles/jobs_dialog_layout_tests.dir/tests/DialogLayoutTests.cpp.obj
+[18/25] Linking CXX executable jobs_progress_leveling_ui_tests.exe
+[19/25] Building CXX object CMakeFiles/jobs_outcome_summary_ui_tests.dir/tests/OutcomeSummaryUiTests.cpp.obj
+[20/25] Linking CXX executable jobs_leveling_selection_ui_tests.exe
+[21/25] Linking CXX executable jobs_dialog_layout_tests.exe
+[22/25] Linking CXX executable jobs_workspace_presentation_tests.exe
+[23/25] Linking CXX executable jobs_outcome_summary_ui_tests.exe
+[24/25] Linking CXX executable jobs_resource_ui_tests.exe
+[25/25] Linking CXX executable jobs_tracking_ui_tests.exe

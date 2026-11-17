@@ -1,5 +1,9 @@
 #include "formatting/QtDiagnosticText.h"
 #include "ui/ComparisonDialog.h"
+#include "ui/OutcomeSummary.h"
+#include "ui/ResourceComparisonDialog.h"
+#include "ui/LevelingDecisionDialog.h"
+#include "ui/EditorUi.h"
 #include <QComboBox>
 #include <QDialogButtonBox>
 #include <QFutureWatcher>
@@ -8,6 +12,10 @@
 #include <QPlainTextEdit>
 #include <QTableWidget>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QPushButton>
+#include <QToolButton>
+#include <QScrollArea>
 #include <QtConcurrent/QtConcurrentRun>
 #include <unordered_map>
 namespace jobs {
@@ -35,9 +43,14 @@ QString state(const ScheduleResult &r) {
         return "입력 불완전";
     return "충돌";
 }
+struct Overview {
+    ComparisonReport report;
+    ScheduleResult logical;
+    ResourceLoad before, current;
+};
 } // namespace
 ComparisonDialog::ComparisonDialog(Document &doc, const std::string &id, QWidget *parent)
-    : QDialog(parent), document_(doc) {
+    : QDialog(parent), document_(doc), session_(doc.sessionGeneration()) {
     setObjectName("comparisonDialog");
     setWindowTitle("기준선 · 현재 계획 · 실적 반영 예측 비교");
     resize(1480, 760);
@@ -51,11 +64,33 @@ ComparisonDialog::ComparisonDialog(Document &doc, const std::string &id, QWidget
                            qs(b.id));
     baseline_->setCurrentIndex(std::max(0, baseline_->findData(qs(id))));
     layout->addWidget(baseline_);
+    adoption_ = new QLabel(this);
+    adoption_->setObjectName("comparisonAdoption");
+    adoption_->setTextFormat(Qt::PlainText);
+    adoption_->setWordWrap(true);
+    layout->addWidget(adoption_);
+    outcomes_ = outcomeTable(this, "comparisonOutcomes");
+    layout->addWidget(outcomes_);
+    auto *links = new QHBoxLayout;
+    auto *resources = new QPushButton("자원 후보·부하 비교…", this);
+    resources->setObjectName("comparisonResources");
+    auto *history = new QPushButton("채택·해제 이력…", this);
+    history->setObjectName("comparisonHistory");
+    auto *refresh = new QPushButton("요약 다시 계산", this);
+    refresh->setObjectName("refreshComparison");
+    auto *advanced = new QToolButton(this);
+    advanced->setObjectName("comparisonAdvanced");
+    advanced->setText("계산 출처·전체 진단 펼치기");
+    advanced->setCheckable(true);
+    for (auto *button : {resources, history, refresh})
+        links->addWidget(button);
+    links->addWidget(advanced);
+    links->addStretch();
+    layout->addLayout(links);
     summary_ = new QLabel(this);
     summary_->setObjectName("comparisonSummary");
     summary_->setTextFormat(Qt::PlainText);
     summary_->setWordWrap(true);
-    summary_->setMinimumHeight(96);
     summary_->setTextInteractionFlags(Qt::TextSelectableByMouse);
     layout->addWidget(summary_);
     table_ = new QTableWidget(0, 18, this);
@@ -68,6 +103,8 @@ ComparisonDialog::ComparisonDialog(Document &doc, const std::string &id, QWidget
     table_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     table_->setSelectionBehavior(QAbstractItemView::SelectRows);
     table_->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    layout->addWidget(
+        new QLabel("작업별 근거 · 행을 선택하면 아래에서 실제 날짜·보고·관계·자원 배정 변경을 확인합니다.", this));
     layout->addWidget(table_, 1);
     details_ = new QPlainTextEdit(this);
     details_->setReadOnly(true);
@@ -84,10 +121,30 @@ ComparisonDialog::ComparisonDialog(Document &doc, const std::string &id, QWidget
     diagnostics_->setReadOnly(true);
     diagnostics_->setMaximumHeight(150);
     layout->addWidget(diagnostics_);
+    summary_->hide();
+    diagnostics_->hide();
+    connect(advanced, &QToolButton::toggled, this, [this](bool show) {
+        summary_->setVisible(show);
+        diagnostics_->setVisible(show);
+    });
+    connect(refresh, &QPushButton::clicked, this, [this] { recalculate(); });
+    connect(resources, &QPushButton::clicked, this, [this] {
+        if (!document_.project() || document_.sessionGeneration() != session_)
+            return;
+        ResourceComparisonDialog dialog(document_, this, baseline_->currentData().toString().toStdString());
+        prepareEditorDialog(dialog);
+        dialog.exec();
+        recalculate();
+    });
+    connect(history, &QPushButton::clicked, this, [this] {
+        LevelingDecisionDialog dialog(document_, this);
+        dialog.exec();
+    });
     auto *note = new QLabel("편차 단위: 선택 기준선 달력의 근무시간(+지연 / −앞당김). —는 기준선·유효 결과 없음 또는 "
                             "비교 범위 밖입니다.\n기간 진척=실제 소요/(실제 소요+잔여), 완료 보고=100%. 미보고 작업은 "
                             "진척 미정이며 계획 기간을 잔여로 가정합니다.\n잔여 여유는 현재 작업 달력의 근무시간이며 "
-                            "완료 실적은 적용 대상이 아닙니다. 자원 용량 평준화 전 논리 일정입니다.",
+                            "완료 실적은 적용 대상이 아닙니다. 아래 작업 예측 열은 현재 적용 결과이며 조정 전·후의 "
+                            "작업/부하는 자원 비교에서 확인합니다.",
                             this);
     note->setWordWrap(true);
     layout->addWidget(note);
@@ -95,28 +152,93 @@ ComparisonDialog::ComparisonDialog(Document &doc, const std::string &id, QWidget
     layout->addWidget(close);
     connect(close, &QDialogButtonBox::rejected, this, &QDialog::reject);
     connect(baseline_, &QComboBox::currentIndexChanged, this, [this] { recalculate(); });
+    subscription_ = doc.subscribe([this](Document::Event event) {
+        if (event == Document::Event::Saved)
+            return;
+        ++generation_;
+        outcomes_->setRowCount(0);
+        table_->setRowCount(0);
+        details_->clear();
+        diagnostics_->clear();
+        adoption_->setText("입력이 변경되어 이전 요약은 오래됐습니다. 요약을 다시 계산하세요.");
+        summary_->setText(adoption_->text());
+    });
     recalculate();
 }
+ComparisonDialog::~ComparisonDialog() {
+    document_.unsubscribe(subscription_);
+}
 void ComparisonDialog::recalculate() {
+    if (!document_.project() || document_.sessionGeneration() != session_) {
+        reject();
+        return;
+    }
     const auto snapshot = *document_.project();
     const auto id = baseline_->currentData().toString().toUtf8().toStdString();
     const auto generation = ++generation_;
     table_->setRowCount(0);
     diagnostics_->clear();
     details_->clear();
+    outcomes_->setRowCount(0);
+    adoption_->setText("완료일·보고 범위·자원 검증을 계산 중…");
     summary_->setText("비교 계산 중…");
-    auto *watcher = new QFutureWatcher<ComparisonReport>(this);
-    connect(watcher, &QFutureWatcher<ComparisonReport>::finished, this, [this, watcher, generation] {
+    auto *watcher = new QFutureWatcher<Overview>(this);
+    connect(watcher, &QFutureWatcher<Overview>::finished, this, [this, watcher, generation] {
         if (generation == generation_) {
             try {
-                display(watcher->result());
+                auto overview = watcher->result();
+                if (!document_.project() || document_.sessionGeneration() != session_ ||
+                    document_.project()->revision != overview.report.revision) {
+                    adoption_->setText("문서가 변경되었습니다. 비교 창을 다시 열어 최신 내용을 확인하세요.");
+                    watcher->deleteLater();
+                    return;
+                }
+                display(overview.report);
+                const auto &p = *document_.project();
+                const auto *base = outcomeBaseline(p, overview.report.baselineId);
+                const auto *calendar = base ? &base->input : static_cast<const PlanInput *>(&p);
+                const auto finish = base ? std::optional<std::string>{base->projectFinish} : std::nullopt;
+                const auto logical = outcomeFinish(overview.logical);
+                adoption_->setText(
+                    outcomeAdoption(p) + "\n" + outcomeCoverage(p) +
+                    QString("\n배정 작업 %1/%2만 자원 검증 · 편차: 기준선 달력 근무시간 (+지연 / −앞당김)")
+                        .arg(overview.current.assignedTasks)
+                        .arg(overview.current.totalTasks));
+                outcomes_->setRowCount(0);
+                outcomeRow(outcomes_, "선택 기준선", finish, calendar, finish, {},
+                           base ? "승인·동결 계획" : "기준선 없음", "별도 검증 필요");
+                outcomeRow(outcomes_, "현재 계획", outcomeFinish(overview.report.plan), calendar, finish, {},
+                           p.planLeveling ? "계획 자원 조정 채택" : state(overview.report.plan), "—");
+                outcomeRow(outcomes_, p.statusAt ? "실적 반영 · 조정 전" : "논리 계획 · 조정 전", logical, calendar,
+                           finish, logical, "일정 " + state(overview.logical) + " · 자원 조정 전",
+                           outcomeLoad(overview.before));
+                outcomeRow(
+                    outcomes_, "현재 적용 일정", outcomeFinish(overview.report.forecast), calendar, finish, logical,
+                    QString(p.planLeveling || p.remainingLeveling ? "채택 중 · " : "채택 없음 · ") +
+                        (overview.report.forecast.status != CalculationStatus::Valid ? state(overview.report.forecast)
+                         : overview.current.status == CalculationStatus::Valid       ? "배정 자원 검증 통과"
+                                                                                     : "자원 과부하/미정"),
+                    outcomeLoad(overview.current));
             } catch (const std::exception &e) {
                 summary_->setText(qErrorText(e));
+                adoption_->setText(qErrorText(e));
             }
         }
         watcher->deleteLater();
     });
-    watcher->setFuture(QtConcurrent::run([snapshot, id] { return compareToBaseline(snapshot, id); }));
+    watcher->setFuture(QtConcurrent::run([snapshot, id] {
+        Overview value;
+        value.report = compareToBaseline(snapshot, id);
+        auto logical = snapshot;
+        logical.planLeveling.reset();
+        logical.remainingLeveling.reset();
+        logical.levelingDecisions.clear();
+        value.logical =
+            (snapshot.planLeveling || snapshot.remainingLeveling) ? calculate(logical) : value.report.forecast;
+        value.before = resourceLoad(logical, value.logical);
+        value.current = resourceLoad(snapshot, value.report.forecast);
+        return value;
+    }));
 }
 void ComparisonDialog::display(const ComparisonReport &r) {
     if (!document_.project() || document_.project()->documentId != r.documentId ||

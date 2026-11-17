@@ -345,7 +345,7 @@ void MainWindow::assignResources() {
 void MainWindow::showResources() {
     if (!document_.project())
         return;
-    ResourceComparisonDialog dialog(document_, this);
+    ResourceComparisonDialog dialog(document_, this, selectedBaseline_);
     prepareEditorDialog(dialog);
     dialog.exec();
     refresh();
