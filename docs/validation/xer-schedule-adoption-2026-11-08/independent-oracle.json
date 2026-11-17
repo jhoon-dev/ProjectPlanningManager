@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "checks": 133,
+  "tasks": 8,
+  "independent_working_minute_dates": 16,
+  "schema": 32,
+  "source_sha256": "71e6deeefeb49e06d31b3837023d9fa1e58f4ebfb4a88662a320f278433ae3c0",
+  "native_facts_unchanged": true,
+  "adopted_sha256": "33a3c8bbf61b47c1dabaf68a8334196096484e0e240ada75a42060a865e2266b",
+  "independent_reader": {
+    "reader": "MPXJ16.10.0 strict",
+    "tasks": 8,
+    "planned_durations": "matched",
+    "wbs_parents": "matched",
+    "calendar_working_hours_and_holidays": "matched",
+    "current_duration_null_tasks": [
+      "후속 설계 변경"
+    ],
+    "current_duration_semantics": "Reader actual/remaining/calendar duration is separate from preserved planned duration."
+  }
+}

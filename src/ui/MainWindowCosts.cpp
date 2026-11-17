@@ -45,7 +45,8 @@ void MainWindow::editRates() {
     currencyRow->addWidget(currency);
     currencyRow->addWidget(apply);
     auto *note = new QLabel("통화를 먼저 설정하세요. 단가·예산·원가 이력이 생긴 뒤 통화 재해석은 거절합니다. 환율 "
-                            "환산은 지원하지 않습니다.\n단가 단위: 자원 100%의 1근무시간당 금액. 단가/등급은 생산성 "
+                            "환산은 원가 메뉴의 프로젝트 전체 통화 전환에서 검토하세요.\n단가 단위: 자원 100%의 "
+                            "1근무시간당 금액. 단가/등급은 생산성 "
                             "배수가 아닙니다. 유효일 이후 다음 단가 전까지 적용하며, 미정은 ?입니다.",
                             &dialog);
     note->setWordWrap(true);

@@ -1,0 +1,13 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 36: xml_progress_adoption_contract
+    Start 38: xml_progress_merge_contract
+1/4 Test #38: xml_progress_merge_contract ......   Passed    3.69 sec
+    Start 37: xml_progress_adoption_ui
+2/4 Test #36: xml_progress_adoption_contract ...   Passed    6.18 sec
+    Start 39: xml_progress_merge_ui
+3/4 Test #37: xml_progress_adoption_ui .........   Passed    2.02 sec
+4/4 Test #39: xml_progress_merge_ui ............   Passed    1.11 sec
+
+100% tests passed out of 4
+
+Total Test time (real) =   7.31 sec

@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "schema": 28,
+  "source_updates": 1,
+  "deleted_task_ids_reconnected": 1,
+  "native_input_and_journals_unchanged": true,
+  "native_ac_minor": 12280,
+  "native_allocated_minor": 3334,
+  "readers": [
+    "native and projection SHA256",
+    "full native equality",
+    "source TSV and explicit ID map oracle",
+    "MPXJ16.10.0 strict"
+  ],
+  "external_p6_execution": "not run"
+}

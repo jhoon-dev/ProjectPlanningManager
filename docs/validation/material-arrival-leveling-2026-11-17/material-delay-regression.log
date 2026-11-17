@@ -1,0 +1,105 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+      Start  70: material_delay_contract
+      Start 196: parser_seed_replay
+ 1/47 Test  #70: material_delay_contract ................***Failed    3.29 sec
+RECOVERY_SNAPSHOT_INVALID
+
+      Start   1: project_currency_conversion_contract
+ 2/47 Test   #1: project_currency_conversion_contract ...   Passed   13.84 sec
+      Start 156: leveling_float_contract
+ 3/47 Test #196: parser_seed_replay .....................   Passed   20.63 sec
+      Start 226: undo_contract
+ 4/47 Test #156: leveling_float_contract ................   Passed    8.10 sec
+      Start   4: ledger_identity_migration_contract
+ 5/47 Test #226: undo_contract ..........................   Passed    8.74 sec
+      Start  12: governance_risk_automation_contract
+ 6/47 Test   #4: ledger_identity_migration_contract .....   Passed    8.38 sec
+      Start  82: xml_unit_fields_contract
+ 7/47 Test  #82: xml_unit_fields_contract ...............   Passed    5.57 sec
+      Start 231: recovery_ui
+ 8/47 Test  #12: governance_risk_automation_contract ....   Passed   10.73 sec
+      Start 208: project_xml_ui
+ 9/47 Test #231: recovery_ui ............................   Passed    4.43 sec
+      Start 166: xer_batch_ui
+10/47 Test #208: project_xml_ui .........................   Passed    4.22 sec
+      Start 155: repartition_float_contract
+11/47 Test #166: xer_batch_ui ...........................   Passed    4.31 sec
+      Start 233: reports_ui
+12/47 Test #155: repartition_float_contract .............   Passed    4.06 sec
+      Start 244: resource_ui
+13/47 Test #244: resource_ui ............................   Passed    3.44 sec
+      Start 230: recovery_crash_file
+14/47 Test #233: reports_ui .............................   Passed    4.64 sec
+      Start  78: remaining_availability_contract
+15/47 Test #230: recovery_crash_file ....................   Passed    3.36 sec
+      Start 218: milestone_baseline_regressions
+16/47 Test  #78: remaining_availability_contract ........   Passed    3.99 sec
+      Start 194: multi_project_workspace_ui
+17/47 Test #218: milestone_baseline_regressions .........   Passed    4.15 sec
+      Start 124: xml_formula_contract
+18/47 Test #194: multi_project_workspace_ui .............   Passed    3.75 sec
+      Start  13: resource_workspace_ui
+19/47 Test #124: xml_formula_contract ...................   Passed    3.12 sec
+      Start 207: project_xml_contract
+20/47 Test  #13: resource_workspace_ui ..................   Passed    3.02 sec
+      Start  75: shared_periods_ui
+21/47 Test #207: project_xml_contract ...................   Passed    2.87 sec
+      Start 197: governance_ui
+22/47 Test  #75: shared_periods_ui ......................   Passed    5.24 sec
+      Start  80: resource_availability_contract
+23/47 Test #197: governance_ui ..........................   Passed    4.42 sec
+      Start 167: xer_batch_contract
+24/47 Test  #80: resource_availability_contract .........   Passed    3.01 sec
+      Start  74: shared_periods_contract
+25/47 Test #167: xer_batch_contract .....................   Passed    2.89 sec
+      Start  76: shared_availability_contract
+26/47 Test  #74: shared_periods_contract ................   Passed    2.51 sec
+      Start 232: reports_export
+27/47 Test  #76: shared_availability_contract ...........   Passed    2.71 sec
+      Start 243: resource_contract_file
+28/47 Test #232: reports_export .........................   Passed    2.80 sec
+      Start  77: shared_availability_ui
+29/47 Test #243: resource_contract_file .................   Passed    2.11 sec
+      Start 193: workspace_file_contract
+30/47 Test  #77: shared_availability_ui .................   Passed    1.79 sec
+      Start  71: material_delay_ui
+31/47 Test #193: workspace_file_contract ................   Passed    1.67 sec
+      Start  79: remaining_availability_ui
+32/47 Test  #71: material_delay_ui ......................   Passed    1.05 sec
+      Start 125: xml_formula_ui
+33/47 Test  #79: remaining_availability_ui ..............   Passed    1.22 sec
+      Start  81: resource_availability_ui
+34/47 Test #125: xml_formula_ui .........................   Passed    1.14 sec
+      Start  83: xml_unit_fields_ui
+35/47 Test  #83: xml_unit_fields_ui .....................   Passed    0.96 sec
+      Start 241: cost_day_boundaries
+36/47 Test  #81: resource_availability_ui ...............   Passed    1.39 sec
+      Start 192: shared_resource_intervals
+37/47 Test #241: cost_day_boundaries ....................   Passed    0.99 sec
+      Start 174: leveling_selection_contract
+38/47 Test #192: shared_resource_intervals ..............   Passed    1.14 sec
+      Start 247: tracking_file
+39/47 Test #247: tracking_file ..........................   Passed    0.68 sec
+      Start 178: timephased_usage_contract
+40/47 Test #174: leveling_selection_contract ............   Passed    1.43 sec
+      Start  73: material_inventory_ui
+41/47 Test #178: timephased_usage_contract ..............   Passed    0.61 sec
+      Start  14: resource_plan_contract
+42/47 Test  #73: material_inventory_ui ..................   Passed    2.43 sec
+      Start  72: material_inventory_contract
+43/47 Test  #14: resource_plan_contract .................   Passed    2.17 sec
+      Start  15: integrated_workspace_contract
+44/47 Test  #72: material_inventory_contract ............   Passed    1.47 sec
+      Start 246: tracking_contract
+45/47 Test #246: tracking_contract ......................   Passed    0.46 sec
+      Start 148: leveling_decision_contract
+46/47 Test  #15: integrated_workspace_contract ..........   Passed    2.66 sec
+47/47 Test #148: leveling_decision_contract .............   Passed    3.48 sec
+
+98% tests passed, 1 tests failed out of 47
+
+Total Test time (real) =  92.25 sec
+
+The following tests FAILED:
+	 70 - material_delay_contract (Failed)
+Errors while running CTest

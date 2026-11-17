@@ -1,0 +1,22 @@
+[
+    {
+        "group_apply_ms": [
+            164.5265,
+            85.0585,
+            94.7758
+        ],
+        "groups": 40,
+        "scope": "Qt offscreen saved view apply including tree/model/Gantt",
+        "tasks": 1000
+    },
+    {
+        "group_apply_ms": [
+            197.9374,
+            144.5315,
+            147.1235
+        ],
+        "groups": 40,
+        "scope": "Qt offscreen saved view apply including tree/model/Gantt",
+        "tasks": 10000
+    }
+]

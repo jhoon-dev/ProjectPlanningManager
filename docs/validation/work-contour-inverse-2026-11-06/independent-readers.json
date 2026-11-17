@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "schema": 24,
+  "independent_minute_cases": 80,
+  "duration_minutes": 960,
+  "exact_work_unit_minutes": 48000,
+  "daily_hours": [
+    4,
+    4
+  ],
+  "daily_cost": [
+    240,
+    480
+  ],
+  "cost_total": 720,
+  "outside_contour_preserved": true,
+  "xlsx_numeric_and_no_executable_formulas": true,
+  "pdf_pages": 10
+}

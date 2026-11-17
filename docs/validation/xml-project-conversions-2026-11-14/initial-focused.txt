@@ -1,0 +1,14 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 58: xml_project_conversion_contract
+1/2 Test #58: xml_project_conversion_contract ...***Exception: SegFault 12.11 sec
+
+    Start 59: xml_project_conversion_ui
+2/2 Test #59: xml_project_conversion_ui .........   Passed    0.84 sec
+
+50% tests passed, 1 tests failed out of 2
+
+Total Test time (real) =  13.02 sec
+
+The following tests FAILED:
+	 58 - xml_project_conversion_contract (SEGFAULT)
+Errors while running CTest

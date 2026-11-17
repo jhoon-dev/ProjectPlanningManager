@@ -1,0 +1,884 @@
+{
+    "assignmentFields": [
+        {
+            "id": "target0",
+            "name": "배정 0",
+            "options": [
+            ],
+            "type": "text",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "255885312",
+                "fieldName": "배정 0",
+                "guid": "66666666-7777-4888-9999-000000000200"
+            }
+        },
+        {
+            "id": "target1",
+            "name": "배정 1",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "255885313",
+                "fieldName": "배정 1",
+                "guid": "66666666-7777-4888-9999-000000000201"
+            }
+        },
+        {
+            "id": "target2",
+            "name": "배정 2",
+            "options": [
+            ],
+            "type": "date",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "255885314",
+                "fieldName": "배정 2",
+                "guid": "66666666-7777-4888-9999-000000000202"
+            }
+        },
+        {
+            "id": "target3",
+            "name": "배정 3",
+            "options": [
+                {
+                    "id": "one",
+                    "name": "alpha"
+                },
+                {
+                    "id": "two",
+                    "name": "beta"
+                }
+            ],
+            "type": "choice",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "255885315",
+                "fieldName": "배정 3",
+                "guid": "66666666-7777-4888-9999-000000000203"
+            },
+            "xmlLookup": {
+                "defaultOptionId": "",
+                "fieldGuid": "",
+                "fieldName": "",
+                "leafOnly": false,
+                "maxValues": 1,
+                "restrictValues": false,
+                "tableGuid": "",
+                "tableName": "",
+                "valueType": "text",
+                "values": [
+                    {
+                        "description": "",
+                        "guid": "",
+                        "listed": true,
+                        "optionId": "one",
+                        "parentId": "",
+                        "value": "alpha",
+                        "valueId": "1101"
+                    },
+                    {
+                        "description": "",
+                        "guid": "",
+                        "listed": true,
+                        "optionId": "two",
+                        "parentId": "",
+                        "value": "beta",
+                        "valueId": "1102"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "target4",
+            "name": "배정 4",
+            "options": [
+            ],
+            "type": "flag",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "255885316",
+                "fieldName": "배정 4",
+                "guid": "66666666-7777-4888-9999-000000000204"
+            }
+        },
+        {
+            "id": "target5",
+            "name": "배정 5",
+            "options": [
+            ],
+            "type": "cost",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "255885317",
+                "fieldName": "배정 5",
+                "guid": "66666666-7777-4888-9999-000000000205"
+            }
+        },
+        {
+            "id": "target6",
+            "name": "배정 6",
+            "options": [
+            ],
+            "type": "duration",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "255885318",
+                "fieldName": "배정 6",
+                "guid": "66666666-7777-4888-9999-000000000206"
+            }
+        },
+        {
+            "id": "target7",
+            "name": "배정 7",
+            "options": [
+            ],
+            "type": "start",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "255885319",
+                "fieldName": "배정 7",
+                "guid": "66666666-7777-4888-9999-000000000207"
+            }
+        },
+        {
+            "id": "target8",
+            "name": "배정 8",
+            "options": [
+            ],
+            "type": "finish",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "255885320",
+                "fieldName": "배정 8",
+                "guid": "66666666-7777-4888-9999-000000000208"
+            }
+        },
+        {
+            "id": "target9",
+            "name": "배정 9",
+            "options": [
+                {
+                    "id": "one",
+                    "name": "A"
+                },
+                {
+                    "id": "two",
+                    "name": "B"
+                }
+            ],
+            "type": "choice",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "255885321",
+                "fieldName": "배정 9",
+                "guid": "66666666-7777-4888-9999-000000000209"
+            },
+            "xmlLookup": {
+                "codeMask": {
+                    "allLevelsRequired": true,
+                    "levels": [
+                        {
+                            "length": 1,
+                            "level": 1,
+                            "separator": ".",
+                            "type": 1
+                        }
+                    ]
+                },
+                "defaultOptionId": "",
+                "fieldGuid": "",
+                "fieldName": "",
+                "leafOnly": false,
+                "maxValues": 0,
+                "restrictValues": true,
+                "tableGuid": "66666666-7777-4888-9999-000000000500",
+                "tableName": "다중 코드",
+                "valueType": "text",
+                "values": [
+                    {
+                        "description": "",
+                        "guid": "66666666-7777-4888-9999-000000000501",
+                        "listed": true,
+                        "optionId": "one",
+                        "parentId": "",
+                        "value": "A",
+                        "valueId": "1201"
+                    },
+                    {
+                        "description": "",
+                        "guid": "66666666-7777-4888-9999-000000000502",
+                        "listed": true,
+                        "optionId": "two",
+                        "parentId": "",
+                        "value": "B",
+                        "valueId": "1202"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "target10",
+            "name": "배정 10",
+            "options": [
+            ],
+            "type": "text",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "255885322",
+                "fieldName": "배정 10",
+                "guid": "66666666-7777-4888-9999-000000000210"
+            }
+        },
+        {
+            "id": "target11",
+            "name": "배정 11",
+            "options": [
+            ],
+            "type": "cost",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "255885323",
+                "fieldName": "배정 11",
+                "guid": "66666666-7777-4888-9999-000000000211"
+            }
+        },
+        {
+            "id": "target12",
+            "name": "배정 12",
+            "options": [
+                {
+                    "id": "one",
+                    "name": "2026-11-11T15:30:12"
+                },
+                {
+                    "id": "two",
+                    "name": "2026-11-12"
+                }
+            ],
+            "type": "choice",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "255885324",
+                "fieldName": "배정 12",
+                "guid": "66666666-7777-4888-9999-000000000212"
+            },
+            "xmlLookup": {
+                "defaultOptionId": "",
+                "fieldGuid": "",
+                "fieldName": "",
+                "leafOnly": false,
+                "maxValues": 1,
+                "restrictValues": true,
+                "tableGuid": "66666666-7777-4888-9999-000000000510",
+                "tableName": "날짜 목록",
+                "valueType": "date",
+                "values": [
+                    {
+                        "description": "",
+                        "guid": "66666666-7777-4888-9999-000000000511",
+                        "listed": true,
+                        "optionId": "one",
+                        "parentId": "",
+                        "value": "2026-11-11T15:30:12",
+                        "valueId": "1301"
+                    },
+                    {
+                        "description": "",
+                        "guid": "66666666-7777-4888-9999-000000000512",
+                        "listed": true,
+                        "optionId": "two",
+                        "parentId": "",
+                        "value": "2026-11-12",
+                        "valueId": "1302"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "independent",
+            "name": "독립 필드",
+            "options": [
+            ],
+            "type": "text",
+            "unit": ""
+        }
+    ],
+    "assignments": [
+        {
+            "attributes": [
+                {
+                    "key": "field:target0",
+                    "value": "직접"
+                },
+                {
+                    "key": "field:target1",
+                    "value": "12.5"
+                },
+                {
+                    "key": "field:target4",
+                    "value": "1"
+                },
+                {
+                    "key": "field:target5",
+                    "value": "0"
+                },
+                {
+                    "key": "field:independent",
+                    "value": "독립"
+                }
+            ],
+            "resourceId": "R",
+            "rollDownMissing": [
+                "field:target2"
+            ],
+            "taskId": "T",
+            "units": 100
+        },
+        {
+            "resourceId": "S",
+            "taskId": "T",
+            "units": 50
+        },
+        {
+            "attributes": [
+                {
+                    "key": "field:target6",
+                    "value": "0 m"
+                }
+            ],
+            "resourceId": "R",
+            "taskId": "B",
+            "units": 100
+        }
+    ],
+    "baselines": [
+    ],
+    "calculationProfile": "native-pdm-taskcal-v1",
+    "calendar": "standard-mon-fri-8h-v1",
+    "calendars": [
+    ],
+    "codeTypes": [
+    ],
+    "costEntries": [
+    ],
+    "costProfile": "cost-day-minor-half-up-v1",
+    "currency": "USD",
+    "customFields": [
+        {
+            "id": "source0",
+            "name": "작업 0",
+            "options": [
+            ],
+            "type": "text",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "188776448",
+                "fieldName": "작업 0",
+                "guid": "66666666-7777-4888-9999-000000000100"
+            },
+            "xmlRollDown": {
+                "assignmentFieldId": "target0",
+                "automatic": true
+            }
+        },
+        {
+            "id": "source1",
+            "name": "작업 1",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "188776449",
+                "fieldName": "작업 1",
+                "guid": "66666666-7777-4888-9999-000000000101"
+            },
+            "xmlRollDown": {
+                "assignmentFieldId": "target1",
+                "automatic": true
+            }
+        },
+        {
+            "id": "source2",
+            "name": "작업 2",
+            "options": [
+            ],
+            "type": "date",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "188776450",
+                "fieldName": "작업 2",
+                "guid": "66666666-7777-4888-9999-000000000102"
+            },
+            "xmlRollDown": {
+                "assignmentFieldId": "target2",
+                "automatic": true
+            }
+        },
+        {
+            "id": "source3",
+            "name": "작업 3",
+            "options": [
+                {
+                    "id": "one",
+                    "name": "alpha"
+                },
+                {
+                    "id": "two",
+                    "name": "beta"
+                }
+            ],
+            "type": "choice",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "188776451",
+                "fieldName": "작업 3",
+                "guid": "66666666-7777-4888-9999-000000000103"
+            },
+            "xmlLookup": {
+                "defaultOptionId": "",
+                "fieldGuid": "",
+                "fieldName": "",
+                "leafOnly": false,
+                "maxValues": 1,
+                "restrictValues": false,
+                "tableGuid": "",
+                "tableName": "",
+                "valueType": "text",
+                "values": [
+                    {
+                        "description": "",
+                        "guid": "",
+                        "listed": true,
+                        "optionId": "one",
+                        "parentId": "",
+                        "value": "alpha",
+                        "valueId": "1101"
+                    },
+                    {
+                        "description": "",
+                        "guid": "",
+                        "listed": true,
+                        "optionId": "two",
+                        "parentId": "",
+                        "value": "beta",
+                        "valueId": "1102"
+                    }
+                ]
+            },
+            "xmlRollDown": {
+                "assignmentFieldId": "target3",
+                "automatic": true
+            }
+        },
+        {
+            "id": "source4",
+            "name": "작업 4",
+            "options": [
+            ],
+            "type": "flag",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "188776452",
+                "fieldName": "작업 4",
+                "guid": "66666666-7777-4888-9999-000000000104"
+            },
+            "xmlRollDown": {
+                "assignmentFieldId": "target4",
+                "automatic": true
+            }
+        },
+        {
+            "id": "source5",
+            "name": "작업 5",
+            "options": [
+            ],
+            "type": "cost",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "188776453",
+                "fieldName": "작업 5",
+                "guid": "66666666-7777-4888-9999-000000000105"
+            },
+            "xmlRollDown": {
+                "assignmentFieldId": "target5",
+                "automatic": true
+            }
+        },
+        {
+            "id": "source6",
+            "name": "작업 6",
+            "options": [
+            ],
+            "type": "duration",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "188776454",
+                "fieldName": "작업 6",
+                "guid": "66666666-7777-4888-9999-000000000106"
+            },
+            "xmlRollDown": {
+                "assignmentFieldId": "target6",
+                "automatic": true
+            }
+        },
+        {
+            "id": "source7",
+            "name": "작업 7",
+            "options": [
+            ],
+            "type": "start",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "188776455",
+                "fieldName": "작업 7",
+                "guid": "66666666-7777-4888-9999-000000000107"
+            },
+            "xmlRollDown": {
+                "assignmentFieldId": "target7",
+                "automatic": true
+            }
+        },
+        {
+            "id": "source8",
+            "name": "작업 8",
+            "options": [
+            ],
+            "type": "finish",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "188776456",
+                "fieldName": "작업 8",
+                "guid": "66666666-7777-4888-9999-000000000108"
+            },
+            "xmlRollDown": {
+                "assignmentFieldId": "target8",
+                "automatic": true
+            }
+        },
+        {
+            "id": "source9",
+            "name": "작업 9",
+            "options": [
+                {
+                    "id": "one",
+                    "name": "A"
+                },
+                {
+                    "id": "two",
+                    "name": "B"
+                }
+            ],
+            "type": "choice",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "188776457",
+                "fieldName": "작업 9",
+                "guid": "66666666-7777-4888-9999-000000000109"
+            },
+            "xmlLookup": {
+                "codeMask": {
+                    "allLevelsRequired": true,
+                    "levels": [
+                        {
+                            "length": 1,
+                            "level": 1,
+                            "separator": ".",
+                            "type": 1
+                        }
+                    ]
+                },
+                "defaultOptionId": "",
+                "fieldGuid": "",
+                "fieldName": "",
+                "leafOnly": false,
+                "maxValues": 0,
+                "restrictValues": true,
+                "tableGuid": "66666666-7777-4888-9999-000000000500",
+                "tableName": "다중 코드",
+                "valueType": "text",
+                "values": [
+                    {
+                        "description": "",
+                        "guid": "66666666-7777-4888-9999-000000000501",
+                        "listed": true,
+                        "optionId": "one",
+                        "parentId": "",
+                        "value": "A",
+                        "valueId": "1201"
+                    },
+                    {
+                        "description": "",
+                        "guid": "66666666-7777-4888-9999-000000000502",
+                        "listed": true,
+                        "optionId": "two",
+                        "parentId": "",
+                        "value": "B",
+                        "valueId": "1202"
+                    }
+                ]
+            },
+            "xmlRollDown": {
+                "assignmentFieldId": "target9",
+                "automatic": true
+            }
+        }
+    ],
+    "derivedFrom": "",
+    "documentId": "xml-roll-down",
+    "holidays": [
+    ],
+    "name": "XML 배정 roll-down",
+    "progress": [
+    ],
+    "resourceFields": [
+        {
+            "id": "source10",
+            "name": "자원 10",
+            "options": [
+            ],
+            "type": "text",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "205553674",
+                "fieldName": "자원 10",
+                "guid": "66666666-7777-4888-9999-000000000110"
+            },
+            "xmlRollDown": {
+                "assignmentFieldId": "target10",
+                "automatic": true
+            }
+        },
+        {
+            "id": "source11",
+            "name": "자원 11",
+            "options": [
+            ],
+            "type": "cost",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "205553675",
+                "fieldName": "자원 11",
+                "guid": "66666666-7777-4888-9999-000000000111"
+            },
+            "xmlRollDown": {
+                "assignmentFieldId": "target11",
+                "automatic": true
+            }
+        },
+        {
+            "id": "source12",
+            "name": "자원 12",
+            "options": [
+                {
+                    "id": "one",
+                    "name": "2026-11-11T15:30:12"
+                },
+                {
+                    "id": "two",
+                    "name": "2026-11-12"
+                }
+            ],
+            "type": "choice",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "205553676",
+                "fieldName": "자원 12",
+                "guid": "66666666-7777-4888-9999-000000000112"
+            },
+            "xmlLookup": {
+                "defaultOptionId": "",
+                "fieldGuid": "",
+                "fieldName": "",
+                "leafOnly": false,
+                "maxValues": 1,
+                "restrictValues": true,
+                "tableGuid": "66666666-7777-4888-9999-000000000510",
+                "tableName": "날짜 목록",
+                "valueType": "date",
+                "values": [
+                    {
+                        "description": "",
+                        "guid": "66666666-7777-4888-9999-000000000511",
+                        "listed": true,
+                        "optionId": "one",
+                        "parentId": "",
+                        "value": "2026-11-11T15:30:12",
+                        "valueId": "1301"
+                    },
+                    {
+                        "description": "",
+                        "guid": "66666666-7777-4888-9999-000000000512",
+                        "listed": true,
+                        "optionId": "two",
+                        "parentId": "",
+                        "value": "2026-11-12",
+                        "valueId": "1302"
+                    }
+                ]
+            },
+            "xmlRollDown": {
+                "assignmentFieldId": "target12",
+                "automatic": true
+            }
+        }
+    ],
+    "resources": [
+        {
+            "attributes": [
+                {
+                    "key": "field:source10",
+                    "value": "본부"
+                },
+                {
+                    "key": "field:source11",
+                    "value": "20"
+                },
+                {
+                    "key": "field:source12",
+                    "value": "one"
+                }
+            ],
+            "exceptions": [
+            ],
+            "id": "R",
+            "maxUnits": 100,
+            "name": "설계 인력",
+            "rates": [
+            ],
+            "type": "labor"
+        },
+        {
+            "attributes": [
+                {
+                    "key": "field:source10",
+                    "value": "외부"
+                },
+                {
+                    "key": "field:source11",
+                    "value": "0"
+                }
+            ],
+            "exceptions": [
+            ],
+            "id": "S",
+            "maxUnits": 100,
+            "name": "검토 인력",
+            "rates": [
+            ],
+            "type": "labor"
+        }
+    ],
+    "revision": 1,
+    "scenarios": [
+    ],
+    "startDate": "2026-11-11",
+    "statusAt": null,
+    "taskCosts": [
+        {
+            "accrual": "uniform",
+            "credit": "physical",
+            "fixedMinor": 0,
+            "taskId": "T"
+        },
+        {
+            "accrual": "uniform",
+            "credit": "physical",
+            "fixedMinor": 0,
+            "taskId": "B"
+        }
+    ],
+    "tasks": [
+        {
+            "attributes": [
+                {
+                    "key": "field:source0",
+                    "value": "표준"
+                },
+                {
+                    "key": "field:source1",
+                    "value": "12.5"
+                },
+                {
+                    "key": "field:source2",
+                    "value": "2026-11-11T12:34:56.123456"
+                },
+                {
+                    "key": "field:source3",
+                    "value": "two"
+                },
+                {
+                    "key": "field:source4",
+                    "value": "0"
+                },
+                {
+                    "key": "field:source5",
+                    "value": "12.34"
+                },
+                {
+                    "key": "field:source6",
+                    "value": "90.5 em?"
+                },
+                {
+                    "key": "field:source7",
+                    "value": "2026-11-11T09:30:06"
+                },
+                {
+                    "key": "field:source8",
+                    "value": "2026-11-12T00:00:00"
+                },
+                {
+                    "key": "field:source9",
+                    "value": "@choices:3:one3:two"
+                }
+            ],
+            "calendarId": "",
+            "dependencyRules": [
+            ],
+            "durationMinutes": 480,
+            "id": "T",
+            "name": "설계",
+            "predecessors": [
+            ],
+            "wbsId": ""
+        },
+        {
+            "attributes": [
+                {
+                    "key": "field:source0",
+                    "value": ""
+                },
+                {
+                    "key": "field:source1",
+                    "value": "0"
+                },
+                {
+                    "key": "field:source3",
+                    "value": "one"
+                },
+                {
+                    "key": "field:source4",
+                    "value": "1"
+                },
+                {
+                    "key": "field:source5",
+                    "value": "-5"
+                }
+            ],
+            "calendarId": "",
+            "dependencyRules": [
+            ],
+            "durationMinutes": 480,
+            "id": "B",
+            "name": "검토",
+            "predecessors": [
+            ],
+            "wbsId": ""
+        }
+    ],
+    "wbsNodes": [
+    ]
+}

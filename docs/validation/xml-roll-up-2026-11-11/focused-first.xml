@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-ninja"
+	tests="17"
+	failures="1"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-61CPKLN"
+	time="14"
+	timestamp="2026-11-11T12:58:11"
+	>
+	<testcase name="xml_roll_up_contract" classname="xml_roll_up_contract" time="2.87315" status="run">
+		<properties/>
+		<system-out>PASS XML summary roll-up: 8 methods, nested weights, typed precision, missing/flags/overflow, metadata/snapshots/schema43, XML, edit/undo/worker/FX/archives/groups/reports
+</system-out>
+	</testcase>
+	<testcase name="xml_roll_up_ui" classname="xml_roll_up_ui" time="1.03746" status="run">
+		<properties/>
+		<system-out>PASS roll-up UI: WBS/resource preview, retained snapshots, weighted means, save/undo/stale, 800x600
+</system-out>
+	</testcase>
+	<testcase name="xml_roll_down_contract" classname="xml_roll_down_contract" time="2.61767" status="run">
+		<properties/>
+		<system-out>PASS XML roll-down: task/resource to assignment, all scalar/lookup/multi types, direct/empty/zero/missing priority, live XML inheritance, worker/undo, FX/archives/recovery/schema42, XER/reports
+</system-out>
+	</testcase>
+	<testcase name="xml_roll_down_ui" classname="xml_roll_down_ui" time="0.82322" status="run">
+		<properties/>
+		<system-out>PASS roll-down UI: preview/direct origin, disable/undo, inheritance restore worker, stale, 800x600
+</system-out>
+	</testcase>
+	<testcase name="xml_code_mask_contract" classname="xml_code_mask_contract" time="2.31578" status="run">
+		<properties/>
+		<system-out>PASS XML code masks: four scopes/shared GUID, types/lengths/Unicode/separators, automatic sequences/exhaustion, WBS flags/stable codes, schema41/archives/recovery/undo, worker/cancel/stale, reports
+</system-out>
+	</testcase>
+	<testcase name="xml_code_mask_ui" classname="xml_code_mask_ui" time="1.07234" status="run">
+		<properties/>
+		<system-out>PASS XML code-mask UI: mask rows, automatic preview/create/shared dictionary, stale guard, WBS preview/save, 800x600 and invalid atomic rejection
+</system-out>
+	</testcase>
+	<testcase name="xml_date_time_contract" classname="xml_date_time_contract" time="3.91189" status="run">
+		<properties/>
+		<system-out>PASS XML dates: Start/Finish/Date clocks in four scopes, midnight/missing, fractional seconds, ordinary/packed GUID lookup and shared roles, schema40/archives/recovery/FX, sort/filter/worker/undo, XER text
+</system-out>
+	</testcase>
+	<testcase name="xml_date_time_ui" classname="xml_date_time_ui" time="0.966799" status="run">
+		<properties/>
+		<system-out>PASS XML datetime UI: timestamp entry/canonicalization, assignment batch worker, task Finish midnight, 800x600, stale
+</system-out>
+	</testcase>
+	<testcase name="xml_field_types_contract" classname="xml_field_types_contract" time="2.93987" status="run">
+		<properties/>
+		<system-out>PASS XML additional types: Flag/Cost/Duration four scopes, typed lookup/GUID, zero/missing, precision/units, schema39/archives/FX/recovery, worker/undo, static XER/report
+</system-out>
+	</testcase>
+	<testcase name="xml_field_types_ui" classname="xml_field_types_ui" time="1.08095" status="run">
+		<properties/>
+		<system-out>PASS XML additional types UI: discrete Flag, signed Cost, elapsed/estimated Duration batch worker, task editor, 800x600, stale
+</system-out>
+	</testcase>
+	<testcase name="xml_lookup_contract" classname="xml_lookup_contract" time="4.16137" status="run">
+		<properties/>
+		<system-out>PASS XML lookup: four scopes, typed lists/GUID/hierarchy/default/multi/open values, malformed references, native38/archives/recovery/undo, XER/report projection
+</system-out>
+	</testcase>
+	<testcase name="xml_lookup_ui" classname="xml_lookup_ui" time="1.12173" status="run">
+		<properties/>
+		<system-out>PASS XML lookup UI: task/assignment multi selection, batch worker, saved multi filters, small layout, stale protection
+</system-out>
+	</testcase>
+	<testcase name="enterprise_udf_contract" classname="enterprise_udf_contract" time="4.59528" status="run">
+		<properties/>
+		<system-out>PASS enterprise UDF: all scopes, typed values/identity, malformed references, native/archives/recovery, atomic edits, reports
+</system-out>
+	</testcase>
+	<testcase name="enterprise_udf_ui" classname="enterprise_udf_ui" time="1.79596" status="run">
+		<properties/>
+		<system-out>PASS enterprise UDF UI: assignment ownership/batch editing, small layout, stale protection
+</system-out>
+	</testcase>
+	<testcase name="object_fields_contract" classname="object_fields_contract" time="2.52987" status="run">
+		<properties/>
+		<system-out>Object fields: scopes/types/atomic history/archives/schema16/recovery/worker/export passed
+</system-out>
+	</testcase>
+	<testcase name="object_fields_ui" classname="object_fields_ui" time="3.19536" status="run">
+		<properties/>
+		<system-out>Object field UI: scope dictionaries, typed values/batch/cancel/stale/close/readonly passed
+</system-out>
+	</testcase>
+	<testcase name="parser_seed_replay" classname="parser_seed_replay" time="5.33561" status="fail">
+		<failure message="Failed"/>
+		<properties/>
+		<system-out>FAIL: invalid seed was accepted: summary-roll-up-old.ppm
+</system-out>
+	</testcase>
+</testsuite>

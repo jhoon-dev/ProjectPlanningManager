@@ -1,0 +1,74 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+            {
+                "resourceId": "R",
+                "taskId": "A",
+                "units": 100
+            }
+        ],
+        "baselines": [
+        ],
+        "calculationProfile": "native-effort-split-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "calendars": [
+        ],
+        "costEntries": [
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "KRW",
+        "derivedFrom": "",
+        "documentId": "Q",
+        "holidays": [
+        ],
+        "name": "Project Q",
+        "progress": [
+        ],
+        "resources": [
+            {
+                "calendarId": "",
+                "exceptions": [
+                ],
+                "id": "R",
+                "maxUnits": 100,
+                "name": "Crew",
+                "rates": [
+                ],
+                "type": "labor"
+            }
+        ],
+        "revision": 1,
+        "scenarios": [
+        ],
+        "startDate": "2026-11-02",
+        "statusAt": null,
+        "taskCosts": [
+        ],
+        "tasks": [
+            {
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 480,
+                "id": "A",
+                "name": "동일 작업 ID",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            }
+        ],
+        "wbsNodes": [
+        ]
+    },
+    "schemaVersion": 9,
+    "sha256": "d5c6db13b778c82f969cbc4a456c1c9417db0bf310e12585cae92518eb052df3"
+}

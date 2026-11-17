@@ -4,6 +4,25 @@
 
 namespace jobs {
 enum class CalculationStatus { Valid, Incomplete, Conflict, Stale, Cancelled };
+struct ResourceOrderLink {
+    std::string predecessorId, taskId, resourceId;
+    int units = 0;
+    bool driving = false;
+    std::string releaseAt{}, acquireAt{};
+};
+struct LevelingWitnessDates {
+    std::string taskId, start, finish;
+    std::optional<std::string> remainingStart;
+    bool operator==(const LevelingWitnessDates &) const = default;
+};
+struct LevelingFloatWitness {
+    std::string taskId;
+    // Omitted tasks retain their current schedule dates. Includes the focal task.
+    std::vector<LevelingWitnessDates> dates;
+};
+struct LevelingFloatWitnesses {
+    std::vector<LevelingFloatWitness> tasks;
+};
 struct ScheduleResult {
     std::string documentId;
     std::uint64_t inputRevision = 0;
@@ -14,12 +33,28 @@ struct ScheduleResult {
     std::vector<TaskSchedule> tasks;
     std::vector<Diagnostic> diagnostics;
     bool isForecast = false;
+    // Session-only capability. Completed actuals have no future float.
+    bool forecastFloatCalculated = false;
+    bool resourceLeveled = false;
+    bool levelingFloatCalculated = false;
+    std::string levelingFloatReason;
+    std::vector<ResourceOrderLink> resourceOrderLinks;
+    // Immutable session evidence, shared across result snapshots; never persisted.
+    std::shared_ptr<const LevelingFloatWitnesses> levelingWitnesses;
     std::optional<std::string> statusAt;
     std::string calculationPolicy = "plan-asap-v1";
     // Non-persistent source plan for effort forecast display/rollups. Produced
     // once by the calculation worker, never recomputed by the GUI.
     std::vector<TaskSchedule> plannedTasks;
+    bool logicalFloatCalculated = true;
+    std::string logicalFloatReason;
 };
+inline bool hasScheduleFloat(const ScheduleResult &result, const TaskSchedule &row) {
+    return result.status == CalculationStatus::Valid && !row.completedActual &&
+           (result.resourceLeveled
+                ? result.levelingFloatCalculated
+                : (result.logicalFloatCalculated && (!result.isForecast || result.forecastFloatCalculated)));
+}
 // Pure, deterministic calculation on an immutable snapshot. No Qt, I/O or OS clock.
 ScheduleResult calculate(const Project &snapshot);
 ScheduleResult calculate(const Project &snapshot, const std::shared_ptr<CalculationControl> &control);

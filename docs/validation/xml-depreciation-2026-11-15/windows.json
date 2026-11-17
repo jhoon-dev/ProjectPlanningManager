@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "depreciation_cases": 8714,
+  "exact_rounded": 8713,
+  "one_micro_differences": 1,
+  "max_scaled_difference": 1,
+  "error_cases": 5,
+  "engine": "Windows .NET Microsoft.VisualBasic.Financial.SLN/SYD; invariant culture",
+  "scope": "Nonnegative cost/salvage, positive life/period and bounded values/results; native exact rational vs Windows binary64 with tolerance 0.000001",
+  "external_product_run": false
+}

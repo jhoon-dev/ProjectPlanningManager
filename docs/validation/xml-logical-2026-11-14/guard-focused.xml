@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-ninja"
+	tests="2"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-61CPKLN"
+	time="13"
+	timestamp="2026-11-14T14:17:14"
+	>
+	<testcase name="xml_logical_contract" classname="xml_logical_contract" time="10.2841" status="run">
+		<properties/>
+		<system-out>PASS Eqv/Imp: precedence/rounding/domain/range/Null, scopes/summary/roll-down, schema64/archives/recovery/XML/XER/reports; 4096 vectors/200 typed truth cases
+</system-out>
+	</testcase>
+	<testcase name="xml_logical_ui" classname="xml_logical_ui" time="3.02524" status="run">
+		<properties/>
+		<system-out>PASS logical UI: examples/async preview/save/undo/cancel and small layout
+</system-out>
+	</testcase>
+</testsuite>

@@ -1,0 +1,2 @@
+[1/2] Building CXX object CMakeFiles/jobs_xml_baseline_cost_tests.dir/tests/XmlBaselineCostTests.cpp.obj
+[2/2] Linking CXX executable jobs_xml_baseline_cost_tests.exe

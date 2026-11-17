@@ -1,10 +1,13 @@
 #include "domain/Diagnostics.h"
+#include "domain/ResourcePlan.h"
 #include "calculation/Scheduler.h"
 #include "calculation/WorkCalendar.h"
 #include "calculation/Pdm.h"
 #include "calculation/Constraints.h"
 #include "calculation/Effort.h"
 #include "calculation/EnginePolicy.h"
+#include "calculation/Resources.h"
+#include "calculation/LevelingFloat.h"
 #include <algorithm>
 #include <chrono>
 #include <cstdio>
@@ -17,12 +20,24 @@ namespace jobs {
 ScheduleResult calculatePlan(const Project &p, const std::string &engine) {
     if (!supportsEngine(p, engine))
         throw AppError(ErrorCode::BASELINE_RESULT_MISMATCH, {});
-    EnginePolicyScope policy(isPdm(p) && engine == legacyEngineFor(p));
+    LevelingFloatScope leveling(engine == materialFloatEngine           ? 9
+                                : engine == "jobs-adopted-leveling-1.0" ? 0
+                                : engine == "jobs-adopted-leveling-1.1" ? 1
+                                : engine == "jobs-adopted-leveling-1.2" ? 2
+                                : engine == "jobs-adopted-leveling-1.3" ? 3
+                                : engine == "jobs-adopted-leveling-1.4" ? 4
+                                : engine == "jobs-adopted-leveling-1.5" ? 5
+                                : engine == "jobs-adopted-leveling-1.6" ? 6
+                                : engine == "jobs-adopted-leveling-1.7" ? 7
+                                                                        : 8);
+    EnginePolicyScope policy(isPdm(p) && !p.planLeveling && engine == legacyEngineFor(p));
     return calculatePlan(p);
 }
 ScheduleResult calculatePlan(const Project &p) {
     EvaluationScope evaluation;
     calculationCheckpoint();
+    if (p.planLeveling)
+        return selectedLevelingSchedule(p, false);
     ScheduleResult result;
     result.documentId = p.documentId;
     result.inputRevision = p.revision;
@@ -35,6 +50,13 @@ ScheduleResult calculatePlan(const Project &p) {
         result.diagnostics.push_back(diagnosticFromException(e, "INVALID_INPUT", {}));
         return result;
     }
+    for (const auto &d : p.resourcePlan.demands)
+        if (d.resourceId.empty()) {
+            result.status = CalculationStatus::Incomplete;
+            result.diagnostics.push_back({"ROLE_UNRESOLVED", {d.roleId}, {d.taskId}, "ROLE_UNRESOLVED"});
+        }
+    if (!result.diagnostics.empty())
+        return result;
     if (p.tasks.empty()) {
         result.diagnostics.push_back({"NO_TASKS", {}, {}, "NO_TASKS"});
         return result;

@@ -1,0 +1,1578 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignmentFields": [
+            {
+                "id": "xml-udf-ASSIGNMENT-255885312",
+                "name": "AW",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baseline1work",
+                            "scope": 3,
+                            "token": "Baseline1 Work"
+                        }
+                    ],
+                    "source": "[Baseline1 Work]"
+                },
+                "xmlIdentity": {
+                    "fieldId": "255885312",
+                    "fieldName": "AW",
+                    "guid": "4e7ced57-f1d2-5d4b-8cc2-ec2daf2c4584"
+                }
+            },
+            {
+                "id": "xml-udf-ASSIGNMENT-255885313",
+                "name": "TW",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baseline1work",
+                            "scope": 0,
+                            "token": "Task.Baseline1 Work"
+                        }
+                    ],
+                    "source": "[Task.Baseline1 Work]"
+                },
+                "xmlIdentity": {
+                    "fieldId": "255885313",
+                    "fieldName": "TW",
+                    "guid": "0ed9bfd7-fbd2-5282-9c08-1d5bc1347468"
+                }
+            }
+        ],
+        "assignments": [
+            {
+                "resourceId": "native-xml-resource-1",
+                "taskId": "native-xml-task-2",
+                "units": 100
+            },
+            {
+                "resourceId": "native-xml-resource-1",
+                "taskId": "native-xml-task-3",
+                "units": 50
+            }
+        ],
+        "baselines": [
+            {
+                "approvedBy": "PM",
+                "createdAt": "2026-11-15T08:00:00Z",
+                "engineVersion": "jobs-effort-1.1",
+                "id": "native-approved",
+                "input": {
+                    "assignmentFields": [
+                        {
+                            "id": "xml-udf-ASSIGNMENT-255885312",
+                            "name": "AW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baseline1work",
+                                        "scope": 3,
+                                        "token": "Baseline1 Work"
+                                    }
+                                ],
+                                "source": "[Baseline1 Work]"
+                            },
+                            "xmlIdentity": {
+                                "fieldId": "255885312",
+                                "fieldName": "AW",
+                                "guid": "4e7ced57-f1d2-5d4b-8cc2-ec2daf2c4584"
+                            }
+                        },
+                        {
+                            "id": "xml-udf-ASSIGNMENT-255885313",
+                            "name": "TW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baseline1work",
+                                        "scope": 0,
+                                        "token": "Task.Baseline1 Work"
+                                    }
+                                ],
+                                "source": "[Task.Baseline1 Work]"
+                            },
+                            "xmlIdentity": {
+                                "fieldId": "255885313",
+                                "fieldName": "TW",
+                                "guid": "0ed9bfd7-fbd2-5282-9c08-1d5bc1347468"
+                            }
+                        }
+                    ],
+                    "assignments": [
+                        {
+                            "resourceId": "native-xml-resource-1",
+                            "taskId": "native-xml-task-2",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "native-xml-resource-1",
+                            "taskId": "native-xml-task-3",
+                            "units": 50
+                        }
+                    ],
+                    "calculationProfile": "native-effort-split-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "calendars": [
+                        {
+                            "holidays": [
+                            ],
+                            "id": "xml-cal-1",
+                            "name": "PPM standard",
+                            "periods": [
+                                {
+                                    "begin": 540,
+                                    "end": 720
+                                },
+                                {
+                                    "begin": 780,
+                                    "end": 1080
+                                }
+                            ],
+                            "weekdays": [
+                                1,
+                                2,
+                                3,
+                                4,
+                                5
+                            ]
+                        }
+                    ],
+                    "codeTypes": [
+                    ],
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "USD",
+                    "customFields": [
+                        {
+                            "id": "xml-udf-TASK-188743732",
+                            "name": "TS",
+                            "options": [
+                            ],
+                            "type": "start",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baseline1start",
+                                        "scope": 0,
+                                        "token": "Baseline1 Start"
+                                    }
+                                ],
+                                "source": "[Baseline1 Start]"
+                            }
+                        },
+                        {
+                            "id": "xml-udf-TASK-188743767",
+                            "name": "TD",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baseline1duration",
+                                        "scope": 0,
+                                        "token": "Baseline1 Duration"
+                                    }
+                                ],
+                                "source": "[Baseline1 Duration]"
+                            }
+                        },
+                        {
+                            "id": "xml-udf-TASK-188743783",
+                            "name": "TDF",
+                            "options": [
+                            ],
+                            "type": "duration",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baseline1duration",
+                                        "scope": 0,
+                                        "token": "Baseline1 Duration"
+                                    }
+                                ],
+                                "source": "[Baseline1 Duration]"
+                            }
+                        },
+                        {
+                            "id": "xml-udf-TASK-188743768",
+                            "name": "TW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baseline1work",
+                                        "scope": 0,
+                                        "token": "Baseline1 Work"
+                                    }
+                                ],
+                                "source": "[Baseline1 Work]"
+                            }
+                        },
+                        {
+                            "id": "xml-udf-TASK-188743786",
+                            "name": "TC",
+                            "options": [
+                            ],
+                            "type": "cost",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baseline1cost",
+                                        "scope": 0,
+                                        "token": "Baseline1 Cost"
+                                    }
+                                ],
+                                "source": "[Baseline1 Cost]"
+                            }
+                        }
+                    ],
+                    "holidays": [
+                    ],
+                    "name": "외부 XML 기준선",
+                    "projectFields": [
+                        {
+                            "id": "xml-udf-PROJECT-190873600",
+                            "name": "PD",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baseline1duration",
+                                        "scope": 1,
+                                        "token": "Baseline1 Duration"
+                                    }
+                                ],
+                                "source": "[Baseline1 Duration]"
+                            },
+                            "xmlIdentity": {
+                                "fieldId": "190873600",
+                                "fieldName": "PD",
+                                "guid": "e172d78a-94e3-56b2-80fc-18b2f8ab0724"
+                            }
+                        },
+                        {
+                            "id": "xml-udf-PROJECT-190873601",
+                            "name": "PW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baseline1work",
+                                        "scope": 1,
+                                        "token": "Baseline1 Work"
+                                    }
+                                ],
+                                "source": "[Baseline1 Work]"
+                            },
+                            "xmlIdentity": {
+                                "fieldId": "190873601",
+                                "fieldName": "PW",
+                                "guid": "7ded80d5-d03b-5ccd-9c6b-f08ed3707202"
+                            }
+                        }
+                    ],
+                    "resourceFields": [
+                        {
+                            "id": "xml-udf-RSRC-205521008",
+                            "name": "RW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baseline1work",
+                                        "scope": 2,
+                                        "token": "Baseline1 Work"
+                                    }
+                                ],
+                                "source": "[Baseline1 Work]"
+                            }
+                        }
+                    ],
+                    "resources": [
+                        {
+                            "calendarId": "xml-cal-1",
+                            "exceptions": [
+                            ],
+                            "id": "native-xml-resource-1",
+                            "maxUnits": 100,
+                            "name": "R",
+                            "rates": [
+                            ],
+                            "type": "labor"
+                        }
+                    ],
+                    "startDate": "2026-11-16",
+                    "taskCosts": [
+                    ],
+                    "tasks": [
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "xml-cal-1",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 480,
+                            "id": "native-xml-task-2",
+                            "name": "A",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "native-xml-wbs-1",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "xml-cal-1",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 240,
+                            "id": "native-xml-task-3",
+                            "name": "B",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "native-xml-wbs-1",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "xml-cal-1",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 0,
+                            "id": "native-xml-task-4",
+                            "name": "M",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        }
+                    ],
+                    "wbsNodes": [
+                        {
+                            "id": "native-xml-wbs-1",
+                            "name": "그룹",
+                            "parentId": ""
+                        }
+                    ],
+                    "xmlBaselines": {
+                        "holidays": [
+                        ],
+                        "periods": [
+                            [
+                                540,
+                                720
+                            ],
+                            [
+                                780,
+                                1080
+                            ]
+                        ],
+                        "reason": "외부 기준선 검토",
+                        "recordedAt": "2026-11-15T09:00:00Z",
+                        "reporter": "PM",
+                        "rows": [
+                            {
+                                "cost": 1234,
+                                "duration": 60000000,
+                                "finish": "2026-11-02T10:00:00.123456",
+                                "flags": {
+                                },
+                                "id": "native-xml-task-2",
+                                "kind": "task",
+                                "money": {
+                                },
+                                "number": 0,
+                                "resourceId": "",
+                                "start": "2026-11-01T09:00:00.123456",
+                                "timephased": [
+                                ],
+                                "work": 30000000,
+                                "xmlUid": "2"
+                            }
+                        ],
+                        "sourceName": "previous.xml",
+                        "sourceSha256": "f4541b226370d8275e676c8b746d4121435dba6d113d8c9968e25f9d0f87abfa",
+                        "weekdays": [
+                            1
+                        ]
+                    }
+                },
+                "inputRevision": 10,
+                "name": "기존 승인",
+                "projectFinish": "2026-11-16 18:00",
+                "reason": "보존",
+                "schedule": [
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 1080,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-16 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 1080,
+                        "lateStartMinutes": 540,
+                        "remainingStart": null,
+                        "start": "2026-11-16 09:00",
+                        "taskId": "native-xml-task-2",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": false,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 840,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-16 14:00",
+                        "freeFloatMinutes": 240,
+                        "lateFinishMinutes": 1080,
+                        "lateStartMinutes": 840,
+                        "remainingStart": null,
+                        "start": "2026-11-16 09:00",
+                        "taskId": "native-xml-task-3",
+                        "totalFloatMinutes": 240
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": false,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 540,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-16 09:00",
+                        "freeFloatMinutes": 480,
+                        "lateFinishMinutes": 1080,
+                        "lateStartMinutes": 1080,
+                        "remainingStart": null,
+                        "start": "2026-11-16 09:00",
+                        "taskId": "native-xml-task-4",
+                        "totalFloatMinutes": 480
+                    }
+                ],
+                "sourceDocumentId": "native-baseline-merge",
+                "version": 1
+            }
+        ],
+        "calculationProfile": "native-effort-split-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "calendars": [
+            {
+                "holidays": [
+                ],
+                "id": "xml-cal-1",
+                "name": "PPM standard",
+                "periods": [
+                    {
+                        "begin": 540,
+                        "end": 720
+                    },
+                    {
+                        "begin": 780,
+                        "end": 1080
+                    }
+                ],
+                "weekdays": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ]
+            }
+        ],
+        "codeTypes": [
+        ],
+        "costEntries": [
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "USD",
+        "customFields": [
+            {
+                "id": "xml-udf-TASK-188743732",
+                "name": "TS",
+                "options": [
+                ],
+                "type": "start",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baseline1start",
+                            "scope": 0,
+                            "token": "Baseline1 Start"
+                        }
+                    ],
+                    "source": "[Baseline1 Start]"
+                }
+            },
+            {
+                "id": "xml-udf-TASK-188743767",
+                "name": "TD",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baseline1duration",
+                            "scope": 0,
+                            "token": "Baseline1 Duration"
+                        }
+                    ],
+                    "source": "[Baseline1 Duration]"
+                }
+            },
+            {
+                "id": "xml-udf-TASK-188743783",
+                "name": "TDF",
+                "options": [
+                ],
+                "type": "duration",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baseline1duration",
+                            "scope": 0,
+                            "token": "Baseline1 Duration"
+                        }
+                    ],
+                    "source": "[Baseline1 Duration]"
+                }
+            },
+            {
+                "id": "xml-udf-TASK-188743768",
+                "name": "TW",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baseline1work",
+                            "scope": 0,
+                            "token": "Baseline1 Work"
+                        }
+                    ],
+                    "source": "[Baseline1 Work]"
+                }
+            },
+            {
+                "id": "xml-udf-TASK-188743786",
+                "name": "TC",
+                "options": [
+                ],
+                "type": "cost",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baseline1cost",
+                            "scope": 0,
+                            "token": "Baseline1 Cost"
+                        }
+                    ],
+                    "source": "[Baseline1 Cost]"
+                }
+            }
+        ],
+        "derivedFrom": "",
+        "documentId": "native-baseline-merge",
+        "holidays": [
+        ],
+        "name": "외부 XML 기준선",
+        "progress": [
+        ],
+        "projectFields": [
+            {
+                "id": "xml-udf-PROJECT-190873600",
+                "name": "PD",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baseline1duration",
+                            "scope": 1,
+                            "token": "Baseline1 Duration"
+                        }
+                    ],
+                    "source": "[Baseline1 Duration]"
+                },
+                "xmlIdentity": {
+                    "fieldId": "190873600",
+                    "fieldName": "PD",
+                    "guid": "e172d78a-94e3-56b2-80fc-18b2f8ab0724"
+                }
+            },
+            {
+                "id": "xml-udf-PROJECT-190873601",
+                "name": "PW",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baseline1work",
+                            "scope": 1,
+                            "token": "Baseline1 Work"
+                        }
+                    ],
+                    "source": "[Baseline1 Work]"
+                },
+                "xmlIdentity": {
+                    "fieldId": "190873601",
+                    "fieldName": "PW",
+                    "guid": "7ded80d5-d03b-5ccd-9c6b-f08ed3707202"
+                }
+            }
+        ],
+        "resourceFields": [
+            {
+                "id": "xml-udf-RSRC-205521008",
+                "name": "RW",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baseline1work",
+                            "scope": 2,
+                            "token": "Baseline1 Work"
+                        }
+                    ],
+                    "source": "[Baseline1 Work]"
+                }
+            }
+        ],
+        "resources": [
+            {
+                "calendarId": "xml-cal-1",
+                "exceptions": [
+                ],
+                "id": "native-xml-resource-1",
+                "maxUnits": 100,
+                "name": "R",
+                "rates": [
+                ],
+                "type": "labor"
+            }
+        ],
+        "revision": 12,
+        "scenarios": [
+        ],
+        "startDate": "2026-11-16",
+        "statusAt": null,
+        "taskCosts": [
+        ],
+        "tasks": [
+            {
+                "breaks": [
+                ],
+                "calendarId": "xml-cal-1",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 480,
+                "id": "native-xml-task-2",
+                "name": "A",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "native-xml-wbs-1",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "xml-cal-1",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 240,
+                "id": "native-xml-task-3",
+                "name": "B",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "native-xml-wbs-1",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "xml-cal-1",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 0,
+                "id": "native-xml-task-4",
+                "name": "M",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            }
+        ],
+        "wbsNodes": [
+            {
+                "id": "native-xml-wbs-1",
+                "name": "그룹",
+                "parentId": ""
+            }
+        ],
+        "xmlBaselineMerges": [
+            {
+                "after": {
+                    "holidays": [
+                    ],
+                    "origins": [
+                        {
+                            "number": 0,
+                            "origin": {
+                                "holidays": [
+                                ],
+                                "periods": [
+                                    [
+                                        540,
+                                        720
+                                    ],
+                                    [
+                                        780,
+                                        1080
+                                    ]
+                                ],
+                                "reason": "외부 기준선 검토",
+                                "recordedAt": "2026-11-15T09:00:00Z",
+                                "reporter": "PM",
+                                "sourceName": "previous.xml",
+                                "sourceSha256": "f4541b226370d8275e676c8b746d4121435dba6d113d8c9968e25f9d0f87abfa",
+                                "weekdays": [
+                                    1
+                                ]
+                            }
+                        },
+                        {
+                            "number": 1,
+                            "origin": {
+                                "holidays": [
+                                ],
+                                "periods": [
+                                    [
+                                        540,
+                                        720
+                                    ],
+                                    [
+                                        780,
+                                        1080
+                                    ]
+                                ],
+                                "reason": "외부 기준선 검토",
+                                "recordedAt": "2026-11-15T09:00:00Z",
+                                "reporter": "PM",
+                                "sourceName": "external-baselines.xml",
+                                "sourceSha256": "f4541b226370d8275e676c8b746d4121435dba6d113d8c9968e25f9d0f87abfa",
+                                "weekdays": [
+                                    1,
+                                    2,
+                                    3,
+                                    4,
+                                    5
+                                ]
+                            }
+                        }
+                    ],
+                    "periods": [
+                        [
+                            540,
+                            720
+                        ],
+                        [
+                            780,
+                            1080
+                        ]
+                    ],
+                    "reason": "외부 기준선 검토",
+                    "recordedAt": "2026-11-15T09:00:00Z",
+                    "reporter": "PM",
+                    "rows": [
+                        {
+                            "cost": 1234,
+                            "duration": 60000000,
+                            "finish": "2026-11-02T10:00:00.123456",
+                            "flags": {
+                            },
+                            "id": "native-xml-task-2",
+                            "kind": "task",
+                            "money": {
+                            },
+                            "number": 0,
+                            "resourceId": "",
+                            "start": "2026-11-01T09:00:00.123456",
+                            "timephased": [
+                            ],
+                            "work": 30000000,
+                            "xmlUid": "2"
+                        },
+                        {
+                            "cost": 1234,
+                            "duration": 111000000,
+                            "finish": null,
+                            "flags": {
+                            },
+                            "id": "",
+                            "kind": "project",
+                            "money": {
+                            },
+                            "number": 1,
+                            "resourceId": "",
+                            "start": null,
+                            "timephased": [
+                            ],
+                            "work": 30000000,
+                            "xmlUid": "0"
+                        },
+                        {
+                            "cost": 1234,
+                            "duration": 111000000,
+                            "finish": null,
+                            "flags": {
+                            },
+                            "id": "native-xml-wbs-1",
+                            "kind": "wbs",
+                            "money": {
+                            },
+                            "number": 1,
+                            "resourceId": "",
+                            "start": null,
+                            "timephased": [
+                            ],
+                            "work": 30000000,
+                            "xmlUid": "1"
+                        },
+                        {
+                            "cost": 1234,
+                            "duration": 60000000,
+                            "finish": "2026-11-02T10:00:00.123456",
+                            "flags": {
+                                "DurationFormat": "3",
+                                "EstimatedDuration": "1",
+                                "Interim": "0"
+                            },
+                            "id": "native-xml-task-2",
+                            "kind": "task",
+                            "money": {
+                                "BCWP": 200,
+                                "BCWS": 400,
+                                "FixedCost": 100
+                            },
+                            "number": 1,
+                            "resourceId": "",
+                            "start": "2026-11-01T09:00:00.123456",
+                            "timephased": [
+                                {
+                                    "finish": "2026-11-02T09:30:00",
+                                    "start": "2026-11-02T09:00:00",
+                                    "type": 18,
+                                    "uid": "2",
+                                    "unit": 0,
+                                    "value": "PT30M"
+                                },
+                                {
+                                    "finish": "2026-11-02T09:30:00",
+                                    "start": "2026-11-02T09:00:00",
+                                    "type": 19,
+                                    "uid": "2",
+                                    "unit": 0,
+                                    "value": "1234"
+                                }
+                            ],
+                            "work": 30000000,
+                            "xmlUid": "2"
+                        },
+                        {
+                            "cost": 0,
+                            "duration": 0,
+                            "finish": null,
+                            "flags": {
+                            },
+                            "id": "native-xml-task-3",
+                            "kind": "task",
+                            "money": {
+                            },
+                            "number": 1,
+                            "resourceId": "",
+                            "start": null,
+                            "timephased": [
+                            ],
+                            "work": 0,
+                            "xmlUid": "3"
+                        },
+                        {
+                            "cost": 1234,
+                            "duration": null,
+                            "finish": null,
+                            "flags": {
+                            },
+                            "id": "native-xml-resource-1",
+                            "kind": "resource",
+                            "money": {
+                                "BCWP": 200,
+                                "BCWS": 400
+                            },
+                            "number": 1,
+                            "resourceId": "",
+                            "start": null,
+                            "timephased": [
+                            ],
+                            "work": 30000000,
+                            "xmlUid": "1"
+                        },
+                        {
+                            "cost": 1234,
+                            "duration": null,
+                            "finish": "2026-11-02T09:30:00",
+                            "flags": {
+                            },
+                            "id": "native-xml-task-2",
+                            "kind": "assignment",
+                            "money": {
+                            },
+                            "number": 1,
+                            "resourceId": "native-xml-resource-1",
+                            "start": "2026-11-02T09:00:00",
+                            "timephased": [
+                                {
+                                    "finish": "2026-11-02T09:30:00",
+                                    "start": "2026-11-02T09:00:00",
+                                    "type": 16,
+                                    "uid": "1",
+                                    "unit": 0,
+                                    "value": "PT30M"
+                                },
+                                {
+                                    "finish": "2026-11-02T09:30:00",
+                                    "start": "2026-11-02T09:00:00",
+                                    "type": 17,
+                                    "uid": "1",
+                                    "unit": 0,
+                                    "value": "1234"
+                                }
+                            ],
+                            "work": 30000000,
+                            "xmlUid": "1"
+                        }
+                    ],
+                    "sourceName": "external-baselines.xml",
+                    "sourceSha256": "f4541b226370d8275e676c8b746d4121435dba6d113d8c9968e25f9d0f87abfa",
+                    "weekdays": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                    ]
+                },
+                "before": {
+                    "holidays": [
+                    ],
+                    "periods": [
+                        [
+                            540,
+                            720
+                        ],
+                        [
+                            780,
+                            1080
+                        ]
+                    ],
+                    "reason": "외부 기준선 검토",
+                    "recordedAt": "2026-11-15T09:00:00Z",
+                    "reporter": "PM",
+                    "rows": [
+                        {
+                            "cost": 1234,
+                            "duration": 60000000,
+                            "finish": "2026-11-02T10:00:00.123456",
+                            "flags": {
+                            },
+                            "id": "native-xml-task-2",
+                            "kind": "task",
+                            "money": {
+                            },
+                            "number": 0,
+                            "resourceId": "",
+                            "start": "2026-11-01T09:00:00.123456",
+                            "timephased": [
+                            ],
+                            "work": 30000000,
+                            "xmlUid": "2"
+                        }
+                    ],
+                    "sourceName": "previous.xml",
+                    "sourceSha256": "f4541b226370d8275e676c8b746d4121435dba6d113d8c9968e25f9d0f87abfa",
+                    "weekdays": [
+                        1
+                    ]
+                },
+                "confirmed": true,
+                "currency": "USD",
+                "id": "195013c7-d7af-4852-bef0-7865c2d0c084-1",
+                "incoming": {
+                    "holidays": [
+                    ],
+                    "periods": [
+                        [
+                            540,
+                            720
+                        ],
+                        [
+                            780,
+                            1080
+                        ]
+                    ],
+                    "reason": "외부 기준선 검토",
+                    "recordedAt": "2026-11-15T09:00:00Z",
+                    "reporter": "PM",
+                    "rows": [
+                        {
+                            "cost": 1234,
+                            "duration": 111000000,
+                            "finish": null,
+                            "flags": {
+                            },
+                            "id": "",
+                            "kind": "project",
+                            "money": {
+                            },
+                            "number": 1,
+                            "resourceId": "",
+                            "start": null,
+                            "timephased": [
+                            ],
+                            "work": 30000000,
+                            "xmlUid": "0"
+                        },
+                        {
+                            "cost": 1234,
+                            "duration": 111000000,
+                            "finish": null,
+                            "flags": {
+                            },
+                            "id": "xml-wbs-1",
+                            "kind": "wbs",
+                            "money": {
+                            },
+                            "number": 1,
+                            "resourceId": "",
+                            "start": null,
+                            "timephased": [
+                            ],
+                            "work": 30000000,
+                            "xmlUid": "1"
+                        },
+                        {
+                            "cost": 1234,
+                            "duration": 60000000,
+                            "finish": "2026-11-02T10:00:00.123456",
+                            "flags": {
+                                "DurationFormat": "3",
+                                "EstimatedDuration": "1",
+                                "Interim": "0"
+                            },
+                            "id": "xml-task-2",
+                            "kind": "task",
+                            "money": {
+                                "BCWP": 200,
+                                "BCWS": 400,
+                                "FixedCost": 100
+                            },
+                            "number": 1,
+                            "resourceId": "",
+                            "start": "2026-11-01T09:00:00.123456",
+                            "timephased": [
+                                {
+                                    "finish": "2026-11-02T09:30:00",
+                                    "start": "2026-11-02T09:00:00",
+                                    "type": 18,
+                                    "uid": "2",
+                                    "unit": 0,
+                                    "value": "PT30M"
+                                },
+                                {
+                                    "finish": "2026-11-02T09:30:00",
+                                    "start": "2026-11-02T09:00:00",
+                                    "type": 19,
+                                    "uid": "2",
+                                    "unit": 0,
+                                    "value": "1234"
+                                }
+                            ],
+                            "work": 30000000,
+                            "xmlUid": "2"
+                        },
+                        {
+                            "cost": 0,
+                            "duration": 0,
+                            "finish": null,
+                            "flags": {
+                            },
+                            "id": "xml-task-3",
+                            "kind": "task",
+                            "money": {
+                            },
+                            "number": 1,
+                            "resourceId": "",
+                            "start": null,
+                            "timephased": [
+                            ],
+                            "work": 0,
+                            "xmlUid": "3"
+                        },
+                        {
+                            "cost": 1234,
+                            "duration": null,
+                            "finish": null,
+                            "flags": {
+                            },
+                            "id": "xml-resource-1",
+                            "kind": "resource",
+                            "money": {
+                                "BCWP": 200,
+                                "BCWS": 400
+                            },
+                            "number": 1,
+                            "resourceId": "",
+                            "start": null,
+                            "timephased": [
+                            ],
+                            "work": 30000000,
+                            "xmlUid": "1"
+                        },
+                        {
+                            "cost": 1234,
+                            "duration": null,
+                            "finish": "2026-11-02T09:30:00",
+                            "flags": {
+                            },
+                            "id": "xml-task-2",
+                            "kind": "assignment",
+                            "money": {
+                            },
+                            "number": 1,
+                            "resourceId": "xml-resource-1",
+                            "start": "2026-11-02T09:00:00",
+                            "timephased": [
+                                {
+                                    "finish": "2026-11-02T09:30:00",
+                                    "start": "2026-11-02T09:00:00",
+                                    "type": 16,
+                                    "uid": "1",
+                                    "unit": 0,
+                                    "value": "PT30M"
+                                },
+                                {
+                                    "finish": "2026-11-02T09:30:00",
+                                    "start": "2026-11-02T09:00:00",
+                                    "type": 17,
+                                    "uid": "1",
+                                    "unit": 0,
+                                    "value": "1234"
+                                }
+                            ],
+                            "work": 30000000,
+                            "xmlUid": "1"
+                        }
+                    ],
+                    "sourceName": "external-baselines.xml",
+                    "sourceSha256": "f4541b226370d8275e676c8b746d4121435dba6d113d8c9968e25f9d0f87abfa",
+                    "weekdays": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                    ]
+                },
+                "links": [
+                    {
+                        "exclude": false,
+                        "kind": "project",
+                        "sourceId": "",
+                        "targetId": ""
+                    },
+                    {
+                        "exclude": false,
+                        "kind": "resource",
+                        "sourceId": "xml-resource-1",
+                        "targetId": "native-xml-resource-1"
+                    },
+                    {
+                        "exclude": false,
+                        "kind": "task",
+                        "sourceId": "xml-task-2",
+                        "targetId": "native-xml-task-2"
+                    },
+                    {
+                        "exclude": false,
+                        "kind": "task",
+                        "sourceId": "xml-task-3",
+                        "targetId": "native-xml-task-3"
+                    },
+                    {
+                        "exclude": false,
+                        "kind": "wbs",
+                        "sourceId": "xml-wbs-1",
+                        "targetId": "native-xml-wbs-1"
+                    }
+                ],
+                "policy": "explicit-number-replace-v1",
+                "recordedRevision": 12,
+                "replaceExisting": false,
+                "sourceDocumentId": "native-baseline-merge"
+            }
+        ],
+        "xmlBaselines": {
+            "holidays": [
+            ],
+            "origins": [
+                {
+                    "number": 0,
+                    "origin": {
+                        "holidays": [
+                        ],
+                        "periods": [
+                            [
+                                540,
+                                720
+                            ],
+                            [
+                                780,
+                                1080
+                            ]
+                        ],
+                        "reason": "외부 기준선 검토",
+                        "recordedAt": "2026-11-15T09:00:00Z",
+                        "reporter": "PM",
+                        "sourceName": "previous.xml",
+                        "sourceSha256": "f4541b226370d8275e676c8b746d4121435dba6d113d8c9968e25f9d0f87abfa",
+                        "weekdays": [
+                            1
+                        ]
+                    }
+                },
+                {
+                    "number": 1,
+                    "origin": {
+                        "holidays": [
+                        ],
+                        "periods": [
+                            [
+                                540,
+                                720
+                            ],
+                            [
+                                780,
+                                1080
+                            ]
+                        ],
+                        "reason": "외부 기준선 검토",
+                        "recordedAt": "2026-11-15T09:00:00Z",
+                        "reporter": "PM",
+                        "sourceName": "external-baselines.xml",
+                        "sourceSha256": "f4541b226370d8275e676c8b746d4121435dba6d113d8c9968e25f9d0f87abfa",
+                        "weekdays": [
+                            1,
+                            2,
+                            3,
+                            4,
+                            5
+                        ]
+                    }
+                }
+            ],
+            "periods": [
+                [
+                    540,
+                    720
+                ],
+                [
+                    780,
+                    1080
+                ]
+            ],
+            "reason": "외부 기준선 검토",
+            "recordedAt": "2026-11-15T09:00:00Z",
+            "reporter": "PM",
+            "rows": [
+                {
+                    "cost": 1234,
+                    "duration": 60000000,
+                    "finish": "2026-11-02T10:00:00.123456",
+                    "flags": {
+                    },
+                    "id": "native-xml-task-2",
+                    "kind": "task",
+                    "money": {
+                    },
+                    "number": 0,
+                    "resourceId": "",
+                    "start": "2026-11-01T09:00:00.123456",
+                    "timephased": [
+                    ],
+                    "work": 30000000,
+                    "xmlUid": "2"
+                },
+                {
+                    "cost": 1234,
+                    "duration": 111000000,
+                    "finish": null,
+                    "flags": {
+                    },
+                    "id": "",
+                    "kind": "project",
+                    "money": {
+                    },
+                    "number": 1,
+                    "resourceId": "",
+                    "start": null,
+                    "timephased": [
+                    ],
+                    "work": 30000000,
+                    "xmlUid": "0"
+                },
+                {
+                    "cost": 1234,
+                    "duration": 111000000,
+                    "finish": null,
+                    "flags": {
+                    },
+                    "id": "native-xml-wbs-1",
+                    "kind": "wbs",
+                    "money": {
+                    },
+                    "number": 1,
+                    "resourceId": "",
+                    "start": null,
+                    "timephased": [
+                    ],
+                    "work": 30000000,
+                    "xmlUid": "1"
+                },
+                {
+                    "cost": 1234,
+                    "duration": 60000000,
+                    "finish": "2026-11-02T10:00:00.123456",
+                    "flags": {
+                        "DurationFormat": "3",
+                        "EstimatedDuration": "1",
+                        "Interim": "0"
+                    },
+                    "id": "native-xml-task-2",
+                    "kind": "task",
+                    "money": {
+                        "BCWP": 200,
+                        "BCWS": 400,
+                        "FixedCost": 100
+                    },
+                    "number": 1,
+                    "resourceId": "",
+                    "start": "2026-11-01T09:00:00.123456",
+                    "timephased": [
+                        {
+                            "finish": "2026-11-02T09:30:00",
+                            "start": "2026-11-02T09:00:00",
+                            "type": 18,
+                            "uid": "2",
+                            "unit": 0,
+                            "value": "PT30M"
+                        },
+                        {
+                            "finish": "2026-11-02T09:30:00",
+                            "start": "2026-11-02T09:00:00",
+                            "type": 19,
+                            "uid": "2",
+                            "unit": 0,
+                            "value": "1234"
+                        }
+                    ],
+                    "work": 30000000,
+                    "xmlUid": "2"
+                },
+                {
+                    "cost": 0,
+                    "duration": 0,
+                    "finish": null,
+                    "flags": {
+                    },
+                    "id": "native-xml-task-3",
+                    "kind": "task",
+                    "money": {
+                    },
+                    "number": 1,
+                    "resourceId": "",
+                    "start": null,
+                    "timephased": [
+                    ],
+                    "work": 0,
+                    "xmlUid": "3"
+                },
+                {
+                    "cost": 1234,
+                    "duration": null,
+                    "finish": null,
+                    "flags": {
+                    },
+                    "id": "native-xml-resource-1",
+                    "kind": "resource",
+                    "money": {
+                        "BCWP": 200,
+                        "BCWS": 400
+                    },
+                    "number": 1,
+                    "resourceId": "",
+                    "start": null,
+                    "timephased": [
+                    ],
+                    "work": 30000000,
+                    "xmlUid": "1"
+                },
+                {
+                    "cost": 1234,
+                    "duration": null,
+                    "finish": "2026-11-02T09:30:00",
+                    "flags": {
+                    },
+                    "id": "native-xml-task-2",
+                    "kind": "assignment",
+                    "money": {
+                    },
+                    "number": 1,
+                    "resourceId": "native-xml-resource-1",
+                    "start": "2026-11-02T09:00:00",
+                    "timephased": [
+                        {
+                            "finish": "2026-11-02T09:30:00",
+                            "start": "2026-11-02T09:00:00",
+                            "type": 16,
+                            "uid": "1",
+                            "unit": 0,
+                            "value": "PT30M"
+                        },
+                        {
+                            "finish": "2026-11-02T09:30:00",
+                            "start": "2026-11-02T09:00:00",
+                            "type": 17,
+                            "uid": "1",
+                            "unit": 0,
+                            "value": "1234"
+                        }
+                    ],
+                    "work": 30000000,
+                    "xmlUid": "1"
+                }
+            ],
+            "sourceName": "external-baselines.xml",
+            "sourceSha256": "f4541b226370d8275e676c8b746d4121435dba6d113d8c9968e25f9d0f87abfa",
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    "schemaVersion": 76,
+    "sha256": "c38a9513b1d6c1bb734821435ea5ab4e69a012d7a9f6b87efdfa31e8050d2fa5"
+}

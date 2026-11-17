@@ -1,0 +1,35 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+      Start  34: xml_date_time_contract
+      Start  40: enterprise_udf_contract
+      Start  38: xml_lookup_contract
+      Start  36: xml_field_types_contract
+ 1/15 Test  #36: xml_field_types_contract .........   Passed    2.00 sec
+      Start  30: xml_roll_down_contract
+ 2/15 Test  #38: xml_lookup_contract ..............   Passed    2.48 sec
+ 3/15 Test  #40: enterprise_udf_contract ..........   Passed    2.52 sec
+      Start  32: xml_code_mask_contract
+      Start 111: project_xml_contract
+ 4/15 Test  #34: xml_date_time_contract ...........   Passed    2.63 sec
+      Start  41: enterprise_udf_ui
+ 5/15 Test  #41: enterprise_udf_ui ................   Passed    0.95 sec
+      Start  33: xml_code_mask_ui
+ 6/15 Test  #30: xml_roll_down_contract ...........   Passed    2.03 sec
+      Start  39: xml_lookup_ui
+ 7/15 Test  #32: xml_code_mask_contract ...........   Passed    1.65 sec
+      Start  37: xml_field_types_ui
+ 8/15 Test  #33: xml_code_mask_ui .................   Passed    0.91 sec
+      Start  35: xml_date_time_ui
+ 9/15 Test #111: project_xml_contract .............   Passed    2.17 sec
+      Start  31: xml_roll_down_ui
+10/15 Test  #39: xml_lookup_ui ....................   Passed    0.86 sec
+      Start  29: udf_mapping_contract
+11/15 Test  #37: xml_field_types_ui ...............   Passed    0.90 sec
+      Start  98: parser_seed_replay
+12/15 Test  #35: xml_date_time_ui .................   Passed    0.90 sec
+13/15 Test  #31: xml_roll_down_ui .................   Passed    0.65 sec
+14/15 Test  #29: udf_mapping_contract .............   Passed    0.87 sec
+15/15 Test  #98: parser_seed_replay ...............   Passed    4.86 sec
+
+100% tests passed out of 15
+
+Total Test time (real) =  10.00 sec

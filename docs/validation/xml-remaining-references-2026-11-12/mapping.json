@@ -1,0 +1,354 @@
+{
+    "companionPolicy": "원본과 진단은 이 폴더의 동반 파일입니다. .ppm 사본 저장/이동 시 자동 복제되지 않습니다.",
+    "compatibility": {
+        "externalRoundTrip": "unverified",
+        "import": "not-applicable",
+        "jobsRecomputation": "unverified",
+        "originalPreservation": "exact-native-input-snapshot"
+    },
+    "contract": "jobs-mspdi-plan-v1",
+    "diagnostics": [
+        {
+            "message": "수동 중단은 XML 작업 분할로 교환하지 않습니다. 계획 시간대 공수의 전체 날짜 창을 기간에 포함하고 원본 중단은 source.ppm에 보존합니다.",
+            "path": "/Task/B/Duration"
+        },
+        {
+            "message": "수동 중단은 XML 작업 분할로 교환하지 않습니다. 계획 시간대 공수의 전체 날짜 창을 기간에 포함하고 원본 중단은 source.ppm에 보존합니다.",
+            "path": "/Task/B/Duration"
+        },
+        {
+            "message": "기간 기반 계획 투영입니다. 외부 제품의 계산/재저장 호환은 미검증입니다. 원본 전체 입력/이력은 source.ppm 참조.",
+            "path": "/Project"
+        },
+        {
+            "message": "기간별 계획 배정은 계획 TimephasedData로 교환합니다. 고유 곡선 정의·산정 근거·전체 이력은 source.ppm에 보존합니다.",
+            "path": "/Project/Assignment/TimephasedData"
+        },
+        {
+            "message": "지원 사용자 필드는 UDF 매핑표를 따릅니다. 작업 코드·저장된 보기는 source.ppm에 전체 데이터를 보존합니다.",
+            "path": "/Project/ExtendedAttribute"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/RD"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/DN"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/RW"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/hours"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/start"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/RW"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/RW"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/RW"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/TD"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/TW"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/RWResource"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/PW"
+        },
+        {
+            "message": "Start/Finish 일정 참조는 현재 계획을 사용합니다. 상태일 예측은 source.ppm과 별도 보고서에서 확인하세요.",
+            "path": "/ExtendedAttributes/Formula"
+        },
+        {
+            "message": "Remaining Duration/Work는 현재 상태일의 잔여 예측을 사용하며 계획 Start/Finish와 구별합니다. XML 상태일·진척 원장을 자동 채택하지 않으므로 source.ppm에 원본을 보존합니다.",
+            "path": "/ExtendedAttributes/Formula"
+        },
+        {
+            "message": "RD: 요약 실제/잔여 기간은 지원하지 않습니다. 작업별 기간을 조회하세요.",
+            "path": "/TaskSummary/"
+        },
+        {
+            "message": "RD: 요약 실제/잔여 기간은 지원하지 않습니다. 작업별 기간을 조회하세요.",
+            "path": "/TaskSummary/G"
+        },
+        {
+            "message": "공수·작업 유형·분할을 내보내지 않음 · 명목 기간 기반 투영",
+            "path": "/Task/B"
+        },
+        {
+            "message": "공수·작업 유형·분할을 내보내지 않음 · 명목 기간 기반 투영",
+            "path": "/Task/W"
+        },
+        {
+            "message": "공수·작업 유형·분할을 내보내지 않음 · 명목 기간 기반 투영",
+            "path": "/Task/U"
+        },
+        {
+            "message": "RD: 요약 실제/잔여 기간은 지원하지 않습니다. 작업별 기간을 조회하세요.",
+            "path": "/TaskSummary/H"
+        },
+        {
+            "message": "기준선·실적·원가·상태일·시나리오는 XML에 포함하지 않음 · source.jobs에 보존",
+            "path": "/Project/history-costs"
+        }
+    ],
+    "direction": "export",
+    "documentId": "xml-remaining",
+    "format": "Microsoft Project XML",
+    "mapping": [
+        {
+            "externalId": "188743783",
+            "jobsId": "RD",
+            "kind": "udf",
+            "name": "RD",
+            "scope": "TASK",
+            "type": "duration",
+            "xmlFieldName": "Duration1"
+        },
+        {
+            "externalId": "188743767",
+            "jobsId": "DN",
+            "kind": "udf",
+            "name": "DN",
+            "scope": "TASK",
+            "type": "number",
+            "xmlFieldName": "Number1"
+        },
+        {
+            "externalId": "188743768",
+            "jobsId": "RW",
+            "kind": "udf",
+            "name": "RW",
+            "scope": "TASK",
+            "type": "number",
+            "xmlFieldName": "Number2"
+        },
+        {
+            "externalId": "188743769",
+            "jobsId": "hours",
+            "kind": "udf",
+            "name": "hours",
+            "scope": "TASK",
+            "type": "number",
+            "xmlFieldName": "Number3"
+        },
+        {
+            "externalId": "188743732",
+            "jobsId": "start",
+            "kind": "udf",
+            "name": "start",
+            "scope": "TASK",
+            "type": "start",
+            "xmlFieldName": "Start1"
+        },
+        {
+            "externalId": "190873600",
+            "jobsId": "RW",
+            "kind": "udf",
+            "name": "RW",
+            "representation": "hex-element",
+            "scope": "PROJECT",
+            "type": "number",
+            "xmlFieldName": "RW",
+            "xmlGuid": "4ac0faa1-ed79-55d5-a174-72648d46c16d"
+        },
+        {
+            "externalId": "205521008",
+            "jobsId": "RW",
+            "kind": "udf",
+            "name": "RW",
+            "scope": "RSRC",
+            "type": "number",
+            "xmlFieldName": "Number1"
+        },
+        {
+            "externalId": "255885312",
+            "jobsId": "RW",
+            "kind": "udf",
+            "name": "RW",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "number",
+            "xmlFieldName": "RW",
+            "xmlGuid": "ea6fcf48-59ab-57c8-b63c-6c2d66581697"
+        },
+        {
+            "externalId": "255885313",
+            "jobsId": "TD",
+            "kind": "udf",
+            "name": "TD",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "number",
+            "xmlFieldName": "TD",
+            "xmlGuid": "81206521-2f9d-5bc7-a76a-f731d43a7c1f"
+        },
+        {
+            "externalId": "255885314",
+            "jobsId": "TW",
+            "kind": "udf",
+            "name": "TW",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "number",
+            "xmlFieldName": "TW",
+            "xmlGuid": "06112e90-caca-5614-8620-71ced44bf276"
+        },
+        {
+            "externalId": "255885315",
+            "jobsId": "RWResource",
+            "kind": "udf",
+            "name": "RWResource",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "number",
+            "xmlFieldName": "RWResource",
+            "xmlGuid": "eac7bc06-31bf-5698-8705-3f25af0dd694"
+        },
+        {
+            "externalId": "255885316",
+            "jobsId": "PW",
+            "kind": "udf",
+            "name": "PW",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "number",
+            "xmlFieldName": "PW",
+            "xmlGuid": "1edfb317-51e8-5743-ac8c-1fd06614235a"
+        },
+        {
+            "jobsId": "",
+            "kind": "calendar",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "C",
+            "kind": "calendar",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "R",
+            "kind": "calendar",
+            "xmlUid": "3"
+        },
+        {
+            "jobsId": "G",
+            "kind": "wbs",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "A",
+            "kind": "task",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "B",
+            "kind": "task",
+            "xmlUid": "3"
+        },
+        {
+            "jobsId": "C",
+            "kind": "task",
+            "xmlUid": "4"
+        },
+        {
+            "jobsId": "W",
+            "kind": "task",
+            "xmlUid": "5"
+        },
+        {
+            "jobsId": "U",
+            "kind": "task",
+            "xmlUid": "6"
+        },
+        {
+            "jobsId": "H",
+            "kind": "wbs",
+            "xmlUid": "7"
+        },
+        {
+            "jobsId": "M",
+            "kind": "task",
+            "xmlUid": "8"
+        },
+        {
+            "jobsId": "R",
+            "kind": "resource",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "S",
+            "kind": "resource",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "Z",
+            "kind": "resource",
+            "xmlUid": "3"
+        },
+        {
+            "jobsId": "A/R",
+            "kind": "assignment",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "B/R",
+            "kind": "assignment",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "B/S",
+            "kind": "assignment",
+            "xmlUid": "3"
+        },
+        {
+            "jobsId": "C/R",
+            "kind": "assignment",
+            "xmlUid": "4"
+        },
+        {
+            "jobsId": "W/R",
+            "kind": "assignment",
+            "xmlUid": "5"
+        },
+        {
+            "jobsId": "U/S",
+            "kind": "assignment",
+            "xmlUid": "6"
+        }
+    ],
+    "namespace": "http://schemas.microsoft.com/project",
+    "nativeSnapshotProfile": "native-effort-split-v1",
+    "revision": "1",
+    "source": {
+        "name": "source.ppm",
+        "product": "PPM"
+    },
+    "targetPolicy": {
+        "calculationProfile": "native-effort-split-v1",
+        "lagCalendar": "successor-working-calendar",
+        "projectStartAnchor": "09:00"
+    },
+    "xmlSha256": "9a2b9d25a06435e36fe0edbb789a71d863ca3b7ef7f6c0a2dad4e6fe8b974482"
+}

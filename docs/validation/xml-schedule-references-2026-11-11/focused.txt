@@ -1,0 +1,57 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+      Start  30: xml_schedule_contract
+      Start  40: xml_date_time_contract
+      Start  46: enterprise_udf_contract
+      Start 118: project_xml_ui
+ 1/26 Test  #30: xml_schedule_contract ............   Passed    1.45 sec
+      Start  44: xml_lookup_contract
+ 2/26 Test  #46: enterprise_udf_contract ..........   Passed    2.30 sec
+      Start  32: xml_formula_contract
+ 3/26 Test  #40: xml_date_time_contract ...........   Passed    2.50 sec
+      Start  55: object_fields_ui
+ 4/26 Test  #44: xml_lookup_contract ..............   Passed    2.56 sec
+      Start  42: xml_field_types_contract
+ 5/26 Test #118: project_xml_ui ...................   Passed    3.68 sec
+      Start  36: xml_roll_down_contract
+ 6/26 Test  #32: xml_formula_contract .............   Passed    2.50 sec
+      Start  34: xml_roll_up_contract
+ 7/26 Test  #55: object_fields_ui .................   Passed    2.46 sec
+      Start  38: xml_code_mask_contract
+ 8/26 Test  #36: xml_roll_down_contract ...........   Passed    1.81 sec
+      Start  48: formula_field_contract
+ 9/26 Test  #42: xml_field_types_contract .........   Passed    2.18 sec
+      Start  54: object_fields_contract
+10/26 Test  #34: xml_roll_up_contract .............   Passed    1.57 sec
+      Start 117: project_xml_contract
+11/26 Test  #38: xml_code_mask_contract ...........   Passed    1.86 sec
+      Start  49: formula_field_ui
+12/26 Test  #54: object_fields_contract ...........   Passed    1.58 sec
+      Start 104: parser_seed_replay
+13/26 Test  #48: formula_field_contract ...........   Passed    1.89 sec
+      Start  47: enterprise_udf_ui
+14/26 Test  #49: formula_field_ui .................   Passed    1.26 sec
+      Start  31: xml_schedule_ui
+15/26 Test #117: project_xml_contract .............   Passed    2.01 sec
+      Start  39: xml_code_mask_ui
+16/26 Test  #47: enterprise_udf_ui ................   Passed    1.04 sec
+      Start  45: xml_lookup_ui
+17/26 Test  #39: xml_code_mask_ui .................   Passed    0.72 sec
+      Start  43: xml_field_types_ui
+18/26 Test  #31: xml_schedule_ui ..................   Passed    1.15 sec
+      Start  41: xml_date_time_ui
+19/26 Test  #45: xml_lookup_ui ....................   Passed    0.86 sec
+      Start  29: udf_mapping_contract
+20/26 Test  #43: xml_field_types_ui ...............   Passed    0.90 sec
+      Start  37: xml_roll_down_ui
+21/26 Test  #29: udf_mapping_contract .............   Passed    0.76 sec
+      Start  35: xml_roll_up_ui
+22/26 Test  #41: xml_date_time_ui .................   Passed    1.02 sec
+      Start  33: xml_formula_ui
+23/26 Test  #35: xml_roll_up_ui ...................   Passed    0.61 sec
+24/26 Test  #37: xml_roll_down_ui .................   Passed    0.72 sec
+25/26 Test  #33: xml_formula_ui ...................   Passed    0.86 sec
+26/26 Test #104: parser_seed_replay ...............   Passed    6.28 sec
+
+100% tests passed out of 26
+
+Total Test time (real) =  14.09 sec

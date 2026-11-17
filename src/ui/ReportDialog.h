@@ -13,21 +13,29 @@ class QCloseEvent;
 namespace jobs {
 class ReportDialog final : public QDialog {
 public:
-    ReportDialog(Document&, const std::string& wbs, const std::string& baseline, QWidget* parent = nullptr);
+    ReportDialog(Document &, const std::string &wbs, const std::string &baseline, QWidget *parent = nullptr,
+                 bool nativePeriodEvm = false, const std::string &financialPeriodId = {});
+    ~ReportDialog() override;
     void reject() override;
+
 protected:
-    void closeEvent(QCloseEvent*) override;
+    void closeEvent(QCloseEvent *) override;
+
 private:
-    Document& document_;
+    Document &document_;
     QComboBox *scope_, *baseline_, *formula_, *family_, *paper_, *orientation_, *fontSize_;
-    QCheckBox* period_;
+    QCheckBox *period_;
     QDateEdit *from_, *to_;
     QPushButton *refresh_, *xlsx_, *pdf_;
-    QLabel* message_;
-    QTabWidget* tabs_;
+    QLabel *message_;
+    QTabWidget *tabs_;
     std::shared_ptr<const ProjectReport> report_;
     std::uint64_t generation_ = 0;
     bool exporting_ = false;
+    bool nativePeriodEvm_ = false;
+    QComboBox *evmBucket_ = nullptr;
+    std::shared_ptr<CalculationControl> calculation_;
+    std::uint64_t reportSession_ = 0;
     void prepare();
     void clear();
     void showReport();
@@ -35,4 +43,4 @@ private:
     void exportFile(bool pdf);
     void exportEnabled();
 };
-}
+} // namespace jobs

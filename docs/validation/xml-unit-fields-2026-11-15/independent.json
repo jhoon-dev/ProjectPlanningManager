@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "xml_formula_values": 48,
+  "availability_periods": 4,
+  "xer_assignment_values": 28,
+  "xlsx_assignment_values": 28,
+  "pdf_pages": 18,
+  "external_product_run": false,
+  "mpxj_assignments": 4,
+  "mpxj_availability_periods": 4
+}

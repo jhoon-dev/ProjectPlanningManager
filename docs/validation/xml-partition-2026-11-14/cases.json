@@ -1,0 +1,106 @@
+[
+    {
+        "source": "Partition(12,0,99,10)",
+        "value": " 10: 19"
+    },
+    {
+        "source": "Partition(-1,0,99,5)",
+        "value": "   : -1"
+    },
+    {
+        "source": "Partition(0,0,99,5)",
+        "value": "  0:  4"
+    },
+    {
+        "source": "Partition(99,0,99,5)",
+        "value": " 95: 99"
+    },
+    {
+        "source": "Partition(100,0,99,5)",
+        "value": "100:   "
+    },
+    {
+        "source": "Partition(1010,100,1010,20)",
+        "value": "1000:1010"
+    },
+    {
+        "source": "Partition(2.5,0,9,2.5)",
+        "value": " 2: 3"
+    },
+    {
+        "source": "Partition(3.5,0,9,2.5)",
+        "value": " 4: 5"
+    },
+    {
+        "source": "Partition(-0.5,-0.5,9.5,1.5)",
+        "value": " 0: 1"
+    },
+    {
+        "source": "Partition(-1.5,0,9,2)",
+        "value": "  :-1"
+    },
+    {
+        "source": "Partition(1,0,1,9000000000000)",
+        "value": " 0: 1"
+    },
+    {
+        "source": "Partition(2,1,20,1)",
+        "value": " 2: 2"
+    },
+    {
+        "source": "Partition(0,1,20,1)",
+        "value": "  : 0"
+    },
+    {
+        "source": "Partition(21,1,20,1)",
+        "value": "21:  "
+    },
+    {
+        "source": "Partition(True,0,9,1)",
+        "value": "  :-1"
+    },
+    {
+        "source": "Partition(False,0,9,1)",
+        "value": " 0: 0"
+    },
+    {
+        "source": "Partition(CDbl(\"12\"),0,99,10)",
+        "value": " 10: 19"
+    },
+    {
+        "source": "Partition(9000000000000,0,9000000000000,9000000000000)",
+        "value": "9000000000000:9000000000000"
+    },
+    {
+        "source": "Partition(-9000000000000,0,1,1)",
+        "value": "  :-1"
+    },
+    {
+        "source": "pArTiTiOn(12;0;99;10)",
+        "value": " 10: 19"
+    },
+    {
+        "source": "Len(Partition(12,0,99,10))",
+        "value": "7"
+    },
+    {
+        "source": "IIf(True,Partition(12,0,99,10),\"x\")",
+        "value": " 10: 19"
+    },
+    {
+        "source": "Trim(Partition(12,0,99,10))",
+        "value": "10: 19"
+    },
+    {
+        "source": "Partition(1.499999,0,9,1.499999)",
+        "value": " 1: 1"
+    },
+    {
+        "source": "Partition(1.5,0,9,1.5)",
+        "value": " 2: 3"
+    },
+    {
+        "source": "Partition(1,0,99,5)&Partition(Null,0,99,5)",
+        "value": "  0:  4"
+    }
+]

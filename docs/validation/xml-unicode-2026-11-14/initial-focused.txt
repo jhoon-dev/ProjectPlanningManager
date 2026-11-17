@@ -1,0 +1,17 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 66: xml_unicode_contract
+1/2 Test #66: xml_unicode_contract .............***Failed    0.59 sec
+CLASSIFICATION_INVALID 필드의 ID·이름·단위·개수 또는 중복을 확인하세요.
+
+    Start 67: xml_unicode_ui
+2/2 Test #67: xml_unicode_ui ...................***Failed    0.21 sec
+CLASSIFICATION_INVALID 필드의 ID·이름·단위·개수 또는 중복을 확인하세요.
+
+
+0% tests passed, 2 tests failed out of 2
+
+Total Test time (real) =   0.87 sec
+
+The following tests FAILED:
+	 66 - xml_unicode_contract (Failed)
+	 67 - xml_unicode_ui (Failed)

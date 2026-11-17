@@ -1,0 +1,62 @@
+{
+  "date": "2026-11-02",
+  "scope": "GAP-03 task custom fields, activity codes, groups, saved views; cumulative regression includes GAP-01",
+  "git_revision": "6a1cd0a5115f3400d6cee4e5d5df795f351195ea+dirty",
+  "source_sha256": "5b9291592dc1384957c031b7536cb6a2f794b19878c814fb09ccad4e72af2021",
+  "source_manifest": "sorted src/**/*.cpp, src/**/*.h and CMakeLists.txt; relative/path:SHA256(bytes) LF manifest",
+  "build_identity_matches": true,
+  "platform": "Windows-11-10.0.26300-SP0",
+  "compiler": "MinGW GCC 13.1.0",
+  "qt": "6.8.3",
+  "configuration": "Release",
+  "ctest": {
+    "passed": 67,
+    "failed": 0,
+    "seconds": 189.3,
+    "log": "full-ctest.log"
+  },
+  "parser_seed_replay": {
+    "seeds": 72,
+    "schemas": "1..10",
+    "classification_seed": true,
+    "coverage_guided_fuzzing_run": false,
+    "sanitizers_run": false
+  },
+  "independent_exports": {
+    "classification": "openpyxl/pypdf: 12 rows, 3 WBS-scope tasks, numeric 0/10/-0.125001, missing, code path, no formulas/external links/vba, 7 PDF pages",
+    "existing": "5 XLSX and 6 PDF fixtures verified",
+    "forecast": "8 PDF pages, numeric 0/8h and completed unknown verified"
+  },
+  "ui": "Qt offscreen; Windows Malgun Gothic explicitly loaded; screenshot is not a desktop interaction check",
+  "not_run": [
+    "macOS",
+    "Linux",
+    "CI",
+    "ASan/UBSan",
+    "coverage-guided fuzzing",
+    "actual Microsoft Project or P6 recalculation/roundtrip",
+    "printer",
+    "customer acceptance"
+  ],
+  "deferred": [
+    "project/resource custom fields",
+    "formula fields",
+    "external UDF/code/view mapping",
+    "group-level cost/work subtotals"
+  ],
+  "test_files_sha256": {
+    "tests/ClassificationTests.cpp": "59cd1d873d50590d69f0e9f2a1c2b8b0460afde5bff6934b3cc361c3b943939a",
+    "tests/ClassificationUiTests.cpp": "fb39c882718066bb0a3d051b1d2d415b315baaa2e172a0b58f0b84914ad4d3c1",
+    "tests/fuzz/ParserHarness.cpp": "edc9f4f221c357232e2a8facefc10e1962829e7d0f65fa169724cc87d036a993",
+    "tests/fuzz/ParserSeeds.cpp": "4d75cbb516bdf39bff6baec648a0fe5ea8fba388e6f1818e4f25ee29315cef8f",
+    "scripts/verify-classification-exports.py": "ae259d12fb5bc13611d950a076d078964ca69c736602964d9a51b0ffc1f99d6f"
+  },
+  "artifacts_sha256": {
+    "format.json": "2d3be4b0064fd1644bbdb4c2fe1483f9df8b30d2dfc876fb9c4972dde1f5dfd3",
+    "full-ctest.log": "04942133455ebaeba9173614cd695440acca7fea9979dcc5dca8a72565b0049a",
+    "groups.png": "dc39f2ee57832b55d35ca33b35a4097d5f9d2453654e566a1a0420c2b558967f",
+    "independent-export.json": "a287a2dc4579f034a10748116cb19cd94523ead3e8b36fdb604ef8015b983f30",
+    "performance.json": "9320bce89cfc919078072a07aa2fc225ce8afbd338a648ea6d757aa649174807",
+    "README.md": "d40e0c79e824258fcc7ee742dfe169ec934c77e91c74116da61c57ee3a68f116"
+  }
+}

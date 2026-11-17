@@ -1,0 +1,559 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+            {
+                "resourceId": "e3eaf911-6c31-4963-b41e-8cc483e28258",
+                "taskId": "f1aa5be4-6ea6-4865-8926-b81cc54c9ae2",
+                "units": 100
+            },
+            {
+                "resourceId": "e3eaf911-6c31-4963-b41e-8cc483e28258",
+                "taskId": "9dd87b71-a19b-4897-a70c-a08879420bf0",
+                "units": 100
+            }
+        ],
+        "baselines": [
+            {
+                "approvedBy": "PM",
+                "createdAt": "2026-11-05T00:00:00Z",
+                "engineVersion": "jobs-cpm-0.2",
+                "id": "df82f1aa-955d-49b8-a990-e4219e0c067c",
+                "input": {
+                    "assignments": [
+                        {
+                            "resourceId": "e3eaf911-6c31-4963-b41e-8cc483e28258",
+                            "taskId": "f1aa5be4-6ea6-4865-8926-b81cc54c9ae2",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "e3eaf911-6c31-4963-b41e-8cc483e28258",
+                            "taskId": "9dd87b71-a19b-4897-a70c-a08879420bf0",
+                            "units": 100
+                        }
+                    ],
+                    "calculationProfile": "native-fs0-workminutes-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "KRW",
+                    "holidays": [
+                    ],
+                    "name": "평준화 결정 이력 검증",
+                    "resources": [
+                        {
+                            "exceptions": [
+                            ],
+                            "id": "e3eaf911-6c31-4963-b41e-8cc483e28258",
+                            "maxUnits": 100,
+                            "name": "공유 작업자",
+                            "rates": [
+                            ],
+                            "type": "labor"
+                        }
+                    ],
+                    "startDate": "2026-11-02",
+                    "taskCosts": [
+                    ],
+                    "tasks": [
+                        {
+                            "durationMinutes": 480,
+                            "id": "f1aa5be4-6ea6-4865-8926-b81cc54c9ae2",
+                            "name": "기초",
+                            "predecessors": [
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 480,
+                            "id": "9dd87b71-a19b-4897-a70c-a08879420bf0",
+                            "name": "설비",
+                            "predecessors": [
+                            ],
+                            "wbsId": ""
+                        }
+                    ],
+                    "wbsNodes": [
+                    ]
+                },
+                "inputRevision": 6,
+                "name": "최초 계획",
+                "projectFinish": "2026-11-02 18:00",
+                "reason": "승인",
+                "schedule": [
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 480,
+                        "earlyStartMinutes": 0,
+                        "finish": "2026-11-02 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 480,
+                        "lateStartMinutes": 0,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:00",
+                        "taskId": "f1aa5be4-6ea6-4865-8926-b81cc54c9ae2",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 480,
+                        "earlyStartMinutes": 0,
+                        "finish": "2026-11-02 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 480,
+                        "lateStartMinutes": 0,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:00",
+                        "taskId": "9dd87b71-a19b-4897-a70c-a08879420bf0",
+                        "totalFloatMinutes": 0
+                    }
+                ],
+                "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                "version": 1
+            }
+        ],
+        "calculationProfile": "native-fs0-workminutes-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "costEntries": [
+            {
+                "actualMinor": 10,
+                "currency": "KRW",
+                "id": "7768e3ed-4eb8-4753-8e06-69639bc95ac5",
+                "physicalBasisPoints": null,
+                "previousEntryId": "",
+                "reason": "누계 관측",
+                "recordedAt": "2026-11-05T02:00:00Z",
+                "recordedRevision": 22,
+                "reporter": "PM",
+                "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                "statusAt": "2026-11-02 18:00",
+                "taskId": "f1aa5be4-6ea6-4865-8926-b81cc54c9ae2"
+            }
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "KRW",
+        "derivedFrom": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+        "documentId": "99d9171d-d589-4ef0-abbf-a1d1eb0ea151",
+        "holidays": [
+        ],
+        "levelingDecisions": [
+            {
+                "action": "adopt",
+                "afterPlan": {
+                    "adoptedAt": "2026-11-05T01:00:00Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "task-order",
+                    "reason": "주간 자원 조정안 채택",
+                    "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                    "sourceRevision": 7
+                },
+                "afterRemaining": null,
+                "afterStatusAt": null,
+                "beforePlan": null,
+                "beforeRemaining": null,
+                "beforeStatusAt": null,
+                "id": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:8",
+                "previousEntryId": "",
+                "reason": "주간 자원 조정안 채택",
+                "recordedAt": "2026-11-05T01:52:31Z",
+                "recordedRevision": 8,
+                "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                "sourceRevision": 7
+            },
+            {
+                "action": "undo",
+                "afterPlan": null,
+                "afterRemaining": null,
+                "afterStatusAt": null,
+                "beforePlan": {
+                    "adoptedAt": "2026-11-05T01:00:00Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "task-order",
+                    "reason": "주간 자원 조정안 채택",
+                    "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                    "sourceRevision": 7
+                },
+                "beforeRemaining": null,
+                "beforeStatusAt": null,
+                "id": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:9",
+                "previousEntryId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:8",
+                "reason": "평준화 결과 채택",
+                "recordedAt": "2026-11-05T01:52:31Z",
+                "recordedRevision": 9,
+                "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                "sourceRevision": 8
+            },
+            {
+                "action": "redo",
+                "afterPlan": {
+                    "adoptedAt": "2026-11-05T01:00:00Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "task-order",
+                    "reason": "주간 자원 조정안 채택",
+                    "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                    "sourceRevision": 7
+                },
+                "afterRemaining": null,
+                "afterStatusAt": null,
+                "beforePlan": null,
+                "beforeRemaining": null,
+                "beforeStatusAt": null,
+                "id": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:10",
+                "previousEntryId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:9",
+                "reason": "평준화 결과 채택",
+                "recordedAt": "2026-11-05T01:52:31Z",
+                "recordedRevision": 10,
+                "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                "sourceRevision": 9
+            },
+            {
+                "action": "adopt",
+                "afterPlan": {
+                    "adoptedAt": "2026-11-05T01:00:00Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "longest-first",
+                    "reason": "주간 자원 조정안 채택",
+                    "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                    "sourceRevision": 10
+                },
+                "afterRemaining": null,
+                "afterStatusAt": null,
+                "beforePlan": {
+                    "adoptedAt": "2026-11-05T01:00:00Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "task-order",
+                    "reason": "주간 자원 조정안 채택",
+                    "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                    "sourceRevision": 7
+                },
+                "beforeRemaining": null,
+                "beforeStatusAt": null,
+                "id": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:11",
+                "previousEntryId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:10",
+                "reason": "주간 자원 조정안 채택",
+                "recordedAt": "2026-11-05T01:52:31Z",
+                "recordedRevision": 11,
+                "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                "sourceRevision": 10
+            },
+            {
+                "action": "invalidate",
+                "afterPlan": null,
+                "afterRemaining": null,
+                "afterStatusAt": null,
+                "beforePlan": {
+                    "adoptedAt": "2026-11-05T01:00:00Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "longest-first",
+                    "reason": "주간 자원 조정안 채택",
+                    "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                    "sourceRevision": 10
+                },
+                "beforeRemaining": null,
+                "beforeStatusAt": null,
+                "id": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:12",
+                "previousEntryId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:11",
+                "reason": "작업 이름 변경",
+                "recordedAt": "2026-11-05T01:52:31Z",
+                "recordedRevision": 12,
+                "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                "sourceRevision": 11
+            },
+            {
+                "action": "undo",
+                "afterPlan": {
+                    "adoptedAt": "2026-11-05T01:00:00Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "longest-first",
+                    "reason": "주간 자원 조정안 채택",
+                    "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                    "sourceRevision": 10
+                },
+                "afterRemaining": null,
+                "afterStatusAt": null,
+                "beforePlan": null,
+                "beforeRemaining": null,
+                "beforeStatusAt": null,
+                "id": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:13",
+                "previousEntryId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:12",
+                "reason": "작업 이름 변경",
+                "recordedAt": "2026-11-05T01:52:31Z",
+                "recordedRevision": 13,
+                "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                "sourceRevision": 12
+            },
+            {
+                "action": "invalidate",
+                "afterPlan": null,
+                "afterRemaining": null,
+                "afterStatusAt": null,
+                "beforePlan": {
+                    "adoptedAt": "2026-11-05T01:00:00Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "longest-first",
+                    "reason": "주간 자원 조정안 채택",
+                    "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                    "sourceRevision": 10
+                },
+                "beforeRemaining": null,
+                "beforeStatusAt": null,
+                "id": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:14",
+                "previousEntryId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:13",
+                "reason": "표 일괄 붙여넣기",
+                "recordedAt": "2026-11-05T01:52:31Z",
+                "recordedRevision": 14,
+                "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                "sourceRevision": 13
+            },
+            {
+                "action": "undo",
+                "afterPlan": {
+                    "adoptedAt": "2026-11-05T01:00:00Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "longest-first",
+                    "reason": "주간 자원 조정안 채택",
+                    "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                    "sourceRevision": 10
+                },
+                "afterRemaining": null,
+                "afterStatusAt": null,
+                "beforePlan": null,
+                "beforeRemaining": null,
+                "beforeStatusAt": null,
+                "id": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:15",
+                "previousEntryId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:14",
+                "reason": "표 일괄 붙여넣기",
+                "recordedAt": "2026-11-05T01:52:31Z",
+                "recordedRevision": 15,
+                "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                "sourceRevision": 14
+            },
+            {
+                "action": "redo",
+                "afterPlan": null,
+                "afterRemaining": null,
+                "afterStatusAt": null,
+                "beforePlan": {
+                    "adoptedAt": "2026-11-05T01:00:00Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "longest-first",
+                    "reason": "주간 자원 조정안 채택",
+                    "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                    "sourceRevision": 10
+                },
+                "beforeRemaining": null,
+                "beforeStatusAt": null,
+                "id": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:16",
+                "previousEntryId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:15",
+                "reason": "표 일괄 붙여넣기",
+                "recordedAt": "2026-11-05T01:52:31Z",
+                "recordedRevision": 16,
+                "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                "sourceRevision": 15
+            },
+            {
+                "action": "undo",
+                "afterPlan": {
+                    "adoptedAt": "2026-11-05T01:00:00Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "longest-first",
+                    "reason": "주간 자원 조정안 채택",
+                    "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                    "sourceRevision": 10
+                },
+                "afterRemaining": null,
+                "afterStatusAt": null,
+                "beforePlan": null,
+                "beforeRemaining": null,
+                "beforeStatusAt": null,
+                "id": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:17",
+                "previousEntryId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:16",
+                "reason": "표 일괄 붙여넣기",
+                "recordedAt": "2026-11-05T01:52:31Z",
+                "recordedRevision": 17,
+                "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                "sourceRevision": 16
+            },
+            {
+                "action": "release",
+                "afterPlan": null,
+                "afterRemaining": null,
+                "afterStatusAt": null,
+                "beforePlan": {
+                    "adoptedAt": "2026-11-05T01:00:00Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "longest-first",
+                    "reason": "주간 자원 조정안 채택",
+                    "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                    "sourceRevision": 10
+                },
+                "beforeRemaining": null,
+                "beforeStatusAt": null,
+                "id": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:18",
+                "previousEntryId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:17",
+                "reason": "평준화 채택 해제",
+                "recordedAt": "2026-11-05T01:52:31Z",
+                "recordedRevision": 18,
+                "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                "sourceRevision": 17
+            },
+            {
+                "action": "adopt",
+                "afterPlan": {
+                    "adoptedAt": "2026-11-05T01:00:00Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "task-order",
+                    "reason": "주간 자원 조정안 채택",
+                    "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                    "sourceRevision": 18
+                },
+                "afterRemaining": null,
+                "afterStatusAt": null,
+                "beforePlan": null,
+                "beforeRemaining": null,
+                "beforeStatusAt": null,
+                "id": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:19",
+                "previousEntryId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:18",
+                "reason": "주간 자원 조정안 채택",
+                "recordedAt": "2026-11-05T01:52:31Z",
+                "recordedRevision": 19,
+                "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                "sourceRevision": 18
+            },
+            {
+                "action": "invalidate",
+                "afterPlan": null,
+                "afterRemaining": null,
+                "afterStatusAt": "2026-11-02 18:00",
+                "beforePlan": {
+                    "adoptedAt": "2026-11-05T01:00:00Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "task-order",
+                    "reason": "주간 자원 조정안 채택",
+                    "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                    "sourceRevision": 18
+                },
+                "beforeRemaining": null,
+                "beforeStatusAt": null,
+                "id": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:20",
+                "previousEntryId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:19",
+                "reason": "상태일 변경",
+                "recordedAt": "2026-11-05T01:52:31Z",
+                "recordedRevision": 20,
+                "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                "sourceRevision": 19
+            },
+            {
+                "action": "adopt",
+                "afterPlan": null,
+                "afterRemaining": {
+                    "adoptedAt": "2026-11-05T01:00:00Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "task-order",
+                    "reason": "주간 자원 조정안 채택",
+                    "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                    "sourceRevision": 20
+                },
+                "afterStatusAt": "2026-11-02 18:00",
+                "beforePlan": null,
+                "beforeRemaining": null,
+                "beforeStatusAt": "2026-11-02 18:00",
+                "id": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:21",
+                "previousEntryId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:20",
+                "reason": "주간 자원 조정안 채택",
+                "recordedAt": "2026-11-05T01:52:31Z",
+                "recordedRevision": 21,
+                "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                "sourceRevision": 20
+            },
+            {
+                "action": "release",
+                "afterPlan": null,
+                "afterRemaining": null,
+                "afterStatusAt": "2026-11-02 18:00",
+                "beforePlan": null,
+                "beforeRemaining": {
+                    "adoptedAt": "2026-11-05T01:00:00Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "task-order",
+                    "reason": "주간 자원 조정안 채택",
+                    "sourceDocumentId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c",
+                    "sourceRevision": 20
+                },
+                "beforeStatusAt": "2026-11-02 18:00",
+                "id": "99d9171d-d589-4ef0-abbf-a1d1eb0ea151:leveling:23",
+                "previousEntryId": "dfb5dd1a-8a1b-4027-8405-2d53b473c18c:leveling:21",
+                "reason": "평준화 채택 해제",
+                "recordedAt": "2026-11-05T01:52:31Z",
+                "recordedRevision": 23,
+                "sourceDocumentId": "99d9171d-d589-4ef0-abbf-a1d1eb0ea151",
+                "sourceRevision": 22
+            }
+        ],
+        "name": "평준화 결정 이력 검증",
+        "progress": [
+        ],
+        "resources": [
+            {
+                "exceptions": [
+                ],
+                "id": "e3eaf911-6c31-4963-b41e-8cc483e28258",
+                "maxUnits": 100,
+                "name": "공유 작업자",
+                "rates": [
+                ],
+                "type": "labor"
+            }
+        ],
+        "revision": 23,
+        "scenarios": [
+        ],
+        "startDate": "2026-11-02",
+        "statusAt": "2026-11-02 18:00",
+        "taskCosts": [
+        ],
+        "tasks": [
+            {
+                "durationMinutes": 480,
+                "id": "f1aa5be4-6ea6-4865-8926-b81cc54c9ae2",
+                "name": "기초",
+                "predecessors": [
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 480,
+                "id": "9dd87b71-a19b-4897-a70c-a08879420bf0",
+                "name": "설비",
+                "predecessors": [
+                ],
+                "wbsId": ""
+            }
+        ],
+        "wbsNodes": [
+        ]
+    },
+    "schemaVersion": 15,
+    "sha256": "2ea218a001cb13caf8ea1dca5447a83ea816b16fc6634142117de0c295f652ff"
+}

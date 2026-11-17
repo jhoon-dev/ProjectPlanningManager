@@ -1,4 +1,5 @@
 #include "application/Document.h"
+#include "domain/NativeSchema.h"
 #include "persistence/JsonProjectStore.h"
 #include <QCoreApplication>
 #include <QFile>
@@ -174,7 +175,7 @@ int main(int argc, char *argv[]) {
         rejects([&] { doc.open(broken.toStdString()); });
         check(*doc.project() == beforeFailedOpen, "failed open replaced active document");
         auto future = QJsonDocument::fromJson(originalBytes).object();
-        future["schemaVersion"] = 10;
+        future["schemaVersion"] = jobs::maximumNativeSchema + 1;
         write(broken, QJsonDocument(future).toJson());
         rejects([&] { store.load(broken.toStdString()); });
         auto corrupt = QJsonDocument::fromJson(originalBytes).object();

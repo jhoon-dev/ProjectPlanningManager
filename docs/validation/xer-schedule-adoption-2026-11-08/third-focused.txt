@@ -1,0 +1,9 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start  1: xer_schedule_adoption_contract
+    Start 77: parser_seed_replay
+1/2 Test #77: parser_seed_replay ...............   Passed    2.21 sec
+2/2 Test  #1: xer_schedule_adoption_contract ...   Passed    5.09 sec
+
+100% tests passed out of 2
+
+Total Test time (real) =   5.11 sec

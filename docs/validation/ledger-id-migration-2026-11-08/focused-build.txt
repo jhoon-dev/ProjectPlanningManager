@@ -1,0 +1,9 @@
+[1/9] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/LedgerIdentity.cpp.obj
+[2/9] Linking CXX static library libjobs_domain.a
+[3/9] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/XerActualCosts.cpp.obj
+[4/9] Linking CXX static library libjobs_persistence.a
+[5/9] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/LedgerIdentityDialog.cpp.obj
+[6/9] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindow.cpp.obj
+[7/9] Building CXX object CMakeFiles/jobs_ledger_identity_tests.dir/tests/LedgerIdentityTests.cpp.obj
+[8/9] Linking CXX static library libjobs_ui.a
+[9/9] Linking CXX executable jobs_ledger_identity_tests.exe

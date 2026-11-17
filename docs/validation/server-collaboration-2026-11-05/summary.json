@@ -1,0 +1,66 @@
+{
+  "status": "passed",
+  "fullCTest": {
+    "passed": 112,
+    "total": 112,
+    "seconds": 426.1
+  },
+  "serverHTTP": {
+    "tests": 23,
+    "nativeEngine": true,
+    "scryptProductionParameters": true,
+    "tlsServerAndCertificateVerification": true,
+    "concurrentCAS": true,
+    "midflightRevocation": true,
+    "transactionRollback": true,
+    "idempotentReceipts": true,
+    "workerAutomaticExecution": true,
+    "restartLeaseRecovery": true,
+    "cancelBeforeCommit": true,
+    "legitimateLoginsPreserveFailureBudget": true
+  },
+  "nativeUI": {
+    "qpa": [
+      "offscreen",
+      "windows"
+    ],
+    "twoClients": true,
+    "draftPreserved": true,
+    "selfSignedCertificateRejected": true
+  },
+  "browser": {
+    "login": true,
+    "previewApply": true,
+    "secondClientDraftPreservation": true,
+    "scheduledRun": "succeeded",
+    "scheduledRunServerVersion": 4,
+    "cancelled": true,
+    "localAndSessionStorageEntries": 0,
+    "fixtureStopped": true
+  },
+  "format": {
+    "files": 252,
+    "changes": 0
+  },
+  "parserSeeds": 210,
+  "packaging": {
+    "msixTestsPassed": 8,
+    "macTestsPassed": 10,
+    "macTestsSkipped": 2,
+    "nativeRuntimeFiles": 74,
+    "QtNetwork": true,
+    "SchannelBackend": true,
+    "standaloneCLI": true
+  },
+  "boundaries": [
+    "Windows local environment only; no external deployment or independent security certification",
+    "Mac signing/network consent and Store installation not executed",
+    "Remote batch edits are task names/durations; native files are explicitly imported/exported",
+    "No SSO/MFA, arbitrary field merge, cron calendar or HA claims"
+  ],
+  "finalAffectedCTest": {
+    "passed": 2,
+    "total": 2,
+    "seconds": 64.53
+  }
+}

@@ -1,5 +1,9 @@
+#include "domain/ResourcePlan.h"
+#include "domain/ExternalEvm.h"
+#include "domain/Activities.h"
 #include "domain/Diagnostics.h"
 #include "calculation/Costs.h"
+#include "calculation/PeriodEvm.h"
 #include "calculation/WorkCalendar.h"
 #include "calculation/Effort.h"
 #include "calculation/Tracking.h"
@@ -60,7 +64,7 @@ void derive(Evm &e, const std::string &formula) {
         e.cpi = double(*e.ev) / double(*e.ac);
     if (e.ev && e.pv && *e.pv > 0)
         e.spi = double(*e.ev) / double(*e.pv);
-    if (!e.bac || !e.ev || !e.ac)
+    if (!e.bac || !e.ev || !e.ac || !e.estimateSupported || *e.ev > *e.bac)
         return;
     auto remaining = *e.bac - *e.ev;
     if (formula == "budget-remaining-v1")
@@ -78,6 +82,7 @@ struct Segment {
     int units;
     Money rate;
     Minute dayWorkBefore = 0;
+    std::string resourceId;
 };
 struct Bucket {
     Minute day;
@@ -88,6 +93,39 @@ struct Budget {
     std::string startStamp, finishStamp, accrual = "uniform", credit = "physical";
     Minute start = 0, finish = 0;
     Money fixed;
+    std::vector<PlannedCharge> charges;
+    Money extraAt(const std::string &stamp, const WorkCalendar &clock, bool inclusive) const {
+        Money total = 0;
+        for (const auto &c : charges) {
+            Money value = 0;
+            if (c.accrual == "uniform" && finish > start) {
+                const auto n = elapsed(stamp, clock);
+                if (n > 0)
+                    value = c.amount ? fraction(*c.amount, n, elapsed(finishStamp, clock)) : Money{};
+            } else {
+                const auto &event = c.accrual == "start" ? startStamp : finishStamp;
+                if (inclusive ? stamp >= event : stamp > event)
+                    value = c.amount;
+            }
+            total = add(total, value);
+        }
+        return total;
+    }
+    Money extraOn(const std::string &date, const WorkCalendar &clock) const {
+        Money total = 0;
+        for (const auto &c : charges) {
+            Money value = 0;
+            if (c.accrual == "uniform" && finish > start) {
+                const auto a = elapsed(date + " 00:00", clock), b = elapsed(dayEnd(date), clock),
+                           n = elapsed(finishStamp, clock);
+                if (b > a && n > 0)
+                    value = c.amount ? subtract(fraction(*c.amount, b, n), fraction(*c.amount, a, n)) : Money{};
+            } else if (date == (c.accrual == "start" ? startStamp : finishStamp).substr(0, 10))
+                value = c.amount;
+            total = add(total, value);
+        }
+        return total;
+    }
     std::vector<Bucket> days;
     std::vector<Diagnostic> issues;
     bool valid = false;
@@ -119,7 +157,7 @@ struct Budget {
                 f = fixed ? subtract(fraction(*fixed, after, total), fraction(*fixed, before, total)) : Money{};
         } else if (date == (accrual == "start" ? startStamp : finishStamp).substr(0, 10))
             f = fixed;
-        return add(resource, f);
+        return add(add(resource, f), extraOn(date, calendar));
     }
     Money at(const std::string &stamp, const WorkCalendar &calendar, bool inclusive = true) const {
         if (!valid)
@@ -154,7 +192,7 @@ struct Budget {
                 f = fixed ? fraction(*fixed, elapsedWork, elapsed(finishStamp, calendar)) : Money{};
         } else if (earned)
             f = fixed;
-        return add(resource, f);
+        return add(add(resource, f), extraAt(stamp, calendar, inclusive));
     }
 };
 const TaskCost *config(const PlanInput &p, const std::string &id) {
@@ -165,8 +203,9 @@ const TaskCost *config(const PlanInput &p, const std::string &id) {
 }
 using CalendarCache = std::map<std::string, std::shared_ptr<WorkCalendar>>;
 Budget budget(const PlanInput &p, const Task &task, const TaskSchedule *row, const WorkCalendar &calendar,
-              CalendarCache &cache) {
+              CalendarCache &cache, const Project *context = nullptr) {
     Budget b;
+    b.charges = plannedCharges(p, task.id);
     if (const auto *c = config(p, task.id)) {
         b.fixed = c->fixedMinor;
         b.accrual = c->accrual;
@@ -196,7 +235,9 @@ Budget budget(const PlanInput &p, const Task &task, const TaskSchedule *row, con
     } else
         workSpans.emplace_back(b.start, b.finish);
     std::map<Minute, Bucket> days;
-    const auto effortSpans = isEffort(p) ? executionSpans(p, task, *row) : std::vector<WorkSpan>{};
+    const auto effortSpans = isEffort(p)
+                                 ? (context ? executionSpans(*context, task, *row) : executionSpans(p, task, *row))
+                                 : std::vector<WorkSpan>{};
     for (const auto &a : p.assignments)
         if (a.taskId == task.id) {
             const auto r = std::find_if(p.resources.begin(), p.resources.end(),
@@ -230,7 +271,7 @@ Budget budget(const PlanInput &p, const Task &task, const TaskSchedule *row, con
                     auto &d = days[at / calendar.dayMinutes()];
                     d.day = at / calendar.dayMinutes();
                     auto &before = workInDay[d.day];
-                    d.spans.push_back({at, end, s.units, amount, before});
+                    d.spans.push_back({at, end, s.units, amount, before, a.resourceId});
                     d.total = add(d.total, amount ? subtract(fraction(*amount, before + (end - at) * s.units, 6000),
                                                              fraction(*amount, before, 6000))
                                                   : Money{});
@@ -269,6 +310,13 @@ Money earned(const Project &p, const std::string &id, const Budget &b, Money bac
         const auto *e = progressAt(p, id, stamp);
         return e ? Money{e->actualFinish ? *bac : 0} : Money{};
     }
+    const auto definition = std::find_if(p.activities.begin(), p.activities.end(), [&](const auto &a) {
+        return a.kind == "steps" && a.taskId == id && a.physicalFromSteps;
+    });
+    if (definition != p.activities.end()) {
+        const auto physical = stepsPhysicalAsOf(p, id, stamp);
+        return physical ? fraction(*bac, *physical, 10000) : Money{};
+    }
     const auto *e = costAsOf(p, id, stamp);
     return e && e->physicalBasisPoints ? fraction(*bac, *e->physicalBasisPoints, 10000) : Money{};
 }
@@ -282,6 +330,7 @@ Evm combine(const std::vector<CostTaskRow> &rows, const std::set<std::string> &i
             e.pv = add(e.pv, row.evm.pv);
             e.ev = add(e.ev, row.evm.ev);
             e.ac = add(e.ac, row.evm.ac);
+            e.estimateSupported = e.estimateSupported && row.evm.estimateSupported;
         }
     if (!hasStatus) {
         e.pv.reset();
@@ -292,6 +341,80 @@ Evm combine(const std::vector<CostTaskRow> &rows, const std::set<std::string> &i
     return e;
 }
 } // namespace
+static std::vector<PlannedCostDay> plannedCostDaysImpl(const PlanInput &p, const ScheduleResult &schedule,
+                                                       const std::string &from, const std::string &to,
+                                                       bool includeFixed, const Project *context) {
+    EvaluationScope evaluation;
+    if (!validDate(from) || !validDate(to) || from > to || schedule.isForecast ||
+        schedule.status != CalculationStatus::Valid)
+        throw AppError(ErrorCode::REPORT_OPTIONS_INVALID);
+    WorkCalendar calendar(p);
+    CalendarCache calendars;
+    std::unordered_map<std::string, const TaskSchedule *> rows;
+    for (const auto &row : schedule.tasks)
+        rows.emplace(row.taskId, &row);
+    std::vector<PlannedCostDay> out;
+    auto append = [&](const std::string &task, const std::string &resource, const std::string &date, Money amount) {
+        calculationCheckpoint();
+        if (out.size() >= 1000000)
+            throw AppError(ErrorCode::REPORT_CELL_LIMIT);
+        out.push_back({task, resource, date, amount});
+    };
+    for (const auto &task : p.tasks) {
+        calculationCheckpoint();
+        if (!rows.contains(task.id))
+            throw AppError(ErrorCode::WORKSPACE_SOURCE_CHANGED);
+        const auto &row = *rows.at(task.id);
+        if (row.finish.substr(0, 10) < from || row.start.substr(0, 10) > to)
+            continue;
+        const auto b = budget(p, task, &row, calendar, calendars, context);
+        for (const auto &day : b.days) {
+            const auto date = calendar.boundary(day.day * calendar.dayMinutes(), false).substr(0, 10);
+            if (date < from || date > to)
+                continue;
+            std::map<std::string, Money> amounts;
+            for (const auto &s : day.spans) {
+                if (!amounts.contains(s.resourceId))
+                    amounts[s.resourceId] = 0;
+                amounts[s.resourceId] =
+                    add(amounts[s.resourceId],
+                        s.rate ? subtract(fraction(*s.rate, s.dayWorkBefore + (s.finish - s.start) * s.units, 6000),
+                                          fraction(*s.rate, s.dayWorkBefore, 6000))
+                               : Money{});
+            }
+            for (const auto &[resource, amount] : amounts)
+                append(task.id, resource, date, amount);
+        }
+        if (!includeFixed)
+            continue;
+        auto date = std::max(from, row.start.substr(0, 10));
+        const auto last = std::min(to, row.finish.substr(0, 10));
+        while (date <= last) {
+            Money fixed = 0;
+            if (b.accrual == "uniform" && b.finish > b.start) {
+                const auto before = b.elapsed(date + " 00:00", calendar), after = b.elapsed(dayEnd(date), calendar),
+                           total = b.elapsed(b.finishStamp, calendar);
+                if (after > before && total > 0)
+                    fixed = b.fixed ? subtract(fraction(*b.fixed, after, total), fraction(*b.fixed, before, total))
+                                    : Money{};
+            } else if (date == (b.accrual == "start" ? b.startStamp : b.finishStamp).substr(0, 10))
+                fixed = b.fixed;
+            append(task.id, {}, date, add(fixed, b.extraOn(date, calendar)));
+            if (date == last)
+                break;
+            date = dayEnd(date).substr(0, 10);
+        }
+    }
+    return out;
+}
+std::vector<PlannedCostDay> plannedCostDays(const PlanInput &p, const ScheduleResult &s, const std::string &from,
+                                            const std::string &to, bool fixed) {
+    return plannedCostDaysImpl(p, s, from, to, fixed, nullptr);
+}
+std::vector<PlannedCostDay> plannedCostDays(const Project &p, const ScheduleResult &s, const std::string &from,
+                                            const std::string &to, bool fixed) {
+    return plannedCostDaysImpl(p, s, from, to, fixed, &p);
+}
 CostAnalysis analyzeCosts(const Project &p, const std::string &baselineId, const std::string &formula,
                           const std::optional<std::vector<std::string>> &taskScope) {
     validate(p);
@@ -327,6 +450,7 @@ CostAnalysis analyzeCosts(const Project &p, const std::string &baselineId, const
         }
     }
     const bool compatible = baseline && baseline->input.currency == p.currency;
+    const ExternalEvmIndex external(p, baselineId);
     if (baseline && !compatible)
         out.diagnostics.push_back({"CURRENCY_MISMATCH", {}, {}, "CURRENCY_MISMATCH"});
     if (!baseline)
@@ -385,6 +509,10 @@ CostAnalysis analyzeCosts(const Project &p, const std::string &baselineId, const
             row.evm.ac = actual(p, t.id, *p.statusAt);
             if (const auto *e = costAsOf(p, t.id, *p.statusAt))
                 row.physicalBasisPoints = e->physicalBasisPoints;
+            if (std::any_of(p.activities.begin(), p.activities.end(), [&](const auto &a) {
+                    return a.kind == "steps" && a.taskId == t.id && a.physicalFromSteps;
+                }))
+                row.physicalBasisPoints = stepsPhysicalAsOf(p, t.id, *p.statusAt);
         }
         if (row.evm.ac && current.contains(t.id))
             ++out.actualCoverage;
@@ -404,6 +532,18 @@ CostAnalysis analyzeCosts(const Project &p, const std::string &baselineId, const
             if (p.statusAt) {
                 row.evm.pv = b.at(*p.statusAt, *baselineCalendar);
                 row.evm.ev = earned(p, t.id, b, row.evm.bac, *p.statusAt);
+                const auto adopted = external.at(t.id, *p.statusAt);
+                if (adopted.usePv)
+                    row.evm.pv = adopted.pv;
+                if (adopted.useEv) {
+                    row.evm.ev = adopted.ev;
+                    row.credit = "external-ev";
+                }
+                if ((adopted.useEv || adopted.usePv) && row.evm.bac &&
+                    ((row.evm.ev && *row.evm.ev > *row.evm.bac) || (row.evm.pv && *row.evm.pv > *row.evm.bac))) {
+                    row.evm.estimateSupported = false;
+                    row.issues.push_back({"EXTERNAL_EVM_BAC_MISMATCH", {}, {t.id}});
+                }
             }
         }
         if (row.evm.ev && row.baselineMember)
@@ -459,6 +599,43 @@ CostAnalysis analyzeCosts(const Project &p, const std::string &baselineId, const
     addDays(current, calendar);
     if (compatible)
         addDays(frozen, *baselineCalendar);
+    if (compatible && !p.externalEvmAdoptions.empty()) {
+        std::optional<std::string> from, to;
+        std::map<std::string, const ExternalEvmAdoption *> latest;
+        for (const auto &a : p.externalEvmAdoptions)
+            if (a.baselineId == baselineId)
+                for (const auto &id : a.taskIds)
+                    latest[id] = &a;
+        for (const auto &a : p.externalEvmAdoptions)
+            if (a.baselineId == baselineId && !a.withdrawn) {
+                const auto *source = externalEvmSource(p, a.financialRevisionId);
+                for (const auto &r : a.rows) {
+                    const auto &period = source->periods[r.periodIndex];
+                    if ((taskScope && !selected.contains(period.taskId)) || latest.at(period.taskId) != &a)
+                        continue;
+                    auto begin = period.start.substr(0, 10), end = period.finish.substr(0, 10);
+                    from = from ? std::min(*from, begin) : begin;
+                    to = to ? std::max(*to, end) : end;
+                }
+            }
+        if (from && to) {
+            using namespace std::chrono;
+            auto parse = [](const std::string &s) {
+                return sys_days{year{std::stoi(s.substr(0, 4))} / unsigned(std::stoi(s.substr(5, 2))) /
+                                unsigned(std::stoi(s.substr(8, 2)))};
+            };
+            for (auto date = parse(*from); date <= parse(*to); date += std::chrono::days{1}) {
+                calculationCheckpoint();
+                if (days.size() >= 20000)
+                    throw AppError(ErrorCode::REPORT_CELL_LIMIT);
+                const year_month_day d{date};
+                char value[32];
+                std::snprintf(value, sizeof(value), "%04d-%02u-%02u", int(d.year()), unsigned(d.month()),
+                              unsigned(d.day()));
+                days.insert(value);
+            }
+        }
+    }
     if (p.statusAt) {
         days.insert(p.statusAt->substr(0, 10));
         for (const auto &e : p.costEntries)
@@ -482,7 +659,8 @@ CostAnalysis analyzeCosts(const Project &p, const std::string &baselineId, const
         for (const auto &[id, b] : frozen) {
             (void)id;
             d.budget = add(d.budget, b.on(date, *baselineCalendar));
-            d.pv = add(d.pv, b.at(boundary, *baselineCalendar, date == "9999-12-31"));
+            const auto adopted = external.at(id, boundary, date == "9999-12-31");
+            d.pv = add(d.pv, adopted.usePv ? adopted.pv : b.at(boundary, *baselineCalendar, date == "9999-12-31"));
         }
         if (p.statusAt && date <= p.statusAt->substr(0, 10)) {
             d.currentActual = 0;
@@ -496,7 +674,9 @@ CostAnalysis analyzeCosts(const Project &p, const std::string &baselineId, const
             const auto at = std::min(end, *p.statusAt);
             d.ev = d.ac = 0;
             for (const auto &[id, b] : frozen) {
-                d.ev = add(d.ev, earned(p, id, b, b.at(b.finishStamp, *baselineCalendar), at));
+                const auto adopted = external.at(id, at);
+                d.ev = add(d.ev,
+                           adopted.useEv ? adopted.ev : earned(p, id, b, b.at(b.finishStamp, *baselineCalendar), at));
                 d.ac = add(d.ac, actual(p, id, at));
             }
             if (date == p.statusAt->substr(0, 10))
@@ -517,6 +697,147 @@ CostAnalysis analyzeCosts(const Project &p, const std::string &baselineId, const
     if (baseline && cohort != currentIds)
         out.diagnostics.push_back({"BASELINE_SCOPE", {}, {}, "BASELINE_SCOPE"});
     out.diagnostics.push_back({"EVM_POLICY", {}, {}, "EVM_POLICY"});
+    if (std::any_of(p.externalEvmAdoptions.begin(), p.externalEvmAdoptions.end(),
+                    [&](const auto &a) { return a.baselineId == baselineId; }))
+        out.diagnostics.push_back({"EXTERNAL_EVM_POLICY", {}, {}});
+    return out;
+}
+namespace {
+template <typename T> using Timelines = std::unordered_map<std::string, std::vector<const T *>>;
+template <typename T> Timelines<T> timelines(const std::vector<T> &entries) {
+    Timelines<T> out;
+    for (const auto &e : entries)
+        out[e.taskId].push_back(&e);
+    for (auto &[id, rows] : out) {
+        (void)id;
+        std::stable_sort(rows.begin(), rows.end(), [](auto a, auto b) { return a->statusAt < b->statusAt; });
+    }
+    return out;
+}
+template <typename T> const T *atBoundary(const Timelines<T> &index, const std::string &id, const EvmBoundary &at) {
+    if (!at.observed || !index.contains(id))
+        return nullptr;
+    const auto &rows = index.at(id);
+    auto end = at.inclusive ? std::upper_bound(rows.begin(), rows.end(), at.stamp,
+                                               [](const auto &stamp, const auto *r) { return stamp < r->statusAt; })
+                            : std::lower_bound(rows.begin(), rows.end(), at.stamp,
+                                               [](const auto *r, const auto &stamp) { return r->statusAt < stamp; });
+    return end == rows.begin() ? nullptr : *std::prev(end);
+}
+} // namespace
+Evm nativeEvmIndicators(Evm e, const std::string &formula) {
+    if (formula != "budget-remaining-v1" && formula != "cpi-v1" && formula != "cpi-spi-v1")
+        throw AppError(ErrorCode::EVM_FORMULA_UNSUPPORTED);
+    e.cv.reset();
+    e.sv.reset();
+    e.cpi.reset();
+    e.spi.reset();
+    e.eac.reset();
+    e.etc.reset();
+    derive(e, formula);
+    return e;
+}
+std::vector<PeriodEvmCurve> nativeEvmCurves(const Project &p, const std::string &baselineId, const std::string &formula,
+                                            const std::vector<EvmBoundary> &boundaries,
+                                            const std::optional<std::vector<std::string>> &scope) {
+    EvaluationScope evaluation;
+    validate(p);
+    if (formula != "budget-remaining-v1" && formula != "cpi-v1" && formula != "cpi-spi-v1")
+        throw AppError(ErrorCode::EVM_FORMULA_UNSUPPORTED);
+    const auto baseline =
+        std::find_if(p.baselines.begin(), p.baselines.end(), [&](const auto &b) { return b.id == baselineId; });
+    if (baseline == p.baselines.end())
+        throw AppError(ErrorCode::BASELINE_NOT_FOUND);
+    verifyBaseline(*baseline);
+    if (baseline->input.currency != p.currency)
+        throw AppError(ErrorCode::REPORT_OPTIONS_INVALID);
+    if (boundaries.size() > 7320)
+        throw AppError(ErrorCode::REPORT_CELL_LIMIT);
+    for (const auto &at : boundaries)
+        if (!validStamp(at.stamp) || (at.observed && (!p.statusAt || at.stamp > *p.statusAt)))
+            throw AppError(ErrorCode::REPORT_OPTIONS_INVALID);
+    std::set<std::string> selected, known;
+    for (const auto &t : baseline->input.tasks)
+        known.insert(t.id);
+    for (const auto &t : p.tasks)
+        known.insert(t.id);
+    if (scope)
+        for (const auto &id : *scope) {
+            if (!known.contains(id))
+                throw AppError(ErrorCode::COST_TASK_NOT_FOUND);
+            selected.insert(id);
+        }
+    const auto count = std::count_if(baseline->input.tasks.begin(), baseline->input.tasks.end(),
+                                     [&](const auto &t) { return !scope || selected.contains(t.id); });
+    if (std::size_t(count) * boundaries.size() > 40000)
+        throw AppError(ErrorCode::REPORT_CELL_LIMIT);
+    auto costs = timelines(p.costEntries);
+    const ExternalEvmIndex external(p, baselineId);
+    auto progress = timelines(p.progress);
+    auto steps = timelines(p.stepReports);
+    std::set<std::string> fromSteps;
+    for (const auto &a : p.activities)
+        if (a.kind == "steps" && a.physicalFromSteps)
+            fromSteps.insert(a.taskId);
+    std::unordered_map<std::string, const TaskSchedule *> dates;
+    for (const auto &row : baseline->schedule)
+        dates.emplace(row.taskId, &row);
+    WorkCalendar calendar(baseline->input);
+    CalendarCache calendars;
+    std::vector<PeriodEvmCurve> out;
+    for (const auto &t : baseline->input.tasks) {
+        calculationCheckpoint();
+        if (scope && !selected.contains(t.id))
+            continue;
+        const auto b = budget(baseline->input, t, dates.at(t.id), calendar, calendars);
+        const auto bac = b.at(b.finishStamp, calendar);
+        PeriodEvmCurve curve{t.id, t.name, t.wbsId, b.credit, {}};
+        for (const auto &at : boundaries) {
+            calculationCheckpoint();
+            PeriodEvmPoint point;
+            auto &e = point.value;
+            e.bac = bac;
+            e.pv = b.at(at.stamp, calendar, at.inclusive);
+            if (const auto *c = atBoundary(costs, t.id, at)) {
+                e.ac = c->actualMinor;
+                point.acReportId = c->id;
+                if (b.credit != "zero-hundred" && !fromSteps.contains(t.id)) {
+                    if (bac && c->physicalBasisPoints)
+                        e.ev = fraction(*bac, *c->physicalBasisPoints, 10000);
+                    point.evReportId = c->id;
+                }
+            }
+            if (at.observed) {
+                if (b.credit == "zero-hundred") {
+                    if (const auto *r = atBoundary(progress, t.id, at)) {
+                        e.ev = r->actualFinish ? bac : (bac ? Money{0} : Money{});
+                        point.evReportId = r->id;
+                    }
+                } else if (fromSteps.contains(t.id)) {
+                    if (const auto *r = atBoundary(steps, t.id, at)) {
+                        if (bac)
+                            e.ev = fraction(*bac, weightedStepProgress(r->steps), 10000);
+                        point.evReportId = r->id;
+                    }
+                }
+                if (bac && *bac == 0)
+                    e.ev = 0;
+            }
+            const auto adopted = external.at(t.id, at.stamp, at.inclusive);
+            if (adopted.usePv)
+                e.pv = adopted.pv;
+            if (at.observed && adopted.useEv) {
+                e.ev = adopted.ev;
+                point.evReportId = adopted.adoptionId;
+                curve.credit = "external-ev";
+            }
+            if ((adopted.useEv || adopted.usePv) && bac && ((e.ev && *e.ev > *bac) || (e.pv && *e.pv > *bac)))
+                e.estimateSupported = false;
+            derive(e, formula);
+            curve.points.push_back(std::move(point));
+        }
+        out.push_back(std::move(curve));
+    }
     return out;
 }
 } // namespace jobs

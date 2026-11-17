@@ -13,6 +13,7 @@
   <key>LSMinimumSystemVersion</key><string>12.0</string>
   <key>LSApplicationCategoryType</key><string>public.app-category.productivity</string>
   <key>NSHighResolutionCapable</key><true/>
+  <key>NSLocalNetworkUsageDescription</key><string>조직의 PPM 협업 서버에 연결하여 인증하고 프로젝트 변경을 동기화합니다.</string>
   <key>NSPrincipalClass</key><string>NSApplication</string>
   <key>ITSAppUsesNonExemptEncryption</key><false/>
   <key>PPMFileAccessPolicy</key><string>app-scoped-folders-v1</string>

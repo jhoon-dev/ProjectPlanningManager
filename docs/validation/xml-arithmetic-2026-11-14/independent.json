@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "schema": 63,
+  "power_vectors": 2048,
+  "exact_power_values": 2048,
+  "power_maximum_difference_scaled": 0,
+  "division_vectors": 2048,
+  "scalar_cases": 38,
+  "xml_cells": 20,
+  "xml_missing_cells": 4,
+  "xml_inherited_cells": 2,
+  "xer_static_values": 20,
+  "formula_definitions": 32,
+  "report_rows": 66,
+  "pdf_pages": 19,
+  "native_file_sha256": "8435b5d615ac8484dbf7f9a63943b7329297587f6af42892c83cdd35467790ce",
+  "external_product_run": false
+}

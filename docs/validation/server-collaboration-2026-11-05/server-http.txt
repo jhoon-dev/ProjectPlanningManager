@@ -1,0 +1,101 @@
+Start testing: Nov 05 20:09 대한민국 표준시
+----------------------------------------------------------
+60/112 Testing: server_native_realtime_ui
+60/112 Test: server_native_realtime_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance/jobs_server_ui_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+"server_native_realtime_ui" start time: Nov 05 20:09 대한민국 표준시
+Output:
+----------------------------------------------------------
+server native client and UI passed
+<end of output>
+Test time =  11.49 sec
+----------------------------------------------------------
+Test Passed.
+"server_native_realtime_ui" end time: Nov 05 20:10 대한민국 표준시
+"server_native_realtime_ui" time elapsed: 00:00:11
+----------------------------------------------------------
+
+61/112 Testing: server_http_auth_sync_scheduler
+61/112 Test: server_http_auth_sync_scheduler
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/.deps/server/Scripts/python.exe" "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/test_server.py"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+"server_http_auth_sync_scheduler" start time: Nov 05 20:10 대한민국 표준시
+Output:
+----------------------------------------------------------
+test_default_password_parameters (__main__.ProductionKdfTests.test_default_password_parameters) ... ok
+test_account_disable_and_stream_revoke (__main__.ServerTests.test_account_disable_and_stream_revoke) ... C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\server\ppm_server\service.py:746: NotAppKeyWarning: It is recommended to use web.AppKey instances for keys.
+https://docs.aiohttp.org/en/stable/web_advanced.html#application-s-config
+  app["service"] = service
+C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\server\ppm_server\service.py:747: NotAppKeyWarning: It is recommended to use web.AppKey instances for keys.
+https://docs.aiohttp.org/en/stable/web_advanced.html#application-s-config
+  app["public_origin"] = public_origin.rstrip("/")
+Executing <Task pending name='Task-1' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.406 seconds
+ok
+test_changefeed_reconnect_and_acl (__main__.ServerTests.test_changefeed_reconnect_and_acl) ... Executing <Task pending name='Task-35' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.359 seconds
+ok
+test_durable_job_repeats_coalesces_and_cancels (__main__.ServerTests.test_durable_job_repeats_coalesces_and_cancels) ... Executing <Task pending name='Task-85' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.390 seconds
+ok
+test_http_origin_json_bounds_and_headers (__main__.ServerTests.test_http_origin_json_bounds_and_headers) ... Executing <Task pending name='Task-140' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.375 seconds
+ok
+test_idempotent_apply_and_request_reuse (__main__.ServerTests.test_idempotent_apply_and_request_reuse) ... Executing <Task pending name='Task-178' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.406 seconds
+ok
+test_job_cancel_while_native_engine_runs (__main__.ServerTests.test_job_cancel_while_native_engine_runs) ... Executing <Task pending name='Task-248' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.390 seconds
+ok
+test_job_external_conflict_and_revoked_owner (__main__.ServerTests.test_job_external_conflict_and_revoked_owner) ... Executing <Task pending name='Task-295' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.406 seconds
+ok
+test_last_invalid_change_rolls_back (__main__.ServerTests.test_last_invalid_change_rolls_back) ... Executing <Task pending name='Task-359' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.391 seconds
+ok
+test_live_worker_executes_without_manual_tick (__main__.ServerTests.test_live_worker_executes_without_manual_tick) ... Executing <Task pending name='Task-395' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.391 seconds
+ok
+test_long_poll_wakes_on_commit (__main__.ServerTests.test_long_poll_wakes_on_commit) ... Executing <Task pending name='Task-446' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.406 seconds
+ok
+test_native_atomic_batch_and_receipt (__main__.ServerTests.test_native_atomic_batch_and_receipt) ... Executing <Task pending name='Task-497' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.422 seconds
+ok
+test_native_registration_rejects_overwrite_tamper_and_legacy (__main__.ServerTests.test_native_registration_rejects_overwrite_tamper_and_legacy) ... Executing <Task pending name='Task-550' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.375 seconds
+ok
+test_password_hash_session_logout_and_reset (__main__.ServerTests.test_password_hash_session_logout_and_reset) ... Executing <Task pending name='Task-598' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.391 seconds
+ok
+test_permissions_and_no_enumeration (__main__.ServerTests.test_permissions_and_no_enumeration) ... Executing <Task pending name='Task-631' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.422 seconds
+ok
+test_role_revocation_and_preview_expiry (__main__.ServerTests.test_role_revocation_and_preview_expiry) ... Executing <Task pending name='Task-665' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.359 seconds
+ok
+test_role_revoked_during_native_validation (__main__.ServerTests.test_role_revoked_during_native_validation) ... Executing <Task pending name='Task-709' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.375 seconds
+ok
+test_rollback_after_sql_failure_and_backup (__main__.ServerTests.test_rollback_after_sql_failure_and_backup) ... Executing <Task pending name='Task-761' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.390 seconds
+Request failed
+Traceback (most recent call last):
+  File "C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\server\ppm_server\service.py", line 95, in errors
+    response = await handler(request)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\server\ppm_server\service.py", line 467, in apply
+    receipt = self.commit_result(user, project_id, p["version"], req, native, receipt, summary)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\server\ppm_server\service.py", line 416, in commit_result
+    db.execute(
+sqlite3.IntegrityError: injected
+ok
+test_successful_logins_do_not_consume_peer_failure_budget (__main__.ServerTests.test_successful_logins_do_not_consume_peer_failure_budget) ... Executing <Task pending name='Task-807' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.391 seconds
+ok
+test_throttle_and_expiry (__main__.ServerTests.test_throttle_and_expiry) ... Executing <Task pending name='Task-932' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.391 seconds
+ok
+test_tls_and_certificate_verification (__main__.ServerTests.test_tls_and_certificate_verification) ... Executing <Task pending name='Task-975' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.390 seconds
+ok
+test_two_clients_conflict_preserves_winner (__main__.ServerTests.test_two_clients_conflict_preserves_winner) ... Executing <Task pending name='Task-1010' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.360 seconds
+ok
+test_worker_crash_recovery_and_single_claim (__main__.ServerTests.test_worker_crash_recovery_and_single_claim) ... Executing <Task pending name='Task-1077' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.406 seconds
+ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 50.961s
+
+OK
+<end of output>
+Test time =  53.02 sec
+----------------------------------------------------------
+Test Passed.
+"server_http_auth_sync_scheduler" end time: Nov 05 20:11 대한민국 표준시
+"server_http_auth_sync_scheduler" time elapsed: 00:00:53
+----------------------------------------------------------
+
+End testing: Nov 05 20:11 대한민국 표준시

@@ -1,7 +1,9 @@
 #include "formatting/QtDiagnosticText.h"
 #include "persistence/JsonRecoveryStore.h"
+#include "domain/NativeSchema.h"
 #include "persistence/ApplicationStorage.h"
 #include "persistence/ProjectJson.h"
+#include "domain/Classification.h"
 #include "persistence/JsonProjectStore.h"
 #include <QCryptographicHash>
 #include <QDir>
@@ -124,9 +126,9 @@ Record decode(const QByteArray &bytes, const QString &expectedSession, std::uint
     Record r;
     r.session = string(p, "sessionId");
     r.sequence = integer(p["sequence"], 999999999);
-    if (r.session != expectedSession || r.sequence != expectedSequence || !uuid(r.session) ||
-        (p["projectSchema"] != QJsonValue(6) && p["projectSchema"] != QJsonValue(7) &&
-         p["projectSchema"] != QJsonValue(8) && p["projectSchema"] != QJsonValue(9)) ||
+    const auto schema = p["projectSchema"];
+    if (r.session != expectedSession || r.sequence != expectedSequence || !uuid(r.session) || !schema.isDouble() ||
+        schema.toDouble() != schema.toInt() || schema.toInt() < 6 || schema.toInt() > maximumNativeSchema ||
         !p["project"].isObject())
         throw AppError(ErrorCode::FILE_JSONRECOVERYSTORE_018, {});
     auto &s = r.snapshot;
@@ -154,7 +156,7 @@ QByteArray encode(const RecoverySnapshot &s, const QString &session, std::uint64
                   {"sourceReadOnly", s.sourceReadOnly},
                   {"sourceRequiresSaveAs", s.sourceRequiresSaveAs},
                   {"lastSavedRevision", s.lastSavedRevision ? QJsonValue(qint64(*s.lastSavedRevision)) : QJsonValue()},
-                  {"projectSchema", 9},
+                  {"projectSchema", nativeSchemaFor(s.project)},
                   {"project", json::encodeProject(s.project)}};
     auto bytes = QJsonDocument(QJsonObject{{"format", "JOBS-RECOVERY"},
                                            {"schemaVersion", 1},
@@ -235,8 +237,24 @@ Original originalState(const RecoverySnapshot &s) {
             changes << QString("기준선 %1 → %2").arg(before.baselines.size()).arg(after.baselines.size());
         if (before.progress != after.progress)
             changes << QString("실적 이력 %1 → %2").arg(before.progress.size()).arg(after.progress.size());
+        if (before.resourcePlan != after.resourcePlan)
+            changes << "자재·비용·역할 계획 변경";
+        if (before.activities != after.activities)
+            changes << "Steps·지원 활동 정의 변경";
+        if (before.stepReports != after.stepReports)
+            changes << QString("Steps 보고 %1 → %2").arg(before.stepReports.size()).arg(after.stepReports.size());
         if (before.costEntries != after.costEntries)
             changes << QString("원가 이력 %1 → %2").arg(before.costEntries.size()).arg(after.costEntries.size());
+        if (before.projectFields != after.projectFields || before.projectAttributes != after.projectAttributes)
+            changes << "프로젝트 사용자 필드 정의/값 변경";
+        if (before.resourceFields != after.resourceFields)
+            changes << "자원 사용자 필드 정의 변경";
+        if (before.periodActuals != after.periodActuals)
+            changes << QString("기간 실적 %1 → %2").arg(before.periodActuals.size()).arg(after.periodActuals.size());
+        if (before.levelingDecisions != after.levelingDecisions)
+            changes << QString("평준화 결정 %1 → %2")
+                           .arg(before.levelingDecisions.size())
+                           .arg(after.levelingDecisions.size());
         if (before.scenarios != after.scenarios)
             changes << "저장 시나리오 변경";
         return {"마지막 명시 저장과 일치", "명시 저장 대비: " + changes.join(" · ")};

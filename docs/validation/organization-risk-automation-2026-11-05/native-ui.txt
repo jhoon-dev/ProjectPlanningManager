@@ -1,0 +1,4 @@
+Windows QPA: jobs_governance_ui_tests.exe -platform windows
+governance UI passed
+Font: Malgun Gothic
+Screenshot inspected: Korean labels, dark theme, controls and fixed Close footer.

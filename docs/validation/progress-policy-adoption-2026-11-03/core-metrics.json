@@ -1,0 +1,10 @@
+[
+    {
+        "calculation_ms": 62.3371,
+        "tasks": 1000
+    },
+    {
+        "calculation_ms": 586.4249,
+        "tasks": 10000
+    }
+]

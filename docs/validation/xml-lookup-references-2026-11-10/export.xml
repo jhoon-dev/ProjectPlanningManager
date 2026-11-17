@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project xmlns="http://schemas.microsoft.com/project">
+    <SaveVersion>12</SaveVersion>
+    <Name>목록·GUID 참조</Name>
+    <ScheduleFromStart>1</ScheduleFromStart>
+    <StartDate>2026-11-10T09:00:00</StartDate>
+    <CurrencyDigits>0</CurrencyDigits>
+    <CurrencyCode>KRW</CurrencyCode>
+    <CalendarUID>1</CalendarUID>
+    <DefaultStartTime>09:00:00</DefaultStartTime>
+    <DefaultFinishTime>18:00:00</DefaultFinishTime>
+    <MinutesPerDay>480</MinutesPerDay>
+    <MinutesPerWeek>2400</MinutesPerWeek>
+    <OutlineCodes>
+        <OutlineCode>
+            <Guid>11111111-2222-4333-8444-000000000020</Guid>
+            <FieldName>기업 다중 지역</FieldName>
+            <Values>
+                <Value>
+                    <ValueID>20</ValueID>
+                    <FieldGUID>11111111-2222-4333-8444-000000000023</FieldGUID>
+                    <Type>21</Type>
+                    <Value>국내</Value>
+                    <Description>상위 계층</Description>
+                </Value>
+                <Value>
+                    <ValueID>21</ValueID>
+                    <FieldGUID>11111111-2222-4333-8444-000000000021</FieldGUID>
+                    <Type>21</Type>
+                    <ParentValueID>20</ParentValueID>
+                    <Value>서울 &amp; &lt;설계&gt;</Value>
+                    <Description>첫 설명</Description>
+                </Value>
+                <Value>
+                    <ValueID>22</ValueID>
+                    <FieldGUID>11111111-2222-4333-8444-000000000022</FieldGUID>
+                    <Type>21</Type>
+                    <ParentValueID>20</ParentValueID>
+                    <Value>부산</Value>
+                    <Description>둘째 설명</Description>
+                </Value>
+            </Values>
+            <Enterprise>1</Enterprise>
+            <LeafOnly>1</LeafOnly>
+            <OnlyTableValuesAllowed>1</OnlyTableValuesAllowed>
+        </OutlineCode>
+        <OutlineCode>
+            <Guid>11111111-2222-4333-8444-000000000030</Guid>
+            <FieldName>프로젝트 등급</FieldName>
+            <Values>
+                <Value>
+                    <ValueID>31</ValueID>
+                    <FieldGUID>11111111-2222-4333-8444-000000000031</FieldGUID>
+                    <Type>15</Type>
+                    <Value>0</Value>
+                    <Description>첫 설명</Description>
+                </Value>
+                <Value>
+                    <ValueID>32</ValueID>
+                    <FieldGUID>11111111-2222-4333-8444-000000000032</FieldGUID>
+                    <Type>15</Type>
+                    <Value>-2.123456</Value>
+                    <Description>둘째 설명</Description>
+                </Value>
+            </Values>
+            <Enterprise>1</Enterprise>
+            <LeafOnly>0</LeafOnly>
+            <OnlyTableValuesAllowed>1</OnlyTableValuesAllowed>
+        </OutlineCode>
+        <OutlineCode>
+            <Guid>11111111-2222-4333-8444-000000000050</Guid>
+            <FieldID>205521174</FieldID>
+            <FieldName>자원 계층</FieldName>
+            <Values>
+                <Value>
+                    <ValueID>51</ValueID>
+                    <FieldGUID>11111111-2222-4333-8444-000000000051</FieldGUID>
+                    <Type>21</Type>
+                    <Value>서울 &amp; &lt;설계&gt;</Value>
+                    <Description>첫 설명</Description>
+                </Value>
+                <Value>
+                    <ValueID>52</ValueID>
+                    <FieldGUID>11111111-2222-4333-8444-000000000052</FieldGUID>
+                    <Type>21</Type>
+                    <Value>부산</Value>
+                    <Description>둘째 설명</Description>
+                </Value>
+            </Values>
+            <Enterprise>0</Enterprise>
+            <LeafOnly>0</LeafOnly>
+            <OnlyTableValuesAllowed>1</OnlyTableValuesAllowed>
+        </OutlineCode>
+        <OutlineCode>
+            <Guid>11111111-2222-4333-8444-000000000060</Guid>
+            <FieldName>배정 열린 목록</FieldName>
+            <Values>
+                <Value>
+                    <ValueID>61</ValueID>
+                    <FieldGUID>11111111-2222-4333-8444-000000000061</FieldGUID>
+                    <Type>21</Type>
+                    <Value>서울 &amp; &lt;설계&gt;</Value>
+                    <Description>첫 설명</Description>
+                </Value>
+                <Value>
+                    <ValueID>62</ValueID>
+                    <FieldGUID>11111111-2222-4333-8444-000000000062</FieldGUID>
+                    <Type>21</Type>
+                    <Value>부산</Value>
+                    <Description>둘째 설명</Description>
+                </Value>
+            </Values>
+            <Enterprise>1</Enterprise>
+            <LeafOnly>0</LeafOnly>
+            <OnlyTableValuesAllowed>0</OnlyTableValuesAllowed>
+        </OutlineCode>
+    </OutlineCodes>
+    <ExtendedAttributes>
+        <ExtendedAttribute>
+            <FieldID>188743731</FieldID>
+            <CFType>7</CFType>
+            <ElemType>20</ElemType>
+            <Alias>지역</Alias>
+            <RestrictValues>1</RestrictValues>
+            <Default>12</Default>
+            <ValueList>
+                <Value>
+                    <ID>11</ID>
+                    <Value>서울 &amp; &lt;설계&gt;</Value>
+                    <Description>첫 설명</Description>
+                </Value>
+                <Value>
+                    <ID>12</ID>
+                    <Value>부산</Value>
+                    <Description>둘째 설명</Description>
+                </Value>
+            </ValueList>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>188776449</FieldID>
+            <FieldName>Enterprise regions</FieldName>
+            <CFType>7</CFType>
+            <Guid>11111111-2222-4333-8444-000000000100</Guid>
+            <ElemType>20</ElemType>
+            <MaxMultiValues>2</MaxMultiValues>
+            <Alias>기업 다중 지역</Alias>
+            <DefaultGuid>11111111-2222-4333-8444-000000000022</DefaultGuid>
+            <Ltuid>11111111-2222-4333-8444-000000000020</Ltuid>
+            <RestrictValues>1</RestrictValues>
+            <Default>22</Default>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>190873600</FieldID>
+            <FieldName>프로젝트 등급</FieldName>
+            <CFType>5</CFType>
+            <Guid>86846fc2-2174-5beb-897c-b386ab5da0f0</Guid>
+            <ElemType>20</ElemType>
+            <Alias>프로젝트 등급</Alias>
+            <DefaultGuid>11111111-2222-4333-8444-000000000032</DefaultGuid>
+            <Ltuid>11111111-2222-4333-8444-000000000030</Ltuid>
+            <RestrictValues>1</RestrictValues>
+            <Default>32</Default>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>205521069</FieldID>
+            <CFType>1</CFType>
+            <ElemType>21</ElemType>
+            <Alias>자원 검토일</Alias>
+            <RestrictValues>1</RestrictValues>
+            <Default>42</Default>
+            <ValueList>
+                <Value>
+                    <ID>41</ID>
+                    <Value>2026-11-10T00:00:00</Value>
+                    <Description>첫 설명</Description>
+                </Value>
+                <Value>
+                    <ID>42</ID>
+                    <Value>2026-11-11T00:00:00</Value>
+                    <Description>둘째 설명</Description>
+                </Value>
+            </ValueList>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>205521174</FieldID>
+            <CFType>7</CFType>
+            <ElemType>21</ElemType>
+            <Alias>자원 계층</Alias>
+            <DefaultGuid>11111111-2222-4333-8444-000000000052</DefaultGuid>
+            <Ltuid>11111111-2222-4333-8444-000000000050</Ltuid>
+            <RestrictValues>1</RestrictValues>
+            <Default>52</Default>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>255885312</FieldID>
+            <FieldName>배정 다중 지역</FieldName>
+            <CFType>7</CFType>
+            <Guid>9249a443-a545-562b-934e-631aa8f27a4e</Guid>
+            <ElemType>23</ElemType>
+            <MaxMultiValues>2</MaxMultiValues>
+            <Alias>배정 다중 지역</Alias>
+            <DefaultGuid>11111111-2222-4333-8444-000000000022</DefaultGuid>
+            <Ltuid>11111111-2222-4333-8444-000000000020</Ltuid>
+            <RestrictValues>1</RestrictValues>
+            <Default>22</Default>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>255885313</FieldID>
+            <FieldName>배정 열린 목록</FieldName>
+            <CFType>7</CFType>
+            <Guid>987de5ee-d0d0-5733-8455-355a5eea40f0</Guid>
+            <ElemType>23</ElemType>
+            <Alias>배정 열린 목록</Alias>
+            <DefaultGuid>11111111-2222-4333-8444-000000000062</DefaultGuid>
+            <Ltuid>11111111-2222-4333-8444-000000000060</Ltuid>
+            <RestrictValues>0</RestrictValues>
+            <Default>62</Default>
+        </ExtendedAttribute>
+    </ExtendedAttributes>
+    <Calendars>
+        <Calendar>
+            <UID>1</UID>
+            <Name>PPM standard</Name>
+            <IsBaseCalendar>1</IsBaseCalendar>
+            <BaseCalendarUID>-1</BaseCalendarUID>
+            <WeekDays>
+                <WeekDay>
+                    <DayType>1</DayType>
+                    <DayWorking>0</DayWorking>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>2</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>09:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>18:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>3</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>09:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>18:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>4</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>09:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>18:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>5</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>09:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>18:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>6</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>09:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>18:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>7</DayType>
+                    <DayWorking>0</DayWorking>
+                </WeekDay>
+            </WeekDays>
+        </Calendar>
+    </Calendars>
+    <Tasks>
+        <Task>
+            <UID>0</UID>
+            <ID>0</ID>
+            <Name>목록·GUID 참조</Name>
+            <Summary>1</Summary>
+            <b608000>11111111-2222-4333-8444-000000000031</b608000>
+        </Task>
+        <Task>
+            <UID>1</UID>
+            <ID>1</ID>
+            <Name>설계</Name>
+            <Type>1</Type>
+            <OutlineLevel>1</OutlineLevel>
+            <Duration>PT8H0M0S</Duration>
+            <DurationFormat>3</DurationFormat>
+            <Milestone>0</Milestone>
+            <Summary>0</Summary>
+            <ConstraintType>0</ConstraintType>
+            <CalendarUID>1</CalendarUID>
+            <ExtendedAttribute>
+                <FieldID>188743731</FieldID>
+                <Value>서울 &amp; &lt;설계&gt;</Value>
+            </ExtendedAttribute>
+            <EnterpriseExtendedAttribute>
+                <FieldIDInHex>b408001</FieldIDInHex>
+                <FieldID>188776449</FieldID>
+                <Value>서울 &amp; &lt;설계&gt;</Value>
+                <FieldValueGUID>11111111-2222-4333-8444-000000000021</FieldValueGUID>
+            </EnterpriseExtendedAttribute>
+            <EnterpriseExtendedAttribute>
+                <FieldIDInHex>b408001</FieldIDInHex>
+                <FieldID>188776449</FieldID>
+                <Value>부산</Value>
+                <FieldValueGUID>11111111-2222-4333-8444-000000000022</FieldValueGUID>
+            </EnterpriseExtendedAttribute>
+        </Task>
+        <Task>
+            <UID>2</UID>
+            <ID>2</ID>
+            <Name>검토</Name>
+            <Type>1</Type>
+            <OutlineLevel>1</OutlineLevel>
+            <Duration>PT8H0M0S</Duration>
+            <DurationFormat>3</DurationFormat>
+            <Milestone>0</Milestone>
+            <Summary>0</Summary>
+            <ConstraintType>0</ConstraintType>
+            <CalendarUID>1</CalendarUID>
+            <b408001>11111111-2222-4333-8444-000000000022</b408001>
+        </Task>
+    </Tasks>
+    <Resources>
+        <Resource>
+            <UID>1</UID>
+            <Name>설계 인력</Name>
+            <Type>1</Type>
+            <MaxUnits>1.00</MaxUnits>
+            <CalendarUID>1</CalendarUID>
+            <ExtendedAttribute>
+                <FieldID>205521069</FieldID>
+                <Value>2026-11-11T00:00:00</Value>
+            </ExtendedAttribute>
+            <OutlineCode>
+                <FieldID>205521174</FieldID>
+                <ValueID>51</ValueID>
+                <ValueGUID>11111111-2222-4333-8444-000000000051</ValueGUID>
+            </OutlineCode>
+        </Resource>
+    </Resources>
+    <Assignments>
+        <Assignment>
+            <UID>1</UID>
+            <TaskUID>1</TaskUID>
+            <ResourceUID>1</ResourceUID>
+            <Units>1.00</Units>
+            <EnterpriseExtendedAttribute>
+                <FieldIDInHex>f408000</FieldIDInHex>
+                <FieldID>255885312</FieldID>
+                <Value>서울 &amp; &lt;설계&gt;</Value>
+                <FieldValueGUID>11111111-2222-4333-8444-000000000021</FieldValueGUID>
+            </EnterpriseExtendedAttribute>
+            <EnterpriseExtendedAttribute>
+                <FieldIDInHex>f408000</FieldIDInHex>
+                <FieldID>255885312</FieldID>
+                <Value>부산</Value>
+                <FieldValueGUID>11111111-2222-4333-8444-000000000022</FieldValueGUID>
+            </EnterpriseExtendedAttribute>
+            <ExtendedAttribute>
+                <FieldID>255885313</FieldID>
+                <Value>목록 밖 직접 입력</Value>
+            </ExtendedAttribute>
+        </Assignment>
+        <Assignment>
+            <UID>2</UID>
+            <TaskUID>2</TaskUID>
+            <ResourceUID>1</ResourceUID>
+            <Units>1.00</Units>
+            <f408000>11111111-2222-4333-8444-000000000022</f408000>
+        </Assignment>
+    </Assignments>
+</Project>

@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "code_pairs": 63456,
+  "scalar_cases": 24,
+  "engine": "Windows VBScript AscW/ChrW",
+  "null_and_empty_errors": true,
+  "scope": "Native/XML-safe BMP characters; signed 16-bit AscW and ChrW aliases",
+  "external_product_run": false
+}

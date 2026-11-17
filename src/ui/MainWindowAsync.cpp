@@ -1,5 +1,7 @@
 #include "formatting/QtDiagnosticText.h"
 #include "ui/MainWindow.h"
+#include "ui/TaskTableModel.h"
+#include "domain/Classification.h"
 #include "ui/EditorUi.h"
 #include "ui/AsyncEditController.h"
 #include "ui/TaskInput.h"
@@ -166,6 +168,22 @@ bool MainWindow::editTaskCell(std::string id, int column, const QString &text) {
                 return true;
             }
             document_.setDuration(row, duration);
+        } else if (column >= 14) {
+            const auto key = taskModel_->columnKey(column);
+            const auto *field = customField(*document_.project(), key);
+            std::optional<std::string> value = text.toUtf8().toStdString();
+            if (text.isEmpty() && (!field || field->type != CustomFieldType::Text))
+                value.reset();
+            else if (!field || field->type == CustomFieldType::Choice) {
+                const auto labels = attributeLabels(*document_.project());
+                if (!labels.at(key).contains(*value))
+                    for (const auto &[id, name] : labels.at(key))
+                        if (name == *value) {
+                            value = id;
+                            break;
+                        }
+            }
+            document_.setTaskAttribute({id}, key, value);
         } else
             document_.setDependencies(row, taskDependencyInput(text, *document_.project(), id));
         refresh();

@@ -1,0 +1,381 @@
+{
+    "basis": "elapsed-minute-v1",
+    "classification": "proportional-estimate-not-measured",
+    "contract": "xml-proportional-actuals-v1",
+    "costReconciliation": [
+        {
+            "afterAllocated": 5001,
+            "beforeAllocated": 1200,
+            "cumulative": 15000,
+            "taskId": "NA",
+            "unallocated": 9999
+        },
+        {
+            "afterAllocated": 1,
+            "beforeAllocated": 0,
+            "cumulative": 10000,
+            "taskId": "NB",
+            "unallocated": 9999
+        }
+    ],
+    "days": [
+        {
+            "adoptedCostNativeMinor": 867,
+            "adoptedWork": 18,
+            "allocatedCostSourceMinor": 867,
+            "allocatedWork": 18,
+            "alreadyApplied": false,
+            "assignmentUid": "1",
+            "date": "2026-11-13",
+            "oldCostNativeMinor": 500,
+            "oldWork": 111,
+            "parts": "1w=780/4500:18,2c=780/4500:867",
+            "resourceId": "NR1",
+            "taskId": "NA"
+        },
+        {
+            "adoptedCostNativeMinor": 1600,
+            "adoptedWork": 32,
+            "allocatedCostSourceMinor": 1600,
+            "allocatedWork": 32,
+            "alreadyApplied": false,
+            "assignmentUid": "1",
+            "date": "2026-11-14",
+            "oldCostNativeMinor": 700,
+            "oldWork": 222,
+            "parts": "1w=1440/4500:32,2c=1440/4500:1600",
+            "resourceId": "NR1",
+            "taskId": "NA"
+        },
+        {
+            "adoptedCostNativeMinor": 1600,
+            "adoptedWork": 32,
+            "allocatedCostSourceMinor": 1600,
+            "allocatedWork": 32,
+            "alreadyApplied": false,
+            "assignmentUid": "1",
+            "date": "2026-11-15",
+            "oldCostNativeMinor": null,
+            "oldWork": null,
+            "parts": "1w=1440/4500:32,2c=1440/4500:1600",
+            "resourceId": "NR1",
+            "taskId": "NA"
+        },
+        {
+            "adoptedCostNativeMinor": 934,
+            "adoptedWork": 19,
+            "allocatedCostSourceMinor": 934,
+            "allocatedWork": 19,
+            "alreadyApplied": false,
+            "assignmentUid": "1",
+            "date": "2026-11-16",
+            "oldCostNativeMinor": null,
+            "oldWork": null,
+            "parts": "1w=840/4500:19,2c=840/4500:934",
+            "resourceId": "NR1",
+            "taskId": "NA"
+        },
+        {
+            "adoptedCostNativeMinor": 1,
+            "adoptedWork": 2,
+            "allocatedCostSourceMinor": 1,
+            "allocatedWork": 2,
+            "alreadyApplied": false,
+            "assignmentUid": "2",
+            "date": "2026-11-15",
+            "oldCostNativeMinor": null,
+            "oldWork": null,
+            "parts": "1w=1440/2880:2,2c=1440/2880:1",
+            "resourceId": "NR2",
+            "taskId": "NB"
+        },
+        {
+            "adoptedCostNativeMinor": 0,
+            "adoptedWork": 1,
+            "allocatedCostSourceMinor": 0,
+            "allocatedWork": 1,
+            "alreadyApplied": false,
+            "assignmentUid": "2",
+            "date": "2026-11-16",
+            "oldCostNativeMinor": null,
+            "oldWork": 333,
+            "parts": "1w=1440/2880:1,2c=1440/2880:0",
+            "resourceId": "NR2",
+            "taskId": "NB"
+        }
+    ],
+    "documentId": "native-proportional",
+    "nativeCurrency": "USD",
+    "nativeInputSha256": "655c99cce909d8da253c615f19283f262a66fb1826a9904ef22bf936b1d5bcd9",
+    "rangeTotalsConfirmed": true,
+    "ranges": [
+        {
+            "alreadyApplied": false,
+            "amount": 101,
+            "assignmentUid": "1",
+            "days": [
+                {
+                    "amount": 18,
+                    "date": "2026-11-13",
+                    "remainder": 2280,
+                    "weight": 780
+                },
+                {
+                    "amount": 32,
+                    "date": "2026-11-14",
+                    "remainder": 1440,
+                    "weight": 1440
+                },
+                {
+                    "amount": 32,
+                    "date": "2026-11-15",
+                    "remainder": 1440,
+                    "weight": 1440
+                },
+                {
+                    "amount": 19,
+                    "date": "2026-11-16",
+                    "remainder": 3840,
+                    "weight": 840
+                }
+            ],
+            "finish": "2026-11-16 14:00",
+            "key": "1/record-1",
+            "record": 1,
+            "resourceId": "NR1",
+            "start": "2026-11-13 11:00",
+            "taskId": "NA",
+            "totalWeight": 4500,
+            "type": 2,
+            "unit": 2
+        },
+        {
+            "alreadyApplied": false,
+            "amount": 5001,
+            "assignmentUid": "1",
+            "days": [
+                {
+                    "amount": 867,
+                    "date": "2026-11-13",
+                    "remainder": 3780,
+                    "weight": 780
+                },
+                {
+                    "amount": 1600,
+                    "date": "2026-11-14",
+                    "remainder": 1440,
+                    "weight": 1440
+                },
+                {
+                    "amount": 1600,
+                    "date": "2026-11-15",
+                    "remainder": 1440,
+                    "weight": 1440
+                },
+                {
+                    "amount": 934,
+                    "date": "2026-11-16",
+                    "remainder": 2340,
+                    "weight": 840
+                }
+            ],
+            "finish": "2026-11-16 14:00",
+            "key": "1/record-2",
+            "record": 2,
+            "resourceId": "NR1",
+            "start": "2026-11-13 11:00",
+            "taskId": "NA",
+            "totalWeight": 4500,
+            "type": 6,
+            "unit": 3
+        },
+        {
+            "alreadyApplied": false,
+            "amount": 3,
+            "assignmentUid": "2",
+            "days": [
+                {
+                    "amount": 2,
+                    "date": "2026-11-15",
+                    "remainder": 1440,
+                    "weight": 1440
+                },
+                {
+                    "amount": 1,
+                    "date": "2026-11-16",
+                    "remainder": 1440,
+                    "weight": 1440
+                }
+            ],
+            "finish": "2026-11-17 00:00",
+            "key": "2/record-1",
+            "record": 1,
+            "resourceId": "NR2",
+            "start": "2026-11-15 00:00",
+            "taskId": "NB",
+            "totalWeight": 2880,
+            "type": 2,
+            "unit": 1
+        },
+        {
+            "alreadyApplied": false,
+            "amount": 1,
+            "assignmentUid": "2",
+            "days": [
+                {
+                    "amount": 1,
+                    "date": "2026-11-15",
+                    "remainder": 1440,
+                    "weight": 1440
+                },
+                {
+                    "amount": 0,
+                    "date": "2026-11-16",
+                    "remainder": 1440,
+                    "weight": 1440
+                }
+            ],
+            "finish": "2026-11-17 00:00",
+            "key": "2/record-2",
+            "record": 2,
+            "resourceId": "NR2",
+            "start": "2026-11-15 00:00",
+            "taskId": "NB",
+            "totalWeight": 2880,
+            "type": 6,
+            "unit": 5
+        }
+    ],
+    "reason": "구간 총량과 비례 추정 확인",
+    "recordedAt": "2026-11-13T03:00:00Z",
+    "reporter": "PM",
+    "revision": "5",
+    "rounding": "largest-remainder-date-ascending",
+    "sourceCurrency": "USD",
+    "sourceSha256": "e0ae3f301de7fca98407894ee3e9f646b316ea46785d89ed47bad5117a05191b",
+    "stage": "preview-before-adoption",
+    "statusAt": "2026-11-17 18:00",
+    "submissions": [
+        {
+            "entries": [
+                {
+                    "cost": 867,
+                    "date": "2026-11-13",
+                    "resource": "NR1",
+                    "task": "NA",
+                    "work": 18
+                }
+            ],
+            "reason": "[XML-PRORATA sha256=e0ae3f301de7fca98407894ee3e9f646b316ea46785d89ed47bad5117a05191b assignment=1 basis=elapsed-minute-v1 input=ac49df6637258acdabdb27cb188e67881bb76a39b33571eea16a574407840afa records=1,2] date=2026-11-13 work=estimated cost=estimated parts=1w=780/4500:18,2c=780/4500:867 src=USD multi.xml · 구간 총량과 비례 추정 확인",
+            "recordedAt": "2026-11-13T03:00:00Z",
+            "reporter": "PM",
+            "totals": [
+                {
+                    "cost": 15000,
+                    "task": "NA"
+                }
+            ]
+        },
+        {
+            "entries": [
+                {
+                    "cost": 1600,
+                    "date": "2026-11-14",
+                    "resource": "NR1",
+                    "task": "NA",
+                    "work": 32
+                }
+            ],
+            "reason": "[XML-PRORATA sha256=e0ae3f301de7fca98407894ee3e9f646b316ea46785d89ed47bad5117a05191b assignment=1 basis=elapsed-minute-v1 input=ac49df6637258acdabdb27cb188e67881bb76a39b33571eea16a574407840afa records=1,2] date=2026-11-14 work=estimated cost=estimated parts=1w=1440/4500:32,2c=1440/4500:1600 src=USD multi.xml · 구간 총량과 비례 추정 확인",
+            "recordedAt": "2026-11-13T03:00:00Z",
+            "reporter": "PM",
+            "totals": [
+                {
+                    "cost": 15000,
+                    "task": "NA"
+                }
+            ]
+        },
+        {
+            "entries": [
+                {
+                    "cost": 1600,
+                    "date": "2026-11-15",
+                    "resource": "NR1",
+                    "task": "NA",
+                    "work": 32
+                }
+            ],
+            "reason": "[XML-PRORATA sha256=e0ae3f301de7fca98407894ee3e9f646b316ea46785d89ed47bad5117a05191b assignment=1 basis=elapsed-minute-v1 input=ac49df6637258acdabdb27cb188e67881bb76a39b33571eea16a574407840afa records=1,2] date=2026-11-15 work=estimated cost=estimated parts=1w=1440/4500:32,2c=1440/4500:1600 src=USD multi.xml · 구간 총량과 비례 추정 확인",
+            "recordedAt": "2026-11-13T03:00:00Z",
+            "reporter": "PM",
+            "totals": [
+                {
+                    "cost": 15000,
+                    "task": "NA"
+                }
+            ]
+        },
+        {
+            "entries": [
+                {
+                    "cost": 934,
+                    "date": "2026-11-16",
+                    "resource": "NR1",
+                    "task": "NA",
+                    "work": 19
+                }
+            ],
+            "reason": "[XML-PRORATA sha256=e0ae3f301de7fca98407894ee3e9f646b316ea46785d89ed47bad5117a05191b assignment=1 basis=elapsed-minute-v1 input=ac49df6637258acdabdb27cb188e67881bb76a39b33571eea16a574407840afa records=1,2] date=2026-11-16 work=estimated cost=estimated parts=1w=840/4500:19,2c=840/4500:934 src=USD multi.xml · 구간 총량과 비례 추정 확인",
+            "recordedAt": "2026-11-13T03:00:00Z",
+            "reporter": "PM",
+            "totals": [
+                {
+                    "cost": 15000,
+                    "task": "NA"
+                }
+            ]
+        },
+        {
+            "entries": [
+                {
+                    "cost": 1,
+                    "date": "2026-11-15",
+                    "resource": "NR2",
+                    "task": "NB",
+                    "work": 2
+                }
+            ],
+            "reason": "[XML-PRORATA sha256=e0ae3f301de7fca98407894ee3e9f646b316ea46785d89ed47bad5117a05191b assignment=2 basis=elapsed-minute-v1 input=94c6e2f70d8c90782d7d67dbc38bd3e66d1ac860bb89a45fb43855fbd4b0a088 records=1,2] date=2026-11-15 work=estimated cost=estimated parts=1w=1440/2880:2,2c=1440/2880:1 src=USD multi.xml · 구간 총량과 비례 추정 확인",
+            "recordedAt": "2026-11-13T03:00:00Z",
+            "reporter": "PM",
+            "totals": [
+                {
+                    "cost": 10000,
+                    "task": "NB"
+                }
+            ]
+        },
+        {
+            "entries": [
+                {
+                    "cost": 0,
+                    "date": "2026-11-16",
+                    "resource": "NR2",
+                    "task": "NB",
+                    "work": 1
+                }
+            ],
+            "reason": "[XML-PRORATA sha256=e0ae3f301de7fca98407894ee3e9f646b316ea46785d89ed47bad5117a05191b assignment=2 basis=elapsed-minute-v1 input=94c6e2f70d8c90782d7d67dbc38bd3e66d1ac860bb89a45fb43855fbd4b0a088 records=1,2] date=2026-11-16 work=estimated cost=estimated parts=1w=1440/2880:1,2c=1440/2880:0 src=USD multi.xml · 구간 총량과 비례 추정 확인",
+            "recordedAt": "2026-11-13T03:00:00Z",
+            "reporter": "PM",
+            "totals": [
+                {
+                    "cost": 10000,
+                    "task": "NB"
+                }
+            ]
+        }
+    ],
+    "zeroWeightPolicy": "omit-not-reported-zero"
+}

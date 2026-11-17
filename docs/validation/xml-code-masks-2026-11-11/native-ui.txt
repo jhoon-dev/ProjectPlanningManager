@@ -1,0 +1,1 @@
+PASS XML code-mask UI: mask rows, automatic preview/create/shared dictionary, stale guard, WBS preview/save, 800x600 and invalid atomic rejection

@@ -28,7 +28,8 @@ MainWindow::ViewKey MainWindow::viewKey() const {
             document_.readOnly(),
             baselinePreparing_,
             calculating_,
-            document_.path()};
+            document_.path(),
+            classificationToken()};
 }
 bool MainWindow::refreshIncremental() {
     const auto &project = document_.project();
@@ -39,6 +40,8 @@ bool MainWindow::refreshIncremental() {
         refreshStatus();
         return true;
     }
+    if (classificationActive())
+        return false;
     const auto &hint = document_.taskChange();
     if (!hint || hint->before != renderedRevision_ || hint->after != project->revision ||
         !taskSearch_->text().trimmed().isEmpty() || taskFilter_->currentIndex() || taskSort_->currentIndex())
@@ -79,22 +82,24 @@ void MainWindow::refreshBaseline() {
 }
 std::string MainWindow::taskViewToken() const {
     return QJsonDocument(QJsonArray{qs(selectedWbs_), taskSearch_->text(), taskFilter_->currentIndex(),
-                                    taskSort_->currentIndex()})
+                                    taskSort_->currentIndex(), qs(classificationToken())})
         .toJson(QJsonDocument::Compact)
         .toStdString();
 }
 Document::ViewPreparation MainWindow::captureTaskView() const {
     if (selectedWbs_.empty() && taskSearch_->text().trimmed().isEmpty() && !taskFilter_->currentIndex() &&
-        !taskSort_->currentIndex())
+        !taskSort_->currentIndex() && !classificationActive())
         return {};
-    return
-        [spec = TaskViewSpec{selectedWbs_, taskSearch_->text(), taskFilter_->currentIndex(), taskSort_->currentIndex()},
-         rows = visibleRows_, token = taskViewToken(),
-         generation = document_.calculationGeneration()](BulkView &view, const Project &before, const Project &after) {
-            prepareTaskView(view, before, after, spec, rows, token, generation);
-        };
+    return [spec = TaskViewSpec{selectedWbs_, taskSearch_->text(), taskFilter_->currentIndex(),
+                                taskSort_->currentIndex(), classificationView_},
+            rows = visibleRows_, token = taskViewToken(), generation = document_.calculationGeneration()](
+               BulkView &view, const Project &before, const Project &after) {
+        prepareTaskView(view, before, after, spec, rows, token, generation);
+    };
 }
 bool MainWindow::refreshProjected() {
+    if (classificationActive())
+        return false;
     const auto view = document_.bulkView();
     const auto &p = document_.project();
     // A search debounce may still be pending at capture. The proposal uses the
@@ -144,6 +149,8 @@ bool MainWindow::refreshProjected() {
     return true;
 }
 bool MainWindow::refreshBulk() {
+    if (classificationActive())
+        return false;
     const auto view = document_.bulkView();
     const auto &p = document_.project();
     if (!rendered_ || !p || !view || renderedSession_ != view->session || renderedRevision_ != view->before ||
@@ -205,6 +212,10 @@ void MainWindow::refreshDocumentSummary() {
                           .arg(p->tasks.size())
                           .arg(p->baselines.size())
                           .arg(p->statusAt ? qs(*p->statusAt) : "미설정 · 현재 계획"));
+    if (p->progressPolicy)
+        summary_->setText(summary_->text() + " · 진척 " +
+                          (p->progressPolicy->policy == overrideProgressPolicy ? "B 수신 관계 무시" : "A 논리 유지") +
+                          (p->statusAt ? " (채택)" : " (상태일 미설정: 비활성)"));
     summary_->setToolTip(details);
     QString notice;
     if (document_.recoveryOrigin())
@@ -220,6 +231,19 @@ void MainWindow::refreshDocumentSummary() {
 void MainWindow::refreshWbsSummary() {
     if (!wbsTree_->currentItem())
         return;
+    if (!classificationView_.groupPath.empty()) {
+        for (const auto &group : taskGroups_)
+            if (group.path == classificationView_.groupPath) {
+                wbsSummary_->setText(QString("분류: %1 · 작업 %2개 · 기간 합계 %3h · 기간 미정 %4개")
+                                         .arg(qs(group.label))
+                                         .arg(group.tasks)
+                                         .arg(double(group.durationMinutes) / 60, 0, 'g', 12)
+                                         .arg(group.missingDurations));
+                wbsSummary_->setToolTip(
+                    "선택 WBS 안의 고유 작업 집계 · 기간 합계는 경과기간이 아닙니다. 보고서는 선택 WBS 범위입니다.");
+                return;
+            }
+    }
     const auto &rollup = renderedRollup_;
     const auto details = "선택 범위: " + wbsTree_->currentItem()->text(0) + " · 작업 " +
                          QString::number(rollup.taskCount) + "개 · 알려진 작업 기간 합계 " +
@@ -239,7 +263,11 @@ void MainWindow::refreshStatus() {
         QString(document_.readOnly() ? "읽기 전용 · "
                 : document_.dirty()  ? "미저장 변경 있음 · "
                                      : "명시 저장본과 같은 입력 · ") +
-        (valid ? (result->isForecast ? "실적·잔여 예측 · 자원 미검증" : "선행관계·작업 달력 일정 · 자원 미검증")
+        (valid ? (result->resourceLeveled ? (result->levelingFloatCalculated
+                                                 ? "평준화 채택 · 배정 자원 검증 통과 · 자원 순서 여유/임계 계산"
+                                                 : "평준화 채택 · 배정 자원 검증 통과 · 여유/임계 미산정")
+                  : result->isForecast    ? "실적·잔여 예측 · 자원 미검증"
+                                          : "선행관계·작업 달력 일정 · 자원 미검증")
                : "유효한 최신 일정 없음"));
 }
 } // namespace jobs

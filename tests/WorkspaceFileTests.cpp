@@ -88,7 +88,7 @@ int main(int argc, char **argv) {
         check(next != fingerprint && store.load(path).workspace == changed, "conditional replacement failed");
         rejects([&] { (void)store.save(path, w, fingerprint); }, "WORKSPACE_EXTERNAL_CHANGE");
         auto modified = root;
-        modified["schemaVersion"] = 2;
+        modified["schemaVersion"] = 5;
         rejects([&] { (void)jobs::decodeWorkspaceFile(QJsonDocument(modified).toJson(), dir.path()); },
                 "FILE_VERSION_UNSUPPORTED");
         modified = root;

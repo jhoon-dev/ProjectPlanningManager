@@ -1,0 +1,5 @@
+{
+  "output": "C:\\Users\\dow\\Development\\ToolMoa\\ProjectPlanningManager\\build-governance\\mpp-reader",
+  "files": 216,
+  "engineVersion": "16.10.0"
+}

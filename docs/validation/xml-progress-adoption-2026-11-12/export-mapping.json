@@ -1,0 +1,316 @@
+{
+    "companionPolicy": "원본과 진단은 이 폴더의 동반 파일입니다. .ppm 사본 저장/이동 시 자동 복제되지 않습니다.",
+    "compatibility": {
+        "externalRoundTrip": "unverified",
+        "import": "not-applicable",
+        "jobsRecomputation": "unverified",
+        "originalPreservation": "exact-native-input-snapshot"
+    },
+    "contract": "jobs-mspdi-plan-v1",
+    "diagnostics": [
+        {
+            "message": "기간 기반 계획 투영입니다. 외부 제품의 계산/재저장 호환은 미검증입니다. 원본 전체 입력/이력은 source.ppm 참조.",
+            "path": "/Project"
+        },
+        {
+            "message": "지원 사용자 필드는 UDF 매핑표를 따릅니다. 작업 코드·저장된 보기는 source.ppm에 전체 데이터를 보존합니다.",
+            "path": "/Project/ExtendedAttribute"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/xml-udf-TASK-188743732"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/xml-udf-TASK-188743733"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/xml-udf-TASK-188743767"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/xml-udf-TASK-188743768"
+        },
+        {
+            "message": "Actual Start/Finish는 상태일 기준 실적 원장의 값을 내보냅니다. 실적 원장은 XML로 교환하지 않으며 재가져오기 후 실적 참조는 미설정입니다. source.ppm에 원본을 보존합니다.",
+            "path": "/ExtendedAttributes/Formula"
+        },
+        {
+            "message": "미설정 · 상태일 기준 보고된 실적 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743768/xml-task-2"
+        },
+        {
+            "message": "미설정 · 상태일 기준 실제 완료 미설정 · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743733/xml-task-3"
+        },
+        {
+            "message": "미설정 · 상태일 기준 보고된 실적 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743768/xml-task-3"
+        },
+        {
+            "message": "미설정 · 상태일 기준 실제 시작 미설정 · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743732/xml-task-4"
+        },
+        {
+            "message": "미설정 · 상태일 기준 실제 완료 미설정 · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743733/xml-task-4"
+        },
+        {
+            "message": "미설정 · 상태일 기준 보고된 실적 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743768/xml-task-4"
+        },
+        {
+            "message": "미설정 · 상태일 기준 보고된 실적 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743768/xml-task-5"
+        },
+        {
+            "message": "미설정 · 상태일 기준 실적 보고가 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743732/xml-task-6"
+        },
+        {
+            "message": "미설정 · 상태일 기준 실적 보고가 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743733/xml-task-6"
+        },
+        {
+            "message": "미설정 · 상태일 기준 보고된 실적 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743767/xml-task-6"
+        },
+        {
+            "message": "미설정 · 상태일 기준 보고된 실적 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743768/xml-task-6"
+        },
+        {
+            "message": "미설정 · 상태일 기준 실적 보고가 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743732/xml-task-7"
+        },
+        {
+            "message": "미설정 · 상태일 기준 실적 보고가 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743733/xml-task-7"
+        },
+        {
+            "message": "미설정 · 상태일 기준 보고된 실적 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743767/xml-task-7"
+        },
+        {
+            "message": "미설정 · 상태일 기준 보고된 실적 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743768/xml-task-7"
+        },
+        {
+            "message": "미설정 · 상태일 기준 실적 보고가 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743732/xml-task-8"
+        },
+        {
+            "message": "미설정 · 상태일 기준 실적 보고가 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743733/xml-task-8"
+        },
+        {
+            "message": "미설정 · 상태일 기준 보고된 실적 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743767/xml-task-8"
+        },
+        {
+            "message": "미설정 · 상태일 기준 보고된 실적 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743768/xml-task-8"
+        },
+        {
+            "message": "미설정 · 상태일 기준 실적 보고가 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743732/xml-task-9"
+        },
+        {
+            "message": "미설정 · 상태일 기준 실적 보고가 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743733/xml-task-9"
+        },
+        {
+            "message": "미설정 · 상태일 기준 보고된 실적 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743767/xml-task-9"
+        },
+        {
+            "message": "미설정 · 상태일 기준 보고된 실적 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743768/xml-task-9"
+        },
+        {
+            "message": "미설정 · 상태일 기준 실적 보고가 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743732/xml-task-10"
+        },
+        {
+            "message": "미설정 · 상태일 기준 실적 보고가 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743733/xml-task-10"
+        },
+        {
+            "message": "미설정 · 상태일 기준 보고된 실적 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743767/xml-task-10"
+        },
+        {
+            "message": "미설정 · 상태일 기준 보고된 실적 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743768/xml-task-10"
+        },
+        {
+            "message": "기준선·실적·원가·상태일·시나리오는 XML에 포함하지 않음 · source.jobs에 보존",
+            "path": "/Project/history-costs"
+        }
+    ],
+    "direction": "export",
+    "documentId": "86e6833e-fca2-4488-8e05-8a761439239c",
+    "format": "Microsoft Project XML",
+    "mapping": [
+        {
+            "externalId": "188743732",
+            "jobsId": "xml-udf-TASK-188743732",
+            "kind": "udf",
+            "name": "AS",
+            "scope": "TASK",
+            "type": "start",
+            "xmlFieldName": "Start1"
+        },
+        {
+            "externalId": "188743733",
+            "jobsId": "xml-udf-TASK-188743733",
+            "kind": "udf",
+            "name": "AF",
+            "scope": "TASK",
+            "type": "finish",
+            "xmlFieldName": "Finish1"
+        },
+        {
+            "externalId": "188743767",
+            "jobsId": "xml-udf-TASK-188743767",
+            "kind": "udf",
+            "name": "AD",
+            "scope": "TASK",
+            "type": "number",
+            "xmlFieldName": "Number1"
+        },
+        {
+            "externalId": "188743768",
+            "jobsId": "xml-udf-TASK-188743768",
+            "kind": "udf",
+            "name": "AW",
+            "scope": "TASK",
+            "type": "number",
+            "xmlFieldName": "Number2"
+        },
+        {
+            "jobsId": "",
+            "kind": "calendar",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "xml-cal-1",
+            "kind": "calendar",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "xml-wbs-1",
+            "kind": "wbs",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "xml-task-2",
+            "kind": "task",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "xml-task-3",
+            "kind": "task",
+            "xmlUid": "3"
+        },
+        {
+            "jobsId": "xml-task-4",
+            "kind": "task",
+            "xmlUid": "4"
+        },
+        {
+            "jobsId": "xml-task-5",
+            "kind": "task",
+            "xmlUid": "5"
+        },
+        {
+            "jobsId": "xml-task-6",
+            "kind": "task",
+            "xmlUid": "6"
+        },
+        {
+            "jobsId": "xml-task-7",
+            "kind": "task",
+            "xmlUid": "7"
+        },
+        {
+            "jobsId": "xml-task-8",
+            "kind": "task",
+            "xmlUid": "8"
+        },
+        {
+            "jobsId": "xml-task-9",
+            "kind": "task",
+            "xmlUid": "9"
+        },
+        {
+            "jobsId": "xml-task-10",
+            "kind": "task",
+            "xmlUid": "10"
+        },
+        {
+            "jobsId": "xml-resource-1",
+            "kind": "resource",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "xml-task-2/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "xml-task-3/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "xml-task-4/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "3"
+        },
+        {
+            "jobsId": "xml-task-5/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "4"
+        },
+        {
+            "jobsId": "xml-task-6/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "5"
+        },
+        {
+            "jobsId": "xml-task-7/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "6"
+        },
+        {
+            "jobsId": "xml-task-8/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "7"
+        },
+        {
+            "jobsId": "xml-task-9/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "8"
+        },
+        {
+            "jobsId": "xml-task-10/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "9"
+        }
+    ],
+    "namespace": "http://schemas.microsoft.com/project",
+    "nativeSnapshotProfile": "native-effort-split-v1",
+    "revision": "2",
+    "source": {
+        "name": "source.ppm",
+        "product": "PPM"
+    },
+    "targetPolicy": {
+        "calculationProfile": "native-effort-split-v1",
+        "lagCalendar": "successor-working-calendar",
+        "projectStartAnchor": "09:00"
+    },
+    "xmlSha256": "35ea7149fce8abcd21aff074c124c5a8f507af6e54d404c55c718c715435e088"
+}

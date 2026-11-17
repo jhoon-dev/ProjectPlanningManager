@@ -1,0 +1,7 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 20: mpp_manual_curve_contract
+1/1 Test #20: mpp_manual_curve_contract ........   Passed   11.99 sec
+
+100% tests passed out of 1
+
+Total Test time (real) =  12.02 sec

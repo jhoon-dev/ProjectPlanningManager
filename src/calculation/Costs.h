@@ -5,6 +5,7 @@ using Money = std::optional<std::int64_t>;
 struct Evm {
     Money bac, pv, ev, ac, cv, sv, eac, etc;
     std::optional<double> cpi, spi;
+    bool estimateSupported = true;
 };
 struct CostTaskRow {
     std::string taskId, name, credit;
@@ -39,4 +40,13 @@ struct CostAnalysis {
 CostAnalysis analyzeCosts(const Project &, const std::string &baselineId,
                           const std::string &formula = "budget-remaining-v1",
                           const std::optional<std::vector<std::string>> &taskScope = std::nullopt);
+struct PlannedCostDay {
+    std::string taskId, resourceId, date; // Empty resource ID is fixed/material/expense cost.
+    Money amount;
+};
+// Same per-assignment/day rounding and fixed/material/expense accrual as analyzeCosts. Plan rows only.
+std::vector<PlannedCostDay> plannedCostDays(const PlanInput &, const ScheduleResult &, const std::string &from,
+                                            const std::string &to, bool includeFixed = true);
+std::vector<PlannedCostDay> plannedCostDays(const Project &, const ScheduleResult &, const std::string &from,
+                                            const std::string &to, bool includeFixed = true);
 } // namespace jobs

@@ -1,0 +1,500 @@
+{
+    "assignmentFields": [
+        {
+            "id": "U",
+            "name": "U",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:units",
+                        "scope": 3,
+                        "token": "Units"
+                    }
+                ],
+                "source": "[Units]"
+            }
+        },
+        {
+            "id": "UA",
+            "name": "UA",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:units",
+                        "scope": 3,
+                        "token": "Assignment Units"
+                    },
+                    {
+                        "key": "builtin:units",
+                        "scope": 3,
+                        "token": "Assignment.Units"
+                    }
+                ],
+                "source": "[Assignment Units]+[Assignment.Units]"
+            }
+        },
+        {
+            "id": "M",
+            "name": "M",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:maxunits",
+                        "scope": 2,
+                        "token": "Resource.Max Units"
+                    }
+                ],
+                "source": "[Resource.Max Units]"
+            }
+        },
+        {
+            "id": "MI",
+            "name": "MI",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:maxunits",
+                        "scope": 2,
+                        "token": "MaxUnits"
+                    }
+                ],
+                "source": "[MaxUnits]"
+            }
+        },
+        {
+            "id": "D",
+            "name": "D",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                ],
+                "source": "PPMUnitAvailability(#2026-11-17T18:00:00#)"
+            }
+        },
+        {
+            "id": "ratio",
+            "name": "ratio",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:units",
+                        "scope": 3,
+                        "token": "Units"
+                    },
+                    {
+                        "key": "builtin:maxunits",
+                        "scope": 2,
+                        "token": "Resource.Max Units"
+                    }
+                ],
+                "source": "[Units]/[Resource.Max Units]"
+            }
+        },
+        {
+            "id": "percent",
+            "name": "percent",
+            "options": [
+            ],
+            "type": "text",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:units",
+                        "scope": 3,
+                        "token": "Units"
+                    }
+                ],
+                "source": "FormatPercent([Units],2)"
+            }
+        }
+    ],
+    "assignments": [
+        {
+            "periods": [
+                {
+                    "fromMinute": 0,
+                    "toMinute": 240,
+                    "units": 25
+                }
+            ],
+            "resourceId": "R",
+            "taskId": "A",
+            "units": 50
+        },
+        {
+            "resourceId": "S",
+            "taskId": "B",
+            "units": 150
+        },
+        {
+            "resourceId": "Z",
+            "taskId": "A",
+            "units": 100
+        },
+        {
+            "resourceId": "ZERO",
+            "taskId": "B",
+            "units": 25
+        }
+    ],
+    "baselines": [
+    ],
+    "calculationProfile": "native-effort-split-v1",
+    "calendar": "standard-mon-fri-8h-v1",
+    "calendars": [
+    ],
+    "codeTypes": [
+    ],
+    "costEntries": [
+    ],
+    "costProfile": "cost-day-minor-half-up-v1",
+    "currency": "USD",
+    "customFields": [
+        {
+            "id": "U",
+            "name": "U",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:units",
+                        "scope": 0,
+                        "token": "Units"
+                    }
+                ],
+                "source": "[Units]"
+            }
+        },
+        {
+            "id": "nullU",
+            "name": "nullU",
+            "options": [
+            ],
+            "type": "flag",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:units",
+                        "scope": 0,
+                        "token": "Assignment Units"
+                    }
+                ],
+                "source": "IsNull([Assignment Units])"
+            }
+        }
+    ],
+    "derivedFrom": "",
+    "documentId": "xml-unit-fields",
+    "holidays": [
+    ],
+    "name": "배정률과 가용률",
+    "progress": [
+    ],
+    "projectFields": [
+        {
+            "id": "U",
+            "name": "U",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:units",
+                        "scope": 1,
+                        "token": "Units"
+                    }
+                ],
+                "source": "[Units]"
+            }
+        }
+    ],
+    "resourceFields": [
+        {
+            "id": "when",
+            "name": "when",
+            "options": [
+            ],
+            "type": "date",
+            "unit": ""
+        },
+        {
+            "id": "M",
+            "name": "M",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:maxunits",
+                        "scope": 2,
+                        "token": "Max Units"
+                    }
+                ],
+                "source": "[Max Units]"
+            }
+        },
+        {
+            "id": "D",
+            "name": "D",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "field:when",
+                        "scope": 2,
+                        "token": "field:when"
+                    }
+                ],
+                "source": "PPMUnitAvailability([field:when])"
+            }
+        },
+        {
+            "id": "U",
+            "name": "U",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:units",
+                        "scope": 2,
+                        "token": "Units"
+                    }
+                ],
+                "source": "[Units]"
+            }
+        },
+        {
+            "id": "nullD",
+            "name": "nullD",
+            "options": [
+            ],
+            "type": "flag",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                ],
+                "source": "IsNull(PPMUnitAvailability(#2026-11-18#))"
+            }
+        },
+        {
+            "expression": "[field:M]*100",
+            "id": "native",
+            "name": "native",
+            "options": [
+            ],
+            "type": "number",
+            "unit": ""
+        },
+        {
+            "id": "chain",
+            "name": "chain",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "field:native",
+                        "scope": 2,
+                        "token": "field:native"
+                    }
+                ],
+                "source": "[field:native]+1"
+            }
+        }
+    ],
+    "resources": [
+        {
+            "attributes": [
+                {
+                    "key": "field:when",
+                    "value": "2026-11-17T12:00:00"
+                }
+            ],
+            "calendarId": "",
+            "exceptions": [
+                {
+                    "date": "2026-11-17",
+                    "units": 0
+                },
+                {
+                    "date": "2026-11-18",
+                    "units": null
+                },
+                {
+                    "date": "2026-11-19",
+                    "units": 125
+                }
+            ],
+            "id": "R",
+            "maxUnits": 75,
+            "name": "R",
+            "rates": [
+            ],
+            "type": "labor"
+        },
+        {
+            "attributes": [
+                {
+                    "key": "field:when",
+                    "value": "2026-11-17T12:00:00"
+                }
+            ],
+            "calendarId": "",
+            "exceptions": [
+            ],
+            "id": "S",
+            "maxUnits": 250,
+            "name": "S",
+            "rates": [
+            ],
+            "type": "equipment"
+        },
+        {
+            "attributes": [
+                {
+                    "key": "field:when",
+                    "value": "2026-11-18T23:59:00"
+                }
+            ],
+            "calendarId": "",
+            "exceptions": [
+                {
+                    "date": "2026-11-18",
+                    "units": 50
+                }
+            ],
+            "id": "Z",
+            "maxUnits": null,
+            "name": "Z",
+            "rates": [
+            ],
+            "type": "labor"
+        },
+        {
+            "attributes": [
+                {
+                    "key": "field:when",
+                    "value": "2026-11-17T12:00:00"
+                }
+            ],
+            "calendarId": "",
+            "exceptions": [
+            ],
+            "id": "ZERO",
+            "maxUnits": 0,
+            "name": "ZERO",
+            "rates": [
+            ],
+            "type": "labor"
+        }
+    ],
+    "revision": 1,
+    "scenarios": [
+    ],
+    "startDate": "2026-11-16",
+    "statusAt": null,
+    "taskCosts": [
+    ],
+    "tasks": [
+        {
+            "breaks": [
+            ],
+            "calendarId": "",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 480,
+            "id": "A",
+            "name": "A",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "G",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 240,
+            "id": "B",
+            "name": "B",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "G",
+            "workDriven": false,
+            "workUnitMinutes": null
+        }
+    ],
+    "wbsNodes": [
+        {
+            "id": "G",
+            "name": "요약",
+            "parentId": ""
+        }
+    ]
+}

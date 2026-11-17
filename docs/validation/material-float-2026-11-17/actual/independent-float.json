@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "cases": 24,
+  "tasks": 48,
+  "exact_date_comparisons": 144,
+  "exhaustive_candidates": 4746,
+  "actual_stock_milli": 500,
+  "ledger_rows": 9,
+  "frozen_ledger_rows": 5,
+  "native_schema": 83,
+  "pdf_pages": 17
+}

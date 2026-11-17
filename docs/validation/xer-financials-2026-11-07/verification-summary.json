@@ -1,0 +1,76 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-11-07T14:17:50.915040+09:00",
+  "environment": "Windows x64, Qt6.8.3, MinGW13.1, Release/Ninja",
+  "source_revision": "6a1cd0a5115f3400d6cee4e5d5df795f351195ea",
+  "working_tree_changes_included": true,
+  "source_sha256": "d531db48c569173c7f6ae73b241fcc02c363c119bf0b5a0c650be0d3c44e70de",
+  "binaries": {
+    "PPM.exe": "286decfb198815568a34fd5c82f641f71f9697b372c17a15695a6d292e7899ed",
+    "PPM-Automation.exe": "94cd2ab5df932c060667058d9843116a8abf24b1df56617d3731b2d83964a050",
+    "jobs_xer_financial_tests.exe": "7634173e465c4350c419c4504ac34804276eb7e99934c06f1aac66fb2fc296e1"
+  },
+  "regression": {
+    "passed": 125,
+    "total": 125,
+    "wall_seconds": 153.51
+  },
+  "focused_xer_parser_public_corpus": {
+    "passed": 10,
+    "total": 10,
+    "wall_seconds": 17.99
+  },
+  "parser_seeds": 284,
+  "format": {
+    "status": "success",
+    "files": 305,
+    "tool": "clang-format version 18.1.8"
+  },
+  "native_ui": {
+    "status": "passed",
+    "platform": "windows",
+    "sizes": [
+      "1000x620",
+      "800x600"
+    ],
+    "main_window_action": true
+  },
+  "independent_readers": [
+    "TSV/Decimal",
+    "native and projection SHA256",
+    "MPXJ16.10.0 strict",
+    "seven unmodified public fixtures"
+  ],
+  "initial_regression_fix": "Preserve existing native invalid-assignment diagnostic before optional snapshot validation; fixture expectations unchanged.",
+  "second_regression_fix": "Prepare preview before starting the 3-second server poll; product behavior and wait timeout unchanged. Focused test passed under regression load.",
+  "external_p6_execution": "not run",
+  "mpp_reader": "not part of this increment",
+  "evidence": {
+    "all-test-output.txt": "429b246c15bb00e516f60eb18ecfd9decb97c9b2c4a3cd7ff499b1e5302dc08e",
+    "build.txt": "4db92296d7c078e05efa7aca1aa9548fdb6bd32c8f181a6da8cb17b577a6dae7",
+    "combined.xer": "17b2bf56cfd6c198d6cf4f60b01f19ef7b25f7a76029bc9c524e0a30a45ce36c",
+    "compat-build.txt": "458f5869ff385016a1b6f7b34f4804b6bb836500d1ddd0c564f594f6aec6c1ee",
+    "ctest.txt": "1e321484a7ce2a6400974d6fc587fa516541c696b7ab9f3fb14625dc229f6349",
+    "ctest.xml": "7d34ba87b770eca015d1b2e1edb6a581f2de65385497575257b73dc8bc2b332c",
+    "export.xer": "8d5c9dab5d9ec70e9372fa51873011cc8e945f26fb9bf17405200a50b9b9fc17",
+    "external-ev.png": "81751d516f50835469285561a3abd3704a26185c0bb6042d668b1f8c5228c176",
+    "first-regression.txt": "6c18eb853a354cbfb16db48163db60e5a3112a73f4f5091e4c744c0a76f755da",
+    "first-regression.xml": "16b4be005b585d13791821ee1eb98f3e0d9be4412a3db86ceea174685ab7512e",
+    "focused.txt": "475268518ad4ba18bbe527889414773bb8b34dcfb0b137d17979dd5c50c1d25b",
+    "format.json": "fdd746b9dab19ef91dbe3779722597f8195e2d540be3f8b5b9b00a40a078dbfe",
+    "independent-actual-costs.json": "2aa47f47918c0f8c54887400d4f1cdf9c34b8d0c2b753b3b1ee1a28612832d18",
+    "independent-financials.json": "7c9fc9b9a0cdd9590bbdf75847671619121c827f1d3349f14a557985af00e2d5",
+    "independent-public.json": "983ed098baf2d555b45b50e99a6b155b4c6cf397f0a49cbaf0897dfec34eccc2",
+    "long-poll-focused.txt": "8262a77a4b34e44df98493cb82a7d169285fc83da605a787007914fcc0d42c00",
+    "native-ui.txt": "3b4eaa8878951e14650845cdd87ea71b22f77413f1d9b7b3a6f2adf5878ada38",
+    "periods.png": "f6e64fe075608f2ff8b130be2f2be380607bfca413b7cbef3e08ac431c7d2a5b",
+    "project.ppm": "951c0e627e6491dd5c01a47f9798bbf0a85d889e3fb87596cf1234096c070cb0",
+    "second-regression.txt": "ecdd18b1586be7ca065852cdc970313e71f8a56d1ecec8fb694bce283e2f5822",
+    "second-regression.xml": "c31d4ba6409cada42735d2898aabd982a5335df826822738bf4ee310d1a75412",
+    "snapshot.json": "7322ca7ea98180dd9b7ae762bd5f9b6c3d3435ca2aaf7cdaebede0efcf045b92",
+    "source.xer": "384625ce37fb418a20fcd17d8a62b8893c6a30be0079710ef1144be4b31faa0a",
+    "stale-report.json": "2c1928b001743fa53dbad8fdf895b22785a0fd21955c527dd0261593cf13c8e9",
+    "view-small.png": "72bd9d018f3b8d2d9c4a01eb7992e4ed2308ccd0a5790e3b9d3b64cbafd85123",
+    "view.png": "1e790d0c84e4c21b89c4d1afcdb91673baeef9a0bcac6a886233ff330dfe2a96"
+  }
+}

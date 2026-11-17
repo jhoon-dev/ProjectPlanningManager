@@ -1,0 +1,55 @@
+{
+  "status": "success",
+  "checks": [
+    {
+      "name": "verify-report-fixtures",
+      "returncode": 0,
+      "passed": true
+    },
+    {
+      "name": "verify-project-xml",
+      "returncode": 0,
+      "passed": true
+    },
+    {
+      "name": "verify-progress-policy-adoption",
+      "returncode": 0,
+      "passed": true
+    },
+    {
+      "name": "verify-progress-leveling",
+      "returncode": 0,
+      "passed": true
+    },
+    {
+      "name": "verify-leveling-decisions",
+      "returncode": 0,
+      "passed": true
+    },
+    {
+      "name": "verify-object-fields",
+      "returncode": 0,
+      "passed": true
+    },
+    {
+      "name": "verify-assignment-periods",
+      "returncode": 0,
+      "passed": true
+    },
+    {
+      "name": "verify-print-network",
+      "returncode": 0,
+      "passed": true
+    },
+    {
+      "name": "verify-activity-extensions",
+      "returncode": 0,
+      "passed": true
+    },
+    {
+      "name": "verify-resource-workspace",
+      "returncode": 0,
+      "passed": true
+    }
+  ]
+}

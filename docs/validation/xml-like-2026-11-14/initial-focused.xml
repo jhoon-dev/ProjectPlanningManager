@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-ninja"
+	tests="2"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-61CPKLN"
+	time="4"
+	timestamp="2026-11-14T16:18:42"
+	>
+	<testcase name="xml_like_contract" classname="xml_like_contract" time="3.4077" status="run">
+		<properties/>
+		<system-out>PASS Like: precedence/rounding/domain/range/Null, scopes/summary/roll-down, schema65/archives/recovery/XML/XER/reports; 8932 vectors
+</system-out>
+	</testcase>
+	<testcase name="xml_like_ui" classname="xml_like_ui" time="0.914058" status="run">
+		<properties/>
+		<system-out>PASS Like UI: examples/async preview/save/undo/cancel and small layout
+</system-out>
+	</testcase>
+</testsuite>

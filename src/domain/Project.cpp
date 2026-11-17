@@ -1,5 +1,24 @@
+#include "domain/XmlFormula.h"
+#include "domain/ResourceAvailability.h"
+#include "domain/XmlBaselines.h"
+#include "domain/ResourcePlan.h"
+#include "domain/MaterialActuals.h"
+#include "domain/Activities.h"
 #include "domain/Diagnostics.h"
+#include "domain/ExternalEvm.h"
+#include "domain/FinancialPeriods.h"
+#include "domain/XerScheduleAdoption.h"
+#include "domain/LedgerIdentity.h"
+#include "domain/ProjectCurrency.h"
 #include "domain/Project.h"
+#include "domain/PeriodActuals.h"
+#include "domain/Classification.h"
+#include "domain/XmlCodes.h"
+#include "domain/XmlRollDown.h"
+#include "domain/XmlRollUp.h"
+#include "domain/ResourceView.h"
+#include "domain/RemainingWork.h"
+#include "domain/Productivity.h"
 #include "domain/CalculationControl.h"
 #include <chrono>
 #include <stdexcept>
@@ -8,8 +27,23 @@
 #include <algorithm>
 
 namespace jobs {
+// Keep the complete aggregate comparisons in one translation unit. Inlining them
+// into every editor duplicates the expanding archive/custom-field model at -O3.
+bool PlanInput::operator==(const PlanInput &) const = default;
+bool Project::operator==(const Project &) const = default;
+bool hasAssignmentPeriods(const PlanInput &p) {
+    return std::any_of(p.assignments.begin(), p.assignments.end(), [](const auto &a) { return !a.periods.empty(); });
+}
 bool isEffort(const PlanInput &p) {
     return p.calculationProfile == effortProfile;
+}
+bool hasWorkAssignmentPeriods(const PlanInput &p) {
+    std::unordered_set<std::string> work;
+    for (const auto &t : p.tasks)
+        if (t.taskType != TaskType::FixedDuration || t.workDriven)
+            work.insert(t.id);
+    return std::any_of(p.assignments.begin(), p.assignments.end(),
+                       [&](const auto &a) { return !a.periods.empty() && work.contains(a.taskId); });
 }
 bool hasConstraints(const PlanInput &p) {
     return p.calculationProfile == constraintProfile || isEffort(p);
@@ -22,18 +56,42 @@ bool usesWork(const Task &t) {
 }
 
 std::string engineFor(const PlanInput &p) {
+    if (p.planLeveling && hasMaterialInventory(p))
+        return materialFloatEngine;
+    if (hasWorkAssignmentPeriods(p))
+        return p.planLeveling ? "jobs-adopted-work-periods-1.0" : "jobs-effort-work-periods-1.0";
+    if (hasAssignmentPeriods(p))
+        return p.planLeveling ? "jobs-adopted-periods-1.0" : "jobs-effort-periods-1.0";
+    if (p.planLeveling)
+        return "jobs-adopted-leveling-1.8";
     return isEffort(p) ? "jobs-effort-1.1" : isPdm(p) ? "jobs-pdm-1.2" : "jobs-cpm-0.2";
 }
 std::string legacyEngineFor(const PlanInput &p) {
+    if (p.planLeveling)
+        return "jobs-adopted-leveling-1.0";
     return isEffort(p)         ? "jobs-effort-1.0"
            : hasConstraints(p) ? "jobs-pdm-1.1"
            : isPdm(p)          ? "jobs-pdm-1.0"
                                : "jobs-cpm-0.2";
 }
 bool supportsEngine(const PlanInput &p, const std::string &engine) {
-    return engine == engineFor(p) || engine == legacyEngineFor(p);
+    if (hasAssignmentPeriods(p))
+        return engine == engineFor(p) ||
+               (p.planLeveling && hasMaterialInventory(p) &&
+                engine == (hasWorkAssignmentPeriods(p) ? "jobs-adopted-work-periods-1.0" : "jobs-adopted-periods-1.0"));
+    return engine == engineFor(p) || engine == legacyEngineFor(p) ||
+           (p.planLeveling && (engine == "jobs-adopted-leveling-1.1" || engine == "jobs-adopted-leveling-1.2" ||
+                               engine == "jobs-adopted-leveling-1.3" || engine == "jobs-adopted-leveling-1.4" ||
+                               engine == "jobs-adopted-leveling-1.5" || engine == "jobs-adopted-leveling-1.6" ||
+                               engine == "jobs-adopted-leveling-1.7" || engine == "jobs-adopted-leveling-1.8"));
 }
 std::string levelingPolicyFor(const PlanInput &p) {
+    if (p.resourcePlan.autoDelayForReceipts)
+        return materialArrivalPolicy;
+    if (hasWorkAssignmentPeriods(p))
+        return "serial-effort-work-periods-v1";
+    if (hasAssignmentPeriods(p))
+        return "serial-effort-periods-v1";
     return isEffort(p)         ? "serial-effort-split-v2"
            : hasConstraints(p) ? "serial-no-split-constrained-v2"
            : isPdm(p)          ? "serial-no-split-pdm-v2"
@@ -46,7 +104,49 @@ std::string legacyLevelingPolicyFor(const PlanInput &p) {
                                : "serial-no-split-v1";
 }
 bool supportsLevelingPolicy(const PlanInput &p, const std::string &policy) {
-    return policy == levelingPolicyFor(p) || policy == legacyLevelingPolicyFor(p);
+    if (p.resourcePlan.autoDelayRemainingForReceipts && policy == remainingMaterialPolicy)
+        return true;
+    if (p.resourcePlan.autoDelayForReceipts)
+        return policy == materialArrivalPolicy;
+    if (hasAssignmentPeriods(p))
+        return policy == levelingPolicyFor(p) ||
+               (isEffort(p) && (policy == datedRemainingPolicy || policy == datedEffortPolicy ||
+                                (!hasWorkAssignmentPeriods(p) && policy == "serial-effort-work-periods-v1")));
+    // Flat effort demand is the degenerate contour case, also used by historical decision metadata validation.
+    return policy == levelingPolicyFor(p) || policy == legacyLevelingPolicyFor(p) ||
+           (isEffort(p) && (policy == "serial-effort-periods-v1" || policy == "serial-effort-work-periods-v1" ||
+                            policy == datedRemainingPolicy || policy == datedEffortPolicy));
+}
+void validateLevelingSelection(const PlanInput &p, const LevelingSelection &s) {
+    if ((s.priority != "task-order" && s.priority != "shortest-first" && s.priority != "longest-first" &&
+         !advancedPriority(s.priority)) ||
+        s.horizonWorkDays < 1 || s.horizonWorkDays > 5200 || !supportsLevelingPolicy(p, s.policy) ||
+        !validUtcStamp(s.adoptedAt) || s.reason.empty() || s.reason.size() > 4096 || s.sourceDocumentId.empty() ||
+        !s.sourceRevision || s.sourceRevision > 9007199254740991ULL)
+        throw AppError(ErrorCode::LEVEL_OPTIONS_INVALID);
+}
+void invalidateLevelingSelection(Project &p, const Project &before) {
+    if (!p.planLeveling && !p.remainingLeveling)
+        return;
+    PlanInput a = p, b = before;
+    a.planLeveling.reset();
+    b.planLeveling.reset();
+    // Descriptive provenance does not change resource demand or adopted placements.
+    for (auto *input : {&a, &b}) {
+        input->xmlBaselines.reset();
+        for (auto &r : input->resources)
+            r.productivity.reset();
+        for (auto &assignment : input->assignments) {
+            assignment.productivityEstimate.reset();
+            assignment.nativeCurve.reset();
+        }
+    }
+    if (a != b || p.statusAt != before.statusAt || p.progress != before.progress ||
+        p.progressPolicy != before.progressPolicy || p.remainingWork != before.remainingWork ||
+        p.materialActuals != before.materialActuals) {
+        p.planLeveling.reset();
+        p.remainingLeveling.reset();
+    }
 }
 
 std::vector<Dependency> dependencies(const Task &task) {
@@ -107,6 +207,19 @@ int currencyDecimals(const std::string &c) {
     throw AppError(ErrorCode::CURRENCY_UNSUPPORTED, {});
 }
 void validatePlan(const PlanInput &p) {
+    validateXmlBaselines(p);
+    validateResourcePlanning(p);
+    if (p.planLeveling && p.planLeveling->policy == remainingMaterialPolicy)
+        throw AppError(ErrorCode::LEVEL_OPTIONS_INVALID);
+    if (p.planLeveling)
+        validateLevelingSelection(p, *p.planLeveling);
+    validateClassification(p);
+    validateXmlFormulas(p);
+    validateXmlRollDown(p);
+    validateXmlRollUp(p);
+    validateXmlWbsCodes(p);
+    validateActivities(p);
+    validateResourcePlan(p);
     currencyDecimals(p.currency);
     if (p.costProfile != "cost-day-minor-half-up-v1")
         throw AppError(ErrorCode::COST_POLICY_UNSUPPORTED, {});
@@ -138,6 +251,8 @@ void validatePlan(const PlanInput &p) {
             if (!validDate(d) || !dates.insert(d).second)
                 throw AppError(ErrorCode::CALENDAR_HOLIDAYS_INVALID, {}, ErrorContext{.calendarIds = {c.id}});
     }
+    if (!p.xmlFormulaCalendarId.empty() && !calendarIds.contains(p.xmlFormulaCalendarId))
+        throw AppError(ErrorCode::CALENDAR_NOT_FOUND, {}, ErrorContext{.calendarIds = {p.xmlFormulaCalendarId}});
     if (!p.calendars.empty() && !isPdm(p))
         throw AppError(ErrorCode::CALENDAR_REQUIRES_PDM, {});
     std::unordered_set<std::string> holidays;
@@ -219,8 +334,13 @@ void validatePlan(const PlanInput &p) {
     }
     std::unordered_set<std::string> resources, pairs;
     const auto validUnits = [](const std::optional<int> &n) { return !n || (*n >= 0 && *n <= 100000); };
+    std::size_t availabilityCount = 0;
     for (const auto &r : p.resources) {
         calculationCheckpoint();
+        validateResourceAvailability(r);
+        availabilityCount += r.availability.size();
+        if (availabilityCount > 100000)
+            throw AppError(ErrorCode::RESOURCE_EXCEPTION_INVALID);
         if (!r.calendarId.empty() && (!isEffort(p) || !calendarIds.contains(r.calendarId)))
             throw AppError(ErrorCode::RESOURCE_CALENDAR_INVALID, {}, ErrorContext{.resourceIds = {r.id}});
         if (blank(r.id) || blank(r.name) || !resources.insert(r.id).second || ids.contains(r.id) ||
@@ -236,6 +356,10 @@ void validatePlan(const PlanInput &p) {
                 (rate.hourlyMinor && (*rate.hourlyMinor < 0 || *rate.hourlyMinor > 1000000000LL)))
                 throw AppError(ErrorCode::RESOURCE_RATE_INVALID, {}, ErrorContext{.resourceIds = {r.id}});
     }
+    std::unordered_map<std::string, const Task *> assignmentTasks;
+    for (const auto &t : p.tasks)
+        assignmentTasks[t.id] = &t;
+    std::size_t periodCount = 0;
     for (const auto &a : p.assignments) {
         calculationCheckpoint();
         // Length prefix avoids collisions even if imported IDs contain separators.
@@ -243,6 +367,25 @@ void validatePlan(const PlanInput &p) {
         if (!ids.contains(a.taskId) || !resources.contains(a.resourceId) || a.units <= 0 || a.units > 100000 ||
             !pairs.insert(pair).second)
             throw AppError(ErrorCode::ASSIGNMENT_INPUT_INVALID, {});
+        if (!a.periods.empty()) {
+            const auto *task = assignmentTasks.at(a.taskId);
+            if (!isEffort(p) || (usesWork(*task) ? !task->workUnitMinutes.has_value()
+                                                 : (!task->durationMinutes || *task->durationMinutes <= 0)))
+                throw AppError(ErrorCode::ASSIGNMENT_PERIOD_INVALID, {"기간 또는 공수가 확정된 작업만 지원합니다."});
+            periodCount += a.periods.size();
+            if (a.periods.size() > 1024 || periodCount > 100000)
+                throw AppError(ErrorCode::ASSIGNMENT_PERIOD_INVALID,
+                               {"배정당 1,024개, 계획당 100,000개 구간까지 지원합니다."});
+            std::int64_t end = 0;
+            for (const auto &v : a.periods) {
+                calculationCheckpoint();
+                if (v.fromMinute < end || v.fromMinute < 0 || v.toMinute <= v.fromMinute || v.toMinute > 5000000 ||
+                    v.units < 0 || v.units > 100000)
+                    throw AppError(ErrorCode::ASSIGNMENT_PERIOD_INVALID,
+                                   {"구간은 정렬·비중복, 0~5,000,000 근무분, 배정률 0~100,000%여야 합니다."});
+                end = v.toMinute;
+            }
+        }
     }
     std::unordered_set<std::string> costs;
     for (const auto &c : p.taskCosts)
@@ -252,8 +395,48 @@ void validatePlan(const PlanInput &p) {
             (c.credit != "physical" && c.credit != "zero-hundred"))
             throw AppError(ErrorCode::TASK_COST_INVALID, {});
 }
+void validateProgressPolicySelection(const ProgressPolicySelection &s) {
+    if ((s.policy != retainedProgressPolicy && s.policy != overrideProgressPolicy &&
+         s.policy != actualDatesProgressPolicy) ||
+        blank(s.adoptedBy) || s.adoptedBy.size() > 1024 || blank(s.reason) || s.reason.size() > 4096 ||
+        !validUtcStamp(s.adoptedAt) || blank(s.sourceDocumentId) || s.sourceDocumentId.size() > 1024 ||
+        !s.sourceRevision || s.sourceRevision > 9007199254740991ULL)
+        throw AppError(ErrorCode::PROGRESS_POLICY_INVALID);
+}
 void validate(const Project &p) {
+    validateCurrencyConversions(p);
+    validateLedgerIdMigrations(p);
+    validateXerScheduleAdoptions(p);
+    validateXmlBaselineMerges(p);
+    if (p.xerFinancials)
+        validateXerFinancials(*p.xerFinancials);
+    validateXerFinancialRevisions(p);
+    validateExternalEvmAdoptions(p);
+    validateFinancialPeriods(p);
+    validatePresentation(p);
+    validateStepReports(p);
+    validateLevelingDecisions(p);
+    if (p.progressPolicy) {
+        validateProgressPolicySelection(*p.progressPolicy);
+        if (p.progressPolicy->sourceRevision > p.revision)
+            throw AppError(ErrorCode::PROGRESS_POLICY_INVALID);
+    }
+    if (p.planLeveling && p.statusAt)
+        throw AppError(ErrorCode::LEVEL_OPTIONS_INVALID);
+    if (p.remainingLeveling) {
+        if (!p.statusAt || p.planLeveling)
+            throw AppError(ErrorCode::LEVEL_OPTIONS_INVALID);
+        validateLevelingSelection(p, *p.remainingLeveling);
+    }
     validatePlan(p);
+    validateSavedTaskViews(p);
+    validateSavedResourceViews(p);
+    validateRemainingWork(p);
+    if (p.remainingLeveling && !supportsLevelingPolicy(p, p.remainingLeveling->policy))
+        throw AppError(ErrorCode::LEVEL_OPTIONS_INVALID);
+    if (p.planLeveling &&
+        (p.planLeveling->policy == datedRemainingPolicy || p.planLeveling->policy == datedEffortPolicy))
+        throw AppError(ErrorCode::LEVEL_OPTIONS_INVALID);
     if (blank(p.documentId) || p.revision == 0 || p.revision > 9007199254740991ULL)
         throw AppError(ErrorCode::PROJECT_ID_REVISION_INVALID, {});
     if (p.statusAt && !validStamp(*p.statusAt))
@@ -317,7 +500,8 @@ void validate(const Project &p) {
         if (blank(s.id) || !scenarios.insert(s.id).second || blank(s.name) || !validUtcStamp(s.createdAt) ||
             blank(s.sourceDocumentId) || !s.inputRevision || s.inputRevision >= p.revision ||
             !supportsLevelingPolicy(s.input, s.policy) ||
-            (s.priority != "task-order" && s.priority != "shortest-first" && s.priority != "longest-first") ||
+            (s.priority != "task-order" && s.priority != "shortest-first" && s.priority != "longest-first" &&
+             !advancedPriority(s.priority)) ||
             s.horizonWorkDays < 1 || s.horizonWorkDays > 5200)
             throw AppError(ErrorCode::SCENARIO_METADATA_INVALID, {});
         Project snapshot;
@@ -326,6 +510,11 @@ void validate(const Project &p) {
         snapshot.revision = s.inputRevision;
         snapshot.statusAt = s.statusAt;
         snapshot.progress = s.progress;
+        snapshot.progressPolicy = s.progressPolicy;
+        snapshot.remainingWork = s.remainingWork;
+        snapshot.materialActuals = s.materialActuals;
+        if (s.policy == remainingMaterialPolicy && !supportsLevelingPolicy(snapshot, s.policy))
+            throw AppError(ErrorCode::SCENARIO_METADATA_INVALID);
         validate(snapshot);
     }
     previous.clear();
@@ -341,6 +530,8 @@ void validate(const Project &p) {
             throw AppError(ErrorCode::COST_REPORT_INVALID, {});
         previous[e.taskId] = e.id;
     }
+    validatePeriodActuals(p);
+    validateMaterialActuals(p);
 }
 const ProgressEntry *progressAsOf(const Project &p, const std::string &taskId) {
     if (!p.statusAt)

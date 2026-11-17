@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "xlsx_sheets": 34,
+  "pdf_pages": 22,
+  "cost_rows_checked": 6,
+  "material_prices_checked": 1,
+  "currency": "KRW",
+  "history_metadata": "matched original native receipt",
+  "known_zero_unknown": "preserved in workbook cost rows",
+  "readers": {
+    "openpyxl": "3.1.5",
+    "pypdf": "6.10.0"
+  }
+}

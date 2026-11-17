@@ -1,10 +1,13 @@
 #pragma once
 #include "application/Document.h"
+#include "domain/Classification.h"
+#include "domain/FormulaFields.h"
 #include <QAbstractTableModel>
 #include <QStringList>
 #include <unordered_map>
 
 namespace jobs {
+struct XmlScheduleValues;
 class TaskTableModel final : public QAbstractTableModel {
 public:
     explicit TaskTableModel(Document &document, QObject *parent = nullptr);
@@ -14,6 +17,8 @@ public:
     QVariant headerData(int section, Qt::Orientation, int role = Qt::DisplayRole) const override;
     Qt::ItemFlags flags(const QModelIndex &) const override;
     bool setData(const QModelIndex &, const QVariant &, int role = Qt::EditRole) override;
+    std::string columnKey(int) const;
+    int columnForKey(const std::string &) const;
     void synchronize(const std::vector<std::size_t> &rows);
     bool synchronizeTask();
     bool synchronizeBulk(BulkView &);
@@ -37,6 +42,7 @@ private:
     std::unordered_map<std::size_t, int> positions_;
     std::size_t lastTaskVisits_ = 0;
     std::optional<ScheduleResult> result_;
+    std::shared_ptr<const XmlScheduleValues> scheduleValues_;
     std::string documentId_;
     std::uint64_t session_ = 0, revision_ = 0, calculationGeneration_ = 0;
     bool initialized_ = false, readOnly_ = false;
@@ -47,7 +53,10 @@ private:
     };
     std::unordered_map<std::string, PlannedDates> plannedDates_;
     std::unordered_map<std::string, QString> assignments_, issues_;
+    AttributeLabels attributeLabels_;
     mutable std::shared_ptr<EvaluationCache> renderCache_ = std::make_shared<EvaluationCache>();
+    mutable std::unordered_map<std::string, std::shared_ptr<const FormulaValues>> computed_;
+    std::shared_ptr<const FormulaValues> computedValues(const Task &) const;
     QString text(const Task &, int column) const;
     const TaskSchedule *schedule(const Task &) const;
 };

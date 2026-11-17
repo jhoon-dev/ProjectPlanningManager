@@ -1,0 +1,4 @@
+[1/4] Building CXX object CMakeFiles/jobs_xml_work_progress_tests.dir/tests/XmlWorkProgressTests.cpp.obj
+[2/4] Linking CXX executable jobs_xml_work_progress_tests.exe
+[3/4] Building CXX object CMakeFiles/jobs_parser_seed_tests.dir/tests/fuzz/ParserSeeds.cpp.obj
+[4/4] Linking CXX executable jobs_parser_seed_tests.exe

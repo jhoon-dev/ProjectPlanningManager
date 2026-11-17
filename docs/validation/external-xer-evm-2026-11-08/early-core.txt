@@ -1,0 +1,7 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 115: external_xer_evm_adoption_contract
+1/1 Test #115: external_xer_evm_adoption_contract ...   Passed    3.76 sec
+
+100% tests passed out of 1
+
+Total Test time (real) =   3.82 sec

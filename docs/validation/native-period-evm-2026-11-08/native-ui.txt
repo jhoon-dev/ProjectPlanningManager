@@ -1,0 +1,1 @@
+PASS: native period EVM menu/virtual tables, day/week/month/scope, XLSX/PDF, native equality, cancel/stale/session/read-only, Windows responsive footer

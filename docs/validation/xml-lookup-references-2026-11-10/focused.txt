@@ -1,0 +1,23 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 75: task_classification_ui
+    Start 32: enterprise_udf_contract
+1/9 Test #32: enterprise_udf_contract ..........   Passed    2.13 sec
+    Start 30: xml_lookup_contract
+2/9 Test #30: xml_lookup_contract ..............   Passed    2.06 sec
+    Start 19: resource_view_ui
+3/9 Test #75: task_classification_ui ...........   Passed    5.16 sec
+    Start 33: enterprise_udf_ui
+4/9 Test #33: enterprise_udf_ui ................   Passed    0.83 sec
+    Start 31: xml_lookup_ui
+5/9 Test #31: xml_lookup_ui ....................   Passed    0.74 sec
+    Start 18: resource_view_contract
+6/9 Test #19: resource_view_ui .................   Passed    2.41 sec
+    Start 74: task_classification_contract
+7/9 Test #18: resource_view_contract ...........   Passed    0.66 sec
+    Start 29: udf_mapping_contract
+8/9 Test #74: task_classification_contract .....   Passed    0.48 sec
+9/9 Test #29: udf_mapping_contract .............   Passed    0.69 sec
+
+100% tests passed out of 9
+
+Total Test time (real) =   8.10 sec

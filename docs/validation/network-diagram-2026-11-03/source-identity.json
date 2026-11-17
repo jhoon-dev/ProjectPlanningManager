@@ -1,0 +1,8 @@
+{
+  "source_sha256": "d6f77915ace53882f0e7ade11bac0ed5d5cf7bd74e854b2bbb1f8b2266890851",
+  "build_source_sha256": "d6f77915ace53882f0e7ade11bac0ed5d5cf7bd74e854b2bbb1f8b2266890851",
+  "matches": true,
+  "source_files": 187,
+  "manifest": "case-sensitive sorted src/**/*.cpp, src/**/*.h, CMakeLists.txt; relative/path:SHA256(bytes) LF",
+  "git_revision": "6a1cd0a5115f3400d6cee4e5d5df795f351195ea+dirty"
+}

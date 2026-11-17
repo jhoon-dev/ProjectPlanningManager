@@ -1,0 +1,383 @@
+{
+    "companionPolicy": "원본과 진단은 이 폴더의 동반 파일입니다. .ppm 사본 저장/이동 시 자동 복제되지 않습니다.",
+    "compatibility": {
+        "externalRoundTrip": "unverified",
+        "import": "not-applicable",
+        "jobsRecomputation": "unverified",
+        "originalPreservation": "exact-native-input-snapshot"
+    },
+    "contract": "jobs-mspdi-plan-v1",
+    "diagnostics": [
+        {
+            "message": "기간 기반 계획 투영입니다. 외부 제품의 계산/재저장 호환은 미검증입니다. 원본 전체 입력/이력은 source.ppm 참조.",
+            "path": "/Project"
+        },
+        {
+            "message": "지원 사용자 필드는 UDF 매핑표를 따릅니다. 작업 코드·저장된 보기는 source.ppm에 전체 데이터를 보존합니다.",
+            "path": "/Project/ExtendedAttribute"
+        },
+        {
+            "message": "직접 값 없는 ExtendedAttribute는 명시 미설정 · 외부 제품의 manual provenance 왕복은 별도 검증",
+            "path": "/Assignment/1:TR"
+        },
+        {
+            "message": "기준선·실적·원가·상태일·시나리오는 XML에 포함하지 않음 · source.jobs에 보존",
+            "path": "/Project/history-costs"
+        }
+    ],
+    "direction": "export",
+    "documentId": "xml-roll-down",
+    "format": "Microsoft Project XML",
+    "mapping": [
+        {
+            "externalId": "188776448",
+            "jobsId": "source0",
+            "kind": "udf",
+            "name": "작업 0",
+            "representation": "hex-element",
+            "scope": "TASK",
+            "type": "text",
+            "xmlFieldName": "작업 0",
+            "xmlGuid": "66666666-7777-4888-9999-000000000100"
+        },
+        {
+            "externalId": "188776449",
+            "jobsId": "source1",
+            "kind": "udf",
+            "name": "작업 1",
+            "representation": "hex-element",
+            "scope": "TASK",
+            "type": "number",
+            "xmlFieldName": "작업 1",
+            "xmlGuid": "66666666-7777-4888-9999-000000000101"
+        },
+        {
+            "externalId": "188776450",
+            "jobsId": "source2",
+            "kind": "udf",
+            "name": "작업 2",
+            "representation": "hex-element",
+            "scope": "TASK",
+            "type": "date",
+            "xmlFieldName": "작업 2",
+            "xmlGuid": "66666666-7777-4888-9999-000000000102"
+        },
+        {
+            "externalId": "188776451",
+            "jobsId": "source3",
+            "kind": "udf",
+            "name": "작업 3",
+            "representation": "hex-element",
+            "scope": "TASK",
+            "type": "text",
+            "xmlFieldName": "작업 3",
+            "xmlGuid": "66666666-7777-4888-9999-000000000103"
+        },
+        {
+            "externalId": "188776452",
+            "jobsId": "source4",
+            "kind": "udf",
+            "name": "작업 4",
+            "representation": "hex-element",
+            "scope": "TASK",
+            "type": "flag",
+            "xmlFieldName": "작업 4",
+            "xmlGuid": "66666666-7777-4888-9999-000000000104"
+        },
+        {
+            "externalId": "188776453",
+            "jobsId": "source5",
+            "kind": "udf",
+            "name": "작업 5",
+            "representation": "hex-element",
+            "scope": "TASK",
+            "type": "cost",
+            "xmlFieldName": "작업 5",
+            "xmlGuid": "66666666-7777-4888-9999-000000000105"
+        },
+        {
+            "externalId": "188776454",
+            "jobsId": "source6",
+            "kind": "udf",
+            "name": "작업 6",
+            "representation": "hex-element",
+            "scope": "TASK",
+            "type": "duration",
+            "xmlFieldName": "작업 6",
+            "xmlGuid": "66666666-7777-4888-9999-000000000106"
+        },
+        {
+            "externalId": "188776455",
+            "jobsId": "source7",
+            "kind": "udf",
+            "name": "작업 7",
+            "representation": "hex-element",
+            "scope": "TASK",
+            "type": "start",
+            "xmlFieldName": "작업 7",
+            "xmlGuid": "66666666-7777-4888-9999-000000000107"
+        },
+        {
+            "externalId": "188776456",
+            "jobsId": "source8",
+            "kind": "udf",
+            "name": "작업 8",
+            "representation": "hex-element",
+            "scope": "TASK",
+            "type": "finish",
+            "xmlFieldName": "작업 8",
+            "xmlGuid": "66666666-7777-4888-9999-000000000108"
+        },
+        {
+            "externalId": "188776457",
+            "jobsId": "source9",
+            "kind": "udf",
+            "name": "작업 9",
+            "representation": "hex-element",
+            "scope": "TASK",
+            "type": "text",
+            "xmlFieldName": "작업 9",
+            "xmlGuid": "66666666-7777-4888-9999-000000000109"
+        },
+        {
+            "externalId": "205553674",
+            "jobsId": "source10",
+            "kind": "udf",
+            "name": "자원 10",
+            "representation": "hex-element",
+            "scope": "RSRC",
+            "type": "text",
+            "xmlFieldName": "자원 10",
+            "xmlGuid": "66666666-7777-4888-9999-000000000110"
+        },
+        {
+            "externalId": "205553675",
+            "jobsId": "source11",
+            "kind": "udf",
+            "name": "자원 11",
+            "representation": "hex-element",
+            "scope": "RSRC",
+            "type": "cost",
+            "xmlFieldName": "자원 11",
+            "xmlGuid": "66666666-7777-4888-9999-000000000111"
+        },
+        {
+            "externalId": "205553676",
+            "jobsId": "source12",
+            "kind": "udf",
+            "name": "자원 12",
+            "representation": "hex-element",
+            "scope": "RSRC",
+            "type": "date",
+            "xmlFieldName": "자원 12",
+            "xmlGuid": "66666666-7777-4888-9999-000000000112"
+        },
+        {
+            "externalId": "255885312",
+            "jobsId": "target0",
+            "kind": "udf",
+            "name": "배정 0",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "text",
+            "xmlFieldName": "배정 0",
+            "xmlGuid": "66666666-7777-4888-9999-000000000200"
+        },
+        {
+            "externalId": "255885313",
+            "jobsId": "target1",
+            "kind": "udf",
+            "name": "배정 1",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "number",
+            "xmlFieldName": "배정 1",
+            "xmlGuid": "66666666-7777-4888-9999-000000000201"
+        },
+        {
+            "externalId": "255885314",
+            "jobsId": "target2",
+            "kind": "udf",
+            "name": "배정 2",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "date",
+            "xmlFieldName": "배정 2",
+            "xmlGuid": "66666666-7777-4888-9999-000000000202"
+        },
+        {
+            "externalId": "255885315",
+            "jobsId": "target3",
+            "kind": "udf",
+            "name": "배정 3",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "text",
+            "xmlFieldName": "배정 3",
+            "xmlGuid": "66666666-7777-4888-9999-000000000203"
+        },
+        {
+            "externalId": "255885316",
+            "jobsId": "target4",
+            "kind": "udf",
+            "name": "배정 4",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "flag",
+            "xmlFieldName": "배정 4",
+            "xmlGuid": "66666666-7777-4888-9999-000000000204"
+        },
+        {
+            "externalId": "255885317",
+            "jobsId": "target5",
+            "kind": "udf",
+            "name": "배정 5",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "cost",
+            "xmlFieldName": "배정 5",
+            "xmlGuid": "66666666-7777-4888-9999-000000000205"
+        },
+        {
+            "externalId": "255885318",
+            "jobsId": "target6",
+            "kind": "udf",
+            "name": "배정 6",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "duration",
+            "xmlFieldName": "배정 6",
+            "xmlGuid": "66666666-7777-4888-9999-000000000206"
+        },
+        {
+            "externalId": "255885319",
+            "jobsId": "target7",
+            "kind": "udf",
+            "name": "배정 7",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "start",
+            "xmlFieldName": "배정 7",
+            "xmlGuid": "66666666-7777-4888-9999-000000000207"
+        },
+        {
+            "externalId": "255885320",
+            "jobsId": "target8",
+            "kind": "udf",
+            "name": "배정 8",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "finish",
+            "xmlFieldName": "배정 8",
+            "xmlGuid": "66666666-7777-4888-9999-000000000208"
+        },
+        {
+            "externalId": "255885321",
+            "jobsId": "target9",
+            "kind": "udf",
+            "name": "배정 9",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "text",
+            "xmlFieldName": "배정 9",
+            "xmlGuid": "66666666-7777-4888-9999-000000000209"
+        },
+        {
+            "externalId": "255885322",
+            "jobsId": "target10",
+            "kind": "udf",
+            "name": "배정 10",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "text",
+            "xmlFieldName": "배정 10",
+            "xmlGuid": "66666666-7777-4888-9999-000000000210"
+        },
+        {
+            "externalId": "255885323",
+            "jobsId": "target11",
+            "kind": "udf",
+            "name": "배정 11",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "cost",
+            "xmlFieldName": "배정 11",
+            "xmlGuid": "66666666-7777-4888-9999-000000000211"
+        },
+        {
+            "externalId": "255885324",
+            "jobsId": "target12",
+            "kind": "udf",
+            "name": "배정 12",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "date",
+            "xmlFieldName": "배정 12",
+            "xmlGuid": "66666666-7777-4888-9999-000000000212"
+        },
+        {
+            "externalId": "255885325",
+            "jobsId": "independent",
+            "kind": "udf",
+            "name": "독립 필드",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "text",
+            "xmlFieldName": "독립 필드",
+            "xmlGuid": "b17f2a8d-67ec-5973-ae81-2209192f284d"
+        },
+        {
+            "jobsId": "",
+            "kind": "calendar",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "T",
+            "kind": "task",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "B",
+            "kind": "task",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "R",
+            "kind": "resource",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "S",
+            "kind": "resource",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "T/R",
+            "kind": "assignment",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "T/S",
+            "kind": "assignment",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "B/R",
+            "kind": "assignment",
+            "xmlUid": "3"
+        }
+    ],
+    "namespace": "http://schemas.microsoft.com/project",
+    "nativeSnapshotProfile": "native-pdm-taskcal-v1",
+    "revision": "1",
+    "source": {
+        "name": "source.ppm",
+        "product": "PPM"
+    },
+    "targetPolicy": {
+        "calculationProfile": "native-effort-split-v1",
+        "lagCalendar": "successor-working-calendar",
+        "projectStartAnchor": "09:00"
+    },
+    "xmlSha256": "ad08f4920234a131a125a21b8aa23284db10cec2e2013e671dcabd3dc162af40"
+}

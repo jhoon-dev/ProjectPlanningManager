@@ -1,0 +1,34 @@
+[1/34] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/SharedAvailabilityQuery.cpp.obj
+[2/34] Linking CXX static library libjobs_calculation.a
+[3/34] Building CXX object CMakeFiles/jobs_reporting.dir/src/reporting/SharedAvailabilityExport.cpp.obj
+[4/34] Linking CXX static library libjobs_reporting.a
+[5/34] Linking CXX executable jobs_shared_resource_tests.exe
+[6/34] Linking CXX executable jobs_workspace_file_tests.exe
+[7/34] Linking CXX executable jobs_leveling_float_tests.exe
+[8/34] Linking CXX executable jobs_usage_tests.exe
+[9/34] Linking CXX executable jobs_repartition_float_tests.exe
+[10/34] Linking CXX executable jobs_xer_batch_tests.exe
+[11/34] Linking CXX executable jobs_parser_seed_tests.exe
+[12/34] Linking CXX executable jobs_undo_tests.exe
+[13/34] Linking CXX executable jobs_recovery_tests.exe
+[14/34] Linking CXX executable jobs_project_xml_tests.exe
+[15/34] Linking CXX executable jobs_report_tests.exe
+[16/34] Linking CXX executable jobs_integrated_workspace_tests.exe
+[17/34] Linking CXX executable jobs_cost_day_tests.exe
+[18/34] Linking CXX executable jobs_resource_tests.exe
+[19/34] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/SharedAvailabilityDialog.cpp.obj
+[20/34] Linking CXX static library libjobs_ui.a
+[21/34] Building CXX object CMakeFiles/jobs_shared_availability_tests.dir/tests/SharedAvailabilityTests.cpp.obj
+[22/34] Linking CXX executable jobs_xml_unit_tests.exe
+[23/34] Linking CXX executable jobs_xml_formula_tests.exe
+[24/34] Linking CXX executable jobs_resource_workspace_ui_tests.exe
+[25/34] Linking CXX executable jobs_resource_availability_tests.exe
+[26/34] Linking CXX executable jobs_xer_batch_ui_tests.exe
+[27/34] Linking CXX executable PPM.exe
+[28/34] Linking CXX executable jobs_remaining_availability_tests.exe
+[29/34] Linking CXX executable jobs_shared_availability_tests.exe
+[30/34] Linking CXX executable jobs_project_xml_ui_tests.exe
+[31/34] Linking CXX executable jobs_workspace_ui_tests.exe
+[32/34] Linking CXX executable jobs_recovery_ui_tests.exe
+[33/34] Linking CXX executable jobs_report_ui_tests.exe
+[34/34] Linking CXX executable jobs_resource_ui_tests.exe

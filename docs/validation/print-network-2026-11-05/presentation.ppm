@@ -1,0 +1,247 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+        ],
+        "baselines": [
+            {
+                "approvedBy": "담당",
+                "createdAt": "2026-11-05T03:00:00Z",
+                "engineVersion": "jobs-effort-1.1",
+                "id": "ef5b3e7a-c9ab-44d5-955e-105ac12cbc4c",
+                "input": {
+                    "assignments": [
+                    ],
+                    "calculationProfile": "native-effort-split-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "calendars": [
+                    ],
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "KRW",
+                    "holidays": [
+                    ],
+                    "name": "인쇄·네트워크 검증",
+                    "resources": [
+                    ],
+                    "startDate": "2026-11-02",
+                    "taskCosts": [
+                    ],
+                    "tasks": [
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 480,
+                            "id": "TA",
+                            "name": "기초 설계",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "S",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                                {
+                                    "lagMinutes": 60,
+                                    "predecessorId": "TA",
+                                    "type": "FS"
+                                }
+                            ],
+                            "durationMinutes": 480,
+                            "id": "TB",
+                            "name": "상세 설계",
+                            "predecessors": [
+                                "TA"
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "S",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        }
+                    ],
+                    "wbsNodes": [
+                        {
+                            "id": "W",
+                            "name": "시설",
+                            "parentId": ""
+                        },
+                        {
+                            "id": "S",
+                            "name": "설계",
+                            "parentId": "W"
+                        }
+                    ]
+                },
+                "inputRevision": 1,
+                "name": "승인",
+                "projectFinish": "2026-11-04 10:00",
+                "reason": "확인",
+                "schedule": [
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 1080,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-02 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 1080,
+                        "lateStartMinutes": 540,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:00",
+                        "taskId": "TA",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "TA"
+                        ],
+                        "earlyFinishMinutes": 3480,
+                        "earlyStartMinutes": 2040,
+                        "finish": "2026-11-04 10:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 3480,
+                        "lateStartMinutes": 2040,
+                        "remainingStart": null,
+                        "start": "2026-11-03 10:00",
+                        "taskId": "TB",
+                        "totalFloatMinutes": 0
+                    }
+                ],
+                "sourceDocumentId": "presentation-contract",
+                "version": 1
+            }
+        ],
+        "calculationProfile": "native-effort-split-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "calendars": [
+        ],
+        "costEntries": [
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "KRW",
+        "derivedFrom": "presentation-contract",
+        "documentId": "86e076da-2241-4e57-8cc7-1b7281eaff19",
+        "holidays": [
+        ],
+        "name": "인쇄·네트워크 검증",
+        "networkPositions": [
+            {
+                "taskId": "TA",
+                "x": 20,
+                "y": 40
+            },
+            {
+                "taskId": "TB",
+                "x": 800,
+                "y": 50
+            }
+        ],
+        "printPreferences": {
+            "automaticDates": true,
+            "baseline": true,
+            "daysPerPage": 14,
+            "fitTime": true,
+            "fontPoints": 9,
+            "from": "",
+            "margin": 12,
+            "nameWidth": 140,
+            "networkFit": false,
+            "networkScale": 100,
+            "orientation": 0,
+            "paper": 1,
+            "relations": true,
+            "selectedOnly": false,
+            "tablePercent": 52,
+            "to": "",
+            "wbs": true
+        },
+        "progress": [
+        ],
+        "resources": [
+        ],
+        "revision": 6,
+        "scenarios": [
+        ],
+        "startDate": "2026-11-02",
+        "statusAt": null,
+        "taskCosts": [
+        ],
+        "tasks": [
+            {
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 480,
+                "id": "TA",
+                "name": "기초 설계",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "S",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                    {
+                        "lagMinutes": 60,
+                        "predecessorId": "TA",
+                        "type": "FS"
+                    }
+                ],
+                "durationMinutes": 480,
+                "id": "TB",
+                "name": "상세 설계",
+                "predecessors": [
+                    "TA"
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "S",
+                "workDriven": false,
+                "workUnitMinutes": null
+            }
+        ],
+        "wbsNodes": [
+            {
+                "id": "W",
+                "name": "시설",
+                "parentId": ""
+            },
+            {
+                "id": "S",
+                "name": "설계",
+                "parentId": "W"
+            }
+        ]
+    },
+    "schemaVersion": 18,
+    "sha256": "d3ba4ae788a2064578b8299a20d22d92e6ae3780ee69f7bebdf326ba49c4c984"
+}

@@ -1,0 +1,282 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+            {
+                "resourceId": "R",
+                "taskId": "A",
+                "units": 100
+            },
+            {
+                "resourceId": "R",
+                "taskId": "B",
+                "units": 100
+            }
+        ],
+        "baselines": [
+        ],
+        "calculationProfile": "native-effort-split-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "calendars": [
+        ],
+        "costEntries": [
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "KRW",
+        "derivedFrom": "repartition-float",
+        "documentId": "db81440d-96b8-451e-878b-ef70ea54ec68",
+        "holidays": [
+        ],
+        "name": "구간 소멸과 재분할",
+        "progress": [
+        ],
+        "resources": [
+            {
+                "calendarId": "",
+                "exceptions": [
+                ],
+                "id": "R",
+                "maxUnits": 100,
+                "name": "공유 인력",
+                "rates": [
+                    {
+                        "effectiveDate": "2026-11-02",
+                        "hourlyMinor": 60
+                    }
+                ],
+                "type": "labor"
+            }
+        ],
+        "revision": 4,
+        "scenarios": [
+            {
+                "createdAt": "2026-11-04T00:00:00Z",
+                "horizonWorkDays": 260,
+                "id": "1604fce8-3e38-410d-abcd-557fe4ebb8f2",
+                "input": {
+                    "assignments": [
+                        {
+                            "resourceId": "R",
+                            "taskId": "A",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "R",
+                            "taskId": "B",
+                            "units": 100
+                        }
+                    ],
+                    "calculationProfile": "native-effort-split-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "calendars": [
+                    ],
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "KRW",
+                    "holidays": [
+                    ],
+                    "name": "구간 소멸과 재분할",
+                    "resources": [
+                        {
+                            "calendarId": "",
+                            "exceptions": [
+                            ],
+                            "id": "R",
+                            "maxUnits": 100,
+                            "name": "공유 인력",
+                            "rates": [
+                                {
+                                    "effectiveDate": "2026-11-02",
+                                    "hourlyMinor": 60
+                                }
+                            ],
+                            "type": "labor"
+                        }
+                    ],
+                    "startDate": "2026-11-02",
+                    "taskCosts": [
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "A"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "B"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "C"
+                        }
+                    ],
+                    "tasks": [
+                        {
+                            "breaks": [
+                                {
+                                    "finish": "2026-11-03 09:00",
+                                    "start": "2026-11-02 12:00"
+                                }
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 480,
+                            "id": "A",
+                            "name": "분할 A",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 240,
+                            "id": "B",
+                            "name": "공유 B",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 1440,
+                            "id": "C",
+                            "name": "독립 C",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        }
+                    ],
+                    "wbsNodes": [
+                    ]
+                },
+                "inputRevision": 1,
+                "name": "저장된 원본",
+                "policy": "serial-effort-split-v2",
+                "priority": "task-order",
+                "progress": [
+                ],
+                "sourceDocumentId": "repartition-float",
+                "statusAt": null
+            }
+        ],
+        "startDate": "2026-11-02",
+        "statusAt": null,
+        "taskCosts": [
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "A"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "B"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "C"
+            }
+        ],
+        "tasks": [
+            {
+                "breaks": [
+                    {
+                        "finish": "2026-11-03 09:00",
+                        "start": "2026-11-02 12:00"
+                    }
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 480,
+                "id": "A",
+                "name": "수정된 A",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 240,
+                "id": "B",
+                "name": "공유 B",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 1440,
+                "id": "C",
+                "name": "독립 C",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            }
+        ],
+        "wbsNodes": [
+        ]
+    },
+    "schemaVersion": 9,
+    "sha256": "d644c235faa91db29b57471bccf6a708007adf3fff0725ee21b5c2bac5161cee"
+}

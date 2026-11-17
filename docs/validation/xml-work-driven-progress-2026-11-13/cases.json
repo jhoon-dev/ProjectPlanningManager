@@ -1,0 +1,236 @@
+[
+    {
+        "duration": 1,
+        "finish": "2026-11-17 09:01",
+        "remainingStart": "2026-11-17 09:00",
+        "remainingWork": 1,
+        "spans": [
+            {
+                "finish": "2026-11-17 09:01",
+                "resourceId": "NR1",
+                "start": "2026-11-17 09:00",
+                "units": 1
+            }
+        ],
+        "start": "2026-11-13 09:00"
+    },
+    {
+        "duration": 2,
+        "finish": "2026-11-17 09:02",
+        "remainingStart": "2026-11-17 09:00",
+        "remainingWork": 99,
+        "spans": [
+            {
+                "finish": "2026-11-17 09:01",
+                "resourceId": "NR1",
+                "start": "2026-11-17 09:00",
+                "units": 50
+            },
+            {
+                "finish": "2026-11-17 09:02",
+                "resourceId": "NR1",
+                "start": "2026-11-17 09:01",
+                "units": 49
+            }
+        ],
+        "start": "2026-11-13 09:00"
+    },
+    {
+        "duration": 2,
+        "finish": "2026-11-17 09:02",
+        "remainingStart": "2026-11-17 09:00",
+        "remainingWork": 100,
+        "spans": [
+            {
+                "finish": "2026-11-17 09:02",
+                "resourceId": "NR1",
+                "start": "2026-11-17 09:00",
+                "units": 50
+            }
+        ],
+        "start": "2026-11-13 09:00"
+    },
+    {
+        "duration": 37,
+        "finish": "2026-11-17 09:37",
+        "remainingStart": "2026-11-17 09:00",
+        "remainingWork": 3501,
+        "spans": [
+            {
+                "finish": "2026-11-17 09:20",
+                "resourceId": "NR1",
+                "start": "2026-11-17 09:00",
+                "units": 50
+            },
+            {
+                "finish": "2026-11-17 09:36",
+                "resourceId": "NR1",
+                "start": "2026-11-17 09:20",
+                "units": 100
+            },
+            {
+                "finish": "2026-11-17 09:37",
+                "resourceId": "NR1",
+                "start": "2026-11-17 09:36",
+                "units": 68
+            },
+            {
+                "finish": "2026-11-17 09:36",
+                "resourceId": "NR2",
+                "start": "2026-11-17 09:20",
+                "units": 50
+            },
+            {
+                "finish": "2026-11-17 09:37",
+                "resourceId": "NR2",
+                "start": "2026-11-17 09:36",
+                "units": 33
+            }
+        ],
+        "start": "2026-11-13 09:00"
+    },
+    {
+        "duration": 60,
+        "finish": "2026-11-17 10:00",
+        "remainingStart": "2026-11-17 09:00",
+        "remainingWork": 4999,
+        "spans": [
+            {
+                "finish": "2026-11-17 09:20",
+                "resourceId": "NR1",
+                "start": "2026-11-17 09:00",
+                "units": 50
+            },
+            {
+                "finish": "2026-11-17 09:40",
+                "resourceId": "NR1",
+                "start": "2026-11-17 09:20",
+                "units": 100
+            },
+            {
+                "finish": "2026-11-17 09:59",
+                "resourceId": "NR2",
+                "start": "2026-11-17 09:20",
+                "units": 50
+            },
+            {
+                "finish": "2026-11-17 10:00",
+                "resourceId": "NR2",
+                "start": "2026-11-17 09:59",
+                "units": 49
+            }
+        ],
+        "start": "2026-11-13 09:00"
+    },
+    {
+        "duration": 60,
+        "finish": "2026-11-17 10:00",
+        "remainingStart": "2026-11-17 09:00",
+        "remainingWork": 5000,
+        "spans": [
+            {
+                "finish": "2026-11-17 09:20",
+                "resourceId": "NR1",
+                "start": "2026-11-17 09:00",
+                "units": 50
+            },
+            {
+                "finish": "2026-11-17 09:40",
+                "resourceId": "NR1",
+                "start": "2026-11-17 09:20",
+                "units": 100
+            },
+            {
+                "finish": "2026-11-17 10:00",
+                "resourceId": "NR2",
+                "start": "2026-11-17 09:20",
+                "units": 50
+            }
+        ],
+        "start": "2026-11-13 09:00"
+    },
+    {
+        "duration": 61,
+        "finish": "2026-11-18 09:01",
+        "remainingStart": "2026-11-17 09:00",
+        "remainingWork": 5001,
+        "spans": [
+            {
+                "finish": "2026-11-17 09:20",
+                "resourceId": "NR1",
+                "start": "2026-11-17 09:00",
+                "units": 50
+            },
+            {
+                "finish": "2026-11-17 09:40",
+                "resourceId": "NR1",
+                "start": "2026-11-17 09:20",
+                "units": 100
+            },
+            {
+                "finish": "2026-11-18 09:01",
+                "resourceId": "NR1",
+                "start": "2026-11-18 09:00",
+                "units": 1
+            },
+            {
+                "finish": "2026-11-17 10:00",
+                "resourceId": "NR2",
+                "start": "2026-11-17 09:20",
+                "units": 50
+            }
+        ],
+        "start": "2026-11-13 09:00"
+    },
+    {
+        "duration": 94,
+        "finish": "2026-11-18 09:34",
+        "remainingStart": "2026-11-17 09:00",
+        "remainingWork": 9001,
+        "spans": [
+            {
+                "finish": "2026-11-17 09:20",
+                "resourceId": "NR1",
+                "start": "2026-11-17 09:00",
+                "units": 50
+            },
+            {
+                "finish": "2026-11-17 09:40",
+                "resourceId": "NR1",
+                "start": "2026-11-17 09:20",
+                "units": 100
+            },
+            {
+                "finish": "2026-11-18 09:33",
+                "resourceId": "NR1",
+                "start": "2026-11-18 09:00",
+                "units": 100
+            },
+            {
+                "finish": "2026-11-18 09:34",
+                "resourceId": "NR1",
+                "start": "2026-11-18 09:33",
+                "units": 34
+            },
+            {
+                "finish": "2026-11-17 10:00",
+                "resourceId": "NR2",
+                "start": "2026-11-17 09:20",
+                "units": 50
+            },
+            {
+                "finish": "2026-11-18 09:33",
+                "resourceId": "NR2",
+                "start": "2026-11-18 09:20",
+                "units": 50
+            },
+            {
+                "finish": "2026-11-18 09:34",
+                "resourceId": "NR2",
+                "start": "2026-11-18 09:33",
+                "units": 17
+            }
+        ],
+        "start": "2026-11-13 09:00"
+    }
+]

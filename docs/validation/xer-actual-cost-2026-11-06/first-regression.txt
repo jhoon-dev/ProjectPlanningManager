@@ -1,0 +1,3620 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+        Start  13: work_contour_contract
+        Start  73: server_http_auth_sync_scheduler
+        Start  26: candidate_propagation_contract
+        Start  79: exchange_async_recovery_diagnostics
+  1/124 Test  #79: exchange_async_recovery_diagnostics ...   Passed   28.92 sec
+        Start  81: async_editing_ui
+  2/124 Test  #26: candidate_propagation_contract ........   Passed   38.07 sec
+        Start  75: responsive_document_contract
+  3/124 Test  #81: async_editing_ui ......................   Passed   31.62 sec
+        Start  17: planned_work_contract
+  4/124 Test  #75: responsive_document_contract ..........   Passed   30.07 sec
+        Start  27: expanded_repartition_float_contract
+  5/124 Test  #13: work_contour_contract .................   Passed   73.06 sec
+        Start   1: xer_actual_cost_contract
+  6/124 Test   #1: xer_actual_cost_contract ..............   Passed    3.43 sec
+        Start  72: server_native_realtime_ui
+  7/124 Test  #17: planned_work_contract .................   Passed   33.97 sec
+        Start  87: projected_views_ui
+  8/124 Test  #27: expanded_repartition_float_contract ...   Passed   30.92 sec
+        Start  98: duration_paste_pending_sort
+  9/124 Test  #98: duration_paste_pending_sort ...........   Passed   14.48 sec
+        Start 103: undo_contract
+ 10/124 Test  #87: projected_views_ui ....................   Passed   20.21 sec
+        Start  31: leveling_float_contract
+ 11/124 Test  #72: server_native_realtime_ui .............   Passed   44.09 sec
+        Start  47: schedule_print_contract
+ 12/124 Test  #73: server_http_auth_sync_scheduler .......   Passed  123.50 sec
+        Start  41: xer_batch_ui
+ 13/124 Test #103: undo_contract .........................   Passed   10.50 sec
+        Start  94: effort_edit_regressions
+ 14/124 Test  #31: leveling_float_contract ...............   Passed    9.83 sec
+        Start  32: leveling_float_ui
+ 15/124 Test  #41: xer_batch_ui ..........................   Passed    4.49 sec
+        Start  38: progress_policy_ui
+ 16/124 Test  #47: schedule_print_contract ...............   Passed   10.17 sec
+        Start  56: task_classification_ui
+ 17/124 Test  #32: leveling_float_ui .....................   Passed    8.64 sec
+        Start  10: dated_remaining_contract
+ 18/124 Test  #94: effort_edit_regressions ...............   Passed   10.04 sec
+        Start  59: dialog_layout
+ 19/124 Test  #38: progress_policy_ui ....................   Passed    8.92 sec
+        Start  24: propagation_cost_contract
+ 20/124 Test  #56: task_classification_ui ................   Passed    8.65 sec
+        Start   6: presentation_contract
+ 21/124 Test  #59: dialog_layout .........................   Passed    7.36 sec
+        Start  76: responsive_editing_ui
+ 22/124 Test  #10: dated_remaining_contract ..............   Passed    8.79 sec
+        Start  48: schedule_print_ui
+ 23/124 Test  #24: propagation_cost_contract .............   Passed    6.38 sec
+        Start  25: nonmonotone_propagation_contract
+ 24/124 Test   #6: presentation_contract .................   Passed    5.51 sec
+        Start  83: primavera_xer_ui
+ 25/124 Test  #76: responsive_editing_ui .................   Passed    5.15 sec
+        Start  44: xer_project_selection_ui
+ 26/124 Test  #48: schedule_print_ui .....................   Passed    6.64 sec
+        Start  28: leveling_witness_ui
+ 27/124 Test  #25: nonmonotone_propagation_contract ......   Passed    6.29 sec
+        Start   2: governance_risk_automation_contract
+ 28/124 Test  #83: primavera_xer_ui ......................   Passed    6.99 sec
+        Start  54: timephased_usage_ui
+ 29/124 Test  #44: xer_project_selection_ui ..............   Passed    5.63 sec
+        Start  82: primavera_xer_contract
+ 30/124 Test  #28: leveling_witness_ui ...................   Passed    5.45 sec
+        Start  97: duration_edit_display
+ 31/124 Test  #54: timephased_usage_ui ...................   Passed    5.53 sec
+        Start  36: progress_policy_adoption_ui
+ 32/124 Test  #82: primavera_xer_contract ................   Passed    5.38 sec
+        Start 116: resource_engine_display
+ 33/124 Test   #2: governance_risk_automation_contract ...   Passed   10.96 sec
+        Start  12: work_contour_ui
+ 34/124 Test  #97: duration_edit_display .................   Passed    6.41 sec
+        Start  78: baseline_async_contract_ui
+ 35/124 Test  #36: progress_policy_adoption_ui ...........   Passed    4.60 sec
+        Start   9: resource_view_ui
+ 36/124 Test #116: resource_engine_display ...............   Passed    5.24 sec
+        Start  60: application_updates
+ 37/124 Test  #12: work_contour_ui .......................   Passed    3.09 sec
+        Start  50: leveling_selection_ui
+ 38/124 Test   #9: resource_view_ui ......................   Passed    3.33 sec
+        Start  30: repartition_float_contract
+ 39/124 Test  #78: baseline_async_contract_ui ............   Passed    5.12 sec
+        Start 108: recovery_ui
+ 40/124 Test  #60: application_updates ...................   Passed    4.10 sec
+        Start  90: calculation_cancellation
+ 41/124 Test  #50: leveling_selection_ui .................   Passed    4.79 sec
+        Start  86: bulk_editing_contract_ui
+ 42/124 Test  #30: repartition_float_contract ............   Passed    4.48 sec
+        Start  95: milestone_baseline_regressions
+ 43/124 Test #108: recovery_ui ...........................   Passed    4.74 sec
+        Start  42: xer_batch_contract
+ 44/124 Test  #90: calculation_cancellation ..............   Passed    4.39 sec
+        Start 110: reports_ui
+ 45/124 Test  #42: xer_batch_contract ....................   Passed    2.06 sec
+        Start  20: assignment_periods_ui
+ 46/124 Test  #86: bulk_editing_contract_ui ..............   Passed    4.81 sec
+        Start  29: scaled_repartition_float_contract
+ 47/124 Test  #95: milestone_baseline_regressions ........   Passed    4.01 sec
+        Start  89: task_editing_ui
+ 48/124 Test #110: reports_ui ............................   Passed    4.05 sec
+        Start  46: network_diagram_ui
+ 49/124 Test  #20: assignment_periods_ui .................   Passed    3.52 sec
+        Start  93: effort_work_calendar_split
+ 50/124 Test  #29: scaled_repartition_float_contract .....   Passed    3.67 sec
+        Start  34: progress_leveling_ui
+ 51/124 Test  #89: task_editing_ui .......................   Passed    4.03 sec
+        Start 107: recovery_crash_file
+ 52/124 Test  #46: network_diagram_ui ....................   Passed    4.34 sec
+        Start  43: xer_project_selection_contract
+ 53/124 Test  #93: effort_work_calendar_split ............   Passed    4.14 sec
+        Start  23: leveling_decision_contract
+ 54/124 Test  #34: progress_leveling_ui ..................   Passed    4.02 sec
+        Start  96: effort_ui
+ 55/124 Test #107: recovery_crash_file ...................   Passed    4.30 sec
+        Start  11: dated_remaining_ui
+ 56/124 Test  #43: xer_project_selection_contract ........   Passed    2.72 sec
+        Start  69: multi_project_workspace_ui
+ 57/124 Test  #23: leveling_decision_contract ............   Passed    3.93 sec
+        Start 115: resource_ui
+ 58/124 Test  #11: dated_remaining_ui ....................   Passed    3.52 sec
+ 59/124 Test  #96: effort_ui .............................   Passed    4.51 sec
+        Start  19: assignment_periods_contract
+        Start   5: integrated_workspace_contract
+ 60/124 Test  #69: multi_project_workspace_ui ............   Passed    3.76 sec
+        Start 124: tracking_ui
+ 61/124 Test #115: resource_ui ...........................   Passed    5.05 sec
+        Start  22: object_fields_ui
+ 62/124 Test   #5: integrated_workspace_contract .........   Passed    4.44 sec
+        Start  91: integrated_project_workflow
+ 63/124 Test #124: tracking_ui ...........................   Passed    4.35 sec
+        Start  15: formula_field_contract
+ 64/124 Test  #19: assignment_periods_contract ...........   Passed    5.82 sec
+        Start 100: constraint_gantt_ui
+ 65/124 Test  #22: object_fields_ui ......................   Passed    4.41 sec
+        Start   3: resource_workspace_ui
+ 66/124 Test  #15: formula_field_contract ................   Passed    3.81 sec
+ 67/124 Test  #91: integrated_project_workflow ...........   Passed    4.16 sec
+        Start 122: ui_lifecycle
+        Start  85: project_xml_ui
+ 68/124 Test #100: constraint_gantt_ui ...................   Passed    4.13 sec
+        Start   4: resource_plan_contract
+ 69/124 Test   #3: resource_workspace_ui .................   Passed    3.03 sec
+        Start   7: presentation_ui
+ 70/124 Test #122: ui_lifecycle ..........................   Passed    3.14 sec
+        Start  52: period_actual_ui
+ 71/124 Test   #4: resource_plan_contract ................   Passed    2.98 sec
+        Start  62: workspace_presentation
+ 72/124 Test  #85: project_xml_ui ........................   Passed    4.20 sec
+        Start  40: activity_extension_ui
+ 73/124 Test   #7: presentation_ui .......................   Passed    4.00 sec
+        Start  58: forecast_float_ui
+ 74/124 Test  #52: period_actual_ui ......................   Passed    4.02 sec
+        Start 106: editing_performance_ui
+ 75/124 Test  #62: workspace_presentation ................   Passed    3.72 sec
+        Start  77: prepared_edit_contract
+ 76/124 Test  #40: activity_extension_ui .................   Passed    3.39 sec
+        Start  92: performance_cancellation_ui
+ 77/124 Test  #58: forecast_float_ui .....................   Passed    3.11 sec
+        Start 123: wbs_gantt_ui
+ 78/124 Test #106: editing_performance_ui ................   Passed    3.33 sec
+        Start  74: governance_ui
+ 79/124 Test  #77: prepared_edit_contract ................   Passed    4.81 sec
+        Start 109: reports_export
+ 80/124 Test  #92: performance_cancellation_ui ...........   Passed    4.61 sec
+        Start  35: progress_policy_adoption_contract
+ 81/124 Test #123: wbs_gantt_ui ..........................   Passed    3.70 sec
+        Start 114: resource_contract_file
+ 82/124 Test  #74: governance_ui .........................   Passed    3.73 sec
+        Start 113: cost_ui
+ 83/124 Test #109: reports_export ........................   Passed    2.96 sec
+        Start  21: object_fields_contract
+ 84/124 Test  #35: progress_policy_adoption_contract .....   Passed    3.29 sec
+        Start 104: plan_enum_compatibility
+ 85/124 Test #114: resource_contract_file ................   Passed    3.14 sec
+        Start  61: editing_polish_ui
+ 86/124 Test #113: cost_ui ...............................   Passed    3.29 sec
+        Start  65: msix_workflow_unpacked
+ 87/124 Test  #21: object_fields_contract ................   Passed    2.89 sec
+        Start  57: forecast_float_contract
+ 88/124 Test  #61: editing_polish_ui .....................   Passed    2.47 sec
+        Start  39: activity_extension_contract
+ 89/124 Test #104: plan_enum_compatibility ...............   Passed    3.88 sec
+        Start 101: pdm_calendar_contract
+ 90/124 Test  #65: msix_workflow_unpacked ................   Passed    3.16 sec
+        Start  16: formula_field_ui
+ 91/124 Test  #57: forecast_float_contract ...............   Passed    2.80 sec
+        Start  37: progress_policy_contract
+ 92/124 Test  #39: activity_extension_contract ...........   Passed    2.67 sec
+        Start 102: pdm_calendar_ui
+ 93/124 Test #101: pdm_calendar_contract .................   Passed    2.73 sec
+        Start  18: planned_work_ui
+ 94/124 Test  #16: formula_field_ui ......................   Passed    2.39 sec
+        Start  33: progress_leveling_contract
+ 95/124 Test #102: pdm_calendar_ui .......................   Passed    2.29 sec
+        Start  68: workspace_file_contract
+ 96/124 Test  #37: progress_policy_contract ..............   Passed    2.92 sec
+        Start  84: project_xml_contract
+ 97/124 Test  #18: planned_work_ui .......................   Passed    2.07 sec
+        Start  71: parser_seed_replay
+ 98/124 Test  #33: progress_leveling_contract ............   Passed    2.08 sec
+        Start   8: resource_view_contract
+ 99/124 Test  #68: workspace_file_contract ...............   Passed    1.81 sec
+        Start  88: task_editing_contract
+100/124 Test  #71: parser_seed_replay ....................   Passed    1.23 sec
+        Start 111: cost_contract_file
+101/124 Test  #84: project_xml_contract ..................   Passed    2.15 sec
+        Start 121: file_lifecycle
+102/124 Test   #8: resource_view_contract ................   Passed    1.29 sec
+        Start  49: leveling_selection_contract
+103/124 Test  #88: task_editing_contract .................   Passed    1.18 sec
+        Start  99: constraint_contract
+104/124 Test #111: cost_contract_file ....................   Passed    1.25 sec
+        Start  63: primavera_public_corpus
+105/124 Test  #49: leveling_selection_contract ...........   Passed    1.18 sec
+        Start  14: udf_mapping_contract
+106/124 Test #121: file_lifecycle ........................   Passed    1.61 sec
+        Start  67: shared_resource_intervals
+107/124 Test  #99: constraint_contract ...................   Passed    1.15 sec
+        Start  55: task_classification_contract
+108/124 Test  #63: primavera_public_corpus ...............***Failed    1.07 sec
+{
+    "files": [
+        {
+            "assignments": 0,
+            "calculation_status": 0,
+            "calendars": [
+                {
+                    "holidays": [
+                        "2019-07-04",
+                        "2019-07-05",
+                        "2019-09-02",
+                        "2019-11-28",
+                        "2019-11-29",
+                        "2019-12-24",
+                        "2019-12-25",
+                        "2020-01-01",
+                        "2020-05-25",
+                        "2020-07-03",
+                        "2020-09-07",
+                        "2020-11-26",
+                        "2020-12-24",
+                        "2020-12-25"
+                    ],
+                    "id": "xer-cal-44739",
+                    "name": "5 Day",
+                    "periods": [
+                        [
+                            480,
+                            720
+                        ],
+                        [
+                            780,
+                            1020
+                        ]
+                    ],
+                    "weekdays": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                    ]
+                }
+            ],
+            "exchange": {
+                "actualCosts": {
+                    "allocations": [
+                    ],
+                    "assignmentTotals": [
+                    ],
+                    "contract": "jobs-xer-actual-cost-v1",
+                    "costPolicy": "cumulative-includes-period-allocations",
+                    "costReports": 0,
+                    "currency": "USD",
+                    "datedActuals": 0,
+                    "earnedValue": "native-baseline-required; P6 BCWP/BCWS are not native approvals",
+                    "expenses": [
+                    ],
+                    "financialPeriods": [
+                    ],
+                    "progressReports": 1,
+                    "statusAt": "2019-10-02 00:00"
+                },
+                "compatibility": {
+                    "externalRoundTrip": "unverified",
+                    "import": "mapped-subset",
+                    "jobsRecomputation": "unverified",
+                    "originalPreservation": "exact-xer-bytes"
+                },
+                "contract": "jobs-xer-plan-v1",
+                "diagnostics": [
+                    {
+                        "message": "생략된 행 끝 필드를 빈 값으로 복원 · 필수 값 검증 유지",
+                        "path": "PROJECT/line-27"
+                    },
+                    {
+                        "message": "DEL 메모 줄바꿈 표기 · 사용 필드는 줄바꿈으로 해석 · 원본 바이트 보존",
+                        "path": "SCHEDOPTIONS/line-33"
+                    },
+                    {
+                        "message": "생략된 행 끝 필드를 빈 값으로 복원 · 필수 값 검증 유지",
+                        "path": "PROJWBS/line-36"
+                    },
+                    {
+                        "message": "생략된 행 끝 필드를 빈 값으로 복원 · 필수 값 검증 유지",
+                        "path": "TASK/line-41"
+                    },
+                    {
+                        "message": "기간 기반 계획과 명시 실적·원가의 지원 부분을 투영합니다. 공수/자원 종속 일정과 P6 재계산 호환은 미검증입니다.",
+                        "path": "PROJECT"
+                    },
+                    {
+                        "message": "수입 작업/자원에 달력을 명시 배정합니다. 새 native 작업은 PPM 기본 달력을 사용합니다. 기간 기반 일정은 작업 달력을 사용합니다.",
+                        "path": "CALENDAR"
+                    },
+                    {
+                        "message": "시작 날짜는 유지 · native 시작 기준은 09:00",
+                        "path": "PROJECT/plan_start_date"
+                    },
+                    {
+                        "message": "원본 지연 달력 정책 rcal_Predecessor → PPM 후행 작업 달력 기준; 계산 동등성 미검증",
+                        "path": "SCHEDOPTIONS/sched_calendar_on_relationship_lag"
+                    },
+                    {
+                        "message": "프로젝트 루트의 외부 EPS 부모는 native 계층에 포함하지 않음",
+                        "path": "PROJWBS/line-36/parent_wbs_id"
+                    },
+                    {
+                        "message": "실제 소요 기간은 실제 시작~완료/상태일의 작업 달력 근무분입니다. 관측 실제공수와 구분합니다.",
+                        "path": "TASK/xer-task-1338401/actualDuration"
+                    },
+                    {
+                        "message": "진척 유형이 CP_Phys가 아니므로 native 물리 진척으로 추정하지 않습니다.",
+                        "path": "TASK/phys_complete_pct"
+                    },
+                    {
+                        "message": "실적/원가는 상태일의 새 관측 스냅샷입니다. 과거 정정·승인·기준선/P6 BCWP·BCWS는 재현하지 않습니다. 누계 AC에는 기간 배분액이 포함됩니다.",
+                        "path": "PROJECT/actual-costs"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/default_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/last_chng_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/clndr_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/day_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/week_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/month_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/year_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/rsrc_private"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/decimal_digit_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/curr_symbol"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/decimal_symbol"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/digit_group_symbol"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/pos_curr_fmt_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/neg_curr_fmt_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/curr_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/group_digit_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/base_exch_rate"
+                    },
+                    {
+                        "message": "미지원 테이블 · 1행 원본에 보존",
+                        "path": "OBS"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/fy_start_month_num"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/rsrc_self_add_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/allow_complete_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/rsrc_multi_assign_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/checkout_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/project_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/step_complete_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/cost_qty_recalc_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/batch_sum_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/name_sep_char"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_complete_pct_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/acct_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/orig_proj_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/source_proj_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/base_type_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/sum_base_proj_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/task_code_base"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/task_code_step"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/priority_num"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/wbs_max_sum_level"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/strgy_priority_num"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/last_checksum"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/critical_drtn_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_cost_per_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/plan_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/scd_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/add_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/last_tasksum_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/fcst_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_duration_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/task_code_prefix"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_qty_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/add_by_name"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/web_local_root_path"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/proj_url"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_rate_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/add_act_remain_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/act_this_per_link_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_task_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/act_pct_link_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/critical_path_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/task_code_prefix_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_rollup_dates_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/use_project_baseline_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/rem_target_link_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/reset_planned_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/allow_neg_act_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/sum_assign_level"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/last_fin_dates_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/last_baseline_update_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/cr_external_key"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/apply_actuals_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/location_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/loaded_scope_level"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/export_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/new_fin_dates_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/next_data_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/close_period_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/sum_refresh_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/trsrcsum_loaded"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/obs_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/seq_num"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/sum_data_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/status_code"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/wbs_short_name"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/phase_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ev_user_pct"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ev_etc_user_value"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/orig_cost"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/indep_remain_total_cost"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ann_dscnt_rate_pct"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/dscnt_period_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/indep_remain_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/anticip_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/anticip_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ev_compute_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ev_etc_compute_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/tmpl_guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/plan_open_state"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/schedoptions_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_outer_depend_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_open_critical_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_lag_early_start_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_retained_logic"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_setplantoforecast"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_float_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_use_expect_end_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_progress_override"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_float_thrs_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_outer_assign_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_outer_assign_priority"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_over_alloc_pct"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_within_float_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_keep_sched_date_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_all_rsrc_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_use_project_end_date_for_float"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/enable_multiple_longest_path_calc"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/limit_multiple_longest_path_calc"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/max_multiple_longest_path"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/use_total_float_multiple_longest_paths"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/key_activity_for_multiple_longest_paths"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/LevelPriorityList"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/rev_fdbk_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/lock_plan_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/auto_compute_act_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/rsrc_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/total_float_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/free_float_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/act_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/remain_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/target_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/target_equip_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/act_equip_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/remain_equip_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/late_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/late_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/expect_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/early_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/early_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/restart_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/reend_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/target_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/target_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/rem_late_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/rem_late_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/priority_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/suspend_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/resume_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/float_path"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/float_path_order"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/tmpl_guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/driving_path_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/act_this_per_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/act_this_per_equip_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/external_early_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/external_late_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/create_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/update_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/create_user"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/update_user"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/location_id"
+                    }
+                ],
+                "direction": "import",
+                "documentId": "78c5d9f5-eb5d-4285-8e3a-3898011a7aa5",
+                "mapping": [
+                    {
+                        "activityCode": "",
+                        "jobsId": "xer-cal-44739",
+                        "kind": "calendar",
+                        "xerId": "44739"
+                    },
+                    {
+                        "activityCode": "",
+                        "jobsId": "",
+                        "kind": "project-root",
+                        "xerId": "355248"
+                    },
+                    {
+                        "activityCode": "A1000",
+                        "jobsId": "xer-task-1338401",
+                        "kind": "task",
+                        "xerId": "1338401"
+                    }
+                ],
+                "nativeSnapshotProfile": "native-effort-split-v1",
+                "revision": "1",
+                "source": {
+                    "encoding": "UTF-8",
+                    "header": [
+                        "ERMHDR",
+                        "8.2.0",
+                        "2020-03-17",
+                        "Project",
+                        "admin",
+                        "Primavera Admin",
+                        "dbxDatabaseNoName",
+                        "Project Management",
+                        "USD"
+                    ],
+                    "lagPolicy": "rcal_Predecessor",
+                    "name": "PredecessorCalendar.xer",
+                    "producer": "unverified",
+                    "projectCode": "TEST PROJECT",
+                    "projectId": "34738",
+                    "sha256": "46f3c1c68552429cf32191ebc8f48d12f52e517481b6fb588ad1955937c5cd1d",
+                    "version": "8.2.0"
+                },
+                "targetPolicy": {
+                    "calculationProfile": "native-effort-split-v1",
+                    "lagCalendar": "successor-working-calendar",
+                    "projectStartAnchor": "09:00"
+                }
+            },
+            "file": "PredecessorCalendar.xer",
+            "finish": "2019-06-12 17:00",
+            "jobs_round_trip_dates_equal": true,
+            "resources": 0,
+            "sha256": "46f3c1c68552429cf32191ebc8f48d12f52e517481b6fb588ad1955937c5cd1d",
+            "status": "imported",
+            "tasks": [
+                {
+                    "calendar_id": "xer-cal-44739",
+                    "constraint": "SNET",
+                    "duration_minutes": 1440,
+                    "id": "xer-task-1338401",
+                    "name": "Test",
+                    "relations": [
+                    ]
+                }
+            ]
+        },
+        {
+            "assignments": 0,
+            "calculation_status": 0,
+            "calendars": [
+                {
+                    "holidays": [
+                        "2019-07-04",
+                        "2019-07-05",
+                        "2019-09-02",
+                        "2019-11-28",
+                        "2019-11-29",
+                        "2019-12-24",
+                        "2019-12-25",
+                        "2020-01-01",
+                        "2020-05-25",
+                        "2020-07-03",
+                        "2020-09-07",
+                        "2020-11-26",
+                        "2020-12-24",
+                        "2020-12-25"
+                    ],
+                    "id": "xer-cal-44739",
+                    "name": "5 Day",
+                    "periods": [
+                        [
+                            480,
+                            720
+                        ],
+                        [
+                            780,
+                            1020
+                        ]
+                    ],
+                    "weekdays": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                    ]
+                }
+            ],
+            "exchange": {
+                "actualCosts": {
+                    "allocations": [
+                    ],
+                    "assignmentTotals": [
+                    ],
+                    "contract": "jobs-xer-actual-cost-v1",
+                    "costPolicy": "cumulative-includes-period-allocations",
+                    "costReports": 0,
+                    "currency": "USD",
+                    "datedActuals": 0,
+                    "earnedValue": "native-baseline-required; P6 BCWP/BCWS are not native approvals",
+                    "expenses": [
+                    ],
+                    "financialPeriods": [
+                    ],
+                    "progressReports": 1,
+                    "statusAt": "2019-10-02 00:00"
+                },
+                "compatibility": {
+                    "externalRoundTrip": "unverified",
+                    "import": "mapped-subset",
+                    "jobsRecomputation": "unverified",
+                    "originalPreservation": "exact-xer-bytes"
+                },
+                "contract": "jobs-xer-plan-v1",
+                "diagnostics": [
+                    {
+                        "message": "생략된 행 끝 필드를 빈 값으로 복원 · 필수 값 검증 유지",
+                        "path": "PROJECT/line-27"
+                    },
+                    {
+                        "message": "DEL 메모 줄바꿈 표기 · 사용 필드는 줄바꿈으로 해석 · 원본 바이트 보존",
+                        "path": "SCHEDOPTIONS/line-33"
+                    },
+                    {
+                        "message": "생략된 행 끝 필드를 빈 값으로 복원 · 필수 값 검증 유지",
+                        "path": "PROJWBS/line-36"
+                    },
+                    {
+                        "message": "생략된 행 끝 필드를 빈 값으로 복원 · 필수 값 검증 유지",
+                        "path": "TASK/line-41"
+                    },
+                    {
+                        "message": "기간 기반 계획과 명시 실적·원가의 지원 부분을 투영합니다. 공수/자원 종속 일정과 P6 재계산 호환은 미검증입니다.",
+                        "path": "PROJECT"
+                    },
+                    {
+                        "message": "수입 작업/자원에 달력을 명시 배정합니다. 새 native 작업은 PPM 기본 달력을 사용합니다. 기간 기반 일정은 작업 달력을 사용합니다.",
+                        "path": "CALENDAR"
+                    },
+                    {
+                        "message": "시작 날짜는 유지 · native 시작 기준은 09:00",
+                        "path": "PROJECT/plan_start_date"
+                    },
+                    {
+                        "message": "원본 지연 달력 정책 rcal_ProjDefault → PPM 후행 작업 달력 기준; 계산 동등성 미검증",
+                        "path": "SCHEDOPTIONS/sched_calendar_on_relationship_lag"
+                    },
+                    {
+                        "message": "프로젝트 루트의 외부 EPS 부모는 native 계층에 포함하지 않음",
+                        "path": "PROJWBS/line-36/parent_wbs_id"
+                    },
+                    {
+                        "message": "실제 소요 기간은 실제 시작~완료/상태일의 작업 달력 근무분입니다. 관측 실제공수와 구분합니다.",
+                        "path": "TASK/xer-task-1338401/actualDuration"
+                    },
+                    {
+                        "message": "진척 유형이 CP_Phys가 아니므로 native 물리 진척으로 추정하지 않습니다.",
+                        "path": "TASK/phys_complete_pct"
+                    },
+                    {
+                        "message": "실적/원가는 상태일의 새 관측 스냅샷입니다. 과거 정정·승인·기준선/P6 BCWP·BCWS는 재현하지 않습니다. 누계 AC에는 기간 배분액이 포함됩니다.",
+                        "path": "PROJECT/actual-costs"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/default_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/last_chng_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/clndr_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/day_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/week_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/month_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/year_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/rsrc_private"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/decimal_digit_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/curr_symbol"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/decimal_symbol"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/digit_group_symbol"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/pos_curr_fmt_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/neg_curr_fmt_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/curr_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/group_digit_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/base_exch_rate"
+                    },
+                    {
+                        "message": "미지원 테이블 · 1행 원본에 보존",
+                        "path": "OBS"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/fy_start_month_num"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/rsrc_self_add_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/allow_complete_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/rsrc_multi_assign_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/checkout_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/project_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/step_complete_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/cost_qty_recalc_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/batch_sum_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/name_sep_char"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_complete_pct_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/acct_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/orig_proj_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/source_proj_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/base_type_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/sum_base_proj_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/task_code_base"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/task_code_step"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/priority_num"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/wbs_max_sum_level"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/strgy_priority_num"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/last_checksum"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/critical_drtn_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_cost_per_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/plan_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/scd_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/add_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/last_tasksum_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/fcst_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_duration_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/task_code_prefix"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_qty_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/add_by_name"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/web_local_root_path"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/proj_url"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_rate_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/add_act_remain_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/act_this_per_link_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_task_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/act_pct_link_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/critical_path_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/task_code_prefix_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_rollup_dates_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/use_project_baseline_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/rem_target_link_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/reset_planned_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/allow_neg_act_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/sum_assign_level"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/last_fin_dates_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/last_baseline_update_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/cr_external_key"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/apply_actuals_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/location_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/loaded_scope_level"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/export_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/new_fin_dates_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/next_data_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/close_period_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/sum_refresh_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/trsrcsum_loaded"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/obs_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/seq_num"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/sum_data_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/status_code"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/wbs_short_name"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/phase_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ev_user_pct"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ev_etc_user_value"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/orig_cost"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/indep_remain_total_cost"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ann_dscnt_rate_pct"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/dscnt_period_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/indep_remain_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/anticip_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/anticip_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ev_compute_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ev_etc_compute_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/tmpl_guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/plan_open_state"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/schedoptions_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_outer_depend_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_open_critical_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_lag_early_start_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_retained_logic"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_setplantoforecast"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_float_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_use_expect_end_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_progress_override"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_float_thrs_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_outer_assign_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_outer_assign_priority"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_over_alloc_pct"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_within_float_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_keep_sched_date_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_all_rsrc_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_use_project_end_date_for_float"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/enable_multiple_longest_path_calc"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/limit_multiple_longest_path_calc"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/max_multiple_longest_path"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/use_total_float_multiple_longest_paths"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/key_activity_for_multiple_longest_paths"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/LevelPriorityList"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/rev_fdbk_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/lock_plan_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/auto_compute_act_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/rsrc_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/total_float_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/free_float_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/act_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/remain_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/target_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/target_equip_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/act_equip_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/remain_equip_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/late_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/late_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/expect_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/early_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/early_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/restart_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/reend_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/target_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/target_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/rem_late_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/rem_late_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/priority_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/suspend_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/resume_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/float_path"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/float_path_order"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/tmpl_guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/driving_path_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/act_this_per_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/act_this_per_equip_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/external_early_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/external_late_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/create_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/update_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/create_user"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/update_user"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/location_id"
+                    }
+                ],
+                "direction": "import",
+                "documentId": "e87abdba-10a7-4cb6-90c2-f904023b7eba",
+                "mapping": [
+                    {
+                        "activityCode": "",
+                        "jobsId": "xer-cal-44739",
+                        "kind": "calendar",
+                        "xerId": "44739"
+                    },
+                    {
+                        "activityCode": "",
+                        "jobsId": "",
+                        "kind": "project-root",
+                        "xerId": "355248"
+                    },
+                    {
+                        "activityCode": "A1000",
+                        "jobsId": "xer-task-1338401",
+                        "kind": "task",
+                        "xerId": "1338401"
+                    }
+                ],
+                "nativeSnapshotProfile": "native-effort-split-v1",
+                "revision": "1",
+                "source": {
+                    "encoding": "UTF-8",
+                    "header": [
+                        "ERMHDR",
+                        "8.2.0",
+                        "2020-03-17",
+                        "Project",
+                        "admin",
+                        "Primavera Admin",
+                        "dbxDatabaseNoName",
+                        "Project Management",
+                        "USD"
+                    ],
+                    "lagPolicy": "rcal_ProjDefault",
+                    "name": "ProjectDefaultCalendar.xer",
+                    "producer": "unverified",
+                    "projectCode": "TEST PROJECT",
+                    "projectId": "34738",
+                    "sha256": "e48eb3a53b7e8f40a5a87af8e983e9932c298baeb572e3a901b3961f997674ef",
+                    "version": "8.2.0"
+                },
+                "targetPolicy": {
+                    "calculationProfile": "native-effort-split-v1",
+                    "lagCalendar": "successor-working-calendar",
+                    "projectStartAnchor": "09:00"
+                }
+            },
+            "file": "ProjectDefaultCalendar.xer",
+            "finish": "2019-06-12 17:00",
+            "jobs_round_trip_dates_equal": true,
+            "resources": 0,
+            "sha256": "e48eb3a53b7e8f40a5a87af8e983e9932c298baeb572e3a901b3961f997674ef",
+            "status": "imported",
+            "tasks": [
+                {
+                    "calendar_id": "xer-cal-44739",
+                    "constraint": "SNET",
+                    "duration_minutes": 1440,
+                    "id": "xer-task-1338401",
+                    "name": "Test",
+                    "relations": [
+                    ]
+                }
+            ]
+        },
+        {
+            "assignments": 0,
+            "calculation_status": 0,
+            "calendars": [
+                {
+                    "holidays": [
+                        "2019-07-04",
+                        "2019-07-05",
+                        "2019-09-02",
+                        "2019-11-28",
+                        "2019-11-29",
+                        "2019-12-24",
+                        "2019-12-25",
+                        "2020-01-01",
+                        "2020-05-25",
+                        "2020-07-03",
+                        "2020-09-07",
+                        "2020-11-26",
+                        "2020-12-24",
+                        "2020-12-25"
+                    ],
+                    "id": "xer-cal-44739",
+                    "name": "5 Day",
+                    "periods": [
+                        [
+                            480,
+                            720
+                        ],
+                        [
+                            780,
+                            1020
+                        ]
+                    ],
+                    "weekdays": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                    ]
+                }
+            ],
+            "exchange": {
+                "actualCosts": {
+                    "allocations": [
+                    ],
+                    "assignmentTotals": [
+                    ],
+                    "contract": "jobs-xer-actual-cost-v1",
+                    "costPolicy": "cumulative-includes-period-allocations",
+                    "costReports": 0,
+                    "currency": "USD",
+                    "datedActuals": 0,
+                    "earnedValue": "native-baseline-required; P6 BCWP/BCWS are not native approvals",
+                    "expenses": [
+                    ],
+                    "financialPeriods": [
+                    ],
+                    "progressReports": 1,
+                    "statusAt": "2019-10-02 00:00"
+                },
+                "compatibility": {
+                    "externalRoundTrip": "unverified",
+                    "import": "mapped-subset",
+                    "jobsRecomputation": "unverified",
+                    "originalPreservation": "exact-xer-bytes"
+                },
+                "contract": "jobs-xer-plan-v1",
+                "diagnostics": [
+                    {
+                        "message": "생략된 행 끝 필드를 빈 값으로 복원 · 필수 값 검증 유지",
+                        "path": "PROJECT/line-27"
+                    },
+                    {
+                        "message": "DEL 메모 줄바꿈 표기 · 사용 필드는 줄바꿈으로 해석 · 원본 바이트 보존",
+                        "path": "SCHEDOPTIONS/line-33"
+                    },
+                    {
+                        "message": "생략된 행 끝 필드를 빈 값으로 복원 · 필수 값 검증 유지",
+                        "path": "PROJWBS/line-36"
+                    },
+                    {
+                        "message": "생략된 행 끝 필드를 빈 값으로 복원 · 필수 값 검증 유지",
+                        "path": "TASK/line-41"
+                    },
+                    {
+                        "message": "기간 기반 계획과 명시 실적·원가의 지원 부분을 투영합니다. 공수/자원 종속 일정과 P6 재계산 호환은 미검증입니다.",
+                        "path": "PROJECT"
+                    },
+                    {
+                        "message": "수입 작업/자원에 달력을 명시 배정합니다. 새 native 작업은 PPM 기본 달력을 사용합니다. 기간 기반 일정은 작업 달력을 사용합니다.",
+                        "path": "CALENDAR"
+                    },
+                    {
+                        "message": "시작 날짜는 유지 · native 시작 기준은 09:00",
+                        "path": "PROJECT/plan_start_date"
+                    },
+                    {
+                        "message": "프로젝트 루트의 외부 EPS 부모는 native 계층에 포함하지 않음",
+                        "path": "PROJWBS/line-36/parent_wbs_id"
+                    },
+                    {
+                        "message": "실제 소요 기간은 실제 시작~완료/상태일의 작업 달력 근무분입니다. 관측 실제공수와 구분합니다.",
+                        "path": "TASK/xer-task-1338401/actualDuration"
+                    },
+                    {
+                        "message": "진척 유형이 CP_Phys가 아니므로 native 물리 진척으로 추정하지 않습니다.",
+                        "path": "TASK/phys_complete_pct"
+                    },
+                    {
+                        "message": "실적/원가는 상태일의 새 관측 스냅샷입니다. 과거 정정·승인·기준선/P6 BCWP·BCWS는 재현하지 않습니다. 누계 AC에는 기간 배분액이 포함됩니다.",
+                        "path": "PROJECT/actual-costs"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/default_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/last_chng_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/clndr_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/day_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/week_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/month_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/year_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/rsrc_private"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/decimal_digit_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/curr_symbol"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/decimal_symbol"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/digit_group_symbol"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/pos_curr_fmt_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/neg_curr_fmt_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/curr_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/group_digit_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/base_exch_rate"
+                    },
+                    {
+                        "message": "미지원 테이블 · 1행 원본에 보존",
+                        "path": "OBS"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/fy_start_month_num"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/rsrc_self_add_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/allow_complete_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/rsrc_multi_assign_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/checkout_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/project_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/step_complete_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/cost_qty_recalc_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/batch_sum_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/name_sep_char"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_complete_pct_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/acct_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/orig_proj_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/source_proj_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/base_type_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/sum_base_proj_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/task_code_base"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/task_code_step"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/priority_num"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/wbs_max_sum_level"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/strgy_priority_num"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/last_checksum"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/critical_drtn_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_cost_per_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/plan_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/scd_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/add_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/last_tasksum_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/fcst_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_duration_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/task_code_prefix"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_qty_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/add_by_name"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/web_local_root_path"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/proj_url"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_rate_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/add_act_remain_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/act_this_per_link_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_task_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/act_pct_link_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/critical_path_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/task_code_prefix_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_rollup_dates_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/use_project_baseline_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/rem_target_link_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/reset_planned_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/allow_neg_act_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/sum_assign_level"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/last_fin_dates_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/last_baseline_update_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/cr_external_key"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/apply_actuals_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/location_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/loaded_scope_level"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/export_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/new_fin_dates_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/next_data_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/close_period_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/sum_refresh_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/trsrcsum_loaded"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/obs_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/seq_num"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/sum_data_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/status_code"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/wbs_short_name"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/phase_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ev_user_pct"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ev_etc_user_value"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/orig_cost"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/indep_remain_total_cost"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ann_dscnt_rate_pct"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/dscnt_period_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/indep_remain_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/anticip_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/anticip_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ev_compute_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ev_etc_compute_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/tmpl_guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/plan_open_state"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/schedoptions_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_outer_depend_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_open_critical_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_lag_early_start_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_retained_logic"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_setplantoforecast"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_float_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_use_expect_end_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_progress_override"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_float_thrs_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_outer_assign_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_outer_assign_priority"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_over_alloc_pct"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_within_float_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_keep_sched_date_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_all_rsrc_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_use_project_end_date_for_float"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/enable_multiple_longest_path_calc"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/limit_multiple_longest_path_calc"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/max_multiple_longest_path"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/use_total_float_multiple_longest_paths"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/key_activity_for_multiple_longest_paths"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/LevelPriorityList"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/rev_fdbk_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/lock_plan_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/auto_compute_act_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/rsrc_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/total_float_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/free_float_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/act_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/remain_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/target_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/target_equip_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/act_equip_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/remain_equip_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/late_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/late_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/expect_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/early_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/early_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/restart_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/reend_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/target_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/target_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/rem_late_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/rem_late_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/priority_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/suspend_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/resume_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/float_path"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/float_path_order"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/tmpl_guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/driving_path_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/act_this_per_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/act_this_per_equip_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/external_early_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/external_late_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/create_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/update_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/create_user"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/update_user"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/location_id"
+                    }
+                ],
+                "direction": "import",
+                "documentId": "d65a247b-ae12-4916-bc81-3cabd7220f7e",
+                "mapping": [
+                    {
+                        "activityCode": "",
+                        "jobsId": "xer-cal-44739",
+                        "kind": "calendar",
+                        "xerId": "44739"
+                    },
+                    {
+                        "activityCode": "",
+                        "jobsId": "",
+                        "kind": "project-root",
+                        "xerId": "355248"
+                    },
+                    {
+                        "activityCode": "A1000",
+                        "jobsId": "xer-task-1338401",
+                        "kind": "task",
+                        "xerId": "1338401"
+                    }
+                ],
+                "nativeSnapshotProfile": "native-effort-split-v1",
+                "revision": "1",
+                "source": {
+                    "encoding": "UTF-8",
+                    "header": [
+                        "ERMHDR",
+                        "8.2.0",
+                        "2020-03-17",
+                        "Project",
+                        "admin",
+                        "Primavera Admin",
+                        "dbxDatabaseNoName",
+                        "Project Management",
+                        "USD"
+                    ],
+                    "lagPolicy": "rcal_Successor",
+                    "name": "SuccessorCalendar.xer",
+                    "producer": "unverified",
+                    "projectCode": "TEST PROJECT",
+                    "projectId": "34738",
+                    "sha256": "ab420cc573be248ef7ef344f77b204176c3263fceb45c27866276929bf1e59e2",
+                    "version": "8.2.0"
+                },
+                "targetPolicy": {
+                    "calculationProfile": "native-effort-split-v1",
+                    "lagCalendar": "successor-working-calendar",
+                    "projectStartAnchor": "09:00"
+                }
+            },
+            "file": "SuccessorCalendar.xer",
+            "finish": "2019-06-12 17:00",
+            "jobs_round_trip_dates_equal": true,
+            "resources": 0,
+            "sha256": "ab420cc573be248ef7ef344f77b204176c3263fceb45c27866276929bf1e59e2",
+            "status": "imported",
+            "tasks": [
+                {
+                    "calendar_id": "xer-cal-44739",
+                    "constraint": "SNET",
+                    "duration_minutes": 1440,
+                    "id": "xer-task-1338401",
+                    "name": "Test",
+                    "relations": [
+                    ]
+                }
+            ]
+        },
+        {
+            "assignments": 0,
+            "calculation_status": 0,
+            "calendars": [
+                {
+                    "holidays": [
+                        "2019-07-04",
+                        "2019-07-05",
+                        "2019-09-02",
+                        "2019-11-28",
+                        "2019-11-29",
+                        "2019-12-24",
+                        "2019-12-25",
+                        "2020-01-01",
+                        "2020-05-25",
+                        "2020-07-03",
+                        "2020-09-07",
+                        "2020-11-26",
+                        "2020-12-24",
+                        "2020-12-25"
+                    ],
+                    "id": "xer-cal-44739",
+                    "name": "5 Day",
+                    "periods": [
+                        [
+                            480,
+                            720
+                        ],
+                        [
+                            780,
+                            1020
+                        ]
+                    ],
+                    "weekdays": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                    ]
+                }
+            ],
+            "exchange": {
+                "actualCosts": {
+                    "allocations": [
+                    ],
+                    "assignmentTotals": [
+                    ],
+                    "contract": "jobs-xer-actual-cost-v1",
+                    "costPolicy": "cumulative-includes-period-allocations",
+                    "costReports": 0,
+                    "currency": "USD",
+                    "datedActuals": 0,
+                    "earnedValue": "native-baseline-required; P6 BCWP/BCWS are not native approvals",
+                    "expenses": [
+                    ],
+                    "financialPeriods": [
+                    ],
+                    "progressReports": 1,
+                    "statusAt": "2019-10-02 00:00"
+                },
+                "compatibility": {
+                    "externalRoundTrip": "unverified",
+                    "import": "mapped-subset",
+                    "jobsRecomputation": "unverified",
+                    "originalPreservation": "exact-xer-bytes"
+                },
+                "contract": "jobs-xer-plan-v1",
+                "diagnostics": [
+                    {
+                        "message": "생략된 행 끝 필드를 빈 값으로 복원 · 필수 값 검증 유지",
+                        "path": "PROJECT/line-27"
+                    },
+                    {
+                        "message": "DEL 메모 줄바꿈 표기 · 사용 필드는 줄바꿈으로 해석 · 원본 바이트 보존",
+                        "path": "SCHEDOPTIONS/line-33"
+                    },
+                    {
+                        "message": "생략된 행 끝 필드를 빈 값으로 복원 · 필수 값 검증 유지",
+                        "path": "PROJWBS/line-36"
+                    },
+                    {
+                        "message": "생략된 행 끝 필드를 빈 값으로 복원 · 필수 값 검증 유지",
+                        "path": "TASK/line-41"
+                    },
+                    {
+                        "message": "기간 기반 계획과 명시 실적·원가의 지원 부분을 투영합니다. 공수/자원 종속 일정과 P6 재계산 호환은 미검증입니다.",
+                        "path": "PROJECT"
+                    },
+                    {
+                        "message": "수입 작업/자원에 달력을 명시 배정합니다. 새 native 작업은 PPM 기본 달력을 사용합니다. 기간 기반 일정은 작업 달력을 사용합니다.",
+                        "path": "CALENDAR"
+                    },
+                    {
+                        "message": "시작 날짜는 유지 · native 시작 기준은 09:00",
+                        "path": "PROJECT/plan_start_date"
+                    },
+                    {
+                        "message": "원본 지연 달력 정책 rcal_24Hour → PPM 후행 작업 달력 기준; 계산 동등성 미검증",
+                        "path": "SCHEDOPTIONS/sched_calendar_on_relationship_lag"
+                    },
+                    {
+                        "message": "프로젝트 루트의 외부 EPS 부모는 native 계층에 포함하지 않음",
+                        "path": "PROJWBS/line-36/parent_wbs_id"
+                    },
+                    {
+                        "message": "실제 소요 기간은 실제 시작~완료/상태일의 작업 달력 근무분입니다. 관측 실제공수와 구분합니다.",
+                        "path": "TASK/xer-task-1338401/actualDuration"
+                    },
+                    {
+                        "message": "진척 유형이 CP_Phys가 아니므로 native 물리 진척으로 추정하지 않습니다.",
+                        "path": "TASK/phys_complete_pct"
+                    },
+                    {
+                        "message": "실적/원가는 상태일의 새 관측 스냅샷입니다. 과거 정정·승인·기준선/P6 BCWP·BCWS는 재현하지 않습니다. 누계 AC에는 기간 배분액이 포함됩니다.",
+                        "path": "PROJECT/actual-costs"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/default_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/last_chng_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/clndr_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/day_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/week_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/month_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/year_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CALENDAR/rsrc_private"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/decimal_digit_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/curr_symbol"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/decimal_symbol"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/digit_group_symbol"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/pos_curr_fmt_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/neg_curr_fmt_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/curr_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/group_digit_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "CURRTYPE/base_exch_rate"
+                    },
+                    {
+                        "message": "미지원 테이블 · 1행 원본에 보존",
+                        "path": "OBS"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/fy_start_month_num"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/rsrc_self_add_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/allow_complete_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/rsrc_multi_assign_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/checkout_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/project_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/step_complete_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/cost_qty_recalc_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/batch_sum_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/name_sep_char"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_complete_pct_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/acct_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/orig_proj_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/source_proj_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/base_type_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/sum_base_proj_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/task_code_base"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/task_code_step"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/priority_num"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/wbs_max_sum_level"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/strgy_priority_num"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/last_checksum"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/critical_drtn_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_cost_per_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/plan_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/scd_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/add_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/last_tasksum_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/fcst_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_duration_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/task_code_prefix"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_qty_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/add_by_name"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/web_local_root_path"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/proj_url"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_rate_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/add_act_remain_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/act_this_per_link_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_task_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/act_pct_link_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/critical_path_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/task_code_prefix_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/def_rollup_dates_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/use_project_baseline_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/rem_target_link_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/reset_planned_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/allow_neg_act_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/sum_assign_level"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/last_fin_dates_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/last_baseline_update_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/cr_external_key"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/apply_actuals_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/location_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/loaded_scope_level"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/export_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/new_fin_dates_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/next_data_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/close_period_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/sum_refresh_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJECT/trsrcsum_loaded"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/obs_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/seq_num"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/sum_data_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/status_code"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/wbs_short_name"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/phase_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ev_user_pct"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ev_etc_user_value"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/orig_cost"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/indep_remain_total_cost"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ann_dscnt_rate_pct"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/dscnt_period_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/indep_remain_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/anticip_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/anticip_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ev_compute_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/ev_etc_compute_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/tmpl_guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "PROJWBS/plan_open_state"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/schedoptions_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_outer_depend_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_open_critical_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_lag_early_start_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_retained_logic"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_setplantoforecast"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_float_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_use_expect_end_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_progress_override"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_float_thrs_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_outer_assign_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_outer_assign_priority"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_over_alloc_pct"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_within_float_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_keep_sched_date_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/level_all_rsrc_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/sched_use_project_end_date_for_float"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/enable_multiple_longest_path_calc"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/limit_multiple_longest_path_calc"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/max_multiple_longest_path"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/use_total_float_multiple_longest_paths"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/key_activity_for_multiple_longest_paths"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "SCHEDOPTIONS/LevelPriorityList"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/rev_fdbk_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/lock_plan_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/auto_compute_act_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/rsrc_id"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/total_float_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/free_float_hr_cnt"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/act_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/remain_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/target_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/target_equip_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/act_equip_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/remain_equip_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/late_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/late_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/expect_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/early_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/early_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/restart_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/reend_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/target_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/target_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/rem_late_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/rem_late_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/priority_type"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/suspend_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/resume_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/float_path"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/float_path_order"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/tmpl_guid"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/driving_path_flag"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/act_this_per_work_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/act_this_per_equip_qty"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/external_early_start_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/external_late_end_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/create_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/update_date"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/create_user"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/update_user"
+                    },
+                    {
+                        "message": "미지원 필드 · 원본에 보존",
+                        "path": "TASK/location_id"
+                    }
+                ],
+                "direction": "import",
+                "documentId": "df655ae8-16c2-405b-9ed2-718a79652434",
+                "mapping": [
+                    {
+                        "activityCode": "",
+                        "jobsId": "xer-cal-44739",
+                        "kind": "calendar",
+                        "xerId": "44739"
+                    },
+                    {
+                        "activityCode": "",
+                        "jobsId": "",
+                        "kind": "project-root",
+                        "xerId": "355248"
+                    },
+                    {
+                        "activityCode": "A1000",
+                        "jobsId": "xer-task-1338401",
+                        "kind": "task",
+                        "xerId": "1338401"
+                    }
+                ],
+                "nativeSnapshotProfile": "native-effort-split-v1",
+                "revision": "1",
+                "source": {
+                    "encoding": "UTF-8",
+                    "header": [
+                        "ERMHDR",
+                        "8.2.0",
+                        "2020-03-17",
+                        "Project",
+                        "admin",
+                        "Primavera Admin",
+                        "dbxDatabaseNoName",
+                        "Project Management",
+                        "USD"
+                    ],
+                    "lagPolicy": "rcal_24Hour",
+                    "name": "TwentyFourHourCalendar.xer",
+                    "producer": "unverified",
+                    "projectCode": "TEST PROJECT",
+                    "projectId": "34738",
+                    "sha256": "9b91bf5bfcc0df4f6a2fec8867a923af7758058c224a9772a728e8d2ba0f0fc5",
+                    "version": "8.2.0"
+                },
+                "targetPolicy": {
+                    "calculationProfile": "native-effort-split-v1",
+                    "lagCalendar": "successor-working-calendar",
+                    "projectStartAnchor": "09:00"
+                }
+            },
+            "file": "TwentyFourHourCalendar.xer",
+            "finish": "2019-06-12 17:00",
+            "jobs_round_trip_dates_equal": true,
+            "resources": 0,
+            "sha256": "9b91bf5bfcc0df4f6a2fec8867a923af7758058c224a9772a728e8d2ba0f0fc5",
+            "status": "imported",
+            "tasks": [
+                {
+                    "calendar_id": "xer-cal-44739",
+                    "constraint": "SNET",
+                    "duration_minutes": 1440,
+                    "id": "xer-task-1338401",
+                    "name": "Test",
+                    "relations": [
+                    ]
+                }
+            ]
+        },
+        {
+            "error_code": "ASSIGNMENT_INPUT_INVALID",
+            "file": "resource-rates-test.xer",
+            "reason": "[ASSIGNMENT_INPUT_INVALID] 배정할 작업·자원이 없거나 배정률 중복/범위 오류입니다. 1~100,000%를 사용하세요.\n관련 대상과 입력값을 확인해 수정한 뒤 다시 시도하세요.",
+            "sha256": "7298574bb32ac3068b07b427a35cd2834308d2fcb0e2ac74fea4e013e738c62e",
+            "status": "rejected"
+        },
+        {
+            "error_code": "FILE_PRIMAVERAXER_028",
+            "file": "invalid-8.4.xer",
+            "reason": "[FILE_PRIMAVERAXER_028] clndr_data 괄호/문법 오류\n파일 경로·권한·열린 원본의 변경 여부를 확인하세요. 원본을 보존하려면 새 경로에 사본을 저장하세요.",
+            "sha256": "85f8c7d681b15daf755ba1d568eb09ebcdd529a16c20045e6db6c2937899f54b",
+            "status": "rejected"
+        },
+        {
+            "error_code": "FILE_PRIMAVERAXER_080",
+            "file": "percent-complete-8.4.xer",
+            "reason": "[FILE_PRIMAVERAXER_080] XER 실적·원가 상세 데이터를 확인하세요: TASK/future actual dates\n파일 경로·권한·열린 원본의 변경 여부를 확인하세요. 원본을 보존하려면 새 경로에 사본을 저장하세요.",
+            "sha256": "71e56568075852d00507ff5506d5c055912ce0ba0982b97b8ace6269f794d10a",
+            "status": "rejected"
+        }
+    ],
+    "status": "failed"
+}
+
+        Start 112: cost_day_boundaries
+109/124 Test  #67: shared_resource_intervals .............   Passed    0.87 sec
+        Start 118: tracking_file
+110/124 Test  #14: udf_mapping_contract ..................   Passed    1.34 sec
+        Start  51: period_actual_contract
+111/124 Test #112: cost_day_boundaries ...................   Passed    1.11 sec
+        Start  53: timephased_usage_contract
+112/124 Test  #55: task_classification_contract ..........   Passed    2.24 sec
+        Start  80: task_table_model_contract
+113/124 Test #118: tracking_file .........................   Passed    1.87 sec
+        Start  45: network_diagram_contract
+114/124 Test  #51: period_actual_contract ................   Passed    1.89 sec
+        Start  70: document_edit_guards
+115/124 Test  #53: timephased_usage_contract .............   Passed    1.93 sec
+        Start 117: tracking_contract
+116/124 Test  #80: task_table_model_contract .............   Passed    1.70 sec
+        Start 105: input_delta_contract
+117/124 Test  #45: network_diagram_contract ..............   Passed    1.56 sec
+118/124 Test  #70: document_edit_guards ..................   Passed    1.30 sec
+        Start  66: structured_diagnostics
+        Start  64: application_storage_contract
+119/124 Test #117: tracking_contract .....................   Passed    1.44 sec
+        Start 119: wbs_contract
+120/124 Test #105: input_delta_contract ..................   Passed    1.08 sec
+        Start 120: schedule_contract
+121/124 Test  #64: application_storage_contract ..........   Passed    0.70 sec
+122/124 Test  #66: structured_diagnostics ................   Passed    1.06 sec
+123/124 Test #119: wbs_contract ..........................   Passed    0.47 sec
+124/124 Test #120: schedule_contract .....................   Passed    0.35 sec
+
+99% tests passed, 1 tests failed out of 124
+
+Total Test time (real) = 228.18 sec
+
+The following tests FAILED:
+	 63 - primavera_public_corpus (Failed)
+Errors while running CTest

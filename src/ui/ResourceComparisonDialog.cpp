@@ -1,5 +1,6 @@
 #include "formatting/QtDiagnosticText.h"
 #include "ui/ResourceComparisonDialog.h"
+#include "ui/LevelingWitnessDialog.h"
 #include "calculation/WorkCalendar.h"
 #include <QComboBox>
 #include <QSpinBox>
@@ -12,7 +13,6 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QTabWidget>
-#include <QDialogButtonBox>
 #include <QFutureWatcher>
 #include <QDateTime>
 #include <QSignalBlocker>
@@ -23,6 +23,16 @@
 #include <map>
 #include <algorithm>
 namespace jobs {
+namespace {
+bool sameLevelingSource(const Project &a, const Project &b) {
+    PlanInput x = a, y = b;
+    x.planLeveling.reset();
+    y.planLeveling.reset();
+    return x == y && a.statusAt == b.statusAt && a.progress == b.progress &&
+           (a.progressPolicy ? a.progressPolicy->policy : retainedProgressPolicy) ==
+               (b.progressPolicy ? b.progressPolicy->policy : retainedProgressPolicy);
+}
+} // namespace
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s.data(), qsizetype(s.size()));
@@ -64,12 +74,15 @@ void fillLoad(QTableWidget *t, const Project &p, const ResourceLoad &load) {
         QStringList assigned;
         for (const auto &id : d.taskIds)
             assigned << tasks.at(id);
-        QString ratio = !d.capacity        ? "미정"
+        QString ratio = d.capacityVaries   ? "기간 내 변동"
+                        : !d.capacity      ? "미정"
                         : *d.capacity == 0 ? "가용 0%"
                                            : QString::number(double(d.peakUnits) / *d.capacity * 100, 'f', 1) + "%";
         QStringList values{resources.at(d.resourceId),
                            qs(d.date),
-                           d.capacity ? QString::number(*d.capacity) + "%" : "미정",
+                           d.capacityVaries ? (d.capacity ? "기간 내 변동" : "변동·미정 포함")
+                           : d.capacity     ? QString::number(*d.capacity) + "%"
+                                            : "미정",
                            work(d.demandUnitMinutes),
                            QString::number(d.peakUnits) + "%",
                            ratio,
@@ -109,7 +122,8 @@ struct Computed {
     QString error;
 };
 } // namespace
-ResourceComparisonDialog::ResourceComparisonDialog(Document &doc, QWidget *parent) : QDialog(parent), document_(doc) {
+ResourceComparisonDialog::ResourceComparisonDialog(Document &doc, QWidget *parent)
+    : QDialog(parent), document_(doc), sourceSession_(doc.sessionGeneration()) {
     setObjectName("resourceComparisonDialog");
     setWindowTitle("기간별 자원 부하 · 평준화 시나리오 비교");
     resize(1480, 850);
@@ -138,6 +152,8 @@ ResourceComparisonDialog::ResourceComparisonDialog(Document &doc, QWidget *paren
     priority_->addItem("작업 행 순서", "task-order");
     priority_->addItem("짧은 잔여 기간 우선", "shortest-first");
     priority_->addItem("긴 잔여 기간 우선", "longest-first");
+    priority_->addItem("총여유 작은 작업 우선", "least-float-first");
+    priority_->addItem("마감일 빠른 작업 우선", "deadline-first");
     horizon_ = new QSpinBox(this);
     horizon_->setObjectName("levelingHorizon");
     horizon_->setRange(1, 5200);
@@ -150,6 +166,15 @@ ResourceComparisonDialog::ResourceComparisonDialog(Document &doc, QWidget *paren
     auto *run = new QPushButton("부하 계산 / 평준화 비교", this);
     run->setObjectName("runLeveling");
     controls->addWidget(run);
+    witnessA_ = new QPushButton("A 총여유 근거", this);
+    witnessA_->setObjectName("showLevelingWitnessA");
+    witnessB_ = new QPushButton("B 총여유 근거", this);
+    witnessB_->setObjectName("showLevelingWitnessB");
+    for (auto *button : {witnessA_, witnessB_}) {
+        button->setEnabled(false);
+        button->setToolTip("구간 재분할의 검증된 증인이 있는 계산 결과에서 열 수 있습니다.");
+        controls->addWidget(button);
+    }
     controls->addStretch();
     summary_ = new QLabel(this);
     summary_->setObjectName("levelingSummary");
@@ -161,9 +186,9 @@ ResourceComparisonDialog::ResourceComparisonDialog(Document &doc, QWidget *paren
     auto *tabs = new QTabWidget(this);
     tabs->setObjectName("resourceTabs");
     layout->addWidget(tabs, 1);
-    tasks_ = table(
-        this, "levelingTasks",
-        {"작업", "원본 시작", "원본 완료", "A 시작", "A 완료", "잔여 시작 지연(h)", "B 시작", "B 완료", "실제 날짜"});
+    tasks_ = table(this, "levelingTasks",
+                   {"작업", "원본 시작", "원본 완료", "A 시작", "A 완료", "잔여 시작 지연(h)", "B 시작", "B 완료",
+                    "실제 날짜", "A 총여유(h)", "A 자유여유(h)", "A 임계/상태"});
     tabs->addTab(tasks_, "일정 비교");
     const QStringList columns{"자원",        "날짜",           "가용량",       "수요 공수(h)", "최대 배정률",
                               "최대 사용률", "과부하 시간(h)", "초과 공수(h)", "작업"};
@@ -181,7 +206,8 @@ ResourceComparisonDialog::ResourceComparisonDialog(Document &doc, QWidget *paren
     auto *note = new QLabel("전체 작업 범위 · 작업 유형/공수와 수동 분할·작업/자원 달력 준수 · 자원에 따른 자동 추가 "
                             "분할 없음 · 원본보다 앞당기지 않음 · 같은 우선순위는 행 순서\n상태일 설정 시 잔여 수요만 "
                             "비교하고 실제 날짜는 고정합니다. 부하 공수는 자원별 인시/장비시입니다. 부하 표는 수요가 "
-                            "있는 날짜만 표시합니다. 평준화 결과의 CPM 여유·임계는 재산정하지 않습니다.",
+                            "있는 날짜만 표시합니다. 여유·임계의 구간 유지/재생성 기준과 작업별 재배치 증인, "
+                            "미산정 사유는 진단에서 확인하세요.",
                             this);
     note->setWordWrap(true);
     layout->addWidget(note);
@@ -195,21 +221,74 @@ ResourceComparisonDialog::ResourceComparisonDialog(Document &doc, QWidget *paren
     save_->setEnabled(false);
     saveRow->addWidget(name_, 1);
     saveRow->addWidget(save_);
-    auto *close = new QDialogButtonBox(QDialogButtonBox::Close, this);
-    layout->addWidget(close);
-    connect(close, &QDialogButtonBox::rejected, this, &QDialog::reject);
+    auto *adoption = new QHBoxLayout;
+    reason_ = new QLineEdit(this);
+    reason_->setObjectName("levelingReason");
+    reason_->setPlaceholderText("채택 사유 (필수)");
+    adopt_ = new QPushButton("A 결과를 현재 일정으로 채택", this);
+    adopt_->setObjectName("adoptLeveling");
+    adopt_->setEnabled(false);
+    release_ = new QPushButton("채택 해제", this);
+    release_->setObjectName("clearLeveling");
+    cancel_ = new QPushButton("계산 / 제출 취소", this);
+    cancel_->setObjectName("cancelLeveling");
+    cancel_->setEnabled(false);
+    layout->addWidget(reason_);
+    adoption->addWidget(adopt_);
+    adoption->addWidget(release_);
+    adoption->addWidget(cancel_);
+    adoption->addStretch();
+    auto *close = new QPushButton("닫기", this);
+    adoption->addWidget(close);
+    layout->addLayout(adoption);
+    connect(adopt_, &QPushButton::clicked, this, [this] { applySelection(false); });
+    connect(release_, &QPushButton::clicked, this, [this] { applySelection(true); });
+    connect(cancel_, &QPushButton::clicked, this, [this] {
+        if (control_)
+            control_->cancel();
+    });
+    connect(close, &QPushButton::clicked, this, &ResourceComparisonDialog::reject);
     connect(run, &QPushButton::clicked, this, [this] { recalculate(); });
     connect(priority_, &QComboBox::currentIndexChanged, this, [this] { invalidate(); });
     connect(horizon_, &QSpinBox::valueChanged, this, [this] { invalidate(); });
     connect(sourceChoice_, &QComboBox::currentIndexChanged, this, [this] { recalculate(); });
     connect(otherChoice_, &QComboBox::currentIndexChanged, this, [this] { recalculate(); });
     connect(save_, &QPushButton::clicked, this, [this] { saveScenario(); });
+    connect(witnessA_, &QPushButton::clicked, this, [this] { openWitness(false); });
+    connect(witnessB_, &QPushButton::clicked, this, [this] { openWitness(true); });
+    witnessListener_ = document_.subscribe([this](Document::Event event) {
+        if (event != Document::Event::Saved || !anchor_ || !document_.project() ||
+            document_.sessionGeneration() != sourceSession_ || document_.project()->documentId != anchor_->documentId ||
+            document_.project()->revision != anchor_->revision) {
+            closeWitnesses();
+            witnessA_->setEnabled(false);
+            witnessB_->setEnabled(false);
+            witnessA_->setToolTip("문서가 변경되었습니다. 평준화 비교를 다시 계산하세요.");
+            witnessB_->setToolTip(witnessA_->toolTip());
+        }
+    });
     recalculate();
 }
 void ResourceComparisonDialog::invalidate() {
+    closeWitnesses();
+    witnessA_->setEnabled(false);
+    witnessB_->setEnabled(false);
+    witnessOther_.reset();
+    witnessOtherSource_.reset();
+    if (control_)
+        control_->cancel();
+    cancel_->setEnabled(false);
+    if (!posting_) {
+        priority_->setEnabled(sourceChoice_->currentData().toString().isEmpty());
+        horizon_->setEnabled(sourceChoice_->currentData().toString().isEmpty());
+    }
     ++generation_;
     result_.reset();
     source_.reset();
+    anchor_.reset();
+    adopt_->setEnabled(false);
+    release_->setEnabled(!posting_ && !document_.readOnly() && document_.project() &&
+                         (document_.project()->planLeveling || document_.project()->remainingLeveling));
     save_->setEnabled(false);
     tasks_->setRowCount(0);
     before_->setRowCount(0);
@@ -219,7 +298,12 @@ void ResourceComparisonDialog::invalidate() {
     summary_->setText("조건을 변경했습니다. 부하 계산 / 평준화 비교를 실행하세요.");
 }
 void ResourceComparisonDialog::recalculate() {
+    if (posting_ || !document_.project())
+        return;
     invalidate();
+    control_ = std::make_shared<CalculationControl>();
+    cancel_->setEnabled(true);
+    const auto session = document_.sessionGeneration();
     const auto generation = generation_;
     const Project current = *document_.project();
     Project snapshot = current;
@@ -245,23 +329,31 @@ void ResourceComparisonDialog::recalculate() {
     summary_->setText("자원 수요·시나리오 계산 중…");
     auto *watcher = new QFutureWatcher<Computed>(this);
     connect(watcher, &QFutureWatcher<Computed>::finished, this,
-            [this, watcher, generation, snapshot, current, selected] {
+            [this, watcher, generation, snapshot, current, selected, session, replayPolicy] {
                 auto computed = watcher->result();
                 watcher->deleteLater();
                 if (generation != generation_)
                     return;
+                cancel_->setEnabled(false);
                 if (!computed.error.isEmpty()) {
                     summary_->setText(computed.error);
                     return;
                 }
-                if (!document_.project() || document_.project()->documentId != current.documentId ||
+                if (!document_.project() || document_.sessionGeneration() != session ||
+                    document_.project()->documentId != current.documentId ||
                     document_.project()->revision != current.revision) {
                     summary_->setText("계산 중 문서가 변경되었습니다. 다시 계산하세요.");
                     return;
                 }
                 source_ = snapshot;
                 result_ = computed.main;
+                anchor_ = current;
+                sourceSession_ = session;
+                candidatePolicy_ = replayPolicy.empty() ? levelingPolicyFor(snapshot) : replayPolicy;
                 const auto &r = *result_;
+                adopt_->setEnabled(!document_.readOnly() && sameLevelingSource(snapshot, current) &&
+                                   r.leveled.status == CalculationStatus::Valid &&
+                                   r.after.status == CalculationStatus::Valid);
                 save_->setEnabled(selected.empty() && !document_.readOnly());
                 auto finish = [](const ScheduleResult &s) { return s.projectFinish ? qs(*s.projectFinish) : "—"; };
                 auto units = [&](const ResourceLoad &l) {
@@ -282,7 +374,16 @@ void ResourceComparisonDialog::recalculate() {
                     " → " + (r.leveled.status == CalculationStatus::Valid ? overloadText(r.after) : "—") + " · 수요 " +
                     units(r.before) + (r.leveled.status == CalculationStatus::Valid ? " → " + units(r.after) : "") +
                     "\n정책 " + qs(r.leveled.calculationPolicy) + " · 탐색 " + QString::number(r.horizonWorkDays) +
-                    " 기본 달력 근무일 · 원본 자동 적용 없음";
+                    " 기본 달력 근무일 · 채택은 검증 후 명시 적용 · 일정 입력 변경 시 채택 해제";
+                if (snapshot.progressPolicy)
+                    summary += "\n진척 정책 " + qs(snapshot.progressPolicy->policy) + " · 담당자 " +
+                               qs(snapshot.progressPolicy->adoptedBy) + " · " + qs(snapshot.progressPolicy->reason) +
+                               (snapshot.statusAt ? "" : " · 비활성");
+                if (current.planLeveling || current.remainingLeveling)
+                    summary += "\n현재 " + QString(current.planLeveling ? "계획" : "잔여 예측") +
+                               " 평준화 채택 중 · 비교 원본은 채택 전 논리 일정";
+                if (!sameLevelingSource(snapshot, current))
+                    summary += "\nA 입력이 현재 일정과 다릅니다. 현재 일정으로 직접 채택할 수 없습니다.";
                 if (computed.other && computed.otherProject) {
                     summary += "\nB 원본 rev " + QString::number(computed.otherProject->revision) + " · " +
                                qs(computed.other->priority) + " / " + QString::number(computed.other->horizonWorkDays) +
@@ -341,7 +442,12 @@ void ResourceComparisonDialog::recalculate() {
                                        delay,
                                        c ? qs(c->start) : "—",
                                        c ? qs(c->finish) : "—",
-                                       actual && actual->actualStart ? "고정 보존" : "—"};
+                                       actual && actual->actualStart ? "고정 보존" : "—",
+                                       b && hasScheduleFloat(r.leveled, *b) ? hours(b->totalFloatMinutes) : "—",
+                                       b && hasScheduleFloat(r.leveled, *b) ? hours(b->freeFloatMinutes) : "—",
+                                       b && hasScheduleFloat(r.leveled, *b)
+                                           ? (b->critical ? "평준화 임계" : "평준화 여유")
+                                           : "미산정"};
                     for (int col = 0; col < values.size(); ++col) {
                         auto *item = new QTableWidgetItem(values[col]);
                         item->setData(Qt::UserRole, qs(t.id));
@@ -366,21 +472,158 @@ void ResourceComparisonDialog::recalculate() {
                 if (computed.other)
                     append("B 평준화", computed.other->diagnostics);
                 diagnostics_->setPlainText(messages.join('\n'));
+                auto evidence = [](const ScheduleResult &schedule) {
+                    return schedule.status == CalculationStatus::Valid && schedule.levelingFloatCalculated &&
+                           schedule.levelingWitnesses && !schedule.levelingWitnesses->tasks.empty();
+                };
+                witnessA_->setEnabled(evidence(r.leveled));
+                witnessA_->setToolTip(
+                    witnessA_->isEnabled()
+                        ? "현재 날짜와 작업별 총여유 재배치 날짜를 비교합니다."
+                        : "이 결과에는 구간 재분할 증인이 없습니다. 미산정 사유와 계산 기준은 진단에서 확인하세요.");
+                if (computed.other && computed.otherProject) {
+                    witnessB_->setEnabled(evidence(computed.other->leveled));
+                    witnessOther_ = std::move(computed.other->leveled);
+                    witnessOtherSource_ = std::move(computed.otherProject);
+                }
+                witnessB_->setToolTip(witnessB_->isEnabled()
+                                          ? "저장된 B 입력의 검증된 총여유 재배치 날짜를 비교합니다."
+                                          : "B 비교를 선택하고 구간 재분할 증인이 있는 결과를 계산하세요.");
             });
-    watcher->setFuture(QtConcurrent::run([snapshot, priority, horizon, secondary, replayPolicy] {
+    watcher->setFuture(QtConcurrent::run([snapshot, priority, horizon, secondary, replayPolicy, control = control_] {
         Computed c;
         try {
+            EvaluationScope evaluation(control);
             c.main = levelResources(snapshot, priority, horizon, replayPolicy);
             if (secondary) {
                 c.otherProject = scenarioProject(*secondary);
                 c.other =
                     levelResources(*c.otherProject, secondary->priority, secondary->horizonWorkDays, secondary->policy);
             }
+        } catch (const CalculationCancelled &) {
+            c.error = "평준화 계산을 취소했습니다.";
         } catch (const std::exception &e) {
             c.error = qErrorText(e);
         }
         return c;
     }));
+}
+ResourceComparisonDialog::~ResourceComparisonDialog() {
+    document_.unsubscribe(witnessListener_);
+    if (control_)
+        control_->cancel();
+}
+void ResourceComparisonDialog::reject() {
+    closeWitnesses();
+    if (control_)
+        control_->cancel();
+    QDialog::reject();
+}
+void ResourceComparisonDialog::applySelection(bool clear) {
+    try {
+        if (posting_ || document_.readOnly())
+            return;
+        if (document_.sessionGeneration() != sourceSession_)
+            throw AppError(ErrorCode::WORKSPACE_SOURCE_CHANGED);
+        if (!clear &&
+            (!anchor_ || !source_ || !result_ || document_.sessionGeneration() != sourceSession_ ||
+             document_.project()->documentId != anchor_->documentId ||
+             document_.project()->revision != anchor_->revision || !sameLevelingSource(*source_, *document_.project())))
+            throw AppError(ErrorCode::WORKSPACE_SOURCE_CHANGED);
+        EditCommand command{std::in_place_type<ClearLevelingEdit>};
+        if (!clear) {
+            LevelingSelection s;
+            s.priority = result_->priority;
+            s.horizonWorkDays = result_->horizonWorkDays;
+            s.policy = candidatePolicy_;
+            s.reason = str(reason_->text().trimmed());
+            s.adoptedAt = QDateTime::currentDateTimeUtc().toString("yyyy-MM-ddTHH:mm:ssZ").toStdString();
+            s.sourceDocumentId = anchor_->documentId;
+            s.sourceRevision = anchor_->revision;
+            command = EditCommand{std::in_place_type<AdoptLevelingEdit>, AdoptLevelingEdit{s}};
+        }
+        auto request = document_.makeEditRequest(std::move(command));
+        if (control_)
+            control_->cancel();
+        ++generation_;
+        control_ = std::make_shared<CalculationControl>();
+        posting_ = true;
+        closeWitnesses();
+        witnessA_->setEnabled(false);
+        witnessB_->setEnabled(false);
+        save_->setEnabled(false);
+        adopt_->setEnabled(false);
+        release_->setEnabled(false);
+        cancel_->setEnabled(true);
+        sourceChoice_->setEnabled(false);
+        otherChoice_->setEnabled(false);
+        priority_->setEnabled(false);
+        horizon_->setEnabled(false);
+        summary_->setText("평준화 채택 / 해제 검증 중…");
+        auto *watcher = new QFutureWatcher<std::shared_ptr<Document::PreparedEdit>>(this);
+        connect(watcher, &QFutureWatcher<std::shared_ptr<Document::PreparedEdit>>::finished, this, [this, watcher] {
+            auto prepared = watcher->result();
+            watcher->deleteLater();
+            posting_ = false;
+            cancel_->setEnabled(false);
+            const auto state = document_.applyPreparedEdit(*prepared);
+            sourceChoice_->setEnabled(true);
+            otherChoice_->setEnabled(true);
+            if (state == EditState::Applied || state == EditState::NoChange) {
+                {
+                    QSignalBlocker block(sourceChoice_);
+                    sourceChoice_->setCurrentIndex(0);
+                }
+                recalculate();
+            } else {
+                invalidate();
+                summary_->setText(prepared->failure() ? qs(diagnosticMessage(*prepared->failure()))
+                                  : state == EditState::Cancelled
+                                      ? "평준화 채택 / 해제를 취소했습니다."
+                                      : "문서가 변경되어 적용하지 않았습니다. 다시 계산하세요.");
+            }
+        });
+        watcher->setFuture(QtConcurrent::run([request = std::move(request), control = control_]() mutable {
+            return Document::prepareEdit(std::move(request), control);
+        }));
+    } catch (const std::exception &e) {
+        diagnostics_->setPlainText(qErrorText(e));
+    }
+}
+void ResourceComparisonDialog::closeWitnesses() {
+    for (auto *window : {&witnessAWindow_, &witnessBWindow_}) {
+        if (*window)
+            (*window)->close();
+        *window = nullptr;
+    }
+}
+void ResourceComparisonDialog::openWitness(bool other) {
+    if (posting_ || !anchor_ || !document_.project() || document_.sessionGeneration() != sourceSession_ ||
+        document_.project()->documentId != anchor_->documentId || document_.project()->revision != anchor_->revision) {
+        closeWitnesses();
+        witnessA_->setEnabled(false);
+        witnessB_->setEnabled(false);
+        return;
+    }
+    const auto *project =
+        other ? (witnessOtherSource_ ? &*witnessOtherSource_ : nullptr) : (source_ ? &*source_ : nullptr);
+    const auto *schedule =
+        other ? (witnessOther_ ? &*witnessOther_ : nullptr) : (result_ ? &result_->leveled : nullptr);
+    if (!project || !schedule || !schedule->levelingWitnesses || schedule->levelingWitnesses->tasks.empty())
+        return;
+    auto &window = other ? witnessBWindow_ : witnessAWindow_;
+    if (window && window->isVisible()) {
+        window->raise();
+        window->activateWindow();
+        return;
+    }
+    const auto focus =
+        tasks_->currentItem() ? str(tasks_->currentItem()->data(Qt::UserRole).toString()) : std::string{};
+    window = new LevelingWitnessDialog(
+        *project, *schedule, focus,
+        other ? "B · " + otherChoice_->currentText() : "A · " + sourceChoice_->currentText(), this);
+    window->setAttribute(Qt::WA_DeleteOnClose);
+    window->show();
 }
 void ResourceComparisonDialog::saveScenario() {
     if (!source_ || !result_ || !sourceChoice_->currentData().toString().isEmpty())

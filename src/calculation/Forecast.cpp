@@ -3,12 +3,22 @@
 #include "calculation/WorkCalendar.h"
 #include "calculation/Pdm.h"
 #include "calculation/Effort.h"
+#include "calculation/DatedRemainingWork.h"
+#include "calculation/ForecastFloat.h"
+#include "calculation/Resources.h"
+#include "calculation/ProgressPolicies.h"
 #include <algorithm>
 #include <deque>
 #include <unordered_map>
 namespace jobs {
-ScheduleResult calculate(const Project &p) {
+static ScheduleResult calculateForecastCore(const Project &p) {
     EvaluationScope evaluation;
+    if (p.remainingLeveling)
+        return selectedLevelingSchedule(p, true);
+    if (p.planLeveling)
+        return calculatePlan(p);
+    if (p.progressPolicy)
+        return selectedProgressSchedule(p);
     auto plan = calculatePlan(p);
     if (!p.statusAt)
         return plan;
@@ -50,10 +60,12 @@ ScheduleResult calculate(const Project &p) {
             if (!degree[i])
                 ready.push_back(i);
         std::vector<TaskSchedule> rows(n);
+        std::vector<std::size_t> order;
         std::size_t completed = 0;
         for (; !ready.empty(); ready.pop_front()) {
             calculationProgress(CalculationStage::Forward, completed++, n);
             auto i = ready.front();
+            order.push_back(i);
             const auto &task = p.tasks[i];
             auto &row = rows[i];
             row.taskId = task.id;
@@ -109,6 +121,22 @@ ScheduleResult calculate(const Project &p) {
         }
         result.tasks = std::move(rows);
         result.status = CalculationStatus::Valid;
+        std::vector<RemainingExecution> models;
+        for (std::size_t i = 0; i < n; ++i) {
+            const auto *entry = progressAsOf(p, p.tasks[i].id);
+            const auto duration = entry ? entry->remainingMinutes : *p.tasks[i].durationMinutes;
+            models.push_back({&calendar,
+                              [&, i, duration](std::int64_t local) {
+                                  TaskSchedule row;
+                                  row.taskId = p.tasks[i].id;
+                                  row.start = calendar.boundary(local, duration == 0);
+                                  row.finish = calendar.boundary(local + duration, true);
+                                  return row;
+                              },
+                              [&](const std::string &at) { return calendar.offset(at); },
+                              [&](const std::string &at, bool) { return calendar.offset(at); }});
+        }
+        calculateRemainingFloat(p, result, order, models);
         if (unreported)
             result.diagnostics.push_back(
                 {"UNREPORTED_REMAINING", {diagnosticArgument(std::to_string(unreported))}, {}, "UNREPORTED_REMAINING"});
@@ -118,6 +146,25 @@ ScheduleResult calculate(const Project &p) {
         result.tasks.clear();
         result.projectFinish.reset();
         result.diagnostics.push_back(diagnosticFromException(e, "FORECAST_HORIZON", {}));
+    }
+    return result;
+}
+ScheduleResult calculate(const Project &p) {
+    EvaluationScope scope;
+    auto result = calculateForecastCore(p);
+    if (result.isForecast && !p.remainingWork.empty()) {
+        result.engineVersion = datedRemainingEngine(p);
+        result.calculationPolicy += "/dated-work-v1";
+        try {
+            validateRemainingWorkExecution(p, result);
+        } catch (const CalculationCancelled &) {
+            throw;
+        } catch (const std::exception &e) {
+            result.status = CalculationStatus::Conflict;
+            result.tasks.clear();
+            result.projectFinish.reset();
+            result.diagnostics.push_back(diagnosticFromException(e));
+        }
     }
     return result;
 }

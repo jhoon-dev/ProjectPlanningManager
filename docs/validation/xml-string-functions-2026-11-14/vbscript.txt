@@ -1,0 +1,1 @@
+PASS 3072 non-Null BMP/ASCII comparisons

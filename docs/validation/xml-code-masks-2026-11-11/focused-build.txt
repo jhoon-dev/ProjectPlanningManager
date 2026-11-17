@@ -1,0 +1,12 @@
+[1/12] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/PrimaveraXer.cpp.obj
+[2/12] Linking CXX static library libjobs_persistence.a
+[3/12] Building CXX object CMakeFiles/jobs_parser_seed_tests.dir/tests/fuzz/ParserSeeds.cpp.obj
+[4/12] Linking CXX executable jobs_project_xml_tests.exe
+[5/12] Linking CXX executable jobs_udf_mapping_tests.exe
+[6/12] Linking CXX executable jobs_xml_date_time_tests.exe
+[7/12] Linking CXX executable jobs_xml_field_types_tests.exe
+[8/12] Linking CXX executable jobs_xml_lookup_tests.exe
+[9/12] Linking CXX executable jobs_parser_seed_tests.exe
+[10/12] Linking CXX executable jobs_enterprise_udf_tests.exe
+[11/12] Building CXX object CMakeFiles/jobs_xml_code_mask_tests.dir/tests/XmlCodeMaskTests.cpp.obj
+[12/12] Linking CXX executable jobs_xml_code_mask_tests.exe

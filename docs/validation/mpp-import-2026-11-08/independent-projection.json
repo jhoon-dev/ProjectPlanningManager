@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "checks": 128,
+  "cases": [
+    {
+      "file": "mpp9relations.mpp",
+      "format": "MSProject.MPP9",
+      "tasks": 5,
+      "resources": 0,
+      "assignments": 0
+    },
+    {
+      "file": "mpp12relations.mpp",
+      "format": "MSProject.MPP12",
+      "tasks": 5,
+      "resources": 0,
+      "assignments": 0
+    },
+    {
+      "file": "mpp14relations.mpp",
+      "format": "MSProject.MPP14",
+      "tasks": 5,
+      "resources": 0,
+      "assignments": 0
+    },
+    {
+      "file": "assigned-resources-mpp8-project2003.mpp",
+      "format": "MSProject.MPP8",
+      "tasks": 1,
+      "resources": 10,
+      "assignments": 10
+    }
+  ],
+  "method": "Direct MPPReader objects compared with C++ native fields; bridge and MSPDIWriter are bypassed. This is a projection check using the same binary decoder, not independent Microsoft Project recalculation."
+}

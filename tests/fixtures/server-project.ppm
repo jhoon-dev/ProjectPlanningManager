@@ -1,0 +1,44 @@
+{
+  "format": "JOBS",
+  "payload": {
+    "assignments": [],
+    "baselines": [],
+    "calculationProfile": "native-fs0-workminutes-v1",
+    "calendar": "standard-mon-fri-8h-v1",
+    "costEntries": [],
+    "costProfile": "cost-day-minor-half-up-v1",
+    "currency": "KRW",
+    "derivedFrom": "",
+    "documentId": "server-fixture",
+    "holidays": [],
+    "name": "Shared demo",
+    "progress": [],
+    "resources": [],
+    "revision": 1,
+    "scenarios": [],
+    "startDate": "2026-11-02",
+    "statusAt": null,
+    "taskCosts": [],
+    "tasks": [
+      {
+        "id": "A",
+        "name": "Design",
+        "durationMinutes": 480,
+        "predecessors": [],
+        "wbsId": ""
+      },
+      {
+        "id": "B",
+        "name": "Build",
+        "durationMinutes": 480,
+        "predecessors": [
+          "A"
+        ],
+        "wbsId": ""
+      }
+    ],
+    "wbsNodes": []
+  },
+  "schemaVersion": 9,
+  "sha256": "fef56885d78fa5c2fdd896cccc87c2b9bd0af2e49832d1e470275fb0952a2afd"
+}

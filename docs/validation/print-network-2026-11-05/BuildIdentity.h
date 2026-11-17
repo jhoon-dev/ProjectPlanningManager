@@ -1,0 +1,3 @@
+#pragma once
+#define JOBS_PERF_REVISION "6a1cd0a5115f3400d6cee4e5d5df795f351195ea+dirty"
+#define JOBS_SOURCE_SHA256 "67b0590f392bcf4d527c455bd413753eb8e8a3399030b2e457dfec7de33a3fab"

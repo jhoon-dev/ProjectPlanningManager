@@ -1,3 +1,4 @@
+#include "domain/XmlCodes.h"
 #include "domain/Diagnostics.h"
 #include "application/Document.h"
 #include "calculation/Effort.h"
@@ -87,10 +88,23 @@ TaskRemoval Document::previewRemoveTasks(const Project &project, const std::vect
     TaskRemoval out;
     out.tasks = targets.size();
     std::unordered_set<std::string> protectedIds;
+    for (const auto &a : project.externalEvmAdoptions)
+        for (const auto &id : a.taskIds)
+            if (targets.contains(id))
+                protectedIds.insert(id);
     for (const auto &e : project.progress)
         if (targets.contains(e.taskId))
             protectedIds.insert(e.taskId);
     for (const auto &e : project.costEntries)
+        if (targets.contains(e.taskId))
+            protectedIds.insert(e.taskId);
+    for (const auto &e : project.stepReports)
+        if (targets.contains(e.taskId))
+            protectedIds.insert(e.taskId);
+    for (const auto &e : project.materialActuals)
+        if (targets.contains(e.taskId))
+            protectedIds.insert(e.taskId);
+    for (const auto &e : project.periodActuals)
         if (targets.contains(e.taskId))
             protectedIds.insert(e.taskId);
     for (const auto &t : project.tasks) {
@@ -122,6 +136,11 @@ void Document::removeTasks(const std::vector<std::string> &ids) {
         std::erase_if(t.dependencyRules, [&](const auto &d) { return targets.contains(d.predecessorId); });
     }
     std::erase_if(p.assignments, [&](const auto &a) { return targets.contains(a.taskId); });
+    std::erase_if(p.activities, [&](const auto &a) { return a.kind == "steps" && targets.contains(a.taskId); });
+    std::erase_if(p.networkPositions, [&](const auto &v) { return targets.contains(v.taskId); });
+    std::erase_if(p.resourcePlan.uses, [&](const auto &u) { return targets.contains(u.taskId); });
+    std::erase_if(p.resourcePlan.expenses, [&](const auto &e) { return targets.contains(e.taskId); });
+    std::erase_if(p.resourcePlan.demands, [&](const auto &d) { return targets.contains(d.taskId); });
     std::erase_if(p.taskCosts, [&](const auto &c) { return targets.contains(c.taskId); });
     editPlan(std::move(p), "선택 작업 일괄 삭제");
 }
@@ -166,6 +185,25 @@ std::vector<std::string> Document::duplicateTasks(const std::vector<std::string>
             c.taskId = copies.at(c.taskId);
             p.taskCosts.push_back(std::move(c));
         }
+    const auto definitions = p.activities;
+    for (auto activity : definitions)
+        if (activity.kind == "steps" && copies.contains(activity.taskId)) {
+            activity.id = store_.newId();
+            activity.taskId = copies.at(activity.taskId);
+            p.activities.push_back(std::move(activity));
+        }
+    const auto copyRows = [&](auto &rows) {
+        auto original = rows;
+        for (auto value : original)
+            if (copies.contains(value.taskId)) {
+                value.id = store_.newId();
+                value.taskId = copies.at(value.taskId);
+                rows.push_back(std::move(value));
+            }
+    };
+    copyRows(p.resourcePlan.uses);
+    copyRows(p.resourcePlan.expenses);
+    copyRows(p.resourcePlan.demands);
     editPlan(std::move(p), "선택 작업 일괄 복제");
     return created;
 }
@@ -210,6 +248,7 @@ void Document::editTasks(const std::vector<TaskEdit> &changes) {
             else
                 changeDuration(p, i, *e->duration);
         }
+    invalidateLevelingSelection(p, *project_);
     validatePlan(p);
     if (graphChanged)
         validateGraph(p);
@@ -222,6 +261,8 @@ void Document::editTasks(const std::vector<TaskEdit> &changes) {
     editPlan(std::move(p), "표 일괄 붙여넣기", inverse.empty());
 }
 void Document::editPlan(Project p, std::string label, bool validated) {
+    synchronizeXmlWbsCodes(p, &*project_);
+    invalidateLevelingSelection(p, *project_);
     // Only the closed task-editing methods call this path. Historical records,
     // document identity, currency and status metadata cannot be modified here.
     if (static_cast<const PlanInput &>(p) == static_cast<const PlanInput &>(*project_))
@@ -235,14 +276,26 @@ void Document::editPlan(Project p, std::string label, bool validated) {
         calculationCheckpoint();
         ids.insert(task.id);
     }
+    for (const auto &entry : p.stepReports)
+        if (!ids.contains(entry.taskId))
+            throw AppError(ErrorCode::TASK_HAS_FACTS);
+    for (const auto &adoption : p.externalEvmAdoptions)
+        for (const auto &id : adoption.taskIds)
+            if (!ids.contains(id))
+                throw AppError(ErrorCode::TASK_HAS_FACTS);
     for (const auto &entry : p.progress)
         if (!ids.contains(entry.taskId))
             throw std::logic_error("실적 작업을 삭제할 수 없습니다.");
     for (const auto &entry : p.costEntries)
         if (!ids.contains(entry.taskId))
             throw std::logic_error("원가 작업을 삭제할 수 없습니다.");
+    for (const auto &entry : p.periodActuals)
+        if (!ids.contains(entry.taskId))
+            throw AppError(ErrorCode::PERIOD_ACTUAL_INVALID);
     ++p.revision;
     InputDelta delta(*project_, p);
+    appendLevelingDecision(p, *project_, "invalidate", label);
+    validateLevelingDecisions(p);
     const auto weight = sizeof(HistoryStep) + delta.bytes() + label.size();
     auto history = HistoryStep{std::make_shared<const InputDelta>(std::move(delta)), std::move(label), weight, true};
     // No cancellation points after the first mutation of the live document.

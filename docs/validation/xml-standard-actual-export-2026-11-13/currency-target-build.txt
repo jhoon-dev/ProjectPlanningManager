@@ -1,0 +1,12 @@
+[1/12] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectXml.cpp.obj
+[2/12] Linking CXX static library libjobs_persistence.a
+[3/12] Building CXX object CMakeFiles/jobs_parser_seed_tests.dir/tests/fuzz/ParserSeeds.cpp.obj
+[4/12] Linking CXX executable PPM-Automation.exe
+[5/12] Linking CXX executable jobs_parser_seed_tests.exe
+[6/12] Linking CXX executable PPM.exe
+[7/12] Building CXX object CMakeFiles/jobs_xml_period_fragment_tests.dir/tests/XmlPeriodFragmentTests.cpp.obj
+[8/12] Building CXX object CMakeFiles/jobs_xml_actual_export_tests.dir/tests/XmlActualExportTests.cpp.obj
+[9/12] Building CXX object CMakeFiles/jobs_xml_period_actual_tests.dir/tests/XmlPeriodActualTests.cpp.obj
+[10/12] Linking CXX executable jobs_xml_period_fragment_tests.exe
+[11/12] Linking CXX executable jobs_xml_actual_export_tests.exe
+[12/12] Linking CXX executable jobs_xml_period_actual_tests.exe

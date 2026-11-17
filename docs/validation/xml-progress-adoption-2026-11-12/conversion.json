@@ -1,0 +1,410 @@
+{
+    "companionPolicy": "원본과 진단은 이 폴더의 동반 파일입니다. .ppm 사본 저장/이동 시 자동 복제되지 않습니다.",
+    "compatibility": {
+        "externalRoundTrip": "unverified",
+        "import": "mapped-subset",
+        "jobsRecomputation": "unverified",
+        "originalPreservation": "exact-xml-bytes"
+    },
+    "contract": "jobs-mspdi-plan-v1",
+    "diagnostics": [
+        {
+            "message": "기간 기반 계획 변환입니다. 원본 날짜·공수·실적·비용의 계산 동등성은 미검증입니다.",
+            "path": "/Project"
+        },
+        {
+            "message": "프로젝트 달력을 수입 작업/자원에 명시 배정합니다. 이후 새 작업은 PPM 기본 달력을 사용합니다.",
+            "path": "/Project/Calendars"
+        },
+        {
+            "message": "실적 참조 식은 보존합니다. XML 실적/진척을 실적 원장에 자동 채택하지 않으므로 상태일 기준 실적 보고가 필요합니다.",
+            "path": "/ExtendedAttributes/Formula"
+        },
+        {
+            "message": "작업 진척 후보를 읽었습니다. 기본 계획 변환은 미채택이며 별도 검토로 새 사본에만 명시 채택합니다. 배정/기간 실제 공수·원가·진척률은 채택하지 않습니다.",
+            "path": "/Project/Tasks"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/CurrencyDigits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/DefaultStartTime[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/DefaultFinishTime[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/MinutesPerDay[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/MinutesPerWeek[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Type[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/DurationFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Milestone[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/ActualWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/ActualCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/PercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/ID[1]"
+        },
+        {
+            "message": "선택한 작업 진척 4건을 새 사본 원장에 채택했습니다. 기존 원장 병합·실제 공수/원가 채택은 하지 않습니다.",
+            "path": "/Project/Tasks"
+        }
+    ],
+    "direction": "import",
+    "documentId": "86e6833e-fca2-4488-8e05-8a761439239c",
+    "format": "Microsoft Project XML",
+    "mapping": [
+        {
+            "jobsId": "xml-cal-1",
+            "kind": "calendar",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "xml-wbs-1",
+            "kind": "wbs",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "xml-task-2",
+            "kind": "task",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "xml-task-3",
+            "kind": "task",
+            "xmlUid": "3"
+        },
+        {
+            "jobsId": "xml-task-4",
+            "kind": "task",
+            "xmlUid": "4"
+        },
+        {
+            "jobsId": "xml-task-5",
+            "kind": "task",
+            "xmlUid": "5"
+        },
+        {
+            "jobsId": "xml-task-6",
+            "kind": "task",
+            "xmlUid": "6"
+        },
+        {
+            "jobsId": "xml-task-7",
+            "kind": "task",
+            "xmlUid": "7"
+        },
+        {
+            "jobsId": "xml-task-8",
+            "kind": "task",
+            "xmlUid": "8"
+        },
+        {
+            "jobsId": "xml-task-9",
+            "kind": "task",
+            "xmlUid": "9"
+        },
+        {
+            "jobsId": "xml-task-10",
+            "kind": "task",
+            "xmlUid": "10"
+        },
+        {
+            "jobsId": "xml-resource-1",
+            "kind": "resource",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "xml-task-2/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "xml-task-3/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "xml-task-4/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "3"
+        },
+        {
+            "jobsId": "xml-task-5/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "4"
+        },
+        {
+            "jobsId": "xml-task-6/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "5"
+        },
+        {
+            "jobsId": "xml-task-7/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "6"
+        },
+        {
+            "jobsId": "xml-task-8/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "7"
+        },
+        {
+            "jobsId": "xml-task-9/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "8"
+        },
+        {
+            "jobsId": "xml-task-10/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "9"
+        },
+        {
+            "externalId": "188743732",
+            "jobsId": "xml-udf-TASK-188743732",
+            "kind": "udf",
+            "name": "AS",
+            "scope": "TASK",
+            "type": "start"
+        },
+        {
+            "externalId": "188743733",
+            "jobsId": "xml-udf-TASK-188743733",
+            "kind": "udf",
+            "name": "AF",
+            "scope": "TASK",
+            "type": "finish"
+        },
+        {
+            "externalId": "188743767",
+            "jobsId": "xml-udf-TASK-188743767",
+            "kind": "udf",
+            "name": "AD",
+            "scope": "TASK",
+            "type": "number"
+        },
+        {
+            "externalId": "188743768",
+            "jobsId": "xml-udf-TASK-188743768",
+            "kind": "udf",
+            "name": "AW",
+            "scope": "TASK",
+            "type": "number"
+        }
+    ],
+    "namespace": "http://schemas.microsoft.com/project",
+    "nativeSnapshotProfile": "native-effort-split-v1",
+    "revision": "2",
+    "source": {
+        "buildNumber": "",
+        "name": "progress.xml",
+        "producer": "unverified",
+        "saveVersion": "12",
+        "sha256": "76e56f015616bfcd1a0b3d02d74fdec1f42ef24514125bc876a9c3f99305a625"
+    },
+    "targetPolicy": {
+        "calculationProfile": "native-effort-split-v1",
+        "lagCalendar": "successor-working-calendar",
+        "projectStartAnchor": "09:00"
+    },
+    "taskProgressReview": {
+        "defaultAdopted": false,
+        "rows": [
+            {
+                "actualFinish": "2026-11-12 11:00",
+                "actualMinutes": 120,
+                "actualStart": "2026-11-12 09:00",
+                "issue": "",
+                "name": "완료-A",
+                "present": true,
+                "remainingMinutes": 0,
+                "taskId": "xml-task-2",
+                "xmlUid": "2"
+            },
+            {
+                "actualFinish": null,
+                "actualMinutes": 60,
+                "actualStart": "2026-11-12 11:00",
+                "issue": "",
+                "name": "진행-B",
+                "present": true,
+                "remainingMinutes": 180,
+                "taskId": "xml-task-3",
+                "xmlUid": "3"
+            },
+            {
+                "actualFinish": null,
+                "actualMinutes": 0,
+                "actualStart": null,
+                "issue": "",
+                "name": "미착수-C",
+                "present": true,
+                "remainingMinutes": 60,
+                "taskId": "xml-task-4",
+                "xmlUid": "4"
+            },
+            {
+                "actualFinish": "2026-11-12 11:30",
+                "actualMinutes": 0,
+                "actualStart": "2026-11-12 11:30",
+                "issue": "",
+                "name": "완료점-M",
+                "present": true,
+                "remainingMinutes": 0,
+                "taskId": "xml-task-5",
+                "xmlUid": "5"
+            },
+            {
+                "actualFinish": null,
+                "actualMinutes": null,
+                "actualStart": "2026-11-12 11:00",
+                "issue": "ActualDuration과 RemainingDuration의 명시 값이 모두 필요합니다. 날짜/진척률로 추정하지 않습니다.",
+                "name": "기간누락-BAD",
+                "present": true,
+                "remainingMinutes": 60,
+                "taskId": "xml-task-6",
+                "xmlUid": "6"
+            },
+            {
+                "actualFinish": null,
+                "actualMinutes": 0,
+                "actualStart": "2026-11-12 13:00",
+                "issue": "",
+                "name": "미래-F",
+                "present": true,
+                "remainingMinutes": 120,
+                "taskId": "xml-task-7",
+                "xmlUid": "7"
+            },
+            {
+                "actualFinish": null,
+                "actualMinutes": null,
+                "actualStart": null,
+                "issue": "XML 실제 날짜/기간 형식·중복·분 정밀도를 확인하세요.",
+                "name": "초정밀-S",
+                "present": true,
+                "remainingMinutes": null,
+                "taskId": "xml-task-8",
+                "xmlUid": "8"
+            },
+            {
+                "actualFinish": null,
+                "actualMinutes": null,
+                "actualStart": null,
+                "issue": "XML 실제 날짜/기간 형식·중복·분 정밀도를 확인하세요.",
+                "name": "소수기간-D",
+                "present": true,
+                "remainingMinutes": null,
+                "taskId": "xml-task-9",
+                "xmlUid": "9"
+            },
+            {
+                "actualFinish": null,
+                "actualMinutes": null,
+                "actualStart": null,
+                "issue": "작업 진척 값 없음",
+                "name": "미보고-N",
+                "present": false,
+                "remainingMinutes": null,
+                "taskId": "xml-task-10",
+                "xmlUid": "10"
+            }
+        ],
+        "statusIssue": "",
+        "xmlStatusAt": "2026-11-12 12:00"
+    },
+    "xmlProgressAdoption": {
+        "mode": "new-copy-task-progress-v1",
+        "reason": "선택한 원본 진척 확인",
+        "recordedAt": "2026-11-12T03:00:00Z",
+        "reporter": "PM",
+        "selected": [
+            {
+                "entryId": "xml-progress-e2d3fc6fddf4d34d12242b19662ae685",
+                "taskId": "xml-task-2",
+                "xmlUid": "2"
+            },
+            {
+                "entryId": "xml-progress-6d3f521d82b4bcccc97a68f58a87341c",
+                "taskId": "xml-task-3",
+                "xmlUid": "3"
+            },
+            {
+                "entryId": "xml-progress-f486db0238cef7e06c36ba174d35f12b",
+                "taskId": "xml-task-4",
+                "xmlUid": "4"
+            },
+            {
+                "entryId": "xml-progress-603804913b26911e3908e8b431458c9a",
+                "taskId": "xml-task-5",
+                "xmlUid": "5"
+            }
+        ],
+        "sourceSha256": "76e56f015616bfcd1a0b3d02d74fdec1f42ef24514125bc876a9c3f99305a625",
+        "statusAt": "2026-11-12 12:00",
+        "xmlStatusAt": "2026-11-12 12:00"
+    }
+}

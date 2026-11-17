@@ -1,0 +1,109 @@
+{
+  "status": "PASS",
+  "date": "2026-11-09",
+  "ctest": {
+    "tests": 145,
+    "failures": 0,
+    "seconds": 250.91
+  },
+  "parser_seeds": 566,
+  "cpp_format_files": 417,
+  "java_projection_checks": 16,
+  "packaging": {
+    "passed": 28,
+    "platform_skips": 2
+  },
+  "independent": {
+    "status": "PASS",
+    "assignments": 9,
+    "resource_minutes": 10080,
+    "manual_curves": [
+      "xml-task-14",
+      "xml-task-16"
+    ],
+    "decoded_source": "MPXJ16.10.0 directly; bridge/writer bypassed",
+    "comparison": "independent civil-minute allocation at native scheduled dates; exact totals/zeros/order",
+    "source_sha256": "0fce2e61a05adeeb9f5dc8a0c3fc41776b2588358e95fecd51efdf53a74fff02"
+  },
+  "exports": {
+    "status": "PASS",
+    "reader": "MPXJ16.10.0",
+    "exports": [
+      {
+        "format": "xml",
+        "ignored_errors": 0,
+        "matched_planning_curves": 9
+      },
+      {
+        "format": "xer",
+        "ignored_errors": 0,
+        "matched_planning_curves": 9
+      }
+    ]
+  },
+  "sources_sha256": {
+    "src/persistence/ProjectMpp.cpp": "efc0ba3711cec6a5e8d6442e3649559a719f911c9db5b5367b4e9df7a9db48cf",
+    "src/persistence/ProjectXml.cpp": "d3fdfa940f97102ea98ecbf99296fe225cca65f49b44475839faa72d18cf54c3",
+    "tests/ProjectMppTests.cpp": "4387020f98555b34f834e667fbc4fee1a6a3fc52abb402979a1bc8487bf4af64",
+    "tests/MppCurveTests.cpp": "97c9e867d71f62ec7ec8e3fc82afb2a9f13c6d1681a12e26b0e6059a8663e5e8",
+    "CMakeLists.txt": "05ac3bd65b76dc321cc4b44ca836ae45e198576552ad00cb782d1f305d441445",
+    "tools/mpp-reader/MppBridge.java": "ea7983038a4151b20da8c01ef8347064d603f00b924b1b02ae997bd6c048f1c5",
+    "tests/java/CurveProjectionContract.java": "1792af93dfcc049a8353c7fd777b844d0e840a330ee908c676adb0cdff0fe4b8",
+    "scripts/prepare-mpp-reader.py": "9215ec0eb530735a89a8b0d0f82e913fe87d69056e4be242d19d287a87288569",
+    "scripts/mpp_payload.py": "13e2b94f7cc6f950b389986048db688d67fcce0bc3e9986137a53147add3adef",
+    "scripts/verify-mpp-curves.py": "2333a852ea00cbe0305357fbc1112bb487072f615bcdeeb4730a8e1509a0fa89",
+    "scripts/verify-mpp-curve-exports.py": "87e11bf60e0b23feb093222e8b434329076fa2cf66f662d49934b248d3768073",
+    "tests/test_mpp_payload.py": "816177099f01b05dca36df8112c10bf347364d8d11fe786f754ab302ab5a7c00",
+    "tests/fixtures/mpp-public/manifest.json": "7d1636aacefacbf489e4dfe44630ce4678464a49918ac1405510d1ffca95bb9c"
+  },
+  "evidence_sha256": {
+    "all-test-output.txt": "724e7fc553b2198786642823c513f5c29306d7b4028a780475ed9667a1fc6902",
+    "apple-signing.txt": "55a89da814c5aa8ad4bcb6b46245aa138cc861889cdf13124d3c8e593d23ec26",
+    "build.txt": "7a181a10cdd9f4d2a9fa9d30c841dadb037bfcd7cd5d850b4396318f6d022477",
+    "changed-cpp.json": "3d1fb7e644e872dd28750d0a3dc328612fd4f199d88a8b0e8580bde58a53b3a2",
+    "complete-focused-build.txt": "df6376fc5ab38e27a68359b657014bbc43ee1976a6a577159aba08885820de2a",
+    "ctest-console.txt": "309b5eca117d19077ddf7f40f0e6fce698087b962999cd3a528bed78c375473c",
+    "ctest.txt": "309b5eca117d19077ddf7f40f0e6fce698087b962999cd3a528bed78c375473c",
+    "ctest.xml": "a53329772364e8b2e2ac88cf14a5e82bc57b90805d45ec5fb3889021ac3fd138",
+    "curve-build.txt": "ff2d8b2644532a12258481343f4e1e07af1ab22d7d1379d6aa5cedcd2bab438b",
+    "fifth-curve-build.txt": "8e61762983c43777e5de06c05f6125adfa80addfc6fa85be45faf6db75f251a8",
+    "first-build.txt": "4597481e608b0a86a5b7af79caf5a4552137af4b0b0f296f840178c636c741d9",
+    "focused.txt": "849d8173af2caebe3a2b1633e49d456e866bdd4b385d0aea62aa49a295b135cf",
+    "format.txt": "97f66fe3bdf146d079a8e78d86d85c38a245f8d2ca84bd61340dbf1ae6fea0af",
+    "fourth-curve-build.txt": "71aa391ec7d7e291b419a7f40fba91919e14ac2394ab4e8b66ed126e267d70f6",
+    "fourth-curves.txt": "95915a861eed874c2039612666ac6ed74366d227ec62a80bf857337ce8a4646c",
+    "independent-curves.json": "0cad85dc7f610d02a56183d5f8b51479338005a2a9f20c4bc53087627c9640a3",
+    "independent-exports.json": "2e6d9561e38b132211c941a69042ad1170e8d58863a30500f413f1a350d6d6c7",
+    "initial-curves.txt": "454307b999c901557c303878840d2ce9a1264454d3741fb01efb0c6ae08a9317",
+    "java-build.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "java-contract.txt": "37806578e6ac2f3b3d6bf33b3fe808924adc24c90ace73176163af0582885bb2",
+    "mac-packaging.txt": "2e4fe9c048bfed0a55822610c96360b80ce4f2fa2525195f4c45e3a27f985f1b",
+    "mpp-packaging.txt": "2863a8a435d7e4b212d6b2509f2b92dadad8b15e623b4f04dee11db738e21670",
+    "msix-packaging.txt": "8e5e49c806ca3bcf251306f69d58217beeea4c839257ce62565c8404da6fe5f6",
+    "native-ui.txt": "03a32b97793614ef318b5e95a486dabe1b97171bf15d0103eff52a633c2ec7cd",
+    "prepare-reader.txt": "11339b33dc3b02538e2d7e00940ff5c103f1e4d5e3c755377ce6d34f3439a5fc",
+    "reader-manifest.json": "0fde50f42f809b66fc81eb2a39adfc4bb70ddc2c5cf7bee95798662d10fcf28a",
+    "reader-verification.json": "68d4c7852950e3b9c5735f432bd08fac76994f841e56fa3128e4b9e7e0d2701e",
+    "refined-focused-build.txt": "9474d80bf9080d6c4bbbb017b646a47dfd2d1a29e9be2a4ddcd0669967df9f08",
+    "refined-focused.txt": "8a5ac6a78fdb9a882cc427dcba43e12411a828169aed4c24132a88fe5de09f88",
+    "second-curve-build.txt": "49e2984e8798e4f0377e48e6b8e55b0d98bce6a25dd02a0cb8f5cf8c5192d3e9",
+    "second-curves.txt": "993003664b40e63727dd37b5d6398a18d07d2aaea026bd62646954963f9b5a6f",
+    "third-curve-build.txt": "5a29029c8ab0a91ac3a93ca08015b6bf48e246802160db8ec2357509999f67ec",
+    "third-curves.txt": "904c59d5ab9d22fe9668f8dda1c9ff1957d4215e0f269f48d7c8cde07bb146f8",
+    "zero-work-build.txt": "fd5530bac728437fbe963b801a301d823508ede1bdf80da70c82e492ee4cd673",
+    "zero-work-curves.txt": "3c3bc21fa11c3751d7f09424700747645dc32ccf42e058a8edcbc1af98419b65",
+    "mpp-curves-qa/export.xer": "638e7e2f42ac219ae304be755dd0edfca29f3e32b7399a7600ba2438c95a3d11",
+    "mpp-curves-qa/export.xml": "875469533c4b5b4a0a03d5220de48ca1133da60dbe6e8ff493b45785332dd6c2",
+    "mpp-curves-qa/timephased-actual-overtime-work.mpp.json": "8cc990a60cfed11ea119647a76a1da2dd3b85a8c440ccde76a6235ccd9b70833",
+    "mpp-curves-qa/timephased-actual-overtime-work.mpp.report.json": "bb980c8afef12dc16d1d710a1f19da3e235eab8d72a65d3d9492016e93ec9bee",
+    "mpp-curves-qa/timephased-actual-work-resource.mpp.json": "abf9fd9c820ddb73f1c3b5f3d8ec8f6806c1243ed710f0c5d903265a566a1c5b",
+    "mpp-curves-qa/timephased-actual-work-resource.mpp.report.json": "8217dd8d27204eef1296b1ecffe1a04db18e36a57088fea190f1c7767eef4d15",
+    "mpp-curves-qa/timephased-multi-rate.mpp.json": "21336dc099e2e3b473fe76ef3a8ab2ed205549fa68cf3ef6035138c14f888964",
+    "mpp-curves-qa/timephased-multi-rate.mpp.reader.xml": "1d2c1ed469224d51d8465ccfd13671f4d207d166137faf5aa7de6c4cf98e5a20",
+    "mpp-curves-qa/timephased-multi-rate.mpp.report.json": "7f857081c3c984ed7c4f486de493e42d8b80d3159217030718d2a6c996220132",
+    "mpp-curves-qa/timephased-multi-rate.mpp.spans.json": "b5d3d26d3bd88c2655b8c8ff98815a697b42353398a668eb53f547f8e5817b01",
+    "mpp-qa/preview-small.png": "58e356ba7bd556a995ee952a73384438179015196914f659ebb52dd80d910cd7",
+    "mpp-qa/preview.png": "4dea7e9b1bfd324b2276df08230e58fe50e3f1cc5ab12012a1fef6bad23fb579",
+    "mpp-qa/ui-project.json": "e1549436e49bc680cfddb1e78ba8dfee6a966bde5059b62d64727bb181a6a275"
+  }
+}

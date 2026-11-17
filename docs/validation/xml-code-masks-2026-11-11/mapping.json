@@ -1,0 +1,126 @@
+{
+    "companionPolicy": "원본과 진단은 이 폴더의 동반 파일입니다. .ppm 사본 저장/이동 시 자동 복제되지 않습니다.",
+    "compatibility": {
+        "externalRoundTrip": "unverified",
+        "import": "not-applicable",
+        "jobsRecomputation": "unverified",
+        "originalPreservation": "exact-native-input-snapshot"
+    },
+    "contract": "jobs-mspdi-plan-v1",
+    "diagnostics": [
+        {
+            "message": "기간 기반 계획 투영입니다. 외부 제품의 계산/재저장 호환은 미검증입니다. 원본 전체 입력/이력은 source.ppm 참조.",
+            "path": "/Project"
+        },
+        {
+            "message": "지원 사용자 필드는 UDF 매핑표를 따릅니다. 작업 코드·저장된 보기는 source.ppm에 전체 데이터를 보존합니다.",
+            "path": "/Project/ExtendedAttribute"
+        },
+        {
+            "message": "기준선·실적·원가·상태일·시나리오는 XML에 포함하지 않음 · source.jobs에 보존",
+            "path": "/Project/history-costs"
+        }
+    ],
+    "direction": "export",
+    "documentId": "xml-code-masks",
+    "format": "Microsoft Project XML",
+    "mapping": [
+        {
+            "externalId": "188776576",
+            "jobsId": "code0",
+            "kind": "udf",
+            "name": "공정 코드 0",
+            "representation": "hex-element",
+            "scope": "TASK",
+            "type": "text",
+            "xmlFieldName": "공정 코드 0",
+            "xmlGuid": "55555555-6666-4777-8888-000000000101"
+        },
+        {
+            "externalId": "190873728",
+            "jobsId": "code1",
+            "kind": "udf",
+            "name": "공정 코드 1",
+            "representation": "hex-element",
+            "scope": "PROJECT",
+            "type": "text",
+            "xmlFieldName": "공정 코드 1",
+            "xmlGuid": "55555555-6666-4777-8888-000000000102"
+        },
+        {
+            "externalId": "205553792",
+            "jobsId": "code2",
+            "kind": "udf",
+            "name": "공정 코드 2",
+            "representation": "hex-element",
+            "scope": "RSRC",
+            "type": "text",
+            "xmlFieldName": "공정 코드 2",
+            "xmlGuid": "55555555-6666-4777-8888-000000000103"
+        },
+        {
+            "externalId": "255885440",
+            "jobsId": "code3",
+            "kind": "udf",
+            "name": "공정 코드 3",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "text",
+            "xmlFieldName": "공정 코드 3",
+            "xmlGuid": "55555555-6666-4777-8888-000000000104"
+        },
+        {
+            "jobsId": "",
+            "kind": "calendar",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "G",
+            "kind": "wbs",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "H",
+            "kind": "wbs",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "T",
+            "kind": "task",
+            "xmlUid": "3"
+        },
+        {
+            "jobsId": "B",
+            "kind": "task",
+            "xmlUid": "4"
+        },
+        {
+            "jobsId": "R",
+            "kind": "resource",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "T/R",
+            "kind": "assignment",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "B/R",
+            "kind": "assignment",
+            "xmlUid": "2"
+        }
+    ],
+    "namespace": "http://schemas.microsoft.com/project",
+    "nativeSnapshotProfile": "native-pdm-taskcal-v1",
+    "revision": "1",
+    "source": {
+        "name": "source.ppm",
+        "product": "PPM"
+    },
+    "targetPolicy": {
+        "calculationProfile": "native-effort-split-v1",
+        "lagCalendar": "successor-working-calendar",
+        "projectStartAnchor": "09:00"
+    },
+    "xmlSha256": "6e48568d845a867dd05e0192e31483da713a32ef84181012eacf1e8f62a0f561"
+}

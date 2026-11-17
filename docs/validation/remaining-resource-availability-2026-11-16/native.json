@@ -1,0 +1,290 @@
+{
+    "assignmentFields": [
+        {
+            "id": "remaining",
+            "name": "remaining",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                ],
+                "source": "PPMRemainingAvailability(#2026-11-16T09:30:00#)"
+            }
+        }
+    ],
+    "assignments": [
+        {
+            "resourceId": "R",
+            "taskId": "A",
+            "units": 75
+        },
+        {
+            "resourceId": "R",
+            "taskId": "B",
+            "units": 50
+        },
+        {
+            "resourceId": "S",
+            "taskId": "C",
+            "units": 25
+        }
+    ],
+    "baselines": [
+    ],
+    "calculationProfile": "native-effort-split-v1",
+    "calendar": "standard-mon-fri-8h-v1",
+    "calendars": [
+    ],
+    "codeTypes": [
+    ],
+    "costEntries": [
+    ],
+    "costProfile": "cost-day-minor-half-up-v1",
+    "currency": "KRW",
+    "customFields": [
+        {
+            "id": "empty",
+            "name": "empty",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                ],
+                "source": "PPMResourceLoad(#2026-11-16T09:30:00#)"
+            }
+        }
+    ],
+    "derivedFrom": "",
+    "documentId": "remaining-availability",
+    "holidays": [
+    ],
+    "name": "현재 부하와 잔여 가용량",
+    "progress": [
+    ],
+    "resourceFields": [
+        {
+            "id": "at",
+            "name": "at",
+            "options": [
+            ],
+            "type": "date",
+            "unit": ""
+        },
+        {
+            "id": "load",
+            "name": "load",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "field:at",
+                        "scope": 2,
+                        "token": "field:at"
+                    }
+                ],
+                "source": "PPMResourceLoad([field:at])"
+            }
+        },
+        {
+            "id": "remaining",
+            "name": "remaining",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "field:at",
+                        "scope": 2,
+                        "token": "field:at"
+                    }
+                ],
+                "source": "PPMRemainingAvailability([field:at])"
+            }
+        },
+        {
+            "expression": "[field:remaining]*100",
+            "id": "native",
+            "name": "native",
+            "options": [
+            ],
+            "type": "number",
+            "unit": ""
+        },
+        {
+            "id": "chain",
+            "name": "chain",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "field:native",
+                        "scope": 2,
+                        "token": "field:native"
+                    }
+                ],
+                "source": "[field:native]+1"
+            }
+        }
+    ],
+    "resources": [
+        {
+            "attributes": [
+                {
+                    "key": "field:at",
+                    "value": "2026-11-16T09:30:00"
+                }
+            ],
+            "availability": [
+                {
+                    "from": "2026-11-16 09:30",
+                    "to": "2026-11-16 10:29",
+                    "units": 50
+                }
+            ],
+            "availableFrom": "2026-11-16 09:00",
+            "availableTo": "2026-11-17 17:59",
+            "calendarId": "",
+            "exceptions": [
+                {
+                    "date": "2026-11-17",
+                    "units": 0
+                }
+            ],
+            "id": "R",
+            "maxUnits": 100,
+            "name": "R",
+            "rates": [
+            ],
+            "type": "labor"
+        },
+        {
+            "attributes": [
+                {
+                    "key": "field:at",
+                    "value": "2026-11-16T09:30:00"
+                }
+            ],
+            "calendarId": "",
+            "exceptions": [
+            ],
+            "id": "S",
+            "maxUnits": null,
+            "name": "S",
+            "rates": [
+            ],
+            "type": "labor"
+        },
+        {
+            "attributes": [
+                {
+                    "key": "field:at",
+                    "value": "2026-11-16T09:30:00"
+                }
+            ],
+            "calendarId": "",
+            "exceptions": [
+            ],
+            "id": "I",
+            "maxUnits": 200,
+            "name": "I",
+            "rates": [
+            ],
+            "type": "labor"
+        }
+    ],
+    "revision": 1,
+    "scenarios": [
+    ],
+    "startDate": "2026-11-16",
+    "statusAt": null,
+    "taskCosts": [
+    ],
+    "tasks": [
+        {
+            "breaks": [
+            ],
+            "calendarId": "",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 120,
+            "id": "A",
+            "name": "A",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "G",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 60,
+            "id": "B",
+            "name": "B",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "H",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 60,
+            "id": "C",
+            "name": "C",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "H",
+            "workDriven": false,
+            "workUnitMinutes": null
+        }
+    ],
+    "wbsNodes": [
+        {
+            "id": "G",
+            "name": "선택 작업",
+            "parentId": ""
+        },
+        {
+            "id": "H",
+            "name": "다른 작업",
+            "parentId": ""
+        }
+    ]
+}

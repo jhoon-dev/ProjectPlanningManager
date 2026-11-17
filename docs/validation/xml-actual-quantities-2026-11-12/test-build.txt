@@ -1,0 +1,19 @@
+[1/33] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\build-governance && C:\Users\dow\AppData\Roaming\Python\Python314\site-packages\cmake\data\bin\cmake.exe -DSOURCE_DIR=C:/Users/dow/Development/ToolMoa/ProjectPlanningManager -DOUTPUT=C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance/BuildIdentity.h -P C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/scripts/WriteBuildIdentity.cmake"
+[2/19] Building CXX object CMakeFiles/jobs_xer_financial_tests.dir/tests/XerFinancialTests.cpp.obj
+[3/19] Building CXX object CMakeFiles/jobs_xer_financial_edit_tests.dir/tests/XerFinancialEditingTests.cpp.obj
+[4/19] Building CXX object CMakeFiles/jobs_xer_financial_merge_tests.dir/tests/XerFinancialMergeTests.cpp.obj
+[5/19] Building CXX object CMakeFiles/jobs_xer_source_conversion_tests.dir/tests/XerSourceConversionTests.cpp.obj
+[6/19] Building CXX object CMakeFiles/jobs_xer_source_relink_tests.dir/tests/XerSourceRelinkTests.cpp.obj
+[7/19] Building CXX object CMakeFiles/jobs_project_currency_tests.dir/tests/ProjectCurrencyTests.cpp.obj
+[8/19] Building CXX object CMakeFiles/jobs_ledger_identity_tests.dir/tests/LedgerIdentityTests.cpp.obj
+[9/19] Linking CXX executable jobs_xer_source_conversion_tests.exe
+[10/19] Building CXX object CMakeFiles/jobs_xer_schedule_adoption_tests.dir/tests/XerScheduleAdoptionTests.cpp.obj
+[11/19] Linking CXX executable jobs_xer_financial_tests.exe
+[12/19] Linking CXX executable jobs_xer_financial_merge_tests.exe
+[13/19] Linking CXX executable jobs_xer_financial_edit_tests.exe
+[14/19] Linking CXX executable jobs_xer_source_relink_tests.exe
+[15/19] Linking CXX executable jobs_ledger_identity_tests.exe
+[16/19] Linking CXX executable jobs_project_currency_tests.exe
+[17/19] Building CXX object CMakeFiles/jobs_parser_seed_tests.dir/tests/fuzz/ParserSeeds.cpp.obj
+[18/19] Linking CXX executable jobs_xer_schedule_adoption_tests.exe
+[19/19] Linking CXX executable jobs_parser_seed_tests.exe

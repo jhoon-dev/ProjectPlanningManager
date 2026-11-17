@@ -1,0 +1,67 @@
+[1/214] Automatic MOC for target jobs_update_tests
+[2/213] Automatic MOC for target jobs_dialog_layout_tests
+[3/212] Automatic MOC for target jobs_editing_polish_tests
+[4/211] Automatic MOC for target jobs_workspace_presentation_tests
+[5/210] Linking CXX executable PPM-Automation.exe
+[6/210] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\build-governance && C:\Users\dow\AppData\Roaming\Python\Python314\site-packages\cmake\data\bin\cmake.exe -DSOURCE_DIR=C:/Users/dow/Development/ToolMoa/ProjectPlanningManager -DOUTPUT=C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance/BuildIdentity.h -P C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/scripts/WriteBuildIdentity.cmake"
+[7/210] Building CXX object CMakeFiles/jobs_parser_harness.dir/tests/fuzz/ParserHarness.cpp.obj
+[8/210] Linking CXX static library libjobs_parser_harness.a
+[9/210] Building CXX object CMakeFiles/jobs_project_currency_tests.dir/tests/ProjectCurrencyTests.cpp.obj
+[10/210] Building CXX object CMakeFiles/jobs_ledger_identity_tests.dir/tests/LedgerIdentityTests.cpp.obj
+[11/210] Building CXX object CMakeFiles/jobs_xer_schedule_adoption_tests.dir/tests/XerScheduleAdoptionTests.cpp.obj
+[12/210] Building CXX object CMakeFiles/jobs_xer_source_conversion_tests.dir/tests/XerSourceConversionTests.cpp.obj
+[13/210] Building CXX object CMakeFiles/jobs_xer_source_relink_tests.dir/tests/XerSourceRelinkTests.cpp.obj
+[14/210] Building CXX object CMakeFiles/jobs_xer_financial_edit_tests.dir/tests/XerFinancialEditingTests.cpp.obj
+[15/210] Building CXX object CMakeFiles/jobs_xer_financial_merge_tests.dir/tests/XerFinancialMergeTests.cpp.obj
+[16/210] Building CXX object CMakeFiles/jobs_xer_financial_tests.dir/tests/XerFinancialTests.cpp.obj
+[17/210] Building CXX object CMakeFiles/jobs_msix_probe.dir/tests/MsixProbe.cpp.obj
+[18/210] Building CXX object CMakeFiles/jobs_xml_timezone_tests.dir/tests/XmlTimeZoneTests.cpp.obj
+[19/210] Building CXX object CMakeFiles/jobs_async_editing_ui_tests.dir/tests/AsyncEditingUiTests.cpp.obj
+[20/210] Building CXX object CMakeFiles/jobs_performance_probe.dir/tests/PerformanceProbe.cpp.obj
+[21/210] Building CXX object CMakeFiles/jobs_projected_view_probe.dir/tests/ProjectedViewPerformanceProbe.cpp.obj
+[22/210] Building CXX object CMakeFiles/jobs_parser_seed_tests.dir/tests/fuzz/ParserSeeds.cpp.obj
+[23/210] Building CXX object CMakeFiles/jobs_bulk_performance_probe.dir/tests/BulkPerformanceProbe.cpp.obj
+[24/210] Building CXX object CMakeFiles/jobs_editing_performance_probe.dir/tests/EditingPerformanceProbe.cpp.obj
+[25/210] Building CXX object CMakeFiles/jobs_responsive_performance_probe.dir/tests/ResponsivePerformanceProbe.cpp.obj
+[26/210] Linking CXX executable PPM.exe
+[27/210] Building CXX object CMakeFiles/jobs_file_tests.dir/tests/FileLifecycleTests.cpp.obj
+[28/210] Linking CXX executable jobs_project_currency_tests.exe
+[29/210] Linking CXX executable jobs_ledger_identity_tests.exe
+[30/210] Linking CXX executable jobs_project_mpp_tests.exe
+[31/210] Linking CXX executable jobs_xer_source_conversion_tests.exe
+[32/210] Linking CXX executable jobs_xer_schedule_adoption_tests.exe
+[33/210] Linking CXX executable jobs_xer_source_relink_tests.exe
+[34/210] Linking CXX executable jobs_xer_financial_merge_tests.exe
+[35/210] Linking CXX executable jobs_xer_financial_edit_tests.exe
+[36/210] Linking CXX executable jobs_xer_financial_tests.exe
+[37/210] Linking CXX executable jobs_xer_actual_cost_tests.exe
+[38/210] Linking CXX executable jobs_governance_risk_tests.exe
+[39/210] Linking CXX executable jobs_integrated_workspace_tests.exe
+[40/210] Linking CXX executable jobs_resource_plan_tests.exe
+[41/210] Linking CXX executable jobs_presentation_tests.exe
+[42/210] Linking CXX executable jobs_planned_work_tests.exe
+[43/210] Linking CXX executable jobs_presentation_ui_tests.exe
+[44/210] Linking CXX executable jobs_assignment_periods_tests.exe
+[45/210] Linking CXX executable jobs_resource_workspace_ui_tests.exe
+[46/210] Linking CXX executable jobs_resource_view_tests.exe
+[47/210] Linking CXX executable jobs_dated_remaining_tests.exe
+[48/210] Linking CXX executable jobs_dated_effort_tests.exe
+[49/210] Linking CXX executable jobs_mpp_curve_tests.exe
+[50/210] Linking CXX executable jobs_resource_planning_tests.exe
+[51/210] Linking CXX executable jobs_resource_view_ui_tests.exe
+[52/210] Linking CXX executable jobs_formula_field_tests.exe
+[53/210] Linking CXX executable jobs_udf_mapping_tests.exe
+[54/210] Linking CXX executable jobs_resource_planning_ui_tests.exe
+[55/210] Linking CXX executable jobs_work_contour_tests.exe
+[56/210] Linking CXX executable jobs_dated_remaining_ui_tests.exe
+[57/210] Linking CXX executable jobs_work_contour_ui_tests.exe
+[58/210] Linking CXX executable jobs_xml_actual_tests.exe
+[59/210] Linking CXX executable jobs_xml_quantity_tests.exe
+[60/210] Linking CXX executable jobs_xml_remaining_tests.exe
+[61/210] Linking CXX executable jobs_xml_baseline_cost_tests.exe
+[62/210] Linking CXX executable jobs_xml_baseline_tests.exe
+[63/210] Linking CXX executable jobs_xml_early_late_tests.exe
+[64/210] Linking CXX executable jobs_xml_progress_tests.exe
+[65/210] Linking CXX executable jobs_xml_progress_merge_tests.exe
+[66/210] Linking CXX executable jobs_xml_period_actual_tests.exe
+[67/210] Linking CXX executable jobs_xml_period_fragment_tests.exe

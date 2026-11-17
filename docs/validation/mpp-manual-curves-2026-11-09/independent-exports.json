@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "reader": "MPXJ16.10.0",
+  "exports": [
+    {
+      "format": "xml",
+      "ignored_errors": 0,
+      "matched_planning_curves": 9
+    },
+    {
+      "format": "xer",
+      "ignored_errors": 0,
+      "matched_planning_curves": 9
+    }
+  ]
+}

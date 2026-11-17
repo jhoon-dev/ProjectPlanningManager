@@ -1,0 +1,77 @@
+{
+  "status": "success",
+  "date": "2026-11-08",
+  "platform": "Windows x64 / Qt6.8.3 / MinGW13.1 / Release/Ninja",
+  "regression": {
+    "name": "Win32-ninja",
+    "tests": "135",
+    "failures": "0",
+    "disabled": "0",
+    "skipped": "0",
+    "hostname": "DESKTOP-61CPKLN",
+    "time": "160",
+    "timestamp": "2026-11-08T18:37:08",
+    "wall_time_seconds": 160.15
+  },
+  "native_ui": {
+    "platform": "windows",
+    "normal": true,
+    "small_window": "800x600",
+    "saved_history_inspector": true,
+    "preview_and_merge_commit": true
+  },
+  "independent": {
+    "status": "success",
+    "numeric_cases": 760,
+    "checks": 844,
+    "converted_sha256": "e59347f07c4cc34aad517d6091d623dd1ab29833334e7e44b3ca7c6bdd15e44c",
+    "independent_reader": {
+      "reader": "MPXJ16.10.0 strict",
+      "actual_work_hours": "3.75",
+      "resource_cost": "110.46"
+    }
+  },
+  "packaging": {
+    "msix": {
+      "skipped": 0,
+      "passed": 8
+    },
+    "apple_signing_preparation": {
+      "skipped": 0,
+      "passed": 3
+    },
+    "macos_packaging": {
+      "skipped": 2,
+      "passed": 10
+    }
+  },
+  "format": {
+    "status": "success",
+    "files": 366
+  },
+  "external_p6_execution": "not run",
+  "schema": 31,
+  "sources": {
+    "src/domain/XerFinancials.h": "a1106c90c19daa882aab3ce8f6ca102262874937c4944ca9e5ec4af452cfb2aa",
+    "src/domain/XerSourceConversion.cpp": "fe35e877f1828a77f0c896fe365331bf34e9eb5ff21807e43f0a0a5b962a3813",
+    "src/domain/XerSourceRelink.cpp": "2c2bf0ce1d8ce681754243c4d43dc24d489353853bbaa70ae8d0859742fa96d3",
+    "src/domain/Classification.cpp": "5c739c73d2f4672ca2a0a6603462d7a06a33fb7b7f2cf24106fc244191c5da1e",
+    "src/persistence/XerFinancialJson.cpp": "8204c249de5708ff2d4cbb6c71695190f52d628908fe7b7220f93dbc717fa943",
+    "src/persistence/ProjectJson.cpp": "212f5b8ff1e3f826b89b6b00f8ffe15842009831c886449f8cb03181f45b65af",
+    "src/persistence/ProjectFile.cpp": "e795ecbf3f287f008d507035a464824e390b83823f3e0a51f48a5bb5192fb4b8",
+    "src/persistence/JsonRecoveryStore.cpp": "b6c3fecc40bc883e6a2969aeeed25e6b961b574cd5bdc601eb09f1edb3edcb49",
+    "src/persistence/XerActualCosts.cpp": "657270d9989a92737d1095d3cca92306ea48e324102b154921fef7c91b8d3c0e",
+    "src/ui/XerSourceRelinkDialog.cpp": "d541761ffa3e1d2bfc98d04f8ed7503bd0fa83769490a80f05a578a4f391744a",
+    "src/ui/XerConversionEditor.cpp": "811d2d19ed39e2d8fb53f4ed87609cc17091e290dbb6e074cef9c6477ac95e89",
+    "src/ui/XerFinancialDialog.cpp": "9da45e8210380f5cd16439d0f8b2f0f402eb6ccb37b54d2eec11dbdaffb7b98e",
+    "tests/XerSourceConversionTests.cpp": "53f6558561da4654d279f1eccfb19a5db0bd79013e2d96ada6f0bb331895e31b",
+    "tests/fuzz/ParserSeeds.cpp": "b4757935f8d166031195f1f6e9dbfc5620095164c1030f689d33033272e3d550",
+    "tests/fuzz/ParserHarness.cpp": "37cf2cd47ad10be81df0c7d3361b0c9daf508241846ea26acf7b7f230eb0c896",
+    "scripts/verify-xer-source-conversion.py": "3b46f4cbe048b47b38ef99144a256ee061f59034549c75af47dd909fba8dd9cb",
+    "CMakeLists.txt": "5a26f7ff5e8f0dd567790ca98306a61a28d928cd134f92f7fe68946cdc2ab8c2",
+    "src/domain/XerSourceRelink.h": "85eec1e78316c7104382f2ad9e64e649951054da26beac7c138f3e62828ff463",
+    "src/ui/XerConversionEditor.h": "7f55eb733f20c411682b4be717f88044082af3c7de1c2b306d1e1c8e2b9c61c8",
+    "src/persistence/XerFinancialJson.h": "1f6eeb8c23aa23c8a50891290dc38c07ffe8acabe4da0ca4de153c88b1790bef"
+  },
+  "parser_seeds": 424
+}

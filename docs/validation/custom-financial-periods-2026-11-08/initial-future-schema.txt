@@ -1,0 +1,78 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+      Start 117: external_xer_evm_adoption_contract
+      Start 116: custom_financial_period_ui
+ 1/29 Test #116: custom_financial_period_ui ...............   Passed    4.38 sec
+      Start 118: external_xer_evm_adoption_ui
+ 2/29 Test #117: external_xer_evm_adoption_contract .......   Passed    5.84 sec
+      Start  63: dialog_layout
+ 3/29 Test #118: external_xer_evm_adoption_ui .............   Passed    4.91 sec
+      Start  86: primavera_xer_contract
+ 4/29 Test  #63: dialog_layout ............................   Passed    5.62 sec
+      Start  87: primavera_xer_ui
+ 5/29 Test  #86: primavera_xer_contract ...................   Passed    4.56 sec
+      Start 120: native_period_evm_ui
+ 6/29 Test  #87: primavera_xer_ui .........................   Passed    4.13 sec
+      Start  45: xer_batch_ui
+ 7/29 Test #120: native_period_evm_ui .....................   Passed    4.20 sec
+      Start 114: reports_ui
+ 8/29 Test  #45: xer_batch_ui .............................   Passed    3.57 sec
+      Start   2: xer_financial_merge_contract
+ 9/29 Test   #2: xer_financial_merge_contract .............***Failed    1.15 sec
+expected rejection
+
+      Start   4: xer_financial_snapshot_contract
+10/29 Test   #4: xer_financial_snapshot_contract ..........***Failed    1.39 sec
+expected rejection
+
+      Start  48: xer_project_selection_ui
+11/29 Test #114: reports_ui ...............................   Passed    3.80 sec
+      Start   1: xer_source_relink_contract
+12/29 Test   #1: xer_source_relink_contract ...............***Failed    0.91 sec
+expected rejection
+
+      Start   3: xer_financial_edit_allocation_contract
+13/29 Test   #3: xer_financial_edit_allocation_contract ...***Failed    1.35 sec
+expected rejection
+
+      Start   5: xer_actual_cost_contract
+14/29 Test  #48: xer_project_selection_ui .................   Passed    3.69 sec
+      Start  47: xer_project_selection_contract
+15/29 Test   #5: xer_actual_cost_contract .................   Passed    2.60 sec
+      Start 115: custom_financial_period_contract
+16/29 Test  #47: xer_project_selection_contract ...........   Passed    2.49 sec
+      Start  56: period_actual_ui
+17/29 Test #115: custom_financial_period_contract .........   Passed    1.54 sec
+      Start  46: xer_batch_contract
+18/29 Test  #56: period_actual_ui .........................   Passed    2.53 sec
+      Start 123: cost_ui
+19/29 Test  #46: xer_batch_contract .......................   Passed    2.32 sec
+      Start 113: reports_export
+20/29 Test #123: cost_ui ..................................   Passed    2.16 sec
+      Start 119: native_period_evm_contract
+21/29 Test #113: reports_export ...........................   Passed    2.06 sec
+      Start  75: parser_seed_replay
+22/29 Test #119: native_period_evm_contract ...............   Passed    1.51 sec
+      Start 131: file_lifecycle
+23/29 Test  #75: parser_seed_replay .......................   Passed    1.59 sec
+      Start 121: cost_contract_file
+24/29 Test #131: file_lifecycle ...........................   Passed    1.10 sec
+      Start  55: period_actual_contract
+25/29 Test #121: cost_contract_file .......................   Passed    0.94 sec
+      Start  67: primavera_public_corpus
+26/29 Test  #55: period_actual_contract ...................   Passed    0.63 sec
+      Start 122: cost_day_boundaries
+27/29 Test  #67: primavera_public_corpus ..................   Passed    0.71 sec
+      Start  70: structured_diagnostics
+28/29 Test #122: cost_day_boundaries ......................   Passed    0.71 sec
+29/29 Test  #70: structured_diagnostics ...................   Passed    0.31 sec
+
+86% tests passed, 4 tests failed out of 29
+
+Total Test time (real) =  36.60 sec
+
+The following tests FAILED:
+	  1 - xer_source_relink_contract (Failed)
+	  2 - xer_financial_merge_contract (Failed)
+	  3 - xer_financial_edit_allocation_contract (Failed)
+	  4 - xer_financial_snapshot_contract (Failed)
+Errors while running CTest

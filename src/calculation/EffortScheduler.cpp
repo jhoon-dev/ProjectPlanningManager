@@ -1,7 +1,12 @@
+#include "calculation/CapacityTimeline.h"
+#include "calculation/MaterialReservations.h"
 #include "domain/Diagnostics.h"
 #include "calculation/Effort.h"
+#include "calculation/DatedRemainingWork.h"
 #include "calculation/Constraints.h"
 #include "calculation/EnginePolicy.h"
+#include "calculation/ForecastFloat.h"
+#include "calculation/LevelingFloat.h"
 #include <algorithm>
 #include <map>
 #include <memory>
@@ -27,10 +32,24 @@ ScheduleResult calculateEffort(const Project &p, bool forecast, const std::strin
     out.statusAt = forecast ? p.statusAt : std::nullopt;
     out.calculationPolicy = priority.empty() ? (forecast ? "retained-remaining-effort-v1" : "effort-constrained-v1")
                                              : calculationLevelingPolicyFor(p) + "/" + priority;
+    if (hasAssignmentPeriods(p))
+        out.calculationPolicy += "/assignment-periods-v1";
+    if (forecast && !p.remainingWork.empty()) {
+        out.engineVersion = datedRemainingEngine(p);
+        if (!priority.empty())
+            out.calculationPolicy = levelingPolicyFor(p) + "/" + priority;
+    }
     std::string current;
     EvaluationScope evaluation;
+    const bool curvedWork = hasWorkAssignmentPeriods(p) || (forecast && hasDatedEffort(p));
+    std::size_t trials = 0;
     try {
+        MaterialReservations materials(p, !priority.empty(), forecast);
         WorkCalendar clock(p);
+        std::map<std::string, CapacityTimeline> capacities;
+        if (!priority.empty())
+            for (const auto &r : p.resources)
+                capacities.emplace(r.id, CapacityTimeline(r, clock));
         const auto n = p.tasks.size();
         std::map<std::string, std::size_t> ids;
         const auto source = priority.empty() ? ScheduleResult{} : calculate(p);
@@ -50,7 +69,7 @@ ScheduleResult calculateEffort(const Project &p, bool forecast, const std::strin
                     e, usesWork(t) ? "MISSING_REMAINING_WORK" : "MISSING_REMAINING_DURATION", {t.id}));
                 return out;
             }
-            models.push_back(std::make_unique<TaskExecution>(p, pending.back(), &inputs));
+            models.push_back(std::make_unique<TaskExecution>(p, pending.back(), &inputs, forecast));
         }
         std::vector<TaskSchedule> rows(n);
         std::vector<Minute> early(n);
@@ -64,7 +83,8 @@ ScheduleResult calculateEffort(const Project &p, bool forecast, const std::strin
         auto rank = [&](std::size_t i) {
             if (priority.empty() || priority == "task-order")
                 return Minute{0};
-            const auto r = models[i]->dates(0);
+            const auto r =
+                models[i]->dates(forecast && hasDatedEffort(p) ? models[i]->required(*p.statusAt, false) : 0);
             const auto duration = r.earlyFinishMinutes - r.earlyStartMinutes;
             return priority == "longest-first" ? -duration : duration;
         };
@@ -132,7 +152,25 @@ ScheduleResult calculateEffort(const Project &p, bool forecast, const std::strin
                 auto local = lower(i);
                 bool unknown = false;
                 for (;;) {
+                    if (curvedWork && ++trials > 2000000)
+                        throw AppError(ErrorCode::ASSIGNMENT_PERIOD_INVALID, {"곡선 일정 탐색 한도 2,000,000회 초과"});
                     row = model.dates(local);
+                    if (curvedWork) {
+                        bool feasible = true;
+                        for (const auto &d : dependencies(t))
+                            feasible = feasible && edgeFits(model, d, rows[ids.at(d.predecessorId)], row);
+                        if (t.constraintAt &&
+                            (t.constraintType == ConstraintType::FNET || t.constraintType == ConstraintType::MFO) &&
+                            row.finish < *t.constraintAt)
+                            feasible = false;
+                        if (t.constraintAt && t.constraintType == ConstraintType::MFO &&
+                            row.finish != *t.constraintAt && local < cal.offset(*t.constraintAt))
+                            feasible = false;
+                        if (!feasible) {
+                            ++local;
+                            continue;
+                        }
+                    }
                     const auto plannedStart = row.start;
                     for (const auto &d : dependencies(t))
                         if (model
@@ -179,11 +217,9 @@ ScheduleResult calculateEffort(const Project &p, bool forecast, const std::strin
                             auto change = Minute((at / 1440 + 1) * 1440);
                             if (ev != events.end())
                                 change = std::min(change, ev->first);
-                            auto cap = r->maxUnits;
-                            const auto date = clock.boundary(at, false).substr(0, 10);
-                            for (const auto &d : r->exceptions)
-                                if (d.date == date)
-                                    cap = d.units;
+                            const auto &capacity = capacities.at(r->id);
+                            change = capacity.next(at, change);
+                            auto cap = capacity.at(at);
                             if (!cap || used + span.units > *cap) {
                                 unknown = unknown || !cap;
                                 next = std::max(next,
@@ -197,14 +233,21 @@ ScheduleResult calculateEffort(const Project &p, bool forecast, const std::strin
                             }
                         }
                     }
+                    if (next == local && !materials.fits(row)) {
+                        const auto bound = curvedWork ? std::optional<std::string>{} : materials.nextStart(row);
+                        next = bound ? std::max(local + 1, model.required(*bound, false)) : local + 1;
+                    }
                     if (next == local) {
                         for (const auto &s : spans) {
                             reserved[s.resourceId][s.start] += s.units;
                             reserved[s.resourceId][s.finish] -= s.units;
                         }
+                        materials.commit(row);
+                        if (auto delay = materials.delay(row))
+                            out.diagnostics.push_back(*delay);
                         break;
                     }
-                    local = next;
+                    local = curvedWork ? local + 1 : next;
                 }
                 early[i] = model.offset(row.remainingStart.value_or(row.start));
                 if (!priority.empty())
@@ -235,6 +278,27 @@ ScheduleResult calculateEffort(const Project &p, bool forecast, const std::strin
                 calculationCheckpoint();
                 const auto &model = *models[i];
                 auto lo = early[i], hi = std::max(lo, model.offset(finish));
+                if (curvedWork) {
+                    for (auto value = hi; value >= lo; --value) {
+                        calculationCheckpoint();
+                        if (++trials > 2000000)
+                            throw AppError(ErrorCode::ASSIGNMENT_PERIOD_INVALID, {"곡선 후진 탐색 한도 초과"});
+                        try {
+                            const auto trial = model.dates(value);
+                            bool fits = trial.finish <= finish && !timingViolation(p.tasks[i], trial);
+                            for (const auto &[j, d] : successors[i])
+                                fits = fits && edgeFits(*models[j], d, trial, targets[j]);
+                            for (const auto &d : dependencies(p.tasks[i]))
+                                fits = fits && edgeFits(model, d, rows[ids.at(d.predecessorId)], trial);
+                            if (fits)
+                                return value;
+                        } catch (const AppError &e) {
+                            if (e.code() != "WORK_HORIZON_EXHAUSTED" && e.code() != "WORK_CALENDAR_NO_INTERSECTION")
+                                throw;
+                        }
+                    }
+                    return lo;
+                }
                 while (lo < hi) {
                     const auto mid = lo + (hi - lo + 1) / 2;
                     bool fits = false;
@@ -262,22 +326,24 @@ ScheduleResult calculateEffort(const Project &p, bool forecast, const std::strin
                     early[i] = latest(i, rows);
                     rows[i] = models[i]->dates(early[i]);
                 }
-            auto late = rows;
-            calculationProgress(CalculationStage::Backward, 0, n);
-            for (auto it = order.rbegin(); it != order.rend(); ++it) {
-                calculationProgress(CalculationStage::Backward, std::uint64_t(it - order.rbegin()), n);
-                const auto i = *it;
-                auto local = latest(i, late);
-                late[i] = models[i]->dates(local);
-                auto &r = rows[i];
-                r.lateStartMinutes = late[i].earlyStartMinutes;
-                r.lateFinishMinutes = late[i].earlyFinishMinutes;
-                const auto earlyWork = legacyMilestones() ? early[i] : models[i]->calendar().offset(r.start);
-                r.totalFloatMinutes = std::max(Minute{0}, models[i]->calendar().offset(late[i].start) - earlyWork);
-                const auto free = latest(i, rows);
-                r.freeFloatMinutes =
-                    std::max(Minute{0}, models[i]->calendar().offset(models[i]->dates(free).start) - earlyWork);
-                r.critical = r.totalFloatMinutes == 0;
+            if (!curvedWork) {
+                auto late = rows;
+                calculationProgress(CalculationStage::Backward, 0, n);
+                for (auto it = order.rbegin(); it != order.rend(); ++it) {
+                    calculationProgress(CalculationStage::Backward, std::uint64_t(it - order.rbegin()), n);
+                    const auto i = *it;
+                    auto local = latest(i, late);
+                    late[i] = models[i]->dates(local);
+                    auto &r = rows[i];
+                    r.lateStartMinutes = late[i].earlyStartMinutes;
+                    r.lateFinishMinutes = late[i].earlyFinishMinutes;
+                    const auto earlyWork = legacyMilestones() ? early[i] : models[i]->calendar().offset(r.start);
+                    r.totalFloatMinutes = std::max(Minute{0}, models[i]->calendar().offset(late[i].start) - earlyWork);
+                    const auto free = latest(i, rows);
+                    r.freeFloatMinutes =
+                        std::max(Minute{0}, models[i]->calendar().offset(models[i]->dates(free).start) - earlyWork);
+                    r.critical = r.totalFloatMinutes == 0;
+                }
             }
             for (std::size_t i = 0; i < n; ++i) {
                 rows[i].drivingPredecessors.clear();
@@ -292,6 +358,29 @@ ScheduleResult calculateEffort(const Project &p, bool forecast, const std::strin
         out.tasks = std::move(rows);
         out.projectFinish = finish;
         out.status = CalculationStatus::Valid;
+        if (forecast && !p.remainingWork.empty())
+            validateRemainingWorkExecution(p, out);
+        if (priority.empty() && curvedWork)
+            calculateWorkContourFloat(p, out);
+        if (forecast && priority.empty() && !curvedWork) {
+            std::vector<RemainingExecution> remaining;
+            for (const auto &model : models) {
+                const auto *execution = model.get();
+                remaining.push_back(
+                    {&execution->calendar(),
+                     [execution, dated = !p.remainingWork.empty()](Minute local) {
+                         auto row = execution->dates(local);
+                         if (dated) {
+                             row.remainingStart = row.start;
+                             (void)execution->spans(row);
+                         }
+                         return row;
+                     },
+                     [execution](const std::string &at) { return execution->offset(at); },
+                     [execution](const std::string &at, bool finish) { return execution->required(at, finish); }});
+            }
+            calculateRemainingFloat(p, out, order, remaining);
+        }
         auto deadlines = deadlineDiagnostics(p, out.tasks);
         out.diagnostics.insert(out.diagnostics.end(), deadlines.begin(), deadlines.end());
         out.diagnostics.push_back({"EFFORT_POLICY", {}, {}, "EFFORT_POLICY"});

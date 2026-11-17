@@ -1,0 +1,21 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start  1: project_currency_conversion_contract
+    Start  4: ledger_identity_migration_contract
+    Start  5: xer_schedule_adoption_contract
+    Start  6: xer_source_conversion_contract
+1/8 Test  #6: xer_source_conversion_contract ...........   Passed    3.47 sec
+    Start  7: xer_source_relink_contract
+2/8 Test  #5: xer_schedule_adoption_contract ...........   Passed    6.21 sec
+    Start  8: xer_financial_merge_contract
+3/8 Test  #7: xer_source_relink_contract ...............   Passed    3.65 sec
+    Start  9: xer_financial_edit_allocation_contract
+4/8 Test  #4: ledger_identity_migration_contract .......   Passed    9.32 sec
+    Start 10: xer_financial_snapshot_contract
+5/8 Test  #8: xer_financial_merge_contract .............   Passed    3.81 sec
+6/8 Test  #9: xer_financial_edit_allocation_contract ...   Passed    3.20 sec
+7/8 Test #10: xer_financial_snapshot_contract ..........   Passed    3.38 sec
+8/8 Test  #1: project_currency_conversion_contract .....   Passed   14.12 sec
+
+100% tests passed out of 8
+
+Total Test time (real) =  14.15 sec

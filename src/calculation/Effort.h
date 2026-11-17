@@ -6,6 +6,7 @@ namespace jobs {
 struct ExecutionInputs {
     std::unordered_map<std::string, std::vector<Assignment>> assignments;
     std::unordered_map<std::string, const Resource *> resources;
+    std::unordered_map<std::string, std::int64_t> durations;
     explicit ExecutionInputs(const PlanInput &);
 };
 struct WorkSpan {
@@ -20,16 +21,27 @@ class TaskExecution {
         std::int64_t start, finish, units, prefix;
     };
     Task task_;
+    std::vector<Assignment> profiles_;
+    std::int64_t planDuration_ = 0;
+    std::optional<std::int64_t> contourDuration_;
     WorkCalendar clock_, calendar_;
     struct Grid {
         std::vector<WorkSpan> availability;
         std::vector<Weighted> weighted;
     };
     std::shared_ptr<const Grid> grid_;
+    std::vector<RemainingWorkPlan> remainingWork_;
+    std::optional<std::string> statusAt_;
+    bool datedInverse_ = false;
+    using DatedResult = std::pair<TaskSchedule, std::vector<WorkSpan>>;
+    mutable std::optional<std::pair<std::int64_t, DatedResult>> datedCache_;
+    DatedResult datedExecution(std::int64_t local) const;
     std::int64_t integrated(std::int64_t civil) const;
+    std::vector<WorkSpan> profileSpans(const TaskSchedule &) const;
 
 public:
     TaskExecution(const PlanInput &, const Task &, const ExecutionInputs *inputs = nullptr);
+    TaskExecution(const Project &, const Task &, const ExecutionInputs *inputs = nullptr, bool forecast = false);
     const WorkCalendar &calendar() const {
         return calendar_;
     }
@@ -44,6 +56,7 @@ public:
 // explicit remaining work report; actual effort is never duration * units.
 Task pendingTask(const Project &, const Task &);
 std::vector<WorkSpan> executionSpans(const PlanInput &, const Task &, const TaskSchedule &);
+std::vector<WorkSpan> executionSpans(const Project &, const Task &, const TaskSchedule &);
 ScheduleResult calculateEffort(const Project &, bool forecast = false, const std::string &levelingPriority = {},
                                int horizonDays = 260);
 LevelingResult levelEffort(const Project &, const std::string &, int);

@@ -5,19 +5,25 @@
 #include <variant>
 namespace jobs {
 enum class ReportFamily { All, Schedule, Resources, Costs };
-enum class CellFormat { Text, Integer, Hours, WorkHours, Money, Units, Ratio, PhysicalPercent };
+enum class CellFormat { Text, Integer, Hours, WorkHours, Money, Units, Ratio, PhysicalPercent, FieldNumber };
 struct ReportCell {
     std::variant<std::monostate, std::string, std::int64_t, double> value;
     CellFormat format = CellFormat::Text;
 };
-struct ReportColumn { std::string title; int width = 18; };
+struct ReportColumn {
+    std::string title;
+    int width = 18;
+};
 struct ReportTable {
     std::string id, title, note;
     ReportFamily family = ReportFamily::All;
     std::vector<ReportColumn> columns;
     std::vector<std::vector<ReportCell>> rows;
 };
-struct ReportKpi { std::string id, title, unit, note; ReportCell value; };
+struct ReportKpi {
+    std::string id, title, unit, note;
+    ReportCell value;
+};
 struct ReportOptions {
     std::string wbsId, baselineId, formula = "budget-remaining-v1";
     std::optional<std::string> fromDate, toDate;
@@ -34,6 +40,6 @@ struct ProjectReport {
     std::vector<ReportTable> tables;
     std::vector<CostDay> costTrend;
 };
-ProjectReport buildReport(const Project&, const ReportOptions&);
-bool includeTable(const ReportTable&, ReportFamily);
-}
+ProjectReport buildReport(const Project &, const ReportOptions &);
+bool includeTable(const ReportTable &, ReportFamily);
+} // namespace jobs

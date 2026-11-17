@@ -1,0 +1,1 @@
+PASS XML additional types UI: discrete Flag, signed Cost, elapsed/estimated Duration batch worker, task editor, 800x600, stale

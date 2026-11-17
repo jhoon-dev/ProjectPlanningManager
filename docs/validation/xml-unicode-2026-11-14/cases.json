@@ -1,0 +1,102 @@
+[
+    {
+        "source": "Asc(\"A\")",
+        "value": "65"
+    },
+    {
+        "source": "Chr(65)",
+        "value": "A"
+    },
+    {
+        "source": "AscW(\"A\")",
+        "value": "65"
+    },
+    {
+        "source": "AscW(\"가나다\")",
+        "value": "-21504"
+    },
+    {
+        "source": "AscW(\"é\")",
+        "value": "233"
+    },
+    {
+        "source": "AscW(\"中\")",
+        "value": "20013"
+    },
+    {
+        "source": "AscW(ChrW(32767))",
+        "value": "32767"
+    },
+    {
+        "source": "AscW(ChrW(32768))",
+        "value": "-32768"
+    },
+    {
+        "source": "ChrW(44032)",
+        "value": "가"
+    },
+    {
+        "source": "ChrW(-21504)",
+        "value": "가"
+    },
+    {
+        "source": "ChrW(32.5)",
+        "value": " "
+    },
+    {
+        "source": "AscW(ChrW(33.5))",
+        "value": "34"
+    },
+    {
+        "source": "AscW(ChrW(44031.5))",
+        "value": "-21504"
+    },
+    {
+        "source": "AscW(ChrW(44032.5))",
+        "value": "-21504"
+    },
+    {
+        "source": "AscW(ChrW(-21503.5))",
+        "value": "-21504"
+    },
+    {
+        "source": "AscW(ChrW(65533))",
+        "value": "-3"
+    },
+    {
+        "source": "AscW(ChrW(-3))",
+        "value": "-3"
+    },
+    {
+        "source": "AscW(CStr(123))",
+        "value": "49"
+    },
+    {
+        "source": "ChrW(65)&ChrW(233)",
+        "value": "Aé"
+    },
+    {
+        "source": "AscW(ChrW(9))",
+        "value": "9"
+    },
+    {
+        "source": "AscW(ChrW(10))",
+        "value": "10"
+    },
+    {
+        "source": "AscW(ChrW(13))",
+        "value": "13"
+    },
+    {
+        "source": "AscW(ChrW(65)) + 1",
+        "value": "66"
+    },
+    {
+        "source": "IIf(AscW(\"A\")=65,ChrW(44032),ChrW(66))",
+        "value": "가"
+    },
+    {
+        "source": "ascw(\"B\")",
+        "value": "66"
+    }
+]

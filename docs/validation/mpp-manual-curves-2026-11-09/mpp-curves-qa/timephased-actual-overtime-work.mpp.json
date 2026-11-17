@@ -1,0 +1,254 @@
+{
+    "assignments": [
+        {
+            "resourceId": "xml-resource-1",
+            "taskId": "xml-task-1",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-2",
+            "taskId": "xml-task-2",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-3",
+            "taskId": "xml-task-3",
+            "units": 100
+        }
+    ],
+    "baselines": [
+    ],
+    "calculationProfile": "native-effort-split-v1",
+    "calendar": "standard-mon-fri-8h-v1",
+    "calendars": [
+        {
+            "holidays": [
+            ],
+            "id": "xml-cal-1",
+            "name": "Standard",
+            "periods": [
+                {
+                    "begin": 480,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "holidays": [
+            ],
+            "id": "xml-cal-2",
+            "name": "Unnamed Resource",
+            "periods": [
+                {
+                    "begin": 480,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "holidays": [
+            ],
+            "id": "xml-cal-3",
+            "name": "Resource 1",
+            "periods": [
+                {
+                    "begin": 480,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "holidays": [
+            ],
+            "id": "xml-cal-4",
+            "name": "Resource 2",
+            "periods": [
+                {
+                    "begin": 480,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "holidays": [
+            ],
+            "id": "xml-cal-5",
+            "name": "Resource 3",
+            "periods": [
+                {
+                    "begin": 480,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    ],
+    "costEntries": [
+    ],
+    "costProfile": "cost-day-minor-half-up-v1",
+    "currency": "KRW",
+    "derivedFrom": "",
+    "documentId": "415dd85d-bf9c-428d-9158-ff837541c37f",
+    "holidays": [
+    ],
+    "name": "timephased-actual-overtime-work",
+    "progress": [
+    ],
+    "resources": [
+        {
+            "calendarId": "xml-cal-3",
+            "exceptions": [
+            ],
+            "id": "xml-resource-1",
+            "maxUnits": 100,
+            "name": "Resource 1",
+            "rates": [
+            ],
+            "type": "labor"
+        },
+        {
+            "calendarId": "xml-cal-4",
+            "exceptions": [
+            ],
+            "id": "xml-resource-2",
+            "maxUnits": 100,
+            "name": "Resource 2",
+            "rates": [
+            ],
+            "type": "labor"
+        },
+        {
+            "calendarId": "xml-cal-5",
+            "exceptions": [
+            ],
+            "id": "xml-resource-3",
+            "maxUnits": 100,
+            "name": "Resource 3",
+            "rates": [
+            ],
+            "type": "labor"
+        }
+    ],
+    "revision": 1,
+    "scenarios": [
+    ],
+    "startDate": "2026-01-28",
+    "statusAt": null,
+    "taskCosts": [
+    ],
+    "tasks": [
+        {
+            "breaks": [
+            ],
+            "calendarId": "xml-cal-1",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 1680,
+            "id": "xml-task-1",
+            "name": "Task 1",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xml-cal-1",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 1500,
+            "id": "xml-task-2",
+            "name": "Task 2",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xml-cal-1",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 480,
+            "id": "xml-task-3",
+            "name": "Task 3",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "",
+            "workDriven": false,
+            "workUnitMinutes": null
+        }
+    ],
+    "wbsNodes": [
+    ]
+}

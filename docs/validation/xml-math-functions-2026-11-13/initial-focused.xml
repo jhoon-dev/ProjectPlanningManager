@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-ninja"
+	tests="2"
+	failures="1"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-61CPKLN"
+	time="1"
+	timestamp="2026-11-13T18:03:47"
+	>
+	<testcase name="xml_math_contract" classname="xml_math_contract" time="0.62371" status="fail">
+		<failure message="Failed"/>
+		<properties/>
+		<system-out>CStr(Exp(1)) expected [2.718282] got [숫자 형식이 필요합니다.]
+math scalar case
+</system-out>
+	</testcase>
+	<testcase name="xml_math_ui" classname="xml_math_ui" time="0.833647" status="run">
+		<properties/>
+		<system-out>PASS conversion UI: examples/leading-space async preview/save/undo/cancel and small layout
+</system-out>
+	</testcase>
+</testsuite>

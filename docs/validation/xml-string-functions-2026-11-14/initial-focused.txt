@@ -1,0 +1,9 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 58: xml_string_functions_contract
+1/2 Test #58: xml_string_functions_contract ....   Passed    2.98 sec
+    Start 59: xml_string_functions_ui
+2/2 Test #59: xml_string_functions_ui ..........   Passed    0.81 sec
+
+100% tests passed out of 2
+
+Total Test time (real) =   3.86 sec

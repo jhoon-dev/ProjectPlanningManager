@@ -1,0 +1,9 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 58: xml_project_conversion_contract
+1/2 Test #58: xml_project_conversion_contract ...   Passed    3.42 sec
+    Start 59: xml_project_conversion_ui
+2/2 Test #59: xml_project_conversion_ui .........   Passed    1.22 sec
+
+100% tests passed out of 2
+
+Total Test time (real) =   4.68 sec

@@ -1,0 +1,14 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 1: xer_source_conversion_contract
+1/1 Test #1: xer_source_conversion_contract ...***Failed    0.73 sec
+[RECOVERY_SNAPSHOT_INVALID] 자동 복구 저장할 편집 가능한 미저장 문서/시각이 없습니다.
+관련 대상과 입력값을 확인해 수정한 뒤 다시 시도하세요.
+
+
+0% tests passed, 1 tests failed out of 1
+
+Total Test time (real) =   0.75 sec
+
+The following tests FAILED:
+	  1 - xer_source_conversion_contract (Failed)
+Errors while running CTest

@@ -1,0 +1,19 @@
+# XML 날짜 함수 확장 검증 · 2026-11-13
+
+[기능 계약](../../xml-date-functions.md) · XDT-01~06. DatePart/Weekday와 DateAdd/DateDiff10간격·주 옵션, 네 범위/요약/배정 전파·형식·교환/보고·기존 문서 읽기와 새 저장 버전을 검증한다. 실제 Microsoft Project 제품 왕복이나 전체 VBA/로캘 실행기의 검증은 아니다.
+
+`xml_date_functions_contract`는 월말/윤년·정수 마이크로초·연/분기/월 경계·자정/Unix epoch 경계·온전한7일과 주 시작일·역방향/0·Null/오류·취소를 확인한다. DatePart의 주 번호는 기존 Format과 일치하고 연말을 다음 해1주로 재번호하지 않는다. 범위 밖 횟수/날짜·잘못된 간격/주 옵션·문자열 날짜의 암묵 해석을 거절한다. 저장된1999/2000년 스냅샷이 현재 결과나 오류를 대체하지 않는다.
+
+새 문법의55/이전 태그 거절과 기존3인수 DateAdd/DateDiff의44 읽기를 구분한다. 정적 d/h/n/s는 기존 최소 writer를 유지하고 확장/동적 간격은55로 저장한다. 비활성 원문44·기준선/시나리오만 남은 사본·환산/ID 이력·복구/읽기 전용과 undo/redo를 검증한다. 읽기 최소 버전은 다른 기능의 제한을 낮추지 않으며 전체 보관 사본에도 적용한다.
+
+[Python 독립 검증기](../../../scripts/verify-xml-date-functions.py)는 날짜 부분 **4,608건**, 덧셈 **5,120건**, 차이 **8,192건**, 직접 식 **38건**을 확인한다. Gregorian monthrange/datetime과 정수 연산을 사용한다. 네 범위 XML의22값(자동 전파 메타데이터를 해석한2칸 포함)·정의33개, XER 정적22값, XLSX 작업 사용자 필드70행과 PDF19쪽을 대조한다. 첫 작업의2024-01-31+1개월은윤년2월29일, 두 번째2023-12-31+1개월은2024-01-31이며 소수 초를 보존한다.
+
+별도의 [.NET VB 검증기](../../../scripts/verify-xml-date-functions-dotnet.ps1)는 Invariant Gregorian과 명시 주 옵션으로 같은 **17,920건**을 비교한다. DateDiff 비교 표본은 양 끝의 시각이 같아 시간 경과와 달력 경계 계약이 겹치는 범위다. .NET VB의 부분 시간 경과 차이를 PPM의 기존 경계 수 규칙으로 오인하지 않는다. 경계 직전/직후와 부분 주·시각 제외 차이는 별도 직접 식으로 검증한다. PowerShell의 JSON 날짜 자동 변환을 끄고 원래 소수 초를 읽는다.
+
+`xml_date_functions_ui`는 예시4개·주 시작일7개·첫 주 규칙3개, 해당 함수에서만 옵션 활성화, 예시 인수 삽입·월말의 비동기 미리보기·저장/undo·취소·표의 날짜와800×650 결과 배치를 확인한다. 기존 XML 편집기 테스트가 오래된 편집/읽기 전용/오류 경로를 함께 검사한다.
+
+일반 회귀 **196/196·285.32초**를 통과했다. 대용량 단독 **1/1·144.34초**까지 합계 **197/197**, 실패/건너뜀0이다. 관련 집중28개는 전체 실행에서 추출한 같은 결과이며 중복 실행하지 않았다. 파서 **870개**(schema1~55), C++ 형식 **516파일** 차이0이다. [빌드](build.txt)·[196개 CTest](ctest.txt)·[JUnit](ctest.xml)·[대용량 단독](isolated.txt)·[단독 JUnit](isolated.xml)·[집중 부분집합](focused.xml)·[형식](quality.json)·[Python 독립 검증](independent.json)·[.NET VB 비교](dotnet.json)·[결과/해시](verification-summary.json).
+
+Windows 실행 패키지 **298파일**의 앱/CLI 해시가 최종 빌드와 같다. Qt/MinGW가 없는 PATH에서 CLI가 schema55 파일을 읽고 종료0을 반환했다. [패키지](runtime.json)·[배포](runtime-deploy.txt)·[파일 읽기](runtime-inspect.json).
+
+[native 입력](native.json)·[환산/동결 사본](archived.json)·[native 파일](source.ppm)·[XML](dates.xml)·[XER](dates.xer)·[매핑/진단](mapping.json)·[직접 식](cases.json)·[날짜 부분](parts.json)·[덧셈](adds.json)·[차이](diffs.json)·[XLSX](fields.xlsx)·[PDF](fields.pdf)·[PDF 화면](report-page.png)·[편집기](editor.png)·[800×650 결과](editor-small.png).

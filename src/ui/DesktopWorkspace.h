@@ -7,6 +7,7 @@
 #include <QPointer>
 
 class QWidget;
+class QJsonObject;
 namespace jobs {
 class MainWindow;
 class JsonRecoveryStore;
@@ -27,6 +28,12 @@ public:
     bool confirmClosing(MainWindow *);
     void showWorkspace(QWidget *parent = nullptr);
     void applyConfiguration(Workspace);
+    const std::string &actorId() const {
+        return actorId_;
+    }
+    void selectActor(std::string);
+    void recordCollaboration(CollaborationEvent);
+    QJsonObject executeAutomation(const std::string &projectId, struct AutomationPreview &);
     const Workspace &configuration() const {
         return configuration_;
     }
@@ -58,6 +65,7 @@ private:
     std::vector<std::unique_ptr<Session>> sessions_;
     Workspace configuration_, saved_;
     std::string path_, fingerprint_;
+    std::string actorId_;
     std::unique_ptr<WriteLease> lease_;
     std::uint64_t generation_ = 0, serial_ = 0, catalogGeneration_ = 0;
     bool engaged_ = false, shuttingDown_ = false;

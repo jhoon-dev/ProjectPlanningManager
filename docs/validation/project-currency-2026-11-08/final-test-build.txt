@@ -1,0 +1,3 @@
+[1/17] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\build-governance && C:\Users\dow\AppData\Roaming\Python\Python314\site-packages\cmake\data\bin\cmake.exe -DSOURCE_DIR=C:/Users/dow/Development/ToolMoa/ProjectPlanningManager -DOUTPUT=C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance/BuildIdentity.h -P C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/scripts/WriteBuildIdentity.cmake"
+[2/3] Building CXX object CMakeFiles/jobs_project_currency_tests.dir/tests/ProjectCurrencyTests.cpp.obj
+[3/3] Linking CXX executable jobs_project_currency_tests.exe

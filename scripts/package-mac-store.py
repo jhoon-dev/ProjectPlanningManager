@@ -228,6 +228,10 @@ def main():
                         run([*sign, path])
                 elif path.is_dir() and not path.is_symlink() and path.suffix == '.framework':
                     run([*sign, path])
+            reader = app / 'Contents/Resources/mpp-reader'
+            if reader.exists():
+                from mpp_payload import verify_reader
+                verify_reader(reader, signing=True)
             run([*sign, '--entitlements', entitlements_path, app])
             run(['codesign', '--verify', '--deep', '--strict', app])
             signed_output = run(['codesign', '-d', '--entitlements', ':-', app])

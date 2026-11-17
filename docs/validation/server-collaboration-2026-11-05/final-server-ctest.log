@@ -1,0 +1,9 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 60: server_native_realtime_ui
+1/2 Test #60: server_native_realtime_ui .........   Passed   11.49 sec
+    Start 61: server_http_auth_sync_scheduler
+2/2 Test #61: server_http_auth_sync_scheduler ...   Passed   53.02 sec
+
+100% tests passed out of 2
+
+Total Test time (real) =  64.53 sec

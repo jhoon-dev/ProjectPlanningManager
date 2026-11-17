@@ -1,0 +1,65 @@
+{
+  "date": "2026-11-03",
+  "scope": "GAP-04 dated actual work/cost input and immutable corrections; cumulative AC with explicit dated allocations and residual reconciliation",
+  "git_revision": "6a1cd0a5115f3400d6cee4e5d5df795f351195ea+dirty",
+  "source_sha256": "2a7e85820c51a236bc2446fff6402ebc84294169f58e76bd5b52a6771b4445d6",
+  "source_manifest": "sorted src/**/*.cpp, src/**/*.h, CMakeLists.txt; relative/path:SHA256(bytes) LF",
+  "build_identity_matches": true,
+  "platform": "Windows-11-10.0.26300-SP0",
+  "compiler": "MinGW GCC 13.1.0",
+  "qt": "6.8.3",
+  "configuration": "Release -O3 -DNDEBUG",
+  "ctest": {
+    "passed": 71,
+    "failed": 0,
+    "seconds": 283.09,
+    "log": "full-ctest.log"
+  },
+  "parser_seed_replay": {
+    "seeds": 80,
+    "schemas": "1..11",
+    "actual_good_and_fractional_rejection_seeds": true,
+    "coverage_guided_fuzzing_run": false,
+    "log": "parser-seed-replay.log"
+  },
+  "independent_exports": {
+    "actuals": "latest 3 rows / immutable 4 rows, labor 6h, equipment 1h, AC80=allocated25+unallocated55; zero vs missing, provenance and 8-page PDF",
+    "previous_features": "Usage, classification, forecast fixtures independently verified",
+    "existing_reports": "5 XLSX and 6 PDF fixtures independently verified"
+  },
+  "input_policy": "period costs are explicit allocations included in the concurrently submitted cumulative task AC; never add the two; work does not alter duration/remaining automatically",
+  "native_schema": "11 when actual journal present; otherwise existing 9/10 conditional writer",
+  "new_scale_benchmark": false,
+  "not_run": [
+    "macOS",
+    "Linux",
+    "CI",
+    "ASan/UBSan",
+    "coverage-guided fuzzing",
+    "native desktop interaction/accessibility",
+    "actual MSP/P6 recalculation/roundtrip",
+    "50,000-record UI load benchmark",
+    "customer acceptance"
+  ],
+  "test_files_sha256": {
+    "tests/UsageFixture.h": "bd094175263f283b0f0111cec7961777ae2c22d8b682932fa9bab49045120497",
+    "tests/PeriodActualTests.cpp": "9a8d02295a1cf02f43bf17ceea3c3f53998751ef4a65d77f9cade4659bda1de7",
+    "tests/PeriodActualUiTests.cpp": "e3e33a3ae3922c4793144a0696564f0c8e327719585edc19068797e4635fdd40",
+    "tests/fuzz/ParserHarness.cpp": "bfb715d3dd344622d3e89b20836c9e67c1358b0e3bfc4c6c6ed6a3b76cdd9ace",
+    "tests/fuzz/ParserSeeds.cpp": "620151f0681384c1d0f6eaa77cc5f2752694e67f29f4bdf5053f3eaf88069f32",
+    "scripts/verify-period-actual-exports.py": "b5ab4ab48915fad8a5cb32afffcb9241e0d6c5ff6a4fc613d18fcac6ee7d7f5b"
+  },
+  "artifacts_sha256": {
+    "classification-export.json": "a287a2dc4579f034a10748116cb19cd94523ead3e8b36fdb604ef8015b983f30",
+    "existing-report-exports.log": "76002089998b4c98415f2fd7da5e0b2a49128ea0cca9f47cf49f2b2a1dce447e",
+    "forecast-export.json": "ec9b0c8b9f5062f53f168610bdd43db8fc044a47903adbb7b7246ded4e9be1c5",
+    "format.json": "cd243e7cc0f531d50009deae822767ea0fc09c87844c4d5d430242821e440b4b",
+    "full-ctest.log": "dbef8f7d8ee46925a9c5ceab7f14b0185261026959ba61090fb0c885bff1e8c6",
+    "independent-export.json": "93a90300da0c1fa2e683f3d089f6a0b2b80b054717a41acc0fc20eb67d1c6238",
+    "input.png": "dfddf42fcad73ec344dcc4f520d2a8a460675af06e2ba3a85c8880843505f851",
+    "parser-seed-replay.log": "e74ed4462deb3c4d6b4cf592b45546a30cd46f774d29c3dfc4123a815e50233d",
+    "README.md": "cf273f503b4f6eaed88bc6cdb4d4374f56c27a81c02939db409c13ae50a8e248",
+    "usage-export.json": "d4fe3cf026c9e774f58dc413fb0334075b18b6878e1e33f3237af080f04ab5af",
+    "usage.png": "4db7ec3a93a1b86f9b80211ee11d295b99fe28be1f24dac90febf4acff2a57fa"
+  }
+}

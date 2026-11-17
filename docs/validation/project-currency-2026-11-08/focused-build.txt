@@ -1,0 +1,23 @@
+[0/1] Re-running CMake...
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
+-- Configuring done (3.0s)
+-- Generating done (2.0s)
+-- Build files have been written to: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+[1/21] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Classification.cpp.obj
+[2/21] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/FinancialPeriodReports.cpp.obj
+[3/21] Building CXX object CMakeFiles/jobs_parser_harness.dir/tests/fuzz/ParserHarness.cpp.obj
+[4/21] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/LedgerIdentity.cpp.obj
+[5/21] Linking CXX static library libjobs_domain.a
+[6/21] Linking CXX static library libjobs_calculation.a
+[7/21] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/XerActualCosts.cpp.obj
+[8/21] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectXml.cpp.obj
+[9/21] Linking CXX static library libjobs_persistence.a
+[10/21] Linking CXX static library libjobs_parser_harness.a
+[11/21] Automatic MOC for target jobs_updates
+[12/19] Building CXX object CMakeFiles/jobs_parser_seed_tests.dir/tests/fuzz/ParserSeeds.cpp.obj
+[13/19] Linking CXX executable jobs_parser_seed_tests.exe
+[14/19] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/ProjectCurrencyDialog.cpp.obj
+[15/19] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindow.cpp.obj
+[16/19] Building CXX object CMakeFiles/jobs_project_currency_tests.dir/tests/ProjectCurrencyTests.cpp.obj
+[17/19] Linking CXX static library libjobs_ui.a
+[18/19] Linking CXX executable jobs_project_currency_tests.exe

@@ -1,0 +1,74 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+            {
+                "resourceId": "R",
+                "taskId": "T",
+                "units": 50
+            }
+        ],
+        "baselines": [
+        ],
+        "calculationProfile": "native-effort-split-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "calendars": [
+        ],
+        "costEntries": [
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "KRW",
+        "derivedFrom": "",
+        "documentId": "Q",
+        "holidays": [
+        ],
+        "name": "프로젝트 Q",
+        "progress": [
+        ],
+        "resources": [
+            {
+                "calendarId": "",
+                "exceptions": [
+                ],
+                "id": "R",
+                "maxUnits": 100,
+                "name": "로컬 자원",
+                "rates": [
+                ],
+                "type": "labor"
+            }
+        ],
+        "revision": 1,
+        "scenarios": [
+        ],
+        "startDate": "2026-11-16",
+        "statusAt": null,
+        "taskCosts": [
+        ],
+        "tasks": [
+            {
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": "2026-11-16 09:30",
+                "constraintType": "SNET",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 960,
+                "id": "T",
+                "name": "연속 작업",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            }
+        ],
+        "wbsNodes": [
+        ]
+    },
+    "schemaVersion": 9,
+    "sha256": "63472dee58a1b445eae078eb52d268aac3ad90490be1eb0f340efde2d6932726"
+}

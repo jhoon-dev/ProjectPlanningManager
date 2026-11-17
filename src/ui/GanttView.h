@@ -46,6 +46,7 @@ private:
     std::vector<BaselineDate> baselineDates_;
     std::unordered_map<std::string, std::size_t> rowIndex_, baselineIndex_;
     bool isForecast_ = false;
+    bool resourceLeveled_ = false;
     QSet<QDate> holidays_;
     qreal dayWidth_ = 64;
     int dayCount_ = 0;
@@ -87,8 +88,11 @@ private:
         std::optional<std::string> constraintAt = {}, deadlineAt = {};
         std::vector<std::pair<std::string, std::string>> pieces = {};
         bool piecesReady = false;
+        bool policyIgnoredIncoming = false;
+        std::vector<ResourceOrderLink> resourceLinks = {};
         std::optional<Task> executionTask = {};
         std::optional<TaskSchedule> executionDates = {};
+        std::optional<std::pair<std::int64_t, std::int64_t>> floatMinutes = {};
     };
     std::vector<Row> rows_;
     bool rebuilding_ = false;

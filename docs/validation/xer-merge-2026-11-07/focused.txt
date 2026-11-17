@@ -1,0 +1,33 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+      Start 85: primavera_xer_contract
+      Start 86: primavera_xer_ui
+ 1/14 Test #86: primavera_xer_ui .........................   Passed    3.53 sec
+      Start 44: xer_batch_ui
+ 2/14 Test #85: primavera_xer_contract ...................   Passed    4.15 sec
+      Start  3: xer_financial_snapshot_contract
+ 3/14 Test  #3: xer_financial_snapshot_contract ..........   Passed    2.26 sec
+      Start 47: xer_project_selection_ui
+ 4/14 Test #44: xer_batch_ui .............................   Passed    3.21 sec
+      Start  1: xer_financial_merge_contract
+ 5/14 Test #47: xer_project_selection_ui .................   Passed    2.61 sec
+      Start  2: xer_financial_edit_allocation_contract
+ 6/14 Test  #1: xer_financial_merge_contract .............   Passed    2.47 sec
+      Start  4: xer_actual_cost_contract
+ 7/14 Test  #2: xer_financial_edit_allocation_contract ...   Passed    2.11 sec
+      Start 46: xer_project_selection_contract
+ 8/14 Test  #4: xer_actual_cost_contract .................   Passed    2.14 sec
+      Start 45: xer_batch_contract
+ 9/14 Test #45: xer_batch_contract .......................   Passed    1.66 sec
+      Start 55: period_actual_ui
+10/14 Test #46: xer_project_selection_contract ...........   Passed    2.48 sec
+      Start 54: period_actual_contract
+11/14 Test #54: period_actual_contract ...................   Passed    0.58 sec
+      Start 74: parser_seed_replay
+12/14 Test #74: parser_seed_replay .......................   Passed    0.90 sec
+      Start 66: primavera_public_corpus
+13/14 Test #55: period_actual_ui .........................   Passed    2.09 sec
+14/14 Test #66: primavera_public_corpus ..................   Passed    0.66 sec
+
+100% tests passed out of 14
+
+Total Test time (real) =  15.80 sec

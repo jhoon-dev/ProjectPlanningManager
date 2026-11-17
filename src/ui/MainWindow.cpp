@@ -1,6 +1,33 @@
+#include "ui/ResourceAvailabilityDialog.h"
+#include "calculation/ScheduleFormulaScope.h"
+#include "domain/XmlRollUp.h"
+#include "ui/ResourcePlanDialog.h"
+#include "ui/MaterialInventoryDialog.h"
+#include "ui/MaterialActualDialog.h"
+#include "ui/ActivityDialog.h"
 #include "ui/SandboxAccess.h"
 #include "formatting/QtDiagnosticText.h"
 #include "ui/MainWindow.h"
+#include "ui/UsageDialog.h"
+#include "ui/AssignmentPeriodsDialog.h"
+#include "ui/ResourcePlanningDialog.h"
+#include "ui/ResourceViewDialog.h"
+#include "ui/DatedRemainingWorkDialog.h"
+#include "ui/PeriodActualDialog.h"
+#include "ui/XerFinancialDialog.h"
+#include "ui/XerFinancialEditDialog.h"
+#include "ui/XerFinancialMergeDialog.h"
+#include "ui/XerSourceRelinkDialog.h"
+#include "ui/XerScheduleDialog.h"
+#include "ui/LedgerIdentityDialog.h"
+#include "ui/ProjectCurrencyDialog.h"
+#include "ui/MppImport.h"
+#include "ui/ExternalEvmDialog.h"
+#include "ui/FinancialPeriodDialog.h"
+#include "ui/LevelingDecisionDialog.h"
+#include "ui/SchedulePrintDialog.h"
+#include "ui/NetworkDialog.h"
+#include "ui/ProgressPolicyDialog.h"
 #include "ui/EditorUi.h"
 #include "ui/ApplicationIcon.h"
 #include "ui/DesktopWorkspace.h"
@@ -9,6 +36,7 @@
 #include "ui/TaskInput.h"
 #include "ui/AutoSaveController.h"
 #include "ui/TaskTableModel.h"
+#include "ui/ClassificationDialogs.h"
 #include "ui/AsyncEditController.h"
 #include "domain/Wbs.h"
 #include "calculation/WorkCalendar.h"
@@ -94,18 +122,109 @@ MainWindow::MainWindow(Document &document, JsonRecoveryStore *recoveryStore, Des
     save_ = action("저장(&S)", QKeySequence::Save, [this] { save(false); });
     saveAs_ = action("다른 이름으로 저장(&A)…", QKeySequence::SaveAs, [this] { save(true); });
     menu->addSeparator();
+    auto *importMppAction = menu->addAction("Microsoft Project MPP 읽기…");
+    importMppAction->setObjectName("importProjectMpp");
+    connect(importMppAction, &QAction::triggered, this, [this] {
+        runAfterEdit([this] {
+            try {
+                const auto folder = importMppPlan(this, document_, [this] { return confirmChanges(); });
+                if (!folder.isEmpty()) {
+                    refresh();
+                    statusBar()->showMessage("MPP 계획 사본 열기 완료 · 원본/진단: " + folder);
+                }
+            } catch (const std::exception &e) {
+                report(e);
+            }
+        });
+    });
     auto *importXmlAction = menu->addAction("Project XML 가져오기…");
     importXmlAction->setObjectName("importProjectXml");
     connect(importXmlAction, &QAction::triggered, this, [this] { runAfterEdit([this] { importXml(); }); });
+    auto *mergeXmlAction = menu->addAction("XML 작업 진척을 현재 문서에 병합…");
+    mergeXmlAction->setObjectName("mergeProjectXmlProgress");
+    auto *mergeBaselines = menu->addAction("외부 XML 기준선을 현재 문서에 병합…");
+    mergeBaselines->setObjectName("mergeProjectXmlBaselines");
+    connect(mergeBaselines, &QAction::triggered, this, [this] { runAfterEdit([this] { mergeXmlBaselines(); }); });
+    connect(mergeXmlAction, &QAction::triggered, this, [this] { runAfterEdit([this] { mergeXmlProgress(); }); });
     auto *exportXmlAction = menu->addAction("Project XML 내보내기…");
+    auto *xmlActuals = menu->addAction("XML 배정·기간별 실제 공수·원가 채택…");
+    xmlActuals->setObjectName("mergeProjectXmlActuals");
+    connect(xmlActuals, &QAction::triggered, this, [this] { runAfterEdit([this] { mergeXmlPeriodActuals(); }); });
     exportXmlAction->setObjectName("exportProjectXml");
     connect(exportXmlAction, &QAction::triggered, this, [this] { runAfterEdit([this] { exportXml(); }); });
+    auto *exportActuals = menu->addAction("표준 실적 포함 Project XML 내보내기…");
+    exportActuals->setObjectName("exportProjectXmlActuals");
+    connect(exportActuals, &QAction::triggered, this, [this] { runAfterEdit([this] { exportXml(true); }); });
     auto *importXerAction = menu->addAction("Primavera XER 가져오기…");
     importXerAction->setObjectName("importPrimaveraXer");
     connect(importXerAction, &QAction::triggered, this, [this] { runAfterEdit([this] { importXer(); }); });
     auto *exportXerAction = menu->addAction("Primavera XER 내보내기…");
     exportXerAction->setObjectName("exportPrimaveraXer");
+    auto *financialAction = menu->addAction("XER 보존 재무기간·누계 조회…");
+    financialAction->setObjectName("viewXerFinancials");
+    auto *financialEditAction = menu->addAction("XER 집계 편집·날짜별 배분…");
+    financialEditAction->setObjectName("editXerFinancials");
+    auto *financialMergeAction = menu->addAction("XER 원본·현재 원장 병합…");
+    financialMergeAction->setObjectName("mergeXerFinancials");
+    auto *relink = menu->addAction("새 XER 버전·삭제 ID 재연결…");
+    relink->setObjectName("relinkXerSource");
+    auto *adoptSchedule = menu->addAction("새 XER 일정·WBS·달력 채택…");
+    adoptSchedule->setObjectName("adoptXerSchedule");
+    auto *transferIds = menu->addAction("관측 원장 ID 이관…");
+    transferIds->setObjectName("migrateLedgerIds");
+    connect(transferIds, &QAction::triggered, this, [this] {
+        runAfterEdit([this] {
+            if (document_.project())
+                LedgerIdentityDialog(document_, this).exec();
+        });
+    });
+    auto *currencyConversion = menu->addAction("프로젝트 전체 통화 전환…");
+    currencyConversion->setObjectName("convertProjectCurrency");
+    connect(currencyConversion, &QAction::triggered, this, [this] {
+        runAfterEdit([this] {
+            if (document_.project())
+                ProjectCurrencyDialog(document_, this).exec();
+        });
+    });
+    connect(adoptSchedule, &QAction::triggered, this, [this] {
+        runAfterEdit([this] {
+            if (document_.project())
+                XerScheduleDialog(document_, this).exec();
+        });
+    });
+    connect(relink, &QAction::triggered, this, [this] {
+        runAfterEdit([this] {
+            if (document_.project())
+                XerSourceRelinkDialog(document_, this).exec();
+        });
+    });
+    connect(financialMergeAction, &QAction::triggered, this, [this] {
+        runAfterEdit([this] {
+            if (document_.project())
+                XerFinancialMergeDialog(document_, this).exec();
+        });
+    });
+    connect(financialEditAction, &QAction::triggered, this, [this] {
+        runAfterEdit([this] {
+            if (document_.project())
+                XerFinancialEditDialog(document_, this).exec();
+        });
+    });
+    connect(financialAction, &QAction::triggered, this, [this] {
+        runAfterEdit([this] {
+            if (document_.project())
+                showXerFinancials(this, *document_.project());
+        });
+    });
     connect(exportXerAction, &QAction::triggered, this, [this] { runAfterEdit([this] { exportXer(); }); });
+    auto *batchImport = menu->addAction("XER 일괄 작업공간 가져오기…");
+    batchImport->setObjectName("importXerBatch");
+    batchImport->setEnabled(workspace_ != nullptr);
+    connect(batchImport, &QAction::triggered, this, [this] { runAfterEdit([this] { batchXer(true); }); });
+    auto *batchExport = menu->addAction("XER 일괄 작업공간 내보내기…");
+    batchExport->setObjectName("exportXerBatch");
+    batchExport->setEnabled(workspace_ != nullptr);
+    connect(batchExport, &QAction::triggered, this, [this] { runAfterEdit([this] { batchXer(false); }); });
     menu->addSeparator();
     auto *quit = menu->addAction("종료(&X)");
     quit->setShortcut(QKeySequence::Quit);
@@ -239,6 +358,25 @@ MainWindow::MainWindow(Document &document, JsonRecoveryStore *recoveryStore, Des
     progressEdit_ = trackingAction("선택 작업 실적", [this] { reportProgress(); });
     progressEdit_->setObjectName("reportTaskProgress");
     comparison_ = trackingAction("계획 대비 비교", [this] { showComparison(); });
+    auto *policyComparison = trackingAction("진척 정책 비교…", [this] {
+        if (!document_.project())
+            return;
+        for (auto *dialog : findChildren<QDialog *>())
+            if (auto *policy = dynamic_cast<ProgressPolicyDialog *>(dialog)) {
+                policy->show();
+                policy->raise();
+                policy->activateWindow();
+                return;
+            }
+        auto *dialog = new ProgressPolicyDialog(document_, selectedTask_, this);
+        dialog->setAttribute(Qt::WA_DeleteOnClose);
+        dialog->taskActivated = [this](const std::string &id) { selectTaskById(id); };
+        dialog->useEditor([this](EditCommand command, auto completion) {
+            return submitEdit(std::move(command), "진척 정책 채택·해제", std::move(completion));
+        });
+        dialog->show();
+    });
+    policyComparison->setObjectName("compareProgressPolicies");
     baselineChoice_ = new QComboBox(this);
     baselineChoice_->setObjectName("baselineChoice");
     baselineChoice_->setAccessibleName("간트 비교 기준선");
@@ -254,10 +392,84 @@ MainWindow::MainWindow(Document &document, JsonRecoveryStore *recoveryStore, Des
         connect(a, &QAction::triggered, this, [this, callback = std::move(callback)] { runAfterEdit(callback); });
         return a;
     };
+    resourceAction("자재·비용계정·역할 계획…", "resourcePlan", [this] {
+        if (document_.project()) {
+            ResourcePlanDialog dialog(document_, this);
+            dialog.exec();
+            refresh();
+        }
+    });
     resources_ = resourceAction("자원 등록·가용량", "manageResources", [this] { manageResources(); });
+    resourceAction("실제 자재 입고·소모 원장…", "materialActuals", [this] {
+        if (document_.project()) {
+            MaterialActualDialog dialog(document_, this);
+            dialog.exec();
+            refresh();
+        }
+    });
+    resourceAction("계획 입고·잔여 자재 재고…", "materialInventory",
+                   [this] { showMaterialInventory(document_, this); });
+    resourceAction("현재 부하·잔여 가용량…", "remainingAvailability",
+                   [this] { showResourceAvailability(document_, this); });
+    resourceAction("자원 생산성·외부 고유 곡선…", "resourcePlanning", [this] {
+        if (document_.project()) {
+            ResourcePlanningDialog dialog(document_, this);
+            dialog.exec();
+        }
+    });
+    resourceAction("자원 그룹·필터 · 저장된 보기…", "resourceViews", [this] {
+        if (document_.project()) {
+            ResourceViewDialog dialog(document_, this);
+            dialog.exec();
+            refresh();
+        }
+    });
     assignResources_ = resourceAction("선택 작업 자원 배정", "assignResources", [this] { assignResources(); });
+    resourceAction("기간별 계획 배정·자원 곡선…", "assignmentPeriods", [this] {
+        if (document_.project()) {
+            AssignmentPeriodsDialog dialog(document_, selectedTask_, this);
+            dialog.exec();
+            refresh();
+        }
+    });
     resourceComparison_ = resourceAction("기간별 부하·평준화 비교", "resourceComparison", [this] { showResources(); });
+    resourceAction("날짜별 잔여 공수…", "datedRemainingWork", [this] {
+        if (document_.project()) {
+            DatedRemainingWorkDialog dialog(document_, selectedTask_, this);
+            dialog.exec();
+            refresh();
+        }
+    });
+    resourceAction("평준화 결정 이력…", "levelingDecisions", [this] {
+        if (document_.project()) {
+            LevelingDecisionDialog dialog(document_, this);
+            dialog.exec();
+        }
+    });
+    resourceAction("작업·자원 시간축 Usage…", "projectUsage", [this] {
+        if (document_.project()) {
+            UsageDialog dialog(document_, selectedWbs_, selectedBaseline_, this);
+            dialog.exec();
+        }
+    });
+    resourceAction("기간별 실제공수·원가 입력/정정…", "periodActualInput", [this] {
+        if (document_.project()) {
+            const auto selected = selectedTaskIds();
+            PeriodActualDialog dialog(document_, selected.empty() ? std::string{} : selected.front(), this);
+            dialog.exec();
+            refresh();
+        }
+    });
+    resourceAction("Steps·LOE·WBS Summary…", "activityExtensions", [this] {
+        if (document_.project()) {
+            ActivityDialog dialog(document_, selectedTask_, this);
+            dialog.exec();
+            refresh();
+        }
+    });
     auto *costMenu = menuBar()->addMenu("원가(&C)");
+    menu->removeAction(currencyConversion);
+    costMenu->addAction(currencyConversion);
     auto costAction = [&](const QString &label, const char *object, std::function<void()> callback) {
         auto *a = costMenu->addAction(label);
         a->setObjectName(object);
@@ -268,6 +480,27 @@ MainWindow::MainWindow(Document &document, JsonRecoveryStore *recoveryStore, Des
     taskCost_ = costAction("선택 작업 예산", "taskCost", [this] { editTaskCost(); });
     costReport_ = costAction("원가·물리 진척 보고", "costReport", [this] { reportCost(); });
     evm_ = costAction("원가·EVM 분석", "costAnalysis", [this] { showCosts(); });
+    externalEvm_ = costAction("외부 XER EV/PV native 채택…", "adoptExternalXerEvm", [this] {
+        if (document_.project()) {
+            ExternalEvmDialog dialog(document_, selectedBaseline_, this);
+            dialog.exec();
+            refresh();
+        }
+    });
+    financialPeriods_ = costAction("사용자 정의 기간·기간 마감…", "customFinancialPeriods", [this] {
+        if (document_.project()) {
+            FinancialPeriodDialog dialog(document_, selectedBaseline_, this);
+            dialog.exec();
+            refresh();
+        }
+    });
+    periodEvm_ = costAction("native 기간 EVM…", "nativePeriodEvm", [this] {
+        if (document_.project()) {
+            ReportDialog dialog(document_, selectedWbs_, selectedBaseline_, this, true);
+            dialog.exec();
+            refresh();
+        }
+    });
     auto *reportsMenu = menuBar()->addMenu("보고서(&B)");
     reports_ = reportsMenu->addAction("프로젝트 대시보드·보고서…");
     reports_->setObjectName("projectReports");
@@ -351,6 +584,10 @@ MainWindow::MainWindow(Document &document, JsonRecoveryStore *recoveryStore, Des
     connect(table_->verticalScrollBar(), &QScrollBar::valueChanged, gantt_->verticalScrollBar(), &QScrollBar::setValue);
     connect(gantt_->verticalScrollBar(), &QScrollBar::valueChanged, table_->verticalScrollBar(), &QScrollBar::setValue);
     connect(wbsTree_, &QTreeWidget::currentItemChanged, this, [this](QTreeWidgetItem *item) {
+        classificationView_.groupPath.clear();
+        if (item && item->data(0, Qt::UserRole + 3).toBool())
+            for (const auto &value : item->data(0, Qt::UserRole + 2).toStringList())
+                classificationView_.groupPath.push_back(str(value));
         selectedWbs_ = item ? str(item->data(0, Qt::UserRole).toString()) : std::string{};
         refresh(false);
     });
@@ -374,9 +611,11 @@ MainWindow::MainWindow(Document &document, JsonRecoveryStore *recoveryStore, Des
     auto *note = new QLabel(
         "기본 월–금 09–12 / 13–18 · 프로젝트 메뉴에서 작업 달력 등록/배정 · 기간: 시간(8, 1.5) 또는 분(1m), 빈칸=미정, "
         "0=마일스톤\n선행: 프로젝트 행 번호 1, 2SS+2h, 3FF-30m, 4SF+1d · d=480 근무분 · 지연/선행=후행 달력 기준 · "
-        "F9=전체 계산\n간트: 빨강+[임계]=계획 임계, 파랑=계획/예측, 초록+[실제]=실제 완료, ◆=마일스톤, 회색=기준선, "
+        "F9=전체 계산\n간트: 빨강+[임계/예측 임계]=계획/잔여 임계, 파랑=여유 작업, 초록+[실제]=실제 완료, ◆=마일스톤, "
+        "회색=기준선, "
         "배경 음영=프로젝트 기본 휴무\n드래그=날짜 이동 · 오른쪽 끝/Shift=기간 · 이동량 15분 · Esc 취소 · 계획만 편집 "
-        "· 적용 후 자동 재계산\n프로젝트 메뉴: 제약·마감일 설정/충돌 진단 · 실제 날짜는 고정 · 예측 여유·임계 미산정",
+        "· 적용 후 자동 재계산\n프로젝트 메뉴: 제약·마감일 설정/충돌 진단 · 실제 날짜는 고정 · 예측 여유는 잔여 구간 "
+        "기준",
         central);
     note->setObjectName("taskInputHelp");
     editingHelp_ = note;
@@ -392,6 +631,62 @@ MainWindow::MainWindow(Document &document, JsonRecoveryStore *recoveryStore, Des
     editMenu->addAction(cancelEdit_);
     setupRecovery(recoveryStore);
     setupWorkspaceUi(tools, zoom);
+    setupClassification();
+    auto *printSchedule = menu->addAction("일정표·간트 페이지 설정 / 인쇄…");
+    printSchedule->setObjectName("schedulePrintPreview");
+    menu->insertAction(quit, printSchedule);
+    printSchedule->setShortcut(QKeySequence::Print);
+    connect(printSchedule, &QAction::triggered, this, [this] {
+        runAfterEdit([this] {
+            try {
+                refresh(false);
+                const auto scope = wbsSummary_->text() + " · 검색: " + taskSearch_->text() +
+                                   " · 필터: " + taskFilter_->currentText() + " · 정렬: " + taskSort_->currentText();
+                SchedulePrintDialog dialog(
+                    document_,
+                    captureSchedulePrint(document_, *table_, scope, QString::fromStdString(selectedBaseline_)), this);
+                dialog.exec();
+            } catch (const std::exception &error) {
+                report(error);
+            }
+        });
+    });
+    for (auto *viewMenu : menuBar()->findChildren<QMenu *>())
+        if (viewMenu->title().startsWith("보기")) {
+            auto *network = viewMenu->addAction("네트워크 다이어그램…");
+            network->setObjectName("networkDiagram");
+            connect(network, &QAction::triggered, this, [this] {
+                runAfterEdit([this] {
+                    if (!document_.project())
+                        return;
+                    for (auto *dialog : findChildren<QDialog *>())
+                        if (auto *existing = dynamic_cast<NetworkDialog *>(dialog)) {
+                            existing->setSelection(selectedTask_);
+                            existing->show();
+                            existing->raise();
+                            existing->activateWindow();
+                            return;
+                        }
+                    auto provider = [this] {
+                        refresh(false);
+                        std::set<std::string> ids;
+                        if (document_.project())
+                            for (auto row : visibleRows_)
+                                if (row < document_.project()->tasks.size())
+                                    ids.insert(document_.project()->tasks[row].id);
+                        return ids;
+                    };
+                    auto *dialog = new NetworkDialog(document_, selectedTask_, provider, this);
+                    dialog->setAttribute(Qt::WA_DeleteOnClose);
+                    dialog->taskActivated = [this](const std::string &id, const ScheduleResult &result) {
+                        document_.applyCalculation(result);
+                        selectTaskById(id);
+                    };
+                    dialog->show();
+                });
+            });
+            break;
+        }
     refresh();
     updateCompactLayout();
 }
@@ -448,6 +743,12 @@ void MainWindow::report(const std::exception &error) {
         selectTaskById(task);
 }
 void MainWindow::refresh(bool rebuildTree) {
+    if (auto *action = findChild<QAction *>("compareProgressPolicies"))
+        action->setEnabled(document_.project().has_value());
+    if (auto *printAction = findChild<QAction *>("schedulePrintPreview"))
+        printAction->setEnabled(document_.project().has_value());
+    if (auto *networkAction = findChild<QAction *>("networkDiagram"))
+        networkAction->setEnabled(document_.project().has_value());
     refreshWorkspaceUi();
     updateHistoryActions();
     if (refreshIncremental() || refreshProjected() || refreshBulk())
@@ -474,6 +775,7 @@ void MainWindow::refresh(bool rebuildTree) {
         taskSearch_->clear();
         taskFilter_->setCurrentIndex(0);
         taskSort_->setCurrentIndex(0);
+        classificationView_ = {};
         selectedWbs_.clear();
         selectedTask_.clear();
         treeDocument_ = p->documentId;
@@ -485,7 +787,27 @@ void MainWindow::refresh(bool rebuildTree) {
     setWindowModified(document_.dirty());
     save_->setEnabled(p.has_value());
     saveAs_->setEnabled(p.has_value());
+    for (const auto *name :
+         {"manageCustomFields", "manageActivityCodes", "configureTaskView", "saveTaskView", "applySavedTaskView",
+          "deleteSavedTaskView", "editTaskAttributes", "manageProjectFields", "editProjectAttributes",
+          "manageResourceFields", "editResourceAttributes", "manageAssignmentFields", "editAssignmentAttributes"})
+        if (auto *action = findChild<QAction *>(name))
+            action->setEnabled(p.has_value() &&
+                               ((std::string(name) != "saveTaskView" && std::string(name) != "deleteSavedTaskView") ||
+                                !document_.readOnly()));
     findChild<QAction *>("exportProjectXml")->setEnabled(p.has_value());
+    findChild<QAction *>("exportProjectXmlActuals")->setEnabled(p.has_value());
+    findChild<QAction *>("mergeProjectXmlBaselines")->setEnabled(p.has_value() && !document_.readOnly());
+    findChild<QAction *>("viewXerFinancials")->setEnabled(p.has_value() && p->xerFinancials.has_value());
+    findChild<QAction *>("relinkXerSource")
+        ->setEnabled(p.has_value() && p->xerFinancials.has_value() && !document_.readOnly());
+    findChild<QAction *>("adoptXerSchedule")->setEnabled(p.has_value());
+    findChild<QAction *>("migrateLedgerIds")->setEnabled(p.has_value());
+    findChild<QAction *>("convertProjectCurrency")->setEnabled(p.has_value());
+    findChild<QAction *>("mergeXerFinancials")
+        ->setEnabled(p.has_value() && p->xerFinancials.has_value() && !document_.readOnly());
+    findChild<QAction *>("editXerFinancials")
+        ->setEnabled(p.has_value() && p->xerFinancials.has_value() && !document_.readOnly());
     findChild<QAction *>("exportPrimaveraXer")->setEnabled(p.has_value());
     add_->setEnabled(p.has_value() && !document_.readOnly());
     calculate_->setEnabled(p.has_value() && !calculating_);
@@ -497,12 +819,25 @@ void MainWindow::refresh(bool rebuildTree) {
     scheduleIssues_->setEnabled(p.has_value());
     effort_->setEnabled(p.has_value() && !selectedTask_.empty());
     addWbs_->setEnabled(p.has_value() && !document_.readOnly());
-    const bool nodeEditable = p.has_value() && !document_.readOnly() && !selectedWbs_.empty();
+    const bool nodeEditable =
+        p.has_value() && !document_.readOnly() && !selectedWbs_.empty() &&
+        (!wbsTree_->currentItem() || !wbsTree_->currentItem()->data(0, Qt::UserRole + 3).toBool());
     renameWbs_->setEnabled(nodeEditable);
     moveWbs_->setEnabled(nodeEditable);
     removeWbs_->setEnabled(nodeEditable);
     applyTaskView();
+    std::vector<ViewColumn> preservedColumns;
+    if (p && rendered_ && renderedSession_ == document_.sessionGeneration()) {
+        auto expected = attributeKeys(*p);
+        std::vector<std::string> current;
+        for (int column = 14; column < taskModel_->columnCount(); ++column)
+            current.push_back(taskModel_->columnKey(column));
+        if (current != expected)
+            preservedColumns = currentTaskViewSettings().columns;
+    }
     taskModel_->synchronize(visibleRows_);
+    if (!preservedColumns.empty())
+        applyTaskColumns(*table_, *taskModel_, preservedColumns);
     table_->clearSelection();
     table_->setCurrentCell(-1, -1);
     refreshTracking();
@@ -511,6 +846,9 @@ void MainWindow::refresh(bool rebuildTree) {
     resourceComparison_->setEnabled(p.has_value());
     rates_->setEnabled(p.has_value());
     evm_->setEnabled(p.has_value());
+    externalEvm_->setEnabled(p.has_value());
+    periodEvm_->setEnabled(p.has_value());
+    financialPeriods_->setEnabled(p.has_value());
     reports_->setEnabled(p.has_value());
     taskCost_->setEnabled(p.has_value() && !document_.readOnly() && !selectedTask_.empty());
     costReport_->setEnabled(p.has_value() && !document_.readOnly() && !selectedTask_.empty() &&
@@ -666,8 +1004,9 @@ void MainWindow::calculateSchedule() {
 void MainWindow::rebuildWbsTree() {
     if (document_.project()) {
         const auto &p = *document_.project();
-        if (cachedTreeDocument_ == p.documentId && cachedTreeName_ == p.name && cachedTreeNodes_ == p.wbsNodes &&
-            wbsTree_->currentItem() && str(wbsTree_->currentItem()->data(0, Qt::UserRole).toString()) == selectedWbs_)
+        if (!hasXmlRollUp(p) && cachedTreeDocument_ == p.documentId && cachedTreeName_ == p.name &&
+            cachedTreeNodes_ == p.wbsNodes && wbsTree_->currentItem() &&
+            str(wbsTree_->currentItem()->data(0, Qt::UserRole).toString()) == selectedWbs_)
             return;
         cachedTreeDocument_ = p.documentId;
         cachedTreeName_ = p.name;
@@ -688,13 +1027,16 @@ void MainWindow::rebuildWbsTree() {
     const auto &p = *document_.project();
     auto *root = new QTreeWidgetItem(wbsTree_, {qs(p.name) + " · 전체 작업"});
     root->setData(0, Qt::UserRole, QString{});
-    root->setToolTip(0, "프로젝트 전체 작업 · 하위 WBS와 미분류 작업 포함");
+    ScheduleFormulaScope formulaSchedule(p, document_.calculation() ? &*document_.calculation() : nullptr,
+                                         ScheduleFormulaMode::Active, false);
+    const RollUpValues fieldSummaries(p);
+    root->setToolTip(0, "프로젝트 전체 작업 · 하위 WBS와 미분류 작업 포함\n" + qs(fieldSummaries.describe("")));
     root->setExpanded(true);
     std::unordered_map<std::string, QTreeWidgetItem *> items{{"", root}};
     for (const auto &node : p.wbsNodes) {
         auto *item = new QTreeWidgetItem(QStringList{qs(node.name)});
         item->setData(0, Qt::UserRole, qs(node.id));
-        item->setToolTip(0, "WBS ID: " + qs(node.id));
+        item->setToolTip(0, "WBS ID: " + qs(node.id) + "\n" + qs(fieldSummaries.describe(node.id)));
         items.emplace(node.id, item);
     }
     for (const auto &node : p.wbsNodes) {

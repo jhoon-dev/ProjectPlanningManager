@@ -1,0 +1,234 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignmentFields": [
+            {
+                "id": "number",
+                "name": "배정 점수",
+                "options": [
+                ],
+                "type": "number",
+                "unit": ""
+            },
+            {
+                "id": "text",
+                "name": "배정 메모",
+                "options": [
+                ],
+                "type": "text",
+                "unit": ""
+            },
+            {
+                "id": "date",
+                "name": "배정 검토일",
+                "options": [
+                ],
+                "type": "date",
+                "unit": ""
+            }
+        ],
+        "assignments": [
+            {
+                "attributes": [
+                    {
+                        "key": "field:number",
+                        "value": "0"
+                    },
+                    {
+                        "key": "field:text",
+                        "value": ""
+                    },
+                    {
+                        "key": "field:date",
+                        "value": "2026-11-12"
+                    }
+                ],
+                "resourceId": "R",
+                "taskId": "T",
+                "units": 100
+            },
+            {
+                "attributes": [
+                    {
+                        "key": "field:number",
+                        "value": "-12.000001"
+                    }
+                ],
+                "resourceId": "R",
+                "taskId": "B",
+                "units": 100
+            }
+        ],
+        "baselines": [
+        ],
+        "calculationProfile": "native-effort-split-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "calendars": [
+        ],
+        "codeTypes": [
+        ],
+        "costEntries": [
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "KRW",
+        "customFields": [
+            {
+                "id": "enterprise-text",
+                "name": "기업 작업명",
+                "options": [
+                ],
+                "type": "text",
+                "unit": "",
+                "xmlIdentity": {
+                    "fieldId": "188776449",
+                    "fieldName": "Enterprise label",
+                    "guid": "0000e8d9-65f1-4769-9bd2-819d38036fcc"
+                }
+            }
+        ],
+        "derivedFrom": "",
+        "documentId": "enterprise-udf",
+        "holidays": [
+        ],
+        "name": "기업·프로젝트·배정 필드",
+        "progress": [
+        ],
+        "projectAttributes": [
+            {
+                "key": "field:project",
+                "value": "P-2026-서울"
+            },
+            {
+                "key": "field:date",
+                "value": "2026-11-11"
+            }
+        ],
+        "projectFields": [
+            {
+                "id": "project",
+                "name": "계약 번호",
+                "options": [
+                ],
+                "type": "text",
+                "unit": ""
+            },
+            {
+                "id": "date",
+                "name": "프로젝트 검토일",
+                "options": [
+                ],
+                "type": "date",
+                "unit": ""
+            }
+        ],
+        "resourceFields": [
+            {
+                "id": "enterprise-number",
+                "name": "기업 자원 점수",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlIdentity": {
+                    "fieldId": "205553665",
+                    "fieldName": "Enterprise rating",
+                    "guid": "11111111-65f1-4769-9bd2-819d38036fcc"
+                }
+            }
+        ],
+        "resources": [
+            {
+                "attributes": [
+                    {
+                        "key": "field:enterprise-number",
+                        "value": "-2.123456"
+                    }
+                ],
+                "calendarId": "",
+                "exceptions": [
+                ],
+                "id": "R",
+                "maxUnits": 100,
+                "name": "설계 인력",
+                "rates": [
+                ],
+                "type": "labor"
+            }
+        ],
+        "revision": 1,
+        "scenarios": [
+        ],
+        "startDate": "2026-11-10",
+        "statusAt": null,
+        "taskCosts": [
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "T"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "B"
+            }
+        ],
+        "tasks": [
+            {
+                "attributes": [
+                    {
+                        "key": "field:enterprise-text",
+                        "value": "서울 & <설계>"
+                    }
+                ],
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 480,
+                "id": "T",
+                "name": "설계",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "attributes": [
+                    {
+                        "key": "field:enterprise-text",
+                        "value": ""
+                    }
+                ],
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 480,
+                "id": "B",
+                "name": "검토",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            }
+        ],
+        "wbsNodes": [
+        ]
+    },
+    "schemaVersion": 37,
+    "sha256": "7ec6a6caf1d6484beef63cbc537023a9a7a4311ffe9f86d077ab952a5dc0cbce"
+}

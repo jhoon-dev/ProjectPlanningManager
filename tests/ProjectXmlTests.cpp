@@ -292,9 +292,9 @@ int main(int argc, char **argv) {
                   store.load(QDir(historyFolder).filePath("source.ppm").toStdString()).project == historySnapshot &&
                   *tracked.project() == historySnapshot,
               "source snapshot lost approved/actual/cost ledger");
-        check(!historyExport.xml.contains("<Baseline>") && !historyExport.xml.contains("<ActualStart>") &&
-                  !historyExport.xml.contains("<ActualCost>"),
-              "unmapped histories invented in XML");
+        check(historyExport.xml.contains("<Baseline>") && historyExport.xml.contains("<Number>0</Number>") &&
+                  !historyExport.xml.contains("<ActualStart>") && !historyExport.xml.contains("<ActualCost>"),
+              "approved baseline exported while actual histories stay in native snapshot");
         // Stable exports for an independent Python XML reader, not produced by the importer under test.
         QFile out("project-xml-export.xml");
         check(out.open(QIODevice::WriteOnly) && out.write(exported.xml) == exported.xml.size(),

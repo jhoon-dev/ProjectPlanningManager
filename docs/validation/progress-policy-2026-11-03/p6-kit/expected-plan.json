@@ -1,0 +1,48 @@
+{
+    "contract": "ppm-p6-plan-roundtrip-kit-v1",
+    "executionStatus": "not-run",
+    "expected": [
+        {
+            "activityCode": "J1",
+            "finish": "2026-11-03 18:00",
+            "freeFloatMinutes": 0,
+            "start": "2026-11-02 09:00",
+            "taskId": "A",
+            "totalFloatMinutes": 0
+        },
+        {
+            "activityCode": "J2",
+            "finish": "2026-11-04 18:00",
+            "freeFloatMinutes": 0,
+            "start": "2026-11-04 09:00",
+            "taskId": "B",
+            "totalFloatMinutes": 0
+        },
+        {
+            "activityCode": "J3",
+            "finish": "2026-11-05 18:00",
+            "freeFloatMinutes": 0,
+            "start": "2026-11-05 09:00",
+            "taskId": "C",
+            "totalFloatMinutes": 0
+        },
+        {
+            "activityCode": "J4",
+            "finish": "2026-11-02 18:00",
+            "freeFloatMinutes": 1440,
+            "start": "2026-11-02 09:00",
+            "taskId": "D",
+            "totalFloatMinutes": 1440
+        },
+        {
+            "activityCode": "J5",
+            "finish": "2026-11-02 18:00",
+            "freeFloatMinutes": 1440,
+            "start": "2026-11-02 09:00",
+            "taskId": "E",
+            "totalFloatMinutes": 1440
+        }
+    ],
+    "inputSha256": "aca6933926c5b4de79bdc2e28625a53f811e8a1fd03a45c4953ba53a6e283ecb",
+    "reason": "P6 not installed; user confirmed"
+}

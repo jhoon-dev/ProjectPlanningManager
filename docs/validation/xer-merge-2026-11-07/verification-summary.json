@@ -1,0 +1,79 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-11-07T16:10:15.071873+09:00",
+  "environment": "Windows x64, Qt6.8.3, MinGW13.1, Release/Ninja",
+  "source_revision": "6a1cd0a5115f3400d6cee4e5d5df795f351195ea",
+  "working_tree_changes_included": true,
+  "source_sha256": "14886835f482ebcb02a1069c0c3462e592693202d645cdf4d00c5a3185b85c40",
+  "binaries": {
+    "PPM.exe": "2b84edcb7d1f87263da0e4e0410cbc15f7703e760f7662387814add938d69974",
+    "PPM-Automation.exe": "ee0d2707d5c4a26c11055bcca93b345f3e3cb75358875f175e8210d2efbb26b4",
+    "jobs_xer_financial_merge_tests.exe": "9c83c19c63c00a0b68a92dddeb099262eadd6892d641bd72a0399552c40a74dd"
+  },
+  "regression": {
+    "passed": 127,
+    "total": 127,
+    "wall_seconds": 134.3
+  },
+  "focused_xer_period_parser_public": {
+    "passed": 14,
+    "total": 14,
+    "wall_seconds": 15.8
+  },
+  "parser_seeds": 312,
+  "format": {
+    "status": "success",
+    "files": 319,
+    "tool": "clang-format version 18.1.8"
+  },
+  "native_ui": {
+    "status": "passed",
+    "platform": "windows",
+    "sizes": [
+      "1100x760",
+      "800x600"
+    ],
+    "main_window_action": true,
+    "source_current_values_and_explicit_conflict_selection": true
+  },
+  "independent_checks": [
+    "native full input/journal equality and SHA256",
+    "as-of/revision ownership oracle",
+    "TSV/Decimal",
+    "MPXJ16.10.0 strict",
+    "legacy allocation/snapshots/actual costs",
+    "seven unmodified public P6 fixtures"
+  ],
+  "external_p6_execution": "not run",
+  "mpp_reader": "not part of this increment",
+  "merge_scope": "Stored source/latest financials with current native ledger; ambiguity/OT choices explicit, original and native facts unchanged.",
+  "evidence": {
+    "all-test-output.txt": "bea9fb425aa199fb8e701fc148eb5a29ecf58a12617a4d0e485b92758cfa8665",
+    "before.json": "1a98f75a15ba7f81d3464c46b4b047c40d91b084832154e579fde845583c32d1",
+    "build.txt": "fc5d4979d564305b194102237c036eb7f7c0172fd0e869cf2ebe209702ddc571",
+    "conflict.png": "06ba6b37412bfcd6a76d6d8839895391f1842363b1338b7c04cae982cabd3784",
+    "ctest.txt": "09824a821a45e8829d07b5c7e9808b7e3a179324274667bdc0cac69a3972e32e",
+    "ctest.xml": "6174108110f7b1d4fbb19c5cdaef7baddaf6eceb9f0757e35e8eb2774b407329",
+    "early-focused.txt": "183f3c6f19daa2226f72f2b917ce8eacbea2d2cc6f7de42b37ae9b1441fb8b26",
+    "expense-export.xer": "dbd78898531b487598c9ccb2a147a04d626ee831a23cebb2531ba9d5a2cfccbf",
+    "expense-merged.json": "4b9f642d4e73b5957c2907db60a86e9adaa8addf6574176a7bb1ea9ab182afcc",
+    "export-report.json": "d32e2b55a50c5f54bbda0eefad80147ee7c8f1a0d2ce471b9a1158a82ab53602",
+    "export.xer": "bc9a11293223ae6ac74fc1a09faed15b8c37a221445686a67b8acf04bd9ef950",
+    "final-build.txt": "22dbf498d8a6b011d03b9dcba61fcb8e783336f7bd487d4b6a1a75ca97388c27",
+    "focused.txt": "d2e748034f79191305cfaf59644be37886322fc8de81dda04818b6bc81209dc3",
+    "format.json": "561b5776aed3bf15884244c3fa0252df9b1faf4647a49e4b683a1333664f929d",
+    "independent-actual-costs.json": "2aa47f47918c0f8c54887400d4f1cdf9c34b8d0c2b753b3b1ee1a28612832d18",
+    "independent-allocation.json": "43c86af4a7489af9a94250a01af92974f6f0b6378048fa374b1c1a1335902a95",
+    "independent-merge.json": "f586bce7df813e01a6a76148ca9fc8df32e531835e8b70f571b3a08c6350cf0b",
+    "independent-public.json": "983ed098baf2d555b45b50e99a6b155b4c6cf397f0a49cbaf0897dfec34eccc2",
+    "independent-snapshot.json": "7c9fc9b9a0cdd9590bbdf75847671619121c827f1d3349f14a557985af00e2d5",
+    "ledger.png": "ce3ac19ddaf1a3dda570895ab1535a2e966622094c4e5f75bcc9b3a7fffd4de2",
+    "merge-small.png": "7aec7784568cda543736d25d649f5b64203700b6e98c942954fa24f87f127b9c",
+    "merge.png": "f96444b4848b67541485844668f64b2ac98af3e49ce76cc4f335692718fb2862",
+    "merged.json": "0ef3174765c18c125811a602530d7e379a4eec521667f8a37c5d50376697b0cb",
+    "merged.ppm": "afa31db6ed5e6de12183e66bac8386285ca0cd37ce00681e5d90c20457e5b8f6",
+    "native-ui.txt": "695e93cdca706692b3a50c73b4bf9a3bea2d84c2a2357f5bb19ed76a96561db0",
+    "resolved.png": "52ce25e1ff368a955e6d0ced1870e31cff3f6b8165afb858a4985bf368046c25",
+    "source.xer": "384625ce37fb418a20fcd17d8a62b8893c6a30be0079710ef1144be4b31faa0a"
+  }
+}

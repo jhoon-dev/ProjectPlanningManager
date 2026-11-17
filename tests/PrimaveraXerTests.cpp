@@ -168,10 +168,10 @@ int main(int argc, char **argv) {
                   "four links/negative hours lag");
         }
         check(p.progress.empty() && p.costEntries.empty() && p.taskCosts.empty() &&
-                  diagnostic(imported, "act_start_date") && diagnostic(imported, "cost_per_qty") &&
+                  diagnostic(imported, "act_start_date") && p.resources[0].rates[0].hourlyMinor == 10000 &&
                   diagnostic(imported, "NOTEBOOK"),
               "facts not invented/loss report");
-        auto schedule = jobs::calculate(p);
+        auto schedule = jobs::calculatePlan(p);
         check(schedule.status == jobs::CalculationStatus::Valid, "schedule valid");
         check(scheduled(schedule, "xer-task-20").start == "2026-10-26 09:00" &&
                   scheduled(schedule, "xer-task-20").finish == "2026-10-26 18:00",
@@ -207,7 +207,7 @@ int main(int argc, char **argv) {
         check(back.project.tasks.size() == 6 && back.project.wbsNodes.size() == 2 &&
                   back.project.resources.size() == 2 && back.project.assignments.size() == 2,
               "roundtrip counts");
-        auto again = jobs::calculate(back.project);
+        auto again = jobs::calculatePlan(back.project);
         check(again.status == jobs::CalculationStatus::Valid, "roundtrip schedule");
         for (std::size_t i = 0; i < p.tasks.size(); ++i) {
             const auto &a = p.tasks[i];

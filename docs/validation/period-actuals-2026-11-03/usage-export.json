@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "unique_period_rows": 84,
+  "plan_labor_hours": 16,
+  "plan_equipment_hours": 4,
+  "plan_minor": 212,
+  "baseline_minor": 212,
+  "remaining_assignment_minor": 74,
+  "unallocated_actual_minor": 80,
+  "fixed_remaining_excluded": true,
+  "ui_button_weekly_rows": 12,
+  "pdf_pages": 10
+}

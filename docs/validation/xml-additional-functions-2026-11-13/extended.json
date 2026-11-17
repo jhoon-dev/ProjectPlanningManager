@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "test": "exchange_async_recovery_diagnostics",
+  "standard_ctest_timeout_seconds": 180,
+  "verification_timeout_seconds": 300,
+  "command": [
+    "C:\\Users\\dow\\Development\\ToolMoa\\ProjectPlanningManager\\build-governance\\jobs_exchange_recovery_tests.exe",
+    "-platform",
+    "offscreen"
+  ],
+  "cwd": "C:\\Users\\dow\\Development\\ToolMoa\\ProjectPlanningManager\\build-governance",
+  "exit_code": 0,
+  "seconds": 164.12962950000656,
+  "executable_sha256": "b527dfd17881ad683c7bc073a7838d96984975b2170486007070baa5dc0bf0b9",
+  "source_changed": false
+}

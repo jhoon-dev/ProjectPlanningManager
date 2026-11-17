@@ -1,0 +1,4 @@
+[1/4] Building CXX object CMakeFiles/jobs_repartition_float_tests.dir/tests/RepartitionFloatTests.cpp.obj
+[2/4] Building CXX object CMakeFiles/jobs_leveling_float_tests.dir/tests/LevelingFloatTests.cpp.obj
+[3/4] Linking CXX executable jobs_repartition_float_tests.exe
+[4/4] Linking CXX executable jobs_leveling_float_tests.exe

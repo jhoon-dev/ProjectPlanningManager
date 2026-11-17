@@ -169,7 +169,7 @@ void forecastUi(jobs::JsonProjectStore &store, bool nominal) {
             action->trigger();
             break;
         }
-    waitFor([&] { return cellText(view, 0, 6) == "예측"; });
+    waitFor([&] { return cellText(view, 0, 6) == "예측 임계"; });
     check(cellText(view, 0, 1) == "960m", "worker forecast replaced computed plan duration with nominal input");
     window.hide();
 }

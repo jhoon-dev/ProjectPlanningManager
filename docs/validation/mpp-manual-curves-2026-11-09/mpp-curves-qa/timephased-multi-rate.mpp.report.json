@@ -1,0 +1,5164 @@
+{
+    "companionPolicy": "원본과 진단은 이 폴더의 동반 파일입니다. .ppm 사본 저장/이동 시 자동 복제되지 않습니다.",
+    "compatibility": {
+        "externalRoundTrip": "unverified",
+        "import": "mapped-subset",
+        "jobsRecomputation": "unverified",
+        "originalPreservation": "exact-mpp-bytes"
+    },
+    "contract": "ppm-mpp-read-v2",
+    "currencyPolicy": {
+        "exchangeRateApplied": false,
+        "financialValuesImported": false,
+        "nativePlan": "KRW",
+        "source": "GBP"
+    },
+    "diagnostics": [
+        {
+            "message": "시간대별 계획 공수 9배정/13구간 · 원본 정규 공수만 채택 · 실제공수 0/초과근무 3배정 제외 · 자료 없는 수동 곡선 0배정. 정수 분 경계 올림 0건/기간 창 투영 2작업/시작 기준 정렬 0배정/1⁄100자원분 반올림 0행. 원래 시간·기간과 이력은 original.mpp에 보존합니다.",
+            "path": "MPP/planningCurves"
+        },
+        {
+            "message": "MPP 읽기는 기간 기반 계획의 지원 부분 투영입니다. 실적·원가/단가·기준선·표시/내장 데이터는 원본 MPP에 보존하며 native 관측 원장으로 생성하지 않습니다. 미배정 placeholder 배정 0건을 제외했습니다.",
+            "path": "MPP"
+        },
+        {
+            "message": "기간 기반 계획 변환입니다. 원본 날짜·공수·실적·비용의 계산 동등성은 미검증입니다.",
+            "path": "/Project"
+        },
+        {
+            "message": "프로젝트 달력을 수입 작업/자원에 명시 배정합니다. 이후 새 작업은 PPM 기본 달력을 사용합니다.",
+            "path": "/Project/Calendars"
+        },
+        {
+            "message": "시작 날짜는 보존하며 PPM의 날짜 시작 기준은 09:00입니다.",
+            "path": "/Project/StartDate"
+        },
+        {
+            "message": "프로젝트 요약 · 실행 작업으로 변환하지 않음",
+            "path": "/Project/Tasks[1]/Task[1]"
+        },
+        {
+            "message": "기간 기반 고정 기간으로 투영 · 공수/작업 유형 계산 규칙은 보존 원본 참조",
+            "path": "/Project/Tasks[1]/Task[2]/Type"
+        },
+        {
+            "message": "기간 기반 고정 기간으로 투영 · 공수/작업 유형 계산 규칙은 보존 원본 참조",
+            "path": "/Project/Tasks[1]/Task[3]/Type"
+        },
+        {
+            "message": "기간 기반 고정 기간으로 투영 · 공수/작업 유형 계산 규칙은 보존 원본 참조",
+            "path": "/Project/Tasks[1]/Task[4]/Type"
+        },
+        {
+            "message": "기간 기반 고정 기간으로 투영 · 공수/작업 유형 계산 규칙은 보존 원본 참조",
+            "path": "/Project/Tasks[1]/Task[5]/Type"
+        },
+        {
+            "message": "기간 기반 고정 기간으로 투영 · 공수/작업 유형 계산 규칙은 보존 원본 참조",
+            "path": "/Project/Tasks[1]/Task[6]/Type"
+        },
+        {
+            "message": "기간 기반 고정 기간으로 투영 · 공수/작업 유형 계산 규칙은 보존 원본 참조",
+            "path": "/Project/Tasks[1]/Task[7]/Type"
+        },
+        {
+            "message": "기간 기반 고정 기간으로 투영 · 공수/작업 유형 계산 규칙은 보존 원본 참조",
+            "path": "/Project/Tasks[1]/Task[8]/Type"
+        },
+        {
+            "message": "기간 기반 고정 기간으로 투영 · 공수/작업 유형 계산 규칙은 보존 원본 참조",
+            "path": "/Project/Tasks[1]/Task[9]/Type"
+        },
+        {
+            "message": "기간 기반 고정 기간으로 투영 · 공수/작업 유형 계산 규칙은 보존 원본 참조",
+            "path": "/Project/Tasks[1]/Task[10]/Type"
+        },
+        {
+            "message": "기간 기반 고정 기간으로 투영 · 공수/작업 유형 계산 규칙은 보존 원본 참조",
+            "path": "/Project/Tasks[1]/Task[11]/Type"
+        },
+        {
+            "message": "기간 기반 고정 기간으로 투영 · 공수/작업 유형 계산 규칙은 보존 원본 참조",
+            "path": "/Project/Tasks[1]/Task[12]/Type"
+        },
+        {
+            "message": "기간 기반 고정 기간으로 투영 · 공수/작업 유형 계산 규칙은 보존 원본 참조",
+            "path": "/Project/Tasks[1]/Task[13]/Type"
+        },
+        {
+            "message": "미배정 placeholder · 자원으로 변환하지 않음",
+            "path": "/Project/Resources[1]/Resource[1]"
+        },
+        {
+            "message": "외부 계획 곡선과 정수 배정 투영 보존 · 실제공수/원가로 채택하지 않음",
+            "path": "/Assignment/3/WorkContour"
+        },
+        {
+            "message": "외부 계획 곡선과 정수 배정 투영 보존 · 실제공수/원가로 채택하지 않음",
+            "path": "/Assignment/13/WorkContour"
+        },
+        {
+            "message": "외부 계획 곡선과 정수 배정 투영 보존 · 실제공수/원가로 채택하지 않음",
+            "path": "/Assignment/15/WorkContour"
+        },
+        {
+            "message": "외부 계획 곡선과 정수 배정 투영 보존 · 실제공수/원가로 채택하지 않음",
+            "path": "/Assignment/17/WorkContour"
+        },
+        {
+            "message": "외부 계획 곡선과 정수 배정 투영 보존 · 실제공수/원가로 채택하지 않음",
+            "path": "/Assignment/21/WorkContour"
+        },
+        {
+            "message": "외부 계획 곡선과 정수 배정 투영 보존 · 실제공수/원가로 채택하지 않음",
+            "path": "/Assignment/27/WorkContour"
+        },
+        {
+            "message": "외부 계획 곡선과 정수 배정 투영 보존 · 실제공수/원가로 채택하지 않음",
+            "path": "/Assignment/28/WorkContour"
+        },
+        {
+            "message": "외부 계획 곡선과 정수 배정 투영 보존 · 실제공수/원가로 채택하지 않음",
+            "path": "/Assignment/29/WorkContour"
+        },
+        {
+            "message": "외부 계획 곡선과 정수 배정 투영 보존 · 실제공수/원가로 채택하지 않음",
+            "path": "/Assignment/30/WorkContour"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Title[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Author[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Revision[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/LastSaved[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/FinishDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/FYStartDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/CriticalSlackLimit[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/CurrencyDigits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/CurrencySymbol[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/CurrencySymbolPosition[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/DefaultStartTime[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/DefaultFinishTime[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/MinutesPerDay[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/MinutesPerWeek[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/DaysPerMonth[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/DefaultTaskType[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/DefaultFixedCostAccrual[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/DurationFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/WorkFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/EditableActualCosts[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/HonorConstraints[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/EarnedValueMethod[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/InsertedProjectsLikeSummary[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/MultipleCriticalPaths[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/NewTasksEffortDriven[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/NewTasksEstimated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/SplitsInProgressTasks[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/SpreadActualCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/SpreadPercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/TaskUpdatesResource[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/FiscalYearStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/WeekStartDay[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/MoveCompletedEndsBack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/MoveRemainingStartsBack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/MoveRemainingStartsForward[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/MoveCompletedEndsForward[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/BaselineForEarnedValue[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/AutoAddNewResourcesAndTasks[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/CurrentDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/MicrosoftProjectServerURL[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Autolink[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/NewTaskStartDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/NewTasksAreManual[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/DefaultTaskEVMethod[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/ProjectExternallyEdited[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/ActualsInSync[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/RemoveFileProperties[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/AdminProject[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[1]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[1]/IsBaselineCalendar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[2]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[2]/IsBaselineCalendar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[3]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[3]/IsBaselineCalendar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[4]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[4]/IsBaselineCalendar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[5]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[5]/IsBaselineCalendar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[6]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[6]/IsBaselineCalendar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[7]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[7]/IsBaselineCalendar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[8]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[8]/IsBaselineCalendar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[9]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[9]/IsBaselineCalendar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[10]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[10]/IsBaselineCalendar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[11]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[11]/IsBaselineCalendar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[12]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[12]/IsBaselineCalendar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[13]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[13]/IsBaselineCalendar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[14]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Calendars[1]/Calendar[14]/IsBaselineCalendar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Name[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Active[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Manual[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Type[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/IsNull[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/CreateDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/WBS[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/OutlineNumber[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/OutlineLevel[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Priority[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Duration[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/DurationFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/ResumeValid[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/EffortDriven[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Recurring[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Estimated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Milestone[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Summary[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Critical[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/IsSubprojectReadOnly[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/ExternalTask[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/EarlyStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/EarlyFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/LateStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/LateFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/FixedCostAccrual[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/PercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/OvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/RemainingDuration[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/RemainingOvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/RemainingOvertimeWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/ConstraintType[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/CalendarUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/LevelAssignments[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/LevelingCanSplit[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/LevelingDelay[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/IgnoreResourceCalendar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/HideBar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Rollup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/PhysicalPercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/EarnedValueMethod[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/Active[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/CreateDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/WBS[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/OutlineNumber[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/Priority[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/ResumeValid[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/EffortDriven[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/Recurring[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/Estimated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/Critical[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/IsSubprojectReadOnly[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/EarlyStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/EarlyFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/LateStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/LateFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/FixedCostAccrual[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/PercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/RemainingDuration[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/LevelAssignments[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/LevelingCanSplit[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/LevelingDelay[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/HideBar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/Rollup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/PhysicalPercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/EarnedValueMethod[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/Active[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/CreateDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/WBS[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/OutlineNumber[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/Priority[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/ResumeValid[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/EffortDriven[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/Recurring[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/Estimated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/Critical[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/IsSubprojectReadOnly[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/EarlyStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/EarlyFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/LateStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/LateFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/FreeSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/TotalSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/StartSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/FinishSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/FixedCostAccrual[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/PercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/RemainingDuration[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/LevelAssignments[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/LevelingCanSplit[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/LevelingDelay[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/HideBar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/Rollup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/PhysicalPercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/EarnedValueMethod[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/Active[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/CreateDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/WBS[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/OutlineNumber[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/Priority[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/ResumeValid[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/EffortDriven[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/Recurring[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/Estimated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/Critical[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/IsSubprojectReadOnly[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/EarlyStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/EarlyFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/LateStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/LateFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/FreeSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/TotalSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/StartSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/FinishSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/FixedCostAccrual[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/PercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/RemainingDuration[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/LevelAssignments[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/LevelingCanSplit[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/LevelingDelay[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/HideBar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/Rollup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/PhysicalPercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/EarnedValueMethod[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/Active[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/CreateDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/WBS[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/OutlineNumber[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/Priority[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/ResumeValid[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/EffortDriven[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/Recurring[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/Estimated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/Critical[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/IsSubprojectReadOnly[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/EarlyStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/EarlyFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/LateStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/LateFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/FreeSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/TotalSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/StartSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/FinishSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/FixedCostAccrual[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/PercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/RemainingDuration[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/LevelAssignments[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/LevelingCanSplit[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/LevelingDelay[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/HideBar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/Rollup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/PhysicalPercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/EarnedValueMethod[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/Active[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/CreateDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/WBS[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/OutlineNumber[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/Priority[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/ResumeValid[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/EffortDriven[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/Recurring[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/Estimated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/Critical[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/IsSubprojectReadOnly[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/EarlyStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/EarlyFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/LateStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/LateFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/FreeSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/TotalSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/StartSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/FinishSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/FixedCostAccrual[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/PercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/OvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/RemainingDuration[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/RemainingOvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/RemainingOvertimeWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/LevelAssignments[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/LevelingCanSplit[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/LevelingDelay[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/HideBar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/Rollup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/PhysicalPercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[6]/EarnedValueMethod[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/Active[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/CreateDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/WBS[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/OutlineNumber[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/Priority[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/ResumeValid[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/EffortDriven[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/Recurring[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/Estimated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/Critical[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/IsSubprojectReadOnly[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/EarlyStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/EarlyFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/LateStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/LateFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/FixedCostAccrual[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/PercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/RemainingDuration[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/LevelAssignments[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/LevelingCanSplit[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/LevelingDelay[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/HideBar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/Rollup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/PhysicalPercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[7]/EarnedValueMethod[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/Active[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/CreateDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/WBS[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/OutlineNumber[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/Priority[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/ResumeValid[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/EffortDriven[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/Recurring[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/Estimated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/Critical[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/IsSubprojectReadOnly[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/EarlyStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/EarlyFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/LateStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/LateFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/FreeSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/TotalSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/StartSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/FinishSlack[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/FixedCostAccrual[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/PercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/OvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/RemainingDuration[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/RemainingOvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/RemainingOvertimeWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/LevelAssignments[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/LevelingCanSplit[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/LevelingDelay[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/HideBar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/Rollup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/PhysicalPercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[8]/EarnedValueMethod[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/Active[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/CreateDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/WBS[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/OutlineNumber[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/Priority[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/ResumeValid[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/EffortDriven[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/Recurring[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/Estimated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/Critical[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/IsSubprojectReadOnly[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/EarlyStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/EarlyFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/LateStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/LateFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/FixedCostAccrual[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/PercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/OvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/RemainingDuration[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/RemainingOvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/RemainingOvertimeWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/LevelAssignments[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/LevelingCanSplit[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/LevelingDelay[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/HideBar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/Rollup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/PhysicalPercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[9]/EarnedValueMethod[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/Active[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/CreateDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/WBS[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/OutlineNumber[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/Priority[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/ResumeValid[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/EffortDriven[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/Recurring[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/Estimated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/Critical[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/IsSubprojectReadOnly[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/EarlyStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/EarlyFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/LateStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/LateFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/FixedCostAccrual[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/PercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/RemainingDuration[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/LevelAssignments[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/LevelingCanSplit[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/LevelingDelay[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/HideBar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/Rollup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/PhysicalPercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[10]/EarnedValueMethod[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/Active[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/CreateDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/WBS[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/OutlineNumber[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/Priority[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/ResumeValid[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/EffortDriven[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/Recurring[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/Estimated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/Critical[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/IsSubprojectReadOnly[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/EarlyStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/EarlyFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/LateStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/LateFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/FixedCostAccrual[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/PercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/RemainingDuration[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/LevelAssignments[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/LevelingCanSplit[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/LevelingDelay[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/HideBar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/Rollup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/PhysicalPercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[11]/EarnedValueMethod[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/Active[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/CreateDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/WBS[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/OutlineNumber[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/Priority[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/ResumeValid[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/EffortDriven[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/Recurring[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/Estimated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/Critical[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/IsSubprojectReadOnly[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/EarlyStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/EarlyFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/LateStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/LateFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/FixedCostAccrual[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/PercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/RemainingDuration[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/LevelAssignments[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/LevelingCanSplit[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/LevelingDelay[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/HideBar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/Rollup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/PhysicalPercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[12]/EarnedValueMethod[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/Active[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/CreateDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/WBS[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/OutlineNumber[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/Priority[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/ResumeValid[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/EffortDriven[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/Recurring[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/Estimated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/Critical[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/IsSubprojectReadOnly[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/EarlyStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/EarlyFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/LateStart[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/LateFinish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/FixedCostAccrual[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/PercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/RemainingDuration[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/LevelAssignments[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/LevelingCanSplit[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/LevelingDelay[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/HideBar[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/Rollup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/PhysicalPercentComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[13]/EarnedValueMethod[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/Type[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/IsNull[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/WorkGroup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/MaxUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/PeakUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/CanLevel[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/AccrueAt[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/StandardRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/OvertimeRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/CalendarUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/IsGeneric[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/IsInactive[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/IsEnterprise[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/BookingType[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[1]/IsBudget[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/IsNull[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/Initials[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/WorkGroup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/PeakUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/CanLevel[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/AccrueAt[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/StandardRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/StandardRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/OvertimeRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/OvertimeRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/IsGeneric[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/IsInactive[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/IsEnterprise[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/BookingType[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/IsBudget[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[2]/Rates[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/IsNull[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/Initials[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/WorkGroup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/PeakUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/CanLevel[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/AccrueAt[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/StandardRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/StandardRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/OvertimeRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/OvertimeRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/IsGeneric[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/IsInactive[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/IsEnterprise[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/BookingType[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/IsBudget[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[3]/Rates[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/IsNull[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/Initials[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/WorkGroup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/PeakUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/CanLevel[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/AccrueAt[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/StandardRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/StandardRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/OvertimeRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/OvertimeRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/IsGeneric[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/IsInactive[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/IsEnterprise[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/BookingType[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/IsBudget[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[4]/Rates[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/IsNull[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/Initials[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/WorkGroup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/PeakUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/CanLevel[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/AccrueAt[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/StandardRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/StandardRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/OvertimeRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/OvertimeRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/IsGeneric[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/IsInactive[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/IsEnterprise[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/BookingType[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/IsBudget[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[5]/Rates[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/IsNull[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/Initials[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/WorkGroup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/PeakUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/CanLevel[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/AccrueAt[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/OvertimeWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/RemainingOvertimeWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/StandardRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/StandardRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/OvertimeRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/OvertimeRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/OvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/RemainingOvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/IsGeneric[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/IsInactive[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/IsEnterprise[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/BookingType[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/IsBudget[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[6]/Rates[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/IsNull[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/Initials[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/WorkGroup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/PeakUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/CanLevel[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/AccrueAt[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/StandardRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/StandardRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/OvertimeRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/OvertimeRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/IsGeneric[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/IsInactive[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/IsEnterprise[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/BookingType[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/IsBudget[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[7]/Rates[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/IsNull[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/Initials[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/WorkGroup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/PeakUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/CanLevel[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/AccrueAt[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/OvertimeWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/RemainingOvertimeWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/StandardRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/StandardRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/OvertimeRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/OvertimeRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/OvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/RemainingOvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/IsGeneric[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/IsInactive[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/IsEnterprise[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/BookingType[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/IsBudget[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[8]/Rates[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/IsNull[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/Initials[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/WorkGroup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/PeakUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/CanLevel[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/AccrueAt[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/OvertimeWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/RemainingOvertimeWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/StandardRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/StandardRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/OvertimeRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/OvertimeRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/OvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/RemainingOvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/IsGeneric[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/IsInactive[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/IsEnterprise[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/BookingType[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/IsBudget[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[9]/Rates[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/IsNull[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/Initials[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/WorkGroup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/PeakUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/CanLevel[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/AccrueAt[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/StandardRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/StandardRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/OvertimeRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/OvertimeRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/IsGeneric[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/IsInactive[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/IsEnterprise[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/BookingType[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/IsBudget[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[10]/Rates[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/IsNull[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/Initials[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/WorkGroup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/PeakUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/CanLevel[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/AccrueAt[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/StandardRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/StandardRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/OvertimeRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/OvertimeRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/IsGeneric[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/IsInactive[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/IsEnterprise[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/BookingType[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/IsBudget[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[11]/Rates[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/IsNull[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/Initials[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/WorkGroup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/PeakUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/CanLevel[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/AccrueAt[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/StandardRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/StandardRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/OvertimeRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/OvertimeRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/IsGeneric[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/IsInactive[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/IsEnterprise[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/BookingType[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/IsBudget[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[12]/Rates[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/IsNull[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/Initials[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/WorkGroup[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/PeakUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/OverAllocated[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/CanLevel[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/AccrueAt[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/StandardRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/StandardRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/OvertimeRate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/OvertimeRateFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/IsGeneric[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/IsInactive[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/IsEnterprise[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/BookingType[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/IsBudget[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Resources[1]/Resource[13]/Rates[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[1]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[1]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[1]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[1]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[1]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[1]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[1]/HasFixedRateUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[1]/FixedMaterial[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[1]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[1]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[1]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[1]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[1]/Stop[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[1]/Resume[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[1]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[2]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[2]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[2]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[2]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[2]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[2]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[2]/HasFixedRateUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[2]/FixedMaterial[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[2]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[2]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[2]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[2]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[2]/Stop[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[2]/Resume[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[2]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[3]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[3]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[3]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[3]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[3]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[3]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[3]/HasFixedRateUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[3]/FixedMaterial[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[3]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[3]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[3]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[3]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[3]/Stop[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[3]/Resume[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[3]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[4]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[4]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[4]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[4]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[4]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[4]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[4]/HasFixedRateUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[4]/FixedMaterial[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[4]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[4]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[4]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[4]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[4]/Stop[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[4]/Resume[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[4]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/HasFixedRateUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/FixedMaterial[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/OvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/OvertimeWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/RemainingOvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/RemainingOvertimeWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/Stop[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/Resume[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[5]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[6]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[6]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[6]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[6]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[6]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[6]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[6]/HasFixedRateUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[6]/FixedMaterial[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[6]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[6]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[6]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[6]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[6]/Stop[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[6]/Resume[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[6]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/HasFixedRateUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/FixedMaterial[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/OvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/OvertimeWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/RemainingOvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/RemainingOvertimeWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/Stop[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/Resume[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[7]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/HasFixedRateUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/FixedMaterial[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/OvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/OvertimeWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/RemainingOvertimeCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/RemainingOvertimeWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/Start[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/Stop[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/Resume[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/Work[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[8]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[9]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[9]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[9]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[9]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[9]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[9]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[9]/HasFixedRateUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[9]/FixedMaterial[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[9]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[9]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[9]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[9]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[9]/Stop[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[9]/Resume[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[9]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[10]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[10]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[10]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[10]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[10]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[10]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[10]/HasFixedRateUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[10]/FixedMaterial[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[10]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[10]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[10]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[10]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[10]/Stop[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[10]/Resume[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[10]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[11]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[11]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[11]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[11]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[11]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[11]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[11]/HasFixedRateUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[11]/FixedMaterial[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[11]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[11]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[11]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[11]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[11]/Stop[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[11]/Resume[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[11]/CreationDate[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[12]/GUID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[12]/PercentWorkComplete[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[12]/Cost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[12]/CostVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[12]/Finish[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[12]/WorkVariance[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[12]/HasFixedRateUnits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[12]/FixedMaterial[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[12]/LevelingDelayFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[12]/RegularWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[12]/RemainingCost[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[12]/RemainingWork[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[12]/Stop[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[12]/Resume[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Assignments[1]/Assignment[12]/CreationDate[1]"
+        }
+    ],
+    "direction": "import",
+    "documentId": "b493964a-4323-4671-b813-d7d6b0b3a935",
+    "format": "Microsoft Project MPP",
+    "mapping": [
+        {
+            "jobsId": "xml-cal-1",
+            "kind": "calendar",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "xml-cal-2",
+            "kind": "calendar",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "xml-cal-3",
+            "kind": "calendar",
+            "xmlUid": "3"
+        },
+        {
+            "jobsId": "xml-cal-4",
+            "kind": "calendar",
+            "xmlUid": "4"
+        },
+        {
+            "jobsId": "xml-cal-5",
+            "kind": "calendar",
+            "xmlUid": "5"
+        },
+        {
+            "jobsId": "xml-cal-6",
+            "kind": "calendar",
+            "xmlUid": "6"
+        },
+        {
+            "jobsId": "xml-cal-7",
+            "kind": "calendar",
+            "xmlUid": "7"
+        },
+        {
+            "jobsId": "xml-cal-8",
+            "kind": "calendar",
+            "xmlUid": "8"
+        },
+        {
+            "jobsId": "xml-cal-9",
+            "kind": "calendar",
+            "xmlUid": "9"
+        },
+        {
+            "jobsId": "xml-cal-10",
+            "kind": "calendar",
+            "xmlUid": "10"
+        },
+        {
+            "jobsId": "xml-cal-11",
+            "kind": "calendar",
+            "xmlUid": "11"
+        },
+        {
+            "jobsId": "xml-cal-12",
+            "kind": "calendar",
+            "xmlUid": "12"
+        },
+        {
+            "jobsId": "xml-cal-13",
+            "kind": "calendar",
+            "xmlUid": "13"
+        },
+        {
+            "jobsId": "xml-cal-14",
+            "kind": "calendar",
+            "xmlUid": "14"
+        },
+        {
+            "jobsId": "xml-task-1",
+            "kind": "task",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "xml-task-6",
+            "kind": "task",
+            "xmlUid": "6"
+        },
+        {
+            "jobsId": "xml-task-7",
+            "kind": "task",
+            "xmlUid": "7"
+        },
+        {
+            "jobsId": "xml-task-8",
+            "kind": "task",
+            "xmlUid": "8"
+        },
+        {
+            "jobsId": "xml-task-9",
+            "kind": "task",
+            "xmlUid": "9"
+        },
+        {
+            "jobsId": "xml-task-10",
+            "kind": "task",
+            "xmlUid": "10"
+        },
+        {
+            "jobsId": "xml-task-11",
+            "kind": "task",
+            "xmlUid": "11"
+        },
+        {
+            "jobsId": "xml-task-12",
+            "kind": "task",
+            "xmlUid": "12"
+        },
+        {
+            "jobsId": "xml-task-13",
+            "kind": "task",
+            "xmlUid": "13"
+        },
+        {
+            "jobsId": "xml-task-14",
+            "kind": "task",
+            "xmlUid": "14"
+        },
+        {
+            "jobsId": "xml-task-15",
+            "kind": "task",
+            "xmlUid": "15"
+        },
+        {
+            "jobsId": "xml-task-16",
+            "kind": "task",
+            "xmlUid": "16"
+        },
+        {
+            "jobsId": "xml-resource-1",
+            "kind": "resource",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "xml-resource-2",
+            "kind": "resource",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "xml-resource-3",
+            "kind": "resource",
+            "xmlUid": "3"
+        },
+        {
+            "jobsId": "xml-resource-4",
+            "kind": "resource",
+            "xmlUid": "4"
+        },
+        {
+            "jobsId": "xml-resource-5",
+            "kind": "resource",
+            "xmlUid": "5"
+        },
+        {
+            "jobsId": "xml-resource-6",
+            "kind": "resource",
+            "xmlUid": "6"
+        },
+        {
+            "jobsId": "xml-resource-7",
+            "kind": "resource",
+            "xmlUid": "7"
+        },
+        {
+            "jobsId": "xml-resource-8",
+            "kind": "resource",
+            "xmlUid": "8"
+        },
+        {
+            "jobsId": "xml-resource-9",
+            "kind": "resource",
+            "xmlUid": "9"
+        },
+        {
+            "jobsId": "xml-resource-10",
+            "kind": "resource",
+            "xmlUid": "10"
+        },
+        {
+            "jobsId": "xml-resource-11",
+            "kind": "resource",
+            "xmlUid": "11"
+        },
+        {
+            "jobsId": "xml-resource-12",
+            "kind": "resource",
+            "xmlUid": "12"
+        },
+        {
+            "jobsId": "xml-task-1/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "3"
+        },
+        {
+            "jobsId": "xml-task-6/xml-resource-2",
+            "kind": "assignment",
+            "xmlUid": "13"
+        },
+        {
+            "jobsId": "xml-task-7/xml-resource-3",
+            "kind": "assignment",
+            "xmlUid": "15"
+        },
+        {
+            "jobsId": "xml-task-8/xml-resource-4",
+            "kind": "assignment",
+            "xmlUid": "17"
+        },
+        {
+            "jobsId": "xml-task-9/xml-resource-5",
+            "kind": "assignment",
+            "xmlUid": "19"
+        },
+        {
+            "jobsId": "xml-task-10/xml-resource-6",
+            "kind": "assignment",
+            "xmlUid": "21"
+        },
+        {
+            "jobsId": "xml-task-11/xml-resource-7",
+            "kind": "assignment",
+            "xmlUid": "23"
+        },
+        {
+            "jobsId": "xml-task-12/xml-resource-8",
+            "kind": "assignment",
+            "xmlUid": "25"
+        },
+        {
+            "jobsId": "xml-task-13/xml-resource-9",
+            "kind": "assignment",
+            "xmlUid": "27"
+        },
+        {
+            "jobsId": "xml-task-14/xml-resource-10",
+            "kind": "assignment",
+            "xmlUid": "28"
+        },
+        {
+            "jobsId": "xml-task-15/xml-resource-11",
+            "kind": "assignment",
+            "xmlUid": "29"
+        },
+        {
+            "jobsId": "xml-task-16/xml-resource-12",
+            "kind": "assignment",
+            "xmlUid": "30"
+        }
+    ],
+    "namespace": "http://schemas.microsoft.com/project",
+    "nativeSnapshotProfile": "native-effort-split-v1",
+    "planningCurves": {
+        "assignments": 9,
+        "excludedActual": 0,
+        "excludedOvertime": 3,
+        "missingManual": 0,
+        "policy": "source-regular-minute-v1",
+        "progressPlaceholders": 0,
+        "projectedDurations": 2,
+        "rebasedOrigins": 0,
+        "roundedBoundaries": 0,
+        "roundedWorkRows": 0,
+        "rows": 13
+    },
+    "reader": {
+        "assignments": 12,
+        "calendars": 14,
+        "engine": "MPXJ",
+        "engineVersion": "16.10.0",
+        "format": "MSProject.MPP14",
+        "planningCurves": {
+            "assignments": 9,
+            "excludedActual": 0,
+            "excludedOvertime": 3,
+            "missingManual": 0,
+            "policy": "source-regular-minute-v1",
+            "progressPlaceholders": 0,
+            "projectedDurations": 2,
+            "rebasedOrigins": 0,
+            "roundedBoundaries": 0,
+            "roundedWorkRows": 0,
+            "rows": 13
+        },
+        "protocol": 2,
+        "resources": 13,
+        "sourceCurrency": "GBP",
+        "sourceName": null,
+        "tasks": 13,
+        "unassignedAssignments": 0
+    },
+    "readerManifestSha256": "0fde50f42f809b66fc81eb2a39adfc4bb70ddc2c5cf7bee95798662d10fcf28a",
+    "readerXmlSha256": "1d2c1ed469224d51d8465ccfd13671f4d207d166137faf5aa7de6c4cf98e5a20",
+    "revision": "1",
+    "source": {
+        "bytes": 269824,
+        "name": "timephased-multi-rate.mpp",
+        "producer": "unverified",
+        "sha256": "0fce2e61a05adeeb9f5dc8a0c3fc41776b2588358e95fecd51efdf53a74fff02"
+    },
+    "targetPolicy": {
+        "calculationProfile": "native-effort-split-v1",
+        "lagCalendar": "successor-working-calendar",
+        "projectStartAnchor": "09:00"
+    }
+}

@@ -1,0 +1,17 @@
+{
+  "final_status": "success",
+  "full_ctest": {
+    "passed": 90,
+    "total": 90,
+    "seconds": 349.79
+  },
+  "witness_ui_seconds": 5.47,
+  "parser_seeds": 114,
+  "format_files": 149,
+  "independent_readers_and_selftests": 18,
+  "independently_reconstructed_witnesses": 1514,
+  "prepared_10000_model_ms": 37.6173,
+  "engine_version_changed": false,
+  "native_schema_changed": false,
+  "P6_actual_roundtrip": "not-run; P6 not installed"
+}

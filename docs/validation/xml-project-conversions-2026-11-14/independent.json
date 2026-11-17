@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "schema": 61,
+  "date_values": 128,
+  "date_formats": 2816,
+  "duration_formats": 10240,
+  "scalar_cases": 20,
+  "xml_cells": 26,
+  "xml_inherited_cells": 2,
+  "xer_static_values": 26,
+  "formula_definitions": 35,
+  "report_rows": 76,
+  "pdf_pages": 20,
+  "native_file_sha256": "7fba0bed47590afcf8dd79ce301cabe6a5dfa96aa8be7a2afd9c50a436b2307b",
+  "external_product_run": false
+}

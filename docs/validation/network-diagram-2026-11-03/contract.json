@@ -1,0 +1,11 @@
+{
+    "cycle_components": 1,
+    "dense_omitted_edges": 865,
+    "dense_shown_edges": 5,
+    "forecast_D_float": 480,
+    "four_relations": 4,
+    "plan_D_float": 960,
+    "plan_finish": "2026-11-04 18:00",
+    "source_unchanged": true,
+    "unknown_relations": 1
+}

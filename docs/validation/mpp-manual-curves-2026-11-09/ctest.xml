@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-ninja"
+	tests="145"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-61CPKLN"
+	time="250"
+	timestamp="2026-11-09T11:08:14"
+	>
+	<testcase name="project_currency_conversion_contract" classname="project_currency_conversion_contract" time="12.2569" status="run">
+		<properties/>
+		<system-out>PASS: project-wide currency rates/budgets/materials/expenses/native observations/baselines/scenarios/closed periods/external EVM/XER projections, original archives and FX chains, schema34/replay/recovery/copy, sequential identity/currency operations, numerical cases, cancel/stale/readonly, export and native UI
+</system-out>
+	</testcase>
+	<testcase name="project_mpp_import_contract" classname="project_mpp_import_contract" time="52.1178" status="run">
+		<properties/>
+		<system-out>READ: mpp9relations.mpp
+REJECT: [FILE_EXCHANGEPACKAGE_002] 존재하지 않는 새 교환 폴더를 지정하세요.
+파일 경로·권한·열린 원본의 변경 여부를 확인하세요. 원본을 보존하려면 새 경로에 사본을 저장하세요.
+READ: mpp12relations.mpp
+REJECT: [FILE_EXCHANGEPACKAGE_002] 존재하지 않는 새 교환 폴더를 지정하세요.
+파일 경로·권한·열린 원본의 변경 여부를 확인하세요. 원본을 보존하려면 새 경로에 사본을 저장하세요.
+READ: mpp14relations.mpp
+REJECT: [FILE_EXCHANGEPACKAGE_002] 존재하지 않는 새 교환 폴더를 지정하세요.
+파일 경로·권한·열린 원본의 변경 여부를 확인하세요. 원본을 보존하려면 새 경로에 사본을 저장하세요.
+READ: assigned-resources-mpp8-project2003.mpp
+REJECT: [FILE_EXCHANGEPACKAGE_002] 존재하지 않는 새 교환 폴더를 지정하세요.
+파일 경로·권한·열린 원본의 변경 여부를 확인하세요. 원본을 보존하려면 새 경...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="project_mpp_import_ui" classname="project_mpp_import_ui" time="35.6754" status="run">
+		<properties/>
+		<system-out>PASS: real MPP8/9/12/14 reading, exact original/native publication, no inferred observations, malformed/password/missing runtime/timeout/cancel boundaries
+</system-out>
+	</testcase>
+	<testcase name="ledger_identity_migration_contract" classname="ledger_identity_migration_contract" time="8.19351" status="run">
+		<properties/>
+		<system-out>PASS: explicit task/resource identity migration, original/provenance/amount/date preservation, baseline/closed periods/Steps/external EVM/XER relink and schedule archives, fresh/merge IDs, schema33/replay/recovery/copy, sequential/cancel/stale/readonly, export and native UI
+</system-out>
+	</testcase>
+	<testcase name="xer_schedule_adoption_contract" classname="xer_schedule_adoption_contract" time="4.63197" status="run">
+		<properties/>
+		<system-out>PASS: schedule/WBS/calendar scoped adoption, explicit task creation/ID mapping, local tasks and native histories preserved, schema32/replay/recovery/copy, worker stale/cancel/read-only, XER export and Windows UI
+</system-out>
+	</testcase>
+	<testcase name="xer_source_conversion_contract" classname="xer_source_conversion_contract" time="2.6826" status="run">
+		<properties/>
+		<system-out>PASS: explicit XER currency/type conversions, exact work, half-up/overflow oracle cases, immutable sources/native ledger, schema31/replay/recovery/copy, export, stale/cancel/read-only and native UI
+</system-out>
+	</testcase>
+	<testcase name="xer_source_relink_contract" classname="xer_source_relink_contract" time="2.99553" status="run">
+		<properties/>
+		<system-out>PASS: new XER source/schema28, changed/deleted ID maps and unobserved retirement, source archive/native fact preservation, ambiguity/type/zero guards, undated dictionary, post-version merge, recovery/copy/stale/cancel/read-only, async file and native review UI
+</system-out>
+	</testcase>
+	<testcase name="xer_financial_merge_contract" classname="xer_financial_merge_contract" time="2.9609" status="run">
+		<properties/>
+		<system-out>PASS: schema27 original/current ledger merge; disjoint residual union, allocated corrections/withdrawals, explicit overlap/OT decisions, immutable native facts and AC, identity/status guards, post-merge edit, save/copy/recovery, XER coalescing and native UI
+</system-out>
+	</testcase>
+	<testcase name="xer_financial_edit_allocation_contract" classname="xer_financial_edit_allocation_contract" time="2.82645" status="run">
+		<properties/>
+		<system-out>PASS: XER aggregate correction audit/schema26, exact weighted days and residuals, immutable source/native corrections, no double counting, AC-only/withdrawal, cancellation/stale/read-only, save/copy/recovery, XER and native editor preview
+</system-out>
+	</testcase>
+	<testcase name="xer_financial_snapshot_contract" classname="xer_financial_snapshot_contract" time="3.28684" status="run">
+		<properties/>
+		<system-out>PASS: schema25 XER financial snapshots, preserved intervals/undated regular+OT, AC/EVM isolation, stale/undo/copy/recovery, strict validation, combined references, virtual tables and search
+</system-out>
+	</testcase>
+	<testcase name="xer_actual_cost_contract" classname="xer_actual_cost_contract" time="2.99006" status="run">
+		<properties/>
+		<system-out>PASS: XER observed progress, AC allocation, costs, daily periods, losses, persistence, recovery, combined ownership and cancellation
+</system-out>
+	</testcase>
+	<testcase name="governance_risk_automation_contract" classname="governance_risk_automation_contract" time="11.9639" status="run">
+		<properties/>
+		<system-out>governance/risk/automation contracts passed
+</system-out>
+	</testcase>
+	<testcase name="resource_workspace_ui" classname="resource_workspace_ui" time="2.5902" status="run">
+		<properties/>
+		<system-out>Resource/workspace UI: catalogs, exact input, binding, atomic save/cancel/undo/read-only/stale, qualified links, calculation and stale exports passed
+</system-out>
+	</testcase>
+	<testcase name="resource_plan_contract" classname="resource_plan_contract" time="2.48532" status="run">
+		<properties/>
+		<system-out>Resource plan: exact costs, unknowns, stock, roles, history, archives, recovery, schema20, advanced priorities and reports passed
+</system-out>
+	</testcase>
+	<testcase name="integrated_workspace_contract" classname="integrated_workspace_contract" time="2.52593" status="run">
+		<properties/>
+		<system-out>Integrated workspace: qualified links, FS/SS/FF/SF signed lag, cycle, release/status/calendar safety, shared leveling, workspace2 relocation, immutable source and exports passed
+</system-out>
+	</testcase>
+	<testcase name="presentation_contract" classname="presentation_contract" time="5.02323" status="run">
+		<properties/>
+		<system-out>Presentation: schema18/history/dirty/recovery/scoped-WBS/relations/vector PDF/printer/cancel passed
+</system-out>
+	</testcase>
+	<testcase name="presentation_ui" classname="presentation_ui" time="2.59714" status="run">
+		<properties/>
+		<system-out>Presentation UI: reopen prefs/layout/relations atomic failure/print preview/readonly passed
+</system-out>
+	</testcase>
+	<testcase name="resource_view_contract" classname="resource_view_contract" time="1.03367" status="run">
+		<properties/>
+		<system-out>PASS resource view: typed filters, groups, stable IDs, missing/empty/zero, saved views, history, schema, recovery, exports; 10k=22ms
+</system-out>
+	</testcase>
+	<testcase name="resource_view_ui" classname="resource_view_ui" time="2.98393" status="run">
+		<properties/>
+		<system-out>PASS resource view UI: groups, typed filters, local draft, save/restore, stale, role/readonly, close, menu
+</system-out>
+	</testcase>
+	<testcase name="mpp_manual_curve_ui" classname="mpp_manual_curve_ui" time="39.5066" status="run">
+		<properties/>
+		<system-out>PASS: real MPP8/9/12/14 reading, exact original/native publication, no inferred observations, malformed/password/missing runtime/timeout/cancel boundaries
+</system-out>
+	</testcase>
+	<testcase name="mpp_manual_curve_contract" classname="mpp_manual_curve_contract" time="74.8811" status="run">
+		<properties/>
+		<system-out>READ timephased-multi-rate.mpp
+PASS real MPP manual source curves, work conservation, no inferred actuals, original/schema36/save/undo/recovery and XML/XER export
+</system-out>
+	</testcase>
+	<testcase name="resource_productivity_curve_contract" classname="resource_productivity_curve_contract" time="50.8168" status="run">
+		<properties/>
+		<system-out>PASS resource productivity/curves: integer quantity-to-work, 72 independent minute curves, task-type maintenance, original plans/facts, schema36, cancel/stale/readonly, named and custom XML/XER readback, real report artifacts
+</system-out>
+	</testcase>
+	<testcase name="resource_productivity_curve_ui" classname="resource_productivity_curve_ui" time="3.32475" status="run">
+		<properties/>
+		<system-out>PASS resource planning UI: resource productivity definition, quantity/work preview, confirmation/invalidation, named/custom curves, cancel/stale/role/readonly, menu and default/800x600 screens
+</system-out>
+	</testcase>
+	<testcase name="dated_effort_contract" classname="dated_effort_contract" time="33.9545" status="run">
+		<properties/>
+		<system-out>PASS dated effort: 72 independent civil-minute cases, exact work/targets, FixedWork/FixedUnits duration/work basis, calendars/curves, original facts, float/leveling/witness/adoption/scenario, schema35/recovery/undo, worker protections and exports
+</system-out>
+	</testcase>
+	<testcase name="dated_remaining_contract" classname="dated_remaining_contract" time="6.42412" status="run">
+		<properties/>
+		<system-out>PASS dated remaining work: exact days, inherited/zero, calendars, status/window review, cost/usage, float witness, leveling/adoption, immutable facts, history, schema/recovery, exports
+</system-out>
+	</testcase>
+	<testcase name="dated_remaining_ui" classname="dated_remaining_ui" time="5.79913" status="run">
+		<properties/>
+		<system-out>PASS dated remaining UI: inherited/zero, preview, edits invalidate certificate, atomic apply/clear, undo, stale, cancel, role, outdated/readonly, close/menu
+PASS dated effort UI: FixedWork/FixedUnits, future date input, inverse completion preview, invalid total, preservation/undo and readonly, native/screens at default/800x600
+</system-out>
+	</testcase>
+	<testcase name="work_contour_ui" classname="work_contour_ui" time="3.31268" status="run">
+		<properties/>
+		<system-out>PASS work contour UI: FW/FU preview equals atomic apply, exact work and actual duration, draft/cancel/undo/stale/readonly, bounded screen
+</system-out>
+	</testcase>
+	<testcase name="work_contour_contract" classname="work_contour_contract" time="53.6299" status="run">
+		<properties/>
+		<system-out>PASS work contours: independent80 minute ledgers, nonmonotone bounds/float, FW/FU inverses, exact tiny work, calendars, preserved tails/facts/archives, schema24/recovery, workers/history, reports
+</system-out>
+	</testcase>
+	<testcase name="udf_mapping_contract" classname="udf_mapping_contract" time="0.873428" status="run">
+		<properties/>
+		<system-out>PASS UDF: typed scopes, zero/empty/missing, static formula/choice, stable XML IDs, malformed/limits, multi-project foreign keys, native save and reviewable package
+</system-out>
+	</testcase>
+	<testcase name="formula_field_contract" classname="formula_field_contract" time="1.96272" status="run">
+		<properties/>
+		<system-out>PASS formula fields: exact arithmetic, units, refs/cycles, null/error, dependencies, readonly, views, archives, schema/recovery, three-feature coexistence; 10k=40ms
+</system-out>
+	</testcase>
+	<testcase name="formula_field_ui" classname="formula_field_ui" time="1.47009" status="run">
+		<properties/>
+		<system-out>PASS formula UI: named reference insertion, unit/check preview, cycle rejection, computed readonly cells, project dependencies, task/resource views, role/readonly, bounded rendering
+</system-out>
+	</testcase>
+	<testcase name="planned_work_contract" classname="planned_work_contract" time="17.0129" status="run">
+		<properties/>
+		<system-out>PASS planned work: civil-minute oracle, rounding, calendars, breaks, exact inverse, preservation, history and exports
+</system-out>
+	</testcase>
+	<testcase name="planned_work_ui" classname="planned_work_ui" time="1.44671" status="run">
+		<properties/>
+		<system-out>PASS planned work UI: preview, draft transfer, atomic apply, undo, input invalidation, cancel, stale, role, readonly, close
+</system-out>
+	</testcase>
+	<testcase name="assignment_periods_contract" classname="assignment_periods_contract" time="3.89803" status="run">
+		<properties/>
+		<system-out>Assignment periods: exact curves, calendars, costs/Usage, forecast tail, leveling, schema17, history/worker/recovery/export passed
+</system-out>
+	</testcase>
+	<testcase name="assignment_periods_ui" classname="assignment_periods_ui" time="3.33788" status="run">
+		<properties/>
+		<system-out>Assignment periods UI: period rows/presets/manual/preview/apply/cancel/close/stale/readonly/default-rate preservation passed
+</system-out>
+	</testcase>
+	<testcase name="object_fields_contract" classname="object_fields_contract" time="1.56286" status="run">
+		<properties/>
+		<system-out>Object fields: scopes/types/atomic history/archives/schema16/recovery/worker/export passed
+</system-out>
+	</testcase>
+	<testcase name="object_fields_ui" classname="object_fields_ui" time="2.69123" status="run">
+		<properties/>
+		<system-out>Object field UI: scope dictionaries, typed values/batch/cancel/stale/close/readonly passed
+</system-out>
+	</testcase>
+	<testcase name="leveling_decision_contract" classname="leveling_decision_contract" time="3.52708" status="run">
+		<properties/>
+		<system-out>decision lifecycle, worker/cancel/session, legacy/schema15/recovery, validation/limit and UI passed
+</system-out>
+	</testcase>
+	<testcase name="propagation_cost_contract" classname="propagation_cost_contract" time="5.17712" status="run">
+		<properties/>
+		<system-out>holes-small: [1,1,0,0,0,12,0]
+fractional: [1,1,0,0,0,16,0]
+fractional-long: [1,1,0,0,0,40,0]
+varying: [1,1,0,0,0,98,0]
+holes-96: [0,96,0,0,0,45148,0]
+late-tiny: [1,1,0,0,0,422,0]
+adaptive-observed: [1,1,0,1,1,1034,0]
+split: [1,1,0,1,1,16917,1]
+Cost estimates, observed activation, backoff, exact witnesses and archive passed
+</system-out>
+	</testcase>
+	<testcase name="nonmonotone_propagation_contract" classname="nonmonotone_propagation_contract" time="5.57368" status="run">
+		<properties/>
+		<system-out>holes-small: [8,0,0,2,0,48]
+holes-32: [3712,0,0,2,0,3932]
+holes-96: [11136,0,0,2,0,11740]
+fractional: [0,0,0,1,0,96]
+fractional-long: [0,42,0,10,0,989]
+varying: [0,62,10,14,0,1261]
+Nonmonotone mandatory demand, live supports, restoration and legacy contracts passed
+</system-out>
+	</testcase>
+	<testcase name="candidate_propagation_contract" classname="candidate_propagation_contract" time="35.4218" status="run">
+		<properties/>
+		<system-out>resource-60 completed; legacy available=1, certificates=1
+coupled-256 completed; legacy available=1, certificates=1
+separate-1000 completed; legacy available=1, certificates=1
+resource-750 completed; legacy available=0, certificates=1
+Candidate bounds, reversible propagation, native certificates, legacy replay and paired measurements passed
+</system-out>
+	</testcase>
+	<testcase name="expanded_repartition_float_contract" classname="expanded_repartition_float_contract" time="17.2713" status="run">
+		<properties/>
+		<system-out>Expanded 129 coupled tasks: 155.162ms
+Expanded 512 coupled tasks: 2078.57ms
+Expanded 1000 independent units: 7921.24ms
+Expanded repartition, resource coupling, limits, legacy baselines, UI and reports passed
+</system-out>
+	</testcase>
+	<testcase name="leveling_witness_ui" classname="leveling_witness_ui" time="4.27507" status="run">
+		<properties/>
+		<system-out>Witness metadata, A/B read-only views, actuals, stale invalidation and virtual 10k rows passed
+</system-out>
+	</testcase>
+	<testcase name="scaled_repartition_float_contract" classname="scaled_repartition_float_contract" time="3.11072" status="run">
+		<properties/>
+		<system-out>Checking chain 65 slack 0 fixed 0 logical 1
+Checking chain 128 slack 2 fixed 0 logical 1
+Checking chain 65 slack 2 fixed 0 logical 0
+Checking chain 256 slack 2 fixed 192 logical 1
+Checking chain 1000 slack 0 fixed 0 logical 1
+Scaled repartition: fixed elimination, 128 movable tasks, iterative search, limits, legacy replay passed
+</system-out>
+	</testcase>
+	<testcase name="repartition_float_contract" classname="repartition_float_contract" time="3.84437" status="run">
+		<properties/>
+		<system-out>Repartition float: disappearing windows, exact capacity, witnesses, policy, legacy baseline and lifecycle passed
+</system-out>
+	</testcase>
+	<testcase name="leveling_float_contract" classname="leveling_float_contract" time="7.93104" status="run">
+		<properties/>
+		<system-out>leveling float: engines, resource flow, capacity fences, cycles, actuals, baseline versions, lifecycle and drivers passed
+</system-out>
+	</testcase>
+	<testcase name="leveling_float_ui" classname="leveling_float_ui" time="6.67413" status="run">
+		<properties/>
+		<system-out>leveling float UI/table/Gantt/preview/report/print passed
+</system-out>
+	</testcase>
+	<testcase name="progress_leveling_contract" classname="progress_leveling_contract" time="1.33225" status="run">
+		<properties/>
+		<system-out>engine native-fs0-workminutes-v1
+engine native-pdm-taskcal-v1
+engine native-pdm-constraints-v1
+engine native-effort-split-v1
+relation matrix
+lifecycle
+combined progress/leveling engines, active graph, facts, lifecycle, schema14 and scenarios passed
+</system-out>
+	</testcase>
+	<testcase name="progress_leveling_ui" classname="progress_leveling_ui" time="3.27587" status="run">
+		<properties/>
+		<system-out>combined policy leveling preview/adoption/scenario/switch/readonly/exports passed
+</system-out>
+	</testcase>
+	<testcase name="progress_policy_adoption_contract" classname="progress_policy_adoption_contract" time="1.8367" status="run">
+		<properties/>
+		<system-out>progress policy adoption persistence/history/worker/forecast/integration passed
+</system-out>
+	</testcase>
+	<testcase name="progress_policy_adoption_ui" classname="progress_policy_adoption_ui" time="3.83606" status="run">
+		<properties/>
+		<system-out>progress policy adoption UI/metadata/stale/table/Gantt/exports passed
+</system-out>
+	</testcase>
+	<testcase name="progress_policy_contract" classname="progress_policy_contract" time="1.6251" status="run">
+		<properties/>
+		<system-out>progress policy native hand dates/float/profiles/effort/constraints/mask/actuals/readonly/kit/scale passed
+</system-out>
+	</testcase>
+	<testcase name="progress_policy_ui" classname="progress_policy_ui" time="7.92493" status="run">
+		<properties/>
+		<system-out>file stage: QFileDialog/QFileDialog
+file stage: none
+file stage: QDialog/exchangeOperation
+file stage: QFileDialog/QFileDialog
+file stage: QMessageBox/
+progress policy UI menu/virtual table/filter/export/stale/cancel/session/readonly/scale passed
+</system-out>
+	</testcase>
+	<testcase name="activity_extension_contract" classname="activity_extension_contract" time="1.61329" status="run">
+		<properties/>
+		<system-out>PASS: Steps/LOE/WBS Summary/Actual Dates, EVM, archives/recovery, schema19 and report exports
+</system-out>
+	</testcase>
+	<testcase name="activity_extension_ui" classname="activity_extension_ui" time="2.22324" status="run">
+		<properties/>
+		<system-out>PASS: Steps/support UI, readonly/stale, Actual Dates adoption and screenshots
+</system-out>
+	</testcase>
+	<testcase name="xer_batch_ui" classname="xer_batch_ui" time="3.67354" status="run">
+		<properties/>
+		<system-out>PASS: batch selection, blocked links, menus, preview/cancel/stale, publish, additive workspace adoption
+</system-out>
+	</testcase>
+	<testcase name="xer_batch_contract" classname="xer_batch_contract" time="2.26278" status="run">
+		<properties/>
+		<system-out>PASS: batch import/export, remapping, codes, native workspace, rollback/race/cancel/relocation
+</system-out>
+	</testcase>
+	<testcase name="xer_project_selection_contract" classname="xer_project_selection_contract" time="2.56053" status="run">
+		<properties/>
+		<system-out>XER selection: scope/ownership/closure/external links/identity/publication/cancel passed
+</system-out>
+	</testcase>
+	<testcase name="xer_project_selection_ui" classname="xer_project_selection_ui" time="2.97567" status="run">
+		<properties/>
+		<system-out>XER selection UI: explicit selection/filter/cancel/preview/publication/stale/session/one-read/block passed
+</system-out>
+	</testcase>
+	<testcase name="network_diagram_contract" classname="network_diagram_contract" time="0.76411" status="run">
+		<properties/>
+		<system-out>network: plan/forecast/PDM binding, filtered graph, paging, leveling unknown, SCC, missing IDs, capped edges, cancellation, 1k/10k passed
+</system-out>
+	</testcase>
+	<testcase name="network_diagram_ui" classname="network_diagram_ui" time="3.50463" status="run">
+		<properties/>
+		<system-out>network UI: source selection, graph/relations, table/Gantt jump, escaped names, revision/cancel/session, readonly/cycle, 1k/10k bounded scene passed
+</system-out>
+	</testcase>
+	<testcase name="schedule_print_contract" classname="schedule_print_contract" time="7.87684" status="run">
+		<properties/>
+		<system-out>schedule print: row/column/time pagination, wrapping/continuation, actual/baseline, fresh dates, selected/empty, PDF/printer/range/reverse/copies, atomic/cancel passed
+</system-out>
+	</testcase>
+	<testcase name="schedule_print_ui" classname="schedule_print_ui" time="4.80164" status="run">
+		<properties/>
+		<system-out>print UI: filter/order/columns/selection, prepare/options/preview, cancel, same-id session, readonly, file cancellation, menu passed
+</system-out>
+	</testcase>
+	<testcase name="leveling_selection_contract" classname="leveling_selection_contract" time="0.995479" status="run">
+		<properties/>
+		<system-out>adoption: source/serial-dates/cost/baseline/undo/invalidation/forecast/readonly/session/cancel/schema/recovery passed
+</system-out>
+	</testcase>
+	<testcase name="leveling_selection_ui" classname="leveling_selection_ui" time="4.13487" status="run">
+		<properties/>
+		<system-out>adoption UI: compare/source/commit/table/Gantt/release/cancel/session/readonly/export passed
+</system-out>
+	</testcase>
+	<testcase name="period_actual_contract" classname="period_actual_contract" time="0.867571" status="run">
+		<properties/>
+		<system-out>period actuals: atomic ledger/precision/correction/asof/reconciliation/AC/frozen/schema/recovery/stale/cancel passed
+</system-out>
+	</testcase>
+	<testcase name="period_actual_ui" classname="period_actual_ui" time="2.42929" status="run">
+		<properties/>
+		<system-out>period actual UI: input/correction/unknown-zero/history/readonly/worker-cancel/session/Usage/export passed
+</system-out>
+	</testcase>
+	<testcase name="timephased_usage_contract" classname="timephased_usage_contract" time="0.82907" status="run">
+		<properties/>
+		<system-out>Usage: independent buckets/work/cost/frozen/ledger/limits passed
+</system-out>
+	</testcase>
+	<testcase name="timephased_usage_ui" classname="timephased_usage_ui" time="5.05803" status="run">
+		<properties/>
+		<system-out>Usage UI: hierarchy/period/readonly/session/export/cancel/performance passed
+</system-out>
+	</testcase>
+	<testcase name="task_classification_contract" classname="task_classification_contract" time="0.876403" status="run">
+		<properties/>
+		<system-out>classification: types/identity/atomicity/history/schema/recovery/groups/reports passed
+</system-out>
+	</testcase>
+	<testcase name="task_classification_ui" classname="task_classification_ui" time="5.50772" status="run">
+		<properties/>
+		<system-out>classification UI/grouping/saved views/readonly/export/performance passed
+</system-out>
+	</testcase>
+	<testcase name="forecast_float_contract" classname="forecast_float_contract" time="1.62787" status="run">
+		<properties/>
+		<system-out>forecast float: golden/oracle/constraints/calendars/history/cancellation passed
+</system-out>
+	</testcase>
+	<testcase name="forecast_float_ui" classname="forecast_float_ui" time="2.43249" status="run">
+		<properties/>
+		<system-out>forecast float UI/table/gantt/KPI/XLSX/PDF passed
+</system-out>
+	</testcase>
+	<testcase name="dialog_layout" classname="dialog_layout" time="6.05958" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="application_updates" classname="application_updates" time="3.92713" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="editing_polish_ui" classname="editing_polish_ui" time="1.96332" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="workspace_presentation" classname="workspace_presentation" time="2.62917" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="primavera_public_corpus" classname="primavera_public_corpus" time="0.820792" status="run">
+		<properties/>
+		<system-out>{
+    "files": [
+        {
+            "assignments": 0,
+            "calculation_status": 0,
+            "calendars": [
+                {
+                    "holidays": [
+                        "2019-07-04",
+                        "2019-07-05",
+                        "2019-09-02",
+                        "2019-11-28",
+                        "2019-11-29",
+                        "2019-12-24",
+                        "2019-12-25",
+                        "2020-01-01",
+                        "2020-05-25",
+                        "2020-07-03",
+                        "2020-09-07",
+                        "2020-11-26",
+                        "2020-12-24",
+                        "2020-12-25"
+                    ],
+                    "id": "xer-cal-44739",
+                    "name": "5 Day",
+                    "periods": [
+                        [
+                            480,
+                            720
+                        ],
+                        [
+                            780,
+       ...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="application_storage_contract" classname="application_storage_contract" time="0.507894" status="run">
+		<properties/>
+		<system-out>PASS: PPM uses existing settings/recovery paths; no state written
+</system-out>
+	</testcase>
+	<testcase name="msix_workflow_unpacked" classname="msix_workflow_unpacked" time="1.8037" status="run">
+		<properties/>
+		<system-out>PASS: initial create/save/open, calculate, undo, workspace, settings and checkpoint under 
+</system-out>
+	</testcase>
+	<testcase name="structured_diagnostics" classname="structured_diagnostics" time="0.679966" status="run">
+		<properties/>
+		<system-out>PASS: stable codes, localization, related IDs, nested causes, parser and prepared edit failures
+</system-out>
+	</testcase>
+	<testcase name="shared_resource_intervals" classname="shared_resource_intervals" time="0.67677" status="run">
+		<properties/>
+		<system-out>PASS: absolute half-open overlap, capacity, scoped IDs, calendars, splits, remaining effort, missing scope and cancellation
+</system-out>
+	</testcase>
+	<testcase name="workspace_file_contract" classname="workspace_file_contract" time="1.33708" status="run">
+		<properties/>
+		<system-out>PASS: workspace roundtrip, relative paths, checksum, version/field/size/reference validation, lock and external-change protection
+</system-out>
+	</testcase>
+	<testcase name="multi_project_workspace_ui" classname="multi_project_workspace_ui" time="2.90475" status="run">
+		<properties/>
+		<system-out>PASS: independent windows, leases/duplicate IDs, dirty/undo, workspace save/reopen/rollback, cancellation and stale-result UI
+</system-out>
+	</testcase>
+	<testcase name="document_edit_guards" classname="document_edit_guards" time="0.593691" status="run">
+		<properties/>
+		<system-out>PASS: 70 closed/read-only guard cases, special messages, no input/history/snapshot/IO/ID effects, stale preparation, writable undo/redo and independent copy
+</system-out>
+	</testcase>
+	<testcase name="parser_seed_replay" classname="parser_seed_replay" time="3.1461" status="run">
+		<properties/>
+		<system-out>PASS: 566 parser seeds, schema 1..36, leveling/classification/views/dated work/formulas/financials, checksum/body separation, byte limit and store parity
+</system-out>
+	</testcase>
+	<testcase name="server_native_realtime_ui" classname="server_native_realtime_ui" time="15.9257" status="run">
+		<properties/>
+		<system-out>server native client and UI passed
+</system-out>
+	</testcase>
+	<testcase name="server_http_auth_sync_scheduler" classname="server_http_auth_sync_scheduler" time="73.7036" status="run">
+		<properties/>
+		<system-out>test_default_password_parameters (__main__.ProductionKdfTests.test_default_password_parameters) ... ok
+test_account_disable_and_stream_revoke (__main__.ServerTests.test_account_disable_and_stream_revoke) ... C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\server\ppm_server\service.py:746: NotAppKeyWarning: It is recommended to use web.AppKey instances for keys.
+https://docs.aiohttp.org/en/stable/web_advanced.html#application-s-config
+  app["service"] = service
+C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\server\ppm_server\service.py:747: NotAppKeyWarning: It is recommended to use web.AppKey instances for keys.
+https://docs.aiohttp.org/en/stable/web_advanced.html#application-s-config
+  app["public_origin"] = public_origin.rstrip("/")
+Executing &lt;Task pending name='Task-1' coro=&lt;ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46&gt; cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="governance_ui" classname="governance_ui" time="1.97876" status="run">
+		<properties/>
+		<system-out>governance UI passed
+</system-out>
+	</testcase>
+	<testcase name="responsive_document_contract" classname="responsive_document_contract" time="23.8709" status="run">
+		<properties/>
+		<system-out>PASS: shared snapshot isolation, exact bounded dirty comparisons, duration validation/undo, structural fallback, save races, eviction and deferred recovery
+</system-out>
+	</testcase>
+	<testcase name="responsive_editing_ui" classname="responsive_editing_ui" time="5.05636" status="run">
+		<properties/>
+		<system-out>PASS: 10k/3 baseline bounded model updates, selection/scroll, WBS delta, search, stale and missed-revision fallbacks
+</system-out>
+	</testcase>
+	<testcase name="prepared_edit_contract" classname="prepared_edit_contract" time="2.24368" status="run">
+		<properties/>
+		<system-out>PASS: sealed worker preparation, one commit/undo, cancellation/late cancel/failure/no-op, source session, work preservation, immutable progress and running cancellation
+</system-out>
+	</testcase>
+	<testcase name="baseline_async_contract_ui" classname="baseline_async_contract_ui" time="4.44626" status="run">
+		<properties/>
+		<system-out>{"commitMs":0.1233,"heartbeatCount":136,"heartbeatMaxMs":31,"tasks":10000,"totalMs":1834}
+PASS: baseline worker validation, commit without recalculation, immutable facts, save/session races, read-only/failure/cancellation and 10k UI heartbeat
+</system-out>
+	</testcase>
+	<testcase name="exchange_async_recovery_diagnostics" classname="exchange_async_recovery_diagnostics" time="25.4865" status="run">
+		<properties/>
+		<system-out>xml-success tasks=10000 total_ms=4219 heartbeat_max_ms=25 heartbeat_count=647 gui_checkpoints=0
+xer-cancel tasks=10000 total_ms=728 heartbeat_max_ms=21 heartbeat_count=110 gui_checkpoints=0
+xer-success tasks=10000 total_ms=3600 heartbeat_max_ms=20 heartbeat_count=518 gui_checkpoints=0
+PASS: asynchronous XML/XER, cancellation/cleanup, stale source/session, late commit, source preservation, 10k heartbeat and localized recovery diagnostics
+</system-out>
+	</testcase>
+	<testcase name="task_table_model_contract" classname="task_table_model_contract" time="0.805246" status="run">
+		<properties/>
+		<system-out>PASS: Qt model tester, dimensions/roles/flags, sparse notifications/persistent index, dates/diagnostics, view mapping and session/read-only safety
+</system-out>
+	</testcase>
+	<testcase name="async_editing_ui" classname="async_editing_ui" time="28.2886" status="run">
+		<properties/>
+		<system-out>stage: responsive running cancellation
+stage: stale session, concurrent and latest-only edits
+stage: deferred save/F9, Gantt and batch inversion
+stage: progress/assignment running cancellation, draft retry, immutable facts and dialog close
+PASS: 10k model/view heartbeat, running/late cancellation, stale/session/latest-only requests, deferred save/F9, Gantt/batch, preview draft and lifetime safety
+</system-out>
+	</testcase>
+	<testcase name="primavera_xer_contract" classname="primavera_xer_contract" time="4.9109" status="run">
+		<properties/>
+		<system-out>Primavera XER planning contract, independent dates, roundtrip, encodings, preservation and rejections passed
+</system-out>
+	</testcase>
+	<testcase name="primavera_xer_ui" classname="primavera_xer_ui" time="4.78357" status="run">
+		<properties/>
+		<system-out>Primavera XER UI preview/cancel/import/export/stale/readonly tests passed
+</system-out>
+	</testcase>
+	<testcase name="project_xml_contract" classname="project_xml_contract" time="1.3782" status="run">
+		<properties/>
+		<system-out>Project XML contract, source preservation, roundtrip and rejection tests passed
+</system-out>
+	</testcase>
+	<testcase name="project_xml_ui" classname="project_xml_ui" time="3.162" status="run">
+		<properties/>
+		<system-out>Project XML UI preview/cancel/import/export/stale/readonly tests passed
+</system-out>
+	</testcase>
+	<testcase name="bulk_editing_contract_ui" classname="bulk_editing_contract_ui" time="3.76995" status="run">
+		<properties/>
+		<system-out>PASS: bulk atomicity, validation oracle, cancellation/stale/save, shared undo, model tester/persistent IDs, compact selection, disjoint/sorted fallback
+</system-out>
+	</testcase>
+	<testcase name="projected_views_ui" classname="projected_views_ui" time="10.9975" status="run">
+		<properties/>
+		<system-out>PASS: projected search/sort/WBS/filter oracle, membership/layout/persistent IDs, range budget, view race and stale critical/Gantt
+</system-out>
+	</testcase>
+	<testcase name="task_editing_contract" classname="task_editing_contract" time="0.980925" status="run">
+		<properties/>
+		<system-out>PASS: insert/delete/duplicate references and IDs, protected ledgers, atomic batch/fixed-work rules, undo/redo, failure/readonly, file and recovery
+</system-out>
+	</testcase>
+	<testcase name="task_editing_ui" classname="task_editing_ui" time="3.53599" status="run">
+		<properties/>
+		<system-out>PASS: TSV/limits, sorted atomic clipboard/undo, stable IDs/Gantt, search/filter/selection, insert/duplicate/delete keyboard, readonly
+</system-out>
+	</testcase>
+	<testcase name="calculation_cancellation" classname="calculation_cancellation" time="3.58329" status="run">
+		<properties/>
+		<system-out>PASS: pre-cancel, mid-calendar/backward cancel, no partial result, immutable input, restart and calendar cache isolation
+</system-out>
+	</testcase>
+	<testcase name="integrated_project_workflow" classname="integrated_project_workflow" time="2.423" status="run">
+		<properties/>
+		<system-out>PASS: create/WBS/calendar/effort/split/resource/cost, plan/baseline/actual/forecast/EVM/level/report, cancel/save/reopen/recovery
+</system-out>
+	</testcase>
+	<testcase name="performance_cancellation_ui" classname="performance_cancellation_ui" time="2.49363" status="run">
+		<properties/>
+		<system-out>PASS: viewport object bound, last row, offscreen stable selection, zoom, UI cancel/restart and late session rejection
+</system-out>
+	</testcase>
+	<testcase name="effort_work_calendar_split" classname="effort_work_calendar_split" time="3.33993" status="run">
+		<properties/>
+		<system-out>PASS: work/type edit matrix, heterogeneous calendars, splits, exact final minute, PDM/constraints/ALAP, resource leveling, frozen costs/PV, explicit remaining, undo/schema9/recovery
+</system-out>
+	</testcase>
+	<testcase name="effort_edit_regressions" classname="effort_edit_regressions" time="6.54317" status="run">
+		<properties/>
+		<system-out>PASS: common batch inverse plan across row/command/edge permutations, atomic undo/failure/cancel, not-started work reports, persistence and unchanged completion evidence
+</system-out>
+	</testcase>
+	<testcase name="milestone_baseline_regressions" classname="milestone_baseline_regressions" time="3.43285" status="run">
+		<properties/>
+		<system-out>PASS: milestone endpoints/relations/constraints/forecast/leveling/float, historical engines and scenario replay, thread isolation, archive bytes and deleted effort baseline UI
+</system-out>
+	</testcase>
+	<testcase name="effort_ui" classname="effort_ui" time="3.28035" status="run">
+		<properties/>
+		<system-out>PASS: effort/type/split UI, validation with no partial edit, automatic FS propagation, split Gantt paths, single-step undo/redo, resource calendar edit and read-only inspection
+</system-out>
+	</testcase>
+	<testcase name="duration_edit_display" classname="duration_edit_display" time="5.06061" status="run">
+		<properties/>
+		<system-out>PASS: unchanged duration editor/history, real inverse/basis edits, plan/forecast/incomplete periods, report consistency and model safety guards
+</system-out>
+	</testcase>
+	<testcase name="duration_paste_pending_sort" classname="duration_paste_pending_sort" time="8.52149" status="run">
+		<properties/>
+		<system-out>PASS: no-op and mixed duration paste, real/invalid changes, active/queued/late revert, unrelated requests and plan/forecast/unknown period sorting
+</system-out>
+	</testcase>
+	<testcase name="constraint_contract" classname="constraint_contract" time="0.89606" status="run">
+		<properties/>
+		<system-out>PASS: 8 constraints/ALAP chains, fixed-calendar and causal conflicts, soft deadlines, actual preservation, leveling, atomic guarded drag/undo, schema8 and old engine recovery/report
+</system-out>
+	</testcase>
+	<testcase name="constraint_gantt_ui" classname="constraint_gantt_ui" time="2.51575" status="run">
+		<properties/>
+		<system-out>PASS: timing UI, causal deadline navigation, real mouse move/resize/undo/Esc/stale guards, successor propagation, week zoom, forecast/readonly drag exclusion
+</system-out>
+	</testcase>
+	<testcase name="pdm_calendar_contract" classname="pdm_calendar_contract" time="2.1156" status="run">
+		<properties/>
+		<system-out>PASS: PDM endpoints/leads/lags, minute-grid floats, independent calendars, validation/cycles, legacy/new baselines, schema7/recovery/undo, resources/leveling/cost/forecast/report
+</system-out>
+	</testcase>
+	<testcase name="pdm_calendar_ui" classname="pdm_calendar_ui" time="1.77706" status="run">
+		<properties/>
+		<system-out>PASS: calendar registration/assignment/readonly, typed PDM units and invalid input, undo/redo, F9 dates, Gantt endpoint metadata
+</system-out>
+	</testcase>
+	<testcase name="undo_contract" classname="undo_contract" time="8.26743" status="run">
+		<properties/>
+		<system-out>PASS: atomic input history, monotonic revisions/STALE, saved-content dirty state, save/branch/no-op/error boundaries, stable WBS/resource/cost IDs, immutable facts, count/memory limits, readonly and observers
+</system-out>
+	</testcase>
+	<testcase name="plan_enum_compatibility" classname="plan_enum_compatibility" time="2.38418" status="run">
+		<properties/>
+		<system-out>PASS: 402 checks; 13 pre-enum SHA fixtures, schemas1-9, strict tokens, typed validation, full history, SaveAs, undo and recovery
+</system-out>
+	</testcase>
+	<testcase name="input_delta_contract" classname="input_delta_contract" time="0.400337" status="run">
+		<properties/>
+		<system-out>PASS: sparse, inserted/deleted/empty vectors, all scalar/input fields and inverse order
+</system-out>
+	</testcase>
+	<testcase name="editing_performance_ui" classname="editing_performance_ui" time="2.15553" status="run">
+		<properties/>
+		<system-out>stage: initial
+stage: incremental
+stage: undo/redo
+stage: sort
+stage: search
+stage: filtered undo
+PASS: incremental rows/items/tree, stale dates, normalization, undo/redo, selection, scrolling, sorting/filtering and save
+</system-out>
+	</testcase>
+	<testcase name="recovery_crash_file" classname="recovery_crash_file" time="3.03951" status="run">
+		<properties/>
+		<system-out>PASS: actual process kill and pre-commit kill, stale/live locks, three generations, never-saved and Unicode recovery, immutable facts, detached copy, corruption/future/partial/race, missing/changed original, failed publish, exclusive discard and path confinement
+</system-out>
+	</testcase>
+	<testcase name="recovery_ui" classname="recovery_ui" time="3.9378" status="run">
+		<properties/>
+		<system-out>PASS: background save retirement race, continuous deadline/pause/readonly/failure, startup selection, detached save, editor/document undo shortcuts, immutable notice, close cancel/discard, later and explicit discard
+</system-out>
+	</testcase>
+	<testcase name="reports_export" classname="reports_export" time="1.90336" status="run">
+		<properties/>
+		<system-out>PASS: snapshot/WBS/shared resources/empty scope/filters/unknown/stale inputs/F10/no-baseline AC/typed OOXML/injection/atomic create-only/PDF pagination; 9 PDF pages
+</system-out>
+	</testcase>
+	<testcase name="reports_ui" classname="reports_ui" time="3.49163" status="run">
+		<properties/>
+		<system-out>PASS: dashboard, report models, WBS/global demand, EAC/filter controls, XLSX/PDF dialogs, cancel/no mutation, stale snapshot during chooser/worker, readonly, invalid source text
+</system-out>
+	</testcase>
+	<testcase name="custom_financial_period_contract" classname="custom_financial_period_contract" time="1.77601" status="run">
+		<properties/>
+		<system-out>PASS custom periods, manual/native EVM, immutable close/reopen/reclose, historical revision, backdated locks, schema30/copy/recovery/undo, corruption, worker cancel/stale/permission and exports
+</system-out>
+	</testcase>
+	<testcase name="custom_financial_period_ui" classname="custom_financial_period_ui" time="5.45366" status="run">
+		<properties/>
+		<system-out>PASS custom period menu, manual values, preview/confirmation, define/close/reopen, read-only/stale/cancel/invalid input, 800x600, historical reports and XLSX/PDF
+</system-out>
+	</testcase>
+	<testcase name="external_xer_evm_adoption_contract" classname="external_xer_evm_adoption_contract" time="6.17108" status="run">
+		<properties/>
+		<system-out>PASS: XER EV/PV native adoption/withdrawal, explicit anchors and gaps, cumulative/period/report parity, original/native facts unchanged, schema29/strict corruption/copy/recovery/undo, invalid/stale/session/permission/cancel and XLSX/PDF
+</system-out>
+	</testcase>
+	<testcase name="external_xer_evm_adoption_ui" classname="external_xer_evm_adoption_ui" time="5.36197" status="run">
+		<properties/>
+		<system-out>PASS: external XER EV/PV menu, virtual explicit anchors, preview/native AC equality, confirmation/draft/cancel/session/read-only, submit/withdrawal and actual XLSX/PDF with responsive Windows UI
+</system-out>
+	</testcase>
+	<testcase name="native_period_evm_contract" classname="native_period_evm_contract" time="1.55335" status="run">
+		<properties/>
+		<system-out>PASS: native period EVM daily/weekly/monthly, boundaries/status, missing/zero/corrections, cumulative formulas, dated reconciliation, WBS, Steps/0-100, frozen rates/holiday/rounding, immutable save/copy/recovery, limits/cancel, external EV separation and XLSX/PDF
+</system-out>
+	</testcase>
+	<testcase name="native_period_evm_ui" classname="native_period_evm_ui" time="4.55038" status="run">
+		<properties/>
+		<system-out>PASS: native period EVM menu/virtual tables, day/week/month/scope, XLSX/PDF, native equality, cancel/stale/session/read-only, Windows responsive footer
+</system-out>
+	</testcase>
+	<testcase name="cost_contract_file" classname="cost_contract_file" time="0.964558" status="run">
+		<properties/>
+		<system-out>PASS: F10, EAC assumptions/zero denominator, asof/corrections, frozen budgets/rates/AC, effective dates/holidays, exact money rounding, WBS/cohort ratio, explicit physical/0-100 credit, overflow, persistence/provenance/schema5 migration
+</system-out>
+	</testcase>
+	<testcase name="cost_day_boundaries" classname="cost_day_boundaries" time="0.861321" status="run">
+		<properties/>
+		<system-out>PASS: last-minute uniform/resource cost, exclusive midnight events/reports, exact status, month/year/leap-day and final supported date boundaries
+</system-out>
+	</testcase>
+	<testcase name="cost_ui" classname="cost_ui" time="1.94799" status="run">
+		<properties/>
+		<system-out>PASS: currency/rate precision, capacity edits preserve rates, task budgets, cumulative actual/physical reporting/corrections, F10 EVM/EAC, WBS/timephased/curve, no baseline/future AC/stale results, persistence and readonly
+</system-out>
+	</testcase>
+	<testcase name="resource_contract_file" classname="resource_contract_file" time="2.01028" status="run">
+		<properties/>
+		<system-out>PASS: F05 peak/work, short overlap, fractional/unknown/zero/date capacity, deterministic priority/FS/horizon, retained actuals, independent minute oracle, transactional commands, immutable snapshots, persistence/provenance, v4 migration
+</system-out>
+	</testcase>
+	<testcase name="resource_ui" classname="resource_ui" time="3.24516" status="run">
+		<properties/>
+		<system-out>PASS: resource registration/exception validation, stable IDs, task assignments, peak/daily load, options invalidate results, saved A/B scenarios, unresolved horizon, source preservation and persistence, readonly
+</system-out>
+	</testcase>
+	<testcase name="resource_engine_display" classname="resource_engine_display" time="4.28559" status="run">
+		<properties/>
+		<system-out>PASS: split delay display across order/calendar/forecast variants, ordinary PDM, engine-only variance explanation, same/no baseline UI/report provenance and original-byte preservation
+</system-out>
+	</testcase>
+	<testcase name="tracking_contract" classname="tracking_contract" time="0.510415" status="run">
+		<properties/>
+		<system-out>PASS: F09 +8h, immutable/versioned baseline, plan-vs-forecast variance, calendar snapshot, as-of corrections, validation/atomicity, completed actuals, F08 retained logic, unknowns/read-only
+</system-out>
+	</testcase>
+	<testcase name="tracking_file" classname="tracking_file" time="0.811925" status="run">
+		<properties/>
+		<system-out>PASS: tracking roundtrip, retained history/provenance/clone, calendar immutability, baseline recomputation integrity, malformed ledger rejection, schema-3 copy migration
+</system-out>
+	</testcase>
+	<testcase name="wbs_contract" classname="wbs_contract" time="0.174597" status="run">
+		<properties/>
+		<system-out>PASS: F11 rollups, stable IDs/graph/dates, nested filter/move, unknowns, stale dates, cycles/dangling refs, atomic rejection, read-only, deep tree
+</system-out>
+	</testcase>
+	<testcase name="schedule_contract" classname="schedule_contract" time="0.100495" status="run">
+		<properties/>
+		<system-out>PASS: F01 CPM/float, multiple critical paths, calendar/holidays/lunch, milestones, missing duration, cycle path, dangling/self refs, horizon, provenance, determinism
+</system-out>
+	</testcase>
+	<testcase name="file_lifecycle" classname="file_lifecycle" time="1.01599" status="run">
+		<properties/>
+		<system-out>PASS: file lifecycle, Unicode, locks/conflicts, corruption/schema, schedule input roundtrip, stale revision/identity, schema-1 copy migration
+</system-out>
+	</testcase>
+	<testcase name="ui_lifecycle" classname="ui_lifecycle" time="2.69051" status="run">
+		<properties/>
+		<system-out>PASS: new/save dialogs, task/duration/FS/holiday edits, async calculation, stale/incomplete/cycle handling, cancel/save on close
+</system-out>
+	</testcase>
+	<testcase name="wbs_gantt_ui" classname="wbs_gantt_ui" time="2.16168" status="run">
+		<properties/>
+		<system-out>PASS: WBS tree/filter/global rows, filtered edits, task and subtree moves, add/rename/delete, Gantt IDs/links/milestones/selection/zoom/stale hiding
+</system-out>
+	</testcase>
+	<testcase name="tracking_ui" classname="tracking_ui" time="3.1049" status="run">
+		<properties/>
+		<system-out>PASS: baseline/status/progress dialogs, F09 comparison +8h, missing report coverage, baseline overlay/selection, invalid report error, immutable correction/versioning, UI save/reopen
+</system-out>
+	</testcase>
+</testsuite>

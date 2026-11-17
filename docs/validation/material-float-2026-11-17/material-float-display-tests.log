@@ -1,0 +1,37 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+      Start 178: schedule_print_contract
+      Start 179: schedule_print_ui
+ 1/16 Test #179: schedule_print_ui ................   Passed    5.09 sec
+      Start 159: leveling_witness_ui
+ 2/16 Test #178: schedule_print_contract ..........   Passed    8.39 sec
+      Start 239: reports_ui
+ 3/16 Test #159: leveling_witness_ui ..............   Passed    4.22 sec
+      Start  70: material_float_contract
+ 4/16 Test #239: reports_ui .......................   Passed    4.17 sec
+      Start  72: shared_material_contract
+ 5/16 Test  #70: material_float_contract ..........   Passed    5.82 sec
+      Start 238: reports_export
+ 6/16 Test #238: reports_export ...................   Passed    2.52 sec
+      Start  76: material_delay_contract
+ 7/16 Test  #72: shared_material_contract .........   Passed    7.53 sec
+      Start  74: material_actual_contract
+ 8/16 Test  #76: material_delay_contract ..........   Passed    7.34 sec
+      Start  15: integrated_workspace_contract
+ 9/16 Test  #74: material_actual_contract .........   Passed    6.51 sec
+      Start  71: material_float_ui
+10/16 Test  #71: material_float_ui ................   Passed    0.63 sec
+      Start  73: shared_material_ui
+11/16 Test  #15: integrated_workspace_contract ....   Passed    2.93 sec
+      Start  79: material_inventory_ui
+12/16 Test  #73: shared_material_ui ...............   Passed    1.95 sec
+      Start  75: material_actual_ui
+13/16 Test  #79: material_inventory_ui ............   Passed    2.26 sec
+      Start  78: material_inventory_contract
+14/16 Test  #75: material_actual_ui ...............   Passed    1.37 sec
+      Start  77: material_delay_ui
+15/16 Test  #77: material_delay_ui ................   Passed    1.01 sec
+16/16 Test  #78: material_inventory_contract ......   Passed    1.67 sec
+
+100% tests passed out of 16
+
+Total Test time (real) =  32.23 sec

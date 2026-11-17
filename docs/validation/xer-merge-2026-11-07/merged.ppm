@@ -1,0 +1,1059 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+            {
+                "resourceId": "xer-resource-99",
+                "taskId": "xer-task-20",
+                "units": 50
+            },
+            {
+                "resourceId": "xer-resource-99",
+                "taskId": "xer-task-30",
+                "units": 125
+            }
+        ],
+        "baselines": [
+        ],
+        "calculationProfile": "native-effort-split-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "calendars": [
+            {
+                "holidays": [
+                    "2026-10-27"
+                ],
+                "id": "xer-cal-1",
+                "name": "표준 & 휴일",
+                "periods": [
+                    {
+                        "begin": 540,
+                        "end": 720
+                    },
+                    {
+                        "begin": 780,
+                        "end": 1080
+                    }
+                ],
+                "weekdays": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ]
+            },
+            {
+                "holidays": [
+                    "2026-10-27",
+                    "2026-10-30"
+                ],
+                "id": "xer-cal-2",
+                "name": "상속 달력",
+                "periods": [
+                    {
+                        "begin": 540,
+                        "end": 720
+                    },
+                    {
+                        "begin": 780,
+                        "end": 1080
+                    }
+                ],
+                "weekdays": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ]
+            }
+        ],
+        "costEntries": [
+            {
+                "actualMinor": 12280,
+                "currency": "USD",
+                "id": "xer-cost-xer-task-20",
+                "physicalBasisPoints": 3725,
+                "previousEntryId": "",
+                "reason": "Imported observed snapshot; see original.xer/conversion.json",
+                "recordedAt": "2026-11-07T07:07:37Z",
+                "recordedRevision": 1,
+                "reporter": "Primavera XER import",
+                "sourceDocumentId": "1950d6ed-80f6-465c-9750-d0d978ff2837",
+                "statusAt": "2026-10-28 18:00",
+                "taskId": "xer-task-20"
+            },
+            {
+                "actualMinor": 0,
+                "currency": "USD",
+                "id": "xer-cost-xer-task-30",
+                "physicalBasisPoints": null,
+                "previousEntryId": "",
+                "reason": "Imported observed snapshot; see original.xer/conversion.json",
+                "recordedAt": "2026-11-07T07:07:37Z",
+                "recordedRevision": 1,
+                "reporter": "Primavera XER import",
+                "sourceDocumentId": "1950d6ed-80f6-465c-9750-d0d978ff2837",
+                "statusAt": "2026-10-28 18:00",
+                "taskId": "xer-task-30"
+            },
+            {
+                "actualMinor": 12280,
+                "currency": "USD",
+                "id": "18eebd1b-d756-4ce6-8a78-f352eeee09a5",
+                "physicalBasisPoints": 3725,
+                "previousEntryId": "xer-cost-xer-task-20",
+                "reason": "날짜별 관측 정정",
+                "recordedAt": "2026-11-07T07:00:00Z",
+                "recordedRevision": 2,
+                "reporter": "현장 원장",
+                "sourceDocumentId": "1950d6ed-80f6-465c-9750-d0d978ff2837",
+                "statusAt": "2026-10-28 18:00",
+                "taskId": "xer-task-20"
+            }
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "USD",
+        "derivedFrom": "1950d6ed-80f6-465c-9750-d0d978ff2837",
+        "documentId": "adf7ad19-1a44-4871-8203-1c1f8d404a92",
+        "holidays": [
+        ],
+        "name": "한글 XER 계획",
+        "periodActuals": [
+            {
+                "actualMinor": 3034,
+                "costEntryId": "xer-cost-xer-task-20",
+                "currency": "USD",
+                "date": "2026-10-28",
+                "id": "xer-period-1",
+                "previousEntryId": "",
+                "reason": "Imported observed snapshot; see original.xer/conversion.json",
+                "recordedAt": "2026-11-07T07:07:37Z",
+                "recordedRevision": 1,
+                "reporter": "Primavera XER import",
+                "resourceId": "xer-resource-99",
+                "resourceType": "labor",
+                "sourceDocumentId": "1950d6ed-80f6-465c-9750-d0d978ff2837",
+                "statusAt": "2026-10-28 18:00",
+                "taskId": "xer-task-20",
+                "workUnitMinutes": 7500
+            },
+            {
+                "actualMinor": 300,
+                "costEntryId": "xer-cost-xer-task-20",
+                "currency": "USD",
+                "date": "2026-10-28",
+                "id": "xer-period-2",
+                "previousEntryId": "",
+                "reason": "Imported observed snapshot; see original.xer/conversion.json",
+                "recordedAt": "2026-11-07T07:07:37Z",
+                "recordedRevision": 1,
+                "reporter": "Primavera XER import",
+                "resourceId": "",
+                "resourceType": "",
+                "sourceDocumentId": "1950d6ed-80f6-465c-9750-d0d978ff2837",
+                "statusAt": "2026-10-28 18:00",
+                "taskId": "xer-task-20",
+                "workUnitMinutes": null
+            },
+            {
+                "actualMinor": 500,
+                "costEntryId": "18eebd1b-d756-4ce6-8a78-f352eeee09a5",
+                "currency": "USD",
+                "date": "2026-10-27",
+                "id": "bfe24f10-ecc6-4345-8104-e1899575d627",
+                "previousEntryId": "",
+                "reason": "날짜별 관측 정정",
+                "recordedAt": "2026-11-07T07:00:00Z",
+                "recordedRevision": 2,
+                "reporter": "현장 원장",
+                "resourceId": "xer-resource-99",
+                "resourceType": "labor",
+                "sourceDocumentId": "1950d6ed-80f6-465c-9750-d0d978ff2837",
+                "statusAt": "2026-10-28 18:00",
+                "taskId": "xer-task-20",
+                "workUnitMinutes": 1800
+            },
+            {
+                "actualMinor": 700,
+                "costEntryId": "18eebd1b-d756-4ce6-8a78-f352eeee09a5",
+                "currency": "USD",
+                "date": "2026-10-27",
+                "id": "63aab3f9-a597-49e7-8ce7-32f615db6d09",
+                "previousEntryId": "",
+                "reason": "날짜별 관측 정정",
+                "recordedAt": "2026-11-07T07:00:00Z",
+                "recordedRevision": 2,
+                "reporter": "현장 원장",
+                "resourceId": "",
+                "resourceType": "",
+                "sourceDocumentId": "1950d6ed-80f6-465c-9750-d0d978ff2837",
+                "statusAt": "2026-10-28 18:00",
+                "taskId": "xer-task-20",
+                "workUnitMinutes": null
+            }
+        ],
+        "progress": [
+            {
+                "actualDurationMinutes": 960,
+                "actualFinish": null,
+                "actualStart": "2026-10-26 09:00",
+                "id": "xer-progress-xer-task-20",
+                "planDurationMinutes": 480,
+                "previousEntryId": "",
+                "reason": "Imported observed snapshot; see original.xer/conversion.json",
+                "recordedAt": "2026-11-07T07:07:37Z",
+                "recordedRevision": 1,
+                "remainingMinutes": 240,
+                "reporter": "Primavera XER import",
+                "sourceDocumentId": "1950d6ed-80f6-465c-9750-d0d978ff2837",
+                "statusAt": "2026-10-28 18:00",
+                "taskId": "xer-task-20"
+            },
+            {
+                "actualDurationMinutes": 120,
+                "actualFinish": "2026-10-28 12:00",
+                "actualStart": "2026-10-28 10:00",
+                "id": "xer-progress-xer-task-30",
+                "planDurationMinutes": 120,
+                "previousEntryId": "",
+                "reason": "Imported observed snapshot; see original.xer/conversion.json",
+                "recordedAt": "2026-11-07T07:07:37Z",
+                "recordedRevision": 1,
+                "remainingMinutes": 0,
+                "reporter": "Primavera XER import",
+                "sourceDocumentId": "1950d6ed-80f6-465c-9750-d0d978ff2837",
+                "statusAt": "2026-10-28 18:00",
+                "taskId": "xer-task-30"
+            }
+        ],
+        "resources": [
+            {
+                "calendarId": "xer-cal-2",
+                "exceptions": [
+                ],
+                "id": "xer-resource-99",
+                "maxUnits": 150,
+                "name": "현장 설계자",
+                "rates": [
+                    {
+                        "effectiveDate": "2026-10-01",
+                        "hourlyMinor": 2550
+                    }
+                ],
+                "type": "labor"
+            },
+            {
+                "calendarId": "xer-cal-1",
+                "exceptions": [
+                ],
+                "id": "xer-resource-100",
+                "maxUnits": 0,
+                "name": "크레인",
+                "rates": [
+                    {
+                        "effectiveDate": "2026-10-01",
+                        "hourlyMinor": 4000
+                    }
+                ],
+                "type": "equipment"
+            }
+        ],
+        "revision": 9,
+        "scenarios": [
+        ],
+        "startDate": "2026-10-26",
+        "statusAt": "2026-10-29 18:00",
+        "taskCosts": [
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 10000,
+                "taskId": "xer-task-20"
+            }
+        ],
+        "tasks": [
+            {
+                "breaks": [
+                ],
+                "calendarId": "xer-cal-1",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 480,
+                "id": "xer-task-20",
+                "name": "병합된 설계",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "xer-wbs-11",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "xer-cal-1",
+                "constraintAt": "2026-10-28 10:00",
+                "constraintType": "SNET",
+                "deadlineAt": null,
+                "dependencyRules": [
+                    {
+                        "lagMinutes": 60,
+                        "predecessorId": "xer-task-20",
+                        "type": "FS"
+                    }
+                ],
+                "durationMinutes": 120,
+                "id": "xer-task-30",
+                "name": "B 개발",
+                "predecessors": [
+                    "xer-task-20"
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "xer-wbs-11",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "xer-cal-1",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                    {
+                        "lagMinutes": -60,
+                        "predecessorId": "xer-task-20",
+                        "type": "SS"
+                    }
+                ],
+                "durationMinutes": 60,
+                "id": "xer-task-40",
+                "name": "C SS",
+                "predecessors": [
+                    "xer-task-20"
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "xer-wbs-11",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "xer-cal-1",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                    {
+                        "lagMinutes": -60,
+                        "predecessorId": "xer-task-20",
+                        "type": "FF"
+                    }
+                ],
+                "durationMinutes": 120,
+                "id": "xer-task-50",
+                "name": "D FF",
+                "predecessors": [
+                    "xer-task-20"
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "xer-wbs-11",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "xer-cal-1",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                    {
+                        "lagMinutes": 60,
+                        "predecessorId": "xer-task-20",
+                        "type": "SF"
+                    }
+                ],
+                "durationMinutes": 60,
+                "id": "xer-task-60",
+                "name": "E SF",
+                "predecessors": [
+                    "xer-task-20"
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "xer-wbs-11",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "xer-cal-1",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 0,
+                "id": "xer-task-70",
+                "name": "완료점",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "xer-wbs-12",
+                "workDriven": false,
+                "workUnitMinutes": null
+            }
+        ],
+        "wbsNodes": [
+            {
+                "id": "xer-wbs-11",
+                "name": "개발",
+                "parentId": ""
+            },
+            {
+                "id": "xer-wbs-12",
+                "name": "검증",
+                "parentId": "xer-wbs-11"
+            }
+        ],
+        "xerFinancialRevisions": [
+            {
+                "allocations": [
+                    {
+                        "days": [
+                            {
+                                "date": "2026-10-28",
+                                "weight": 1
+                            }
+                        ],
+                        "periodIndex": 1
+                    },
+                    {
+                        "days": [
+                            {
+                                "date": "2026-10-28",
+                                "weight": 1
+                            }
+                        ],
+                        "periodIndex": 4
+                    },
+                    {
+                        "days": [
+                            {
+                                "date": "2026-10-27",
+                                "weight": 1
+                            }
+                        ],
+                        "periodIndex": 5
+                    },
+                    {
+                        "days": [
+                            {
+                                "date": "2026-10-27",
+                                "weight": 1
+                            }
+                        ],
+                        "periodIndex": 6
+                    }
+                ],
+                "financials": {
+                    "assignments": [
+                        {
+                            "overtimeMinor": 2034,
+                            "overtimeWork": 3000,
+                            "regularMinor": 9012,
+                            "regularWork": 19500,
+                            "resourceId": "xer-resource-99",
+                            "taskId": "xer-task-20"
+                        },
+                        {
+                            "overtimeMinor": 0,
+                            "overtimeWork": 0,
+                            "regularMinor": 0,
+                            "regularWork": 0,
+                            "resourceId": "xer-resource-99",
+                            "taskId": "xer-task-30"
+                        }
+                    ],
+                    "currency": "USD",
+                    "importedAt": "2026-11-07T07:07:37Z",
+                    "periods": [
+                        {
+                            "actualMinor": 7012,
+                            "bcwp": null,
+                            "bcws": null,
+                            "equipmentMinor": null,
+                            "equipmentWork": null,
+                            "expenseMinor": null,
+                            "finish": "2026-10-26 23:59",
+                            "laborMinor": null,
+                            "laborWork": null,
+                            "materialMinor": null,
+                            "resourceId": "xer-resource-99",
+                            "start": "2026-10-19 00:00",
+                            "taskId": "xer-task-20",
+                            "work": 12000
+                        },
+                        {
+                            "actualMinor": 3034,
+                            "bcwp": null,
+                            "bcws": null,
+                            "equipmentMinor": null,
+                            "equipmentWork": null,
+                            "expenseMinor": null,
+                            "finish": "2026-10-28 23:59",
+                            "laborMinor": null,
+                            "laborWork": null,
+                            "materialMinor": null,
+                            "resourceId": "xer-resource-99",
+                            "start": "2026-10-28 00:00",
+                            "taskId": "xer-task-20",
+                            "work": 7500
+                        },
+                        {
+                            "actualMinor": null,
+                            "bcwp": 999900,
+                            "bcws": 888800,
+                            "equipmentMinor": 0,
+                            "equipmentWork": null,
+                            "expenseMinor": 234,
+                            "finish": "2026-10-26 23:59",
+                            "laborMinor": 7012,
+                            "laborWork": null,
+                            "materialMinor": 0,
+                            "resourceId": "",
+                            "start": "2026-10-19 00:00",
+                            "taskId": "xer-task-20",
+                            "work": null
+                        },
+                        {
+                            "actualMinor": null,
+                            "bcwp": 999900,
+                            "bcws": 888800,
+                            "equipmentMinor": 0,
+                            "equipmentWork": null,
+                            "expenseMinor": null,
+                            "finish": "2026-10-28 23:59",
+                            "laborMinor": 3034,
+                            "laborWork": null,
+                            "materialMinor": 0,
+                            "resourceId": "",
+                            "start": "2026-10-28 00:00",
+                            "taskId": "xer-task-20",
+                            "work": null
+                        },
+                        {
+                            "actualMinor": null,
+                            "bcwp": null,
+                            "bcws": null,
+                            "equipmentMinor": null,
+                            "equipmentWork": null,
+                            "expenseMinor": 300,
+                            "finish": "2026-10-28 23:59",
+                            "laborMinor": null,
+                            "laborWork": null,
+                            "materialMinor": null,
+                            "resourceId": "",
+                            "start": "2026-10-28 00:00",
+                            "taskId": "xer-task-20",
+                            "work": null
+                        },
+                        {
+                            "actualMinor": null,
+                            "bcwp": null,
+                            "bcws": null,
+                            "equipmentMinor": null,
+                            "equipmentWork": null,
+                            "expenseMinor": 700,
+                            "finish": "2026-10-27 23:59",
+                            "laborMinor": null,
+                            "laborWork": null,
+                            "materialMinor": null,
+                            "resourceId": "",
+                            "start": "2026-10-27 00:00",
+                            "taskId": "xer-task-20",
+                            "work": null
+                        },
+                        {
+                            "actualMinor": 500,
+                            "bcwp": null,
+                            "bcws": null,
+                            "equipmentMinor": null,
+                            "equipmentWork": null,
+                            "expenseMinor": null,
+                            "finish": "2026-10-27 23:59",
+                            "laborMinor": null,
+                            "laborWork": null,
+                            "materialMinor": null,
+                            "resourceId": "xer-resource-99",
+                            "start": "2026-10-27 00:00",
+                            "taskId": "xer-task-20",
+                            "work": 1800
+                        }
+                    ],
+                    "projectId": "100",
+                    "projectionSha256": "20cacdb31879f5969a694e4c07412640640bfc14dabbffd5bab4270cf2a4e1b7",
+                    "resources": [
+                        {
+                            "id": "xer-resource-99",
+                            "name": "현장 설계자",
+                            "type": "labor"
+                        },
+                        {
+                            "id": "xer-resource-100",
+                            "name": "크레인",
+                            "type": "equipment"
+                        }
+                    ],
+                    "sourceName": "financial-periods.xer",
+                    "sourceSha256": "384625ce37fb418a20fcd17d8a62b8893c6a30be0079710ef1144be4b31faa0a",
+                    "statusAt": "2026-10-29 18:00",
+                    "tasks": [
+                        {
+                            "actualMinor": 12280,
+                            "id": "xer-task-20",
+                            "name": "병합된 설계"
+                        },
+                        {
+                            "actualMinor": 0,
+                            "id": "xer-task-30",
+                            "name": "B 개발"
+                        },
+                        {
+                            "actualMinor": null,
+                            "id": "xer-task-40",
+                            "name": "C SS"
+                        },
+                        {
+                            "actualMinor": null,
+                            "id": "xer-task-50",
+                            "name": "D FF"
+                        },
+                        {
+                            "actualMinor": null,
+                            "id": "xer-task-60",
+                            "name": "E SF"
+                        },
+                        {
+                            "actualMinor": null,
+                            "id": "xer-task-70",
+                            "name": "완료점"
+                        }
+                    ]
+                },
+                "id": "7a9c0753-cd0e-40d2-9a8a-91b240e6b189-1",
+                "merge": {
+                    "assignmentOverrides": [
+                    ],
+                    "baseProjectionSha256": "e7c5a54f2d1123da03b641d188a5271b2a313ffcca91e098d631a4f8786c7d6c",
+                    "policy": "native-ledger-union-v1",
+                    "replacedPeriods": [
+                    ]
+                },
+                "ownedEntryIds": [
+                    "xer-period-1",
+                    "xer-period-2",
+                    "63aab3f9-a597-49e7-8ce7-32f615db6d09",
+                    "bfe24f10-ecc6-4345-8104-e1899575d627"
+                ],
+                "reason": "원본과 현재 관측 원장 대조",
+                "recordedAt": "2026-11-07T08:00:00Z",
+                "recordedRevision": 6,
+                "reporter": "병합 작성자",
+                "sourceDocumentId": "1950d6ed-80f6-465c-9750-d0d978ff2837"
+            },
+            {
+                "allocations": [
+                    {
+                        "days": [
+                            {
+                                "date": "2026-10-28",
+                                "weight": 1
+                            }
+                        ],
+                        "periodIndex": 1
+                    },
+                    {
+                        "days": [
+                            {
+                                "date": "2026-10-28",
+                                "weight": 1
+                            }
+                        ],
+                        "periodIndex": 4
+                    },
+                    {
+                        "days": [
+                            {
+                                "date": "2026-10-27",
+                                "weight": 1
+                            }
+                        ],
+                        "periodIndex": 5
+                    },
+                    {
+                        "days": [
+                            {
+                                "date": "2026-10-27",
+                                "weight": 1
+                            }
+                        ],
+                        "periodIndex": 6
+                    }
+                ],
+                "financials": {
+                    "assignments": [
+                        {
+                            "overtimeMinor": 2034,
+                            "overtimeWork": 3000,
+                            "regularMinor": 9012,
+                            "regularWork": 19500,
+                            "resourceId": "xer-resource-99",
+                            "taskId": "xer-task-20"
+                        },
+                        {
+                            "overtimeMinor": 0,
+                            "overtimeWork": 0,
+                            "regularMinor": 0,
+                            "regularWork": 0,
+                            "resourceId": "xer-resource-99",
+                            "taskId": "xer-task-30"
+                        }
+                    ],
+                    "currency": "USD",
+                    "importedAt": "2026-11-07T07:07:37Z",
+                    "periods": [
+                        {
+                            "actualMinor": 7012,
+                            "bcwp": null,
+                            "bcws": null,
+                            "equipmentMinor": null,
+                            "equipmentWork": null,
+                            "expenseMinor": null,
+                            "finish": "2026-10-26 23:59",
+                            "laborMinor": null,
+                            "laborWork": null,
+                            "materialMinor": null,
+                            "resourceId": "xer-resource-99",
+                            "start": "2026-10-19 00:00",
+                            "taskId": "xer-task-20",
+                            "work": 12000
+                        },
+                        {
+                            "actualMinor": 3034,
+                            "bcwp": null,
+                            "bcws": null,
+                            "equipmentMinor": null,
+                            "equipmentWork": null,
+                            "expenseMinor": null,
+                            "finish": "2026-10-28 23:59",
+                            "laborMinor": null,
+                            "laborWork": null,
+                            "materialMinor": null,
+                            "resourceId": "xer-resource-99",
+                            "start": "2026-10-28 00:00",
+                            "taskId": "xer-task-20",
+                            "work": 7500
+                        },
+                        {
+                            "actualMinor": null,
+                            "bcwp": 999900,
+                            "bcws": 888800,
+                            "equipmentMinor": 0,
+                            "equipmentWork": null,
+                            "expenseMinor": 234,
+                            "finish": "2026-10-26 23:59",
+                            "laborMinor": 7012,
+                            "laborWork": null,
+                            "materialMinor": 0,
+                            "resourceId": "",
+                            "start": "2026-10-19 00:00",
+                            "taskId": "xer-task-20",
+                            "work": null
+                        },
+                        {
+                            "actualMinor": null,
+                            "bcwp": 999900,
+                            "bcws": 888800,
+                            "equipmentMinor": 0,
+                            "equipmentWork": null,
+                            "expenseMinor": null,
+                            "finish": "2026-10-28 23:59",
+                            "laborMinor": 3034,
+                            "laborWork": null,
+                            "materialMinor": 0,
+                            "resourceId": "",
+                            "start": "2026-10-28 00:00",
+                            "taskId": "xer-task-20",
+                            "work": null
+                        },
+                        {
+                            "actualMinor": null,
+                            "bcwp": null,
+                            "bcws": null,
+                            "equipmentMinor": null,
+                            "equipmentWork": null,
+                            "expenseMinor": 300,
+                            "finish": "2026-10-28 23:59",
+                            "laborMinor": null,
+                            "laborWork": null,
+                            "materialMinor": null,
+                            "resourceId": "",
+                            "start": "2026-10-28 00:00",
+                            "taskId": "xer-task-20",
+                            "work": null
+                        },
+                        {
+                            "actualMinor": null,
+                            "bcwp": null,
+                            "bcws": null,
+                            "equipmentMinor": null,
+                            "equipmentWork": null,
+                            "expenseMinor": 700,
+                            "finish": "2026-10-27 23:59",
+                            "laborMinor": null,
+                            "laborWork": null,
+                            "materialMinor": null,
+                            "resourceId": "",
+                            "start": "2026-10-27 00:00",
+                            "taskId": "xer-task-20",
+                            "work": null
+                        },
+                        {
+                            "actualMinor": 500,
+                            "bcwp": null,
+                            "bcws": null,
+                            "equipmentMinor": null,
+                            "equipmentWork": null,
+                            "expenseMinor": null,
+                            "finish": "2026-10-27 23:59",
+                            "laborMinor": null,
+                            "laborWork": null,
+                            "materialMinor": null,
+                            "resourceId": "xer-resource-99",
+                            "start": "2026-10-27 00:00",
+                            "taskId": "xer-task-20",
+                            "work": 1800
+                        }
+                    ],
+                    "projectId": "100",
+                    "projectionSha256": "20cacdb31879f5969a694e4c07412640640bfc14dabbffd5bab4270cf2a4e1b7",
+                    "resources": [
+                        {
+                            "id": "xer-resource-99",
+                            "name": "현장 설계자",
+                            "type": "labor"
+                        },
+                        {
+                            "id": "xer-resource-100",
+                            "name": "크레인",
+                            "type": "equipment"
+                        }
+                    ],
+                    "sourceName": "financial-periods.xer",
+                    "sourceSha256": "384625ce37fb418a20fcd17d8a62b8893c6a30be0079710ef1144be4b31faa0a",
+                    "statusAt": "2026-10-29 18:00",
+                    "tasks": [
+                        {
+                            "actualMinor": 12280,
+                            "id": "xer-task-20",
+                            "name": "병합된 설계"
+                        },
+                        {
+                            "actualMinor": 0,
+                            "id": "xer-task-30",
+                            "name": "B 개발"
+                        },
+                        {
+                            "actualMinor": null,
+                            "id": "xer-task-40",
+                            "name": "C SS"
+                        },
+                        {
+                            "actualMinor": null,
+                            "id": "xer-task-50",
+                            "name": "D FF"
+                        },
+                        {
+                            "actualMinor": null,
+                            "id": "xer-task-60",
+                            "name": "E SF"
+                        },
+                        {
+                            "actualMinor": null,
+                            "id": "xer-task-70",
+                            "name": "완료점"
+                        }
+                    ]
+                },
+                "id": "6a685140-69e8-428d-9182-9d1bc29bf3be",
+                "merge": {
+                    "assignmentOverrides": [
+                    ],
+                    "baseProjectionSha256": "20cacdb31879f5969a694e4c07412640640bfc14dabbffd5bab4270cf2a4e1b7",
+                    "policy": "native-ledger-union-v1",
+                    "replacedPeriods": [
+                    ]
+                },
+                "ownedEntryIds": [
+                    "xer-period-1",
+                    "xer-period-2",
+                    "63aab3f9-a597-49e7-8ce7-32f615db6d09",
+                    "bfe24f10-ecc6-4345-8104-e1899575d627"
+                ],
+                "reason": "원본과 현재 관측 원장 대조",
+                "recordedAt": "2026-11-07T08:00:00Z",
+                "recordedRevision": 7,
+                "reporter": "병합 작성자",
+                "sourceDocumentId": "1950d6ed-80f6-465c-9750-d0d978ff2837"
+            }
+        ],
+        "xerFinancials": {
+            "assignments": [
+                {
+                    "overtimeMinor": 2034,
+                    "overtimeWork": 3000,
+                    "regularMinor": 9012,
+                    "regularWork": 19500,
+                    "resourceId": "xer-resource-99",
+                    "taskId": "xer-task-20"
+                },
+                {
+                    "overtimeMinor": 0,
+                    "overtimeWork": 0,
+                    "regularMinor": 0,
+                    "regularWork": 0,
+                    "resourceId": "xer-resource-99",
+                    "taskId": "xer-task-30"
+                }
+            ],
+            "currency": "USD",
+            "importedAt": "2026-11-07T07:07:37Z",
+            "periods": [
+                {
+                    "actualMinor": 7012,
+                    "bcwp": null,
+                    "bcws": null,
+                    "equipmentMinor": null,
+                    "equipmentWork": null,
+                    "expenseMinor": null,
+                    "finish": "2026-10-26 23:59",
+                    "laborMinor": null,
+                    "laborWork": null,
+                    "materialMinor": null,
+                    "resourceId": "xer-resource-99",
+                    "start": "2026-10-19 00:00",
+                    "taskId": "xer-task-20",
+                    "work": 12000
+                },
+                {
+                    "actualMinor": 3034,
+                    "bcwp": null,
+                    "bcws": null,
+                    "equipmentMinor": null,
+                    "equipmentWork": null,
+                    "expenseMinor": null,
+                    "finish": "2026-10-28 23:59",
+                    "laborMinor": null,
+                    "laborWork": null,
+                    "materialMinor": null,
+                    "resourceId": "xer-resource-99",
+                    "start": "2026-10-28 00:00",
+                    "taskId": "xer-task-20",
+                    "work": 7500
+                },
+                {
+                    "actualMinor": null,
+                    "bcwp": 999900,
+                    "bcws": 888800,
+                    "equipmentMinor": 0,
+                    "equipmentWork": null,
+                    "expenseMinor": 234,
+                    "finish": "2026-10-26 23:59",
+                    "laborMinor": 7012,
+                    "laborWork": null,
+                    "materialMinor": 0,
+                    "resourceId": "",
+                    "start": "2026-10-19 00:00",
+                    "taskId": "xer-task-20",
+                    "work": null
+                },
+                {
+                    "actualMinor": null,
+                    "bcwp": 999900,
+                    "bcws": 888800,
+                    "equipmentMinor": 0,
+                    "equipmentWork": null,
+                    "expenseMinor": 300,
+                    "finish": "2026-10-28 23:59",
+                    "laborMinor": 3034,
+                    "laborWork": null,
+                    "materialMinor": 0,
+                    "resourceId": "",
+                    "start": "2026-10-28 00:00",
+                    "taskId": "xer-task-20",
+                    "work": null
+                }
+            ],
+            "projectId": "100",
+            "projectionSha256": "e7c5a54f2d1123da03b641d188a5271b2a313ffcca91e098d631a4f8786c7d6c",
+            "resources": [
+                {
+                    "id": "xer-resource-99",
+                    "name": "설계자 <1>",
+                    "type": "labor"
+                },
+                {
+                    "id": "xer-resource-100",
+                    "name": "크레인",
+                    "type": "equipment"
+                }
+            ],
+            "sourceName": "financial-periods.xer",
+            "sourceSha256": "384625ce37fb418a20fcd17d8a62b8893c6a30be0079710ef1144be4b31faa0a",
+            "statusAt": "2026-10-28 18:00",
+            "tasks": [
+                {
+                    "actualMinor": 12280,
+                    "id": "xer-task-20",
+                    "name": "A 설계"
+                },
+                {
+                    "actualMinor": 0,
+                    "id": "xer-task-30",
+                    "name": "B 개발"
+                },
+                {
+                    "actualMinor": null,
+                    "id": "xer-task-40",
+                    "name": "C SS"
+                },
+                {
+                    "actualMinor": null,
+                    "id": "xer-task-50",
+                    "name": "D FF"
+                },
+                {
+                    "actualMinor": null,
+                    "id": "xer-task-60",
+                    "name": "E SF"
+                },
+                {
+                    "actualMinor": null,
+                    "id": "xer-task-70",
+                    "name": "완료점"
+                }
+            ]
+        }
+    },
+    "schemaVersion": 27,
+    "sha256": "e29d0e1aabc3350f6fb079f97bc06a9e3e9395193dd8d9ebcbc4b6a12492a033"
+}

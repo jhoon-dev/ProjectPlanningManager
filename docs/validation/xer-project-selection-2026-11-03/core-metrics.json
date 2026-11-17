@@ -1,0 +1,16 @@
+[
+    {
+        "bytes": 118911,
+        "import_ms": 62.4932,
+        "input_tasks": 1000,
+        "inventory_ms": 13.2847,
+        "selected_tasks": 500
+    },
+    {
+        "bytes": 1180911,
+        "import_ms": 227.6661,
+        "input_tasks": 10000,
+        "inventory_ms": 89.0321,
+        "selected_tasks": 5000
+    }
+]

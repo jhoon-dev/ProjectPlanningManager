@@ -1,0 +1,13 @@
+{
+    "A_calendars": 1,
+    "A_finish": "2026-10-26 18:00",
+    "A_resources": 1,
+    "A_tasks": 6,
+    "B_calendars": 2,
+    "B_finish": "2026-10-26 11:00",
+    "B_resources": 2,
+    "B_tasks": 6,
+    "external_relations_rejected": true,
+    "original_unchanged": true,
+    "projects": 2
+}

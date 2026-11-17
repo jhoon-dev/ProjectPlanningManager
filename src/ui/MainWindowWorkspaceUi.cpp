@@ -73,7 +73,8 @@ void MainWindow::setupWorkspaceUi(QToolBar *tools, QComboBox *zoom) {
     analysis->setText("분석·보고");
     analysis->setPopupMode(QToolButton::InstantPopup);
     auto *analysisMenu = new QMenu(analysis);
-    for (auto *action : {reports_, comparison_, resourceComparison_, evm_, scheduleIssues_})
+    for (auto *action : {reports_, comparison_, resourceComparison_, evm_, periodEvm_, externalEvm_, financialPeriods_,
+                         scheduleIssues_})
         analysisMenu->addAction(action);
     analysis->setMenu(analysisMenu);
     tools->addWidget(analysis);

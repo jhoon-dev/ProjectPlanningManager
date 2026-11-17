@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "xml_minute_comparisons": 11520,
+  "canonical_periods": 4,
+  "xlsx_availability_rows": 6,
+  "pdf_pages": 12,
+  "external_product_run": false,
+  "mpxj_minute_comparisons": 5760
+}

@@ -1,0 +1,234 @@
+[
+    {
+        "source": "Str(0)",
+        "value": " 0"
+    },
+    {
+        "source": "Str(459)",
+        "value": " 459"
+    },
+    {
+        "source": "Str(-459.65)",
+        "value": "-459.65"
+    },
+    {
+        "source": "Str(0.5)",
+        "value": " .5"
+    },
+    {
+        "source": "Str(-0.5)",
+        "value": "-.5"
+    },
+    {
+        "source": "Str(0.000001)",
+        "value": " 1E-06"
+    },
+    {
+        "source": "Str(0.000099)",
+        "value": " 9.9E-05"
+    },
+    {
+        "source": "Str(0.0001)",
+        "value": " .0001"
+    },
+    {
+        "source": "Str(9000000000000)",
+        "value": " 9000000000000"
+    },
+    {
+        "source": "Str(\" +2.5 \")",
+        "value": " 2.5"
+    },
+    {
+        "source": "Hex(255)",
+        "value": "FF"
+    },
+    {
+        "source": "Hex(2.5)",
+        "value": "2"
+    },
+    {
+        "source": "Hex(3.5)",
+        "value": "4"
+    },
+    {
+        "source": "Hex(-1.5)",
+        "value": "FFFFFFFE"
+    },
+    {
+        "source": "Hex(-2147483648)",
+        "value": "80000000"
+    },
+    {
+        "source": "Hex(2147483647)",
+        "value": "7FFFFFFF"
+    },
+    {
+        "source": "Hex(\"255.5\")",
+        "value": "100"
+    },
+    {
+        "source": "Oct(459)",
+        "value": "713"
+    },
+    {
+        "source": "Oct(-1)",
+        "value": "37777777777"
+    },
+    {
+        "source": "Oct(0)",
+        "value": "0"
+    },
+    {
+        "source": "Hex(True)",
+        "value": "FFFFFFFF"
+    },
+    {
+        "source": "Val(\"12kg\")",
+        "value": "12"
+    },
+    {
+        "source": "Val(\"$12\")",
+        "value": "0"
+    },
+    {
+        "source": "Val(\"abc\")",
+        "value": "0"
+    },
+    {
+        "source": "Val(\"\")",
+        "value": "0"
+    },
+    {
+        "source": "Val(\" 1 2.3h\")",
+        "value": "12.3"
+    },
+    {
+        "source": "Val(\".5\")",
+        "value": "0.5"
+    },
+    {
+        "source": "Val(\"1.\")",
+        "value": "1"
+    },
+    {
+        "source": "Val(\"1e\")",
+        "value": "1"
+    },
+    {
+        "source": "Val(\"1e+\")",
+        "value": "1"
+    },
+    {
+        "source": "Val(\"1E-2\")",
+        "value": "0.01"
+    },
+    {
+        "source": "Val(\"1D3x\")",
+        "value": "1000"
+    },
+    {
+        "source": "Val(\"1.2345675\")",
+        "value": "1.234568"
+    },
+    {
+        "source": "Val(\"-0.0000005\")",
+        "value": "-0.000001"
+    },
+    {
+        "source": "Val(\"0.00000049\")",
+        "value": "0"
+    },
+    {
+        "source": "Val(\"&HFFFF\")",
+        "value": "-1"
+    },
+    {
+        "source": "Val(\"&HFFFF&\")",
+        "value": "65535"
+    },
+    {
+        "source": "Val(\"&H8000&\")",
+        "value": "32768"
+    },
+    {
+        "source": "Val(\"&H80000000\")",
+        "value": "-2147483648"
+    },
+    {
+        "source": "Val(\"&HFFFFFFFF%\")",
+        "value": "-1"
+    },
+    {
+        "source": "Val(\"&H0000FFFF#\")",
+        "value": "-1"
+    },
+    {
+        "source": "Val(\"&O177777\")",
+        "value": "-1"
+    },
+    {
+        "source": "Val(\"&O37777777777\")",
+        "value": "-1"
+    },
+    {
+        "source": "Val(\"&HFFG\")",
+        "value": "255"
+    },
+    {
+        "source": "Val(\"&O178\")",
+        "value": "15"
+    },
+    {
+        "source": "Val(\"-&HFF\")",
+        "value": "0"
+    },
+    {
+        "source": "Val(\"&H\")",
+        "value": "0"
+    },
+    {
+        "source": "Val(\"50%\")",
+        "value": "50"
+    },
+    {
+        "source": "Val(\"-32768%\")",
+        "value": "-32768"
+    },
+    {
+        "source": "Val(\"2147483647&\")",
+        "value": "2147483647"
+    },
+    {
+        "source": "Val(\"-2147483648&\")",
+        "value": "-2147483648"
+    },
+    {
+        "source": "Val(\"1.23456789#\")",
+        "value": "1.234568"
+    },
+    {
+        "source": "Val(\"0e10000\")",
+        "value": "0"
+    },
+    {
+        "source": "Val(\"1e-10000\")",
+        "value": "0"
+    },
+    {
+        "source": "Val(\"9000000000000.000000\")",
+        "value": "9000000000000"
+    },
+    {
+        "source": "Val(\"1,234\")",
+        "value": "1"
+    },
+    {
+        "source": "Val(\"12가\")",
+        "value": "12"
+    },
+    {
+        "source": "Val(Str(0.5))",
+        "value": "0.5"
+    }
+]

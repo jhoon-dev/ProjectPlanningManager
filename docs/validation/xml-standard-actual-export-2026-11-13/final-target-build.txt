@@ -1,0 +1,9 @@
+[1/9] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/XmlActualExport.cpp.obj
+[2/9] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectXml.cpp.obj
+[3/9] Linking CXX static library libjobs_persistence.a
+[4/9] Linking CXX executable PPM-Automation.exe
+[5/9] Building CXX object CMakeFiles/jobs_xml_actual_export_tests.dir/tests/XmlActualExportTests.cpp.obj
+[6/9] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindow.cpp.obj
+[7/9] Linking CXX static library libjobs_ui.a
+[8/9] Linking CXX executable jobs_xml_actual_export_tests.exe
+[9/9] Linking CXX executable PPM.exe

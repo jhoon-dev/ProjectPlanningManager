@@ -1,0 +1,21 @@
+{
+  "version": "2026f",
+  "wheel_version": "2026.6",
+  "utc_start": "1970-01-01T00:00:00Z",
+  "utc_finish_exclusive": "2101-01-01T00:00:00Z",
+  "wheel_url": "https://files.pythonhosted.org/packages/0a/66/9a06c2227fedfd4919f0eaaa8b94377d9730882a7e4f95823c9a331ab5e1/tzdata-2026.6-py2.py3-none-any.whl",
+  "wheel_sha256": "0a10eec6e13ef16b627fabed9a5f2ba61a62b1c67f327305f4e7e412a70b4aec",
+  "source_url": "https://data.iana.org/time-zones/releases/tzdata2026f.tar.gz",
+  "source_sha256": "01b4a91cec5167ed48c11e8ab78f2048cead78ce94b0cafcad0ae8c5a3044d3d",
+  "zones": 597,
+  "patterns": 306,
+  "transitions": 30397,
+  "excluded_placeholder": "Factory",
+  "files": {
+    "tzdb-2026f.inc": "07bd87c1fb6df22d8e9c0e8eb06e8c9bdb87b1944166e7a567ab3afc4dd952fa",
+    "tzif-2026f.zip": "a372ad653ccb07b37b543c2361672bc6aa553f29841e51bc02f4377cb7833b45",
+    "LICENSE-IANA.txt": "0613408568889f5739e5ae252b722a2659c02002839ad970a63dc5e9174b27cf",
+    "LICENSE-python-tzdata.txt": "df58f69ea88683035d720b5375bcef0cf5aeaa98a1d098d572e0992c378deb46",
+    "LICENSE-APACHE-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  }
+}

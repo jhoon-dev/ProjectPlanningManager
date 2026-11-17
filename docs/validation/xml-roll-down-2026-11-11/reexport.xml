@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project xmlns="http://schemas.microsoft.com/project">
+    <SaveVersion>12</SaveVersion>
+    <Name>XML 배정 roll-down</Name>
+    <ScheduleFromStart>1</ScheduleFromStart>
+    <StartDate>2026-11-11T09:00:00</StartDate>
+    <CurrencyDigits>2</CurrencyDigits>
+    <CurrencyCode>USD</CurrencyCode>
+    <CalendarUID>1</CalendarUID>
+    <DefaultStartTime>09:00:00</DefaultStartTime>
+    <DefaultFinishTime>18:00:00</DefaultFinishTime>
+    <MinutesPerDay>480</MinutesPerDay>
+    <MinutesPerWeek>2400</MinutesPerWeek>
+    <OutlineCodes>
+        <OutlineCode>
+            <Guid>66666666-7777-4888-9999-000000000500</Guid>
+            <FieldName>다중 코드</FieldName>
+            <Values>
+                <Value>
+                    <ValueID>1201</ValueID>
+                    <FieldGUID>66666666-7777-4888-9999-000000000501</FieldGUID>
+                    <Type>21</Type>
+                    <Value>A</Value>
+                </Value>
+                <Value>
+                    <ValueID>1202</ValueID>
+                    <FieldGUID>66666666-7777-4888-9999-000000000502</FieldGUID>
+                    <Type>21</Type>
+                    <Value>B</Value>
+                </Value>
+            </Values>
+            <Enterprise>1</Enterprise>
+            <LeafOnly>0</LeafOnly>
+            <AllLevelsRequired>1</AllLevelsRequired>
+            <OnlyTableValuesAllowed>1</OnlyTableValuesAllowed>
+            <Masks>
+                <Mask>
+                    <Level>1</Level>
+                    <Type>1</Type>
+                    <Length>1</Length>
+                    <Separator>.</Separator>
+                </Mask>
+            </Masks>
+        </OutlineCode>
+        <OutlineCode>
+            <Guid>66666666-7777-4888-9999-000000000510</Guid>
+            <FieldName>날짜 목록</FieldName>
+            <Values>
+                <Value>
+                    <ValueID>1301</ValueID>
+                    <FieldGUID>66666666-7777-4888-9999-000000000511</FieldGUID>
+                    <Type>4</Type>
+                    <Value>1026040918</Value>
+                </Value>
+                <Value>
+                    <ValueID>1302</ValueID>
+                    <FieldGUID>66666666-7777-4888-9999-000000000512</FieldGUID>
+                    <Type>4</Type>
+                    <Value>1026097152</Value>
+                </Value>
+            </Values>
+            <Enterprise>1</Enterprise>
+            <LeafOnly>0</LeafOnly>
+            <AllLevelsRequired>0</AllLevelsRequired>
+            <OnlyTableValuesAllowed>1</OnlyTableValuesAllowed>
+        </OutlineCode>
+    </OutlineCodes>
+    <ExtendedAttributes>
+        <ExtendedAttribute>
+            <FieldID>188776448</FieldID>
+            <FieldName>작업 0</FieldName>
+            <CFType>7</CFType>
+            <Guid>66666666-7777-4888-9999-000000000100</Guid>
+            <ElemType>20</ElemType>
+            <Alias>작업 0</Alias>
+            <SecondaryPID>255885312</SecondaryPID>
+            <AutoRollDown>1</AutoRollDown>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>188776449</FieldID>
+            <FieldName>작업 1</FieldName>
+            <CFType>5</CFType>
+            <Guid>66666666-7777-4888-9999-000000000101</Guid>
+            <ElemType>20</ElemType>
+            <Alias>작업 1</Alias>
+            <SecondaryPID>255885313</SecondaryPID>
+            <AutoRollDown>1</AutoRollDown>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>188776450</FieldID>
+            <FieldName>작업 2</FieldName>
+            <CFType>1</CFType>
+            <Guid>66666666-7777-4888-9999-000000000102</Guid>
+            <ElemType>20</ElemType>
+            <Alias>작업 2</Alias>
+            <SecondaryPID>255885314</SecondaryPID>
+            <AutoRollDown>1</AutoRollDown>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>188776451</FieldID>
+            <FieldName>작업 3</FieldName>
+            <CFType>7</CFType>
+            <Guid>66666666-7777-4888-9999-000000000103</Guid>
+            <ElemType>20</ElemType>
+            <Alias>작업 3</Alias>
+            <SecondaryPID>255885315</SecondaryPID>
+            <AutoRollDown>1</AutoRollDown>
+            <RestrictValues>0</RestrictValues>
+            <ValueList>
+                <Value>
+                    <ID>1101</ID>
+                    <Value>alpha</Value>
+                </Value>
+                <Value>
+                    <ID>1102</ID>
+                    <Value>beta</Value>
+                </Value>
+            </ValueList>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>188776452</FieldID>
+            <FieldName>작업 4</FieldName>
+            <CFType>4</CFType>
+            <Guid>66666666-7777-4888-9999-000000000104</Guid>
+            <ElemType>20</ElemType>
+            <Alias>작업 4</Alias>
+            <SecondaryPID>255885316</SecondaryPID>
+            <AutoRollDown>1</AutoRollDown>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>188776453</FieldID>
+            <FieldName>작업 5</FieldName>
+            <CFType>0</CFType>
+            <Guid>66666666-7777-4888-9999-000000000105</Guid>
+            <ElemType>20</ElemType>
+            <Alias>작업 5</Alias>
+            <SecondaryPID>255885317</SecondaryPID>
+            <AutoRollDown>1</AutoRollDown>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>188776454</FieldID>
+            <FieldName>작업 6</FieldName>
+            <CFType>2</CFType>
+            <Guid>66666666-7777-4888-9999-000000000106</Guid>
+            <ElemType>20</ElemType>
+            <Alias>작업 6</Alias>
+            <SecondaryPID>255885318</SecondaryPID>
+            <AutoRollDown>1</AutoRollDown>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>188776455</FieldID>
+            <FieldName>작업 7</FieldName>
+            <CFType>6</CFType>
+            <Guid>66666666-7777-4888-9999-000000000107</Guid>
+            <ElemType>20</ElemType>
+            <Alias>작업 7</Alias>
+            <SecondaryPID>255885319</SecondaryPID>
+            <AutoRollDown>1</AutoRollDown>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>188776456</FieldID>
+            <FieldName>작업 8</FieldName>
+            <CFType>3</CFType>
+            <Guid>66666666-7777-4888-9999-000000000108</Guid>
+            <ElemType>20</ElemType>
+            <Alias>작업 8</Alias>
+            <SecondaryPID>255885320</SecondaryPID>
+            <AutoRollDown>1</AutoRollDown>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>188776457</FieldID>
+            <FieldName>작업 9</FieldName>
+            <CFType>7</CFType>
+            <Guid>66666666-7777-4888-9999-000000000109</Guid>
+            <ElemType>20</ElemType>
+            <MaxMultiValues>0</MaxMultiValues>
+            <Alias>작업 9</Alias>
+            <SecondaryPID>255885321</SecondaryPID>
+            <AutoRollDown>1</AutoRollDown>
+            <Ltuid>66666666-7777-4888-9999-000000000500</Ltuid>
+            <RestrictValues>1</RestrictValues>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>205553674</FieldID>
+            <FieldName>자원 10</FieldName>
+            <CFType>7</CFType>
+            <Guid>66666666-7777-4888-9999-000000000110</Guid>
+            <ElemType>21</ElemType>
+            <Alias>자원 10</Alias>
+            <SecondaryPID>255885322</SecondaryPID>
+            <AutoRollDown>1</AutoRollDown>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>205553675</FieldID>
+            <FieldName>자원 11</FieldName>
+            <CFType>0</CFType>
+            <Guid>66666666-7777-4888-9999-000000000111</Guid>
+            <ElemType>21</ElemType>
+            <Alias>자원 11</Alias>
+            <SecondaryPID>255885323</SecondaryPID>
+            <AutoRollDown>1</AutoRollDown>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>205553676</FieldID>
+            <FieldName>자원 12</FieldName>
+            <CFType>1</CFType>
+            <Guid>66666666-7777-4888-9999-000000000112</Guid>
+            <ElemType>21</ElemType>
+            <Alias>자원 12</Alias>
+            <SecondaryPID>255885324</SecondaryPID>
+            <AutoRollDown>1</AutoRollDown>
+            <Ltuid>66666666-7777-4888-9999-000000000510</Ltuid>
+            <RestrictValues>1</RestrictValues>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>255885312</FieldID>
+            <FieldName>배정 0</FieldName>
+            <CFType>7</CFType>
+            <Guid>66666666-7777-4888-9999-000000000200</Guid>
+            <ElemType>23</ElemType>
+            <Alias>배정 0</Alias>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>255885313</FieldID>
+            <FieldName>배정 1</FieldName>
+            <CFType>5</CFType>
+            <Guid>66666666-7777-4888-9999-000000000201</Guid>
+            <ElemType>23</ElemType>
+            <Alias>배정 1</Alias>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>255885314</FieldID>
+            <FieldName>배정 2</FieldName>
+            <CFType>1</CFType>
+            <Guid>66666666-7777-4888-9999-000000000202</Guid>
+            <ElemType>23</ElemType>
+            <Alias>배정 2</Alias>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>255885315</FieldID>
+            <FieldName>배정 3</FieldName>
+            <CFType>7</CFType>
+            <Guid>66666666-7777-4888-9999-000000000203</Guid>
+            <ElemType>23</ElemType>
+            <Alias>배정 3</Alias>
+            <RestrictValues>0</RestrictValues>
+            <ValueList>
+                <Value>
+                    <ID>1</ID>
+                    <Value>alpha</Value>
+                </Value>
+                <Value>
+                    <ID>2</ID>
+                    <Value>beta</Value>
+                </Value>
+            </ValueList>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>255885316</FieldID>
+            <FieldName>배정 4</FieldName>
+            <CFType>4</CFType>
+            <Guid>66666666-7777-4888-9999-000000000204</Guid>
+            <ElemType>23</ElemType>
+            <Alias>배정 4</Alias>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>255885317</FieldID>
+            <FieldName>배정 5</FieldName>
+            <CFType>0</CFType>
+            <Guid>66666666-7777-4888-9999-000000000205</Guid>
+            <ElemType>23</ElemType>
+            <Alias>배정 5</Alias>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>255885318</FieldID>
+            <FieldName>배정 6</FieldName>
+            <CFType>2</CFType>
+            <Guid>66666666-7777-4888-9999-000000000206</Guid>
+            <ElemType>23</ElemType>
+            <Alias>배정 6</Alias>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>255885319</FieldID>
+            <FieldName>배정 7</FieldName>
+            <CFType>6</CFType>
+            <Guid>66666666-7777-4888-9999-000000000207</Guid>
+            <ElemType>23</ElemType>
+            <Alias>배정 7</Alias>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>255885320</FieldID>
+            <FieldName>배정 8</FieldName>
+            <CFType>3</CFType>
+            <Guid>66666666-7777-4888-9999-000000000208</Guid>
+            <ElemType>23</ElemType>
+            <Alias>배정 8</Alias>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>255885321</FieldID>
+            <FieldName>배정 9</FieldName>
+            <CFType>7</CFType>
+            <Guid>66666666-7777-4888-9999-000000000209</Guid>
+            <ElemType>23</ElemType>
+            <MaxMultiValues>0</MaxMultiValues>
+            <Alias>배정 9</Alias>
+            <Ltuid>66666666-7777-4888-9999-000000000500</Ltuid>
+            <RestrictValues>1</RestrictValues>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>255885322</FieldID>
+            <FieldName>배정 10</FieldName>
+            <CFType>7</CFType>
+            <Guid>66666666-7777-4888-9999-000000000210</Guid>
+            <ElemType>23</ElemType>
+            <Alias>배정 10</Alias>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>255885323</FieldID>
+            <FieldName>배정 11</FieldName>
+            <CFType>0</CFType>
+            <Guid>66666666-7777-4888-9999-000000000211</Guid>
+            <ElemType>23</ElemType>
+            <Alias>배정 11</Alias>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>255885324</FieldID>
+            <FieldName>배정 12</FieldName>
+            <CFType>1</CFType>
+            <Guid>66666666-7777-4888-9999-000000000212</Guid>
+            <ElemType>23</ElemType>
+            <Alias>배정 12</Alias>
+            <Ltuid>66666666-7777-4888-9999-000000000510</Ltuid>
+            <RestrictValues>1</RestrictValues>
+        </ExtendedAttribute>
+        <ExtendedAttribute>
+            <FieldID>255885325</FieldID>
+            <FieldName>독립 필드</FieldName>
+            <CFType>7</CFType>
+            <Guid>b17f2a8d-67ec-5973-ae81-2209192f284d</Guid>
+            <ElemType>23</ElemType>
+            <Alias>독립 필드</Alias>
+        </ExtendedAttribute>
+    </ExtendedAttributes>
+    <Calendars>
+        <Calendar>
+            <UID>1</UID>
+            <Name>PPM standard</Name>
+            <IsBaseCalendar>1</IsBaseCalendar>
+            <BaseCalendarUID>-1</BaseCalendarUID>
+            <WeekDays>
+                <WeekDay>
+                    <DayType>1</DayType>
+                    <DayWorking>0</DayWorking>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>2</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>09:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>18:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>3</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>09:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>18:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>4</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>09:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>18:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>5</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>09:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>18:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>6</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>09:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>18:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>7</DayType>
+                    <DayWorking>0</DayWorking>
+                </WeekDay>
+            </WeekDays>
+        </Calendar>
+        <Calendar>
+            <UID>2</UID>
+            <Name>PPM standard</Name>
+            <IsBaseCalendar>1</IsBaseCalendar>
+            <BaseCalendarUID>-1</BaseCalendarUID>
+            <WeekDays>
+                <WeekDay>
+                    <DayType>1</DayType>
+                    <DayWorking>0</DayWorking>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>2</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>09:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>18:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>3</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>09:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>18:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>4</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>09:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>18:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>5</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>09:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>18:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>6</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>09:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>18:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>7</DayType>
+                    <DayWorking>0</DayWorking>
+                </WeekDay>
+            </WeekDays>
+        </Calendar>
+    </Calendars>
+    <Tasks>
+        <Task>
+            <UID>1</UID>
+            <ID>1</ID>
+            <Name>설계</Name>
+            <Type>1</Type>
+            <OutlineLevel>1</OutlineLevel>
+            <Duration>PT8H0M0S</Duration>
+            <DurationFormat>3</DurationFormat>
+            <Milestone>0</Milestone>
+            <Summary>0</Summary>
+            <ConstraintType>0</ConstraintType>
+            <CalendarUID>2</CalendarUID>
+            <b408000>표준</b408000>
+            <b408001>12.5</b408001>
+            <b408002>2026-11-11T12:34:56.123456</b408002>
+            <ExtendedAttribute>
+                <FieldID>188776451</FieldID>
+                <Value>beta</Value>
+            </ExtendedAttribute>
+            <b408004>0</b408004>
+            <b408005>1234</b408005>
+            <ExtendedAttribute>
+                <FieldID>188776454</FieldID>
+                <Value>PT1H30M30S</Value>
+                <DurationFormat>36</DurationFormat>
+            </ExtendedAttribute>
+            <b408007>2026-11-11T09:30:06</b408007>
+            <b408008>2026-11-12T00:00:00</b408008>
+            <EnterpriseExtendedAttribute>
+                <FieldIDInHex>b408009</FieldIDInHex>
+                <FieldID>188776457</FieldID>
+                <Value>A</Value>
+                <FieldValueGUID>66666666-7777-4888-9999-000000000501</FieldValueGUID>
+            </EnterpriseExtendedAttribute>
+            <EnterpriseExtendedAttribute>
+                <FieldIDInHex>b408009</FieldIDInHex>
+                <FieldID>188776457</FieldID>
+                <Value>B</Value>
+                <FieldValueGUID>66666666-7777-4888-9999-000000000502</FieldValueGUID>
+            </EnterpriseExtendedAttribute>
+        </Task>
+        <Task>
+            <UID>2</UID>
+            <ID>2</ID>
+            <Name>검토</Name>
+            <Type>1</Type>
+            <OutlineLevel>1</OutlineLevel>
+            <Duration>PT8H0M0S</Duration>
+            <DurationFormat>3</DurationFormat>
+            <Milestone>0</Milestone>
+            <Summary>0</Summary>
+            <ConstraintType>0</ConstraintType>
+            <CalendarUID>2</CalendarUID>
+            <b408000></b408000>
+            <b408001>0</b408001>
+            <ExtendedAttribute>
+                <FieldID>188776451</FieldID>
+                <Value>alpha</Value>
+            </ExtendedAttribute>
+            <b408004>1</b408004>
+            <b408005>-500</b408005>
+        </Task>
+    </Tasks>
+    <Resources>
+        <Resource>
+            <UID>1</UID>
+            <Name>설계 인력</Name>
+            <Type>1</Type>
+            <MaxUnits>1.00</MaxUnits>
+            <CalendarUID>2</CalendarUID>
+            <c40800a>본부</c40800a>
+            <c40800b>2000</c40800b>
+            <c40800c>66666666-7777-4888-9999-000000000511</c40800c>
+        </Resource>
+        <Resource>
+            <UID>2</UID>
+            <Name>검토 인력</Name>
+            <Type>1</Type>
+            <MaxUnits>1.00</MaxUnits>
+            <CalendarUID>2</CalendarUID>
+            <c40800a>외부</c40800a>
+            <c40800b>0</c40800b>
+        </Resource>
+    </Resources>
+    <Assignments>
+        <Assignment>
+            <UID>1</UID>
+            <TaskUID>1</TaskUID>
+            <ResourceUID>1</ResourceUID>
+            <Units>1.00</Units>
+            <f408000>직접</f408000>
+            <f408001>12.5</f408001>
+            <ExtendedAttribute>
+                <FieldID>255885314</FieldID>
+            </ExtendedAttribute>
+            <f408004>1</f408004>
+            <f408005>0</f408005>
+            <f40800d>독립</f40800d>
+        </Assignment>
+        <Assignment>
+            <UID>2</UID>
+            <TaskUID>1</TaskUID>
+            <ResourceUID>2</ResourceUID>
+            <Units>0.50</Units>
+        </Assignment>
+        <Assignment>
+            <UID>3</UID>
+            <TaskUID>2</TaskUID>
+            <ResourceUID>1</ResourceUID>
+            <Units>1.00</Units>
+            <ExtendedAttribute>
+                <FieldID>255885318</FieldID>
+                <Value>PT0H0M0S</Value>
+                <DurationFormat>3</DurationFormat>
+            </ExtendedAttribute>
+        </Assignment>
+    </Assignments>
+</Project>

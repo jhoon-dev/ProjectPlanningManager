@@ -1,0 +1,511 @@
+{
+    "assignmentFields": [
+        {
+            "id": "a",
+            "name": "a",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                ],
+                "source": "ProjDateDiff(#2026-11-11T09:00:00#, #2026-11-13T18:00:00#)"
+            }
+        },
+        {
+            "id": "mix",
+            "name": "mix",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "field:r",
+                        "scope": 2,
+                        "token": "resource:r"
+                    },
+                    {
+                        "key": "field:literal",
+                        "scope": 0,
+                        "token": "task:literal"
+                    },
+                    {
+                        "key": "field:p",
+                        "scope": 1,
+                        "token": "project:p"
+                    }
+                ],
+                "source": "[resource:r]+[task:literal]+[project:p]"
+            }
+        },
+        {
+            "id": "copy",
+            "name": "copy",
+            "options": [
+            ],
+            "type": "number",
+            "unit": ""
+        }
+    ],
+    "assignments": [
+        {
+            "resourceId": "R",
+            "taskId": "A",
+            "units": 100
+        },
+        {
+            "resourceId": "R",
+            "taskId": "B",
+            "units": 100
+        }
+    ],
+    "baselines": [
+    ],
+    "calculationProfile": "native-effort-split-v1",
+    "calendar": "standard-mon-fri-8h-v1",
+    "calendars": [
+        {
+            "holidays": [
+                "2026-11-13"
+            ],
+            "id": "AM",
+            "name": "오전",
+            "periods": [
+                {
+                    "begin": 540,
+                    "end": 720
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "holidays": [
+                "2026-11-14"
+            ],
+            "id": "NIGHT",
+            "name": "야간",
+            "periods": [
+                {
+                    "begin": 0,
+                    "end": 120
+                },
+                {
+                    "begin": 1320,
+                    "end": 1440
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+            ]
+        },
+        {
+            "holidays": [
+            ],
+            "id": "ALL",
+            "name": "24시간",
+            "periods": [
+                {
+                    "begin": 0,
+                    "end": 1440
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+            ]
+        }
+    ],
+    "codeTypes": [
+    ],
+    "costEntries": [
+    ],
+    "costProfile": "cost-day-minor-half-up-v1",
+    "currency": "KRW",
+    "customFields": [
+        {
+            "id": "work",
+            "name": "work",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:start",
+                        "scope": 0,
+                        "token": "Start"
+                    },
+                    {
+                        "key": "builtin:finish",
+                        "scope": 0,
+                        "token": "Finish"
+                    }
+                ],
+                "source": "ProjDateDiff([Start],[Finish])"
+            },
+            "xmlRollDown": {
+                "assignmentFieldId": "copy",
+                "automatic": true
+            },
+            "xmlRollUp": {
+                "calculationType": 2,
+                "rollupType": 0
+            }
+        },
+        {
+            "id": "wall",
+            "name": "wall",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:start",
+                        "scope": 0,
+                        "token": "Start"
+                    },
+                    {
+                        "key": "builtin:finish",
+                        "scope": 0,
+                        "token": "Finish"
+                    }
+                ],
+                "source": "DateDiff(\"n\",[Start],[Finish])"
+            }
+        },
+        {
+            "id": "next",
+            "name": "next",
+            "options": [
+            ],
+            "type": "finish",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:finish",
+                        "scope": 0,
+                        "token": "Finish"
+                    }
+                ],
+                "source": "ProjDateAdd([Finish],\"1d\")"
+            }
+        },
+        {
+            "id": "prev",
+            "name": "prev",
+            "options": [
+            ],
+            "type": "start",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:start",
+                        "scope": 0,
+                        "token": "Start"
+                    }
+                ],
+                "source": "ProjDateSub([Start],\"1d\")"
+            }
+        },
+        {
+            "id": "explicit",
+            "name": "explicit",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:start",
+                        "scope": 0,
+                        "token": "Start"
+                    },
+                    {
+                        "key": "builtin:finish",
+                        "scope": 0,
+                        "token": "Finish"
+                    }
+                ],
+                "source": "ProjDateDiff([Start],[Finish],\"오전\")"
+            },
+            "xmlRollUp": {
+                "calculationType": 2,
+                "rollupType": 0
+            }
+        },
+        {
+            "id": "literal",
+            "name": "literal",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                ],
+                "source": "ProjDateDiff(#2026-11-11T09:00:00#, #2026-11-13T18:00:00#)"
+            },
+            "xmlRollUp": {
+                "calculationType": 2,
+                "rollupType": 0
+            }
+        },
+        {
+            "id": "first",
+            "name": "first",
+            "options": [
+            ],
+            "type": "date",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                ],
+                "source": "ProjDateAdd(#2026-11-11T11:30:00#,\"1h\")"
+            }
+        },
+        {
+            "id": "elapsed",
+            "name": "elapsed",
+            "options": [
+            ],
+            "type": "finish",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:finish",
+                        "scope": 0,
+                        "token": "Finish"
+                    }
+                ],
+                "source": "ProjDateAdd([Finish],\"1ed\")"
+            }
+        },
+        {
+            "id": "scope",
+            "name": "scope",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "field:p",
+                        "scope": 1,
+                        "token": "project:p"
+                    },
+                    {
+                        "key": "field:literal",
+                        "scope": 0,
+                        "token": "field:literal"
+                    }
+                ],
+                "source": "[project:p]+[field:literal]"
+            }
+        },
+        {
+            "expression": "[field:work]*2",
+            "id": "native",
+            "name": "native",
+            "options": [
+            ],
+            "type": "number",
+            "unit": ""
+        }
+    ],
+    "derivedFrom": "",
+    "documentId": "xml-calendar",
+    "holidays": [
+        "2026-11-12"
+    ],
+    "name": "근무 달력 계산식",
+    "progress": [
+    ],
+    "projectFields": [
+        {
+            "id": "p",
+            "name": "p",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                ],
+                "source": "ProjDateDiff(#2026-11-11T09:00:00#, #2026-11-13T18:00:00#)"
+            }
+        },
+        {
+            "id": "pf",
+            "name": "pf",
+            "options": [
+            ],
+            "type": "finish",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:finish",
+                        "scope": 1,
+                        "token": "Finish"
+                    }
+                ],
+                "source": "ProjDateAdd([Finish],\"1h\")"
+            }
+        }
+    ],
+    "resourceFields": [
+        {
+            "id": "r",
+            "name": "r",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                ],
+                "source": "ProjDateDiff(#2026-11-11T09:00:00#, #2026-11-13T18:00:00#)"
+            }
+        },
+        {
+            "id": "nested",
+            "name": "nested",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "field:p",
+                        "scope": 1,
+                        "token": "project:p"
+                    },
+                    {
+                        "key": "field:r",
+                        "scope": 2,
+                        "token": "field:r"
+                    }
+                ],
+                "source": "[project:p]+[field:r]"
+            }
+        }
+    ],
+    "resources": [
+        {
+            "calendarId": "AM",
+            "exceptions": [
+            ],
+            "id": "R",
+            "maxUnits": 100,
+            "name": "오전 담당",
+            "rates": [
+            ],
+            "type": "labor"
+        }
+    ],
+    "revision": 1,
+    "scenarios": [
+    ],
+    "startDate": "2026-11-11",
+    "statusAt": "2026-11-16 18:00",
+    "taskCosts": [
+    ],
+    "tasks": [
+        {
+            "attributes": [
+                {
+                    "key": "field:work",
+                    "value": "999"
+                }
+            ],
+            "breaks": [
+            ],
+            "calendarId": "",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 480,
+            "id": "A",
+            "name": "표준 작업",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "G",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "AM",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 360,
+            "id": "B",
+            "name": "오전 작업",
+            "predecessors": [
+                "A"
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "G",
+            "workDriven": false,
+            "workUnitMinutes": null
+        }
+    ],
+    "wbsNodes": [
+        {
+            "id": "G",
+            "name": "그룹",
+            "parentId": ""
+        }
+    ]
+}

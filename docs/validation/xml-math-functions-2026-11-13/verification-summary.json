@@ -1,0 +1,205 @@
+{
+  "status": "PASS",
+  "date": "2026-11-13",
+  "contract": "XMH-01~06",
+  "tests": 203,
+  "validated_tests": 203,
+  "skipped": 0,
+  "standard_ctest_failures": 0,
+  "full_run": {
+    "tests": 202,
+    "passed": 202,
+    "seconds": 309.14
+  },
+  "isolated_run": {
+    "tests": 1,
+    "passed": 1,
+    "failures": 0,
+    "seconds": 146.42
+  },
+  "extended_revalidation": null,
+  "focused_tests": 34,
+  "focused_execution": "subset of full run; not repeated",
+  "parser_seeds": 882,
+  "format_files": 523,
+  "maximum_supported_schema": 58,
+  "active_math_schema": 58,
+  "disabled_source_read_schema": 44,
+  "native_layout_changed": false,
+  "independent": {
+    "status": "PASS",
+    "schema": 58,
+    "math_vectors": 6189,
+    "reference_digits": 80,
+    "mpmath_version": "1.3.0",
+    "long_double_digits": 64,
+    "exact_rounded_matches": 6177,
+    "maximum_scaled_delta": 1,
+    "maximum_scaled_tolerance": 126,
+    "approximation_differences": [
+      {
+        "function": "exp",
+        "input": "28506441",
+        "output": "2399882754986049665",
+        "reference": "2399882754986049664",
+        "delta": 1,
+        "tolerance": 33
+      },
+      {
+        "function": "exp",
+        "input": "27321701",
+        "output": "733945784680626914",
+        "reference": "733945784680626913",
+        "delta": 1,
+        "tolerance": 11
+      },
+      {
+        "function": "exp",
+        "input": "29513961",
+        "output": "6572799755225018069",
+        "reference": "6572799755225018068",
+        "delta": 1,
+        "tolerance": 91
+      },
+      {
+        "function": "exp",
+        "input": "28871956",
+        "output": "3458845573335980301",
+        "reference": "3458845573335980300",
+        "delta": 1,
+        "tolerance": 48
+      },
+      {
+        "function": "exp",
+        "input": "29542974",
+        "output": "6766289683782893520",
+        "reference": "6766289683782893519",
+        "delta": 1,
+        "tolerance": 94
+      },
+      {
+        "function": "exp",
+        "input": "29445485",
+        "output": "6137784731065035068",
+        "reference": "6137784731065035067",
+        "delta": 1,
+        "tolerance": 85
+      },
+      {
+        "function": "exp",
+        "input": "26683383",
+        "output": "387655540484042142",
+        "reference": "387655540484042141",
+        "delta": 1,
+        "tolerance": 6
+      },
+      {
+        "function": "exp",
+        "input": "29648627",
+        "output": "7520298896684919948",
+        "reference": "7520298896684919947",
+        "delta": 1,
+        "tolerance": 105
+      },
+      {
+        "function": "exp",
+        "input": "28034422",
+        "output": "1496906857512795295",
+        "reference": "1496906857512795294",
+        "delta": 1,
+        "tolerance": 21
+      },
+      {
+        "function": "exp",
+        "input": "27879387",
+        "output": "1281928883757136671",
+        "reference": "1281928883757136670",
+        "delta": 1,
+        "tolerance": 18
+      },
+      {
+        "function": "exp",
+        "input": "28931691",
+        "output": "3671755494482839896",
+        "reference": "3671755494482839895",
+        "delta": 1,
+        "tolerance": 51
+      },
+      {
+        "function": "exp",
+        "input": "28849535",
+        "output": "3382157718495965520",
+        "reference": "3382157718495965519",
+        "delta": 1,
+        "tolerance": 47
+      }
+    ],
+    "scalar_cases": 30,
+    "xml_cells": 24,
+    "xml_inherited_cells": 2,
+    "xer_static_values": 24,
+    "formula_definitions": 34,
+    "report_rows": 72,
+    "pdf_pages": 19,
+    "native_file_sha256": "13601e98b4f20817d93672bc88b2a29666aacee60749193017ad9ef402adfd4c",
+    "external_product_run": false
+  },
+  "external_product_run": false,
+  "runtime": {
+    "executable": "C:\\Users\\dow\\Development\\ToolMoa\\ProjectPlanningManager\\build-governance\\xml-math-runtime-876d5174\\payload\\PPM.exe",
+    "file_count": 298,
+    "standalone_schema58_read": true
+  },
+  "sources": {
+    "CMakeLists.txt": "9fb8782e33df4a196d9a81cbcd1424302b23b865c1d21bfc3a10214f5fada0bb",
+    "src/domain/XmlMath.cpp": "ce0b838959edfa6e656537bd61ee088d3140a4b399d41801e2e3e1fd1dbd6c4a",
+    "src/domain/XmlMath.h": "e0553a6f819af5c25c9af9bcd0b374d2d1673043ed4d310bb6366e62af279cd4",
+    "src/domain/XmlFormula.cpp": "5888f9fe869611d2968f1f76685f2208fe98f9e21c55986cf7e4091ab7e3e68c",
+    "src/domain/XmlFormula.h": "e6946fc1146083a62b124f1461051d7c764a77717bd001f9a4ba5bd74b99f982",
+    "src/domain/NativeSchema.h": "a3cc6faee9860aa2f168e46eb9aae39f470c506ac7d51e57ba760acde71ba4ff",
+    "src/domain/Classification.cpp": "323d148d0aeff707d348322c8672eae8beeb7904edb2ec07b2edb64cc37e8308",
+    "src/persistence/ProjectJson.cpp": "26166b5688b01fc86cb664d99ceb06c653a305bf1d279b507da1ae5189ddccf0",
+    "src/persistence/ClassificationJson.cpp": "d47bcdc5c4152f9a8bd346d9540ca6fe6313cb91743e465f0c25d383437e4ff2",
+    "src/persistence/ProjectXml.cpp": "d37bc3f82535ed68ce7697669824cbe93336f6f17d4b2110dc50f32d1d4ae7cc",
+    "src/ui/XmlFormulaDialog.cpp": "3e892d8436cc21493a01652d20ec1644c5bf34d10ae0667dc6dbe4bce02fa576",
+    "tests/XmlMathTests.cpp": "987797440ce83b2e990b27235d8957dfbfa8b94e36ed82005af6a50d99d342b8",
+    "scripts/verify-xml-math.py": "68813f9579cea579d077d71b28d925bb83c197594c31400f228f432e3facfccd",
+    "docs/xml-math-functions.md": "8088ed28d09072e5469a85de8e6331590e5293ffe84017e38bb6a919cf7dd2ef"
+  },
+  "artifacts": {
+    "build.txt": "ccd275b31008efcfba89781451bfc8ec0821353c18dc391c9bef8880ac302242",
+    "initial-build.txt": "4f5367b50802aa60d5d886830daefc4ceaa65ea17e001e8cb5a3de7b6e6013f1",
+    "refined-build.txt": "b54876d500d0f2a21ead222faafce7897415bdd164ec633f208f5b43c9ea70db",
+    "fixture-build.txt": "b15cbbe9fc4b88f147b7d4662f98589ffb177c743aaeb87d69b13d9b23378067",
+    "initial-focused.txt": "d690eaa74338dea374d1895803896a9cbae0bd215ef9f301d9792a7585cd9d74",
+    "initial-focused.xml": "7167b35cb12b78cf1a53db90eed612f787f25ccfa349c330de2e412083eed112",
+    "refined-focused.txt": "cc3c7ebfa448f4f94f3f6e1e7b003af28584fdc10690b13699014842acf0a7ef",
+    "refined-focused.xml": "eb738968ed82e2bbd7a047a782dd393ac46b4542135c9ff9cf06e5957a73731a",
+    "fixture-focused.txt": "60d5173cc3b190bcf2b13220d28fe975de77f227e36f033e32b8ecff2b9e609f",
+    "fixture-focused.xml": "eb295cde8131f39b7c1e55cc075ea955d03f5a44c82d2c8a1326a9c499ff249f",
+    "ctest.txt": "ad906cdd3e98fc069c7cc3f04dbd9f04fed1767f0a62c789d0c5e1284cf8641b",
+    "ctest.xml": "aa03936b5f926b5d69ccc2338103ccba252018ad93aeb5ba12c4001c1a2bddab",
+    "isolated.txt": "bc78676ff17a5c63eb5d5e7f32061cf1129aa020fe624238302d4d07449838f3",
+    "isolated.xml": "5077d4c38cd15de9bb4b4d8f5bd8b0b8de207e7ffec58d3b7f90eb39c11eb1b3",
+    "focused.txt": "60f4badd34b601f0a5535d4e12dd6059f4af10b18f097afa8b72b69237094334",
+    "focused.xml": "09bb5303d798eb74483a38c71891fff724d839629d10cda591c9c05adae2e8f4",
+    "quality.json": "af08780ea56da39e6f4864f6d2ad058f139ebcd5080a7d0ad396e22ec90a0767",
+    "independent.json": "b9c771cbbfb242706c346c2cfdfc5cc8d809cde0f804dbefe94742f161db181c",
+    "runtime.json": "6780daa2d0937e33e919c9788cb995b74a7f02d73abb391dfb3a10bea066a212",
+    "runtime-deploy.txt": "ce20896f13b764740b1ee79a8090483ce915c5c00a7509d08748fa952314a016",
+    "runtime-inspect.json": "4e3a5d1875a6905ae207261f53bf0b4056ad334a9a3467bdb9c219b37240ff0c",
+    "native.json": "586125fc24c68d80f0ed9b6d7f2566a8c05fdaf1519b3b994903335195d96036",
+    "archived.json": "74355c15a74352b24a37919c0359055378b4a040bf246c3cd34f7aaf93c3285a",
+    "numbers.xml": "7a54860551e45a96aee1a3a46dfc53e8d9adda728d76ec8cf98bd2735524306f",
+    "numbers.xer": "4b0371ab36775fc304220d3186bc2ebaace11f63080103c31988fe1bc55bf728",
+    "mapping.json": "e9794887b6698fdafbead1c4dbd3f8d4acdecc9b2498ee6a58ea948ad63bf84f",
+    "cases.json": "202579137ec59ab06e26e6cff197080a467976bb32b28098585c40f9e27292a8",
+    "vectors.json": "040473c6f3e895fd9b2b46ce7c5359cd958c1eb293eecb8485000346fb7ceb88",
+    "source.ppm": "13601e98b4f20817d93672bc88b2a29666aacee60749193017ad9ef402adfd4c",
+    "fields.xlsx": "53b136cf0d77ade777444371d84e46d517457e98b98a72c69e09dfddde69ad56",
+    "fields.pdf": "eacb60f046090e7bd979f20ca468a3d18a366af8ee7e3a6693656e4f5decbb88",
+    "report-page.png": "64bc9ed4d6273c3488e2b0cb5aa90d01faf79fa4ef168e71510258c17db57d46",
+    "editor.png": "44625a380d052c36268b5e71d2b045f5b03136b612092c7029e158610e657096",
+    "editor-small.png": "1e1192da2be22445b8e4067a2d569c1eb713edec2192167b9f5ec126d1c4d841"
+  }
+}

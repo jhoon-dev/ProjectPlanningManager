@@ -1,0 +1,1 @@
+{"documentId":"xml-early-late","format":"PPM-AUTOMATION-PROJECT-1","revision":1,"tasks":[{"durationMinutes":6,"name":"선행","taskId":"A"},{"durationMinutes":4,"name":"후행·진행","taskId":"B"},{"durationMinutes":2,"name":"독립·다른 달력","taskId":"C"},{"durationMinutes":0,"name":"이정표","taskId":"M"}]}

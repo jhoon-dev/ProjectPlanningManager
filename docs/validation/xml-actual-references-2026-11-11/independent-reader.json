@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "schema": 47,
+  "xml_cells": 122,
+  "missing_xml_cells": 34,
+  "formula_definitions": 28,
+  "xer_static_values": 25,
+  "archive_ledgers": 6,
+  "external_product_run": false,
+  "mpxj_tasks": 7,
+  "mpxj_assignments": 4,
+  "mpxj_errors": 0
+}

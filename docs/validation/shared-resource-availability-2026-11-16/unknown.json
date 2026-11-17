@@ -1,0 +1,63 @@
+{
+    "at": "2026-11-16 09:45",
+    "contract": "ppm-shared-remaining-availability-v1",
+    "forecast": false,
+    "generation": 5,
+    "occupancyCount": 11,
+    "points": [
+        {
+            "capacity": null,
+            "contributions": [
+                {
+                    "demand": 75,
+                    "issue": "",
+                    "knownDemand": 75,
+                    "projectId": "P",
+                    "revision": 1
+                },
+                {
+                    "demand": 50,
+                    "issue": "",
+                    "knownDemand": 50,
+                    "projectId": "Q",
+                    "revision": 1
+                }
+            ],
+            "demand": 125,
+            "freeUnits": null,
+            "issue": "지정 시각의 자원 가용량이 미설정입니다.",
+            "knownDemand": 125,
+            "name": "부분·열린 공유 풀",
+            "remaining": null,
+            "sharedId": "pool",
+            "shortage": null,
+            "working": true
+        }
+    ],
+    "sources": [
+        {
+            "available": true,
+            "forecast": false,
+            "issue": "",
+            "name": "프로젝트 P",
+            "projectId": "P",
+            "revision": 1,
+            "status": 0,
+            "statusAt": null
+        },
+        {
+            "available": true,
+            "forecast": false,
+            "issue": "",
+            "name": "프로젝트 Q",
+            "projectId": "Q",
+            "revision": 1,
+            "status": 0,
+            "statusAt": null
+        }
+    ],
+    "status": 1,
+    "unit": "100=one-resource",
+    "unmappedResources": 0,
+    "workspaceId": "shared-periods"
+}

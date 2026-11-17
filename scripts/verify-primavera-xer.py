@@ -38,7 +38,7 @@ tasks = tables["TASK"]
 assert len(tasks) == 6
 assert [t["task_name"] for t in tasks] == ["A 설계", "B 개발", "C SS", "D FF", "E SF", "완료점"]
 assert [Decimal(t["target_drtn_hr_cnt"]) for t in tasks] == [8, 2, 1, 2, 1, 0]
-assert all(t["status_code"] == "TK_NotStart" and "act_start_date" not in t for t in tasks)
+assert all(t["status_code"] == "TK_NotStart" and not t["act_start_date"] for t in tasks)
 task_ids = {t["task_id"] for t in tasks}
 assert len(task_ids) == 6
 assert {r["pred_type"] for r in tables["TASKPRED"]} == {"PR_FS", "PR_SS", "PR_FF", "PR_SF"}

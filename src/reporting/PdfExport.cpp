@@ -243,9 +243,59 @@ int exportPdf(const ProjectReport &r, const QString &path, ReportFamily family, 
         font.setPointSize(options.fontPoints);
         painter.setFont(font);
         Pages renderer(writer, painter, r, font);
-        for (const auto &t : r.tables)
-            if (includeTable(t, family))
+        for (const auto &t : r.tables) {
+            if (!includeTable(t, family))
+                continue;
+            if ((t.id == "periodEvm" || t.id == "periodEvmTasks" || t.id == "periodEvmWbs") && t.columns.size() == 31) {
+                // Keep period measures legible; wide cumulative/provenance columns get separate bands.
+                const std::vector<std::pair<std::string, std::vector<std::size_t>>> bands{
+                    {" · 기간 지표", {0, 1, 4, 8, 11, 14, 15, 16, 17, 18}},
+                    {" · 마감 누계", {0, 1, 4, 5, 6, 7, 9, 10, 12, 13, 19, 20}},
+                    {" · 날짜 대사", {0, 1, 4, 14, 21, 22, 23, 24, 25, 26}},
+                    {" · 보고 근거", {0, 1, 3, 4, 27, 28, 29, 30}}};
+                for (const auto &[name, selected] : bands) {
+                    ReportTable band{t.id, t.title + name, t.note, t.family, {}, {}};
+                    for (auto c : selected)
+                        band.columns.push_back(t.columns[c]);
+                    for (const auto &row : t.rows) {
+                        calculationCheckpoint();
+                        std::vector<ReportCell> cells;
+                        for (auto c : selected)
+                            cells.push_back(row[c]);
+                        band.rows.push_back(std::move(cells));
+                    }
+                    renderer.table(band);
+                }
+            } else if (((t.id == "financialPeriod" || t.id == "financialPeriodTasks" || t.id == "financialPeriodWbs") &&
+                        t.columns.size() == 25) ||
+                       (t.id == "financialPeriodHistory" && t.columns.size() == 12)) {
+                const std::vector<std::pair<std::string, std::vector<std::size_t>>> bands =
+                    t.id == "financialPeriodHistory"
+                        ? std::vector<std::pair<std::string, std::vector<std::size_t>>>{{" · 기간과 지식",
+                                                                                         {0, 1, 2, 3, 4, 5, 6, 7, 8}},
+                                                                                        {" · 기록 근거",
+                                                                                         {0, 1, 9, 10, 11}}}
+                        : std::vector<std::pair<std::string, std::vector<std::size_t>>>{
+                              {" · 기간 지표", {0, 1, 2, 3, 4, 5, 6, 7, 8}},
+                              {" · native 대사", {0, 1, 9, 10, 11, 12, 19, 20}},
+                              {" · native 누계", {0, 1, 13, 14, 15, 16, 17, 18}},
+                              {" · 보고 근거", {0, 1, 21, 22, 23, 24}}};
+                for (const auto &[name, selected] : bands) {
+                    ReportTable band{t.id, t.title + name, t.note, t.family, {}, {}};
+                    for (auto c : selected)
+                        band.columns.push_back(t.columns[c]);
+                    for (const auto &row : t.rows) {
+                        calculationCheckpoint();
+                        std::vector<ReportCell> cells;
+                        for (auto c : selected)
+                            cells.push_back(row[c]);
+                        band.rows.push_back(std::move(cells));
+                    }
+                    renderer.table(band);
+                }
+            } else
                 renderer.table(t);
+        }
         if ((family == ReportFamily::All || family == ReportFamily::Costs) && !r.costTrend.empty())
             renderer.chart();
         pages = renderer.pages;

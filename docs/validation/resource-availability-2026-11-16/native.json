@@ -1,0 +1,136 @@
+{
+    "assignments": [
+        {
+            "resourceId": "R",
+            "taskId": "A",
+            "units": 100
+        },
+        {
+            "resourceId": "R",
+            "taskId": "B",
+            "units": 100
+        }
+    ],
+    "baselines": [
+    ],
+    "calculationProfile": "native-effort-split-v1",
+    "calendar": "standard-mon-fri-8h-v1",
+    "calendars": [
+    ],
+    "codeTypes": [
+    ],
+    "costEntries": [
+    ],
+    "costProfile": "cost-day-minor-half-up-v1",
+    "currency": "KRW",
+    "customFields": [
+    ],
+    "derivedFrom": "",
+    "documentId": "resource-availability",
+    "holidays": [
+    ],
+    "name": "부분일·무기한 가용기간",
+    "progress": [
+    ],
+    "resourceFields": [
+        {
+            "id": "q",
+            "name": "시점 가용률",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                ],
+                "source": "PPMUnitAvailability(#2026-11-16T10:30:00#)"
+            }
+        }
+    ],
+    "resources": [
+        {
+            "availability": [
+                {
+                    "from": null,
+                    "to": "2026-11-16 09:59",
+                    "units": 0
+                },
+                {
+                    "from": "2026-11-16 10:00",
+                    "to": "2026-11-16 10:59",
+                    "units": 50
+                },
+                {
+                    "from": "2026-11-16 11:00",
+                    "to": null,
+                    "units": 100
+                }
+            ],
+            "availableFrom": "2026-11-16 09:00",
+            "availableTo": "2026-11-17 17:59",
+            "calendarId": "",
+            "exceptions": [
+                {
+                    "date": "2026-11-17",
+                    "units": 0
+                }
+            ],
+            "id": "R",
+            "maxUnits": 100,
+            "name": "R",
+            "rates": [
+            ],
+            "type": "labor"
+        }
+    ],
+    "revision": 1,
+    "scenarios": [
+    ],
+    "startDate": "2026-11-16",
+    "statusAt": null,
+    "taskCosts": [
+    ],
+    "tasks": [
+        {
+            "breaks": [
+            ],
+            "calendarId": "",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 60,
+            "id": "A",
+            "name": "A",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 60,
+            "id": "B",
+            "name": "B",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "",
+            "workDriven": false,
+            "workUnitMinutes": null
+        }
+    ],
+    "wbsNodes": [
+    ]
+}

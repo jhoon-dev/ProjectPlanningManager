@@ -1,0 +1,19 @@
+Start testing: Nov 17 10:20 대한민국 표준시
+----------------------------------------------------------
+70/253 Testing: material_delay_contract
+70/253 Test: material_delay_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_material_delay_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"material_delay_contract" start time: Nov 17 10:20 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS material automatic delay/all engines/reservations/future protection/finish/uniform/constraints/calendar/curves/integrated/schema82/adoption/archives/recovery; 24 oracle fixtures
+<end of output>
+Test time =   6.58 sec
+----------------------------------------------------------
+Test Passed.
+"material_delay_contract" end time: Nov 17 10:20 대한민국 표준시
+"material_delay_contract" time elapsed: 00:00:06
+----------------------------------------------------------
+
+End testing: Nov 17 10:20 대한민국 표준시

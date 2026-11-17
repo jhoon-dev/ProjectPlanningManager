@@ -1,0 +1,85 @@
+{
+    "companionPolicy": "원본과 진단은 이 폴더의 동반 파일입니다. .ppm 사본 저장/이동 시 자동 복제되지 않습니다.",
+    "compatibility": {
+        "externalRoundTrip": "unverified",
+        "import": "not-applicable",
+        "jobsRecomputation": "unverified",
+        "originalPreservation": "exact-native-input-snapshot"
+    },
+    "contract": "jobs-mspdi-plan-v1",
+    "diagnostics": [
+        {
+            "message": "기간 기반 계획 투영입니다. 외부 제품의 계산/재저장 호환은 미검증입니다. 원본 전체 입력/이력은 source.ppm 참조.",
+            "path": "/Project"
+        },
+        {
+            "message": "지원 사용자 필드는 UDF 매핑표를 따릅니다. 작업 코드·저장된 보기는 source.ppm에 전체 데이터를 보존합니다.",
+            "path": "/Project/ExtendedAttribute"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/q"
+        },
+        {
+            "message": "가용 경계·날짜 예외·기간별 가용률을 비중첩 전체 기간으로 투영합니다. 편집 정의/우선순위는 source.ppm에 보존합니다.",
+            "path": "/Resource/R/AvailabilityPeriods"
+        }
+    ],
+    "direction": "export",
+    "documentId": "resource-availability",
+    "format": "Microsoft Project XML",
+    "mapping": [
+        {
+            "externalId": "205521008",
+            "jobsId": "q",
+            "kind": "udf",
+            "name": "시점 가용률",
+            "scope": "RSRC",
+            "type": "number",
+            "xmlFieldName": "Number1"
+        },
+        {
+            "jobsId": "",
+            "kind": "calendar",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "A",
+            "kind": "task",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "B",
+            "kind": "task",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "R",
+            "kind": "resource",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "A/R",
+            "kind": "assignment",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "B/R",
+            "kind": "assignment",
+            "xmlUid": "2"
+        }
+    ],
+    "namespace": "http://schemas.microsoft.com/project",
+    "nativeSnapshotProfile": "native-effort-split-v1",
+    "revision": "1",
+    "source": {
+        "name": "source.ppm",
+        "product": "PPM"
+    },
+    "targetPolicy": {
+        "calculationProfile": "native-effort-split-v1",
+        "lagCalendar": "successor-working-calendar",
+        "projectStartAnchor": "09:00"
+    },
+    "xmlSha256": "cc0653e828041922f2fbab3b1a46d67c7e19eb38b3a75f5d365b091b43356c9f"
+}

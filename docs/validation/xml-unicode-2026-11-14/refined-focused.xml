@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-ninja"
+	tests="2"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-61CPKLN"
+	time="9"
+	timestamp="2026-11-14T16:58:45"
+	>
+	<testcase name="xml_unicode_contract" classname="xml_unicode_contract" time="6.20772" status="run">
+		<properties/>
+		<system-out>PASS AscW/ChrW: precedence/rounding/domain/range/Null, scopes/summary/roll-down, schema66/archives/recovery/XML/XER/reports; 63456 BMP vectors
+</system-out>
+	</testcase>
+	<testcase name="xml_unicode_ui" classname="xml_unicode_ui" time="3.02955" status="run">
+		<properties/>
+		<system-out>PASS AscW/ChrW UI: examples/async preview/save/undo/cancel and small layout
+</system-out>
+	</testcase>
+</testsuite>

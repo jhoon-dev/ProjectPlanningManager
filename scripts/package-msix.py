@@ -51,7 +51,7 @@ def main():
         raise RuntimeError('Commit source before producing a package: ' + dirty.decode('utf-8', errors='replace'))
     environment = os.environ.copy()
     environment['PATH'] = os.pathsep.join((str(qt / 'bin'), str(compiler), environment['PATH']))
-    target = ['JOBS'] + (['jobs_msix_probe'] if args.include_probe else [])
+    target = ['JOBS', 'PPM-Automation'] + (['jobs_msix_probe'] if args.include_probe else [])
     subprocess.run(['cmake', '--build', str(build), '--config', 'Release', '--parallel', '3', '--target', *target],
                    check=True, env=environment)
     if 'CMAKE_BUILD_TYPE:STRING=Release' not in (build / 'CMakeCache.txt').read_text():

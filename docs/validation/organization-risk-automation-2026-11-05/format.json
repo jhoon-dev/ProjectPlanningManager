@@ -1,0 +1,6 @@
+{
+  "status": "success",
+  "tool": "clang-format 18.1.8",
+  "files": 247,
+  "format_changes": []
+}

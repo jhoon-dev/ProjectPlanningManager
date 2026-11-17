@@ -150,7 +150,8 @@ void historical(jobs::JsonProjectStore &store, const std::string &path, const st
     const auto replay = jobs::levelResources(jobs::scenarioProject(s), s.priority, s.horizonWorkDays, s.policy);
     at(replay.leveled, 0, "2026-10-27 09:01");
     check(replay.leveled.engineVersion == old.engineVersion &&
-              replay.leveled.calculationPolicy == s.policy + "/task-order",
+              replay.leveled.calculationPolicy ==
+                  s.policy + "/task-order" + (replay.leveled.levelingFloatCalculated ? "/resource-order-float-v1" : ""),
           "scenario replay silently selected a new engine/policy");
     // The legacy policy must remain isolated to its calling worker.
     auto legacy = std::async(std::launch::async, [&] { return jobs::calculatePlan(p, jobs::legacyEngineFor(p)); });

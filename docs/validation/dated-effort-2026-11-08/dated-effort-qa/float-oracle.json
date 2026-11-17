@@ -1,0 +1,23 @@
+[
+    {
+        "freeA": 2,
+        "freeB": 4,
+        "quota": 200,
+        "totalA": 2,
+        "totalB": 4
+    },
+    {
+        "freeA": 1,
+        "freeB": 4,
+        "quota": 300,
+        "totalA": 1,
+        "totalB": 4
+    },
+    {
+        "freeA": 0,
+        "freeB": 4,
+        "quota": 400,
+        "totalA": 0,
+        "totalB": 4
+    }
+]

@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "cases": 24,
+  "tasks": 96,
+  "exact_date_comparisons": 288,
+  "exact_balance_comparisons": 288,
+  "exhaustive_candidates": 9559,
+  "native_schema": 83,
+  "workspace_schema": 2,
+  "pdf_pages": 4
+}

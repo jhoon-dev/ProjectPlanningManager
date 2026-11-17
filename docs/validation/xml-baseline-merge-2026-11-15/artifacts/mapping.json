@@ -1,0 +1,266 @@
+{
+    "baselineExport": {
+        "numbers": [
+            0,
+            1
+        ],
+        "policy": "adopted-external-slot-before-native-version",
+        "rows": 7,
+        "timephased": 4
+    },
+    "companionPolicy": "원본과 진단은 이 폴더의 동반 파일입니다. .ppm 사본 저장/이동 시 자동 복제되지 않습니다.",
+    "compatibility": {
+        "externalRoundTrip": "unverified",
+        "import": "not-applicable",
+        "jobsRecomputation": "unverified",
+        "originalPreservation": "exact-native-input-snapshot"
+    },
+    "contract": "jobs-mspdi-plan-v1",
+    "diagnostics": [
+        {
+            "message": "기간 기반 계획 투영입니다. 외부 제품의 계산/재저장 호환은 미검증입니다. 원본 전체 입력/이력은 source.ppm 참조.",
+            "path": "/Project"
+        },
+        {
+            "message": "지원 사용자 필드는 UDF 매핑표를 따릅니다. 작업 코드·저장된 보기는 source.ppm에 전체 데이터를 보존합니다.",
+            "path": "/Project/ExtendedAttribute"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/xml-udf-TASK-188743732"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/xml-udf-TASK-188743767"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/xml-udf-TASK-188743783"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/xml-udf-TASK-188743768"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/xml-udf-TASK-188743786"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/xml-udf-PROJECT-190873600"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/xml-udf-PROJECT-190873601"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/xml-udf-RSRC-205521008"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/xml-udf-ASSIGNMENT-255885312"
+        },
+        {
+            "message": "계산식은 현재 숫자 결과만 투영합니다. 식·의존성은 source.ppm에 보존합니다.",
+            "path": "UDF/xml-udf-ASSIGNMENT-255885313"
+        },
+        {
+            "message": "채택한 외부 번호별 기준선이 있으면 해당 명시 값을, 그 외 번호는 native 승인본을 사용합니다. 표준 Baseline 요소로 내보내며 재가져오기 시 별도 검토·채택해야 식이 그 값을 사용합니다. source.ppm에 전체 이력을 보존합니다.",
+            "path": "/ExtendedAttributes/Formula"
+        },
+        {
+            "message": "미설정 · 외부 기준선 날짜 미설정 · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743732/native-xml-task-3"
+        },
+        {
+            "message": "미설정 · 채택한 외부 기준선에 객체 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743732/native-xml-task-4"
+        },
+        {
+            "message": "미설정 · 채택한 외부 기준선에 객체 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743767/native-xml-task-4"
+        },
+        {
+            "message": "미설정 · 채택한 외부 기준선에 객체 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743783/native-xml-task-4"
+        },
+        {
+            "message": "미설정 · 채택한 외부 기준선에 객체 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743768/native-xml-task-4"
+        },
+        {
+            "message": "미설정 · 채택한 외부 기준선에 객체 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-TASK-188743786/native-xml-task-4"
+        },
+        {
+            "message": "미설정 · 채택한 외부 기준선에 객체 값이 없습니다. · 외부 값 생략",
+            "path": "UDF/xml-udf-ASSIGNMENT-255885312/PROJECT"
+        },
+        {
+            "message": "지원 기준선 값은 표준 Baseline으로 내보냅니다. 전체 승인/실적/원가 이력·시나리오는 source.ppm에 보존합니다.",
+            "path": "/Project/history-costs"
+        }
+    ],
+    "direction": "export",
+    "documentId": "native-baseline-merge",
+    "format": "Microsoft Project XML",
+    "mapping": [
+        {
+            "externalId": "188743732",
+            "jobsId": "xml-udf-TASK-188743732",
+            "kind": "udf",
+            "name": "TS",
+            "scope": "TASK",
+            "type": "start",
+            "xmlFieldName": "Start1"
+        },
+        {
+            "externalId": "188743767",
+            "jobsId": "xml-udf-TASK-188743767",
+            "kind": "udf",
+            "name": "TD",
+            "scope": "TASK",
+            "type": "number",
+            "xmlFieldName": "Number1"
+        },
+        {
+            "externalId": "188743783",
+            "jobsId": "xml-udf-TASK-188743783",
+            "kind": "udf",
+            "name": "TDF",
+            "scope": "TASK",
+            "type": "duration",
+            "xmlFieldName": "Duration1"
+        },
+        {
+            "externalId": "188743768",
+            "jobsId": "xml-udf-TASK-188743768",
+            "kind": "udf",
+            "name": "TW",
+            "scope": "TASK",
+            "type": "number",
+            "xmlFieldName": "Number2"
+        },
+        {
+            "externalId": "188743786",
+            "jobsId": "xml-udf-TASK-188743786",
+            "kind": "udf",
+            "name": "TC",
+            "scope": "TASK",
+            "type": "cost",
+            "xmlFieldName": "Cost1"
+        },
+        {
+            "externalId": "190873600",
+            "jobsId": "xml-udf-PROJECT-190873600",
+            "kind": "udf",
+            "name": "PD",
+            "representation": "hex-element",
+            "scope": "PROJECT",
+            "type": "number",
+            "xmlFieldName": "PD",
+            "xmlGuid": "e172d78a-94e3-56b2-80fc-18b2f8ab0724"
+        },
+        {
+            "externalId": "190873601",
+            "jobsId": "xml-udf-PROJECT-190873601",
+            "kind": "udf",
+            "name": "PW",
+            "representation": "hex-element",
+            "scope": "PROJECT",
+            "type": "number",
+            "xmlFieldName": "PW",
+            "xmlGuid": "7ded80d5-d03b-5ccd-9c6b-f08ed3707202"
+        },
+        {
+            "externalId": "205521008",
+            "jobsId": "xml-udf-RSRC-205521008",
+            "kind": "udf",
+            "name": "RW",
+            "scope": "RSRC",
+            "type": "number",
+            "xmlFieldName": "Number1"
+        },
+        {
+            "externalId": "255885312",
+            "jobsId": "xml-udf-ASSIGNMENT-255885312",
+            "kind": "udf",
+            "name": "AW",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "number",
+            "xmlFieldName": "AW",
+            "xmlGuid": "4e7ced57-f1d2-5d4b-8cc2-ec2daf2c4584"
+        },
+        {
+            "externalId": "255885313",
+            "jobsId": "xml-udf-ASSIGNMENT-255885313",
+            "kind": "udf",
+            "name": "TW",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "number",
+            "xmlFieldName": "TW",
+            "xmlGuid": "0ed9bfd7-fbd2-5282-9c08-1d5bc1347468"
+        },
+        {
+            "jobsId": "",
+            "kind": "calendar",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "xml-cal-1",
+            "kind": "calendar",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "native-xml-wbs-1",
+            "kind": "wbs",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "native-xml-task-2",
+            "kind": "task",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "native-xml-task-3",
+            "kind": "task",
+            "xmlUid": "3"
+        },
+        {
+            "jobsId": "native-xml-task-4",
+            "kind": "task",
+            "xmlUid": "4"
+        },
+        {
+            "jobsId": "native-xml-resource-1",
+            "kind": "resource",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "native-xml-task-2/native-xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "native-xml-task-3/native-xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "2"
+        }
+    ],
+    "namespace": "http://schemas.microsoft.com/project",
+    "nativeSnapshotProfile": "native-effort-split-v1",
+    "revision": "12",
+    "source": {
+        "name": "source.ppm",
+        "product": "PPM"
+    },
+    "targetPolicy": {
+        "calculationProfile": "native-effort-split-v1",
+        "lagCalendar": "successor-working-calendar",
+        "projectStartAnchor": "09:00"
+    },
+    "xmlSha256": "5e61a2ff3a179c7589af9c371a953d0ef9fb00524747199cd5b74342620432e3"
+}

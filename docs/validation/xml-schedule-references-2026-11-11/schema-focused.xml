@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-ninja"
+	tests="8"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-61CPKLN"
+	time="14"
+	timestamp="2026-11-11T15:14:11"
+	>
+	<testcase name="project_currency_conversion_contract" classname="project_currency_conversion_contract" time="14.1198" status="run">
+		<properties/>
+		<system-out>PASS: project-wide currency rates/budgets/materials/expenses/native observations/baselines/scenarios/closed periods/external EVM/XER projections, original archives and FX chains, schema34/replay/recovery/copy, sequential identity/currency operations, numerical cases, cancel/stale/readonly, export and native UI
+</system-out>
+	</testcase>
+	<testcase name="ledger_identity_migration_contract" classname="ledger_identity_migration_contract" time="9.31592" status="run">
+		<properties/>
+		<system-out>PASS: explicit task/resource identity migration, original/provenance/amount/date preservation, baseline/closed periods/Steps/external EVM/XER relink and schedule archives, fresh/merge IDs, schema33/replay/recovery/copy, sequential/cancel/stale/readonly, export and native UI
+</system-out>
+	</testcase>
+	<testcase name="xer_schedule_adoption_contract" classname="xer_schedule_adoption_contract" time="6.21181" status="run">
+		<properties/>
+		<system-out>PASS: schedule/WBS/calendar scoped adoption, explicit task creation/ID mapping, local tasks and native histories preserved, schema32/replay/recovery/copy, worker stale/cancel/read-only, XER export and Windows UI
+</system-out>
+	</testcase>
+	<testcase name="xer_source_conversion_contract" classname="xer_source_conversion_contract" time="3.47037" status="run">
+		<properties/>
+		<system-out>PASS: explicit XER currency/type conversions, exact work, half-up/overflow oracle cases, immutable sources/native ledger, schema31/replay/recovery/copy, export, stale/cancel/read-only and native UI
+</system-out>
+	</testcase>
+	<testcase name="xer_source_relink_contract" classname="xer_source_relink_contract" time="3.646" status="run">
+		<properties/>
+		<system-out>PASS: new XER source/schema28, changed/deleted ID maps and unobserved retirement, source archive/native fact preservation, ambiguity/type/zero guards, undated dictionary, post-version merge, recovery/copy/stale/cancel/read-only, async file and native review UI
+</system-out>
+	</testcase>
+	<testcase name="xer_financial_merge_contract" classname="xer_financial_merge_contract" time="3.81343" status="run">
+		<properties/>
+		<system-out>PASS: schema27 original/current ledger merge; disjoint residual union, allocated corrections/withdrawals, explicit overlap/OT decisions, immutable native facts and AC, identity/status guards, post-merge edit, save/copy/recovery, XER coalescing and native UI
+</system-out>
+	</testcase>
+	<testcase name="xer_financial_edit_allocation_contract" classname="xer_financial_edit_allocation_contract" time="3.19795" status="run">
+		<properties/>
+		<system-out>PASS: XER aggregate correction audit/schema26, exact weighted days and residuals, immutable source/native corrections, no double counting, AC-only/withdrawal, cancellation/stale/read-only, save/copy/recovery, XER and native editor preview
+</system-out>
+	</testcase>
+	<testcase name="xer_financial_snapshot_contract" classname="xer_financial_snapshot_contract" time="3.37704" status="run">
+		<properties/>
+		<system-out>PASS: schema25 XER financial snapshots, preserved intervals/undated regular+OT, AC/EVM isolation, stale/undo/copy/recovery, strict validation, combined references, virtual tables and search
+</system-out>
+	</testcase>
+</testsuite>

@@ -1,0 +1,212 @@
+{
+  "status": "success",
+  "engine": "jobs-adopted-leveling-1.8",
+  "paired_observations": [
+    {
+      "name": "holes-small",
+      "samples_each": 5,
+      "legacy_median_ms": 16.6837,
+      "optimized_median_ms": 18.7331,
+      "observed_ratio": 0.8906000608548506,
+      "counters": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        12,
+        0
+      ],
+      "pruning": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "fractional",
+      "samples_each": 5,
+      "legacy_median_ms": 20.6092,
+      "optimized_median_ms": 20.6167,
+      "observed_ratio": 0.9996362172413625,
+      "counters": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        16,
+        0
+      ],
+      "pruning": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "fractional-long",
+      "samples_each": 5,
+      "legacy_median_ms": 22.1386,
+      "optimized_median_ms": 22.539,
+      "observed_ratio": 0.9822352367008296,
+      "counters": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        40,
+        0
+      ],
+      "pruning": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "varying",
+      "samples_each": 5,
+      "legacy_median_ms": 11.1807,
+      "optimized_median_ms": 11.0059,
+      "observed_ratio": 1.0158823903542644,
+      "counters": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        98,
+        0
+      ],
+      "pruning": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "holes-96",
+      "samples_each": 3,
+      "legacy_median_ms": 123.439,
+      "optimized_median_ms": 116.5597,
+      "observed_ratio": 1.0590195410592167,
+      "counters": [
+        0,
+        96,
+        0,
+        0,
+        0,
+        45148,
+        0
+      ],
+      "pruning": [
+        11136,
+        0,
+        0,
+        2,
+        0,
+        11740
+      ]
+    },
+    {
+      "name": "late-tiny",
+      "samples_each": 5,
+      "legacy_median_ms": 3.8662,
+      "optimized_median_ms": 4.014,
+      "observed_ratio": 0.9631788739412057,
+      "counters": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        422,
+        0
+      ],
+      "pruning": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "adaptive-observed",
+      "samples_each": 3,
+      "legacy_median_ms": 7.5694,
+      "optimized_median_ms": 10.1836,
+      "observed_ratio": 0.7432931379865666,
+      "counters": [
+        1,
+        1,
+        0,
+        1,
+        1,
+        1034,
+        0
+      ],
+      "pruning": [
+        0,
+        0,
+        88,
+        3,
+        0,
+        184
+      ]
+    },
+    {
+      "name": "split",
+      "samples_each": 3,
+      "legacy_median_ms": 79.8397,
+      "optimized_median_ms": 74.4624,
+      "observed_ratio": 1.0722149702400137,
+      "counters": [
+        1,
+        1,
+        0,
+        1,
+        1,
+        16917,
+        1
+      ],
+      "pruning": [
+        0,
+        312,
+        349,
+        1,
+        0,
+        7305
+      ]
+    }
+  ],
+  "witnesses_checked": 138,
+  "date_references_checked": 400,
+  "exhaustive_feasible_counts": {
+    "holes-small": 4,
+    "fractional": 55,
+    "fractional-long": 673,
+    "varying": 17366,
+    "late-tiny": 64,
+    "adaptive-observed": 32768,
+    "split": 155761
+  },
+  "legacy_1_7_baseline_preserved": true,
+  "native_schema": 12,
+  "xlsx_checked": true
+}

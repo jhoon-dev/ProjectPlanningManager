@@ -1,0 +1,104 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-forecast
+      Start  1: progress_policy_contract
+ 1/81 Test  #1: progress_policy_contract ..............   Passed    1.15 sec
+      Start  2: progress_policy_ui
+ 2/81 Test  #2: progress_policy_ui ....................   Passed    5.16 sec
+      Start  3: xer_project_selection_contract
+ 3/81 Test  #3: xer_project_selection_contract ........   Passed    1.83 sec
+      Start  4: xer_project_selection_ui
+ 4/81 Test  #4: xer_project_selection_ui ..............   Passed    3.08 sec
+      Start  5: network_diagram_contract
+ 5/81 Test  #5: network_diagram_contract ..............   Passed    0.42 sec
+      Start  6: network_diagram_ui
+ 6/81 Test  #6: network_diagram_ui ....................   Passed    3.40 sec
+      Start  7: schedule_print_contract
+ 7/81 Test  #7: schedule_print_contract ...............   Passed    7.24 sec
+      Start  8: schedule_print_ui
+ 8/81 Test  #8: schedule_print_ui .....................   Passed    4.58 sec
+      Start  9: leveling_selection_contract
+ 9/81 Test  #9: leveling_selection_contract ...........   Passed    0.93 sec
+      Start 10: leveling_selection_ui
+10/81 Test #10: leveling_selection_ui .................   Passed    3.13 sec
+      Start 11: period_actual_contract
+11/81 Test #11: period_actual_contract ................   Passed    0.67 sec
+      Start 12: period_actual_ui
+12/81 Test #12: period_actual_ui ......................   Passed    2.16 sec
+      Start 13: timephased_usage_contract
+13/81 Test #13: timephased_usage_contract .............   Passed    0.46 sec
+      Start 14: timephased_usage_ui
+14/81 Test #14: timephased_usage_ui ...................   Passed    4.41 sec
+      Start 15: task_classification_contract
+15/81 Test #15: task_classification_contract ..........   Passed    0.76 sec
+      Start 16: task_classification_ui
+16/81 Test #16: task_classification_ui ................   Passed    5.28 sec
+      Start 17: forecast_float_contract
+17/81 Test #17: forecast_float_contract ...............   Passed    1.53 sec
+      Start 18: forecast_float_ui
+18/81 Test #18: forecast_float_ui .....................   Passed    2.43 sec
+      Start 19: dialog_layout
+19/81 Test #19: dialog_layout .........................   Passed    6.71 sec
+      Start 20: application_updates
+20/81 Test #20: application_updates ...................   Passed    3.88 sec
+      Start 21: editing_polish_ui
+21/81 Test #21: editing_polish_ui .....................   Passed    1.88 sec
+      Start 22: workspace_presentation
+22/81 Test #22: workspace_presentation ................   Passed    2.43 sec
+      Start 23: primavera_public_corpus
+23/81 Test #23: primavera_public_corpus ...............   Passed    0.75 sec
+      Start 24: application_storage_contract
+24/81 Test #24: application_storage_contract ..........   Passed    0.31 sec
+      Start 25: msix_workflow_unpacked
+25/81 Test #25: msix_workflow_unpacked ................   Passed    1.80 sec
+      Start 26: structured_diagnostics
+26/81 Test #26: structured_diagnostics ................   Passed    0.25 sec
+      Start 27: shared_resource_intervals
+27/81 Test #27: shared_resource_intervals .............   Passed    0.79 sec
+      Start 28: workspace_file_contract
+28/81 Test #28: workspace_file_contract ...............   Passed    1.53 sec
+      Start 29: multi_project_workspace_ui
+29/81 Test #29: multi_project_workspace_ui ............   Passed    3.48 sec
+      Start 30: document_edit_guards
+30/81 Test #30: document_edit_guards ..................   Passed    0.62 sec
+      Start 31: parser_seed_replay
+31/81 Test #31: parser_seed_replay ....................   Passed    0.50 sec
+      Start 32: responsive_document_contract
+32/81 Test #32: responsive_document_contract ..........   Passed   26.72 sec
+      Start 33: responsive_editing_ui
+33/81 Test #33: responsive_editing_ui .................   Passed    5.10 sec
+      Start 34: prepared_edit_contract
+34/81 Test #34: prepared_edit_contract ................   Passed    1.82 sec
+      Start 35: baseline_async_contract_ui
+35/81 Test #35: baseline_async_contract_ui ............   Passed    4.37 sec
+      Start 36: exchange_async_recovery_diagnostics
+36/81 Test #36: exchange_async_recovery_diagnostics ...   Passed   26.62 sec
+      Start 37: task_table_model_contract
+37/81 Test #37: task_table_model_contract .............   Passed    0.55 sec
+      Start 38: async_editing_ui
+38/81 Test #38: async_editing_ui ......................   Passed   25.93 sec
+      Start 39: primavera_xer_contract
+39/81 Test #39: primavera_xer_contract ................   Passed    4.38 sec
+      Start 40: primavera_xer_ui
+40/81 Test #40: primavera_xer_ui ......................   Passed    3.81 sec
+      Start 41: project_xml_contract
+41/81 Test #41: project_xml_contract ..................   Passed    1.66 sec
+      Start 42: project_xml_ui
+42/81 Test #42: project_xml_ui ........................   Passed    3.32 sec
+      Start 43: bulk_editing_contract_ui
+43/81 Test #43: bulk_editing_contract_ui ..............   Passed    3.89 sec
+      Start 44: projected_views_ui
+44/81 Test #44: projected_views_ui ....................   Passed    9.66 sec
+      Start 45: task_editing_contract
+45/81 Test #45: task_editing_contract .................   Passed    1.07 sec
+      Start 46: task_editing_ui
+46/81 Test #46: task_editing_ui .......................   Passed    3.46 sec
+      Start 47: calculation_cancellation
+47/81 Test #47: calculation_cancellation ..............   Passed    3.47 sec
+      Start 48: integrated_project_workflow
+48/81 Test #48: integrated_project_workflow ...........   Passed    2.80 sec
+      Start 49: performance_cancellation_ui
+49/81 Test #49: performance_cancellation_ui ...........   Passed    2.42 sec
+      Start 50: effort_work_calendar_split
+50/81 Test #50: effort_work_calendar_split ............   Passed    3.14 sec
+      Start 51: effort_edit_regressions
+51/81 Test #51: effort_edit_regressions ...............   Passed    6.24 sec
+      Start 52: milestone_baseline_regressions

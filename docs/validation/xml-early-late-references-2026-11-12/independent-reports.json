@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "schema": 51,
+  "xml_plan_cells": 60,
+  "xer_plan_cells": 48,
+  "formula_definitions": 18,
+  "independent_oracle": "civil-minute forward/backward enumeration",
+  "external_product_run": false,
+  "report_forecast_cells": 60,
+  "missing_forecast_cells": 9,
+  "xlsx_sheets": 21,
+  "pdf_pages": 16
+}

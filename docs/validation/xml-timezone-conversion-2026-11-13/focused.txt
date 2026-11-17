@@ -1,0 +1,53 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+      Start 30: xml_remaining_contract
+      Start 32: xml_baseline_contract
+      Start 60: xml_additional_functions_contract
+      Start 50: xml_quantity_contract
+ 1/24 Test #50: xml_quantity_contract ...............   Passed    1.98 sec
+      Start 58: xml_timezone_contract
+ 2/24 Test #60: xml_additional_functions_contract ...   Passed    2.29 sec
+      Start 62: xml_formula_contract
+ 3/24 Test #32: xml_baseline_contract ...............   Passed    3.68 sec
+      Start 66: xml_roll_down_contract
+ 4/24 Test #30: xml_remaining_contract ..............   Passed    4.38 sec
+      Start 54: xml_calendar_contract
+ 5/24 Test #62: xml_formula_contract ................   Passed    2.06 sec
+      Start 64: xml_roll_up_contract
+ 6/24 Test #58: xml_timezone_contract ...............   Passed    2.45 sec
+      Start 52: xml_actual_contract
+ 7/24 Test #66: xml_roll_down_contract ..............   Passed    1.48 sec
+      Start 34: xml_early_late_contract
+ 8/24 Test #64: xml_roll_up_contract ................   Passed    1.28 sec
+      Start 56: xml_schedule_contract
+ 9/24 Test #54: xml_calendar_contract ...............   Passed    1.38 sec
+      Start 31: xml_remaining_ui
+10/24 Test #52: xml_actual_contract .................   Passed    1.30 sec
+      Start 57: xml_schedule_ui
+11/24 Test #31: xml_remaining_ui ....................   Passed    0.97 sec
+      Start 33: xml_baseline_ui
+12/24 Test #56: xml_schedule_contract ...............   Passed    1.09 sec
+      Start 51: xml_quantity_ui
+13/24 Test #34: xml_early_late_contract .............   Passed    1.68 sec
+      Start 53: xml_actual_ui
+14/24 Test #57: xml_schedule_ui .....................   Passed    1.14 sec
+      Start 55: xml_calendar_ui
+15/24 Test #53: xml_actual_ui .......................   Passed    0.72 sec
+      Start 61: xml_additional_functions_ui
+16/24 Test #51: xml_quantity_ui .....................   Passed    0.85 sec
+      Start 63: xml_formula_ui
+17/24 Test #33: xml_baseline_ui .....................   Passed    1.05 sec
+      Start 67: xml_roll_down_ui
+18/24 Test #55: xml_calendar_ui .....................   Passed    0.92 sec
+      Start 65: xml_roll_up_ui
+19/24 Test #67: xml_roll_down_ui ....................   Passed    0.57 sec
+      Start 59: xml_timezone_ui
+20/24 Test #63: xml_formula_ui ......................   Passed    0.75 sec
+      Start 35: xml_early_late_ui
+21/24 Test #65: xml_roll_up_ui ......................   Passed    0.56 sec
+22/24 Test #61: xml_additional_functions_ui .........   Passed    0.85 sec
+23/24 Test #35: xml_early_late_ui ...................   Passed    0.69 sec
+24/24 Test #59: xml_timezone_ui .....................   Passed    0.76 sec
+
+100% tests passed out of 24
+
+Total Test time (real) =   9.16 sec

@@ -1,0 +1,186 @@
+﻿ERMHDR	20.12	2026-11-16	Project	PPM	PPM	dbxDatabaseNoName	Project Management	USD
+%T	ACTVCODE
+%F	actv_code_id	parent_actv_code_id	actv_code_type_id	short_name	actv_code_name	seq_num
+%T	ACTVTYPE
+%F	actv_code_type_id	actv_code_type	seq_num	actv_code_type_scope	proj_id
+%T	CALENDAR
+%F	clndr_id	default_flag	clndr_name	proj_id	base_clndr_id	clndr_type	day_hr_cnt	week_hr_cnt	rsrc_private	clndr_data
+%R	1	Y	PPM standard	1		CA_Project	8.000000	40.000000	N	(0||CalendarData()((0||DaysOfWeek()((0||1()())(0||2()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||3()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||4()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||5()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||6()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||7()())))(0||Exceptions()())))
+%R	2	N	8분	1		CA_Project	0.200000	1.000000	N	(0||CalendarData()((0||DaysOfWeek()((0||1()())(0||2()((0||0(s|09:00|f|09:12)())))(0||3()((0||0(s|09:00|f|09:12)())))(0||4()((0||0(s|09:00|f|09:12)())))(0||5()((0||0(s|09:00|f|09:12)())))(0||6()((0||0(s|09:00|f|09:12)())))(0||7()())))(0||Exceptions()())))
+%R	3	N	부분 6분	1		CA_Project	0.100000	0.500000	N	(0||CalendarData()((0||DaysOfWeek()((0||1()())(0||2()((0||0(s|09:01|f|09:07)())))(0||3()((0||0(s|09:01|f|09:07)())))(0||4()((0||0(s|09:01|f|09:07)())))(0||5()((0||0(s|09:01|f|09:07)())))(0||6()((0||0(s|09:01|f|09:07)())))(0||7()())))(0||Exceptions()())))
+%T	CURRTYPE
+%F	curr_id	decimal_digit_cnt	curr_symbol	decimal_symbol	digit_group_symbol	pos_curr_fmt_type	neg_curr_fmt_type	curr_type	curr_short_name	group_digit_cnt	base_exch_rate
+%R	1	2	USD	.	,	#1.1	(#1.1)	USD	USD	3	1
+%T	FINDATES
+%F	fin_dates_id	fin_dates_name	start_date	end_date
+%T	PROJCOST
+%F	cost_item_id	proj_id	task_id	cost_name	cost_load_type	target_cost	act_cost	remain_cost	auto_compute_act_flag
+%R	1	1	1	PPM direct/unallocated cost	CL_Uniform	10.100000			N
+%R	2	1	2	PPM direct/unallocated cost	CL_End	20.300000			N
+%R	3	1	3	PPM direct/unallocated cost	CL_Start	30.700000			N
+%R	4	1	4	PPM direct/unallocated cost	CL_Uniform	0.000000			N
+%R	5	1	5	PPM direct/unallocated cost	CL_Uniform	0.000000			N
+%T	PROJECT
+%F	proj_id	proj_short_name	clndr_id	plan_start_date	def_task_type	def_duration_type	task_code_prefix	task_code_base	task_code_step	last_recalc_date
+%R	1	PPM-5dbbd7cb1be3	1	2026-11-16 09:00	TT_Task	DT_FixedDrtn	J	1	1	
+%T	PROJWBS
+%F	wbs_id	proj_id	seq_num	proj_node_flag	wbs_short_name	wbs_name	parent_wbs_id
+%R	1	1	0	Y	PPM-5dbbd7cb1be3	최초 기준선 원가	
+%R	2	1	2	N	W2	시공	1
+%R	3	1	3	N	W3	이정표	1
+%T	RSRC
+%F	rsrc_id	clndr_id	curr_id	rsrc_name	rsrc_short_name	rsrc_type	active_flag	cost_qty_type
+%R	1	3	1	부분 인력	R1	RT_Labor	Y	QT_Hour
+%R	2	2	1	지원	R2	RT_Labor	Y	QT_Hour
+%R	3	2	1	미사용	R3	RT_Labor	Y	QT_Hour
+%R	4	2	1	이후 자원	R4	RT_Labor	Y	QT_Hour
+%T	RSRCCURVDATA
+%F	curv_id	curv_name	default_flag	pct_usage_0	pct_usage_1	pct_usage_2	pct_usage_3	pct_usage_4	pct_usage_5	pct_usage_6	pct_usage_7	pct_usage_8	pct_usage_9	pct_usage_10	pct_usage_11	pct_usage_12	pct_usage_13	pct_usage_14	pct_usage_15	pct_usage_16	pct_usage_17	pct_usage_18	pct_usage_19	pct_usage_20
+%T	RSRCRATE
+%F	rsrc_rate_id	rsrc_id	start_date	max_qty_per_hr	cost_per_qty
+%R	1	1	2026-11-01 00:00	1.000000	100.100000
+%R	2	1	2026-11-13 00:00	1.000000	200.100000
+%R	3	2	2026-11-01 00:00	1.000000	300.100000
+%R	4	2	2026-11-13 00:00	1.000000	400.100000
+%R	5	3	2026-11-16 00:00	1.000000	
+%R	6	4	2026-11-16 00:00	1.000000	
+%T	SCHEDOPTIONS
+%F	schedoptions_id	proj_id	sched_calendar_on_relationship_lag
+%R	1	1	rcal_Successor
+%T	TASK
+%F	task_id	proj_id	wbs_id	clndr_id	task_code	task_name	task_type	duration_type	status_code	complete_pct_type	target_drtn_hr_cnt	remain_drtn_hr_cnt	cstr_type	cstr_date	cstr_type2	cstr_date2	act_start_date	act_end_date	phys_complete_pct
+%R	1	1	2	2	J1	중단·곡선	TT_Task	DT_FixedDrtn	TK_NotStart	CP_Drtn	0.066667	0.066667							
+%R	2	1	2	2	J2	고정 공수	TT_Task	DT_FixedDrtn	TK_NotStart	CP_Drtn	0.133333	0.133333							
+%R	3	1	3	2	J3	이정표	TT_Mile	DT_FixedDrtn	TK_NotStart	CP_Drtn	0.000000	0.000000							
+%R	4	1	2	2	J4	미배정	TT_Task	DT_FixedDrtn	TK_NotStart	CP_Drtn	0.050000	0.050000							
+%R	5	1	1	2	J5	이후 추가	TT_Task	DT_FixedDrtn	TK_NotStart	CP_Drtn	0.016667	0.016667							
+%T	TASKACTV
+%F	task_id	actv_code_id	proj_id	actv_code_type_id
+%T	TASKFIN
+%F	task_id	proj_id	fin_dates_id	act_work_qty	act_equip_qty	act_work_cost	act_equip_cost	act_mat_cost	act_expense_cost	bcwp	bcws
+%T	TASKPRED
+%F	task_pred_id	task_id	pred_task_id	proj_id	pred_proj_id	pred_type	lag_hr_cnt
+%T	TASKRSRC
+%F	taskrsrc_id	task_id	proj_id	rsrc_id	target_qty_per_hr	remain_qty_per_hr	target_qty	remain_qty	curv_id	act_reg_qty	act_ot_qty	act_reg_cost	act_ot_cost	cost_qty_link_flag	act_start_date	act_end_date
+%R	1	1	1	1	0.25	0.25	0.016667	0.016667						N		
+%R	2	1	1	2	0.33	0.33	0.022000	0.022000						N		
+%R	3	2	1	2	1.00	1.00	0.133333	0.133333						N		
+%R	4	5	1	4	1.00	1.00	0.016667	0.016667						N		
+%T	TRSRCFIN
+%F	taskrsrc_id	task_id	proj_id	fin_dates_id	act_qty	act_cost
+%T	UDFTYPE
+%F	udf_type_id	table_name	udf_type_name	udf_type_label	logical_data_type
+%R	1	TASK	user_field_1	BS	FT_TEXT
+%R	2	TASK	user_field_2	BF	FT_TEXT
+%R	3	TASK	user_field_3	BD	FT_TEXT
+%R	4	TASK	user_field_4	DN	FT_FLOAT
+%R	5	TASK	user_field_5	BW	FT_FLOAT
+%R	6	TASK	user_field_6	hours	FT_FLOAT
+%R	7	TASK	user_field_7	BC	FT_TEXT
+%R	8	TASK	user_field_8	BCN	FT_FLOAT
+%R	9	TASK	user_field_9	DOUBLE	FT_FLOAT
+%R	10	PROJECT	user_field_10	BS	FT_TEXT
+%R	11	PROJECT	user_field_11	BF	FT_TEXT
+%R	12	PROJECT	user_field_12	BW	FT_FLOAT
+%R	13	PROJECT	user_field_13	BC	FT_TEXT
+%R	14	RSRC	user_field_14	BW	FT_FLOAT
+%R	15	RSRC	user_field_15	BC	FT_TEXT
+%R	16	TASKRSRC	user_field_16	BW	FT_FLOAT
+%R	17	TASKRSRC	user_field_17	TS	FT_TEXT
+%R	18	TASKRSRC	user_field_18	TF	FT_TEXT
+%R	19	TASKRSRC	user_field_19	TD	FT_FLOAT
+%R	20	TASKRSRC	user_field_20	TW	FT_FLOAT
+%R	21	TASKRSRC	user_field_21	RW	FT_FLOAT
+%R	22	TASKRSRC	user_field_22	PW	FT_FLOAT
+%R	23	TASKRSRC	user_field_23	BC	FT_TEXT
+%R	24	TASKRSRC	user_field_24	TC	FT_TEXT
+%R	25	TASKRSRC	user_field_25	RC	FT_TEXT
+%R	26	TASKRSRC	user_field_26	PC	FT_TEXT
+%R	27	TASKRSRC	user_field_27	원가전파	FT_TEXT
+%T	UDFVALUE
+%F	udf_type_id	fk_id	proj_id	udf_date	udf_number	udf_text	udf_code_id
+%R	1	1	1			2026-11-12T09:00:00	
+%R	1	2	1			2026-11-12T09:00:00	
+%R	1	3	1			2026-11-12T09:00:00	
+%R	1	4	1			2026-11-12T09:00:00	
+%R	2	1	1			2026-11-13T09:01:00	
+%R	2	2	1			2026-11-12T09:06:00	
+%R	2	3	1			2026-11-12T09:00:00	
+%R	2	4	1			2026-11-12T09:03:00	
+%R	3	1	1			8 m	
+%R	3	2	1			6 m	
+%R	3	3	1			0 m	
+%R	3	4	1			3 m	
+%R	4	1	1		8		
+%R	4	2	1		6		
+%R	4	3	1		0		
+%R	4	4	1		3		
+%R	5	1	1		5.64		
+%R	5	2	1		5.01		
+%R	5	3	1		0		
+%R	5	4	1		0		
+%R	6	1	1		0.094		
+%R	6	2	1		0.0835		
+%R	6	3	1		0		
+%R	6	4	1		0		
+%R	7	1	1			2.89	
+%R	7	2	1			4.54	
+%R	7	3	1			3.07	
+%R	7	4	1			2.44	
+%R	8	1	1		2.89		
+%R	8	2	1		4.54		
+%R	8	3	1		3.07		
+%R	8	4	1		2.44		
+%R	9	1	1		5.78		
+%R	9	2	1		9.08		
+%R	9	3	1		6.14		
+%R	9	4	1		4.88		
+%R	10	1	1			2026-11-12T09:00:00	
+%R	11	1	1			2026-11-13T09:01:00	
+%R	12	1	1		10.65		
+%R	13	1	1			12.94	
+%R	14	1	1		3		
+%R	14	2	1		7.65		
+%R	14	3	1		0		
+%R	15	1	1			0.5	
+%R	15	2	1			3.89	
+%R	15	3	1			0	
+%R	16	1	1		3		
+%R	16	2	1		2.64		
+%R	16	3	1		5.01		
+%R	17	1	1			2026-11-12T09:00:00	
+%R	17	2	1			2026-11-12T09:00:00	
+%R	17	3	1			2026-11-12T09:00:00	
+%R	18	1	1			2026-11-13T09:01:00	
+%R	18	2	1			2026-11-13T09:01:00	
+%R	18	3	1			2026-11-12T09:06:00	
+%R	19	1	1		8		
+%R	19	2	1		8		
+%R	19	3	1		6		
+%R	20	1	1		5.64		
+%R	20	2	1		5.64		
+%R	20	3	1		5.01		
+%R	21	1	1		3		
+%R	21	2	1		7.65		
+%R	21	3	1		7.65		
+%R	22	1	1		10.65		
+%R	22	2	1		10.65		
+%R	22	3	1		10.65		
+%R	22	4	1		10.65		
+%R	23	1	1			0.5	
+%R	23	2	1			1.38	
+%R	23	3	1			2.51	
+%R	24	1	1			2.89	
+%R	24	2	1			2.89	
+%R	24	3	1			4.54	
+%R	25	1	1			0.5	
+%R	25	2	1			3.89	
+%R	25	3	1			3.89	
+%R	26	1	1			12.94	
+%R	26	2	1			12.94	
+%R	26	3	1			12.94	
+%R	26	4	1			12.94	
+%R	27	1	1			2.89	
+%R	27	2	1			2.89	
+%R	27	3	1			4.54	
+%E

@@ -1,0 +1,18 @@
+[0/1] Re-running CMake...
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
+-- Configuring done (2.9s)
+-- Generating done (2.0s)
+-- Build files have been written to: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+[1/16] Building CXX object CMakeFiles/jobs_udf_mapping_tests.dir/tests/UdfMappingTests.cpp.obj
+[2/16] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectXml.cpp.obj
+[3/16] Linking CXX static library libjobs_persistence.a
+[4/16] Automatic MOC for target jobs_updates
+[5/14] Linking CXX executable jobs_udf_mapping_tests.exe
+[6/14] Building CXX object CMakeFiles/jobs_xml_date_time_tests.dir/tests/XmlDateTimeTests.cpp.obj
+[7/14] Building CXX object CMakeFiles/jobs_enterprise_udf_tests.dir/tests/EnterpriseUdfTests.cpp.obj
+[8/14] Building CXX object CMakeFiles/jobs_xml_field_types_tests.dir/tests/XmlFieldTypesTests.cpp.obj
+[9/14] Building CXX object CMakeFiles/jobs_xml_lookup_tests.dir/tests/XmlLookupTests.cpp.obj
+[10/14] Linking CXX executable jobs_xml_date_time_tests.exe
+[11/14] Linking CXX executable jobs_xml_field_types_tests.exe
+[12/14] Linking CXX executable jobs_xml_lookup_tests.exe
+[13/14] Linking CXX executable jobs_enterprise_udf_tests.exe

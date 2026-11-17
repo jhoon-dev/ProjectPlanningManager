@@ -1,0 +1,122 @@
+[
+    {
+        "source": "RGB(0,0,0)",
+        "value": "0"
+    },
+    {
+        "source": "RGB(255,0,0)",
+        "value": "255"
+    },
+    {
+        "source": "RGB(0,255,0)",
+        "value": "65280"
+    },
+    {
+        "source": "RGB(0,0,255)",
+        "value": "16711680"
+    },
+    {
+        "source": "RGB(255,255,255)",
+        "value": "16777215"
+    },
+    {
+        "source": "RGB(1,2,3)",
+        "value": "197121"
+    },
+    {
+        "source": "RGB(256,1,2)",
+        "value": "131583"
+    },
+    {
+        "source": "RGB(32767,1,2)",
+        "value": "131583"
+    },
+    {
+        "source": "RGB(255.5,0,0)",
+        "value": "255"
+    },
+    {
+        "source": "RGB(-0.5,0,0)",
+        "value": "0"
+    },
+    {
+        "source": "RGB(1.5,2.5,3.5)",
+        "value": "262658"
+    },
+    {
+        "source": "RGB(32767.499999,0,0)",
+        "value": "255"
+    },
+    {
+        "source": "RGB(False,0,0)",
+        "value": "0"
+    },
+    {
+        "source": "RGB(CInt(2.5),0,0)",
+        "value": "2"
+    },
+    {
+        "source": "RGB(CDbl(\"255\"),0,0)",
+        "value": "255"
+    },
+    {
+        "source": "QBColor(0)",
+        "value": "0"
+    },
+    {
+        "source": "QBColor(1)",
+        "value": "8388608"
+    },
+    {
+        "source": "QBColor(2)",
+        "value": "32768"
+    },
+    {
+        "source": "QBColor(7)",
+        "value": "12632256"
+    },
+    {
+        "source": "QBColor(8)",
+        "value": "8421504"
+    },
+    {
+        "source": "QBColor(15)",
+        "value": "16777215"
+    },
+    {
+        "source": "QBColor(2.5)",
+        "value": "32768"
+    },
+    {
+        "source": "QBColor(14.5)",
+        "value": "65535"
+    },
+    {
+        "source": "QBColor(15.499999)",
+        "value": "16777215"
+    },
+    {
+        "source": "QBColor(-0.5)",
+        "value": "0"
+    },
+    {
+        "source": "QBColor(False)",
+        "value": "0"
+    },
+    {
+        "source": "Hex(RGB(1,2,3))",
+        "value": "30201"
+    },
+    {
+        "source": "CStr(QBColor(15))",
+        "value": "16777215"
+    },
+    {
+        "source": "rGb(1;2;3)",
+        "value": "197121"
+    },
+    {
+        "source": "IIf(True,RGB(255,0,0),0)",
+        "value": "255"
+    }
+]

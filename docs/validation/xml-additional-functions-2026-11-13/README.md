@@ -1,0 +1,35 @@
+# XML 계산식 추가 함수 검증
+
+2026-11-13 · [XFN-01~06 지원 계약](../../xml-additional-functions.md). 13개 함수의 명시 지원 부분과 네 범위·모든 결과 형식·경계/오류·schema52·기존 문서·교환/보고를 검증한다. 전체 VBA/로캘·현재 시각/난수·실제 MS Project/P6 재계산/재저장을 검증한 결과는 아니다.
+
+## 표본과 독립 계산
+
+두 작업의 입력수2.5/3.5는 Choose/CByte에서 짝수 쪽 반올림해2/4가 된다. 한글이 포함된 입력의 InStr 위치는 BMP 문자 기준8이며 비교1은 ASCII만 허용한다. 양끝 공백 중 선택한 방향만 정리하고 문자열의 첫 한글 문자를 반복한다. 비용12.34/3은 중간6자리 → CCur4자리 → USD Cost2자리로4.11이 된다. 날짜 추출은 원본 마이크로초 일시를 자정/날짜로 만들고 원본 일시는 유지한다. 미사용 선택지의0 나눗셈도 오류이며 저장된777로 대체하지 않는다.
+
+Sqr는 정수 분해와 이진 탐색으로 오버플로 없이 소수6자리 반올림을 한다. 독립 Python Decimal80자리 계산으로 **512개 큰 수**의 결과를 재계산한다. XML 정의21개와 현재 값53칸(표준 roll-down 메타데이터로 이어받는2칸 포함), XER 정적49값과 XLSX 작업 사용자 필드48행·PDF의 값/정의를 확인한다. native의 원본 byte=99·오류 snapshot=777, EUR 전환 후 입력/기준선·시나리오·전체 환산 사본도 유지한다.
+
+## 계약과 화면 검사
+
+`xml_additional_functions_contract`는 13개 함수·두 조건/문자열 분기·모든 결과 형식·Null/오류·전체 인수 평가·정수/문자열 한도·ASCII/BMP 위치/비교·DateValue 윤일/잘못된 날짜·반올림·최대 중간값을 검사한다. 기존 native 계산식과의 연결, roll-up/요약 식·roll-down·배정의 작업/프로젝트 참조, 이름 변경 뒤 안정 바인딩을 확인한다.
+
+활성 함수의 schema52 읽기/쓰기·schema51 이하 거절, 기존 함수의44 유지·과거 비활성 새 함수의44 읽기, 따옴표/참조/긴 이름을 호출로 오인하지 않는 버전 검사, 동결/시나리오/보관 사본만 남은 경우의52, 통화/ID 이관·복구·취소·읽기 전용을 확인한다. XML의 현재 값/식 재계산과 미지원 함수의 비활성 보존, XER·감사 출력을 연결한다.
+
+`xml_additional_functions_ui`는13개 예시 삽입, 초기 결과2/4와 비동기 Sqr 미리보기1.414214, 저장/undo, 미지원 식 오류·취소, 미리보기 후 문서 변경의 격리와800×700 화면을 확인한다.
+
+최종 일반 회귀 **190/190·388.55초**와 집중 **22/22**를 통과했다. 기존 대용량 교환 단독 CTest는 **180초 제한으로 시간 초과**했다(180.14초). 코드/실행 파일 변경 없이 같은 인수를300초 한도로 직접 재검증해 **1/1·164.13초·종료0**을 확인했다. 따라서 기능 검사191개를 확인했으나 표준 CTest의 시간 제한 실패1건은 남는다. CMake의180초 제한은 변경하지 않았다. 건너뜀0이다. 파서 **850개**(schema1~52), C++ 형식 **505파일** 차이0을 통과했다. 독립 Sqr512사례·스칼라22사례·XML53칸/정의21개·XER49값·XLSX48행·PDF16쪽과 전체 사본을 확인했다. [전체 빌드](build.txt), [테스트 빌드](test-build.txt), [190개 CTest](ctest.txt), [JUnit](ctest.xml), [단독 시간 초과](isolated.txt), [단독 JUnit](isolated.xml), [확장 재검증 로그](extended.txt), [재검증 명령/시간/해시](extended.json), [집중](focused.txt), [형식](quality.json), [독립 계산/교환/보고](independent.json), [결과/해시](verification-summary.json).
+
+Windows 실행 패키지 **291파일**의 PPM/CLI 해시가 최종 빌드와 같다. Qt/MinGW가 없는 PATH에서 CLI가 활성 추가 함수의 schema52 native 파일을 읽고 종료0을 반환했다. [패키지](runtime.json), [배포](runtime-deploy.txt), [읽기](runtime-inspect.json).
+
+[native 입력](native.json), [통화/동결/시나리오 전체 사본](archived.json), [XML](functions.xml), [XER](functions.xer), [교환 매핑/진단](mapping.json), [22스칼라 사례](cases.json), [512제곱근](roots.json), [native 파일](source.ppm), [XLSX](fields.xlsx), [PDF](fields.pdf), [정의/오류 PDF 화면](formula-report-page.png), [800×700 함수 편집/미리보기](functions-small.png).
+
+## 재실행
+
+```powershell
+cmake --build build-governance --parallel 10
+ctest --test-dir build-governance -E '^exchange_async_recovery_diagnostics$' --parallel 4 --output-on-failure
+ctest --test-dir build-governance -R '^exchange_async_recovery_diagnostics$' --output-on-failure
+ctest --test-dir build-governance -R '^xml_(additional_functions|formula|calendar|early_late|baseline|remaining|quantity|actual|schedule|roll_up|roll_down)_(contract|ui)$' --parallel 4 --output-on-failure
+.deps/report-verification/Scripts/python.exe scripts/verify-xml-additional-functions.py build-governance/xml-additional-functions-qa
+```
+
+기존 10,000작업 교환 검사는180초 제한에 걸린 이력이 있어 최종 회귀는190개와 해당1개 단독으로 나누어 검사한다. 이번 단독 CTest도 시간 초과하여 같은 실행 파일/인수를300초 한도로 직접 재검증했다. 표준 시간 제한 실패와 확장 재검증 결과를 구별해 기록하고 CMake 제한은 변경하지 않는다. 공개 MSPDI 정의/현재 값의 파싱·재수입 검사와 실제 외부 제품의 계산 동등성은 구별한다.

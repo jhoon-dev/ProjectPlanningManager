@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "schema": 48,
+  "xml_cells": 50,
+  "missing_xml_cells": 15,
+  "quantity_formula_definitions": 11,
+  "xer_quantity_values": 30,
+  "external_product_run": false,
+  "report_cells": 50,
+  "xlsx_sheets": 24,
+  "pdf_pages": 23
+}

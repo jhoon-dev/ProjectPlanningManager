@@ -1,0 +1,196 @@
+[
+    {
+        "cost": [
+            {
+                "amount": 50,
+                "date": "2026-11-12",
+                "resource": "R",
+                "task": "A"
+            },
+            {
+                "amount": 116,
+                "date": "2026-11-12",
+                "resource": "S",
+                "task": "A"
+            },
+            {
+                "amount": 22,
+                "date": "2026-11-13",
+                "resource": "S",
+                "task": "A"
+            },
+            {
+                "amount": 88,
+                "date": "2026-11-12",
+                "resource": "",
+                "task": "A"
+            },
+            {
+                "amount": 13,
+                "date": "2026-11-13",
+                "resource": "",
+                "task": "A"
+            },
+            {
+                "amount": 251,
+                "date": "2026-11-12",
+                "resource": "S",
+                "task": "B"
+            },
+            {
+                "amount": 203,
+                "date": "2026-11-12",
+                "resource": "",
+                "task": "B"
+            },
+            {
+                "amount": 307,
+                "date": "2026-11-12",
+                "resource": "",
+                "task": "M"
+            },
+            {
+                "amount": 244,
+                "date": "2026-11-12",
+                "resource": "",
+                "task": "D"
+            }
+        ],
+        "slot": 0,
+        "work": [
+            {
+                "finish": "2026-11-12 09:02",
+                "resource": "R",
+                "start": "2026-11-12 09:01",
+                "task": "A",
+                "units": 100
+            },
+            {
+                "finish": "2026-11-12 09:04",
+                "resource": "R",
+                "start": "2026-11-12 09:02",
+                "task": "A",
+                "units": 50
+            },
+            {
+                "finish": "2026-11-12 09:07",
+                "resource": "R",
+                "start": "2026-11-12 09:05",
+                "task": "A",
+                "units": 50
+            },
+            {
+                "finish": "2026-11-12 09:04",
+                "resource": "S",
+                "start": "2026-11-12 09:00",
+                "task": "A",
+                "units": 33
+            },
+            {
+                "finish": "2026-11-12 09:08",
+                "resource": "S",
+                "start": "2026-11-12 09:05",
+                "task": "A",
+                "units": 33
+            },
+            {
+                "finish": "2026-11-13 09:01",
+                "resource": "S",
+                "start": "2026-11-13 09:00",
+                "task": "A",
+                "units": 33
+            },
+            {
+                "finish": "2026-11-12 09:05",
+                "resource": "S",
+                "start": "2026-11-12 09:00",
+                "task": "B",
+                "units": 100
+            },
+            {
+                "finish": "2026-11-12 09:06",
+                "resource": "S",
+                "start": "2026-11-12 09:05",
+                "task": "B",
+                "units": 1
+            }
+        ]
+    },
+    {
+        "cost": [
+            {
+                "amount": 50,
+                "date": "2026-11-16",
+                "resource": "R",
+                "task": "A"
+            },
+            {
+                "amount": 176,
+                "date": "2026-11-16",
+                "resource": "S",
+                "task": "A"
+            },
+            {
+                "amount": 202,
+                "date": "2026-11-16",
+                "resource": "",
+                "task": "A"
+            },
+            {
+                "amount": 668,
+                "date": "2026-11-16",
+                "resource": "S",
+                "task": "B"
+            },
+            {
+                "amount": 406,
+                "date": "2026-11-16",
+                "resource": "",
+                "task": "B"
+            },
+            {
+                "amount": 614,
+                "date": "2026-11-16",
+                "resource": "",
+                "task": "M"
+            },
+            {
+                "amount": 487,
+                "date": "2026-11-16",
+                "resource": "",
+                "task": "D"
+            }
+        ],
+        "slot": 1,
+        "work": [
+            {
+                "finish": "2026-11-16 09:04",
+                "resource": "R",
+                "start": "2026-11-16 09:01",
+                "task": "A",
+                "units": 25
+            },
+            {
+                "finish": "2026-11-16 09:04",
+                "resource": "S",
+                "start": "2026-11-16 09:00",
+                "task": "A",
+                "units": 33
+            },
+            {
+                "finish": "2026-11-16 09:05",
+                "resource": "S",
+                "start": "2026-11-16 09:00",
+                "task": "B",
+                "units": 100
+            },
+            {
+                "finish": "2026-11-16 09:06",
+                "resource": "S",
+                "start": "2026-11-16 09:05",
+                "task": "B",
+                "units": 1
+            }
+        ]
+    }
+]

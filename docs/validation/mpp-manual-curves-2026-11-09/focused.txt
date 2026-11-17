@@ -1,0 +1,20 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start  2: project_mpp_import_contract
+    Start  3: project_mpp_import_ui
+    Start 21: mpp_manual_curve_contract
+1/4 Test #21: mpp_manual_curve_contract ........***Failed   23.06 sec
+READ timephased-multi-rate.mpp
+FILE_PROJECTXML_009 /Project/Assignments[1]/Assignment[6]/ResourceUID
+
+    Start 20: mpp_manual_curve_ui
+2/4 Test  #3: project_mpp_import_ui ............   Passed   31.74 sec
+3/4 Test  #2: project_mpp_import_contract ......   Passed   47.87 sec
+4/4 Test #20: mpp_manual_curve_ui ..............   Passed   30.14 sec
+
+75% tests passed, 1 tests failed out of 4
+
+Total Test time (real) =  53.78 sec
+
+The following tests FAILED:
+	 21 - mpp_manual_curve_contract (Failed)
+Errors while running CTest

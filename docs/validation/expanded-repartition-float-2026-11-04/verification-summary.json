@@ -1,0 +1,49 @@
+{
+  "final_status": "success",
+  "full_ctest": {
+    "passed": 91,
+    "total": 91,
+    "seconds": 351.73
+  },
+  "expanded_contract_seconds": 16.01,
+  "parser_seeds": 114,
+  "format_files": 151,
+  "independent_readers_and_selftests": 19,
+  "witnesses_checked": 2641,
+  "date_references_checked": 280785,
+  "engine": "jobs-adopted-leveling-1.5",
+  "baseline_versions_preserved": [
+    "1.0",
+    "1.1",
+    "1.2",
+    "1.3",
+    "1.4"
+  ],
+  "native_schema": 12,
+  "native_schema_changed": false,
+  "cases": [
+    {
+      "movable": 129,
+      "search_units": 1,
+      "largest_unit": 129,
+      "witnesses": 129,
+      "analysis_ms": 206.658
+    },
+    {
+      "movable": 512,
+      "search_units": 1,
+      "largest_unit": 512,
+      "witnesses": 512,
+      "analysis_ms": 2091.7846
+    },
+    {
+      "movable": 1000,
+      "search_units": 1000,
+      "largest_unit": 1,
+      "witnesses": 2000,
+      "analysis_ms": 7296.7521
+    }
+  ],
+  "pdf_pages": 217,
+  "P6_actual_roundtrip": "not-run; P6 not installed"
+}

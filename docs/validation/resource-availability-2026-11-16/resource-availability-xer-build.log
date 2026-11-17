@@ -1,0 +1,5 @@
+[1/5] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/XerBatch.cpp.obj
+[2/5] Linking CXX static library libjobs_persistence.a
+[3/5] Building CXX object CMakeFiles/jobs_xer_batch_tests.dir/tests/XerBatchTests.cpp.obj
+[4/5] Linking CXX executable jobs_xer_batch_tests.exe
+[5/5] Linking CXX executable PPM.exe

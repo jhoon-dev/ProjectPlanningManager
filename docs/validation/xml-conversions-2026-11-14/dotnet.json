@@ -1,0 +1,8 @@
+{
+  "external_product_run": false,
+  "status": "PASS",
+  "scope": "Single.Parse of exact native decimal input, widened Single then native fixed-six half-away rounding; no VBA Variant/NLS claim.",
+  "culture": "Invariant",
+  "comparisons": 2058,
+  "runtime": "10.0.14"
+}

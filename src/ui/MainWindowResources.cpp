@@ -36,7 +36,8 @@ void MainWindow::manageResources() {
     auto *layout = new QVBoxLayout(&dialog);
     auto *note =
         new QLabel("인력·장비 · 100% = 1명/1대 · 자원 달력과 작업 달력의 교집합에서 작업합니다.\n공수·작업 유형은 "
-                   "프로젝트 메뉴에서, 단가·비용은 원가 메뉴에서 설정합니다. 자원 1단위의 생산성 배수는 1입니다.",
+                   "프로젝트 메뉴에서, 단가·비용은 원가 메뉴에서 설정합니다. 물량/자원시간 생산성은 자원 → 생산성·외부 "
+                   "고유 곡선에서 명시합니다.",
                    &dialog);
     note->setWordWrap(true);
     layout->addWidget(note);
@@ -80,6 +81,25 @@ void MainWindow::manageResources() {
     dates->setPlaceholderText("2026-10-27=0\n2026-10-28=200\n2026-10-29=?");
     dates->setMaximumHeight(110);
     form->addRow("날짜별 대체 가용량\nYYYY-MM-DD=정수% / ?", dates);
+    auto *availableFrom = new QLineEdit(&dialog);
+    auto *availableTo = new QLineEdit(&dialog);
+    availableFrom->setObjectName("resourceAvailableFrom");
+    availableTo->setObjectName("resourceAvailableTo");
+    for (auto *edit : {availableFrom, availableTo})
+        edit->setPlaceholderText("YYYY-MM-DD HH:mm · 빈칸은 제한 없음");
+    form->addRow("가용 시작 (해당 분 포함)", availableFrom);
+    form->addRow("가용 종료 (해당 분 포함)", availableTo);
+    auto *periods = new QPlainTextEdit(&dialog);
+    periods->setObjectName("resourceAvailabilityPeriods");
+    periods->setMaximumHeight(110);
+    periods->setPlaceholderText(
+        "2026-11-16 09:00 ~ 2026-11-16 11:59=50\n2026-11-17 00:00 ~ =200\n ~ 2026-11-15 23:59=?");
+    form->addRow("기간별 가용량 · 종료 분 포함\n시작 ~ 종료=정수% / ?\n빈 경계는 제한 없음", periods);
+    auto *availabilityNote = new QLabel("가용 경계 밖은 0%입니다. 경계 안에서는 날짜 예외 → 기간별 가용량 → 기본값 "
+                                        "순서로 적용합니다. 기간끼리 겹칠 수 없습니다.",
+                                        &dialog);
+    availabilityNote->setWordWrap(true);
+    form->addRow(availabilityNote);
     auto *error = new QLabel(&dialog);
     error->setObjectName("resourceError");
     error->setWordWrap(true);
@@ -104,6 +124,9 @@ void MainWindow::manageResources() {
     units->setEnabled(editable);
     unknown->setEnabled(editable);
     dates->setReadOnly(!editable);
+    periods->setReadOnly(!editable);
+    availableFrom->setReadOnly(!editable);
+    availableTo->setReadOnly(!editable);
     std::string selected;
     auto fill = [&] {
         QSignalBlocker block(table);
@@ -139,6 +162,13 @@ void MainWindow::manageResources() {
                 for (const auto &d : r.exceptions)
                     lines << qs(d.date) + "=" + (d.units ? QString::number(*d.units) : "?");
                 dates->setPlainText(lines.join('\n'));
+                availableFrom->setText(qs(r.availableFrom.value_or("")));
+                availableTo->setText(qs(r.availableTo.value_or("")));
+                lines.clear();
+                for (const auto &v : r.availability)
+                    lines << qs(v.from.value_or("")) + " ~ " + qs(v.to.value_or("")) + "=" +
+                                 (v.units ? QString::number(*v.units) : "?");
+                periods->setPlainText(lines.join('\n'));
                 error->clear();
             }
     });
@@ -151,6 +181,9 @@ void MainWindow::manageResources() {
         unknown->setChecked(false);
         units->setValue(100);
         dates->clear();
+        periods->clear();
+        availableFrom->clear();
+        availableTo->clear();
         error->clear();
         name->setFocus();
     });
@@ -179,6 +212,26 @@ void MainWindow::manageResources() {
                         throw AppError(ErrorCode::MAINWINDOWRESOURCES_002, {});
                 }
                 r.exceptions.push_back({str(parts[0].trimmed()), n});
+            }
+            const auto stamp = [](const QString &s) -> std::optional<std::string> {
+                return s.trimmed().isEmpty() ? std::optional<std::string>{} : str(s.trimmed());
+            };
+            r.availableFrom = stamp(availableFrom->text());
+            r.availableTo = stamp(availableTo->text());
+            r.availability.clear();
+            for (auto line : periods->toPlainText().split('\n', Qt::SkipEmptyParts)) {
+                const auto parts = line.trimmed().split('=');
+                if (parts.size() != 2 || parts[0].count('~') != 1)
+                    throw AppError(ErrorCode::RESOURCE_EXCEPTION_INVALID);
+                const auto bounds = parts[0].split('~');
+                std::optional<int> amount;
+                if (parts[1].trimmed() != "?") {
+                    bool ok = false;
+                    amount = parts[1].trimmed().toInt(&ok);
+                    if (!ok)
+                        throw AppError(ErrorCode::RESOURCE_EXCEPTION_INVALID);
+                }
+                r.availability.push_back({stamp(bounds[0]), stamp(bounds[1]), amount});
             }
             selected = document_.putResource(std::move(r));
             fill();
@@ -226,10 +279,11 @@ void MainWindow::assignResources() {
     dialog.setWindowTitle("자원 배정 · " + qs(task->name));
     dialog.resize(720, 510);
     auto *layout = new QVBoxLayout(&dialog);
-    auto *note = new QLabel(
-        "배정률 0% = 배정 해제 · 100% = 1명/1대\n고정 기간은 기간을 유지합니다. 고정 공수/단위의 배정률 변경은 공수를 "
-        "유지해 완료일을 다시 계산합니다. 자원 달력과 날짜별 가용량은 자원 등록에서 설정합니다.",
-        &dialog);
+    auto *note =
+        new QLabel("배정률 0% = 배정 해제(기간별 설정도 삭제) · 100% = 1명/1대\n기간별 설정은 보존되며 기본 배정률은 "
+                   "빈 구간에만 적용됩니다.\n고정 기간은 기간을 유지합니다. 고정 공수/단위의 배정률 변경은 공수를 "
+                   "유지해 완료일을 다시 계산합니다. 자원 달력과 날짜별 가용량은 자원 등록에서 설정합니다.",
+                   &dialog);
     note->setWordWrap(true);
     layout->addWidget(note);
     auto *table = new QTableWidget(int(snapshot.resources.size()), 3, &dialog);
@@ -268,8 +322,13 @@ void MainWindow::assignResources() {
                 throw AppError(ErrorCode::MAINWINDOWRESOURCES_003, {});
             std::vector<Assignment> assignments;
             for (std::size_t i = 0; i < spins.size(); ++i)
-                if (spins[i]->value())
-                    assignments.push_back({taskId, snapshot.resources[i].id, spins[i]->value()});
+                if (spins[i]->value()) {
+                    Assignment value{taskId, snapshot.resources[i].id, spins[i]->value()};
+                    for (const auto &old : snapshot.assignments)
+                        if (old.taskId == taskId && old.resourceId == value.resourceId)
+                            value.periods = old.periods;
+                    assignments.push_back(std::move(value));
+                }
             submitDialogEdit(dialog, error, buttons, AssignmentEdit{taskId, std::move(assignments)}, "자원 배정 계산",
                              [table, buttons](bool pending) {
                                  table->setEnabled(!pending);

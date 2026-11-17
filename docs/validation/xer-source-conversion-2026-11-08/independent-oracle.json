@@ -1,0 +1,11 @@
+{
+  "status": "success",
+  "numeric_cases": 760,
+  "checks": 844,
+  "converted_sha256": "e59347f07c4cc34aad517d6091d623dd1ab29833334e7e44b3ca7c6bdd15e44c",
+  "independent_reader": {
+    "reader": "MPXJ16.10.0 strict",
+    "actual_work_hours": "3.75",
+    "resource_cost": "110.46"
+  }
+}

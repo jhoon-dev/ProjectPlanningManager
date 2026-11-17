@@ -1,0 +1,149 @@
+{
+    "companionPolicy": "원본과 진단은 이 폴더의 동반 파일입니다. .ppm 사본 저장/이동 시 자동 복제되지 않습니다.",
+    "compatibility": {
+        "externalRoundTrip": "unverified",
+        "import": "not-applicable",
+        "jobsRecomputation": "unverified",
+        "originalPreservation": "exact-native-input-snapshot"
+    },
+    "contract": "jobs-mspdi-plan-v1",
+    "diagnostics": [
+        {
+            "message": "기간 기반 계획 투영입니다. 외부 제품의 계산/재저장 호환은 미검증입니다. 원본 전체 입력/이력은 source.ppm 참조.",
+            "path": "/Project"
+        },
+        {
+            "message": "지원 사용자 필드는 UDF 매핑표를 따릅니다. 작업 코드·저장된 보기는 source.ppm에 전체 데이터를 보존합니다.",
+            "path": "/Project/ExtendedAttribute"
+        },
+        {
+            "message": "기준선·실적·원가·상태일·시나리오는 XML에 포함하지 않음 · source.jobs에 보존",
+            "path": "/Project/history-costs"
+        }
+    ],
+    "direction": "export",
+    "documentId": "enterprise-udf",
+    "format": "Microsoft Project XML",
+    "mapping": [
+        {
+            "externalId": "188776449",
+            "jobsId": "enterprise-text",
+            "kind": "udf",
+            "name": "기업 작업명",
+            "representation": "hex-element",
+            "scope": "TASK",
+            "type": "text",
+            "xmlFieldName": "Enterprise label",
+            "xmlGuid": "0000e8d9-65f1-4769-9bd2-819d38036fcc"
+        },
+        {
+            "externalId": "190873600",
+            "jobsId": "project",
+            "kind": "udf",
+            "name": "계약 번호",
+            "representation": "hex-element",
+            "scope": "PROJECT",
+            "type": "text",
+            "xmlFieldName": "계약 번호",
+            "xmlGuid": "fb823b3b-3242-520e-a62e-450d36bc639f"
+        },
+        {
+            "externalId": "190873601",
+            "jobsId": "date",
+            "kind": "udf",
+            "name": "프로젝트 검토일",
+            "representation": "hex-element",
+            "scope": "PROJECT",
+            "type": "date",
+            "xmlFieldName": "프로젝트 검토일",
+            "xmlGuid": "cee5d8eb-296a-5943-8d32-aa41d108a9e1"
+        },
+        {
+            "externalId": "205553665",
+            "jobsId": "enterprise-number",
+            "kind": "udf",
+            "name": "기업 자원 점수",
+            "representation": "hex-element",
+            "scope": "RSRC",
+            "type": "number",
+            "xmlFieldName": "Enterprise rating",
+            "xmlGuid": "11111111-65f1-4769-9bd2-819d38036fcc"
+        },
+        {
+            "externalId": "255885312",
+            "jobsId": "number",
+            "kind": "udf",
+            "name": "배정 점수",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "number",
+            "xmlFieldName": "배정 점수",
+            "xmlGuid": "1409255f-52f0-5cc4-adb7-acb15215f0f0"
+        },
+        {
+            "externalId": "255885313",
+            "jobsId": "text",
+            "kind": "udf",
+            "name": "배정 메모",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "text",
+            "xmlFieldName": "배정 메모",
+            "xmlGuid": "9501539d-fd0f-5526-bf91-e20ed71744a0"
+        },
+        {
+            "externalId": "255885314",
+            "jobsId": "date",
+            "kind": "udf",
+            "name": "배정 검토일",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "date",
+            "xmlFieldName": "배정 검토일",
+            "xmlGuid": "b0f2a40d-0bdd-5db2-877a-4433ae025d7b"
+        },
+        {
+            "jobsId": "",
+            "kind": "calendar",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "T",
+            "kind": "task",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "B",
+            "kind": "task",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "R",
+            "kind": "resource",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "T/R",
+            "kind": "assignment",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "B/R",
+            "kind": "assignment",
+            "xmlUid": "2"
+        }
+    ],
+    "namespace": "http://schemas.microsoft.com/project",
+    "nativeSnapshotProfile": "native-effort-split-v1",
+    "revision": "1",
+    "source": {
+        "name": "source.ppm",
+        "product": "PPM"
+    },
+    "targetPolicy": {
+        "calculationProfile": "native-effort-split-v1",
+        "lagCalendar": "successor-working-calendar",
+        "projectStartAnchor": "09:00"
+    },
+    "xmlSha256": "a07c22c1e6a99fae143a0e88378e1f805aa23a718e89acfedd09da37144217c0"
+}

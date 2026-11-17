@@ -1,0 +1,11 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 115: custom_financial_period_contract
+    Start 116: custom_financial_period_ui
+1/3 Test #115: custom_financial_period_contract ...   Passed    1.74 sec
+    Start  75: parser_seed_replay
+2/3 Test  #75: parser_seed_replay .................   Passed    1.40 sec
+3/3 Test #116: custom_financial_period_ui .........   Passed    4.81 sec
+
+100% tests passed out of 3
+
+Total Test time (real) =   5.16 sec

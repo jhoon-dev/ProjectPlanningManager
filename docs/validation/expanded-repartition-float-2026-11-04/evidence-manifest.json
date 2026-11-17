@@ -1,0 +1,134 @@
+{
+  "build.log": {
+    "sha256": "060b77924d0b683e48923eca7094048e280015fa2ca8166318e4c51caa09ee76",
+    "bytes": 7524
+  },
+  "ctest-details.log": {
+    "sha256": "1fcb16e7e6b792d974fef8e36ccab0941da61014a6ff2d1869b4351461d5581d",
+    "bytes": 264609
+  },
+  "ctest.log": {
+    "sha256": "32863390511b54b1353a821caced9cffa9092278014c8c46f7497935cc35ec28",
+    "bytes": 10777
+  },
+  "format-gate.json": {
+    "sha256": "9e682b42aa653211b8a9b1cb3222e621b1ab9e0e826b2375471148e2f24512b9",
+    "bytes": 6061
+  },
+  "independent-summary.json": {
+    "sha256": "5f7860332f18bdd1701ca3e4b3475eab8deb90a053b86bef18f2a0a9ad9d2dc0",
+    "bytes": 5450
+  },
+  "metrics.json.gz": {
+    "sha256": "280c98e7df4a7f06d0011c829cc9a099c2f90515e97680a610d21b506f5f1479",
+    "bytes": 121649
+  },
+  "README.md": {
+    "sha256": "fe7b10e16bdbfbaf3110d48e1eb3e1808ae7c422c2339bcc89cdf544d0ea0a0c",
+    "bytes": 5749
+  },
+  "report.pdf": {
+    "sha256": "8b80b3790814ac4a0799dc94d24019b02b4ac29e806616d50384c13000c06278",
+    "bytes": 974843
+  },
+  "report.xlsx": {
+    "sha256": "59088f7c1c631c3191f160cd8ff3de1411e9eda98d409b7d29495f7d6c32b5cf",
+    "bytes": 1133363
+  },
+  "selected.ppm": {
+    "sha256": "3efea5d5b1cc31e46d70c43d9740273465a544e51069aa8d957f0ea2ab936f54",
+    "bytes": 561995
+  },
+  "source-identity.json": {
+    "sha256": "18de2f7b7a0516fc1af282ecf7ea03b13a6d4e348078c178298ee5df74185e51",
+    "bytes": 4726
+  },
+  "source-manifest.txt": {
+    "sha256": "5da7f616892aa4eb594401489d93471c5ce91b73a439735041771721861c77ec",
+    "bytes": 19527
+  },
+  "verification-summary.json": {
+    "sha256": "ac665ba15f768ca2eb27408540ac64dad5df47c5ee9b9c3699d60466e7325cf8",
+    "bytes": 1062
+  },
+  "verify-classification-exports.log": {
+    "sha256": "a287a2dc4579f034a10748116cb19cd94523ead3e8b36fdb604ef8015b983f30",
+    "bytes": 165
+  },
+  "verify-expanded-repartition-float.json": {
+    "sha256": "7c71bf0cb8337a1ce8a605e49a2b33a4d3f8a2b3ff51600e2fb8a967410f0812",
+    "bytes": 754
+  },
+  "verify-forecast-float-exports.log": {
+    "sha256": "ec9b0c8b9f5062f53f168610bdd43db8fc044a47903adbb7b7246ded4e9be1c5",
+    "bytes": 148
+  },
+  "verify-leveling-float.json": {
+    "sha256": "43e656825704d85a9091fc59b2ab128e92dcb53b5cc1056c82ce6f91ad244d14",
+    "bytes": 379
+  },
+  "verify-leveling-selection-exports.log": {
+    "sha256": "1243e6f90a900bf4a33039b6ebcef7ebfe65ebb460f6b087459f62cc8d87433d",
+    "bytes": 317
+  },
+  "verify-leveling-witness.json": {
+    "sha256": "0cf0b1750b363c7461a6836ccc5683311ecb71b73306b812d64199007fd37135",
+    "bytes": 377
+  },
+  "verify-p6-roundtrip-selftest.log": {
+    "sha256": "485bb1a10d170b122eb57293e9201a5b2c1d069a00e925f6000a7e6151590c43",
+    "bytes": 288
+  },
+  "verify-period-actual-exports.log": {
+    "sha256": "93a90300da0c1fa2e683f3d089f6a0b2b80b054717a41acc0fc20eb67d1c6238",
+    "bytes": 301
+  },
+  "verify-primavera-xer.log": {
+    "sha256": "313e33122490c4d3d83dc461cd6ad3d01dd81c0025c425f82da7725fbfd30c83",
+    "bytes": 192
+  },
+  "verify-progress-leveling.log": {
+    "sha256": "2611b335c50d88a428f8ea01558c8a8a501b2275b2cee9f893b2e6c47616853b",
+    "bytes": 443
+  },
+  "verify-progress-policy-adoption.log": {
+    "sha256": "901bd042b8c64170e834a901c88af2b3583dab9bd646b9f6efe5ae2fd652fbf8",
+    "bytes": 385
+  },
+  "verify-project-xml.log": {
+    "sha256": "309e02a870560f24f01b5ced7ca728aeceb8ad5b840612f57e9d1d515f4d98ac",
+    "bytes": 121
+  },
+  "verify-repartition-float.json": {
+    "sha256": "c5a0f062ebf632bd6295abedfe93e9829586e17fa6fd3c7fd19572a266f230f5",
+    "bytes": 585
+  },
+  "verify-report-fixtures.log": {
+    "sha256": "76002089998b4c98415f2fd7da5e0b2a49128ea0cca9f47cf49f2b2a1dce447e",
+    "bytes": 798
+  },
+  "verify-scaled-repartition-float.json": {
+    "sha256": "243380945fe68f9c7a38b73f3a14d4a26b870ad7cda83755e4a2aa248e6417ff",
+    "bytes": 1007
+  },
+  "verify-schedule-print.log": {
+    "sha256": "4bcef8171be360e9388b2ff5b7d00af0f3dd0b18610b4f91d9aac1a56028cad7",
+    "bytes": 468
+  },
+  "verify-segment-leveling-float.json": {
+    "sha256": "bc47f21f2a89b9b0d418d843270c22dc558bb29a64c03f064101824756c3cf10",
+    "bytes": 437
+  },
+  "verify-usage-exports.log": {
+    "sha256": "d4fe3cf026c9e774f58dc413fb0334075b18b6878e1e33f3237af080f04ab5af",
+    "bytes": 324
+  },
+  "verify-xer-project-selection.log": {
+    "sha256": "b2a33823b568c8ebf3fbab44c3867d3a660ed7b3f23364930ccbc572b4dd8004",
+    "bytes": 548
+  },
+  "witness-129.png": {
+    "sha256": "d7c14fb8ba5264b4a64e307cfb2c2a69030c573fb43a4bf1bc570c4f9cbb2214",
+    "bytes": 63447
+  }
+}

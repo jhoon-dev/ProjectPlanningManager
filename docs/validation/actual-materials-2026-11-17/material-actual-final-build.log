@@ -1,0 +1,5 @@
+[1/5] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MaterialActualDialog.cpp.obj
+[2/5] Linking CXX static library libjobs_ui.a
+[3/5] Linking CXX executable PPM.exe
+[4/5] Building CXX object CMakeFiles/jobs_material_actual_tests.dir/tests/MaterialActualTests.cpp.obj
+[5/5] Linking CXX executable jobs_material_actual_tests.exe

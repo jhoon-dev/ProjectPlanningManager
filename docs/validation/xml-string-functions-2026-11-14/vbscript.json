@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "comparisons": 3072,
+  "engine": "Windows VBScript",
+  "scope": "Non-Null BMP character reversal/binary matching and ASCII case-insensitive matching; integer controls.",
+  "null_difference": "VBScript InStrRev(Null,...) errors; native intentionally follows VBA-documented Null propagation.",
+  "external_product_run": false
+}

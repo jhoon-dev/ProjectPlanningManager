@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-ninja"
+	tests="2"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-61CPKLN"
+	time="4"
+	timestamp="2026-11-14T21:24:34"
+	>
+	<testcase name="xml_partition_contract" classname="xml_partition_contract" time="3.0664" status="run">
+		<properties/>
+		<system-out>PASS Partition: precedence/rounding/domain/range/Null, scopes/summary/roll-down, schema71/archives/recovery/XML/XER/reports; boundary and mixed partition vectors
+</system-out>
+	</testcase>
+	<testcase name="xml_partition_ui" classname="xml_partition_ui" time="0.933316" status="run">
+		<properties/>
+		<system-out>PASS Partition UI: examples/async preview/save/undo/cancel and small layout
+</system-out>
+	</testcase>
+</testsuite>

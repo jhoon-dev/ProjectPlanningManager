@@ -1,0 +1,2 @@
+[1/2] Building CXX object CMakeFiles/jobs_xml_additional_function_tests.dir/tests/XmlAdditionalFunctionTests.cpp.obj
+[2/2] Linking CXX executable jobs_xml_additional_function_tests.exe

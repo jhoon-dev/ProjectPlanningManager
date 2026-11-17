@@ -1,0 +1,93 @@
+{
+  "timephased": {
+    "status": "PASS",
+    "baseline_rows": 26,
+    "timephased": 98,
+    "minute_comparisons": 7273,
+    "zero_work_blocks": 9,
+    "unknown_cost_blocks": 0,
+    "adopted_schema": 77,
+    "external_product_run": false,
+    "mpxj_assignments_checked": 6
+  },
+  "merge": {
+    "status": "PASS",
+    "baseline_rows": 7,
+    "explicit_links": 5,
+    "preserved_old_number": 0,
+    "adopted_number": 1,
+    "timephased": 4,
+    "schema": 76,
+    "native_approvals_preserved": 1,
+    "external_product_run": false,
+    "xlsx_sheets": 25,
+    "pdf_pages": 15
+  },
+  "exchange": {
+    "status": "PASS",
+    "external_rows": 6,
+    "source_rows": 16,
+    "timephased": 4,
+    "native_projection_rows": 26,
+    "currency": "USD→EUR 1/2",
+    "external_product_run": false,
+    "xlsx_sheets": 25,
+    "pdf_pages": 15
+  },
+  "baselines": {
+    "status": "PASS",
+    "schema": 74,
+    "baseline": "BASE-1",
+    "xml_cells": 77,
+    "missing_xml_cells": 17,
+    "baseline_formula_definitions": 17,
+    "xer_baseline_numbers": 32,
+    "external_product_run": false,
+    "report_cells": 77,
+    "xlsx_sheets": 26,
+    "pdf_pages": 20
+  },
+  "remaining": {
+    "status": "PASS",
+    "schema": 74,
+    "xml_cells": 64,
+    "missing_xml_cells": 0,
+    "remaining_formula_definitions": 11,
+    "xer_remaining_values": 52,
+    "external_product_run": false,
+    "report_cells": 64,
+    "xlsx_sheets": 27,
+    "pdf_pages": 21
+  },
+  "actuals": {
+    "status": "PASS",
+    "schema": 74,
+    "xml_cells": 50,
+    "missing_xml_cells": 14,
+    "quantity_formula_definitions": 11,
+    "xer_quantity_values": 30,
+    "external_product_run": false,
+    "report_cells": 50,
+    "xlsx_sheets": 24,
+    "pdf_pages": 23
+  },
+  "cost": {
+    "status": "PASS",
+    "schema": 74,
+    "rational_vectors": 128,
+    "rational_values": 1408,
+    "xml_cells": 32,
+    "xml_missing_cells": 8,
+    "xml_inherited_cells": 3,
+    "xer_static_values": 32,
+    "formula_definitions": 26,
+    "report_rows": 45,
+    "pdf_pages": 24,
+    "native_file_sha256": "c9c080da7fa5bbdc8cd7312e7ec4d533e46d6ba627cf8e6d9ece881b2bb8e0ce",
+    "external_product_run": false
+  },
+  "summary": {
+    "status": "PASS",
+    "message": "PASS independent summary durations: remaining forecast + 128 calendar/microsecond cases"
+  }
+}

@@ -58,7 +58,7 @@ void GanttView::setPlan(const Project *p, const ScheduleResult *result, const st
     const bool reusable = input_ && p && snapshot && inputSource_.lock() == snapshot && revision_ == p->revision;
     if (valid && reusable && calculationGeneration && renderedCalculation_ == calculationGeneration &&
         displayedIndices_ == indices) {
-        const bool enabled = editable && !result->isForecast;
+        const bool enabled = editable && !result->isForecast && !result->resourceLeveled;
         if (editable_ != enabled) {
             editable_ = enabled;
             rebuild();
@@ -78,13 +78,14 @@ void GanttView::setPlan(const Project *p, const ScheduleResult *result, const st
     holidays_.clear();
     displayRowCount_ = indices.size();
     isForecast_ = result && result->isForecast;
+    resourceLeveled_ = result && result->resourceLeveled;
     if (valid) {
         // A weak source identity permits reuse without retaining the document's
         // COW state and forcing its next ordinary edit to copy the whole project.
         input_ = reusable ? std::move(previousInput) : std::make_shared<PlanInput>(*p);
         documentId_ = p->documentId;
         revision_ = p->revision;
-        editable_ = editable && !isForecast_;
+        editable_ = editable && !isForecast_ && !resourceLeveled_;
         firstDay_ = QDate::fromString(qs(p->startDate), Qt::ISODate);
         const auto last = QDate::fromString(qs(*result->projectFinish).left(10), Qt::ISODate);
         planFirstDay_ = firstDay_;
@@ -99,6 +100,9 @@ void GanttView::setPlan(const Project *p, const ScheduleResult *result, const st
         for (const auto &entry : p->progress)
             if (entry.actualStart)
                 started.insert(entry.taskId);
+        std::unordered_map<std::string, std::vector<ResourceOrderLink>> resourceLinks;
+        for (const auto &link : result->resourceOrderLinks)
+            resourceLinks[link.taskId].push_back(link);
         bool complete = true;
         for (auto index : indices) {
             const auto &t = p->tasks.at(index);
@@ -110,9 +114,17 @@ void GanttView::setPlan(const Project *p, const ScheduleResult *result, const st
             const auto &s = *it->second;
             rows_.push_back({t.id, QString::number(index + 1) + ". " + qs(t.name), qs(s.start), qs(s.finish),
                              s.critical, t.predecessors, s.drivingPredecessors, s.remainingStart, s.completedActual});
+            const auto *fact = p->statusAt ? progressAsOf(*p, t.id) : nullptr;
+            rows_.back().policyIgnoredIncoming = result->isForecast && p->progressPolicy &&
+                                                 p->progressPolicy->policy == overrideProgressPolicy && fact &&
+                                                 fact->actualStart && !fact->actualFinish;
             rows_.back().edges = dependencies(t);
             rows_.back().calendar = qs(taskCalendarName(*p, t));
             auto &added = rows_.back();
+            if (const auto resource = resourceLinks.find(t.id); resource != resourceLinks.end())
+                added.resourceLinks = resource->second;
+            if (hasScheduleFloat(*result, s))
+                added.floatMinutes = {s.totalFloatMinutes, s.freeFloatMinutes};
             added.editable = !started.contains(t.id);
             added.constraintType = t.constraintType;
             added.constraintAt = t.constraintAt;
@@ -350,12 +362,21 @@ void GanttView::rebuild() {
         bar->setData(0, qs(row.id));
         bar->setData(1, milestone ? "milestone" : "task");
         bar->setZValue(2);
-        const auto kind = row.completedActual ? "실제 완료"
-                          : isForecast_       ? "실적 반영 예측"
-                          : milestone         ? "마일스톤"
-                          : row.critical      ? "임계 작업"
-                                              : "여유 작업";
+        const auto kind =
+            row.completedActual ? "실제 완료"
+            : resourceLeveled_
+                ? (row.floatMinutes
+                       ? (row.critical ? "평준화 임계 · 계산 기준은 진단 참조" : "평준화 여유 · 계산 기준은 진단 참조")
+                       : "평준화 채택 · 여유/임계 미산정")
+            : isForecast_ ? (row.floatMinutes ? (row.critical ? "예측 임계 작업" : "예측 여유 작업") : "실적 반영 예측")
+            : milestone    ? "마일스톤"
+            : row.critical ? "임계 작업"
+                           : "여유 작업";
         QString tooltip = row.name + "\n" + kind + "\n" + row.start + " → " + row.finish + "\nID: " + qs(row.id);
+        if (row.floatMinutes)
+            tooltip += QString("\n총여유 %1h · 자유여유 %2h (작업 달력 · 자원 용량 평준화 전)")
+                           .arg(double(row.floatMinutes->first) / 60, 0, 'g', 12)
+                           .arg(double(row.floatMinutes->second) / 60, 0, 'g', 12);
         tooltip += "\n작업 달력: " + row.calendar +
                    "\n막대는 시작~완료 구간입니다. 비근무 시간은 기간/자원 공수에서 제외합니다.";
         tooltip += "\n제약: " + qs(constraintName(row.constraintType)) + " (" + qs(enumToken(row.constraintType)) +
@@ -394,17 +415,46 @@ void GanttView::rebuild() {
                 marker->setZValue(1);
             }
         }
-        auto *label = scene()->addSimpleText(row.name + (row.completedActual ? " [실제]"
-                                                         : isForecast_       ? " [예측]"
-                                                         : milestone         ? " ◆"
-                                                         : row.critical      ? " [임계]"
-                                                                             : ""));
+        auto *label = scene()->addSimpleText(
+            row.name + (row.completedActual ? " [실제]"
+                        : resourceLeveled_ ? (row.floatMinutes && row.critical ? " [평준화 임계]" : " [평준화]")
+                        : isForecast_      ? (row.floatMinutes && row.critical ? " [예측 임계]" : " [예측]")
+                        : milestone        ? " ◆"
+                        : row.critical     ? " [임계]"
+                                           : ""));
         label->setBrush(palette().color(QPalette::Text));
         label->setPos(finish + 9, y - 9);
         label->setZValue(3);
         label->setData(0, qs(row.id));
         label->setData(1, "label");
         label->setToolTip(tooltip);
+        for (const auto &resource : row.resourceLinks) {
+            const auto it = rowIndex_.find(resource.predecessorId);
+            if (it == rowIndex_.end())
+                continue;
+            const auto &prev = rows_[it->second];
+            const auto x1 = position(resource.releaseAt.empty() ? prev.finish : qs(resource.releaseAt)),
+                       target = !resource.acquireAt.empty() ? position(qs(resource.acquireAt))
+                                : row.remainingStart        ? position(qs(*row.remainingStart))
+                                                            : start;
+            const auto y1 = HeaderHeight + int(it->second) * RowHeight + RowHeight / 2;
+            QPainterPath path(QPointF(x1, y1));
+            path.lineTo(x1 + 7, y1);
+            path.lineTo(x1 + 7, y - 8);
+            path.lineTo(target, y - 8);
+            path.lineTo(target, y);
+            auto *link = scene()->addPath(
+                path, QPen(resource.driving && row.critical && prev.critical ? criticalColor() : QColor("#8755a1"), 1.5,
+                           Qt::DashLine));
+            link->setData(1, "resourceDependency");
+            link->setData(0, qs(resource.predecessorId + "->" + row.id));
+            link->setToolTip("자원 순서 " + qs(resource.resourceId) + " · " + QString::number(resource.units) + "% · " +
+                             (resource.driving ? "driving" : "여유") +
+                             (resource.releaseAt.empty()
+                                  ? QString{}
+                                  : "\n실행 구간 " + qs(resource.releaseAt) + " → " + qs(resource.acquireAt)));
+            link->setZValue(1);
+        }
         for (const auto &edge : row.edges) {
             const auto &predecessor = edge.predecessorId;
             auto found = rowIndex_.find(predecessor);
@@ -423,17 +473,23 @@ void GanttView::rebuild() {
             path.lineTo(target - 5, y - 10);
             path.lineTo(target - 5, y);
             path.lineTo(target, y);
-            const bool driving = row.critical && prev.critical &&
+            const bool driving = !row.policyIgnoredIncoming && row.critical && prev.critical &&
                                  std::find(row.driving.begin(), row.driving.end(), predecessor) != row.driving.end();
-            const auto color = driving ? criticalColor() : palette().color(QPalette::Text);
+            const auto color = row.policyIgnoredIncoming ? QColor("#7b8d9b")
+                               : driving                 ? criticalColor()
+                                                         : palette().color(QPalette::Text);
             const bool historical = isForecast_ && row.completedActual;
-            auto *link = scene()->addPath(path, QPen(color, 1, historical ? Qt::DashLine : Qt::SolidLine));
+            auto *link = scene()->addPath(
+                path, QPen(color, 1, (historical || row.policyIgnoredIncoming) ? Qt::DashLine : Qt::SolidLine));
             link->setZValue(1);
             link->setData(0, qs(predecessor + "->" + row.id));
             link->setData(1, "dependency");
             link->setToolTip(qs(enumToken(edge.type)) + (edge.lagMinutes >= 0 ? "+" : "") +
                              QString::number(edge.lagMinutes) + "m · 후행 달력 근무분 · " +
-                             (historical ? "실제 날짜 고정 · " : "") + qs(predecessor) + " → " + qs(row.id));
+                             (row.policyIgnoredIncoming ? "채택 진척 정책 비활성 · "
+                              : historical              ? "실제 날짜 고정 · "
+                                                        : "") +
+                             qs(predecessor) + " → " + qs(row.id));
             QPolygonF arrow;
             arrow << QPointF(target, y) << QPointF(target - 5, y - 3) << QPointF(target - 5, y + 3);
             scene()->addPolygon(arrow, QPen(color), QBrush(color))->setZValue(1);

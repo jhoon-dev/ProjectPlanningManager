@@ -1,0 +1,6 @@
+[
+  "src/persistence/ProjectMpp.cpp",
+  "src/persistence/ProjectXml.cpp",
+  "tests/ProjectMppTests.cpp",
+  "tests/MppCurveTests.cpp"
+]

@@ -1,0 +1,455 @@
+{
+    "assignmentFields": [
+        {
+            "id": "code3",
+            "name": "공정 코드 3",
+            "options": [
+                {
+                    "id": "only3",
+                    "name": "a"
+                }
+            ],
+            "type": "choice",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "255885440",
+                "fieldName": "공정 코드 3",
+                "guid": "55555555-6666-4777-8888-000000000104"
+            },
+            "xmlLookup": {
+                "codeMask": {
+                    "allLevelsRequired": true,
+                    "levels": [
+                        {
+                            "length": 1,
+                            "level": 1,
+                            "separator": ".",
+                            "type": 2
+                        }
+                    ]
+                },
+                "defaultOptionId": "",
+                "fieldGuid": "",
+                "fieldName": "",
+                "leafOnly": false,
+                "maxValues": 1,
+                "restrictValues": true,
+                "tableGuid": "55555555-6666-4777-8888-000000000005",
+                "tableName": "분류 코드 3",
+                "valueType": "text",
+                "values": [
+                    {
+                        "description": "",
+                        "guid": "55555555-6666-4777-8888-000000000017",
+                        "listed": true,
+                        "optionId": "only3",
+                        "parentId": "",
+                        "value": "a",
+                        "valueId": "107"
+                    }
+                ]
+            }
+        }
+    ],
+    "assignments": [
+        {
+            "attributes": [
+                {
+                    "key": "field:code3",
+                    "value": "only3"
+                }
+            ],
+            "resourceId": "R",
+            "taskId": "T",
+            "units": 100
+        },
+        {
+            "resourceId": "R",
+            "taskId": "B",
+            "units": 100
+        }
+    ],
+    "baselines": [
+    ],
+    "calculationProfile": "native-pdm-taskcal-v1",
+    "calendar": "standard-mon-fri-8h-v1",
+    "calendars": [
+    ],
+    "codeTypes": [
+    ],
+    "costEntries": [
+    ],
+    "costProfile": "cost-day-minor-half-up-v1",
+    "currency": "USD",
+    "customFields": [
+        {
+            "id": "code0",
+            "name": "공정 코드 0",
+            "options": [
+                {
+                    "id": "root",
+                    "name": "AA"
+                },
+                {
+                    "id": "branch",
+                    "name": "AA.01"
+                },
+                {
+                    "id": "leaf",
+                    "name": "AA.01/공정"
+                }
+            ],
+            "type": "choice",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "188776576",
+                "fieldName": "공정 코드 0",
+                "guid": "55555555-6666-4777-8888-000000000101"
+            },
+            "xmlLookup": {
+                "codeMask": {
+                    "allLevelsRequired": true,
+                    "levels": [
+                        {
+                            "length": 2,
+                            "level": 1,
+                            "separator": ".",
+                            "type": 1
+                        },
+                        {
+                            "length": 2,
+                            "level": 2,
+                            "separator": "/",
+                            "type": 0
+                        },
+                        {
+                            "length": 0,
+                            "level": 3,
+                            "separator": "",
+                            "type": 3
+                        }
+                    ]
+                },
+                "defaultOptionId": "",
+                "fieldGuid": "",
+                "fieldName": "",
+                "leafOnly": true,
+                "maxValues": 1,
+                "restrictValues": true,
+                "tableGuid": "55555555-6666-4777-8888-000000000001",
+                "tableName": "공정 코드",
+                "valueType": "text",
+                "values": [
+                    {
+                        "description": "",
+                        "guid": "55555555-6666-4777-8888-000000000011",
+                        "listed": true,
+                        "optionId": "root",
+                        "parentId": "",
+                        "value": "AA",
+                        "valueId": "101"
+                    },
+                    {
+                        "description": "",
+                        "guid": "55555555-6666-4777-8888-000000000012",
+                        "listed": true,
+                        "optionId": "branch",
+                        "parentId": "root",
+                        "value": "01",
+                        "valueId": "102"
+                    },
+                    {
+                        "description": "기존 코드",
+                        "guid": "55555555-6666-4777-8888-000000000013",
+                        "listed": true,
+                        "optionId": "leaf",
+                        "parentId": "branch",
+                        "value": "공정",
+                        "valueId": "103"
+                    }
+                ]
+            }
+        }
+    ],
+    "derivedFrom": "",
+    "documentId": "xml-code-masks",
+    "holidays": [
+    ],
+    "name": "XML 코드 마스크·생성",
+    "progress": [
+    ],
+    "projectAttributes": [
+        {
+            "key": "field:code1",
+            "value": "leaf"
+        }
+    ],
+    "projectFields": [
+        {
+            "id": "code1",
+            "name": "공정 코드 1",
+            "options": [
+                {
+                    "id": "root",
+                    "name": "AA"
+                },
+                {
+                    "id": "branch",
+                    "name": "AA.01"
+                },
+                {
+                    "id": "leaf",
+                    "name": "AA.01/공정"
+                }
+            ],
+            "type": "choice",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "190873728",
+                "fieldName": "공정 코드 1",
+                "guid": "55555555-6666-4777-8888-000000000102"
+            },
+            "xmlLookup": {
+                "codeMask": {
+                    "allLevelsRequired": true,
+                    "levels": [
+                        {
+                            "length": 2,
+                            "level": 1,
+                            "separator": ".",
+                            "type": 1
+                        },
+                        {
+                            "length": 2,
+                            "level": 2,
+                            "separator": "/",
+                            "type": 0
+                        },
+                        {
+                            "length": 0,
+                            "level": 3,
+                            "separator": "",
+                            "type": 3
+                        }
+                    ]
+                },
+                "defaultOptionId": "",
+                "fieldGuid": "",
+                "fieldName": "",
+                "leafOnly": true,
+                "maxValues": 1,
+                "restrictValues": true,
+                "tableGuid": "55555555-6666-4777-8888-000000000001",
+                "tableName": "공정 코드",
+                "valueType": "text",
+                "values": [
+                    {
+                        "description": "",
+                        "guid": "55555555-6666-4777-8888-000000000011",
+                        "listed": true,
+                        "optionId": "root",
+                        "parentId": "",
+                        "value": "AA",
+                        "valueId": "101"
+                    },
+                    {
+                        "description": "",
+                        "guid": "55555555-6666-4777-8888-000000000012",
+                        "listed": true,
+                        "optionId": "branch",
+                        "parentId": "root",
+                        "value": "01",
+                        "valueId": "102"
+                    },
+                    {
+                        "description": "기존 코드",
+                        "guid": "55555555-6666-4777-8888-000000000013",
+                        "listed": true,
+                        "optionId": "leaf",
+                        "parentId": "branch",
+                        "value": "공정",
+                        "valueId": "103"
+                    }
+                ]
+            }
+        }
+    ],
+    "resourceFields": [
+        {
+            "id": "code2",
+            "name": "공정 코드 2",
+            "options": [
+                {
+                    "id": "only2",
+                    "name": "01"
+                }
+            ],
+            "type": "choice",
+            "unit": "",
+            "xmlIdentity": {
+                "fieldId": "205553792",
+                "fieldName": "공정 코드 2",
+                "guid": "55555555-6666-4777-8888-000000000103"
+            },
+            "xmlLookup": {
+                "codeMask": {
+                    "allLevelsRequired": true,
+                    "levels": [
+                        {
+                            "length": 2,
+                            "level": 1,
+                            "separator": ".",
+                            "type": 0
+                        }
+                    ]
+                },
+                "defaultOptionId": "",
+                "fieldGuid": "",
+                "fieldName": "",
+                "leafOnly": false,
+                "maxValues": 1,
+                "restrictValues": true,
+                "tableGuid": "55555555-6666-4777-8888-000000000004",
+                "tableName": "분류 코드 2",
+                "valueType": "text",
+                "values": [
+                    {
+                        "description": "",
+                        "guid": "55555555-6666-4777-8888-000000000016",
+                        "listed": true,
+                        "optionId": "only2",
+                        "parentId": "",
+                        "value": "01",
+                        "valueId": "106"
+                    }
+                ]
+            }
+        }
+    ],
+    "resources": [
+        {
+            "attributes": [
+                {
+                    "key": "field:code2",
+                    "value": "only2"
+                }
+            ],
+            "exceptions": [
+            ],
+            "id": "R",
+            "maxUnits": 100,
+            "name": "설계 인력",
+            "rates": [
+            ],
+            "type": "labor"
+        }
+    ],
+    "revision": 1,
+    "scenarios": [
+    ],
+    "startDate": "2026-11-11",
+    "statusAt": null,
+    "taskCosts": [
+        {
+            "accrual": "uniform",
+            "credit": "physical",
+            "fixedMinor": 0,
+            "taskId": "T"
+        },
+        {
+            "accrual": "uniform",
+            "credit": "physical",
+            "fixedMinor": 0,
+            "taskId": "B"
+        }
+    ],
+    "tasks": [
+        {
+            "attributes": [
+                {
+                    "key": "field:code0",
+                    "value": "leaf"
+                }
+            ],
+            "calendarId": "",
+            "dependencyRules": [
+            ],
+            "durationMinutes": 480,
+            "id": "T",
+            "name": "설계 작업",
+            "predecessors": [
+            ],
+            "wbsId": "H"
+        },
+        {
+            "calendarId": "",
+            "dependencyRules": [
+            ],
+            "durationMinutes": 480,
+            "id": "B",
+            "name": "검토",
+            "predecessors": [
+            ],
+            "wbsId": "G"
+        }
+    ],
+    "wbsNodes": [
+        {
+            "id": "G",
+            "name": "설계",
+            "parentId": ""
+        },
+        {
+            "id": "H",
+            "name": "상세 설계",
+            "parentId": "G"
+        }
+    ],
+    "xmlWbs": {
+        "generate": true,
+        "masks": [
+            {
+                "length": 2,
+                "level": 1,
+                "separator": ".",
+                "type": 1
+            },
+            {
+                "length": 3,
+                "level": 2,
+                "separator": "-",
+                "type": 0
+            },
+            {
+                "length": 1,
+                "level": 3,
+                "separator": ".",
+                "type": 2
+            }
+        ],
+        "prefix": "PR-",
+        "values": [
+            {
+                "code": "PR-AA",
+                "id": "G",
+                "kind": "wbs"
+            },
+            {
+                "code": "PR-AA.001",
+                "id": "H",
+                "kind": "wbs"
+            },
+            {
+                "code": "PR-AA.001-a",
+                "id": "T",
+                "kind": "task"
+            },
+            {
+                "code": "PR-AA.002",
+                "id": "B",
+                "kind": "task"
+            }
+        ],
+        "verifyUnique": true
+    }
+}

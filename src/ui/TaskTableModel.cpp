@@ -1,6 +1,8 @@
+#include "calculation/ScheduleFormulaScope.h"
 #include "formatting/QtDiagnosticText.h"
 #include "formatting/PlanTokens.h"
 #include "ui/TaskTableModel.h"
+#include "domain/FormulaFields.h"
 #include "calculation/WorkCalendar.h"
 #include <QBrush>
 #include <QColor>
@@ -36,28 +38,71 @@ int TaskTableModel::rowCount(const QModelIndex &parent) const {
     return parent.isValid() ? 0 : int(rows_.size());
 }
 int TaskTableModel::columnCount(const QModelIndex &parent) const {
-    return parent.isValid() ? 0 : 14;
+    return parent.isValid() ? 0 : int(14 + plan_.customFields.size() + plan_.codeTypes.size());
+}
+std::string TaskTableModel::columnKey(int column) const {
+    if (column < 0 || column >= columnCount())
+        return {};
+    if (column < 14)
+        return std::string(builtinTaskColumns[std::size_t(column)]);
+    const auto index = std::size_t(column - 14);
+    return index < plan_.customFields.size() ? "field:" + plan_.customFields[index].id
+                                             : "code:" + plan_.codeTypes[index - plan_.customFields.size()].id;
+}
+int TaskTableModel::columnForKey(const std::string &key) const {
+    for (int column = 0; column < columnCount(); ++column)
+        if (columnKey(column) == key)
+            return column;
+    return -1;
 }
 QVariant TaskTableModel::headerData(int section, Qt::Orientation orientation, int role) const {
     if (role != Qt::DisplayRole || section < 0)
         return {};
     if (orientation == Qt::Horizontal)
-        return section < headers.size() ? QVariant(headers[section]) : QVariant{};
+        return section < headers.size()  ? QVariant(headers[section])
+               : section < columnCount() ? QVariant(qs(attributeName(plan_, columnKey(section))))
+                                         : QVariant{};
     return section < rowCount() ? QVariant(QString::number(rows_[std::size_t(section)] + 1)) : QVariant{};
 }
 Qt::ItemFlags TaskTableModel::flags(const QModelIndex &index) const {
-    if (!index.isValid() || index.model() != this || index.row() >= rowCount() || index.column() >= 14)
+    if (!index.isValid() || index.model() != this || index.row() >= rowCount() || index.column() >= columnCount())
         return Qt::NoItemFlags;
     auto flags = Qt::ItemIsEnabled | Qt::ItemIsSelectable;
-    if (!readOnly_ && index.column() < 3)
+    const auto *field = index.column() >= 14 ? customField(plan_, columnKey(index.column())) : nullptr;
+    if (!readOnly_ && (!field || !calculatedField(*field)) && (index.column() < 3 || index.column() >= 14))
         flags |= Qt::ItemIsEditable;
     return flags;
+}
+std::shared_ptr<const FormulaValues> TaskTableModel::computedValues(const Task &task) const {
+    const auto key = std::to_string(session_) + "/" + std::to_string(revision_) + "/" + task.id;
+    if (auto it = computed_.find(key); it != computed_.end())
+        return it->second;
+    if (computed_.size() >= 512)
+        computed_.clear();
+    EvaluationScope scope({}, renderCache_);
+    auto result = formulaValues(plan_, FieldScope::Task, &task);
+    computed_.emplace(key, result);
+    return result;
 }
 const TaskSchedule *TaskTableModel::schedule(const Task &task) const {
     const auto found = schedules_.find(task.id);
     return found == schedules_.end() ? nullptr : &found->second;
 }
 QString TaskTableModel::text(const Task &task, int column) const {
+    if (column >= 14) {
+        EvaluationScope scope({}, renderCache_);
+        const auto key = columnKey(column), unit = attributeUnit(plan_, key);
+        if (const auto *f = customField(plan_, key); f && calculatedField(*f)) {
+            const auto computed = computedValues(task);
+            const auto &v = computed->at(key);
+            const auto raw = formulaRawValue(v);
+            return (raw ? qs(attributeText(plan_, key, *raw)) : qs(formulaValueText(v))) +
+                   (raw && !unit.empty() ? " " + qs(unit) : "");
+        }
+        const auto value = resolvedAttributeValue(plan_, task, key);
+        return value ? qs(attributeText(attributeLabels_, key, *value)) + (unit.empty() ? "" : " " + qs(unit))
+                     : "미설정";
+    }
     const auto *row = schedule(task);
     switch (column) {
     case 0:
@@ -92,12 +137,18 @@ QString TaskTableModel::text(const Task &task, int column) const {
     case 4:
         return row ? qs(row->finish) : "미계산";
     case 5:
-        return row && !result_->isForecast ? QString::number(double(row->totalFloatMinutes) / 60, 'g', 12) : "—";
+        return row && hasScheduleFloat(*result_, *row) ? QString::number(double(row->totalFloatMinutes) / 60, 'g', 12)
+                                                       : "—";
     case 6:
-        return !row                  ? "—"
-               : result_->isForecast ? (row->completedActual ? "실제 완료" : "예측")
-               : row->critical       ? "임계"
-                                     : "여유";
+        return !row                   ? "—"
+               : row->completedActual ? "실제 완료"
+               : result_->resourceLeveled
+                   ? (hasScheduleFloat(*result_, *row) ? (row->critical ? "평준화 임계" : "평준화 여유")
+                                                       : "평준화 채택")
+               : result_->isForecast
+                   ? (result_->forecastFloatCalculated ? (row->critical ? "예측 임계" : "예측 여유") : "예측")
+               : row->critical ? "임계"
+                               : "여유";
     case 7:
         return assignments_.contains(task.id) ? assignments_.at(task.id) : "미설정";
     case 8:
@@ -119,11 +170,22 @@ QString TaskTableModel::text(const Task &task, int column) const {
     }
 }
 QVariant TaskTableModel::data(const QModelIndex &index, int role) const {
+    XmlScheduleScope formulaSchedule(plan_, scheduleValues_);
     if (!index.isValid() || index.model() != this || index.row() < 0 || index.row() >= rowCount() ||
-        index.column() < 0 || index.column() >= 14)
+        index.column() < 0 || index.column() >= columnCount())
         return {};
     const auto &task = plan_.tasks.at(rows_[std::size_t(index.row())]);
     const int column = index.column();
+    if (role == Qt::EditRole && column >= 14) {
+        EvaluationScope scope({}, renderCache_);
+        const auto key = columnKey(column);
+        const auto value = resolvedAttributeValue(plan_, task, key);
+        if (!value)
+            return QString{};
+        const auto *field = customField(plan_, key);
+        return field && field->type != CustomFieldType::Choice ? qs(*value)
+                                                               : qs(attributeText(attributeLabels_, key, *value));
+    }
     if (role == Qt::DisplayRole || role == Qt::EditRole)
         return text(task, column);
     if (role == Qt::UserRole)
@@ -136,6 +198,34 @@ QVariant TaskTableModel::data(const QModelIndex &index, int role) const {
     if (role == Qt::ForegroundRole)
         return conflict ? QVariant(QBrush(QColor("#662015"))) : late ? QVariant(QBrush(QColor("#653b00"))) : QVariant{};
     if (role == Qt::ToolTipRole) {
+        if (column >= 14) {
+            const auto key = columnKey(column);
+            const auto *f = customField(plan_, key);
+            if (f && calculatedField(*f)) {
+                EvaluationScope scope({}, renderCache_);
+                return "<qt>계산식: " + qs(f->xmlFormula ? f->xmlFormula->source : f->expression).toHtmlEscaped() +
+                       "<br>" + qs(formulaValueText(computedValues(task)->at(key))).toHtmlEscaped() +
+                       (hasXmlScheduleReferences(plan_, true)
+                            ? "<br>일정 기준: " + qs(xmlScheduleCaption(plan_)).toHtmlEscaped()
+                            : QString{}) +
+                       "</qt>";
+            }
+        }
+        if ((column == 5 || column == 6) && result_ && result_->resourceLeveled)
+            return row && hasScheduleFloat(*result_, *row)
+                       ? QString(result_->calculationPolicy.ends_with("resource-material-float-v1")
+                                     ? "자재 입고·재고 검산 · 구간 재생성 · 총여유 %1h · 자유여유 %2h"
+                                 : result_->calculationPolicy.ends_with("resource-repartition-float-v3")
+                                     ? "구간 재생성 · 최종 반환 순서 유지 · 총여유 %1h · 자유여유 %2h"
+                                     : "자원 슬롯 순서 고정 · 총여유 %1h · 자유여유 %2h")
+                             .arg(double(row->totalFloatMinutes) / 60)
+                             .arg(double(row->freeFloatMinutes) / 60)
+                       : "평준화 후 여유/임계 미산정: " + qs(result_->levelingFloatReason);
+        if ((column == 5 || column == 6) && row && hasScheduleFloat(*result_, *row))
+            return QString("%1 · 총여유 %2h · 자유여유 %3h\n각 작업 달력의 근무시간 · 자원 용량 평준화 전 논리 일정")
+                .arg(result_->isForecast ? "상태일 이후 잔여 예측" : "현재 계획")
+                .arg(double(row->totalFloatMinutes) / 60, 0, 'g', 12)
+                .arg(double(row->freeFloatMinutes) / 60, 0, 'g', 12);
         if (conflict)
             return "<qt>" + issues_.at(task.id).toHtmlEscaped() + "</qt>";
         if (late)
@@ -152,8 +242,8 @@ bool TaskTableModel::setData(const QModelIndex &index, const QVariant &value, in
         document_.sessionGeneration() != session_)
         return false;
     const auto &task = plan_.tasks.at(rows_[std::size_t(index.row())]);
-    const auto input = value.toString().trimmed();
-    if (input == text(task, index.column())) {
+    const auto input = index.column() >= 14 ? value.toString() : value.toString().trimmed();
+    if (input == data(index, Qt::EditRole).toString()) {
         if (unchangedEditRequested)
             unchangedEditRequested(task.id, index.column());
         return true;
@@ -171,6 +261,8 @@ bool TaskTableModel::setData(const QModelIndex &index, const QVariant &value, in
     return accepted;
 }
 bool TaskTableModel::synchronizeTask() {
+    if (document_.project() && hasXmlScheduleReferences(*document_.project(), true))
+        return false;
     const auto &hint = document_.taskChange();
     const auto &project = document_.project();
     if (!initialized_ || !project || !hint || hint->before != revision_ || hint->after != project->revision ||
@@ -183,12 +275,14 @@ bool TaskTableModel::synchronizeTask() {
     if (!hint->nameOnly)
         renderCache_ = std::make_shared<EvaluationCache>();
     if (const auto found = positions_.find(hint->row); found != positions_.end()) {
-        const int last = hint->nameOnly ? 0 : 13;
+        const int last = hint->nameOnly ? 0 : hasFormulaFields(plan_) ? columnCount() - 1 : 13;
         emit dataChanged(index(found->second, 0), index(found->second, last));
     }
     return true;
 }
 bool TaskTableModel::synchronizeBulk(BulkView &view) {
+    if (document_.project() && hasXmlScheduleReferences(*document_.project(), true))
+        return false;
     const auto &project = document_.project();
     if (!initialized_ || !project || view.before != revision_ || view.after != project->revision ||
         view.session != session_ || session_ != document_.sessionGeneration() || view.documentId != documentId_ ||
@@ -239,19 +333,23 @@ bool TaskTableModel::synchronizeBulk(BulkView &view) {
                              assignments = std::move(previousAssignments)] {});
     if (!reset && rowCount()) {
         if (dates)
-            emit dataChanged(index(0, 0), index(rowCount() - 1, 13));
+            emit dataChanged(index(0, 0), index(rowCount() - 1, columnCount() - 1));
         else
             for (const auto &[first, last] : view.changedRanges)
                 if (first < rowCount())
-                    emit dataChanged(index(first, 0), index(std::min(last, rowCount() - 1), 13));
+                    emit dataChanged(index(first, 0), index(std::min(last, rowCount() - 1), columnCount() - 1));
         if (insert || remove) {
             emit dataChanged(index(0, 2), index(rowCount() - 1, 2));
+            if (hasFormulaFields(plan_) && columnCount() > 14)
+                emit dataChanged(index(0, 14), index(rowCount() - 1, columnCount() - 1));
             emit headerDataChanged(Qt::Vertical, 0, rowCount() - 1);
         }
     }
     return true;
 }
 bool TaskTableModel::synchronizeProjected(BulkView &view) {
+    if (document_.project() && hasXmlScheduleReferences(*document_.project(), true))
+        return false;
     const auto &p = document_.project();
     if (!initialized_ || !p || !view.projected || !view.contextValid || view.before != revision_ ||
         view.after != p->revision || view.session != session_ || session_ != document_.sessionGeneration() ||
@@ -303,7 +401,7 @@ bool TaskTableModel::synchronizeProjected(BulkView &view) {
             // Publish edited values before changing layout: persistent items must
             // keep the same data throughout the layout notification pair.
             if (rowCount())
-                emit dataChanged(index(0, 0), index(rowCount() - 1, 13));
+                emit dataChanged(index(0, 0), index(rowCount() - 1, columnCount() - 1));
             emit layoutAboutToBeChanged();
             const auto from = persistentIndexList();
             QModelIndexList to;
@@ -323,12 +421,14 @@ bool TaskTableModel::synchronizeProjected(BulkView &view) {
         }
         if (rowCount()) {
             if (dates)
-                emit dataChanged(index(0, 0), index(rowCount() - 1, 13));
+                emit dataChanged(index(0, 0), index(rowCount() - 1, columnCount() - 1));
             else
                 for (const auto &[first, last] : view.changedRanges)
-                    emit dataChanged(index(first, 0), index(last, 13));
+                    emit dataChanged(index(first, 0), index(last, columnCount() - 1));
             if (!view.sameOrder)
                 emit dataChanged(index(0, 2), index(rowCount() - 1, 2));
+            if (hasFormulaFields(plan_) && columnCount() > 14)
+                emit dataChanged(index(0, 14), index(rowCount() - 1, columnCount() - 1));
             if (!view.sameOrder || view.reordered || !view.removals.empty() || !view.insertions.empty())
                 emit headerDataChanged(Qt::Vertical, 0, rowCount() - 1);
         }
@@ -349,7 +449,9 @@ void TaskTableModel::synchronize(const std::vector<std::size_t> &rows) {
                 structure = true;
                 break;
             }
-    const bool reset = newSession || structure || rows_ != rows;
+    const bool classificationColumns =
+        project && (plan_.customFields != project->customFields || plan_.codeTypes != project->codeTypes);
+    const bool reset = newSession || structure || rows_ != rows || classificationColumns;
     if (reset)
         beginResetModel();
     if (!project) {
@@ -357,6 +459,7 @@ void TaskTableModel::synchronize(const std::vector<std::size_t> &rows) {
         rows_.clear();
         positions_.clear();
         result_.reset();
+        scheduleValues_.reset();
         schedules_.clear();
         plannedDates_.clear();
         numbers_.clear();
@@ -373,10 +476,19 @@ void TaskTableModel::synchronize(const std::vector<std::size_t> &rows) {
     const auto &p = *project;
     lastTaskVisits_ = p.tasks.size();
     const bool metadata = !initialized_ || plan_.startDate != p.startDate || plan_.calendar != p.calendar ||
-                          plan_.holidays != p.holidays || plan_.calculationProfile != p.calculationProfile ||
-                          plan_.resources != p.resources || plan_.assignments != p.assignments ||
-                          plan_.calendars != p.calendars;
+                          plan_.holidays != p.holidays || plan_.xmlFormulaCalendarId != p.xmlFormulaCalendarId ||
+                          plan_.calculationProfile != p.calculationProfile || plan_.resources != p.resources ||
+                          plan_.assignments != p.assignments || plan_.calendars != p.calendars ||
+                          classificationColumns ||
+                          (hasFormulaFields(p) &&
+                           (plan_.projectFields != p.projectFields || plan_.projectAttributes != p.projectAttributes));
     const bool calculation = calculationGeneration_ != document_.calculationGeneration();
+    if (hasXmlScheduleReferences(p, true) && (revision_ != p.revision || calculation || newSession)) {
+        scheduleValues_ = makeScheduleFormulaValues(p, document_.calculation() ? &*document_.calculation() : nullptr);
+        computed_.clear();
+        renderCache_ = std::make_shared<EvaluationCache>();
+    } else if (!hasXmlScheduleReferences(p, true))
+        scheduleValues_.reset();
     const bool all = reset || metadata || calculation || readOnly_ != document_.readOnly();
     std::unordered_set<std::size_t> changed;
     if (structure || newSession)
@@ -387,9 +499,13 @@ void TaskTableModel::synchronize(const std::vector<std::size_t> &rows) {
                 plan_.tasks[i] = p.tasks[i];
                 changed.insert(i);
             }
+    plan_.projectFields = p.projectFields;
+    plan_.resourceFields = p.resourceFields;
+    plan_.projectAttributes = p.projectAttributes;
     plan_.name = p.name;
     plan_.startDate = p.startDate;
     plan_.calendar = p.calendar;
+    plan_.xmlFormulaCalendarId = p.xmlFormulaCalendarId;
     plan_.calculationProfile = p.calculationProfile;
     plan_.currency = p.currency;
     plan_.costProfile = p.costProfile;
@@ -405,12 +521,17 @@ void TaskTableModel::synchronize(const std::vector<std::size_t> &rows) {
         plan_.taskCosts = p.taskCosts;
     if (plan_.calendars != p.calendars)
         plan_.calendars = p.calendars;
+    if (classificationColumns) {
+        plan_.customFields = p.customFields;
+        plan_.codeTypes = p.codeTypes;
+    }
     if (structure || newSession) {
         numbers_.clear();
         for (std::size_t i = 0; i < p.tasks.size(); ++i)
             numbers_[p.tasks[i].id] = int(i + 1);
     }
     if (metadata || newSession) {
+        attributeLabels_ = attributeLabels(p);
         assignments_.clear();
         std::unordered_map<std::string, QString> names;
         for (const auto &resource : p.resources)
@@ -420,6 +541,8 @@ void TaskTableModel::synchronize(const std::vector<std::size_t> &rows) {
             if (!label.isEmpty())
                 label += ", ";
             label += names[assignment.resourceId] + " " + QString::number(assignment.units) + "%";
+            if (!assignment.periods.empty())
+                label += " (기간별 " + QString::number(assignment.periods.size()) + "구간)";
         }
     }
     if (calculation || newSession) {
@@ -432,6 +555,11 @@ void TaskTableModel::synchronize(const std::vector<std::size_t> &rows) {
             result_.emplace();
             result_->status = source.status;
             result_->isForecast = source.isForecast;
+            result_->forecastFloatCalculated = source.forecastFloatCalculated;
+            result_->resourceLeveled = source.resourceLeveled;
+            result_->levelingFloatCalculated = source.levelingFloatCalculated;
+            result_->levelingFloatReason = source.levelingFloatReason;
+            result_->calculationPolicy = source.calculationPolicy;
             if (source.status == CalculationStatus::Valid) {
                 for (const auto &schedule : source.tasks)
                     schedules_[schedule.taskId] = schedule;
@@ -476,7 +604,7 @@ void TaskTableModel::synchronize(const std::vector<std::size_t> &rows) {
         const int first = i++;
         while (i < rowCount() && (all || changed.contains(rows_[std::size_t(i)])))
             ++i;
-        emit dataChanged(index(first, 0), index(i - 1, 13));
+        emit dataChanged(index(first, 0), index(i - 1, columnCount() - 1));
     }
 }
 } // namespace jobs

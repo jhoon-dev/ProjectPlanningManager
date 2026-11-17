@@ -1,5 +1,11 @@
+#include "domain/ResourcePlan.h"
+#include "domain/MaterialActuals.h"
+#include "calculation/MaterialInventory.h"
+#include "calculation/MaterialReservations.h"
+#include "calculation/CapacityTimeline.h"
 #include "domain/Diagnostics.h"
 #include "calculation/Resources.h"
+#include "calculation/LevelingFloat.h"
 #include "calculation/WorkCalendar.h"
 #include "calculation/PdmResources.h"
 #include "calculation/Effort.h"
@@ -13,6 +19,7 @@
 namespace jobs {
 std::vector<ResourceOccupancy> resourceOccupancies(const Project &project, const ScheduleResult &result,
                                                    std::size_t limit, const std::set<std::string> *includedResources) {
+    EvaluationScope evaluation;
     if (result.status != CalculationStatus::Valid || result.documentId != project.documentId ||
         result.inputRevision != project.revision || result.profile != project.calculationProfile ||
         (result.isForecast && result.statusAt != project.statusAt))
@@ -73,12 +80,6 @@ struct Span {
     std::string taskId;
     int units;
 };
-std::optional<int> capacity(const Resource &r, const std::string &date) {
-    for (const auto &d : r.exceptions)
-        if (d.date == date)
-            return d.units;
-    return r.maxUnits;
-}
 std::pair<Minute, Minute> span(const TaskSchedule &row, const ScheduleResult &result, const WorkCalendar &calendar) {
     if (result.isForecast && row.completedActual)
         return {0, 0};
@@ -92,7 +93,9 @@ void reserve(Events &events, Minute start, Minute finish, int units) {
     events[finish] -= units;
 }
 // Visit every interval where either demand or daily capacity can change.
-template <class F> void intervals(const Events &events, Minute start, Minute finish, F visit, int dayMinutes = 480) {
+template <class F>
+void intervals(const Events &events, Minute start, Minute finish, F visit, int dayMinutes = 480,
+               const CapacityTimeline *capacity = nullptr) {
     Minute used = 0;
     auto it = events.begin();
     while (it != events.end() && it->first <= start) {
@@ -103,6 +106,8 @@ template <class F> void intervals(const Events &events, Minute start, Minute fin
         auto end = std::min(finish, (at / dayMinutes + 1) * dayMinutes);
         if (it != events.end())
             end = std::min(end, it->first);
+        if (capacity)
+            end = capacity->next(at, end);
         if (!visit(at, end, used))
             return;
         at = end;
@@ -114,6 +119,7 @@ template <class F> void intervals(const Events &events, Minute start, Minute fin
 }
 } // namespace
 ResourceLoad resourceLoad(const Project &p, const ScheduleResult &result) {
+    EvaluationScope evaluation;
     ResourceLoad load;
     load.totalTasks = p.tasks.size();
     if (result.documentId != p.documentId || result.inputRevision != p.revision || result.statusAt != p.statusAt ||
@@ -129,13 +135,14 @@ ResourceLoad resourceLoad(const Project &p, const ScheduleResult &result) {
     std::unordered_map<std::string, std::vector<Span>> spans;
     std::map<std::string, WorkCalendar> calendars;
     if (isEffort(p)) {
+        ExecutionInputs inputs(p);
         for (const auto &a : p.assignments)
             assigned.insert(a.taskId);
         for (const auto &t : p.tasks) {
             if (!assigned.contains(t.id))
                 continue;
             const auto pending = result.isForecast ? pendingTask(p, t) : t;
-            for (const auto &a : executionSpans(p, pending, *rows.at(t.id)))
+            for (const auto &a : TaskExecution(p, pending, &inputs).spans(*rows.at(t.id)))
                 spans[a.resourceId].push_back({a.start, a.finish, t.id, a.units});
         }
     }
@@ -165,6 +172,7 @@ ResourceLoad resourceLoad(const Project &p, const ScheduleResult &result) {
             reserve(events, s.start, s.finish, s.units);
         if (events.empty())
             continue;
+        CapacityTimeline capacity(r, calendar);
         std::map<Minute, ResourceDay> days;
         intervals(
             events, events.begin()->first, events.rbegin()->first,
@@ -173,20 +181,28 @@ ResourceLoad resourceLoad(const Project &p, const ScheduleResult &result) {
                     return true;
                 auto day = s / calendar.dayMinutes();
                 auto &d = days[day];
+                const auto cap = capacity.at(s);
+                if (d.resourceId.empty())
+                    d.capacity = cap;
+                else if (d.capacity != cap)
+                    d.capacityVaries = true;
+                if (!cap)
+                    d.capacity.reset();
+                else if (d.capacity)
+                    d.capacity = std::min(*d.capacity, *cap);
                 d.resourceId = r.id;
                 d.date = calendar.boundary(day * calendar.dayMinutes(), false).substr(0, 10);
-                d.capacity = capacity(r, d.date);
                 d.peakUnits = std::max(d.peakUnits, used);
                 d.demandUnitMinutes += used * (e - s);
-                if (!d.capacity)
+                if (!cap)
                     load.status = CalculationStatus::Incomplete;
-                else if (used > *d.capacity) {
+                else if (used > *cap) {
                     d.overloadMinutes += e - s;
-                    d.excessUnitMinutes += (used - *d.capacity) * (e - s);
+                    d.excessUnitMinutes += (used - *cap) * (e - s);
                 }
                 return true;
             },
-            calendar.dayMinutes());
+            calendar.dayMinutes(), &capacity);
         for (auto &[day, d] : days) {
             for (const auto &s : spans[r.id])
                 if (s.start < (day + 1) * calendar.dayMinutes() && s.finish > day * calendar.dayMinutes())
@@ -209,17 +225,93 @@ ResourceLoad resourceLoad(const Project &p, const ScheduleResult &result) {
         load.diagnostics.push_back({"UNASSIGNED_TASKS", {}, {}, "UNASSIGNED_TASKS"});
     return load;
 }
-LevelingResult levelResources(const Project &p, const std::string &priority, int horizonWorkDays,
-                              const std::string &policy) {
+static LevelingResult levelResourcesImpl(const Project &p, const std::string &priority, int horizonWorkDays,
+                                         const std::string &policy) {
+    if (p.planLeveling || p.remainingLeveling) {
+        auto logical = p;
+        logical.levelingDecisions.clear();
+        logical.planLeveling.reset();
+        logical.remainingLeveling.reset();
+        return levelResourcesImpl(logical, priority, horizonWorkDays, policy);
+    }
     if (!policy.empty()) {
         if (!supportsLevelingPolicy(p, policy))
             throw AppError(ErrorCode::SCENARIO_METADATA_INVALID, {});
         EnginePolicyScope scope(isPdm(p) && policy == legacyLevelingPolicyFor(p));
-        return levelResources(p, priority, horizonWorkDays);
+        return levelResourcesImpl(p, priority, horizonWorkDays, {});
+    }
+    if ((priority != "task-order" && priority != "shortest-first" && priority != "longest-first" &&
+         !advancedPriority(priority)) ||
+        horizonWorkDays < 1 || horizonWorkDays > 5200)
+        throw AppError(ErrorCode::LEVEL_OPTIONS_INVALID);
+    if (advancedPriority(priority)) {
+        if (horizonWorkDays < 1 || horizonWorkDays > 5200)
+            throw AppError(ErrorCode::LEVEL_OPTIONS_INVALID);
+        auto base = calculate(p);
+        LevelingResult failed;
+        failed.original = base;
+        failed.leveled = base;
+        failed.priority = priority;
+        failed.horizonWorkDays = horizonWorkDays;
+        if (base.status != CalculationStatus::Valid)
+            return failed;
+        std::map<std::string, std::int64_t> floats;
+        for (const auto &r : base.tasks) {
+            if (priority == "least-float-first" && !hasScheduleFloat(base, r) && !r.completedActual) {
+                failed.leveled.status = CalculationStatus::Incomplete;
+                failed.leveled.tasks.clear();
+                failed.leveled.projectFinish.reset();
+                failed.diagnostics.push_back(
+                    {"WORKSPACE_INVALID", {"여유 우선순위에 필요한 여유가 미산정입니다."}, {}, "WORKSPACE_INVALID"});
+                return failed;
+            }
+            floats[r.taskId] = r.totalFloatMinutes;
+        }
+        auto ordered = p;
+        std::stable_sort(ordered.tasks.begin(), ordered.tasks.end(), [&](const auto &a, const auto &b) {
+            if (priority == "least-float-first")
+                return floats.at(a.id) < floats.at(b.id);
+            return a.deadlineAt.value_or("9999-12-31 23:59") < b.deadlineAt.value_or("9999-12-31 23:59");
+        });
+        auto result = levelResourcesImpl(ordered, "task-order", horizonWorkDays, {});
+        auto restore = [&](auto &rows) {
+            std::map<std::string, TaskSchedule> byId;
+            for (const auto &r : rows)
+                byId.emplace(r.taskId, r);
+            rows.clear();
+            for (const auto &t : p.tasks)
+                if (byId.contains(t.id))
+                    rows.push_back(byId.at(t.id));
+        };
+        restore(result.original.tasks);
+        restore(result.leveled.tasks);
+        restore(result.leveled.plannedTasks);
+        result.original = std::move(base);
+        result.priority = priority;
+        result.leveled.calculationPolicy = "native-priority-v1/" + priority + "/" + result.leveled.calculationPolicy;
+        return result;
+    }
+    const auto stock = (p.resourcePlan.autoDelayForReceipts || p.resourcePlan.autoDelayRemainingForReceipts)
+                           ? materialAutoReadiness(p)
+                           : materialReadiness(p);
+    if (!stock.empty()) {
+        LevelingResult out;
+        out.original = calculate(p);
+        out.leveled = out.original;
+        out.priority = priority;
+        out.horizonWorkDays = horizonWorkDays;
+        out.leveled.status = CalculationStatus::Conflict;
+        out.leveled.tasks.clear();
+        out.leveled.projectFinish.reset();
+        out.diagnostics = stock;
+        out.leveled.diagnostics.insert(out.leveled.diagnostics.end(), stock.begin(), stock.end());
+        return out;
     }
     if ((priority != "task-order" && priority != "shortest-first" && priority != "longest-first") ||
         horizonWorkDays < 1 || horizonWorkDays > 5200)
         throw AppError(ErrorCode::LEVEL_OPTIONS_INVALID, {});
+    if (p.progressPolicy)
+        return levelProgressPolicy(p, priority, horizonWorkDays);
     if (isEffort(p))
         return levelEffort(p, priority, horizonWorkDays);
     if (isPdm(p))
@@ -231,9 +323,11 @@ LevelingResult levelResources(const Project &p, const std::string &priority, int
     out.before = resourceLoad(p, out.original);
     out.leveled = out.original;
     out.leveled.calculationPolicy = "serial-no-split-v1/" + priority;
+    out.leveled.forecastFloatCalculated = false;
     if (out.original.status != CalculationStatus::Valid)
         return out;
     WorkCalendar calendar(p);
+    MaterialReservations materials(p, true, out.original.isForecast);
     const Minute horizon = Minute(horizonWorkDays) * 480;
     std::unordered_map<std::string, std::size_t> indexes;
     std::unordered_map<std::string, const Resource *> resources;
@@ -245,6 +339,9 @@ LevelingResult levelResources(const Project &p, const std::string &priority, int
     for (const auto &a : p.assignments)
         assignments[a.taskId].push_back(&a);
     std::unordered_map<std::string, Events> reserved;
+    std::map<std::string, CapacityTimeline> capacities;
+    for (const auto &r : p.resources)
+        capacities.emplace(r.id, CapacityTimeline(r, calendar));
     std::vector<bool> done(p.tasks.size(), false);
     std::vector<TaskSchedule> rows = out.original.tasks;
     // Engine output uses input order; look up IDs explicitly at this boundary.
@@ -303,30 +400,49 @@ LevelingResult levelResources(const Project &p, const std::string &priority, int
                 Minute next = start;
                 for (const auto *a : assignments[task.id]) {
                     const auto &r = *resources.at(a->resourceId);
-                    intervals(reserved[r.id], start, start + duration, [&](Minute s, Minute, Minute used) {
-                        auto cap = capacity(r, calendar.boundary(s, false).substr(0, 10));
-                        if (!cap)
-                            unknown = true;
-                        if (!cap || used + a->units > *cap) {
-                            if (!blocked.contains(r.id))
-                                blocked.emplace(r.id, Diagnostic{"RESOURCE_WAIT",
-                                                                 {r.name, r.id, calendar.boundary(s, false),
-                                                                  std::to_string(used + a->units),
-                                                                  cap ? std::to_string(*cap) : "?"},
-                                                                 {task.id}});
-                            // The demand/capacity stays infeasible until its next real change,
-                            // even when the trial task finishes earlier. Avoid one-minute retries.
-                            Minute change = (s / 480 + 1) * 480;
-                            if (cap && a->units <= *cap) {
-                                auto event = reserved[r.id].upper_bound(s);
-                                if (event != reserved[r.id].end())
-                                    change = std::min(change, event->first);
+                    const auto &capacity = capacities.at(r.id);
+                    intervals(
+                        reserved[r.id], start, start + duration,
+                        [&](Minute s, Minute, Minute used) {
+                            auto cap = capacity.at(s);
+                            if (!cap)
+                                unknown = true;
+                            if (!cap || used + a->units > *cap) {
+                                if (!blocked.contains(r.id))
+                                    blocked.emplace(r.id, Diagnostic{"RESOURCE_WAIT",
+                                                                     {r.name, r.id, calendar.boundary(s, false),
+                                                                      std::to_string(used + a->units),
+                                                                      cap ? std::to_string(*cap) : "?"},
+                                                                     {task.id}});
+                                // The demand/capacity stays infeasible until its next real change,
+                                // even when the trial task finishes earlier. Avoid one-minute retries.
+                                Minute change = capacity.next(s, (s / 480 + 1) * 480);
+                                if (cap && a->units <= *cap) {
+                                    auto event = reserved[r.id].upper_bound(s);
+                                    if (event != reserved[r.id].end())
+                                        change = std::min(change, event->first);
+                                }
+                                next = std::max(next, change);
+                                return false;
                             }
-                            next = std::max(next, change);
-                            return false;
-                        }
-                        return true;
-                    });
+                            return true;
+                        },
+                        calendar.dayMinutes(), &capacity);
+                }
+                if (next == start) {
+                    auto trial = row;
+                    trial.start = calendar.boundary(start, false);
+                    trial.finish = calendar.boundary(start + duration, duration > 0);
+                    if (out.original.isForecast)
+                        trial.remainingStart = calendar.boundary(start, false);
+                    trial.earlyStartMinutes = start;
+                    trial.earlyFinishMinutes = start + duration;
+                    if (p.resourcePlan.autoDelayForReceipts && trial.finish > calendar.boundary(horizon, true))
+                        break;
+                    if (!materials.fits(trial)) {
+                        const auto bound = materials.nextStart(trial);
+                        next = bound ? std::max(start + 1, calendar.startAtLeast(*bound)) : start + 1;
+                    }
                 }
                 if (next == start) {
                     found = true;
@@ -334,6 +450,15 @@ LevelingResult levelResources(const Project &p, const std::string &priority, int
                 }
                 start = next;
             }
+        } catch (const AppError &error) {
+            if (p.resourcePlan.autoDelayForReceipts || p.resourcePlan.autoDelayRemainingForReceipts) {
+                out.leveled.status = CalculationStatus::Conflict;
+                out.leveled.tasks.clear();
+                out.leveled.projectFinish.reset();
+                out.diagnostics.push_back(error.diagnostic());
+                return out;
+            }
+            found = false;
         } catch (const std::exception &) {
             found = false;
         }
@@ -365,6 +490,9 @@ LevelingResult levelResources(const Project &p, const std::string &priority, int
         row.lateStartMinutes = row.lateFinishMinutes = row.totalFloatMinutes = row.freeFloatMinutes = 0;
         row.critical = false;
         row.drivingPredecessors.clear();
+        materials.commit(row);
+        if (auto delay = materials.delay(row))
+            out.diagnostics.push_back(*delay);
         done[i] = true;
         ++count;
     }
@@ -378,6 +506,41 @@ LevelingResult levelResources(const Project &p, const std::string &priority, int
     out.after = resourceLoad(p, out.leveled);
     return out;
 }
+LevelingResult levelResources(const Project &p, const std::string &priority, int horizonWorkDays,
+                              const std::string &policy) {
+    EnginePolicyScope scope(
+        (p.resourcePlan.autoDelayForReceipts || (p.statusAt && p.resourcePlan.autoDelayRemainingForReceipts))
+            ? false
+            : (policy.empty() ? legacyMilestones() : isPdm(p) && policy == legacyLevelingPolicyFor(p)));
+    auto result = levelResourcesImpl(p, priority, horizonWorkDays, policy);
+    if (result.leveled.status == CalculationStatus::Valid) {
+        const auto issues = materialInventoryDiagnostics(p, result.leveled);
+        if (!issues.empty()) {
+            result.leveled.status = CalculationStatus::Conflict;
+            result.leveled.tasks.clear();
+            result.leveled.projectFinish.reset();
+            result.after = {};
+            result.diagnostics.insert(result.diagnostics.end(), issues.begin(), issues.end());
+            result.leveled.diagnostics.insert(result.leveled.diagnostics.end(), issues.begin(), issues.end());
+        }
+    }
+    result.leveled.resourceLeveled = true;
+    if (p.statusAt && p.resourcePlan.autoDelayRemainingForReceipts)
+        result.leveled.calculationPolicy = std::string(remainingMaterialPolicy) + "/" + priority;
+    else if (p.resourcePlan.autoDelayForReceipts)
+        result.leveled.calculationPolicy = std::string(materialArrivalPolicy) + "/" + priority;
+    if (hasMaterialInventory(p)) {
+        if (levelingFloatVersion() >= 9 && result.leveled.status == CalculationStatus::Valid &&
+            result.after.status == CalculationStatus::Valid)
+            calculateLevelingFloat(p, result.leveled);
+        else {
+            result.leveled.levelingFloatCalculated = false;
+            result.leveled.levelingFloatReason = "입고 시점의 자재 재고를 포함한 자원 여유는 미산정입니다.";
+        }
+    } else if (result.leveled.status == CalculationStatus::Valid && result.after.status == CalculationStatus::Valid)
+        calculateLevelingFloat(p, result.leveled);
+    return result;
+}
 Project scenarioProject(const LevelingScenario &s) {
     Project p;
     static_cast<PlanInput &>(p) = s.input;
@@ -385,6 +548,9 @@ Project scenarioProject(const LevelingScenario &s) {
     p.revision = s.inputRevision;
     p.statusAt = s.statusAt;
     p.progress = s.progress;
+    p.remainingWork = s.remainingWork;
+    p.materialActuals = s.materialActuals;
+    p.progressPolicy = s.progressPolicy;
     validate(p);
     return p;
 }

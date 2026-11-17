@@ -1,0 +1,232 @@
+{
+    "compatibility": {
+        "externalRoundTrip": "unverified",
+        "import": "mapped-subset",
+        "jobsRecomputation": "unverified",
+        "originalPreservation": "exact-xer-bytes"
+    },
+    "contract": "jobs-xer-plan-v1",
+    "diagnostics": [
+        {
+            "message": "기간 기반 고정 기간 투영 · 공수/자원 종속 일정·실적/원가/P6 재계산 호환은 미검증입니다.",
+            "path": "PROJECT"
+        },
+        {
+            "message": "수입 작업/자원에 달력을 명시 배정합니다. 새 native 작업은 PPM 기본 달력을 사용합니다. 기간 기반 일정은 작업 달력을 사용합니다.",
+            "path": "CALENDAR"
+        },
+        {
+            "message": "시작/완료 마일스톤을 native 0분 이벤트로 투영",
+            "path": "TASK/line-31/task_type"
+        },
+        {
+            "message": "미지원 테이블 · 1행 원본에 보존",
+            "path": "NOTEBOOK"
+        },
+        {
+            "message": "미지원 필드 · 원본에 보존",
+            "path": "PROJECT/last_recalc_date"
+        },
+        {
+            "message": "미지원 필드 · 원본에 보존",
+            "path": "PROJWBS/seq_num"
+        },
+        {
+            "message": "미지원 필드 · 원본에 보존",
+            "path": "RSRCRATE/cost_per_qty"
+        },
+        {
+            "message": "미지원 필드 · 원본에 보존",
+            "path": "SCHEDOPTIONS/schedoptions_id"
+        },
+        {
+            "message": "미지원 필드 · 원본에 보존",
+            "path": "TASK/status_code"
+        },
+        {
+            "message": "미지원 필드 · 원본에 보존",
+            "path": "TASK/act_start_date"
+        },
+        {
+            "message": "미지원 필드 · 원본에 보존",
+            "path": "TASKRSRC/target_cost"
+        },
+        {
+            "message": "선택 프로젝트 ID 100 · 제외 프로젝트 1개 · original.xer에는 모든 프로젝트의 원본 자료가 포함됩니다.",
+            "path": "PROJECT/selection"
+        }
+    ],
+    "direction": "import",
+    "documentId": "1cdc85db-ff82-4a43-ab5f-fbaafa1ef1ed",
+    "mapping": [
+        {
+            "activityCode": "",
+            "jobsId": "xer-cal-1",
+            "kind": "calendar",
+            "xerId": "1"
+        },
+        {
+            "activityCode": "",
+            "jobsId": "",
+            "kind": "project-root",
+            "xerId": "10"
+        },
+        {
+            "activityCode": "",
+            "jobsId": "xer-wbs-11",
+            "kind": "wbs",
+            "xerId": "11"
+        },
+        {
+            "activityCode": "",
+            "jobsId": "xer-wbs-12",
+            "kind": "wbs",
+            "xerId": "12"
+        },
+        {
+            "activityCode": "A20",
+            "jobsId": "xer-task-20",
+            "kind": "task",
+            "xerId": "20"
+        },
+        {
+            "activityCode": "A30",
+            "jobsId": "xer-task-30",
+            "kind": "task",
+            "xerId": "30"
+        },
+        {
+            "activityCode": "A40",
+            "jobsId": "xer-task-40",
+            "kind": "task",
+            "xerId": "40"
+        },
+        {
+            "activityCode": "A50",
+            "jobsId": "xer-task-50",
+            "kind": "task",
+            "xerId": "50"
+        },
+        {
+            "activityCode": "A60",
+            "jobsId": "xer-task-60",
+            "kind": "task",
+            "xerId": "60"
+        },
+        {
+            "activityCode": "A70",
+            "jobsId": "xer-task-70",
+            "kind": "task",
+            "xerId": "70"
+        },
+        {
+            "activityCode": "",
+            "jobsId": "xer-resource-99",
+            "kind": "resource",
+            "xerId": "99"
+        },
+        {
+            "activityCode": "",
+            "jobsId": "xer-task-20/xer-resource-99",
+            "kind": "assignment",
+            "xerId": "101"
+        },
+        {
+            "activityCode": "",
+            "jobsId": "xer-task-30/xer-resource-99",
+            "kind": "assignment",
+            "xerId": "102"
+        }
+    ],
+    "nativeSnapshotProfile": "native-effort-split-v1",
+    "projectSelection": {
+        "excludedProjectCount": 1,
+        "externalRelations": "reject-incoming-and-outgoing",
+        "mode": "single-project-from-multi",
+        "selectedProjectId": "100",
+        "sourceProjectCount": 2,
+        "tables": [
+            {
+                "excludedRows": 3,
+                "inputRows": 4,
+                "selectedRows": 1,
+                "table": "CALENDAR"
+            },
+            {
+                "excludedRows": 1,
+                "inputRows": 2,
+                "selectedRows": 1,
+                "table": "PROJECT"
+            },
+            {
+                "excludedRows": 3,
+                "inputRows": 6,
+                "selectedRows": 3,
+                "table": "PROJWBS"
+            },
+            {
+                "excludedRows": 2,
+                "inputRows": 3,
+                "selectedRows": 1,
+                "table": "RSRC"
+            },
+            {
+                "excludedRows": 2,
+                "inputRows": 3,
+                "selectedRows": 1,
+                "table": "RSRCRATE"
+            },
+            {
+                "excludedRows": 1,
+                "inputRows": 2,
+                "selectedRows": 1,
+                "table": "SCHEDOPTIONS"
+            },
+            {
+                "excludedRows": 6,
+                "inputRows": 12,
+                "selectedRows": 6,
+                "table": "TASK"
+            },
+            {
+                "excludedRows": 4,
+                "inputRows": 8,
+                "selectedRows": 4,
+                "table": "TASKPRED"
+            },
+            {
+                "excludedRows": 2,
+                "inputRows": 4,
+                "selectedRows": 2,
+                "table": "TASKRSRC"
+            }
+        ]
+    },
+    "revision": "1",
+    "source": {
+        "encoding": "UTF-8",
+        "header": [
+            "ERMHDR",
+            "20.12",
+            "2026-10-26",
+            "Project",
+            "fixture",
+            "JOBS tests",
+            "dbxDatabaseNoName",
+            "Project Management",
+            "KRW"
+        ],
+        "lagPolicy": "rcal_Successor",
+        "name": "multi.xer",
+        "producer": "unverified",
+        "projectCode": "SITE-01",
+        "projectId": "100",
+        "sha256": "9129e2e4c2895031585412d16ec62062fbedba26d12e44e33d5885730667e4e2",
+        "version": "20.12"
+    },
+    "targetPolicy": {
+        "calculationProfile": "native-effort-split-v1",
+        "lagCalendar": "successor-working-calendar",
+        "projectStartAnchor": "09:00"
+    }
+}

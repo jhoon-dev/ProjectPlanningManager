@@ -1,0 +1,134 @@
+[
+    {
+        "source": "True Eqv True",
+        "value": "True"
+    },
+    {
+        "source": "True Eqv False",
+        "value": "False"
+    },
+    {
+        "source": "False Eqv False",
+        "value": "True"
+    },
+    {
+        "source": "True Imp False",
+        "value": "False"
+    },
+    {
+        "source": "False Imp False",
+        "value": "True"
+    },
+    {
+        "source": "False Imp True",
+        "value": "True"
+    },
+    {
+        "source": "False Imp Null",
+        "value": "True"
+    },
+    {
+        "source": "Null Imp True",
+        "value": "True"
+    },
+    {
+        "source": "0 Imp Null",
+        "value": "-1"
+    },
+    {
+        "source": "2 Imp Null",
+        "value": "-3"
+    },
+    {
+        "source": "Null Imp 2",
+        "value": "2"
+    },
+    {
+        "source": "Null Imp -2",
+        "value": "-2"
+    },
+    {
+        "source": "5 Eqv 3",
+        "value": "-7"
+    },
+    {
+        "source": "5 Imp 3",
+        "value": "-5"
+    },
+    {
+        "source": "3 Imp 5",
+        "value": "-3"
+    },
+    {
+        "source": "True Imp 2",
+        "value": "2"
+    },
+    {
+        "source": "False Eqv 0",
+        "value": "-1"
+    },
+    {
+        "source": "True Eqv -1",
+        "value": "-1"
+    },
+    {
+        "source": "2147483647 Eqv -2147483648",
+        "value": "0"
+    },
+    {
+        "source": "-2147483648 Eqv 0",
+        "value": "2147483647"
+    },
+    {
+        "source": "0 Imp -2147483648",
+        "value": "-1"
+    },
+    {
+        "source": "True Or True Xor True",
+        "value": "True"
+    },
+    {
+        "source": "(True Or True Xor True) Eqv False",
+        "value": "True"
+    },
+    {
+        "source": "False Imp False Imp False",
+        "value": "False"
+    },
+    {
+        "source": "Not True Eqv False",
+        "value": "True"
+    },
+    {
+        "source": "1+2 Eqv 3",
+        "value": "-1"
+    },
+    {
+        "source": "8 Mod 3*2 Eqv 2",
+        "value": "-1"
+    },
+    {
+        "source": "(-2^2) Eqv -4",
+        "value": "-1"
+    },
+    {
+        "source": "False And True Or True Xor True Eqv False Imp False",
+        "value": "False"
+    },
+    {
+        "source": "True eQv tRuE",
+        "value": "True"
+    },
+    {
+        "source": "ProjDurValue(\"2 em\") Eqv 3",
+        "value": "-2"
+    },
+    {
+        "source": "IsNull(Null Eqv True)",
+        "value": "True"
+    },
+    {
+        "source": "CLng(1.5) Imp 1",
+        "value": "-3"
+    }
+]

@@ -1,0 +1,77 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+      Start 192: parser_seed_replay
+      Start 152: leveling_float_contract
+ 1/36 Test #152: leveling_float_contract ...............   Passed    9.33 sec
+      Start 222: undo_contract
+ 2/36 Test #222: undo_contract .........................   Passed    9.52 sec
+      Start  78: xml_unit_fields_contract
+ 3/36 Test #192: parser_seed_replay ....................   Passed   22.39 sec
+      Start 227: recovery_ui
+ 4/36 Test  #78: xml_unit_fields_contract ..............   Passed    7.19 sec
+      Start 162: xer_batch_ui
+ 5/36 Test #227: recovery_ui ...........................   Passed    5.36 sec
+      Start 151: repartition_float_contract
+ 6/36 Test #162: xer_batch_ui ..........................   Passed    4.34 sec
+      Start 204: project_xml_ui
+ 7/36 Test #151: repartition_float_contract ............   Passed    4.16 sec
+      Start 240: resource_ui
+ 8/36 Test #204: project_xml_ui ........................   Passed    5.52 sec
+      Start 226: recovery_crash_file
+ 9/36 Test #240: resource_ui ...........................   Passed    5.00 sec
+      Start 229: reports_ui
+10/36 Test #226: recovery_crash_file ...................   Passed    4.50 sec
+      Start  71: shared_periods_ui
+11/36 Test #229: reports_ui ............................   Passed    5.40 sec
+      Start  15: integrated_workspace_contract
+12/36 Test  #71: shared_periods_ui .....................   Passed    2.48 sec
+      Start 190: multi_project_workspace_ui
+13/36 Test  #15: integrated_workspace_contract .........   Passed    3.37 sec
+      Start  74: remaining_availability_contract
+14/36 Test #190: multi_project_workspace_ui ............   Passed    3.78 sec
+      Start  13: resource_workspace_ui
+15/36 Test  #74: remaining_availability_contract .......   Passed    4.57 sec
+      Start 120: xml_formula_contract
+16/36 Test  #13: resource_workspace_ui .................   Passed    3.68 sec
+      Start 203: project_xml_contract
+17/36 Test #120: xml_formula_contract ..................   Passed    3.90 sec
+      Start  70: shared_periods_contract
+18/36 Test #203: project_xml_contract ..................   Passed    3.52 sec
+      Start  72: shared_availability_contract
+19/36 Test  #70: shared_periods_contract ...............   Passed    2.46 sec
+      Start 163: xer_batch_contract
+20/36 Test  #72: shared_availability_contract ..........   Passed    2.83 sec
+      Start  76: resource_availability_contract
+21/36 Test #163: xer_batch_contract ....................   Passed    3.12 sec
+      Start 228: reports_export
+22/36 Test  #76: resource_availability_contract ........   Passed    3.23 sec
+      Start 239: resource_contract_file
+23/36 Test #239: resource_contract_file ................   Passed    1.96 sec
+      Start  73: shared_availability_ui
+24/36 Test #228: reports_export ........................   Passed    2.76 sec
+      Start 189: workspace_file_contract
+25/36 Test #189: workspace_file_contract ...............   Passed    1.49 sec
+      Start 121: xml_formula_ui
+26/36 Test  #73: shared_availability_ui ................   Passed    1.91 sec
+      Start  75: remaining_availability_ui
+27/36 Test #121: xml_formula_ui ........................   Passed    1.25 sec
+      Start  79: xml_unit_fields_ui
+28/36 Test  #75: remaining_availability_ui .............   Passed    1.48 sec
+      Start  77: resource_availability_ui
+29/36 Test  #79: xml_unit_fields_ui ....................   Passed    1.20 sec
+      Start 237: cost_day_boundaries
+30/36 Test  #77: resource_availability_ui ..............   Passed    1.46 sec
+      Start 188: shared_resource_intervals
+31/36 Test #237: cost_day_boundaries ...................   Passed    1.39 sec
+      Start 174: timephased_usage_contract
+32/36 Test #188: shared_resource_intervals .............   Passed    1.09 sec
+      Start  12: governance_risk_automation_contract
+33/36 Test #174: timephased_usage_contract .............   Passed    1.62 sec
+      Start  14: resource_plan_contract
+34/36 Test  #14: resource_plan_contract ................   Passed    3.13 sec
+      Start 193: governance_ui
+35/36 Test  #12: governance_risk_automation_contract ...   Passed    6.38 sec
+36/36 Test #193: governance_ui .........................   Passed    3.04 sec
+
+100% tests passed out of 36
+
+Total Test time (real) =  75.75 sec

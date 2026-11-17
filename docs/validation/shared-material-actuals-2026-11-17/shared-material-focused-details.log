@@ -1,0 +1,99 @@
+Start testing: Nov 17 13:04 대한민국 표준시
+----------------------------------------------------------
+13/257 Testing: resource_workspace_ui
+13/257 Test: resource_workspace_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_resource_workspace_ui_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"resource_workspace_ui" start time: Nov 17 13:04 대한민국 표준시
+Output:
+----------------------------------------------------------
+Resource/workspace UI: catalogs, exact input, binding, atomic save/cancel/undo/read-only/stale, qualified links, calculation and stale exports passed
+<end of output>
+Test time =   2.66 sec
+----------------------------------------------------------
+Test Passed.
+"resource_workspace_ui" end time: Nov 17 13:04 대한민국 표준시
+"resource_workspace_ui" time elapsed: 00:00:02
+----------------------------------------------------------
+
+73/257 Testing: material_actual_ui
+73/257 Test: material_actual_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_material_actual_tests.exe" "--ui" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"material_actual_ui" start time: Nov 17 13:04 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS actual ledger UI/receipt/consumption/reconciliation/adoption/stale/reload/readonly
+<end of output>
+Test time =   1.06 sec
+----------------------------------------------------------
+Test Passed.
+"material_actual_ui" end time: Nov 17 13:04 대한민국 표준시
+"material_actual_ui" time elapsed: 00:00:01
+----------------------------------------------------------
+
+72/257 Testing: material_actual_contract
+72/257 Test: material_actual_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_material_actual_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"material_actual_contract" start time: Nov 17 13:04 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS actual material ledger/corrections/reconciliation/remaining stock/all engines/future receipt residuals/remaining spans/curves/native83/adoption/scenario/recovery
+<end of output>
+Test time =   5.27 sec
+----------------------------------------------------------
+Test Passed.
+"material_actual_contract" end time: Nov 17 13:04 대한민국 표준시
+"material_actual_contract" time elapsed: 00:00:05
+----------------------------------------------------------
+
+15/257 Testing: integrated_workspace_contract
+15/257 Test: integrated_workspace_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_integrated_workspace_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"integrated_workspace_contract" start time: Nov 17 13:04 대한민국 표준시
+Output:
+----------------------------------------------------------
+Integrated workspace: qualified links, FS/SS/FF/SF signed lag, cycle, release/status/calendar safety, shared leveling, workspace2 relocation, immutable source and exports passed
+<end of output>
+Test time =   2.79 sec
+----------------------------------------------------------
+Test Passed.
+"integrated_workspace_contract" end time: Nov 17 13:04 대한민국 표준시
+"integrated_workspace_contract" time elapsed: 00:00:02
+----------------------------------------------------------
+
+71/257 Testing: shared_material_ui
+71/257 Test: shared_material_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_shared_material_tests.exe" "--ui" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"shared_material_ui" start time: Nov 17 13:04 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS shared material UI/remaining start/balances/actual correction/stale/reconfirm/source preservation
+<end of output>
+Test time =   1.62 sec
+----------------------------------------------------------
+Test Passed.
+"shared_material_ui" end time: Nov 17 13:04 대한민국 표준시
+"shared_material_ui" time elapsed: 00:00:01
+----------------------------------------------------------
+
+70/257 Testing: shared_material_contract
+70/257 Test: shared_material_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_shared_material_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"shared_material_contract" start time: Nov 17 13:04 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS shared actual ledger namespace/revisions/stock/future receipts/remaining spans/curves/dated work/policies/resources/schema/export; 24 oracle fixtures
+<end of output>
+Test time =   4.49 sec
+----------------------------------------------------------
+Test Passed.
+"shared_material_contract" end time: Nov 17 13:04 대한민국 표준시
+"shared_material_contract" time elapsed: 00:00:04
+----------------------------------------------------------
+
+End testing: Nov 17 13:04 대한민국 표준시

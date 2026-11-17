@@ -1,0 +1,63 @@
+{
+    "format": "JOBS-WORKSPACE",
+    "payload": {
+        "bindings": [
+            {
+                "projectId": "e1df56f6-5f2e-4d67-9c28-2cd3b5baa1e5",
+                "resourceId": "xer-resource-99",
+                "sharedId": "pool"
+            },
+            {
+                "projectId": "second-project",
+                "resourceId": "xer-resource-99",
+                "sharedId": "pool"
+            }
+        ],
+        "id": "db76ca21-5489-4571-9cfd-29f1f76f9394",
+        "projects": [
+            {
+                "documentId": "e1df56f6-5f2e-4d67-9c28-2cd3b5baa1e5",
+                "name": "현장 A <원문>",
+                "path": "projects/001/source.ppm"
+            },
+            {
+                "documentId": "second-project",
+                "name": "두 번째 현장",
+                "path": "projects/002/source.ppm"
+            }
+        ],
+        "resources": [
+            {
+                "calendar": {
+                    "holidays": [
+                    ],
+                    "periods": [
+                        {
+                            "begin": 540,
+                            "end": 720
+                        },
+                        {
+                            "begin": 780,
+                            "end": 1080
+                        }
+                    ],
+                    "weekdays": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                    ]
+                },
+                "exceptions": [
+                ],
+                "id": "pool",
+                "maxUnits": 100,
+                "name": "공유 인력",
+                "type": "labor"
+            }
+        ]
+    },
+    "schemaVersion": 1,
+    "sha256": "fd9b381be28e422787fc887c58e9ec9b824d68083677ef216e7ca2c951476f2f"
+}

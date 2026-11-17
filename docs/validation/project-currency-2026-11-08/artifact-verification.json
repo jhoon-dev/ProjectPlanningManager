@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "reports": {
+    "status": "PASS",
+    "xlsx_sheets": 34,
+    "pdf_pages": 22,
+    "cost_rows_checked": 6,
+    "material_prices_checked": 1,
+    "currency": "KRW",
+    "history_metadata": "matched original native receipt",
+    "known_zero_unknown": "preserved in workbook cost rows",
+    "readers": {
+      "openpyxl": "3.1.5",
+      "pypdf": "6.10.0"
+    }
+  },
+  "exchange": {
+    "status": "PASS",
+    "reader": "MPXJ16.10.0 strict",
+    "files": [
+      {
+        "file": "target-krw.xer",
+        "currency": "KRW",
+        "digits": 0,
+        "ignored_errors": 0,
+        "native_task_names": 6,
+        "cumulative_ac_rows": 6
+      },
+      {
+        "file": "target-krw.xml",
+        "currency": "KRW",
+        "digits": 0,
+        "ignored_errors": 0,
+        "native_task_names": 6,
+        "cumulative_ac_rows": 0
+      },
+      {
+        "file": "export.xer",
+        "currency": "USD",
+        "digits": 2,
+        "ignored_errors": 0,
+        "native_task_names": 6,
+        "cumulative_ac_rows": 6
+      },
+      {
+        "file": "export.xml",
+        "currency": "USD",
+        "digits": 2,
+        "ignored_errors": 0,
+        "native_task_names": 6,
+        "cumulative_ac_rows": 0
+      }
+    ],
+    "scope": "XML currency precision/task names; XER additionally planned durations/resources/cumulative AC"
+  }
+}

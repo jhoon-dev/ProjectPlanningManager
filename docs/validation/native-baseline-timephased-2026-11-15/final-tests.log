@@ -1,0 +1,101 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+      Start  33: xml_baseline_exchange_native
+      Start 182: parser_seed_replay
+      Start  42: xml_baseline_cost_contract
+ 1/48 Test  #42: xml_baseline_cost_contract .............   Passed   11.96 sec
+      Start   1: project_currency_conversion_contract
+ 2/48 Test #182: parser_seed_replay .....................   Passed   18.80 sec
+      Start 212: undo_contract
+ 3/48 Test   #1: project_currency_conversion_contract ...   Passed   12.18 sec
+      Start   4: ledger_identity_migration_contract
+ 4/48 Test #212: undo_contract ..........................   Passed    7.96 sec
+      Start  48: xml_progress_adoption_contract
+ 5/48 Test   #4: ledger_identity_migration_contract .....   Passed    8.13 sec
+      Start  32: xml_baseline_exchange_contract
+ 6/48 Test  #48: xml_progress_adoption_contract .........   Passed    8.99 sec
+      Start  34: xml_baseline_timephased_contract
+ 7/48 Test  #33: xml_baseline_exchange_native ...........   Passed   37.25 sec
+      Start  52: xml_work_progress_contract
+ 8/48 Test  #52: xml_work_progress_contract .............   Passed   17.07 sec
+      Start  30: xml_remaining_contract
+ 9/48 Test  #32: xml_baseline_exchange_contract .........   Passed   22.35 sec
+      Start  44: xml_baseline_contract
+10/48 Test  #30: xml_remaining_contract .................   Passed    8.88 sec
+      Start  36: xml_baseline_merge_contract
+11/48 Test  #34: xml_baseline_timephased_contract .......   Passed   28.19 sec
+      Start   5: xer_schedule_adoption_contract
+12/48 Test  #44: xml_baseline_contract ..................   Passed   10.09 sec
+      Start  60: xml_progress_merge_contract
+13/48 Test  #36: xml_baseline_merge_contract ............   Passed    5.47 sec
+      Start 217: recovery_ui
+14/48 Test  #60: xml_progress_merge_contract ............   Passed    7.38 sec
+      Start 161: leveling_selection_ui
+15/48 Test   #5: xer_schedule_adoption_contract .........   Passed   10.68 sec
+      Start 216: recovery_crash_file
+16/48 Test #217: recovery_ui ............................   Passed   11.94 sec
+      Start  40: xml_baseline_slots_contract
+17/48 Test #161: leveling_selection_ui ..................   Passed    8.82 sec
+      Start  54: xml_actual_export_contract
+18/48 Test #216: recovery_crash_file ....................   Passed    7.36 sec
+      Start 110: xml_formula_contract
+19/48 Test  #40: xml_baseline_slots_contract ............   Passed    4.15 sec
+      Start  62: xml_quantity_contract
+20/48 Test #110: xml_formula_contract ...................   Passed    3.46 sec
+      Start  47: xml_early_late_ui
+21/48 Test  #54: xml_actual_export_contract .............   Passed    4.54 sec
+      Start  49: xml_progress_adoption_ui
+22/48 Test  #62: xml_quantity_contract ..................   Passed    2.93 sec
+      Start  38: xml_summary_duration_contract
+23/48 Test  #49: xml_progress_adoption_ui ...............   Passed    3.11 sec
+      Start 114: xml_roll_down_contract
+24/48 Test  #38: xml_summary_duration_contract ..........   Passed    3.42 sec
+      Start  31: xml_remaining_ui
+25/48 Test #114: xml_roll_down_contract .................   Passed    2.62 sec
+      Start 112: xml_roll_up_contract
+26/48 Test  #31: xml_remaining_ui .......................   Passed    1.13 sec
+      Start  64: xml_actual_contract
+27/48 Test #112: xml_roll_up_contract ...................   Passed    2.02 sec
+      Start 186: prepared_edit_contract
+28/48 Test  #64: xml_actual_contract ....................   Passed    2.19 sec
+      Start  46: xml_early_late_contract
+29/48 Test  #47: xml_early_late_ui ......................   Passed   10.69 sec
+      Start  55: xml_actual_export_ui
+30/48 Test #186: prepared_edit_contract .................   Passed    2.78 sec
+      Start  61: xml_progress_merge_ui
+31/48 Test  #46: xml_early_late_contract ................   Passed    2.06 sec
+      Start  37: xml_baseline_merge_ui
+32/48 Test  #55: xml_actual_export_ui ...................   Passed    1.71 sec
+      Start  43: xml_baseline_cost_ui
+33/48 Test  #61: xml_progress_merge_ui ..................   Passed    1.67 sec
+      Start  53: xml_work_progress_ui
+34/48 Test  #37: xml_baseline_merge_ui ..................   Passed    1.57 sec
+      Start  45: xml_baseline_ui
+35/48 Test  #43: xml_baseline_cost_ui ...................   Passed    1.28 sec
+      Start 236: file_lifecycle
+36/48 Test  #45: xml_baseline_ui ........................   Passed    1.26 sec
+      Start 111: xml_formula_ui
+37/48 Test  #53: xml_work_progress_ui ...................   Passed    1.50 sec
+      Start  35: xml_baseline_exchange_ui
+38/48 Test #236: file_lifecycle .........................   Passed    1.12 sec
+      Start  65: xml_actual_ui
+39/48 Test #111: xml_formula_ui .........................   Passed    1.00 sec
+      Start  63: xml_quantity_ui
+40/48 Test  #65: xml_actual_ui ..........................   Passed    0.87 sec
+      Start  41: xml_baseline_slots_ui
+41/48 Test  #63: xml_quantity_ui ........................   Passed    0.92 sec
+      Start 160: leveling_selection_contract
+42/48 Test  #41: xml_baseline_slots_ui ..................   Passed    0.69 sec
+      Start 115: xml_roll_down_ui
+43/48 Test #160: leveling_selection_contract ............   Passed    1.04 sec
+      Start 233: tracking_file
+44/48 Test #115: xml_roll_down_ui .......................   Passed    1.02 sec
+      Start 113: xml_roll_up_ui
+45/48 Test #233: tracking_file ..........................   Passed    1.21 sec
+      Start  39: xml_summary_duration_ui
+46/48 Test #113: xml_roll_up_ui .........................   Passed    0.99 sec
+47/48 Test  #39: xml_summary_duration_ui ................   Passed    0.61 sec
+48/48 Test  #35: xml_baseline_exchange_ui ...............   Passed    9.61 sec
+
+100% tests passed out of 48
+
+Total Test time (real) = 109.66 sec

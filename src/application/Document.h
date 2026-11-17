@@ -2,6 +2,7 @@
 #include "application/ProjectStore.h"
 #include "application/InputDelta.h"
 #include "application/EditCommand.h"
+#include "domain/XerFinancialMerge.h"
 #include "application/ProjectState.h"
 #include <optional>
 #include "calculation/Scheduler.h"
@@ -79,7 +80,12 @@ public:
         return !dirty_ && project_ && savedState_ && project_->revision == savedState_->revision;
     }
     bool readOnly() const {
-        return readOnly_;
+        return readOnly_ || (writeAuthorization_ && !writeAuthorization_());
+    }
+    void setWriteAuthorization(std::function<bool()> check) {
+        writeAuthorization_ = std::move(check);
+        ++sessionGeneration_;
+        notify(Event::Edited);
     }
     bool requiresSaveAs() const {
         return requiresSaveAs_;
@@ -91,10 +97,10 @@ public:
         return calculationGeneration_;
     }
     bool canUndo() const {
-        return !readOnly_ && historyCursor_ > 0;
+        return !readOnly() && historyCursor_ > 0;
     }
     bool canRedo() const {
-        return !readOnly_ && historyCursor_ < history_.size();
+        return !readOnly() && historyCursor_ < history_.size();
     }
     std::string undoLabel() const;
     std::string redoLabel() const;
@@ -137,6 +143,8 @@ public:
     void moveWbs(const std::string &id, std::string parentId);
     void removeWbs(const std::string &id);
     void assignWbs(std::size_t taskRow, std::string wbsId);
+    void setPrintPreferences(std::optional<PrintPreferences>);
+    void setNetworkPositions(std::vector<NetworkPosition>);
     void setDuration(std::size_t row, std::optional<std::int64_t> minutes);
     void setTaskEffort(std::size_t row, TaskType type, bool workInput, std::optional<std::int64_t> duration,
                        std::optional<std::int64_t> work, std::vector<TaskBreak> breaks);
@@ -150,16 +158,65 @@ public:
     void editGantt(const std::string &documentId, std::uint64_t revision, const std::string &taskId, bool resize,
                    const std::string &target);
     void setHolidays(std::vector<std::string> dates);
+    std::string putCustomField(CustomField, FieldScope = FieldScope::Task);
+    void setXmlLookupMasks(FieldScope, const std::string &key, std::vector<XmlCodeMask>, bool allLevelsRequired);
+    std::string createXmlLookupCode(FieldScope, const std::string &key, const std::string &parentId,
+                                    std::optional<std::string> segment, const std::string &description);
+    void setXmlWbsCodes(XmlWbsCodes, bool fillMissing = false);
+    void setXmlFormula(FieldScope, const std::string &, std::optional<XmlFormula>);
+    void setXmlRollUp(FieldScope, const std::string &key, std::optional<XmlRollUp>);
+    void setSummaryAttribute(const std::string &wbsId, const std::string &key, std::optional<std::string>);
+    void setXmlRollDown(FieldScope, const std::string &key, std::optional<XmlRollDown>);
+    std::string createRollDownField(FieldScope, const std::string &key, const std::string &name, bool automatic);
+    void removeCustomField(const std::string &id, FieldScope = FieldScope::Task);
+    void setProjectAttribute(const std::string &key, std::optional<std::string> value);
+    void setResourceAttribute(const std::vector<std::string> &ids, const std::string &key,
+                              std::optional<std::string> value);
+    void setAssignmentAttribute(const std::vector<std::string> &ids, const std::string &key,
+                                std::optional<std::string> value);
+    std::string putActivityCodeType(ActivityCodeType);
+    void removeActivityCodeType(const std::string &id);
+    void setTaskAttribute(const std::vector<std::string> &taskIds, const std::string &key,
+                          std::optional<std::string> value);
+    std::string putSavedTaskView(SavedTaskView);
+    std::string putSavedResourceView(SavedResourceView);
+    void removeSavedResourceView(const std::string &);
+    void removeSavedTaskView(const std::string &id);
     void setStatusAt(std::optional<std::string> stamp);
     std::string appendBaseline(Baseline prepared);
     std::string captureBaseline(std::string name, std::string approvedBy, std::string reason, std::string createdAt);
     void recordProgress(ProgressEntry entry);
+    void mergeProgress(std::vector<ProgressEntry> entries);
+    std::string putActivity(ActivityDefinition);
+    void removeActivity(const std::string &);
+    void recordSteps(StepReport);
+    void setResourcePlan(ResourcePlan);
+    void recordMaterialActuals(MaterialActualSubmission);
     void setCurrency(std::string currency);
     void setTaskCost(TaskCost cost);
     void recordCost(CostEntry entry);
+    void recordPeriodActuals(PeriodActualSubmission submission);
+    void recordPeriodActualBatch(std::vector<PeriodActualSubmission>, const std::string &statusAt);
+    void recordXerFinancials(XerFinancialSubmission, std::string (*projectionHash)(const Project &));
+    void recordXerRelink(XerRelinkSubmission, std::string (*projectionHash)(const Project &));
+    void recordXerSchedule(XerScheduleSubmission);
+    void recordXmlBaselineMerge(XmlBaselineMergeSubmission);
+    void migrateLedgerIds(LedgerIdSubmission);
+    void convertCurrency(CurrencyConversionSubmission);
+    void recordExternalEvm(ExternalEvmSubmission);
+    std::string recordFinancialPeriod(FinancialPeriodSubmission);
+    void recordXerFinancialMerge(XerFinancialMergeSubmission, std::string (*projectionHash)(const Project &));
+    void adoptLeveling(LevelingSelection);
+    void clearLeveling();
+    void adoptProgressPolicy(ProgressPolicySelection);
+    void clearProgressPolicy();
     std::string putResource(Resource resource);
     void removeResource(const std::string &id);
     void setAssignments(const std::string &taskId, std::vector<Assignment> assignments);
+    void setAssignmentPeriods(const std::string &taskId, const std::string &resourceId, std::vector<AssignmentPeriod>);
+    void setDatedRemainingWork(RemainingWorkPlan);
+    void resourcePlanning(ResourcePlanningSubmission);
+    void clearDatedRemainingWork();
     std::string saveScenario(std::string name, std::string priority, int horizonWorkDays, std::string createdAt,
                              const std::string &sourceId, std::uint64_t sourceRevision);
     void applyCalculation(ScheduleResult result);
@@ -170,6 +227,7 @@ private:
     bool isEditable() const;
     void requireEditable() const;
     ProjectStore &store_;
+    std::function<bool()> writeAuthorization_;
     ProjectState project_;
     std::string path_, fingerprint_;
     std::unique_ptr<WriteLease> lease_;
@@ -188,6 +246,7 @@ private:
         std::string label;
         std::size_t weight = 0;
         bool planOnly = false;
+        bool preserveSchedule = false;
     };
     std::vector<HistoryStep> history_;
     std::size_t historyCursor_ = 0, historyWeight_ = 0;
@@ -205,7 +264,7 @@ private:
     void updateTaskDirty(std::size_t, const Task &before);
     void applyHistory(const HistoryStep &, bool forward);
     void pushHistory(HistoryStep);
-    void edit(Project project, std::string label = "입력 변경");
+    void edit(Project project, std::string label = "입력 변경", bool preserveSchedule = false);
     void staleCalculation();
     void editPlan(Project, std::string label, bool validated = false);
     std::shared_ptr<BulkView> bulkView_;
@@ -246,6 +305,9 @@ public:
     const std::optional<Diagnostic> &failure() const {
         return failure_;
     }
+    std::shared_ptr<const Project> previewProject() const {
+        return proposal_.snapshot();
+    }
     std::vector<std::shared_ptr<const Project>> takeRetiredProjects();
 
 private:
@@ -260,6 +322,7 @@ private:
     const void *savedIdentity_ = nullptr;
     std::optional<TaskChange> taskChange_;
     std::optional<HistoryStep> history_;
+    std::optional<ScheduleResult> selectedCalculation_;
     bool consumed_ = false;
     std::optional<bool> replayForward_;
     std::shared_ptr<BulkView> view_;

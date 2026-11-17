@@ -1,0 +1,79 @@
+[0/1] Re-running CMake...
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
+-- Configuring done (6.6s)
+-- Generating done (2.3s)
+-- Build files have been written to: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+[1/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Wbs.cpp.obj
+[2/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/RemainingWork.cpp.obj
+[3/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Presentation.cpp.obj
+[4/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Governance.cpp.obj
+[5/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/ResourceView.cpp.obj
+[6/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/LevelingDecision.cpp.obj
+[7/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Activities.cpp.obj
+[8/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Classification.cpp.obj
+[9/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Workspace.cpp.obj
+[10/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/FormulaFields.cpp.obj
+[11/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Productivity.cpp.obj
+[12/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/PeriodActuals.cpp.obj
+[13/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/ResourcePlan.cpp.obj
+[14/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Project.cpp.obj
+[15/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/XerFinancialAllocation.cpp.obj
+[16/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/XerSourceConversion.cpp.obj
+[17/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/FinancialPeriods.cpp.obj
+[18/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/XerFinancials.cpp.obj
+[19/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/XerFinancialMerge.cpp.obj
+[20/123] Building CXX object CMakeFiles/jobs_formatting.dir/src/formatting/DiagnosticText.cpp.obj
+[21/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/XerScheduleAdoption.cpp.obj
+[22/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/ExternalEvm.cpp.obj
+[23/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/WbsSummary.cpp.obj
+[24/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/XerSourceRelink.cpp.obj
+[25/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Scheduler.cpp.obj
+[26/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/WorkCalendar.cpp.obj
+[27/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/ProjectCurrency.cpp.obj
+[28/123] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/LedgerIdentity.cpp.obj
+[29/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Forecast.cpp.obj
+[30/123] Linking CXX static library libjobs_domain.a
+[31/123] Linking CXX static library libjobs_formatting.a
+[32/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ActivitySummary.cpp.obj
+[33/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Tracking.cpp.obj
+[34/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ProgressLeveling.cpp.obj
+[35/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Costs.cpp.obj
+[36/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ProgressPolicies.cpp.obj
+[37/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Resources.cpp.obj
+[38/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/LevelingFloat.cpp.obj
+[39/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/SegmentLevelingFloat.cpp.obj
+[40/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Pdm.cpp.obj
+[41/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/EnginePolicy.cpp.obj
+[42/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Constraints.cpp.obj
+[43/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Reports.cpp.obj
+[44/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/PdmResources.cpp.obj
+[45/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Effort.cpp.obj
+[46/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/EffortScheduler.cpp.obj
+[47/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/RepartitionLevelingFloat.cpp.obj
+[48/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/AssignmentPeriods.cpp.obj
+[49/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ForecastFloat.cpp.obj
+[50/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/SharedResources.cpp.obj
+[51/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/EffortEditing.cpp.obj
+[52/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/NetworkDiagram.cpp.obj
+[53/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/PeriodActualReports.cpp.obj
+[54/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ExternalEvmReports.cpp.obj
+[55/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/SelectedLeveling.cpp.obj
+[56/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/IntegratedWorkspace.cpp.obj
+[57/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/PeriodEvm.cpp.obj
+[58/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ResourceViewReport.cpp.obj
+[59/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Usage.cpp.obj
+[60/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ResourcePlanning.cpp.obj
+FAILED: [code=1] CMakeFiles/jobs_calculation.dir/src/calculation/ResourcePlanning.cpp.obj 
+C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\.deps\Qt\Tools\mingw1310_64\bin\c++.exe  -IC:/Users/dow/Development/ToolMoa/ProjectPlanningManager/src -O3 -DNDEBUG -std=c++20 -Wall -Wextra -Wpedantic -MD -MT CMakeFiles/jobs_calculation.dir/src/calculation/ResourcePlanning.cpp.obj -MF CMakeFiles\jobs_calculation.dir\src\calculation\ResourcePlanning.cpp.obj.d -o CMakeFiles/jobs_calculation.dir/src/calculation/ResourcePlanning.cpp.obj -c C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/src/calculation/ResourcePlanning.cpp
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/src/calculation/ResourcePlanning.cpp: In function 'std::vector<jobs::CurveTimephase> jobs::curveTimephases(const Project&, const Assignment&, const CurveExport&)':
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/src/calculation/ResourcePlanning.cpp:176:15: error: inconsistent deduction for 'auto': 'const std::__cxx11::basic_string<char>' and then 'const long long int'
+  176 |         const auto start=clock.boundary(s.start,false),finish=clock.boundary(s.finish,true),work=(s.finish-s.start)*s.units;
+      |               ^~~~
+[61/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/DatedEffort.cpp.obj
+[62/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/PlannedWork.cpp.obj
+[63/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/FormulaFieldReports.cpp.obj
+[64/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ScheduleRisk.cpp.obj
+[65/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/DatedRemainingWork.cpp.obj
+[66/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/WorkContourInverse.cpp.obj
+[67/123] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/FinancialPeriodReports.cpp.obj
+ninja: build stopped: subcommand failed.

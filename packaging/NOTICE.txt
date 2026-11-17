@@ -20,5 +20,15 @@ https://www.mingw-w64.org/
 
 Third-party licenses apply to their respective components. This notice does not
 assign a license to the PPM application itself.
+
+PPM timezone formula extensions embed immutable transition data derived from
+IANA tzdb 2026f via Python tzdata 2026.6. UTC transition coverage for named zones
+is 1970-01-01 through 2101-01-01 (exclusive). The source/version hashes and IANA,
+Python tzdata and Apache notices are in licenses/timezones. No host timezone or
+network lookup is used to execute these formula extensions.
+
 Application version, source revision, signing status and SHA-256 file inventory
 are recorded in the package's generated manifest and adjacent provenance JSON.
+XML StrConv includes generated Unicode 16.0.0 data. See licenses/unicode/LICENSE.txt
+and licenses/unicode/manifest.json for the Unicode License V3 and provenance.
+

@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "numeric_cases": 7128,
+  "scalar_cases": 28,
+  "error_cases": 8,
+  "engine": "Windows VBScript FormatNumber/FormatPercent/FormatCurrency; SetLocale1033",
+  "lcid": 1033,
+  "differences": {
+    "digits7": {
+      "native": "error",
+      "vbscript": "1.0000000"
+    }
+  },
+  "scope": "Exact-binary values/options; exact native decimal cases are checked independently with Python Decimal",
+  "external_product_run": false
+}

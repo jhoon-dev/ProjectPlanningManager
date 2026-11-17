@@ -1,0 +1,16 @@
+[
+    {
+        "initial_worker_and_model_ms": 67,
+        "periods": 1,
+        "repeats": 1,
+        "scope": "Qt offscreen initial plan + Usage costing + tree model",
+        "tasks": 1000
+    },
+    {
+        "initial_worker_and_model_ms": 776,
+        "periods": 1,
+        "repeats": 1,
+        "scope": "Qt offscreen initial plan + Usage costing + tree model",
+        "tasks": 10000
+    }
+]

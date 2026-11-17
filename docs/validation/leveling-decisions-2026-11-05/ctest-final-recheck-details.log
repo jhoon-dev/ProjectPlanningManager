@@ -1,0 +1,67 @@
+Start testing: Nov 05 10:52 대한민국 표준시
+----------------------------------------------------------
+1/95 Testing: leveling_decision_contract
+1/95 Test: leveling_decision_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions/jobs_leveling_decision_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions
+"leveling_decision_contract" start time: Nov 05 10:52 대한민국 표준시
+Output:
+----------------------------------------------------------
+decision lifecycle, worker/cancel/session, legacy/schema15/recovery, validation/limit and UI passed
+<end of output>
+Test time =   3.01 sec
+----------------------------------------------------------
+Test Passed.
+"leveling_decision_contract" end time: Nov 05 10:52 대한민국 표준시
+"leveling_decision_contract" time elapsed: 00:00:03
+----------------------------------------------------------
+
+8/95 Testing: repartition_float_contract
+8/95 Test: repartition_float_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions/jobs_repartition_float_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions
+"repartition_float_contract" start time: Nov 05 10:52 대한민국 표준시
+Output:
+----------------------------------------------------------
+Repartition float: disappearing windows, exact capacity, witnesses, policy, legacy baseline and lifecycle passed
+<end of output>
+Test time =   5.60 sec
+----------------------------------------------------------
+Test Passed.
+"repartition_float_contract" end time: Nov 05 10:52 대한민국 표준시
+"repartition_float_contract" time elapsed: 00:00:05
+----------------------------------------------------------
+
+9/95 Testing: leveling_float_contract
+9/95 Test: leveling_float_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions/jobs_leveling_float_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions
+"leveling_float_contract" start time: Nov 05 10:52 대한민국 표준시
+Output:
+----------------------------------------------------------
+leveling float: engines, resource flow, capacity fences, cycles, actuals, baseline versions, lifecycle and drivers passed
+<end of output>
+Test time =   8.04 sec
+----------------------------------------------------------
+Test Passed.
+"leveling_float_contract" end time: Nov 05 10:52 대한민국 표준시
+"leveling_float_contract" time elapsed: 00:00:08
+----------------------------------------------------------
+
+92/95 Testing: file_lifecycle
+92/95 Test: file_lifecycle
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions/jobs_file_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions
+"file_lifecycle" start time: Nov 05 10:52 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: file lifecycle, Unicode, locks/conflicts, corruption/schema, schedule input roundtrip, stale revision/identity, schema-1 copy migration
+<end of output>
+Test time =   0.86 sec
+----------------------------------------------------------
+Test Passed.
+"file_lifecycle" end time: Nov 05 10:52 대한민국 표준시
+"file_lifecycle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Nov 05 10:52 대한민국 표준시

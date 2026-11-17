@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "policy": "native-period-evm-v1",
+  "schema_unchanged": 11,
+  "oracle_numeric_cells": 810,
+  "oracle": [
+    "civil minute/Decimal half-up",
+    "native report ID/status and last correction",
+    "period and cumulative scope sums",
+    "current dated allocations"
+  ],
+  "xlsx_files": 2,
+  "xlsx_formulas": 0,
+  "pdf_pages": {
+    "native-period-evm-qa\\report.pdf": 7,
+    "native-period-evm-ui-qa\\ui-report.pdf": 12
+  },
+  "external_evm_included": false,
+  "external_product_execution": "not run"
+}

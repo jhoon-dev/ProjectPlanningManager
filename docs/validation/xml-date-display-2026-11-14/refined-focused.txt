@@ -1,0 +1,9 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 66: xml_date_display_contract
+1/2 Test #66: xml_date_display_contract ........   Passed    2.99 sec
+    Start 67: xml_date_display_ui
+2/2 Test #67: xml_date_display_ui ..............   Passed    0.85 sec
+
+100% tests passed out of 2
+
+Total Test time (real) =   3.86 sec

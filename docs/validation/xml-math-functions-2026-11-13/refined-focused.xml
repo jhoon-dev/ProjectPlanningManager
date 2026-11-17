@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-ninja"
+	tests="2"
+	failures="1"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-61CPKLN"
+	time="2"
+	timestamp="2026-11-13T18:04:46"
+	>
+	<testcase name="xml_math_contract" classname="xml_math_contract" time="2.01016" status="fail">
+		<failure message="Failed"/>
+		<properties/>
+		<system-out>CLASSIFICATION_INVALID XML 사용자 필드 슬롯이 부족합니다: TASK
+</system-out>
+	</testcase>
+	<testcase name="xml_math_ui" classname="xml_math_ui" time="0.8212" status="run">
+		<properties/>
+		<system-out>PASS math UI: examples/async async preview/save/undo/cancel and small layout
+</system-out>
+	</testcase>
+</testsuite>

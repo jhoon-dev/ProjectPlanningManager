@@ -1,0 +1,1 @@
+PASS: Windows Microsoft.VisualBasic.Interaction.Partition and 5 domain errors

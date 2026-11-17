@@ -1,0 +1,117 @@
+{
+  "status": "PASS",
+  "date": "2026-11-14",
+  "contract": "XLK-01~06",
+  "tests": 217,
+  "validated_tests": 217,
+  "skipped": 0,
+  "standard_ctest_failures": 0,
+  "full_run": {
+    "tests": 216,
+    "passed": 216,
+    "failures": 0,
+    "seconds": 805.89
+  },
+  "isolated_run": {
+    "tests": 1,
+    "passed": 1,
+    "failures": 0,
+    "seconds": 161.81
+  },
+  "extended_revalidation": null,
+  "general_extended_revalidation": null,
+  "focused_tests": 48,
+  "focused_execution": "subset of final full run",
+  "parser_seeds": 910,
+  "format_files": 544,
+  "maximum_supported_schema": 65,
+  "active_like_schema": 65,
+  "disabled_source_read_schema": 44,
+  "native_layout_changed": false,
+  "independent": {
+    "status": "PASS",
+    "schema": 65,
+    "pattern_vectors": 8932,
+    "scalar_cases": 30,
+    "xml_cells": 20,
+    "xml_missing_cells": 4,
+    "xml_inherited_cells": 2,
+    "xer_static_values": 20,
+    "formula_definitions": 32,
+    "report_rows": 66,
+    "pdf_pages": 19,
+    "native_file_sha256": "44582b0515fd58633edf9117fc5ea2576aa90eb745f7001c433c9c4b87754b00",
+    "external_product_run": false
+  },
+  "dotnet": {
+    "status": "PASS",
+    "comparisons": 8932,
+    "engine": "Windows .NET VisualBasic LikeOperator Binary",
+    "scope": "Valid BMP patterns with ASCII digit matching; no locale text comparison.",
+    "differences": {
+      "non_ascii_digit": {
+        "native": false,
+        "dotnet": true
+      },
+      "empty_invalid_pattern": {
+        "native": "error",
+        "dotnet": false
+      }
+    },
+    "external_product_run": false
+  },
+  "external_product_run": false,
+  "runtime": {
+    "executable": "C:\\Users\\dow\\Development\\ToolMoa\\ProjectPlanningManager\\build-governance\\xml-like-runtime-424fb54b\\payload\\PPM.exe",
+    "file_count": 298,
+    "standalone_schema65_read": true
+  },
+  "sources": {
+    "CMakeLists.txt": "dad5f353f765303974fe5cb0c6b2150c3f5028bb71cdf5c79cc649c4b0ae5f4a",
+    "src/domain/XmlLike.cpp": "d7cd51d0439580f5ab2efdb629b96009bb8297c3b917f748f8961bd4ec8ffa4d",
+    "src/domain/XmlLike.h": "c6020e680711097a34a63f3238a5308c778ed259e1a65de2b8c56d437a56865a",
+    "src/domain/XmlFormula.cpp": "8fcff37bcc9195738bb49196b9c2d9c97360a969627caa8e71170dd841baa083",
+    "src/domain/NativeSchema.h": "2289d5dece6681d0cfe4f6919477c34ff8adbe498b9ce9957ab741dcaf4f5d71",
+    "src/domain/Classification.cpp": "0d631cc69c4ad004e79d9816dbe4a7ef29688b7a18fb9324c07cf56eefe1c17b",
+    "src/persistence/ClassificationJson.cpp": "25b159d4c8448df187dcd3300b9db4ed2740f5e29d040e5906da90ad403243d7",
+    "src/ui/XmlFormulaDialog.cpp": "9c1d6a67431feec2f3f0d354d0d07da62bbb6c2806eb9bd291e111b9c159c68c",
+    "tests/XmlLikeTests.cpp": "7a08e42104df8c79e4aa7b4beaddf4819e686722eb4112ae45585ff797bc9e2f",
+    "scripts/verify-xml-like.py": "dc8f599232fcc52f02172079ebca45de0a7b3113d8a9fc2cbbd0bf3fa288cc17",
+    "scripts/verify-xml-like-dotnet.py": "90a71aa6c2458c3dd44dcaf9a1e2e947fa247d6cc55020034a0251b3aafd857f",
+    "docs/xml-like-operator.md": "e97c6fa9af20c135ff205a40294b5f8d07b2f545ad71140c4e054e7c7f339201"
+  },
+  "artifacts": {
+    "initial-build.txt": "14c1b55d557cc6ea879d9909fb0fd17fd9bc1bb3dae4aa6bd137bf27a88a373c",
+    "initial-focused.txt": "654786feb5fd793c9dac7715bfd09abe694588af06b0fb3dc255b0d8f7d0432e",
+    "initial-focused.xml": "edb43a6196e87e5e102982aa1972ed5e8986f107c761ca65a191d080480f204f",
+    "build.txt": "9e68f7b04da440b16062d468b9481d6e8f13e62b5b5e35c32d8cdf70498554d1",
+    "ctest.txt": "564f7b4deff3357a87b10f53974872638ba3c7e7d3eec540963a6a0acb6add0b",
+    "ctest.xml": "95e7285ad3236119eaf9f74bd4376613c454ea045359ba4431dcffd6c73caaa0",
+    "isolated.txt": "18ee0237c4144a43553aeedd03f033363b85fa817aa3a0f2c38795525b1af661",
+    "isolated.xml": "6b2747b1326c308b93fda4152e0367417e3a38f98a4269a51935fcaa95f7ac4a",
+    "focused.txt": "959ff99e2b394a2b24a2cee15279422afd6c917c0c3c4e92f2b278ad3bfae6ce",
+    "focused.xml": "b28743fbe6fa524e65165f18aaf14ea6df0caf37fcf94d644f0dc6420f2f1d0a",
+    "quality.json": "0e5167f8869a25e16c3f8521eb365fcea639e076071df31c754c7b613f71fce2",
+    "independent.json": "1f9c991f31e2ed8ac52a664e9fe49cb03a3e86a194d3ea500d6d19b14f339e01",
+    "runtime.json": "a18cd1d9b22e3acc56f3b0d8fb9bfc02ee3307ba45102bc345576f77f2619c02",
+    "runtime-deploy.txt": "5781e75d97439fa0ddd49e108200187f201b701edc4c2cf83068748b8cc8e647",
+    "runtime-inspect.json": "2515a7543da913f7b7c8869e40a912af8f5f2b887b1963396f9bd0cf85b6fa94",
+    "native.json": "1a1d7d0768ac2e5ea08bc001356fc20bd856fa40f1cfa16e1c4fb16ef437a899",
+    "archived.json": "74fbfc136ac1b14c478a753fe417ee04b56a6668edff319b789f5d0f2e7b1988",
+    "operators.xml": "8b8cd1417b0fc2af7b611ade41cea5be71efacba6e2e379f9c9e5ff795ef32fa",
+    "operators.xer": "f05ca813aa9fa81ca01d31a42c9191fcce6710e86d81db598754e54f8e8e0f02",
+    "cases.json": "176445812d46ca6a6f8b7421a45e8d95108d391c1f0c6970821e5f4319cd14d1",
+    "dotnet.json": "36f9dac5651c418c217338460c287cf6fe8babaeda8b8ec944eb5d207715f472",
+    "dotnet.txt": "ef956afad2918cf7af6c3a6569662fdeafb619b51e453591c0eb7d5a81fab00c",
+    "dotnet-oracle.ps1": "1be307c239a955d110d0a996681e4719d38a46d0b46c44a42028d421b308c94e",
+    "dotnet-output.tsv": "87c469efdb44e3a75c22f9f6d207a2b728f71edf56a42537fc2c769aa6121f01",
+    "mapping.json": "834363d589bcfdfe09170d2c5d6ab41d6e6825fd3a7f4509bac04d62d9ba01dc",
+    "vectors.json": "4d807938fa74a8fc28c4a6417f0cc10f435380e094bd14b204c729f88e186def",
+    "source.ppm": "44582b0515fd58633edf9117fc5ea2576aa90eb745f7001c433c9c4b87754b00",
+    "fields.xlsx": "62c912fff007a69de5dc7bb7ffa7eefc00bbcd8d09b1f1df1dedffee9e1376dc",
+    "fields.pdf": "b59a72a648b0b0d09d812341c5e1214115bbd2ee33e6cec3f58bf54818cec736",
+    "report-page.png": "2e08a573a9a81d9695c1943c1b22eb7403ea573af01fabedbe98c7a2450eb671",
+    "editor.png": "df296637fd225bdf27f91c8010397c12de44198f6bd94936122e4e621162b5b3",
+    "editor-small.png": "e328f885e7b4ec38524bc4c15c40c8eaac2f333e5839238453c4707918a5c551"
+  }
+}

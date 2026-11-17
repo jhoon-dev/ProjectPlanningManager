@@ -1,11 +1,27 @@
 #pragma once
+#include "domain/Presentation.h"
+#include "domain/ActivityTypes.h"
+#include "domain/ResourcePlanTypes.h"
+#include "domain/MaterialActualTypes.h"
 #include "domain/PlanTypes.h"
 #include "domain/Diagnostics.h"
 #include <cstdint>
 #include <string>
 #include <vector>
 #include <optional>
+#include <memory>
 #include "domain/ScheduleTypes.h"
+#include "domain/ClassificationTypes.h"
+#include "domain/PeriodActualTypes.h"
+#include "domain/LevelingSelection.h"
+#include "domain/LevelingDecision.h"
+#include "domain/ProgressPolicySelection.h"
+#include "domain/RemainingWorkTypes.h"
+#include "domain/XerFinancials.h"
+#include "domain/ExternalEvmTypes.h"
+#include "domain/FinancialPeriodTypes.h"
+#include "domain/ProductivityTypes.h"
+#include "domain/XmlBaselineTypes.h"
 
 namespace jobs {
 inline constexpr const char *pdmProfile = "native-pdm-taskcal-v1";
@@ -50,10 +66,12 @@ struct Task {
     std::optional<std::int64_t> workUnitMinutes = {};
     bool workDriven = false;
     std::vector<TaskBreak> breaks = {};
+    std::vector<TaskAttribute> attributes = {};
     bool operator==(const Task &) const = default;
 };
 struct WbsNode {
     std::string id, name, parentId;
+    std::vector<TaskAttribute> attributes = {};
     bool operator==(const WbsNode &) const = default;
 };
 // Renewable capacity, in hundredths of a unit (100 = one person/machine).
@@ -62,6 +80,12 @@ struct CapacityDay {
     std::string date;
     std::optional<int> units;
     bool operator==(const CapacityDay &) const = default;
+};
+// Civil minutes, both endpoint minutes included. Missing endpoints are unbounded.
+struct AvailabilityPeriod {
+    std::optional<std::string> from, to;
+    std::optional<int> units;
+    bool operator==(const AvailabilityPeriod &) const = default;
 };
 struct Resource {
     std::string id, name;
@@ -75,12 +99,45 @@ struct Resource {
     };
     std::vector<Rate> rates = {};
     std::string calendarId = {};
+    std::vector<TaskAttribute> attributes = {};
+    std::optional<ProductivityRate> productivity = {};
+    std::optional<std::string> availableFrom = {}, availableTo = {};
+    std::vector<AvailabilityPeriod> availability = {};
     bool operator==(const Resource &) const = default;
+};
+struct AssignmentPeriod {
+    // Half-open task working-minute offsets; gaps use the assignment's default units.
+    std::int64_t fromMinute = 0, toMinute = 0;
+    int units = 100;
+    bool operator==(const AssignmentPeriod &) const = default;
+};
+struct NativeCurve {
+    std::string source, externalId, name, reference, reporter, recordedAt;
+    int mspCode = -1, baseUnits = 100;
+    // Twenty 5% duration bins; index zero is the zero-width origin.
+    std::vector<int> weights;
+    std::int64_t durationMinutes = 0, workUnitMinutes = 0;
+    std::vector<AssignmentPeriod> projectedPeriods;
+    bool operator==(const NativeCurve &) const = default;
 };
 struct Assignment {
     std::string taskId, resourceId;
     int units = 100;
+    std::vector<AssignmentPeriod> periods = {};
+    std::optional<NativeCurve> nativeCurve = {};
+    std::optional<ProductivityEstimate> productivityEstimate = {};
+    std::vector<TaskAttribute> attributes = {};
+    std::vector<std::string> rollDownMissing = {}; // Explicit XML missing overrides, distinct from inheritance.
     bool operator==(const Assignment &) const = default;
+};
+struct ResourcePlanningSubmission {
+    // rate, estimate, curve; clearing metadata does not erase materialized rates.
+    std::string action, taskId, resourceId, reason, reporter, recordedAt;
+    std::optional<ProductivityRate> rate;
+    std::optional<std::int64_t> quantityMilli;
+    std::optional<NativeCurve> curve;
+    bool confirmed = false;
+    bool keepDuration = false;
 };
 inline constexpr std::int64_t maxMoney = 9000000000000LL;
 struct TaskCost {
@@ -104,7 +161,43 @@ struct PlanInput {
     std::string costProfile = "cost-day-minor-half-up-v1";
     std::vector<TaskCost> taskCosts;
     std::vector<TaskCalendar> calendars;
-    bool operator==(const PlanInput &) const = default;
+    std::vector<CustomField> customFields;
+    std::vector<ActivityCodeType> codeTypes;
+    std::optional<LevelingSelection> planLeveling;
+    std::vector<CustomField> projectFields, resourceFields, assignmentFields;
+    std::vector<TaskAttribute> projectAttributes;
+    std::vector<ActivityDefinition> activities;
+    ResourcePlan resourcePlan;
+    std::optional<XmlWbsCodes> xmlWbs;
+    std::vector<TaskAttribute> taskSummaryAttributes;
+    // Imported XML project calendar for project/summary formula defaults; leaf calendars remain explicit.
+    std::string xmlFormulaCalendarId;
+    std::optional<XmlBaselineSet> xmlBaselines;
+    bool operator==(const PlanInput &) const;
+};
+struct XerScheduleSource {
+    PlanInput input;
+    std::string sourceName, sourceSha256, projectId, importedAt, reportJson;
+    std::optional<std::string> statusAt;
+    bool operator==(const XerScheduleSource &) const = default;
+};
+struct XerScheduleLink {
+    std::string sourceId, targetId;
+    bool create = false; // Empty target without create explicitly excludes this source task.
+    bool operator==(const XerScheduleLink &) const = default;
+};
+struct XerScheduleSubmission {
+    XerScheduleSource source;
+    std::vector<XerScheduleLink> links;
+    bool schedule = true, wbs = true, calendars = true, confirmed = false;
+    std::string reporter, reason, recordedAt;
+    bool operator==(const XerScheduleSubmission &) const = default;
+};
+struct XerScheduleAdoption : XerScheduleSubmission {
+    std::string id, sourceDocumentId;
+    std::uint64_t recordedRevision = 0;
+    PlanInput before, after;
+    bool operator==(const XerScheduleAdoption &) const = default;
 };
 struct Baseline {
     std::string id, name, approvedBy, reason, createdAt;
@@ -135,6 +228,9 @@ struct LevelingScenario {
     PlanInput input;
     std::optional<std::string> statusAt;
     std::vector<ProgressEntry> progress;
+    std::optional<ProgressPolicySelection> progressPolicy;
+    std::vector<MaterialActualEntry> materialActuals;
+    std::vector<RemainingWorkPlan> remainingWork;
     bool operator==(const LevelingScenario &) const = default;
 };
 struct CostEntry {
@@ -144,7 +240,48 @@ struct CostEntry {
     std::optional<int> physicalBasisPoints;
     bool operator==(const CostEntry &) const = default;
 };
+struct LedgerIdLink {
+    std::string kind, sourceId, targetId;
+    bool operator==(const LedgerIdLink &) const = default;
+};
+struct LedgerIdSubmission {
+    std::vector<LedgerIdLink> links;
+    std::string reporter, reason, recordedAt;
+    bool confirmed = false;
+    bool operator==(const LedgerIdSubmission &) const = default;
+};
+struct LedgerIdMigration : LedgerIdSubmission {
+    std::string id, sourceDocumentId;
+    std::uint64_t recordedRevision = 0;
+    std::shared_ptr<const Project> before, after;
+    bool operator==(const LedgerIdMigration &) const;
+};
+struct CurrencyConversionSubmission {
+    CurrencyRate rate;
+    std::string reporter, reason, recordedAt;
+    bool confirmed = false;
+    bool operator==(const CurrencyConversionSubmission &) const = default;
+};
+struct CurrencyConversion : CurrencyConversionSubmission {
+    std::string id, sourceDocumentId;
+    std::uint64_t recordedRevision = 0;
+    std::shared_ptr<const Project> before, after;
+    bool operator==(const CurrencyConversion &) const;
+};
 struct Project : PlanInput {
+    std::vector<XmlBaselineMerge> xmlBaselineMerges;
+    std::vector<CurrencyConversion> currencyConversions;
+    std::vector<LedgerIdMigration> ledgerIdMigrations;
+    std::vector<XerScheduleAdoption> xerScheduleAdoptions;
+    std::vector<FinancialPeriodEvent> financialPeriodEvents;
+    std::vector<ExternalEvmAdoption> externalEvmAdoptions;
+    std::optional<XerFinancialSnapshot> xerFinancials;
+    std::vector<XerFinancialRevision> xerFinancialRevisions;
+    std::vector<MaterialActualEntry> materialActuals;
+    std::vector<RemainingWorkPlan> remainingWork;
+    std::vector<StepReport> stepReports;
+    std::optional<PrintPreferences> printPreferences;
+    std::vector<NetworkPosition> networkPositions;
     std::string documentId;
     std::string derivedFrom;
     std::uint64_t revision = 1;
@@ -153,7 +290,13 @@ struct Project : PlanInput {
     std::optional<std::string> statusAt;
     std::vector<LevelingScenario> scenarios;
     std::vector<CostEntry> costEntries;
-    bool operator==(const Project &) const = default;
+    std::vector<SavedTaskView> savedTaskViews;
+    std::vector<SavedResourceView> savedResourceViews;
+    std::vector<PeriodActualEntry> periodActuals;
+    std::optional<LevelingSelection> remainingLeveling;
+    std::optional<ProgressPolicySelection> progressPolicy;
+    std::vector<LevelingDecision> levelingDecisions;
+    bool operator==(const Project &) const;
 };
 // Domain uses ISO civil dates, without a UI locale or implicit timezone.
 bool validDate(const std::string &date);
@@ -169,12 +312,19 @@ int currencyDecimals(const std::string &currency);
 std::vector<Dependency> dependencies(const Task &);
 bool isPdm(const PlanInput &);
 bool hasConstraints(const PlanInput &);
+bool hasAssignmentPeriods(const PlanInput &);
+bool hasWorkAssignmentPeriods(const PlanInput &);
 bool isEffort(const PlanInput &);
 bool usesWork(const Task &);
 std::string engineFor(const PlanInput &);
 std::string legacyEngineFor(const PlanInput &);
 bool supportsEngine(const PlanInput &, const std::string &);
 std::string levelingPolicyFor(const PlanInput &);
+std::string levelingPolicyFor(const Project &);
 std::string legacyLevelingPolicyFor(const PlanInput &);
 bool supportsLevelingPolicy(const PlanInput &, const std::string &);
+bool supportsLevelingPolicy(const Project &, const std::string &);
+void validateLevelingSelection(const PlanInput &, const LevelingSelection &);
+// Editing the source schedule invalidates an adoption; history replay restores its exact previous settings.
+void invalidateLevelingSelection(Project &proposal, const Project &before);
 } // namespace jobs

@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "xml_definitions": 4,
+  "masked_tables": 3,
+  "outline_mask_levels": 5,
+  "wbs_mask_levels": 3,
+  "initial_selected_cells": 4,
+  "wbs_codes": 4,
+  "generated_dictionary_values": 5,
+  "shared_table_preserved": true,
+  "external_product_run": false,
+  "reports": {
+    "pdf_pages": 10,
+    "masked_code_text_preserved": true
+  }
+}

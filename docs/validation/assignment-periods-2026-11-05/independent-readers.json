@@ -1,0 +1,169 @@
+{
+  "assignment-periods": {
+    "status": "success",
+    "schema": 17,
+    "contour_rows": 3,
+    "immutable_baseline_scenario": true,
+    "numeric_percent": true,
+    "day_work_hours": [
+      12,
+      8,
+      4
+    ],
+    "day_cost": [
+      720,
+      960,
+      480
+    ],
+    "total_cost": 2160,
+    "pdf_pages": 6,
+    "no_formulas": true
+  },
+  "object-fields": {
+    "status": "success",
+    "schema": 16,
+    "project_rows": 4,
+    "resource_rows": 8,
+    "wbs_resource_rows": 4,
+    "scope_isolation": true,
+    "precision": 6,
+    "empty_missing_zero": true,
+    "immutable_snapshots": true,
+    "no_formulas": true,
+    "unchanged_plan_cost": 90,
+    "pdf_pages": 12
+  },
+  "task-classification": {
+    "status": "success",
+    "classification_rows": 12,
+    "numeric_precision": 6,
+    "unknown_distinct_from_zero": true,
+    "pdf_pages": 7,
+    "scope_tasks": 3
+  },
+  "leveling-decisions": {
+    "schema": 15,
+    "decisions": 15,
+    "checksum": "passed",
+    "sequence": "passed",
+    "links_revisions_settings": "passed",
+    "plan_remaining_copy_archives": "passed"
+  },
+  "leveling-float": {
+    "status": "success",
+    "A_total_free_hours": [
+      0,
+      0
+    ],
+    "B_total_free_hours": [
+      0,
+      0
+    ],
+    "C_total_free_hours": [
+      8,
+      8
+    ],
+    "critical_tasks": 2,
+    "resource_driving_links": 1,
+    "plan_cost": 960,
+    "dates_preserved": true,
+    "engine": "jobs-adopted-leveling-1.8",
+    "pdf_pages": {
+      "report": 10,
+      "print": 3
+    }
+  },
+  "leveling-selection-exports": {
+    "status": "success",
+    "schedule_dates": "2026-11-02/03/04",
+    "plan_cost": 40,
+    "frozen_baseline_cost": 24,
+    "resource_order_float": true,
+    "policy_reason_provenance": true,
+    "no_unvalidated_resource_advisory": true,
+    "xlsx_files": 2,
+    "pdf_pages": {
+      "schedule": 11,
+      "usage": 10
+    }
+  },
+  "progress-leveling": {
+    "status": "success",
+    "schema": 15,
+    "original_relation_preserved": true,
+    "B_finish": "2026-11-03 14:00",
+    "D_remaining_start": "2026-11-03 14:00",
+    "D_finish": "2026-11-04 14:00",
+    "remaining_hours": 12,
+    "remaining_cost": 960,
+    "plan_cost": 1440,
+    "resource_order_float": true,
+    "both_adoption_provenances": true,
+    "xlsx_files": 2,
+    "pdf_pages": {
+      "schedule": 11,
+      "usage": 5,
+      "print": 3
+    }
+  },
+  "repartition-float": {
+    "status": "success",
+    "schema": 15,
+    "engine": "jobs-adopted-leveling-1.8",
+    "independent_minute_grid": {
+      "total_minutes": [
+        660,
+        540
+      ],
+      "free_minutes": [
+        660,
+        60
+      ],
+      "feasible_pairs": 155761
+    },
+    "closed_wednesday_oracle": {
+      "total_minutes": [
+        180,
+        60
+      ],
+      "free_minutes": [
+        180,
+        60
+      ],
+      "feasible_pairs": 11041
+    },
+    "native_breaks_preserved": true,
+    "witnesses_verified": true,
+    "plan_cost": 720,
+    "pdf_pages": {
+      "report": 15,
+      "print": 4
+    }
+  },
+  "segment-leveling-float": {
+    "status": "success",
+    "schema": 15,
+    "breaks_preserved": true,
+    "segment_handoffs": 2,
+    "A_total_free_hours": [
+      0,
+      0
+    ],
+    "B_total_free_hours": [
+      1,
+      1
+    ],
+    "C_total_free_hours": [
+      5,
+      5
+    ],
+    "critical_tasks": 1,
+    "plan_cost": 720,
+    "pdf_pages": {
+      "report": 15,
+      "print": 4
+    },
+    "policy": "resource-repartition-float-v3",
+    "engine": "jobs-adopted-leveling-1.8"
+  }
+}

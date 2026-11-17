@@ -1,0 +1,66 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-11-06T22:34:06.689751+09:00",
+  "environment": "Windows x64, Qt6.8.3, MinGW13.1, Release/Ninja",
+  "source_revision": "6a1cd0a5115f3400d6cee4e5d5df795f351195ea",
+  "working_tree_changes_included": true,
+  "source_sha256": "bdd671415f5ade331204982f99f0d7b0da3ccdad4a4c9d5c9a71bdc8b570b910",
+  "binaries": {
+    "PPM.exe": "7943031c4fc3cd687fb55b94f0db7cc1356bbe31ee2eea74c8039c0c0ddedfa4",
+    "PPM-Automation.exe": "c74a69e0944fc7ed41780dbadfc1f9d2e114565c307ac8bfdaee2ce985b61a35"
+  },
+  "regression": {
+    "passed": 124,
+    "total": 124,
+    "wall_seconds": 158.52
+  },
+  "focused_xer_parser": {
+    "passed": 8,
+    "total": 8,
+    "wall_seconds": 14.52
+  },
+  "parser_seeds": 272,
+  "format": {
+    "status": "success",
+    "files": 298,
+    "tool": "clang-format version 18.1.8"
+  },
+  "native_ui": {
+    "status": "passed",
+    "platform": "windows",
+    "preview_widget": "800x580"
+  },
+  "independent_readers": [
+    "new actual/cost TSV/Decimal/native SHA256/MPXJ",
+    "classic XER",
+    "project selection",
+    "batch workspace",
+    "XML/XER UDF",
+    "seven unmodified public fixtures"
+  ],
+  "corpus_disposition_change": "percent-complete-8.4.xer: future actual 2015-02-24 08:00 after data timestamp 00:00; FILE_PRIMAVERAXER_080. Original bytes/hash preserved.",
+  "external_p6_execution": "not run",
+  "mpp_reader": "not part of this increment",
+  "evidence": {
+    "build.txt": "0d9fd90a4c9acfebb0caae37fbc18f6c72c4665bb989deee3b46cf276e238fe0",
+    "combined.xer": "56cacdb485f12899d2a42c58c0e22f4f69fdcdef4cf378be9ceb2bfc77e3447f",
+    "corpus-focused.txt": "761d1c1affb0970b14f704908704db951d5c4afd186971a522a1d6c315eab9cf",
+    "ctest.txt": "2285d922940bc1368a3f9915b12b0826987218ebcee2d4b423aa49d48b519a32",
+    "ctest.xml": "3dd75511f7a7eaa3625e1aa39191f72ff378975728eb0b6137565c19332ad7ca",
+    "export-report.json": "817cd0b51b64ca44a1a7e97a87360ba6040cbbd636d77c31af8f111cf270f2c4",
+    "export.png": "7f5abe27f7da84608538c756ae940a06de96e712333f72eae17563838b21e18a",
+    "export.xer": "b91b3a8165ba603ff580724e2363c08eca166e2a5df5555eba1220d063a7287f",
+    "first-regression.txt": "4885c20fc4223ad0332328b4720981cebcd74ee7fa2d1e45e3323b88ca7477d0",
+    "focused.txt": "afc843604fe4b59fad763ca880868eb650970bb60380ee504a155dcddd6f95b6",
+    "format.json": "829fb00da67b697199f0089203879c6455fc81eae3625581b706c7e696d8ac3e",
+    "import-report.json": "d297759af5efbd9b7583aebb335950a4ebbc4ab494aa9d7b94a99e7301a2730c",
+    "import.png": "4f5ad85b8fe50f857d4b6e0c4793d212175ca6aa75bd954c9ea91dd6ee554b5c",
+    "independent-actual-costs.json": "2aa47f47918c0f8c54887400d4f1cdf9c34b8d0c2b753b3b1ee1a28612832d18",
+    "independent-batch.json": "81ec912bee9c378cc54a26afad35f2217b135cd60fc16b933c08776a9c23a6d1",
+    "independent-classic.txt": "313e33122490c4d3d83dc461cd6ad3d01dd81c0025c425f82da7725fbfd30c83",
+    "independent-public.json": "983ed098baf2d555b45b50e99a6b155b4c6cf397f0a49cbaf0897dfec34eccc2",
+    "independent-selection.json": "b2a33823b568c8ebf3fbab44c3867d3a660ed7b3f23364930ccbc572b4dd8004",
+    "independent-udf.json": "988318ec7baf928977213d9d9272684891e8bc198877d5941600b48ce049e37d",
+    "native-ui.txt": "97c8d99246f2980752ad7582ebdda1c0e2850eb855805c5d8f9ceec0e66fcf35"
+  }
+}

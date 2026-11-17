@@ -1,0 +1,392 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+            {
+                "resourceId": "NR1",
+                "taskId": "NA",
+                "units": 250
+            },
+            {
+                "resourceId": "NR2",
+                "taskId": "NB",
+                "units": 75
+            }
+        ],
+        "baselines": [
+        ],
+        "calculationProfile": "native-effort-split-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "calendars": [
+            {
+                "holidays": [
+                ],
+                "id": "T",
+                "name": "작업",
+                "periods": [
+                    {
+                        "begin": 540,
+                        "end": 720
+                    },
+                    {
+                        "begin": 780,
+                        "end": 1020
+                    }
+                ],
+                "weekdays": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ]
+            },
+            {
+                "holidays": [
+                ],
+                "id": "R1",
+                "name": "장비",
+                "periods": [
+                    {
+                        "begin": 600,
+                        "end": 720
+                    },
+                    {
+                        "begin": 780,
+                        "end": 960
+                    }
+                ],
+                "weekdays": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ]
+            },
+            {
+                "holidays": [
+                ],
+                "id": "R2",
+                "name": "인력",
+                "periods": [
+                    {
+                        "begin": 540,
+                        "end": 720
+                    },
+                    {
+                        "begin": 780,
+                        "end": 1020
+                    }
+                ],
+                "weekdays": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ]
+            }
+        ],
+        "costEntries": [
+            {
+                "actualMinor": 20000,
+                "currency": "USD",
+                "id": "original-ac",
+                "physicalBasisPoints": null,
+                "previousEntryId": "",
+                "reason": "보존할 누계",
+                "recordedAt": "2026-11-13T03:00:00Z",
+                "recordedRevision": 4,
+                "reporter": "현장",
+                "sourceDocumentId": "native-proportional",
+                "statusAt": "2026-11-17 17:00",
+                "taskId": "NA"
+            },
+            {
+                "actualMinor": 50000,
+                "currency": "USD",
+                "id": "future-ac",
+                "physicalBasisPoints": null,
+                "previousEntryId": "original-ac",
+                "reason": "보존할 누계",
+                "recordedAt": "2026-11-13T03:00:00Z",
+                "recordedRevision": 5,
+                "reporter": "현장",
+                "sourceDocumentId": "native-proportional",
+                "statusAt": "2026-11-18 18:00",
+                "taskId": "NA"
+            },
+            {
+                "actualMinor": 15000,
+                "currency": "USD",
+                "id": "3cd8d627-4c2b-45f9-9166-54bbdf50f33a-2",
+                "physicalBasisPoints": null,
+                "previousEntryId": "future-ac",
+                "reason": "[XML-PRORATA sha256=e0ae3f301de7fca98407894ee3e9f646b316ea46785d89ed47bad5117a05191b assignment=1 basis=working-intersection-minute-v1 input=347f6a9cc1352c64815932563ef9c63a5cbde719122d8c2e7f20d1d29fb0d8b0 records=1,2] date=2026-11-13 work=estimated cost=estimated parts=1w=180/360:51,2c=180/360:2501 src=USD multi.xml · 구간 총량과 비례 추정 확인",
+                "recordedAt": "2026-11-13T03:00:00Z",
+                "recordedRevision": 6,
+                "reporter": "PM",
+                "sourceDocumentId": "native-proportional",
+                "statusAt": "2026-11-17 18:00",
+                "taskId": "NA"
+            },
+            {
+                "actualMinor": 15000,
+                "currency": "USD",
+                "id": "3cd8d627-4c2b-45f9-9166-54bbdf50f33a-4",
+                "physicalBasisPoints": null,
+                "previousEntryId": "3cd8d627-4c2b-45f9-9166-54bbdf50f33a-2",
+                "reason": "[XML-PRORATA sha256=e0ae3f301de7fca98407894ee3e9f646b316ea46785d89ed47bad5117a05191b assignment=1 basis=working-intersection-minute-v1 input=347f6a9cc1352c64815932563ef9c63a5cbde719122d8c2e7f20d1d29fb0d8b0 records=1,2] date=2026-11-16 work=estimated cost=estimated parts=1w=180/360:50,2c=180/360:2500 src=USD multi.xml · 구간 총량과 비례 추정 확인",
+                "recordedAt": "2026-11-13T03:00:00Z",
+                "recordedRevision": 6,
+                "reporter": "PM",
+                "sourceDocumentId": "native-proportional",
+                "statusAt": "2026-11-17 18:00",
+                "taskId": "NA"
+            },
+            {
+                "actualMinor": 10000,
+                "currency": "USD",
+                "id": "3cd8d627-4c2b-45f9-9166-54bbdf50f33a-6",
+                "physicalBasisPoints": null,
+                "previousEntryId": "",
+                "reason": "[XML-PRORATA sha256=e0ae3f301de7fca98407894ee3e9f646b316ea46785d89ed47bad5117a05191b assignment=2 basis=working-intersection-minute-v1 input=94f5cc9bec02945ccc83dc1e4535e858325b8bad61daee545b8c5aec22d40ca4 records=1,2] date=2026-11-16 work=estimated cost=estimated parts=1w=420/420:3,2c=420/420:1 src=USD multi.xml · 구간 총량과 비례 추정 확인",
+                "recordedAt": "2026-11-13T03:00:00Z",
+                "recordedRevision": 6,
+                "reporter": "PM",
+                "sourceDocumentId": "native-proportional",
+                "statusAt": "2026-11-17 18:00",
+                "taskId": "NB"
+            }
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "USD",
+        "derivedFrom": "",
+        "documentId": "native-proportional",
+        "holidays": [
+        ],
+        "name": "다일 실적 비례 검토",
+        "periodActuals": [
+            {
+                "actualMinor": 500,
+                "costEntryId": "original-ac",
+                "currency": "USD",
+                "date": "2026-11-13",
+                "id": "original-a13",
+                "previousEntryId": "",
+                "reason": "보존할 누계",
+                "recordedAt": "2026-11-13T03:00:00Z",
+                "recordedRevision": 4,
+                "reporter": "현장",
+                "resourceId": "NR1",
+                "resourceType": "equipment",
+                "sourceDocumentId": "native-proportional",
+                "statusAt": "2026-11-17 17:00",
+                "taskId": "NA",
+                "workUnitMinutes": 111
+            },
+            {
+                "actualMinor": 700,
+                "costEntryId": "original-ac",
+                "currency": "USD",
+                "date": "2026-11-14",
+                "id": "original-a14",
+                "previousEntryId": "",
+                "reason": "보존할 누계",
+                "recordedAt": "2026-11-13T03:00:00Z",
+                "recordedRevision": 4,
+                "reporter": "현장",
+                "resourceId": "NR1",
+                "resourceType": "equipment",
+                "sourceDocumentId": "native-proportional",
+                "statusAt": "2026-11-17 17:00",
+                "taskId": "NA",
+                "workUnitMinutes": 222
+            },
+            {
+                "actualMinor": null,
+                "costEntryId": "",
+                "currency": "USD",
+                "date": "2026-11-16",
+                "id": "original-b16",
+                "previousEntryId": "",
+                "reason": "보존할 누계",
+                "recordedAt": "2026-11-13T03:00:00Z",
+                "recordedRevision": 4,
+                "reporter": "현장",
+                "resourceId": "NR2",
+                "resourceType": "labor",
+                "sourceDocumentId": "native-proportional",
+                "statusAt": "2026-11-17 17:00",
+                "taskId": "NB",
+                "workUnitMinutes": 333
+            },
+            {
+                "actualMinor": 6000,
+                "costEntryId": "future-ac",
+                "currency": "USD",
+                "date": "2026-11-13",
+                "id": "future-a13",
+                "previousEntryId": "original-a13",
+                "reason": "보존할 누계",
+                "recordedAt": "2026-11-13T03:00:00Z",
+                "recordedRevision": 5,
+                "reporter": "현장",
+                "resourceId": "NR1",
+                "resourceType": "equipment",
+                "sourceDocumentId": "native-proportional",
+                "statusAt": "2026-11-18 18:00",
+                "taskId": "NA",
+                "workUnitMinutes": 999
+            },
+            {
+                "actualMinor": 2501,
+                "costEntryId": "3cd8d627-4c2b-45f9-9166-54bbdf50f33a-2",
+                "currency": "USD",
+                "date": "2026-11-13",
+                "id": "3cd8d627-4c2b-45f9-9166-54bbdf50f33a-1",
+                "previousEntryId": "future-a13",
+                "reason": "[XML-PRORATA sha256=e0ae3f301de7fca98407894ee3e9f646b316ea46785d89ed47bad5117a05191b assignment=1 basis=working-intersection-minute-v1 input=347f6a9cc1352c64815932563ef9c63a5cbde719122d8c2e7f20d1d29fb0d8b0 records=1,2] date=2026-11-13 work=estimated cost=estimated parts=1w=180/360:51,2c=180/360:2501 src=USD multi.xml · 구간 총량과 비례 추정 확인",
+                "recordedAt": "2026-11-13T03:00:00Z",
+                "recordedRevision": 6,
+                "reporter": "PM",
+                "resourceId": "NR1",
+                "resourceType": "equipment",
+                "sourceDocumentId": "native-proportional",
+                "statusAt": "2026-11-17 18:00",
+                "taskId": "NA",
+                "workUnitMinutes": 51
+            },
+            {
+                "actualMinor": 2500,
+                "costEntryId": "3cd8d627-4c2b-45f9-9166-54bbdf50f33a-4",
+                "currency": "USD",
+                "date": "2026-11-16",
+                "id": "3cd8d627-4c2b-45f9-9166-54bbdf50f33a-3",
+                "previousEntryId": "",
+                "reason": "[XML-PRORATA sha256=e0ae3f301de7fca98407894ee3e9f646b316ea46785d89ed47bad5117a05191b assignment=1 basis=working-intersection-minute-v1 input=347f6a9cc1352c64815932563ef9c63a5cbde719122d8c2e7f20d1d29fb0d8b0 records=1,2] date=2026-11-16 work=estimated cost=estimated parts=1w=180/360:50,2c=180/360:2500 src=USD multi.xml · 구간 총량과 비례 추정 확인",
+                "recordedAt": "2026-11-13T03:00:00Z",
+                "recordedRevision": 6,
+                "reporter": "PM",
+                "resourceId": "NR1",
+                "resourceType": "equipment",
+                "sourceDocumentId": "native-proportional",
+                "statusAt": "2026-11-17 18:00",
+                "taskId": "NA",
+                "workUnitMinutes": 50
+            },
+            {
+                "actualMinor": 1,
+                "costEntryId": "3cd8d627-4c2b-45f9-9166-54bbdf50f33a-6",
+                "currency": "USD",
+                "date": "2026-11-16",
+                "id": "3cd8d627-4c2b-45f9-9166-54bbdf50f33a-5",
+                "previousEntryId": "original-b16",
+                "reason": "[XML-PRORATA sha256=e0ae3f301de7fca98407894ee3e9f646b316ea46785d89ed47bad5117a05191b assignment=2 basis=working-intersection-minute-v1 input=94f5cc9bec02945ccc83dc1e4535e858325b8bad61daee545b8c5aec22d40ca4 records=1,2] date=2026-11-16 work=estimated cost=estimated parts=1w=420/420:3,2c=420/420:1 src=USD multi.xml · 구간 총량과 비례 추정 확인",
+                "recordedAt": "2026-11-13T03:00:00Z",
+                "recordedRevision": 6,
+                "reporter": "PM",
+                "resourceId": "NR2",
+                "resourceType": "labor",
+                "sourceDocumentId": "native-proportional",
+                "statusAt": "2026-11-17 18:00",
+                "taskId": "NB",
+                "workUnitMinutes": 3
+            }
+        ],
+        "progress": [
+        ],
+        "resources": [
+            {
+                "calendarId": "R1",
+                "exceptions": [
+                    {
+                        "date": "2026-11-13",
+                        "units": 0
+                    }
+                ],
+                "id": "NR1",
+                "maxUnits": 100,
+                "name": "장비",
+                "rates": [
+                    {
+                        "effectiveDate": "2026-11-13",
+                        "hourlyMinor": 99999
+                    }
+                ],
+                "type": "equipment"
+            },
+            {
+                "calendarId": "R2",
+                "exceptions": [
+                ],
+                "id": "NR2",
+                "maxUnits": 100,
+                "name": "인력",
+                "rates": [
+                    {
+                        "effectiveDate": "2026-11-13",
+                        "hourlyMinor": 99999
+                    }
+                ],
+                "type": "labor"
+            }
+        ],
+        "revision": 6,
+        "scenarios": [
+        ],
+        "startDate": "2026-11-13",
+        "statusAt": "2026-11-17 18:00",
+        "taskCosts": [
+        ],
+        "tasks": [
+            {
+                "breaks": [
+                    {
+                        "finish": "2026-11-13 14:00",
+                        "start": "2026-11-13 13:00"
+                    }
+                ],
+                "calendarId": "T",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 960,
+                "id": "NA",
+                "name": "native A",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "T",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 480,
+                "id": "NB",
+                "name": "native B",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            }
+        ],
+        "wbsNodes": [
+        ]
+    },
+    "schemaVersion": 11,
+    "sha256": "661c77a8931b8d6701355a022c57500085bdb682a0b284611c269e24a8ae92ec"
+}

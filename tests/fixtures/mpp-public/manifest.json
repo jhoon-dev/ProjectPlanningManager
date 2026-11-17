@@ -1,0 +1,77 @@
+{
+  "commit": "7ef9e72813d33378c55ec6ceb148cc831ed22033",
+  "files": [
+    {
+      "path": "junit/data/mpp9relations.mpp",
+      "sha256": "758c6f1e613b4bfde5c67839d9b5847f0c7d80534c5d231f17f5a786909da9fb",
+      "bytes": 78336,
+      "url": "https://raw.githubusercontent.com/joniles/mpxj/7ef9e72813d33378c55ec6ceb148cc831ed22033/junit/data/mpp9relations.mpp"
+    },
+    {
+      "path": "junit/data/mpp12relations.mpp",
+      "sha256": "e73f7686da477d24a2eac39ff7e0834521b43e7433c5d15b6d8405eeb977684d",
+      "bytes": 143872,
+      "url": "https://raw.githubusercontent.com/joniles/mpxj/7ef9e72813d33378c55ec6ceb148cc831ed22033/junit/data/mpp12relations.mpp"
+    },
+    {
+      "path": "junit/data/mpp14relations.mpp",
+      "sha256": "8f33cdb774aa090b664d90145879acc8a289057ca45a6575884eb0da9fd91f30",
+      "bytes": 180736,
+      "url": "https://raw.githubusercontent.com/joniles/mpxj/7ef9e72813d33378c55ec6ceb148cc831ed22033/junit/data/mpp14relations.mpp"
+    },
+    {
+      "path": "junit/data/password-protected-mpp9.mpp",
+      "sha256": "0b534537dfc93b1fac08b0fbc321980031e7cea3d9ec552b51a91283dc2a08db",
+      "bytes": 74240,
+      "url": "https://raw.githubusercontent.com/joniles/mpxj/7ef9e72813d33378c55ec6ceb148cc831ed22033/junit/data/password-protected-mpp9.mpp"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "20c17d8b8c48a600800dfd14f95d5cb9ff47066a9641ddeab48dc54aec96e331",
+      "bytes": 26526,
+      "url": "https://raw.githubusercontent.com/joniles/mpxj/7ef9e72813d33378c55ec6ceb148cc831ed22033/LICENSE"
+    },
+    {
+      "path": "junit/data/assignment/assignment-deletion/assigned-resources-mpp8-project2003.mpp",
+      "url": "https://raw.githubusercontent.com/joniles/mpxj/7ef9e72813d33378c55ec6ceb148cc831ed22033/junit/data/assignment/assignment-deletion/assigned-resources-mpp8-project2003.mpp",
+      "bytes": 109568,
+      "sha256": "a541408789495770e36ed62e2d995ac80187581053183b09a0c420c8c11d4739"
+    },
+    {
+      "path": "junit/data/mpp9timephasedsegments.mpp",
+      "url": "https://raw.githubusercontent.com/joniles/mpxj/7ef9e72813d33378c55ec6ceb148cc831ed22033/junit/data/mpp9timephasedsegments.mpp",
+      "bytes": 169472,
+      "sha256": "b7064b105ea7ecea1d72a0fe51766ee3a34a663952f9ee105c2a83ef7ca471e5"
+    },
+    {
+      "path": "junit/data/mpp12timephasedsegments.mpp",
+      "url": "https://raw.githubusercontent.com/joniles/mpxj/7ef9e72813d33378c55ec6ceb148cc831ed22033/junit/data/mpp12timephasedsegments.mpp",
+      "bytes": 181248,
+      "sha256": "8dcf3ba9a5ac73afbb9daaff8d40b4b6a1f9f9f8199ee4494d6c18c621380da3"
+    },
+    {
+      "path": "junit/data/mpp14timephasedsegments.mpp",
+      "url": "https://raw.githubusercontent.com/joniles/mpxj/7ef9e72813d33378c55ec6ceb148cc831ed22033/junit/data/mpp14timephasedsegments.mpp",
+      "bytes": 232448,
+      "sha256": "229fa724a9093410d80de1c390d772e89dab71a8a218f43536c7fa0dbad61e3d"
+    },
+    {
+      "path": "junit/data/timephased-multi-rate.mpp",
+      "url": "https://raw.githubusercontent.com/joniles/mpxj/7ef9e72813d33378c55ec6ceb148cc831ed22033/junit/data/timephased-multi-rate.mpp",
+      "bytes": 269824,
+      "sha256": "0fce2e61a05adeeb9f5dc8a0c3fc41776b2588358e95fecd51efdf53a74fff02"
+    },
+    {
+      "path": "junit/data/timephased-actual-work-resource.mpp",
+      "url": "https://raw.githubusercontent.com/joniles/mpxj/7ef9e72813d33378c55ec6ceb148cc831ed22033/junit/data/timephased-actual-work-resource.mpp",
+      "bytes": 208384,
+      "sha256": "aa243629e24ea21fa8f44caeca0fff4f78b1e7a7c55420ab63a8002ef9854918"
+    },
+    {
+      "path": "junit/data/timephased-actual-overtime-work.mpp",
+      "url": "https://raw.githubusercontent.com/joniles/mpxj/7ef9e72813d33378c55ec6ceb148cc831ed22033/junit/data/timephased-actual-overtime-work.mpp",
+      "bytes": 327680,
+      "sha256": "c058e452b1b5838c5388817b901b6f4e2c4bfc4a4d6677514a9bc076ee5ee097"
+    }
+  ]
+}

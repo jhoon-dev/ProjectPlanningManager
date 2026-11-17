@@ -1,0 +1,16 @@
+21/71 Testing: parser_seed_replay
+21/71 Test: parser_seed_replay
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-forecast/jobs_parser_seed_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-forecast
+"parser_seed_replay" start time: Nov 03 10:29 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: 80 parser seeds, schema 1..11, classification/views, checksum/body separation, byte limit and store parity
+<end of output>
+Test time =   0.69 sec
+----------------------------------------------------------
+Test Passed.
+"parser_seed_replay" end time: Nov 03 10:29 대한민국 표준시
+"parser_seed_replay" time elapsed: 00:00:00
+----------------------------------------------------------
+

@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "source_sha256": "76e56f015616bfcd1a0b3d02d74fdec1f42ef24514125bc876a9c3f99305a625",
+  "schema": 48,
+  "original_entries": 1,
+  "merged_entries": 5,
+  "corrected_entries": 10,
+  "audit_rows": 10,
+  "pdf_pages": 23,
+  "external_product_run": false
+}

@@ -1,4 +1,5 @@
 #include "calculation/SharedResources.h"
+#include "domain/ResourceAvailability.h"
 #include <algorithm>
 #include <chrono>
 #include <cstdio>
@@ -35,7 +36,8 @@ struct Occupancy {
 } // namespace
 SharedResourceResult calculateSharedResources(const Workspace &workspace,
                                               const std::vector<std::shared_ptr<const Project>> &snapshots,
-                                              bool forecast, const std::shared_ptr<CalculationControl> &control) {
+                                              bool forecast, const std::shared_ptr<CalculationControl> &control,
+                                              const std::map<std::string, ScheduleResult> *supplied) {
     EvaluationScope evaluation(control);
     calculationCheckpoint();
     validateWorkspace(workspace);
@@ -74,7 +76,11 @@ SharedResourceResult calculateSharedResources(const Workspace &workspace,
             continue;
         }
         const auto &project = *found->second;
-        const auto schedule = forecast ? calculate(project) : calculatePlan(project);
+        if (supplied && !supplied->contains(project.documentId))
+            throw AppError(ErrorCode::WORKSPACE_SOURCE_CHANGED);
+        const auto schedule = supplied   ? supplied->at(project.documentId)
+                              : forecast ? calculate(project)
+                                         : calculatePlan(project);
         out.projects.push_back({project.documentId, project.name, project.revision, schedule.status,
                                 schedule.projectFinish, project.tasks.size()});
         for (auto diagnostic : schedule.diagnostics) {
@@ -142,9 +148,13 @@ SharedResourceResult calculateSharedResources(const Workspace &workspace,
                     throw AppError(ErrorCode::WORKSPACE_LIMIT);
             }
         }
-        std::map<std::string, std::optional<int>> exceptions;
-        for (const auto &item : resource.exceptions)
-            exceptions[item.date] = item.units;
+        const auto capacities = resourceAvailabilityIntervals(sharedResourceCapacity(resource));
+        std::map<Minute, std::optional<int>> capacityChanges;
+        for (const auto &period : capacities) {
+            calculationCheckpoint();
+            if (period.from)
+                capacityChanges[civil(*period.from)] = period.units;
+        }
         const std::set<std::string> holidays(resource.calendar.holidays.begin(), resource.calendar.holidays.end());
         std::map<Minute, SharedResourceDay> rows;
         auto event = events.begin();
@@ -179,15 +189,26 @@ SharedResourceResult calculateSharedResources(const Workspace &workspace,
                 }
             if (event != events.end())
                 next = std::min(next, event->first);
+            const auto change = capacityChanges.upper_bound(at);
+            const auto configured =
+                change == capacityChanges.begin() ? capacities.front().units : std::prev(change)->second;
+            if (change != capacityChanges.end())
+                next = std::min(next, change->first);
             next = std::min(next, end);
             if (next <= at)
                 throw AppError(ErrorCode::INTERNAL_ERROR, {"non-increasing shared resource interval"});
             if (used > 0) {
-                auto &row = rows[day];
+                auto [position, inserted] = rows.try_emplace(day);
+                auto &row = position->second;
                 row.sharedId = id;
                 row.date = date;
-                row.capacity = exceptions.contains(date) ? exceptions.at(date) : resource.maxUnits;
-                const auto capacity = working ? row.capacity : std::optional<int>{0};
+                if (inserted)
+                    row.capacity = configured;
+                else if (!row.variableCapacity && row.capacity != configured) {
+                    row.variableCapacity = true;
+                    row.capacity.reset();
+                }
+                const auto capacity = working ? configured : std::optional<int>{0};
                 row.peakUnits = std::max(row.peakUnits, used);
                 row.demandUnitMinutes += used * (next - at);
                 if (!capacity) {

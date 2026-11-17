@@ -1,0 +1,100 @@
+{
+    "assignments": [
+        {
+            "periods": [
+                {
+                    "fromMinute": 0,
+                    "toMinute": 120,
+                    "units": 0
+                },
+                {
+                    "fromMinute": 120,
+                    "toMinute": 480,
+                    "units": 75
+                },
+                {
+                    "fromMinute": 480,
+                    "toMinute": 960,
+                    "units": 150
+                }
+            ],
+            "resourceId": "R",
+            "taskId": "T",
+            "units": 100
+        }
+    ],
+    "baselines": [
+    ],
+    "calculationProfile": "native-effort-split-v1",
+    "calendar": "standard-mon-fri-8h-v1",
+    "calendars": [
+    ],
+    "costEntries": [
+    ],
+    "costProfile": "cost-day-minor-half-up-v1",
+    "currency": "KRW",
+    "derivedFrom": "",
+    "documentId": "resource-planning",
+    "holidays": [
+    ],
+    "name": "생산성·고유 곡선 검증",
+    "progress": [
+    ],
+    "resources": [
+        {
+            "calendarId": "",
+            "exceptions": [
+            ],
+            "id": "R",
+            "maxUnits": 200,
+            "name": "작업 인력",
+            "rates": [
+                {
+                    "effectiveDate": "2026-11-02",
+                    "hourlyMinor": 600
+                },
+                {
+                    "effectiveDate": "2026-11-03",
+                    "hourlyMinor": 1200
+                }
+            ],
+            "type": "labor"
+        }
+    ],
+    "revision": 1,
+    "scenarios": [
+    ],
+    "startDate": "2026-11-02",
+    "statusAt": null,
+    "taskCosts": [
+        {
+            "accrual": "uniform",
+            "credit": "physical",
+            "fixedMinor": 0,
+            "taskId": "T"
+        }
+    ],
+    "tasks": [
+        {
+            "breaks": [
+            ],
+            "calendarId": "",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 960,
+            "id": "T",
+            "name": "시공",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "",
+            "workDriven": false,
+            "workUnitMinutes": null
+        }
+    ],
+    "wbsNodes": [
+    ]
+}

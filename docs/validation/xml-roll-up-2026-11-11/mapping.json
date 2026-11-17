@@ -1,0 +1,278 @@
+{
+    "companionPolicy": "원본과 진단은 이 폴더의 동반 파일입니다. .ppm 사본 저장/이동 시 자동 복제되지 않습니다.",
+    "compatibility": {
+        "externalRoundTrip": "unverified",
+        "import": "not-applicable",
+        "jobsRecomputation": "unverified",
+        "originalPreservation": "exact-native-input-snapshot"
+    },
+    "contract": "jobs-mspdi-plan-v1",
+    "diagnostics": [
+        {
+            "message": "기간 기반 계획 투영입니다. 외부 제품의 계산/재저장 호환은 미검증입니다. 원본 전체 입력/이력은 source.ppm 참조.",
+            "path": "/Project"
+        },
+        {
+            "message": "지원 사용자 필드는 UDF 매핑표를 따릅니다. 작업 코드·저장된 보기는 source.ppm에 전체 데이터를 보존합니다.",
+            "path": "/Project/ExtendedAttribute"
+        },
+        {
+            "message": "단위 메타데이터는 source.ppm에 보존합니다: 점",
+            "path": "UDF/n0"
+        },
+        {
+            "message": "단위 메타데이터는 source.ppm에 보존합니다: 점",
+            "path": "UDF/n1"
+        },
+        {
+            "message": "단위 메타데이터는 source.ppm에 보존합니다: 점",
+            "path": "UDF/n2"
+        },
+        {
+            "message": "단위 메타데이터는 source.ppm에 보존합니다: 점",
+            "path": "UDF/n3"
+        },
+        {
+            "message": "단위 메타데이터는 source.ppm에 보존합니다: 점",
+            "path": "UDF/n4"
+        },
+        {
+            "message": "단위 메타데이터는 source.ppm에 보존합니다: 점",
+            "path": "UDF/n5"
+        },
+        {
+            "message": "단위 메타데이터는 source.ppm에 보존합니다: 점",
+            "path": "UDF/n6"
+        },
+        {
+            "message": "단위 메타데이터는 source.ppm에 보존합니다: 점",
+            "path": "UDF/n7"
+        },
+        {
+            "message": "단위 메타데이터는 source.ppm에 보존합니다: 점",
+            "path": "UDF/resource"
+        },
+        {
+            "message": "저장된 명시 요약 값 대신 현재 자동 roll-up 결과를 내보냅니다.",
+            "path": "/TaskSummary/"
+        },
+        {
+            "message": "저장된 명시 요약 값 대신 현재 자동 roll-up 결과를 내보냅니다.",
+            "path": "/TaskSummary/"
+        },
+        {
+            "message": "저장된 명시 요약 값 대신 현재 자동 roll-up 결과를 내보냅니다.",
+            "path": "/TaskSummary/G"
+        }
+    ],
+    "direction": "export",
+    "documentId": "xml-roll-up",
+    "format": "Microsoft Project XML",
+    "mapping": [
+        {
+            "externalId": "188743767",
+            "jobsId": "n0",
+            "kind": "udf",
+            "name": "수치 0",
+            "scope": "TASK",
+            "type": "number"
+        },
+        {
+            "externalId": "188743768",
+            "jobsId": "n1",
+            "kind": "udf",
+            "name": "수치 1",
+            "scope": "TASK",
+            "type": "number"
+        },
+        {
+            "externalId": "188743769",
+            "jobsId": "n2",
+            "kind": "udf",
+            "name": "수치 2",
+            "scope": "TASK",
+            "type": "number"
+        },
+        {
+            "externalId": "188743770",
+            "jobsId": "n3",
+            "kind": "udf",
+            "name": "수치 3",
+            "scope": "TASK",
+            "type": "number"
+        },
+        {
+            "externalId": "188743771",
+            "jobsId": "n4",
+            "kind": "udf",
+            "name": "수치 4",
+            "scope": "TASK",
+            "type": "number"
+        },
+        {
+            "externalId": "188743982",
+            "jobsId": "n5",
+            "kind": "udf",
+            "name": "수치 5",
+            "scope": "TASK",
+            "type": "number"
+        },
+        {
+            "externalId": "188743983",
+            "jobsId": "n6",
+            "kind": "udf",
+            "name": "수치 6",
+            "scope": "TASK",
+            "type": "number"
+        },
+        {
+            "externalId": "188743984",
+            "jobsId": "n7",
+            "kind": "udf",
+            "name": "수치 7",
+            "scope": "TASK",
+            "type": "number"
+        },
+        {
+            "externalId": "188743786",
+            "jobsId": "cost",
+            "kind": "udf",
+            "name": "cost",
+            "scope": "TASK",
+            "type": "cost"
+        },
+        {
+            "externalId": "188743783",
+            "jobsId": "duration",
+            "kind": "udf",
+            "name": "duration",
+            "scope": "TASK",
+            "type": "duration"
+        },
+        {
+            "externalId": "188743945",
+            "jobsId": "date",
+            "kind": "udf",
+            "name": "date",
+            "scope": "TASK",
+            "type": "date"
+        },
+        {
+            "externalId": "188743732",
+            "jobsId": "start",
+            "kind": "udf",
+            "name": "start",
+            "scope": "TASK",
+            "type": "start"
+        },
+        {
+            "externalId": "188743733",
+            "jobsId": "finish",
+            "kind": "udf",
+            "name": "finish",
+            "scope": "TASK",
+            "type": "finish"
+        },
+        {
+            "externalId": "188743752",
+            "jobsId": "or",
+            "kind": "udf",
+            "name": "or",
+            "scope": "TASK",
+            "type": "flag"
+        },
+        {
+            "externalId": "188743753",
+            "jobsId": "and",
+            "kind": "udf",
+            "name": "and",
+            "scope": "TASK",
+            "type": "flag"
+        },
+        {
+            "externalId": "188743731",
+            "jobsId": "snapshot",
+            "kind": "udf",
+            "name": "명시 요약 메모",
+            "scope": "TASK",
+            "type": "text"
+        },
+        {
+            "externalId": "190873600",
+            "jobsId": "project",
+            "kind": "udf",
+            "name": "프로젝트 별도 값",
+            "representation": "hex-element",
+            "scope": "PROJECT",
+            "type": "text",
+            "xmlFieldName": "프로젝트 별도 값",
+            "xmlGuid": "f1dcc402-41c3-5f14-aa88-7e81fff58717"
+        },
+        {
+            "externalId": "205521008",
+            "jobsId": "resource",
+            "kind": "udf",
+            "name": "자원 수치",
+            "scope": "RSRC",
+            "type": "number"
+        },
+        {
+            "jobsId": "",
+            "kind": "calendar",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "G",
+            "kind": "wbs",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "H",
+            "kind": "wbs",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "B",
+            "kind": "task",
+            "xmlUid": "3"
+        },
+        {
+            "jobsId": "C",
+            "kind": "task",
+            "xmlUid": "4"
+        },
+        {
+            "jobsId": "A",
+            "kind": "task",
+            "xmlUid": "5"
+        },
+        {
+            "jobsId": "D",
+            "kind": "task",
+            "xmlUid": "6"
+        },
+        {
+            "jobsId": "R",
+            "kind": "resource",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "S",
+            "kind": "resource",
+            "xmlUid": "2"
+        }
+    ],
+    "namespace": "http://schemas.microsoft.com/project",
+    "nativeSnapshotProfile": "native-pdm-taskcal-v1",
+    "revision": "1",
+    "source": {
+        "name": "source.ppm",
+        "product": "PPM"
+    },
+    "targetPolicy": {
+        "calculationProfile": "native-effort-split-v1",
+        "lagCalendar": "successor-working-calendar",
+        "projectStartAnchor": "09:00"
+    },
+    "xmlSha256": "db369e5a7306265f501f1c0752849db4bbaa00a1b0af72808c34ba11b823461b"
+}

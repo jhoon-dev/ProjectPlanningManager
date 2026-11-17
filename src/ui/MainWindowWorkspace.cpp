@@ -1,7 +1,9 @@
 #include "ui/MainWindow.h"
+#include "ui/NetworkDialog.h"
 #include "ui/AsyncEditController.h"
 #include <QComboBox>
 #include <QLineEdit>
+#include <QSignalBlocker>
 #include <algorithm>
 
 namespace jobs {
@@ -18,17 +20,27 @@ bool MainWindow::selectTaskById(const std::string &taskId) {
                                              [&](const auto &task) { return task.id == taskId; }))
         return false;
     selectedWbs_.clear();
+    classificationView_.groupPath.clear();
+    classificationView_.attributeFilters.clear();
     selectedTask_ = taskId;
     selectedTaskIds_ = {taskId};
-    if (taskSearch_)
+    {
+        const QSignalBlocker search(taskSearch_), filter(taskFilter_), sort(taskSort_);
         taskSearch_->clear();
-    if (taskFilter_)
         taskFilter_->setCurrentIndex(0);
-    if (taskSort_)
         taskSort_->setCurrentIndex(0);
-    taskViewReset_ = true;
+    }
+    taskViewReset_ = false;
     rendered_ = false;
     refresh();
-    return true;
+    for (std::size_t row = 0; row < visibleRows_.size(); ++row)
+        if (document_.project()->tasks[visibleRows_[row]].id == taskId) {
+            table_->setCurrentCell(int(row), 0);
+            table_->selectRow(int(row));
+            table_->scrollTo(table_->model()->index(int(row), 0));
+            syncNetworkSelection(this, taskId);
+            return true;
+        }
+    return false;
 }
 } // namespace jobs

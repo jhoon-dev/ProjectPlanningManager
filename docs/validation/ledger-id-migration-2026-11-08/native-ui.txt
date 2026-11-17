@@ -1,0 +1,1 @@
+PASS: explicit task/resource identity migration, original/provenance/amount/date preservation, baseline/closed periods/Steps/external EVM/XER relink and schedule archives, fresh/merge IDs, schema33/replay/recovery/copy, sequential/cancel/stale/readonly, export and native UI

@@ -1,4 +1,8 @@
+#include "ui/IntegratedWorkspaceDialog.h"
+#include "ui/GovernanceDialog.h"
+#include "ui/ServerDialog.h"
 #include "ui/WorkspaceDialog.h"
+#include "ui/SharedAvailabilityDialog.h"
 #include "ui/EditorUi.h"
 #include "ui/DesktopWorkspace.h"
 #include "formatting/QtDiagnosticText.h"
@@ -111,7 +115,7 @@ public:
             return {};
         if (orientation == Qt::Vertical)
             return section + 1;
-        const QStringList labels{"공유 자원", "날짜",         "기본 가용(%)", "최대 수요(%)", "수요(공수h)",
+        const QStringList labels{"공유 자원", "날짜",         "설정 가용(%)", "최대 수요(%)", "수요(공수h)",
                                  "과부하(h)", "초과 공수(h)", "가용 미정(h)", "관련 작업"};
         return section >= 0 && section < labels.size() ? QVariant(labels[section]) : QVariant{};
     }
@@ -129,7 +133,9 @@ public:
         case 1:
             return qs(day.date);
         case 2:
-            return day.capacity ? QString::number(*day.capacity) : QString("미정");
+            return day.variableCapacity ? QString("시간별")
+                   : day.capacity       ? QString::number(*day.capacity)
+                                        : QString("미정");
         case 3:
             return QString::number(day.peakUnits);
         case 4:
@@ -159,6 +165,31 @@ WorkspaceDialog::WorkspaceDialog(DesktopWorkspace &workspace, QWidget *parent)
     auto *layout = new QVBoxLayout(this);
     auto *files = new QHBoxLayout;
     layout->addLayout(files);
+    auto *operations = new QHBoxLayout;
+    layout->addLayout(operations);
+    auto *governance = new QPushButton("조직·포트폴리오·협업·위험·자동화…");
+    governance->setObjectName("workspaceGovernance");
+    operations->addWidget(governance);
+    auto *server = new QPushButton("서버 인증·실시간 협업…");
+    auto *remaining = new QPushButton("시각별 공유 잔여 가용량…");
+    remaining->setObjectName("workspaceRemainingAvailability");
+    operations->addWidget(remaining);
+    connect(remaining, &QPushButton::clicked, this, [this] {
+        showSharedAvailability(workspace_, this);
+        refresh();
+    });
+    server->setObjectName("workspaceServer");
+    operations->addWidget(server);
+    connect(server, &QPushButton::clicked, this, [this] {
+        ServerDialog dialog(workspace_, this);
+        dialog.exec();
+    });
+    operations->addStretch();
+    connect(governance, &QPushButton::clicked, this, [this] {
+        GovernanceDialog dialog(workspace_, this);
+        dialog.exec();
+        refresh();
+    });
     const auto button = [&](const char *text, const char *name, QHBoxLayout *bar) {
         auto *value = new QPushButton(text);
         value->setObjectName(name);
@@ -169,6 +200,12 @@ WorkspaceDialog::WorkspaceDialog(DesktopWorkspace &workspace, QWidget *parent)
     auto *open = button("프로젝트 추가…", "workspaceAddProject", files);
     auto *openWorkspace = button("작업공간 열기…", "workspaceOpen", files);
     auto *save = button("작업공간 저장…", "workspaceSave", files);
+    auto *integrated = button("프로젝트 간 링크·통합 일정…", "workspaceIntegrated", files);
+    connect(integrated, &QPushButton::clicked, this, [this] {
+        IntegratedWorkspaceDialog dialog(workspace_, this);
+        dialog.exec();
+        refresh();
+    });
     auto *saveAs = button("작업공간 사본…", "workspaceSaveAs", files);
     path_ = new QLabel;
     path_->setTextFormat(Qt::PlainText);
@@ -411,6 +448,7 @@ void WorkspaceDialog::editResource(bool create) {
     QDialog dialog(this);
     dialog.setObjectName("sharedResourceDialog");
     dialog.setWindowTitle("공유 자원 · 용량/달력");
+    dialog.resize(1000, 780);
     auto *form = new QFormLayout(&dialog);
     auto *name = new QLineEdit(qs(resource.name));
     name->setObjectName("sharedResourceName");
@@ -423,6 +461,29 @@ void WorkspaceDialog::editResource(bool create) {
     auto *cap = new QLineEdit(resource.maxUnits ? QString::number(*resource.maxUnits) : QString("?"));
     cap->setObjectName("sharedResourceCapacity");
     form->addRow("기본 용량(100%=1명/대, ?=미정)", cap);
+    auto *availableFrom = new QLineEdit(qs(resource.availableFrom.value_or("")));
+    auto *availableTo = new QLineEdit(qs(resource.availableTo.value_or("")));
+    availableFrom->setObjectName("sharedResourceAvailableFrom");
+    availableTo->setObjectName("sharedResourceAvailableTo");
+    for (auto *edit : {availableFrom, availableTo})
+        edit->setPlaceholderText("YYYY-MM-DD HH:mm · 빈칸은 제한 없음");
+    form->addRow("가용 시작 · 해당 분 포함", availableFrom);
+    form->addRow("가용 종료 · 해당 분 포함", availableTo);
+    QStringList availability;
+    for (const auto &period : resource.availability)
+        availability << qs(period.from.value_or("")) + " ~ " + qs(period.to.value_or("")) + "=" +
+                            (period.units ? QString::number(*period.units) : QString("?"));
+    auto *availabilityPeriods = new QPlainTextEdit(availability.join('\n'));
+    availabilityPeriods->setObjectName("sharedResourceAvailabilityPeriods");
+    availabilityPeriods->setMaximumHeight(110);
+    availabilityPeriods->setPlaceholderText(
+        "2026-11-16 09:00 ~ 2026-11-16 11:59=50\n2026-11-17 00:00 ~ =200\n ~ 2026-11-15 23:59=?");
+    form->addRow("기간별 가용량 · 종료 분 포함\n시작 ~ 종료=정수% / ?\n빈 경계는 제한 없음", availabilityPeriods);
+    auto *availabilityNote =
+        new QLabel("가용 경계 밖은 0%입니다. 경계 안에서는 날짜 예외 → 기간별 가용량 → 기본값 순서로 적용합니다. "
+                   "기간끼리 겹칠 수 없으며 공유 근무 달력은 별도로 적용합니다.");
+    availabilityNote->setWordWrap(true);
+    form->addRow(availabilityNote);
     QStringList days, periods, holidays, exceptions;
     for (auto day : resource.calendar.weekdays)
         days << QString::number(day);
@@ -437,10 +498,13 @@ void WorkspaceDialog::editResource(bool create) {
     auto *hours = new QLineEdit(periods.join(','));
     form->addRow("근무 구간", hours);
     auto *holiday = new QPlainTextEdit(holidays.join('\n'));
+    holiday->setMaximumHeight(80);
     form->addRow("휴일(한 줄에 YYYY-MM-DD)", holiday);
     auto *overrides = new QPlainTextEdit(exceptions.join('\n'));
+    overrides->setMaximumHeight(80);
     form->addRow("일별 용량(YYYY-MM-DD=100 또는 ?)", overrides);
     auto *error = new QLabel;
+    error->setObjectName("sharedResourceError");
     error->setWordWrap(true);
     error->setTextFormat(Qt::PlainText);
     form->addRow(error);
@@ -454,6 +518,19 @@ void WorkspaceDialog::editResource(bool create) {
             resource.name = str(name->text().trimmed());
             resource.type = str(type->currentData().toString());
             resource.maxUnits = capacity(cap->text());
+            const auto stamp = [](const QString &s) -> std::optional<std::string> {
+                return s.trimmed().isEmpty() ? std::optional<std::string>{} : str(s.trimmed());
+            };
+            resource.availableFrom = stamp(availableFrom->text());
+            resource.availableTo = stamp(availableTo->text());
+            resource.availability.clear();
+            for (const auto &line : availabilityPeriods->toPlainText().split('\n', Qt::SkipEmptyParts)) {
+                const auto parts = line.trimmed().split('=');
+                if (parts.size() != 2 || parts[0].count('~') != 1)
+                    throw AppError(ErrorCode::RESOURCE_EXCEPTION_INVALID);
+                const auto bounds = parts[0].split('~');
+                resource.availability.push_back({stamp(bounds[0]), stamp(bounds[1]), capacity(parts[1])});
+            }
             resource.calendar.weekdays.clear();
             resource.calendar.periods.clear();
             resource.calendar.holidays.clear();
@@ -474,11 +551,12 @@ void WorkspaceDialog::editResource(bool create) {
                     throw AppError(ErrorCode::RESOURCE_EXCEPTION_INVALID);
                 resource.exceptions.push_back({str(pair[0].trimmed()), capacity(pair[1])});
             }
+            auto candidate = config;
             if (create)
-                config.resources.push_back(resource);
+                candidate.resources.push_back(resource);
             else
-                config.resources[std::size_t(index)] = resource;
-            workspace_.applyConfiguration(config);
+                candidate.resources[std::size_t(index)] = resource;
+            workspace_.applyConfiguration(candidate);
             dialog.accept();
         } catch (const std::exception &exception) {
             error->setText(qErrorText(exception));

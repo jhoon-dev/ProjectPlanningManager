@@ -15,6 +15,8 @@ docs/validation/**/CMakeCache.txt text eol=lf -whitespace
 docs/validation/**/makeappx*.log -text -whitespace
 # Compatibility golden bytes must be identical on every checkout platform.
 tests/fixtures/enum-compat/*.ppm -text
+tests/fixtures/mpp-public/*.mpp -text
+tests/fixtures/mpp-public/LICENSE-MPXJ.txt -text -whitespace
 *.nsi text eol=lf
 # Preserve upstream license bytes and their recorded hashes.
 packaging/licenses/** -text -whitespace

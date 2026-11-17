@@ -1,6 +1,20 @@
+#include "domain/ResourceAvailability.h"
+#include "calculation/ScheduleFormulaScope.h"
+#include "domain/XmlFormula.h"
+#include "domain/XmlRollUp.h"
+#include "domain/XmlCodes.h"
+#include "domain/XmlRollDown.h"
+#include "domain/ResourcePlan.h"
 #include "formatting/QtDiagnosticText.h"
 #include "formatting/PlanTokens.h"
+#include "formatting/Money.h"
 #include "persistence/PrimaveraXer.h"
+#include "persistence/ResourceCurveExchange.h"
+#include "calculation/ResourcePlanning.h"
+#include "persistence/XerActualCosts.h"
+#include "domain/Classification.h"
+#include "persistence/UdfMapping.h"
+#include "domain/CalculationControl.h"
 #include "persistence/ExchangePackage.h"
 #include <QCryptographicHash>
 #include <QDate>
@@ -107,16 +121,8 @@ QString stamp(const QString &s, const QString &path) {
         throw AppError(ErrorCode::FILE_PRIMAVERAXER_009, {diagnosticArgument(path)});
     return s;
 }
-struct Row {
-    QStringList cells;
-    int line = 0;
-};
-struct Table {
-    QString name;
-    QStringList fields;
-    std::vector<Row> rows;
-    mutable std::set<QString> used;
-};
+using Row = XerRow;
+using Table = XerTable;
 struct File {
     QStringList header;
     std::map<QString, Table> tables;
@@ -150,6 +156,7 @@ File parse(const QString &text) {
     static const QRegularExpression tableName("^[A-Z][A-Z0-9_]{0,127}$"), fieldName("^[A-Za-z][A-Za-z0-9_]{0,127}$");
     int lineNumber = 0;
     for (auto line : lines) {
+        calculationCheckpoint();
         ++lineNumber;
         if (line.endsWith('\r'))
             line.chop(1);
@@ -223,20 +230,254 @@ File parse(const QString &text) {
 const Table &table(File &file, const char *name) {
     auto [it, inserted] = file.tables.try_emplace(name, Table{name, {}, {}, {}});
     (void)inserted;
-    const std::size_t limit = (it->first == "TASKPRED" || it->first == "TASKRSRC") ? 100000 : 10000;
+    const std::size_t limit =
+        (it->first == "TASKPRED" || it->first == "TASKRSRC" || it->first == "TASKACTV" || it->first == "UDFVALUE")
+            ? 100000
+            : 10000;
     if (it->second.rows.size() > limit)
         throw AppError(ErrorCode::FILE_PRIMAVERAXER_024, {diagnosticArgument(QString::fromLatin1(name))});
     return it->second;
 }
+QByteArray serializeXer(const File &file) {
+    QByteArray bytes("\xef\xbb\xbf");
+    auto line = [&](const QStringList &cells) {
+        for (const auto &cell : cells) {
+            if (cell.size() > 1024 * 1024)
+                throw AppError(ErrorCode::FILE_PRIMAVERAXER_075);
+            for (const auto c : cell)
+                if (forbiddenTextCharacter(c))
+                    throw AppError(ErrorCode::FILE_PRIMAVERAXER_076);
+        }
+        bytes += cells.join('\t').toUtf8() + "\r\n";
+        if (bytes.size() > byteLimit)
+            throw AppError(ErrorCode::FILE_PRIMAVERAXER_077);
+    };
+    line(file.header);
+    for (const auto &[name, t] : file.tables) {
+        if (t.fields.empty())
+            continue;
+        calculationCheckpoint();
+        line({"%T", name});
+        QStringList fields{"%F"};
+        fields.append(t.fields);
+        line(fields);
+        for (const auto &r : t.rows) {
+            QStringList cells{"%R"};
+            cells.append(r.cells);
+            line(cells);
+        }
+    }
+    line({"%E"});
+    return bytes;
+}
 void unique(const Table &t, const QString &field) {
     std::set<QString> seen;
-    for (const auto &r : t.rows)
+    for (const auto &r : t.rows) {
+        calculationCheckpoint();
         if (!seen.insert(id(t, r, field)).second)
             throw AppError(ErrorCode::FILE_PRIMAVERAXER_025, {diagnosticArgument(path(t, r, field))});
+    }
 }
 void projectRef(const Table &t, const Row &r, const QString &project, const QString &field = "proj_id") {
     if (id(t, r, field) != project)
         throw AppError(ErrorCode::FILE_PRIMAVERAXER_026, {diagnosticArgument(path(t, r, field))});
+}
+// All identity/ownership checks precede pruning, so selection cannot bypass input limits.
+std::vector<XerProjectInfo> projectInventory(File &file) {
+    for (const auto &[name, key] :
+         std::initializer_list<std::pair<const char *, const char *>>{{"PROJECT", "proj_id"},
+                                                                      {"TASK", "task_id"},
+                                                                      {"PROJWBS", "wbs_id"},
+                                                                      {"TASKPRED", "task_pred_id"},
+                                                                      {"TASKRSRC", "taskrsrc_id"},
+                                                                      {"CALENDAR", "clndr_id"},
+                                                                      {"RSRC", "rsrc_id"},
+                                                                      {"RSRCRATE", "rsrc_rate_id"},
+                                                                      {"ACTVTYPE", "actv_code_type_id"},
+                                                                      {"ACTVCODE", "actv_code_id"},
+                                                                      {"UDFTYPE", "udf_type_id"}})
+        unique(table(file, name), key);
+    const auto &projects = table(file, "PROJECT");
+    const auto &udfTypes = table(file, "UDFTYPE");
+    const auto &udfValues = table(file, "UDFVALUE");
+    std::map<QString, QString> udfOwners, taskOwners, assignmentOwners;
+    std::set<QString> projectIds, resourceIds;
+    for (const auto &row : projects.rows)
+        projectIds.insert(id(projects, row, "proj_id"));
+    const auto &allTasks = table(file, "TASK"), &allResources = table(file, "RSRC");
+    for (const auto &row : allTasks.rows)
+        taskOwners[id(allTasks, row, "task_id")] = id(allTasks, row, "proj_id");
+    for (const auto &row : allResources.rows)
+        resourceIds.insert(id(allResources, row, "rsrc_id"));
+    const auto &allAssignments = table(file, "TASKRSRC");
+    for (const auto &row : allAssignments.rows)
+        assignmentOwners[id(allAssignments, row, "taskrsrc_id")] = id(allAssignments, row, "proj_id");
+    for (const auto &row : udfTypes.rows)
+        udfOwners[id(udfTypes, row, "udf_type_id")] = get(udfTypes, row, "table_name");
+    std::set<std::tuple<QString, QString, QString>> uniqueValues;
+    for (const auto &row : udfValues.rows) {
+        const auto type = id(udfValues, row, "udf_type_id"), fk = id(udfValues, row, "fk_id");
+        auto pid = get(udfValues, row, "proj_id");
+        pid = pid.isEmpty() ? "0" : id(udfValues, row, "proj_id");
+        if (!udfOwners.contains(type) || (pid != "0" && !projectIds.contains(pid)) ||
+            !uniqueValues.emplace(type, pid, fk).second)
+            throw AppError(ErrorCode::CLASSIFICATION_INVALID, {"UDFVALUE 정의·프로젝트 참조 또는 중복"});
+        const auto &owner = udfOwners.at(type);
+        if ((owner == "TASK" && (!taskOwners.contains(fk) || taskOwners.at(fk) != pid)) ||
+            (owner == "RSRC" && !resourceIds.contains(fk)) ||
+            (owner == "TASKRSRC" && (!assignmentOwners.contains(fk) || assignmentOwners.at(fk) != pid)) ||
+            (owner == "PROJECT" && (!projectIds.contains(fk) || (pid != "0" && pid != fk))))
+            throw AppError(ErrorCode::CLASSIFICATION_INVALID, {"UDFVALUE 소유 객체 참조"});
+    }
+    if (projects.rows.empty())
+        throw AppError(ErrorCode::FILE_PRIMAVERAXER_042);
+    std::vector<XerProjectInfo> result;
+    std::map<QString, std::size_t> indices;
+    for (const auto &r : projects.rows) {
+        calculationCheckpoint();
+        auto pid = id(projects, r, "proj_id");
+        indices.emplace(pid, result.size());
+        auto code = get(projects, r, "proj_short_name");
+        result.push_back({pid, code, code, get(projects, r, "plan_start_date")});
+    }
+    for (const char *name : {"TASK", "PROJWBS", "TASKRSRC", "SCHEDOPTIONS", "TASKACTV"}) {
+        const auto &t = table(file, name);
+        for (const auto &r : t.rows) {
+            calculationCheckpoint();
+            const auto owner = id(t, r, "proj_id");
+            if (!indices.contains(owner))
+                throw AppError(ErrorCode::FILE_PRIMAVERAXER_026, {diagnosticArgument(path(t, r, "proj_id"))});
+            auto &info = result[indices.at(owner)];
+            if (t.name == "TASK")
+                ++info.tasks;
+            if (t.name == "PROJWBS" && get(t, r, "proj_node_flag") == "Y")
+                info.name = get(t, r, "wbs_name");
+        }
+    }
+    const auto &links = table(file, "TASKPRED");
+    for (const auto &r : links.rows) {
+        calculationCheckpoint();
+        const auto to = id(links, r, "proj_id"), from = id(links, r, "pred_proj_id");
+        if (to != from) {
+            if (indices.contains(to))
+                ++result[indices.at(to)].externalIncoming;
+            if (indices.contains(from))
+                ++result[indices.at(from)].externalOutgoing;
+        }
+    }
+    validateXerActualReferences(file.tables);
+    return result;
+}
+QJsonObject projectScope(File &file, const QString &selected, std::size_t projectCount) {
+    std::map<QString, std::size_t> before;
+    for (const char *name :
+         {"PROJECT", "TASK", "PROJWBS", "TASKPRED", "TASKRSRC", "SCHEDOPTIONS", "RSRC", "RSRCRATE", "CALENDAR",
+          "ACTVTYPE", "ACTVCODE", "TASKACTV", "UDFTYPE", "UDFVALUE", "PROJCOST", "FINDATES", "TASKFIN", "TRSRCFIN"})
+        before[name] = table(file, name).rows.size();
+    auto keep = [&](const char *name, auto predicate) {
+        auto &t = file.tables.at(name);
+        std::erase_if(t.rows, [&](const Row &r) {
+            calculationCheckpoint();
+            return !predicate(t, r);
+        });
+    };
+    keep("TASKPRED", [&](const Table &t, const Row &r) {
+        const auto to = id(t, r, "proj_id"), from = id(t, r, "pred_proj_id");
+        if ((to == selected || from == selected) && to != from)
+            throw AppError(ErrorCode::FILE_PRIMAVERAXER_026,
+                           {diagnosticArgument(path(t, r, "proj_id") + " " + from + " -> " + to)},
+                           ErrorContext{.projectId = str(selected), .path = str(path(t, r, "proj_id"))});
+        return to == selected;
+    });
+    for (const char *name :
+         {"PROJECT", "TASK", "PROJWBS", "TASKRSRC", "SCHEDOPTIONS", "TASKACTV", "PROJCOST", "TASKFIN", "TRSRCFIN"})
+        keep(name, [&](const Table &t, const Row &r) { return id(t, r, "proj_id") == selected; });
+    std::set<QString> financialIds;
+    for (const auto *name : {"TASKFIN", "TRSRCFIN"}) {
+        const auto &t = table(file, name);
+        for (const auto &r : t.rows)
+            financialIds.insert(id(t, r, "fin_dates_id"));
+    }
+    keep("FINDATES", [&](const Table &t, const Row &r) { return financialIds.contains(id(t, r, "fin_dates_id")); });
+    keep("ACTVTYPE", [&](const Table &t, const Row &r) {
+        const auto owner = get(t, r, "proj_id");
+        return owner.isEmpty() || id(t, r, "proj_id") == "0" || id(t, r, "proj_id") == selected;
+    });
+    std::set<QString> types;
+    for (const auto &r : table(file, "ACTVTYPE").rows)
+        types.insert(id(table(file, "ACTVTYPE"), r, "actv_code_type_id"));
+    keep("ACTVCODE", [&](const Table &t, const Row &r) { return types.contains(id(t, r, "actv_code_type_id")); });
+    std::set<QString> resources, calendars;
+    const auto &assignments = table(file, "TASKRSRC");
+    for (const auto &r : assignments.rows)
+        resources.insert(id(assignments, r, "rsrc_id"));
+    keep("RSRC", [&](const Table &t, const Row &r) { return resources.contains(id(t, r, "rsrc_id")); });
+    if (resources.size() != file.tables.at("RSRC").rows.size())
+        throw AppError(ErrorCode::FILE_PRIMAVERAXER_072);
+    keep("RSRCRATE", [&](const Table &t, const Row &r) { return resources.contains(id(t, r, "rsrc_id")); });
+    std::map<QString, QString> udfOwners;
+    for (const auto &r : file.tables.at("UDFTYPE").rows)
+        udfOwners[id(file.tables.at("UDFTYPE"), r, "udf_type_id")] = get(file.tables.at("UDFTYPE"), r, "table_name");
+    std::set<QString> udfUsed;
+    keep("UDFVALUE", [&](const Table &t, const Row &r) {
+        const auto type = id(t, r, "udf_type_id"), fk = id(t, r, "fk_id"), pid = get(t, r, "proj_id");
+        const auto owner = udfOwners.at(type);
+        const bool selectedValue = owner == "PROJECT" ? fk == selected
+                                   : owner == "RSRC"  ? resources.contains(fk) && (pid.isEmpty() || pid == "0" ||
+                                                                                  id(t, r, "proj_id") == selected)
+                                                      : !pid.isEmpty() && id(t, r, "proj_id") == selected;
+        if (selectedValue)
+            udfUsed.insert(type);
+        return selectedValue;
+    });
+    keep("UDFTYPE", [&](const Table &t, const Row &r) { return udfUsed.contains(id(t, r, "udf_type_id")); });
+    const auto &projects = table(file, "PROJECT");
+    const auto fallback = id(projects, projects.rows.front(), "clndr_id");
+    calendars.insert(fallback);
+    for (const char *name : {"TASK", "RSRC"}) {
+        const auto &t = table(file, name);
+        for (const auto &r : t.rows) {
+            calculationCheckpoint();
+            const auto ref = get(t, r, "clndr_id");
+            calendars.insert(ref.isEmpty() ? fallback : id(t, r, "clndr_id"));
+        }
+    }
+    const auto &ct = table(file, "CALENDAR");
+    std::map<QString, const Row *> rows;
+    for (const auto &r : ct.rows)
+        rows.emplace(id(ct, r, "clndr_id"), &r);
+    std::vector<QString> pending(calendars.begin(), calendars.end());
+    for (std::size_t i = 0; i < pending.size(); ++i) {
+        calculationCheckpoint();
+        const auto ref = pending[i];
+        if (!rows.contains(ref))
+            throw AppError(ErrorCode::FILE_PRIMAVERAXER_045, {diagnosticArgument(ref)});
+        const auto &r = *rows.at(ref);
+        const auto owner = get(ct, r, "proj_id");
+        if (!owner.isEmpty() && id(ct, r, "proj_id") != "0" && id(ct, r, "proj_id") != selected)
+            throw AppError(ErrorCode::FILE_PRIMAVERAXER_044);
+        const auto parent = get(ct, r, "base_clndr_id");
+        if (!parent.isEmpty()) {
+            const auto pid = id(ct, r, "base_clndr_id");
+            if (calendars.insert(pid).second)
+                pending.push_back(pid);
+        }
+    }
+    keep("CALENDAR", [&](const Table &t, const Row &r) { return calendars.contains(id(t, r, "clndr_id")); });
+    QJsonArray counts;
+    for (const auto &[name, count] : before) {
+        const auto kept = file.tables.at(name).rows.size();
+        counts.append(QJsonObject{{"table", name},
+                                  {"inputRows", qint64(count)},
+                                  {"selectedRows", qint64(kept)},
+                                  {"excludedRows", qint64(count - kept)}});
+    }
+    return {{"mode", "single-project-from-multi"},
+            {"selectedProjectId", selected},
+            {"sourceProjectCount", qint64(projectCount)},
+            {"excludedProjectCount", qint64(projectCount - 1)},
+            {"externalRelations", "reject-incoming-and-outgoing"},
+            {"tables", counts}};
 }
 struct Record {
     QString name;
@@ -276,6 +517,7 @@ private:
         return s_.mid(start, pos_ - start).trimmed();
     }
     Record node(int depth) {
+        calculationCheckpoint();
         if (depth > 32 || ++count_ > 300000)
             throw AppError(ErrorCode::FILE_PRIMAVERAXER_030, {});
         expect('(');
@@ -393,11 +635,25 @@ QByteArray readPrimaveraXer(const QString &path) {
         throw AppError(ErrorCode::FILE_PRIMAVERAXER_041, {});
     return b;
 }
-PrimaveraXerExchange importPrimaveraXer(const QByteArray &bytes, const QString &sourceName, XerEncoding encoding) {
+std::vector<XerProjectInfo> listPrimaveraXerProjects(const QByteArray &bytes, XerEncoding encoding) {
+    calculationCheckpoint();
     auto file = parse(decode(bytes, encoding));
+    return projectInventory(file);
+}
+PrimaveraXerExchange importPrimaveraXer(const QByteArray &bytes, const QString &sourceName, XerEncoding encoding,
+                                        const QString &selectedProjectId) {
+    EvaluationScope evaluation;
+    calculationCheckpoint();
+    auto file = parse(decode(bytes, encoding));
+    const auto inventory = projectInventory(file);
+    const auto selected =
+        selectedProjectId.isEmpty() && inventory.size() == 1 ? inventory.front().id : selectedProjectId;
+    if (std::none_of(inventory.begin(), inventory.end(), [&](const auto &info) { return info.id == selected; }))
+        throw AppError(ErrorCode::FILE_PRIMAVERAXER_042);
+    QJsonObject selection;
+    if (inventory.size() > 1)
+        selection = projectScope(file, selected, inventory.size());
     auto &projects = table(file, "PROJECT");
-    if (projects.rows.size() != 1)
-        throw AppError(ErrorCode::FILE_PRIMAVERAXER_042, {});
     const auto &pr = projects.rows.front();
     const auto projectId = id(projects, pr, "proj_id");
     auto code = get(projects, pr, "proj_short_name");
@@ -412,7 +668,8 @@ PrimaveraXerExchange importPrimaveraXer(const QByteArray &bytes, const QString &
     QJsonArray diagnostics = file.normalizations;
     QJsonArray mapping;
     diagnostic(diagnostics, "PROJECT",
-               "기간 기반 고정 기간 투영 · 공수/자원 종속 일정·실적/원가/P6 재계산 호환은 미검증입니다.");
+               "기간 기반 계획과 명시 실적·원가의 지원 부분을 투영합니다. 공수/자원 종속 일정과 P6 재계산 호환은 "
+               "미검증입니다.");
     diagnostic(diagnostics, "CALENDAR",
                "수입 작업/자원에 달력을 명시 배정합니다. 새 native 작업은 PPM 기본 달력을 사용합니다. 기간 기반 "
                "일정은 작업 달력을 사용합니다.");
@@ -440,8 +697,11 @@ PrimaveraXerExchange importPrimaveraXer(const QByteArray &bytes, const QString &
     std::map<QString, const Row *> calendarRows;
     for (const auto &r : ct.rows) {
         auto ref = get(ct, r, "proj_id");
-        if (!ref.isEmpty() && QString::number(integer(ref, "CALENDAR/proj_id")) != projectId)
-            throw AppError(ErrorCode::FILE_PRIMAVERAXER_044, {});
+        if (!ref.isEmpty()) {
+            const auto owner = QString::number(integer(ref, "CALENDAR/proj_id"));
+            if (owner != "0" && owner != projectId)
+                throw AppError(ErrorCode::FILE_PRIMAVERAXER_044, {});
+        }
         calendarRows[id(ct, r, "clndr_id")] = &r;
     }
     std::map<QString, TaskCalendar> calendars;
@@ -679,6 +939,27 @@ PrimaveraXerExchange importPrimaveraXer(const QByteArray &bytes, const QString &
             if (!capacity.isEmpty() && (at.isEmpty() || at <= qs(p.startDate) + " 09:00"))
                 resource.maxUnits = units(capacity, path(rates, rate, "max_qty_per_hr"), true);
         }
+        // Repeated effective price rows may carry the same constant capacity.
+        if (rows.size() > 1) {
+            std::optional<int> constant;
+            bool supported = true, effective = false;
+            for (const auto *row : rows) {
+                const auto at = get(rates, *row, "start_date"), value = get(rates, *row, "max_qty_per_hr");
+                if (!at.isEmpty())
+                    stamp(at, path(rates, *row, "start_date"));
+                if (value.isEmpty()) {
+                    supported = false;
+                    continue;
+                }
+                const auto capacity = units(value, path(rates, *row, "max_qty_per_hr"), true);
+                if (constant && *constant != capacity)
+                    supported = false;
+                constant = capacity;
+                effective |= at.isEmpty() || at <= qs(p.startDate) + " 09:00";
+            }
+            if (supported && effective)
+                resource.maxUnits = constant;
+        }
         if (!resource.maxUnits)
             diagnostic(diagnostics, path(resources, r, "rsrc_id"),
                        "가용량 미정 · 단일 유효 기본 가용량 이외 곡선을 변환하지 않음");
@@ -693,19 +974,186 @@ PrimaveraXerExchange importPrimaveraXer(const QByteArray &bytes, const QString &
     }
     const auto &assignments = table(file, "TASKRSRC");
     unique(assignments, "taskrsrc_id");
+    const auto &curves = table(file, "RSRCCURVDATA");
+    unique(curves, "curv_id");
+    struct PendingCurve {
+        std::string task, resource;
+        NativeCurve curve;
+        std::optional<std::int64_t> work;
+    };
+    std::vector<PendingCurve> pendingCurves;
     for (const auto &r : assignments.rows) {
         projectRef(assignments, r, projectId);
         auto tid = id(assignments, r, "task_id"), rid = id(assignments, r, "rsrc_id");
         if (!taskIds.contains(tid) || !resourceIds.contains(rid))
             throw AppError(ErrorCode::FILE_PRIMAVERAXER_072, {});
         auto curve = get(assignments, r, "curv_id");
-        if (!curve.isEmpty() && curve != "0")
-            throw AppError(ErrorCode::FILE_PRIMAVERAXER_073, {});
+        if (!curve.isEmpty() && curve != "0") {
+            const auto curveId = QString::number(integer(curve, path(assignments, r, "curv_id")));
+            const Row *definition = nullptr;
+            for (const auto &v : curves.rows)
+                if (id(curves, v, "curv_id") == curveId)
+                    definition = &v;
+            if (!definition)
+                throw AppError(ErrorCode::FILE_PRIMAVERAXER_073);
+            for (const auto &field : {"target_lag_drtn_hr_cnt", "remain_lag_drtn_hr_cnt"}) {
+                const auto lag = get(assignments, r, field);
+                if (!lag.isEmpty() && curveDecimal(lag, 6000, maxWork) != 0)
+                    throw AppError(
+                        Diagnostic{"RESOURCE_PLANNING_INVALID",
+                                   {"곡선이 있는 지연 배정은 현재 지원하지 않습니다. 원본 XER을 확인하세요."},
+                                   {},
+                                   "RESOURCE_PLANNING_INVALID"});
+            }
+            NativeCurve c;
+            c.source = "p6-xer";
+            c.externalId = str(curveId);
+            c.name = str(get(curves, *definition, "curv_name"));
+            if (c.name.empty())
+                c.name = "P6 curve " + c.externalId;
+            for (int i = 0; i <= 20; ++i)
+                c.weights.push_back(
+                    int(curveDecimal(get(curves, *definition, "pct_usage_" + QString::number(i)), 1000000, 100000000)));
+            auto quantity = get(assignments, r, "target_qty");
+            pendingCurves.push_back({taskIds.at(tid), resourceIds.at(rid), std::move(c),
+                                     quantity.isEmpty()
+                                         ? std::nullopt
+                                         : std::optional<std::int64_t>{curveDecimal(quantity, 6000, maxWork)}});
+        }
         p.assignments.push_back(
             {taskIds.at(tid), resourceIds.at(rid),
              units(get(assignments, r, "target_qty_per_hr"), path(assignments, r, "target_qty_per_hr"), false)});
         map("assignment", id(assignments, r, "taskrsrc_id"), taskIds.at(tid) + "/" + resourceIds.at(rid));
     }
+    const auto &types = table(file, "ACTVTYPE"), &codes = table(file, "ACTVCODE"), &taskCodes = table(file, "TASKACTV");
+    std::map<QString, std::size_t> typeIds;
+    std::map<QString, QString> codeOwners;
+    for (const auto &r : types.rows) {
+        calculationCheckpoint();
+        const auto owner = get(types, r, "proj_id");
+        if (!owner.isEmpty() && id(types, r, "proj_id") != "0" && id(types, r, "proj_id") != projectId)
+            throw AppError(ErrorCode::FILE_PRIMAVERAXER_026, {"ACTVTYPE/proj_id"});
+        auto tid = id(types, r, "actv_code_type_id");
+        typeIds.emplace(tid, p.codeTypes.size());
+        p.codeTypes.push_back({str("xer-code-type-" + tid), str(get(types, r, "actv_code_type")), {}});
+        map("code-type", tid, p.codeTypes.back().id);
+    }
+    for (const auto &r : codes.rows) {
+        calculationCheckpoint();
+        const auto tid = id(codes, r, "actv_code_type_id"), cid = id(codes, r, "actv_code_id");
+        if (!typeIds.contains(tid))
+            throw AppError(ErrorCode::CLASSIFICATION_INVALID, {"ACTVCODE/actv_code_type_id"});
+        codeOwners.emplace(cid, tid);
+        auto parent = get(codes, r, "parent_actv_code_id");
+        p.codeTypes[typeIds.at(tid)].values.push_back(
+            {str("xer-code-" + cid), str(get(codes, r, "short_name")),
+             parent.isEmpty() ? std::string{} : str("xer-code-" + id(codes, r, "parent_actv_code_id"))});
+        map("code-value", cid, str("xer-code-" + cid));
+    }
+    std::map<QString, Task *> codeTasks;
+    std::map<std::string, Task *> nativeTasks;
+    for (auto &task : p.tasks)
+        nativeTasks.emplace(task.id, &task);
+    for (const auto &[tid, native] : taskIds)
+        codeTasks.emplace(tid, nativeTasks.at(native));
+    for (const auto &r : taskCodes.rows) {
+        calculationCheckpoint();
+        projectRef(taskCodes, r, projectId);
+        const auto tid = id(taskCodes, r, "task_id"), type = id(taskCodes, r, "actv_code_type_id"),
+                   value = id(taskCodes, r, "actv_code_id");
+        if (!codeTasks.contains(tid) || !typeIds.contains(type) || !codeOwners.contains(value) ||
+            codeOwners.at(value) != type)
+            throw AppError(ErrorCode::CLASSIFICATION_INVALID, {"TASKACTV 참조"});
+        codeTasks.at(tid)->attributes.push_back({"code:" + p.codeTypes[typeIds.at(type)].id, str("xer-code-" + value)});
+    }
+    if (!types.rows.empty())
+        diagnostic(
+            diagnostics, "ACTVTYPE/scope",
+            "코드 사전은 프로젝트별 native 사전으로 복사합니다. 전역/EPS 공유 범위·설명·색상은 원본에 보존합니다.");
+    std::map<QString, ExternalField> udf;
+    std::set<QString> integerUdf;
+    const auto &typesUdf = table(file, "UDFTYPE"), &valuesUdf = table(file, "UDFVALUE");
+    for (const auto &r : typesUdf.rows) {
+        const auto idValue = id(typesUdf, r, "udf_type_id"), owner = get(typesUdf, r, "table_name");
+        const auto type = get(typesUdf, r, "logical_data_type");
+        if (type == "FT_INTEGER")
+            integerUdf.insert(idValue);
+        if ((owner != "TASK" && owner != "RSRC" && owner != "PROJECT" && owner != "TASKRSRC") ||
+            (type != "FT_TEXT" && type != "FT_FLOAT" && type != "FT_INTEGER" && type != "FT_START_DATE" &&
+             type != "FT_END_DATE")) {
+            diagnostic(diagnostics, "UDFTYPE/" + idValue, "미지원 UDF 형식/범위 · 원본에 보존");
+            continue;
+        }
+        auto scope = owner == "TASK"       ? FieldScope::Task
+                     : owner == "RSRC"     ? FieldScope::Resource
+                     : owner == "TASKRSRC" ? FieldScope::Assignment
+                                           : FieldScope::Project;
+        auto nativeType = type == "FT_TEXT"       ? CustomFieldType::Text
+                          : type.endsWith("DATE") ? CustomFieldType::Date
+                                                  : CustomFieldType::Number;
+        auto name = get(typesUdf, r, "udf_type_label");
+        if (name.isEmpty())
+            name = get(typesUdf, r, "udf_type_name");
+        udf.emplace(idValue, importUdfField(p, false, scope, str(idValue), str(name), nativeType, mapping));
+    }
+    std::map<std::string, std::size_t> udfResourceIndex;
+    for (std::size_t i = 0; i < p.resources.size(); ++i)
+        udfResourceIndex[p.resources[i].id] = i;
+    std::map<QString, std::size_t> udfAssignmentIndex;
+    for (std::size_t i = 0; i < assignments.rows.size(); ++i)
+        udfAssignmentIndex[id(assignments, assignments.rows[i], "taskrsrc_id")] = i;
+    for (const auto &r : valuesUdf.rows) {
+        calculationCheckpoint();
+        const auto idValue = id(valuesUdf, r, "udf_type_id");
+        if (!udf.contains(idValue))
+            continue;
+        const auto &f = udf.at(idValue);
+        auto fk = id(valuesUdf, r, "fk_id");
+        std::vector<TaskAttribute> *values = nullptr;
+        if (f.scope == FieldScope::Task) {
+            if (!taskIds.contains(fk))
+                throw AppError(ErrorCode::CLASSIFICATION_INVALID, {"UDF 작업 참조"});
+            values = &p.tasks[taskIndex.at(taskIds.at(fk))].attributes;
+        } else if (f.scope == FieldScope::Assignment) {
+            if (!udfAssignmentIndex.contains(fk))
+                throw AppError(ErrorCode::CLASSIFICATION_INVALID, {"UDF 배정 참조"});
+            values = &p.assignments.at(udfAssignmentIndex.at(fk)).attributes;
+        } else if (f.scope == FieldScope::Project) {
+            if (fk != projectId)
+                throw AppError(ErrorCode::CLASSIFICATION_INVALID, {"UDF 프로젝트 참조"});
+            values = &p.projectAttributes;
+        } else {
+            if (!resourceIds.contains(fk))
+                throw AppError(ErrorCode::CLASSIFICATION_INVALID, {"UDF 자원 참조"});
+            values = &p.resources[udfResourceIndex.at(resourceIds.at(fk))].attributes;
+        }
+        const QString column = f.type == CustomFieldType::Text     ? "udf_text"
+                               : f.type == CustomFieldType::Number ? "udf_number"
+                                                                   : "udf_date";
+        for (const auto *other : {"udf_text", "udf_number", "udf_date", "udf_code_id"})
+            if (column != other && !get(valuesUdf, r, other).isEmpty())
+                throw AppError(ErrorCode::CLASSIFICATION_INVALID,
+                               {"UDFVALUE 형식과 다른 값 열이 함께 설정되었습니다."});
+        auto value = get(valuesUdf, r, column);
+        if (integerUdf.contains(idValue) && parseFieldNumber(str(value)) % fieldNumberScale != 0)
+            throw AppError(ErrorCode::CLASSIFICATION_INVALID, {"FT_INTEGER UDF에 소수 값이 있습니다."});
+        if (f.type == CustomFieldType::Date) {
+            if (!QRegularExpression("^[0-9]{4}-[0-9]{2}-[0-9]{2} 00:00$").match(value).hasMatch())
+                throw AppError(ErrorCode::CLASSIFICATION_INVALID, {"날짜 UDF는 자정의 civil date만 지원합니다."});
+            value = value.left(10);
+        }
+        importUdfValue(p, f, *values, str(value));
+    }
+    for (auto &curve : pendingCurves) {
+        calculationCheckpoint();
+        p = applyNativeCurve(p, curve.task, curve.resource, std::move(curve.curve), curve.work);
+        diagnostic(diagnostics, "TASKRSRC/" + qs(curve.task) + "/curve",
+                   "P6 21지점 원본 정의와 정수 계획 배정 투영 보존 · 원본 날짜/외부 재계산 동등성은 별도 검토");
+    }
+    auto actualCosts = importXerActualCosts(p, file.tables, diagnostics);
+    validate(p); // Preserve native input diagnostics before building optional source evidence.
+    captureXerFinancials(p, file.tables, QFileInfo(sourceName).fileName(), hash(bytes), projectId);
+    actualCosts["financialSnapshotStored"] = p.xerFinancials.has_value();
     for (const auto &[name, t] : file.tables) {
         if (t.rows.empty())
             continue;
@@ -717,17 +1165,24 @@ PrimaveraXerExchange importPrimaveraXer(const QByteArray &bytes, const QString &
             if (!t.used.contains(field))
                 diagnostic(diagnostics, name + "/" + field, "미지원 필드 · 원본에 보존");
     }
-    validate(p);
     graph(p);
     auto report = reportFor(p, true);
+    report["actualCosts"] = actualCosts;
     report["source"] = QJsonObject{{"name", QFileInfo(sourceName).fileName()},
                                    {"sha256", hash(bytes)},
                                    {"encoding", encodingName(encoding)},
                                    {"header", QJsonArray::fromStringList(file.header)},
                                    {"version", file.header[1]},
                                    {"producer", "unverified"},
+                                   {"projectId", projectId},
                                    {"projectCode", code},
                                    {"lagPolicy", lagPolicy}};
+    if (!selection.isEmpty()) {
+        report["projectSelection"] = selection;
+        diagnostic(diagnostics, "PROJECT/selection",
+                   "선택 프로젝트 ID " + projectId + " · 제외 프로젝트 " + QString::number(inventory.size() - 1) +
+                       "개 · original.xer에는 모든 프로젝트의 원본 자료가 포함됩니다.");
+    }
     report["mapping"] = mapping;
     report["diagnostics"] = diagnostics;
     return {std::move(p), bytes, report, true};
@@ -770,7 +1225,9 @@ QString hourText(std::int64_t minutes) {
 }
 } // namespace
 PrimaveraXerExchange exportPrimaveraXer(const Project &p) {
+    EvaluationScope evaluation;
     validate(p);
+    ScheduleFormulaScope formulaSchedule(p, nullptr, ScheduleFormulaMode::Plan);
     graph(p);
     if (p.tasks.size() > 10000 || p.wbsNodes.size() >= 10000 || p.resources.size() > 10000 ||
         p.assignments.size() > 100000 || p.calendars.size() >= 10000)
@@ -800,17 +1257,80 @@ PrimaveraXerExchange exportPrimaveraXer(const Project &p) {
         line(cells);
     };
     QJsonArray diagnostics, mapping;
+    std::set<std::string> curveTasks;
+    for (const auto &a : p.assignments)
+        if (!a.periods.empty() || a.nativeCurve || a.productivityEstimate)
+            curveTasks.insert(a.taskId);
+    std::map<std::pair<std::string, std::string>, CurveExport> curveExports;
+    std::map<std::string, std::int64_t> curveDurations;
+    for (const auto &a : p.assignments)
+        if (curveTasks.contains(a.taskId)) {
+            auto curve = exportResourceCurve(p, a);
+            if (curve.definition.durationMinutes < 20) {
+                if (curve.definition.durationMinutes == 0)
+                    curveDurations[a.taskId] = 0;
+                diagnostic(diagnostics, "TASKRSRC/" + qs(a.taskId) + "/curve",
+                           "20분 미만 곡선은 XER 21지점으로 투영하지 않음 · 전체 구간은 source.ppm에 보존");
+                continue;
+            }
+            curveDurations[a.taskId] = curve.definition.durationMinutes;
+            if (!curve.exact)
+                diagnostic(diagnostics, "TASKRSRC/" + qs(a.taskId) + "/" + qs(a.resourceId),
+                           "현재 계획 공수를 20개 구간/21지점 비중으로 집계 · 세부 배정률 차이는 source.ppm에 보존");
+            curveExports.emplace(std::pair{a.taskId, a.resourceId}, std::move(curve));
+        }
+    if (hasXmlFormulas(p))
+        diagnostic(diagnostics, "PROJECT/xml-formulas",
+                   "XML 계산식은 현재 결과를 정적 값으로 투영하고 원본 식·바인딩·실행 설정은 source.ppm에 보존합니다.");
+    if (hasXmlRollUp(p))
+        diagnostic(diagnostics, "PROJECT/xml-roll-up",
+                   "XML 요약 roll-up 규칙과 WBS/루트 명시 요약 값은 XER에서 실행하지 않으며 source.ppm에 보존합니다.");
+    if (hasXmlCodeMasks(p))
+        diagnostic(diagnostics, "PROJECT/xml-code-masks",
+                   "XML 코드 마스크·자동 생성 설정·WBS 코드는 XER에서 실행하지 않습니다. 필드 표시 값은 정적 문자열로 "
+                   "투영하며 원래 정의·코드는 source.ppm에 보존합니다.");
+    if (hasResourcePlan(p))
+        diagnostic(diagnostics, "PROJECT/resourcePlan",
+                   "자재·비용계정·역할은 source.ppm에만 보존 · 연결된 역할의 구체 자원 배정은 기간 기반 배정으로 투영");
     auto map = [&](const QString &kind, int id, const std::string &target) {
         mapping.append(QJsonObject{{"kind", kind},
                                    {"xerId", QString::number(id)},
                                    {"jobsId", qs(target)},
                                    {"activityCode", kind == "task" ? "J" + QString::number(id) : QString{}}});
     };
+    if (!p.activities.empty() || !p.stepReports.empty())
+        diagnostic(diagnostics, "PROJECT/activities",
+                   "Steps·LOE·WBS Summary 정의/보고는 XER에 매핑하지 않습니다. source.ppm에 보존합니다.");
+    if (p.printPreferences || !p.networkPositions.empty())
+        diagnostic(diagnostics, "PROJECT/presentation",
+                   "인쇄 설정·수동 네트워크 배치는 교환하지 않습니다. source.ppm에 보존합니다.");
+    if (!p.remainingWork.empty())
+        diagnostic(diagnostics, "TASKRSRC/remaining_dates",
+                   "날짜별 잔여 공수는 교환하지 않습니다. source.ppm에 보존합니다.");
+    if (hasAssignmentPeriods(p))
+        diagnostic(
+            diagnostics, "TASKRSRC/contour",
+            "기간별 계획 배정은 P6 21지점 곡선으로 투영합니다. 세부 구간·현재/동결 원본은 source.ppm에 보존합니다.");
+    if (hasClassification(p) || !p.savedTaskViews.empty() || !p.savedResourceViews.empty())
+        diagnostic(diagnostics, "TASK/UDF/views",
+                   "사용자 필드는 UDF 매핑표를 따릅니다. 저장된 보기는 source.ppm에 전체 "
+                   "데이터를 보존합니다.");
+    if (p.progressPolicy)
+        diagnostic(diagnostics, "PROJECT/progress_policy",
+                   "채택 진척 정책은 교환하지 않습니다. native source.ppm에 설정과 근거를 보존하며 실제 날짜·잔여 "
+                   "기간의 외부 재계산 정책은 미검증입니다.");
+    if (p.planLeveling || p.remainingLeveling)
+        diagnostic(diagnostics, "TASK/leveling",
+                   "평준화 채택 정책/날짜는 XER에 매핑하지 않습니다. source.ppm에서 보존하며 XER은 논리 계획입니다.");
+    if (!p.levelingDecisions.empty())
+        diagnostic(diagnostics, "PROJECT/leveling_decisions",
+                   "평준화 결정 이력은 XER에 매핑하지 않습니다. source.ppm에 원본 이력을 보존합니다.");
     const auto projectCode = "PPM-" + hash(qs(p.documentId).toUtf8()).left(12);
     line({"ERMHDR", "20.12", qs(p.startDate), "Project", "PPM", "PPM", "dbxDatabaseNoName", "Project Management",
           qs(p.currency)});
     diagnostic(diagnostics, "PROJECT",
-               "기간 기반 계획 투영 · P6 계산/재저장 호환은 미검증. 전체 현재 입력/승인·실적/원가는 source.ppm 참조.");
+               "기간 기반 계획과 상태일의 명시 실적·원가 지원 부분을 투영합니다. P6 계산/재저장 호환은 미검증. 전체 "
+               "현재 입력/승인·원장은 source.ppm 참조.");
     header("CURRTYPE",
            {"curr_id", "decimal_digit_cnt", "curr_symbol", "decimal_symbol", "digit_group_symbol", "pos_curr_fmt_type",
             "neg_curr_fmt_type", "curr_type", "curr_short_name", "group_digit_cnt", "base_exch_rate"});
@@ -876,14 +1396,17 @@ PrimaveraXerExchange exportPrimaveraXer(const Project &p) {
         int uid = next++;
         tasks[t.id] = uid;
         map("task", uid, t.id);
-        auto duration = t.durationMinutes ? hourText(*t.durationMinutes) : QString{};
+        auto duration = curveDurations.contains(t.id) ? hourText(curveDurations.at(t.id))
+                        : t.durationMinutes           ? hourText(*t.durationMinutes)
+                                                      : QString{};
         row({QString::number(uid),
              "1",
              QString::number(wbs.at(t.wbsId)),
              QString::number(calendars.at(t.calendarId)),
              "J" + QString::number(uid),
              qs(t.name),
-             t.durationMinutes == 0 ? "TT_Mile" : "TT_Task",
+             (curveDurations.contains(t.id) ? curveDurations.at(t.id) == 0 : t.durationMinutes == 0) ? "TT_Mile"
+                                                                                                     : "TT_Task",
              "DT_FixedDrtn",
              "TK_NotStart",
              "CP_Drtn",
@@ -902,6 +1425,38 @@ PrimaveraXerExchange exportPrimaveraXer(const Project &p) {
         if (t.taskType != TaskType::FixedDuration || t.workUnitMinutes || !t.breaks.empty())
             diagnostic(diagnostics, "TASK/" + qs(t.id), "공수/작업 유형/분할 규칙 대신 명목 기간을 투영");
     }
+    std::map<std::string, int> codeTypes;
+    std::map<std::pair<std::string, std::string>, int> codeValues;
+    header("ACTVTYPE", {"actv_code_type_id", "actv_code_type", "seq_num", "actv_code_type_scope", "proj_id"});
+    next = 1;
+    for (const auto &type : p.codeTypes) {
+        codeTypes[type.id] = next;
+        map("code-type", next, type.id);
+        row({QString::number(next), qs(type.name), QString::number(next), "AS_Project", "1"});
+        ++next;
+    }
+    next = 1;
+    for (const auto &type : p.codeTypes)
+        for (const auto &value : type.values)
+            codeValues[{type.id, value.id}] = next++;
+    header("ACTVCODE",
+           {"actv_code_id", "parent_actv_code_id", "actv_code_type_id", "short_name", "actv_code_name", "seq_num"});
+    for (const auto &type : p.codeTypes)
+        for (const auto &value : type.values) {
+            const auto uid = codeValues.at({type.id, value.id});
+            map("code-value", uid, type.id + "/" + value.id);
+            row({QString::number(uid),
+                 value.parentId.empty() ? QString{} : QString::number(codeValues.at({type.id, value.parentId})),
+                 QString::number(codeTypes.at(type.id)), qs(value.name), qs(value.name), QString::number(uid)});
+        }
+    header("TASKACTV", {"task_id", "actv_code_id", "proj_id", "actv_code_type_id"});
+    for (const auto &task : p.tasks)
+        for (const auto &attribute : task.attributes)
+            if (attribute.key.starts_with("code:")) {
+                const auto type = attribute.key.substr(5);
+                row({QString::number(tasks.at(task.id)), QString::number(codeValues.at({type, attribute.value})), "1",
+                     QString::number(codeTypes.at(type))});
+            }
     header("TASKPRED",
            {"task_pred_id", "task_id", "pred_task_id", "proj_id", "pred_proj_id", "pred_type", "lag_hr_cnt"});
     next = 1;
@@ -921,10 +1476,13 @@ PrimaveraXerExchange exportPrimaveraXer(const Project &p) {
         map("resource", uid, r.id);
         row({QString::number(uid), QString::number(calendars.at(r.calendarId)), "1", qs(r.name),
              "R" + QString::number(uid), r.type == "equipment" ? "RT_Equip" : "RT_Labor", "Y"});
-        if (!r.rates.empty() || !r.exceptions.empty())
-            diagnostic(diagnostics, "RSRC/" + qs(r.id), "단가/날짜별 가용량 예외는 source.jobs에만 보존");
+        if (!r.exceptions.empty() || hasResourceAvailability(r))
+            diagnostic(diagnostics, "RSRC/" + qs(r.id), "날짜별 가용량 예외는 source.ppm에만 보존");
         if (!r.maxUnits)
             diagnostic(diagnostics, "RSRC/" + qs(r.id) + "/capacity", "가용량 미정 · 외부 앱 기본값 해석 가능");
+        if (r.productivity)
+            diagnostic(diagnostics, "RSRC/" + qs(r.id) + "/productivity",
+                       "물량/자원시간 생산성 정의는 source.ppm에 보존 · 단가/가용량으로 변환하지 않음");
     }
     header("RSRCRATE", {"rsrc_rate_id", "rsrc_id", "start_date", "max_qty_per_hr"});
     next = 1;
@@ -932,25 +1490,104 @@ PrimaveraXerExchange exportPrimaveraXer(const Project &p) {
         if (r.maxUnits)
             row({QString::number(next++), QString::number(resources.at(r.id)), qs(p.startDate) + " 00:00",
                  unitText(*r.maxUnits)});
+    QStringList curveFields{"curv_id", "curv_name", "default_flag"};
+    for (int i = 0; i <= 20; ++i)
+        curveFields.append("pct_usage_" + QString::number(i));
+    header("RSRCCURVDATA", curveFields);
+    std::map<std::pair<std::string, std::string>, int> curveIds;
+    int curveId = 1;
+    for (const auto &[key, projection] : curveExports) {
+        const auto &c = projection.definition;
+        curveIds[key] = curveId;
+        map("curve", curveId++, key.first + "/" + key.second);
+        QStringList cells{QString::number(curveIds[key]), qs(c.name), "N"};
+        for (int weight : c.weights)
+            cells.append(QString::number(weight / 1000000) + "." +
+                         QString::number(weight % 1000000).rightJustified(6, '0'));
+        row(cells);
+    }
     header("TASKRSRC", {"taskrsrc_id", "task_id", "proj_id", "rsrc_id", "target_qty_per_hr", "remain_qty_per_hr",
-                        "target_qty", "remain_qty"});
+                        "target_qty", "remain_qty", "curv_id"});
     next = 1;
+    std::map<std::string, int> assignmentIds;
     for (const auto &a : p.assignments) {
+        assignmentIds[assignmentAttributeId(a)] = next;
         map("assignment", next, a.taskId + "/" + a.resourceId);
         const auto &task = p.tasks[std::size_t(tasks.at(a.taskId) - 1)];
-        auto quantity = task.durationMinutes ? QString::number(double(*task.durationMinutes) * a.units / 6000.0, 'f', 6)
-                                             : QString{};
+        const auto key = std::pair{a.taskId, a.resourceId};
+        auto quantity = curveDurations.contains(a.taskId) && curveDurations.at(a.taskId) == 0 ? QString("0")
+                        : curveExports.contains(key) ? curveHourText(curveExports.at(key).definition.workUnitMinutes)
+                        : task.durationMinutes
+                            ? QString::number(double(*task.durationMinutes) * a.units / 6000.0, 'f', 6)
+                            : QString{};
         row({QString::number(next++), QString::number(tasks.at(a.taskId)), "1",
-             QString::number(resources.at(a.resourceId)), unitText(a.units), unitText(a.units), quantity, quantity});
+             QString::number(resources.at(a.resourceId)), unitText(a.units), unitText(a.units), quantity, quantity,
+             curveIds.contains(key) ? QString::number(curveIds.at(key)) : QString{}});
+        if (a.productivityEstimate)
+            diagnostic(diagnostics, "TASKRSRC/" + qs(a.taskId) + "/estimate",
+                       "물량·생산성 산정 근거는 source.ppm에 보존 · 환산된 계획 공수/곡선만 교환");
+    }
+    const RollDownValues inherited(p);
+    if (hasXmlRollDown(p))
+        diagnostic(diagnostics, "PROJECT/roll-down",
+                   "배정 roll-down의 현재 유효 값은 정적 UDF로 투영합니다. 자동 연결·직접 값/미설정 구분은 "
+                   "source.ppm에 보존합니다.");
+    const auto udf = exportUdfFields(p, false, diagnostics, mapping);
+    header("UDFTYPE", {"udf_type_id", "table_name", "udf_type_name", "udf_type_label", "logical_data_type"});
+    for (const auto &f : udf)
+        row({qs(f.externalId),
+             f.scope == FieldScope::Task         ? "TASK"
+             : f.scope == FieldScope::Resource   ? "RSRC"
+             : f.scope == FieldScope::Assignment ? "TASKRSRC"
+                                                 : "PROJECT",
+             "user_field_" + qs(f.externalId), qs(f.name),
+             f.type == CustomFieldType::Text   ? "FT_TEXT"
+             : f.type == CustomFieldType::Date ? "FT_START_DATE"
+                                               : "FT_FLOAT"});
+    header("UDFVALUE", {"udf_type_id", "fk_id", "proj_id", "udf_date", "udf_number", "udf_text", "udf_code_id"});
+    std::size_t udfCells = 0;
+    auto udfRow = [&](const ExternalField &f, const QString &fk, const Task *task, const Resource *resource,
+                      const Assignment *assignment = nullptr) {
+        calculationCheckpoint();
+        if (++udfCells > 100000)
+            throw AppError(ErrorCode::CLASSIFICATION_INVALID, {"UDF 조회 셀 한도 100,000개 초과"});
+        auto v = exportUdfValue(p, f, task, resource, diagnostics, assignment, &inherited);
+        if (!v)
+            return;
+        if (f.type == CustomFieldType::Text && v->empty())
+            diagnostic(
+                diagnostics, "UDFVALUE/" + qs(f.externalId) + "/" + fk,
+                "빈 텍스트를 기록합니다. 외부 제품은 미설정으로 해석할 수 있습니다. source.ppm에 구분을 보존합니다.");
+        row({qs(f.externalId), fk, "1", f.type == CustomFieldType::Date ? qs(*v) + " 00:00" : "",
+             f.type == CustomFieldType::Number ? qs(*v) : "", f.type == CustomFieldType::Text ? qs(*v) : "", ""});
+    };
+    for (const auto &f : udf) {
+        if (f.scope == FieldScope::Task)
+            for (const auto &t : p.tasks)
+                udfRow(f, QString::number(tasks.at(t.id)), &t, nullptr);
+        else if (f.scope == FieldScope::Resource)
+            for (const auto &r : p.resources)
+                udfRow(f, QString::number(resources.at(r.id)), nullptr, &r);
+        else if (f.scope == FieldScope::Assignment)
+            for (const auto &a : p.assignments)
+                udfRow(f, QString::number(assignmentIds.at(assignmentAttributeId(a))), nullptr, nullptr, &a);
+        else
+            udfRow(f, "1", nullptr, nullptr);
     }
     line({"%E"});
+    auto detailed = parse(decode(bytes, XerEncoding::Utf8));
+    const auto actualCosts = exportXerActualCosts(p, detailed.tables, diagnostics);
+    bytes = serializeXer(detailed);
     importPrimaveraXer(bytes, "project.xer");
     if (!p.baselines.empty() || !p.progress.empty() || !p.costEntries.empty() || !p.scenarios.empty() || p.statusAt ||
         !p.taskCosts.empty())
-        diagnostic(diagnostics, "PROJECT/history-costs", "기준선·실적·원가·상태일·시나리오는 source.jobs에만 보존");
+        diagnostic(
+            diagnostics, "PROJECT/history-costs",
+            "상태일의 실적·원가 지원 부분을 투영합니다. 기준선·원장 정정 이력·시나리오는 source.ppm에 보존합니다.");
     diagnostic(diagnostics, "PROJECT/IDs",
                "새 XER ID/Activity Code를 생성합니다. P6의 기존 프로젝트/활동 업데이트 동일성은 보장하지 않습니다.");
     auto report = reportFor(p, false);
+    report["actualCosts"] = actualCosts;
     report["source"] = QJsonObject{{"name", "source.ppm"}, {"product", "PPM"}};
     report["outputProjectCode"] = projectCode;
     report["outputEncoding"] = "UTF-8 BOM";
@@ -960,22 +1597,192 @@ PrimaveraXerExchange exportPrimaveraXer(const Project &p) {
     report["diagnostics"] = diagnostics;
     return {p, bytes, report, false};
 }
+QByteArray combinePrimaveraXer(std::vector<PrimaveraXerExchange> &exchanges) {
+    if (exchanges.empty() || exchanges.size() > 100)
+        throw AppError(ErrorCode::WORKSPACE_LIMIT);
+    const std::map<QString, QString> primary{{"PROJECT", "proj_id"},       {"SCHEDOPTIONS", "schedoptions_id"},
+                                             {"CALENDAR", "clndr_id"},     {"PROJWBS", "wbs_id"},
+                                             {"TASK", "task_id"},          {"TASKPRED", "task_pred_id"},
+                                             {"RSRC", "rsrc_id"},          {"RSRCRATE", "rsrc_rate_id"},
+                                             {"TASKRSRC", "taskrsrc_id"},  {"ACTVTYPE", "actv_code_type_id"},
+                                             {"ACTVCODE", "actv_code_id"}, {"UDFTYPE", "udf_type_id"},
+                                             {"PROJCOST", "cost_item_id"}, {"FINDATES", "fin_dates_id"},
+                                             {"RSRCCURVDATA", "curv_id"}};
+    const std::map<QString, QString> aliases{{"pred_proj_id", "proj_id"},
+                                             {"pred_task_id", "task_id"},
+                                             {"parent_wbs_id", "wbs_id"},
+                                             {"base_clndr_id", "clndr_id"},
+                                             {"parent_actv_code_id", "actv_code_id"}};
+    const std::map<QString, QString> kinds{{"calendar", "clndr_id"},
+                                           {"project-root", "wbs_id"},
+                                           {"wbs", "wbs_id"},
+                                           {"task", "task_id"},
+                                           {"resource", "rsrc_id"},
+                                           {"assignment", "taskrsrc_id"},
+                                           {"code-type", "actv_code_type_id"},
+                                           {"code-value", "actv_code_id"},
+                                           {"curve", "curv_id"}};
+    File combined;
+    std::map<QString, int> next;
+    for (std::size_t i = 0; i < exchanges.size(); ++i) {
+        calculationCheckpoint();
+        auto &exchange = exchanges[i];
+        if (exchange.importing)
+            throw AppError(ErrorCode::WORKSPACE_INVALID, {"내보내기 자료만 결합할 수 있습니다."});
+        auto file = parse(decode(exchange.xer, XerEncoding::Utf8));
+        if (i == 0)
+            combined.header = file.header;
+        if (file.header[8] != combined.header[8])
+            throw AppError(ErrorCode::WORKSPACE_INVALID, {"일괄 XER 내보내기는 같은 통화의 프로젝트를 선택하세요."});
+        std::map<QString, std::map<QString, QString>> ids;
+        std::map<QString, QString> udfOwner;
+        for (const auto &r : file.tables.at("UDFTYPE").rows)
+            udfOwner[id(file.tables.at("UDFTYPE"), r, "udf_type_id")] = get(file.tables.at("UDFTYPE"), r, "table_name");
+        for (const auto &[name, key] : primary)
+            for (const auto &r : file.tables.at(name).rows) {
+                auto &counter = next[key];
+                ids[key].emplace(id(file.tables.at(name), r, key), QString::number(++counter));
+            }
+        for (const auto &[name, source] : file.tables) {
+            if (source.fields.empty() || (name == "CURRTYPE" && i != 0))
+                continue;
+            auto &target = combined.tables[name];
+            if (target.fields.empty()) {
+                target.name = name;
+                target.fields = source.fields;
+            }
+            if (target.fields != source.fields)
+                throw AppError(ErrorCode::WORKSPACE_INVALID, {"XER 테이블 필드가 일치하지 않습니다."});
+            for (const auto &r : source.rows) {
+                calculationCheckpoint();
+                Row output = r;
+                for (qsizetype column = 0; column < source.fields.size(); ++column) {
+                    auto key = source.fields[column];
+                    if (name == "UDFTYPE" && key == "udf_type_name") {
+                        output.cells[column] = "user_field_" + ids.at("udf_type_id").at(id(source, r, "udf_type_id"));
+                        continue;
+                    }
+                    if (name == "UDFVALUE" && key == "fk_id") {
+                        const auto owner = udfOwner.at(id(source, r, "udf_type_id"));
+                        key = owner == "TASK"       ? "task_id"
+                              : owner == "RSRC"     ? "rsrc_id"
+                              : owner == "TASKRSRC" ? "taskrsrc_id"
+                                                    : "proj_id";
+                    }
+                    if (aliases.contains(key))
+                        key = aliases.at(key);
+                    if (output.cells[column].isEmpty() || !ids.contains(key))
+                        continue;
+                    const auto value = QString::number(integer(output.cells[column], name + "/" + key));
+                    if (!ids.at(key).contains(value))
+                        throw AppError(ErrorCode::WORKSPACE_INVALID, {str(name + "/" + key)});
+                    output.cells[column] = ids.at(key).at(value);
+                }
+                target.rows.push_back(std::move(output));
+            }
+        }
+        QJsonArray mappings;
+        for (const auto &value : exchange.report["mapping"].toArray()) {
+            auto entry = value.toObject();
+            const auto kind = entry["kind"].toString();
+            if (kind == "udf")
+                entry["externalId"] = ids.at("udf_type_id").at(entry["externalId"].toString());
+            if (kinds.contains(kind))
+                entry["xerId"] = ids.at(kinds.at(kind)).at(entry["xerId"].toString());
+            entry["projectId"] = ids.at("proj_id").at("1");
+            mappings.append(entry);
+        }
+        exchange.report["combinedMapping"] = mappings;
+        exchange.report["combinedProjectId"] = ids.at("proj_id").at("1");
+    }
+    QByteArray bytes("\xef\xbb\xbf");
+    auto line = [&](const QStringList &cells) {
+        bytes += cells.join('\t').toUtf8() + "\r\n";
+        if (bytes.size() > byteLimit)
+            throw AppError(ErrorCode::FILE_PRIMAVERAXER_077);
+    };
+    line(combined.header);
+    for (const char *name : {"CURRTYPE", "PROJECT", "SCHEDOPTIONS", "CALENDAR", "PROJWBS", "TASK", "ACTVTYPE",
+                             "ACTVCODE", "TASKACTV", "TASKPRED", "RSRC", "RSRCRATE", "TASKRSRC", "UDFTYPE", "UDFVALUE",
+                             "PROJCOST", "FINDATES", "TASKFIN", "TRSRCFIN"}) {
+        if (!combined.tables.contains(name))
+            continue;
+        const auto &t = combined.tables.at(name);
+        line({"%T", name});
+        QStringList fields{"%F"};
+        fields.append(t.fields);
+        line(fields);
+        for (const auto &r : t.rows) {
+            QStringList cells{"%R"};
+            cells.append(r.cells);
+            line(cells);
+        }
+    }
+    line({"%E"});
+    // Validate aggregate limits, IDs, ownership and every selected project after remapping.
+    const auto inventory = listPrimaveraXerProjects(bytes);
+    if (inventory.size() != exchanges.size())
+        throw AppError(ErrorCode::WORKSPACE_INVALID, {"XER 프로젝트 개수가 일치하지 않습니다."});
+    for (const auto &info : inventory)
+        (void)importPrimaveraXer(bytes, "workspace.xer", XerEncoding::Utf8, info.id);
+    return bytes;
+}
 QString publishPrimaveraXer(const PrimaveraXerExchange &e, const QString &destination) {
     return publishPlanExchange(e.project, e.xer, e.report, e.importing, "xer", destination);
 }
 QString primaveraXerPreview(const PrimaveraXerExchange &e) {
-    auto text = QString("%1\n작업 %2 · WBS %3 · 달력 %4 · 자원 %5 · 배정 %6\n\n기간 기반 계획 변환 · P6 재계산/왕복 "
-                        "호환: 미검증\nPPM "
-                        "지연 정책: 후행 작업 달력 · 시작일 기준 09:00\n원본 보존: %7\n\n원본/진단은 교환 폴더에 "
-                        "보관합니다. .jobs만 사본 "
-                        "저장/이동하면 동반 파일은 자동 복제되지 않습니다.\n\n")
-                    .arg(qs(e.project.name))
-                    .arg(e.project.tasks.size())
-                    .arg(e.project.wbsNodes.size())
-                    .arg(e.project.calendars.size())
-                    .arg(e.project.resources.size())
-                    .arg(e.project.assignments.size())
-                    .arg(e.importing ? "original.xer 바이트 보존" : "현재 입력/이력의 source.ppm 사본");
+    auto text =
+        QString("%1\n작업 %2 · WBS %3 · 달력 %4 · 자원 %5 · 배정 %6\n\n계획·실적·원가 지원 부분 변환 · P6 재계산/왕복 "
+                "호환: 미검증\nPPM "
+                "지연 정책: 후행 작업 달력 · 시작일 기준 09:00\n원본 보존: %7\n\n원본/진단은 교환 폴더에 "
+                "보관합니다. .ppm만 사본 "
+                "저장/이동하면 동반 파일은 자동 복제되지 않습니다.\n\n")
+            .arg(qs(e.project.name))
+            .arg(e.project.tasks.size())
+            .arg(e.project.wbsNodes.size())
+            .arg(e.project.calendars.size())
+            .arg(e.project.resources.size())
+            .arg(e.project.assignments.size())
+            .arg(e.importing ? "original.xer 바이트 보존" : "현재 입력/이력의 source.ppm 사본");
+    const auto actual = e.report["actualCosts"].toObject();
+    text += QString("실적·원가 상세 교환 · 상태일 %1 · 실적 %2건 · 원가 %3건 · 날짜별 원장 %4건\n"
+                    "누계 AC에는 날짜별 배분액이 포함됩니다. P6 EVM·과거 정정 이력은 원본/보고를 확인하세요.\n")
+                .arg(actual["statusAt"].toString())
+                .arg(actual["progressReports"].toInt())
+                .arg(actual["costReports"].toInt())
+                .arg(actual["datedActuals"].toInt());
+    std::map<std::string, const CostEntry *> currentCosts;
+    for (const auto &entry : e.project.costEntries)
+        if (e.project.statusAt && entry.statusAt <= *e.project.statusAt) {
+            auto &current = currentCosts[entry.taskId];
+            if (!current || current->statusAt <= entry.statusAt)
+                current = &entry;
+        }
+    int actualRows = 0;
+    for (const auto &[taskId, entry] : currentCosts) {
+        if (actualRows++ == 2000) {
+            text += "이후 원가 명세는 conversion.json 참조\n";
+            break;
+        }
+        if (entry->actualMinor)
+            text +=
+                QString("작업 %1 · 누계 실제원가 %2 %3\n")
+                    .arg(qs(taskId), moneyui::format(entry->actualMinor, e.project.currency), qs(e.project.currency));
+    }
+    for (const auto &v : e.report["mapping"].toArray()) {
+        const auto f = v.toObject();
+        if (f["kind"] == "udf")
+            text +=
+                QString("UDF %1 · %2 → %3 (%4)\n")
+                    .arg(f["scope"].toString(), f["name"].toString(), f["externalId"].toString(), f["type"].toString());
+    }
+    if (e.report.contains("projectSelection")) {
+        const auto selection = e.report["projectSelection"].toObject();
+        text += QString("선택 프로젝트 ID %1 / 전체 %2개 · 나머지는 변환하지 않습니다.\n"
+                        "original.xer에는 선택하지 않은 프로젝트도 포함됩니다.\n\n")
+                    .arg(selection["selectedProjectId"].toString())
+                    .arg(selection["sourceProjectCount"].toInt());
+    }
     int count = 0;
     for (const auto &d : e.report["diagnostics"].toArray()) {
         if (count++ == 2000) {

@@ -1,0 +1,193 @@
+{
+  "source_sha256": "d6f77915ace53882f0e7ade11bac0ed5d5cf7bd74e854b2bbb1f8b2266890851",
+  "build_source_sha256": "d6f77915ace53882f0e7ade11bac0ed5d5cf7bd74e854b2bbb1f8b2266890851",
+  "matches": true,
+  "source_files": 187,
+  "manifest": "case-sensitive sorted src/**/*.cpp, src/**/*.h, CMakeLists.txt; relative/path:SHA256(bytes) LF",
+  "git_revision": "6a1cd0a5115f3400d6cee4e5d5df795f351195ea+dirty",
+  "date": "2026-11-03",
+  "scope": "GAP-08 native network diagram, whole-project CPM results and bounded relationship exploration",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "compiler": "MinGW GCC 13.1.0",
+  "qt": "6.8.3",
+  "configuration": "Release -O3 -DNDEBUG",
+  "ctest": {
+    "passed": 77,
+    "failed": 0,
+    "seconds": 313.3,
+    "log": "full-ctest.log"
+  },
+  "parser_seed_replay": {
+    "seeds": 90,
+    "schemas": "1..12",
+    "coverage_guided_fuzzing_run": false
+  },
+  "independent_exports": {
+    "independent-classification-exports": {
+      "status": "success",
+      "classification_rows": 12,
+      "numeric_precision": 6,
+      "unknown_distinct_from_zero": true,
+      "pdf_pages": 7,
+      "scope_tasks": 3
+    },
+    "independent-forecast-float-exports": {
+      "status": "success",
+      "xlsx_numeric_hours": 8,
+      "completed_float": "unknown",
+      "pdf_pages": 8,
+      "pdf_policy_labels_verified": true
+    },
+    "independent-leveling-selection-exports": {
+      "status": "success",
+      "schedule_dates": "2026-11-02/03/04",
+      "plan_cost": 40,
+      "frozen_baseline_cost": 24,
+      "float_critical_unavailable": true,
+      "policy_reason_provenance": true,
+      "no_unvalidated_resource_advisory": true,
+      "xlsx_files": 2,
+      "pdf_pages": {
+        "schedule": 11,
+        "usage": 10
+      }
+    },
+    "independent-period-actual-exports": {
+      "status": "success",
+      "latest_rows": 3,
+      "history_rows": 4,
+      "labor_hours": 6,
+      "equipment_hours": 1,
+      "cumulative_ac": 80,
+      "allocated_actual": 25,
+      "unallocated_actual": 55,
+      "zero_distinct_from_unreported": true,
+      "correction_preserved_original": true,
+      "pdf_pages": 8
+    },
+    "independent-schedule-print": {
+      "status": "success",
+      "pdf_files": 6,
+      "pages": {
+        "schedule": 23,
+        "printer": 23,
+        "range": 4,
+        "portrait": 13,
+        "tiled": 65,
+        "selected": 23
+      },
+      "tasks": 80,
+      "long_name_cell_header_preserved": true,
+      "pdf_printer_same_content": true,
+      "range_reverse_copies": [
+        3,
+        3,
+        2,
+        2
+      ],
+      "actual_critical_baseline_colors": true,
+      "selected_float_unavailable": true,
+      "physical_printer_run": false
+    },
+    "independent-usage-exports": {
+      "status": "success",
+      "unique_period_rows": 84,
+      "plan_labor_hours": 16,
+      "plan_equipment_hours": 4,
+      "plan_minor": 212,
+      "baseline_minor": 212,
+      "remaining_assignment_minor": 74,
+      "unallocated_actual_minor": 80,
+      "fixed_remaining_excluded": true,
+      "ui_button_weekly_rows": 12,
+      "pdf_pages": 10
+    }
+  },
+  "independent_general_reports": {
+    "passed": 11,
+    "xlsx": 5,
+    "pdf": 6,
+    "log": "independent-report-exports.log"
+  },
+  "quality": {
+    "format_files": 111,
+    "format_changes": [],
+    "source_identity_matches": true,
+    "markdown_links": {
+      "status": "success",
+      "markdown_files": 35,
+      "links_checked": 367,
+      "missing": []
+    },
+    "git_diff_check": "passed"
+  },
+  "network_contract": {
+    "cycle_components": 1,
+    "dense_omitted_edges": 865,
+    "dense_shown_edges": 5,
+    "forecast_D_float": 480,
+    "four_relations": 4,
+    "plan_D_float": 960,
+    "plan_finish": "2026-11-04 18:00",
+    "source_unchanged": true,
+    "unknown_relations": 1
+  },
+  "core_metrics": [
+    {
+      "ancestor_candidates": 501,
+      "ancestor_omitted": 421,
+      "build_ms": 8.8621,
+      "edges": 999,
+      "query_ms": 0.1758,
+      "tasks": 1000,
+      "window_edges": 4,
+      "window_nodes": 5
+    },
+    {
+      "ancestor_candidates": 5001,
+      "ancestor_omitted": 4921,
+      "build_ms": 41.8783,
+      "edges": 9999,
+      "query_ms": 0.3836,
+      "tasks": 10000,
+      "window_edges": 4,
+      "window_nodes": 5
+    }
+  ],
+  "ui_metrics": [
+    {
+      "build_ms": 13.5511,
+      "query_ms": 0.9186,
+      "ready_ms": 102,
+      "relation_rows": 2,
+      "render_ms": 2.5093,
+      "scene_items": 314,
+      "shown_edges": 78,
+      "shown_nodes": 80,
+      "source_unchanged": true,
+      "tasks": 1000
+    },
+    {
+      "build_ms": 45.9804,
+      "query_ms": 1.2179,
+      "ready_ms": 71,
+      "relation_rows": 2,
+      "render_ms": 2.3177,
+      "scene_items": 314,
+      "shown_edges": 78,
+      "shown_nodes": 80,
+      "source_unchanged": true,
+      "tasks": 10000
+    }
+  ],
+  "not_run": [
+    "actual desktop/accessibility",
+    "macOS/Linux",
+    "CI",
+    "clang-tidy",
+    "ASan/UBSan",
+    "new coverage-guided fuzz",
+    "actual MSP/P6 roundtrip/recalculation",
+    "packaging/installation/signing"
+  ]
+}

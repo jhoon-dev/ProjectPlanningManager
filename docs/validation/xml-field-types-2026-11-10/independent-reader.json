@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "xml_definitions": 18,
+  "typed_lookup_tables": 2,
+  "scalar_cells": 18,
+  "false_zero_missing": "distinct",
+  "cost_scale": 100,
+  "duration_minutes_precision": 6,
+  "external_product_run": false,
+  "strict_reader": {
+    "ignored_errors": 0,
+    "local_typed_values": 3,
+    "limitation": "MPXJ16.10.0 omits enterprise hex values; estimated bit and enterprise values checked independently"
+  }
+}

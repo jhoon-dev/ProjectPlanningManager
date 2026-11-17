@@ -1,0 +1,466 @@
+{
+    "assignments": [
+        {
+            "resourceId": "xml-resource-1",
+            "taskId": "xml-task-1",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-2",
+            "taskId": "xml-task-1",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-3",
+            "taskId": "xml-task-1",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-4",
+            "taskId": "xml-task-1",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-5",
+            "taskId": "xml-task-1",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-6",
+            "taskId": "xml-task-1",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-7",
+            "taskId": "xml-task-1",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-8",
+            "taskId": "xml-task-1",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-9",
+            "taskId": "xml-task-1",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-10",
+            "taskId": "xml-task-1",
+            "units": 100
+        }
+    ],
+    "baselines": [
+    ],
+    "calculationProfile": "native-effort-split-v1",
+    "calendar": "standard-mon-fri-8h-v1",
+    "calendars": [
+        {
+            "holidays": [
+            ],
+            "id": "xml-cal-1",
+            "name": "Standard",
+            "periods": [
+                {
+                    "begin": 480,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "holidays": [
+            ],
+            "id": "xml-cal-3",
+            "name": "Resource 1",
+            "periods": [
+                {
+                    "begin": 480,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "holidays": [
+            ],
+            "id": "xml-cal-4",
+            "name": "Resource 2",
+            "periods": [
+                {
+                    "begin": 480,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "holidays": [
+            ],
+            "id": "xml-cal-5",
+            "name": "Resource 3",
+            "periods": [
+                {
+                    "begin": 480,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "holidays": [
+            ],
+            "id": "xml-cal-6",
+            "name": "Resource 4",
+            "periods": [
+                {
+                    "begin": 480,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "holidays": [
+            ],
+            "id": "xml-cal-7",
+            "name": "Resource 5",
+            "periods": [
+                {
+                    "begin": 480,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "holidays": [
+            ],
+            "id": "xml-cal-8",
+            "name": "Resource 6",
+            "periods": [
+                {
+                    "begin": 480,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "holidays": [
+            ],
+            "id": "xml-cal-9",
+            "name": "Resource 7",
+            "periods": [
+                {
+                    "begin": 480,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "holidays": [
+            ],
+            "id": "xml-cal-10",
+            "name": "Resource 8",
+            "periods": [
+                {
+                    "begin": 480,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "holidays": [
+            ],
+            "id": "xml-cal-11",
+            "name": "Resource 9",
+            "periods": [
+                {
+                    "begin": 480,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "holidays": [
+            ],
+            "id": "xml-cal-12",
+            "name": "Resource 10",
+            "periods": [
+                {
+                    "begin": 480,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    ],
+    "costEntries": [
+    ],
+    "costProfile": "cost-day-minor-half-up-v1",
+    "currency": "KRW",
+    "derivedFrom": "",
+    "documentId": "99be9d75-7bb8-4523-9351-fa967a8a7699",
+    "holidays": [
+    ],
+    "name": "assigned-resources-mpp8-project2003",
+    "progress": [
+    ],
+    "resources": [
+        {
+            "calendarId": "xml-cal-3",
+            "exceptions": [
+            ],
+            "id": "xml-resource-1",
+            "maxUnits": 100,
+            "name": "Resource 1",
+            "rates": [
+            ],
+            "type": "labor"
+        },
+        {
+            "calendarId": "xml-cal-4",
+            "exceptions": [
+            ],
+            "id": "xml-resource-2",
+            "maxUnits": 100,
+            "name": "Resource 2",
+            "rates": [
+            ],
+            "type": "labor"
+        },
+        {
+            "calendarId": "xml-cal-5",
+            "exceptions": [
+            ],
+            "id": "xml-resource-3",
+            "maxUnits": 100,
+            "name": "Resource 3",
+            "rates": [
+            ],
+            "type": "labor"
+        },
+        {
+            "calendarId": "xml-cal-6",
+            "exceptions": [
+            ],
+            "id": "xml-resource-4",
+            "maxUnits": 100,
+            "name": "Resource 4",
+            "rates": [
+            ],
+            "type": "labor"
+        },
+        {
+            "calendarId": "xml-cal-7",
+            "exceptions": [
+            ],
+            "id": "xml-resource-5",
+            "maxUnits": 100,
+            "name": "Resource 5",
+            "rates": [
+            ],
+            "type": "labor"
+        },
+        {
+            "calendarId": "xml-cal-8",
+            "exceptions": [
+            ],
+            "id": "xml-resource-6",
+            "maxUnits": 100,
+            "name": "Resource 6",
+            "rates": [
+            ],
+            "type": "labor"
+        },
+        {
+            "calendarId": "xml-cal-9",
+            "exceptions": [
+            ],
+            "id": "xml-resource-7",
+            "maxUnits": 100,
+            "name": "Resource 7",
+            "rates": [
+            ],
+            "type": "labor"
+        },
+        {
+            "calendarId": "xml-cal-10",
+            "exceptions": [
+            ],
+            "id": "xml-resource-8",
+            "maxUnits": 100,
+            "name": "Resource 8",
+            "rates": [
+            ],
+            "type": "labor"
+        },
+        {
+            "calendarId": "xml-cal-11",
+            "exceptions": [
+            ],
+            "id": "xml-resource-9",
+            "maxUnits": 100,
+            "name": "Resource 9",
+            "rates": [
+            ],
+            "type": "labor"
+        },
+        {
+            "calendarId": "xml-cal-12",
+            "exceptions": [
+            ],
+            "id": "xml-resource-10",
+            "maxUnits": 100,
+            "name": "Resource 10",
+            "rates": [
+            ],
+            "type": "labor"
+        }
+    ],
+    "revision": 1,
+    "scenarios": [
+    ],
+    "startDate": "2014-09-16",
+    "statusAt": null,
+    "taskCosts": [
+    ],
+    "tasks": [
+        {
+            "breaks": [
+            ],
+            "calendarId": "xml-cal-1",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 480,
+            "id": "xml-task-1",
+            "name": "Task 1",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "",
+            "workDriven": false,
+            "workUnitMinutes": null
+        }
+    ],
+    "wbsNodes": [
+    ]
+}

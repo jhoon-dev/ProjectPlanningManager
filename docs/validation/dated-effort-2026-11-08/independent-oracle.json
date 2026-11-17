@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "civil_minute_cases": 72,
+  "nonzero_resource_minutes": 2078,
+  "float_exhaustive_cases": 3,
+  "native_before_after": "all unrelated JSON fields identical",
+  "method": "Python datetime calendar/holiday/break intersection, reserved quotas and separate free-work ledger; no app libraries"
+}

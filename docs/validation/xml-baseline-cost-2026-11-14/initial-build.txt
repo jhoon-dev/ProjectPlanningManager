@@ -1,0 +1,41 @@
+[0/1] Re-running CMake...
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
+-- Configuring done (6.0s)
+-- Generating done (5.2s)
+-- Build files have been written to: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+[1/39] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/XmlSchedule.cpp.obj
+[2/39] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/XmlRollUp.cpp.obj
+[3/39] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/FormulaFields.cpp.obj
+[4/39] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/XmlFormula.cpp.obj
+[5/39] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Classification.cpp.obj
+[6/39] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ResourceViewReport.cpp.obj
+[7/39] Linking CXX static library libjobs_domain.a
+[8/39] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/FormulaFieldReports.cpp.obj
+[9/39] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ScheduleFormulaScope.cpp.obj
+[10/39] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/BaselineCostFormulaValues.cpp.obj
+[11/39] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/BaselineFormulaValues.cpp.obj
+[12/39] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/EarlyLateFormulaValues.cpp.obj
+[13/39] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Reports.cpp.obj
+[14/39] Linking CXX static library libjobs_calculation.a
+[15/39] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectFile.cpp.obj
+[16/39] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectJson.cpp.obj
+[17/39] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/JsonRecoveryStore.cpp.obj
+[18/39] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectCurrencyJson.cpp.obj
+[19/39] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/LedgerIdentityJson.cpp.obj
+[20/39] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/XerScheduleJson.cpp.obj
+[21/39] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ClassificationJson.cpp.obj
+[22/39] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/PrimaveraXer.cpp.obj
+[23/39] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectXml.cpp.obj
+[24/39] Linking CXX static library libjobs_persistence.a
+[25/39] Automatic MOC for target jobs_updates
+[26/37] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/TaskViewProjection.cpp.obj
+[27/37] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/XmlRollDownDialog.cpp.obj
+[28/37] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/TaskTableModel.cpp.obj
+[29/37] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindow.cpp.obj
+[30/37] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/XmlRollUpDialog.cpp.obj
+[31/37] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/XmlFormulaDialog.cpp.obj
+[32/37] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/ObjectFieldDialog.cpp.obj
+[33/37] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/ResourceViewDialog.cpp.obj
+[34/37] Linking CXX static library libjobs_ui.a
+[35/37] Building CXX object CMakeFiles/jobs_xml_baseline_cost_tests.dir/tests/XmlBaselineCostTests.cpp.obj
+[36/37] Linking CXX executable jobs_xml_baseline_cost_tests.exe

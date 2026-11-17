@@ -1,0 +1,143 @@
+[0/1] Re-running CMake...
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
+-- Configuring done (2.8s)
+-- Generating done (2.3s)
+-- Build files have been written to: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+[1/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Wbs.cpp.obj
+[2/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/RemainingWork.cpp.obj
+[3/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Presentation.cpp.obj
+[4/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Governance.cpp.obj
+[5/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/ResourceView.cpp.obj
+[6/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Classification.cpp.obj
+[7/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Diagnostics.cpp.obj
+[8/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/LevelingDecision.cpp.obj
+[9/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/FormulaFields.cpp.obj
+[10/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Workspace.cpp.obj
+[11/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Activities.cpp.obj
+[12/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/PeriodActuals.cpp.obj
+[13/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/ResourcePlan.cpp.obj
+[14/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Project.cpp.obj
+[15/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/XerFinancialAllocation.cpp.obj
+[16/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/XerFinancials.cpp.obj
+[17/190] Building CXX object CMakeFiles/jobs_formatting.dir/src/formatting/DiagnosticText.cpp.obj
+[18/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/FinancialPeriods.cpp.obj
+[19/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/XerFinancialMerge.cpp.obj
+[20/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/WbsSummary.cpp.obj
+[21/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Scheduler.cpp.obj
+[22/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/WorkCalendar.cpp.obj
+[23/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/ExternalEvm.cpp.obj
+[24/190] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/XerSourceRelink.cpp.obj
+[25/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Forecast.cpp.obj
+[26/190] Linking CXX static library libjobs_domain.a
+[27/190] Linking CXX static library libjobs_formatting.a
+[28/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Tracking.cpp.obj
+[29/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ActivitySummary.cpp.obj
+[30/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ProgressLeveling.cpp.obj
+[31/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Costs.cpp.obj
+[32/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ProgressPolicies.cpp.obj
+[33/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/LevelingFloat.cpp.obj
+[34/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Resources.cpp.obj
+[35/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Pdm.cpp.obj
+[36/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/SegmentLevelingFloat.cpp.obj
+[37/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Reports.cpp.obj
+[38/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Constraints.cpp.obj
+[39/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/EnginePolicy.cpp.obj
+[40/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/PdmResources.cpp.obj
+[41/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Effort.cpp.obj
+[42/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/EffortScheduler.cpp.obj
+[43/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/AssignmentPeriods.cpp.obj
+[44/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ForecastFloat.cpp.obj
+[45/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/RepartitionLevelingFloat.cpp.obj
+[46/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/SharedResources.cpp.obj
+[47/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/EffortEditing.cpp.obj
+[48/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/PeriodActualReports.cpp.obj
+[49/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/NetworkDiagram.cpp.obj
+[50/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/SelectedLeveling.cpp.obj
+[51/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ExternalEvmReports.cpp.obj
+[52/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/IntegratedWorkspace.cpp.obj
+[53/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Usage.cpp.obj
+[54/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/PeriodEvm.cpp.obj
+[55/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ResourceViewReport.cpp.obj
+[56/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/FormulaFieldReports.cpp.obj
+[57/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ScheduleRisk.cpp.obj
+[58/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/PlannedWork.cpp.obj
+[59/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/WorkContourInverse.cpp.obj
+[60/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/FinancialPeriodReports.cpp.obj
+[61/190] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/DatedRemainingWork.cpp.obj
+[62/190] Building CXX object CMakeFiles/jobs_application.dir/src/application/InputDelta.cpp.obj
+[63/190] Building CXX object CMakeFiles/jobs_application.dir/src/application/ActivityEditing.cpp.obj
+[64/190] Building CXX object CMakeFiles/jobs_application.dir/src/application/ClassificationEditing.cpp.obj
+[65/190] Building CXX object CMakeFiles/jobs_application.dir/src/application/ResourcePlanEditing.cpp.obj
+[66/190] Building CXX object CMakeFiles/jobs_application.dir/src/application/TaskEditing.cpp.obj
+[67/190] Building CXX object CMakeFiles/jobs_application.dir/src/application/PeriodActualEditing.cpp.obj
+[68/190] Building CXX object CMakeFiles/jobs_application.dir/src/application/DatedRemainingWorkEditing.cpp.obj
+[69/190] Building CXX object CMakeFiles/jobs_application.dir/src/application/Document.cpp.obj
+[70/190] Building CXX object CMakeFiles/jobs_application.dir/src/application/XerFinancialMerging.cpp.obj
+[71/190] Building CXX object CMakeFiles/jobs_application.dir/src/application/XerSourceRelinking.cpp.obj
+[72/190] Building CXX object CMakeFiles/jobs_application.dir/src/application/XerFinancialEditing.cpp.obj
+[73/190] Building CXX object CMakeFiles/jobs_application.dir/src/application/LevelingEditing.cpp.obj
+[74/190] Building CXX object CMakeFiles/jobs_application.dir/src/application/ProjectState.cpp.obj
+[75/190] Building CXX object CMakeFiles/jobs_application.dir/src/application/ProgressPolicyEditing.cpp.obj
+[76/190] Linking CXX static library libjobs_calculation.a
+[77/190] Building CXX object CMakeFiles/jobs_application.dir/src/application/FinancialPeriodEditing.cpp.obj
+[78/190] Building CXX object CMakeFiles/jobs_application.dir/src/application/ExternalEvmAdoption.cpp.obj
+[79/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProgressPolicyJson.cpp.obj
+[80/190] Building CXX object CMakeFiles/jobs_application.dir/src/application/PreparedEdit.cpp.obj
+[81/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProgressPolicySelectionJson.cpp.obj
+[82/190] Linking CXX static library libjobs_application.a
+[83/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/JsonProjectStore.cpp.obj
+[84/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectFile.cpp.obj
+[85/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectJson.cpp.obj
+[86/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/JsonRecoveryStore.cpp.obj
+[87/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/RemainingWorkJson.cpp.obj
+[88/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/UdfMapping.cpp.obj
+[89/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/XerFinancialJson.cpp.obj
+[90/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/FinancialPeriodJson.cpp.obj
+[91/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ExternalEvmJson.cpp.obj
+[92/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/PresentationJson.cpp.obj
+[93/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/LevelingJson.cpp.obj
+[94/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ClassificationJson.cpp.obj
+[95/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/PeriodActualJson.cpp.obj
+[96/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/LevelingDecisionJson.cpp.obj
+[97/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/XerActualCosts.cpp.obj
+[98/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/JsonWorkspaceStore.cpp.obj
+[99/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ApplicationStorage.cpp.obj
+[100/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ExchangePackage.cpp.obj
+[101/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ResourcePlanJson.cpp.obj
+[102/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ActivityJson.cpp.obj
+[103/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/GovernanceJson.cpp.obj
+[104/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/XerBatch.cpp.obj
+[105/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/XerSourceImport.cpp.obj
+[106/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectXml.cpp.obj
+[107/190] Building CXX object CMakeFiles/jobs_reporting.dir/src/reporting/ReportFormat.cpp.obj
+[108/190] Building CXX object CMakeFiles/jobs_reporting.dir/src/reporting/XlsxExport.cpp.obj
+[109/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/Automation.cpp.obj
+[110/190] Building CXX object CMakeFiles/jobs_reporting.dir/src/reporting/PdfExport.cpp.obj
+[111/190] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/PrimaveraXer.cpp.obj
+[112/190] Building CXX object CMakeFiles/jobs_reporting.dir/src/reporting/IntegratedExport.cpp.obj
+[113/190] Linking CXX static library libjobs_persistence.a
+[114/190] Building CXX object CMakeFiles/jobs_reporting.dir/src/reporting/SchedulePrint.cpp.obj
+[115/190] Building CXX object CMakeFiles/jobs_reporting.dir/src/reporting/NetworkPrint.cpp.obj
+[116/190] Building CXX object CMakeFiles/jobs_reporting.dir/src/reporting/SchedulePrintExtras.cpp.obj
+[117/190] Automatic MOC for target jobs_updates
+[118/188] Linking CXX static library libjobs_reporting.a
+[119/188] Building CXX object CMakeFiles/jobs_parser_harness.dir/tests/fuzz/ParserHarness.cpp.obj
+[120/188] Building CXX object CMakeFiles/jobs_financial_period_tests.dir/tests/FinancialPeriodTests.cpp.obj
+FAILED: [code=1] CMakeFiles/jobs_financial_period_tests.dir/tests/FinancialPeriodTests.cpp.obj 
+C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\.deps\Qt\Tools\mingw1310_64\bin\c++.exe -DJOBS_EXTERNAL_EVM_FIXTURE=\"C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/fixtures/primavera-financial-periods.xer\" -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 -IC:/Users/dow/Development/ToolMoa/ProjectPlanningManager/src -isystem C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/.deps/Qt/6.8.3/mingw_64/include/QtCore -isystem C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/.deps/Qt/6.8.3/mingw_64/include -isystem C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/.deps/Qt/6.8.3/mingw_64/mkspecs/win32-g++ -isystem C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/.deps/Qt/6.8.3/mingw_64/include/QtGui -isystem C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/.deps/Qt/6.8.3/mingw_64/include/QtWidgets -O3 -DNDEBUG -std=c++20 -Wall -Wextra -Wpedantic -MD -MT CMakeFiles/jobs_financial_period_tests.dir/tests/FinancialPeriodTests.cpp.obj -MF CMakeFiles\jobs_financial_period_tests.dir\tests\FinancialPeriodTests.cpp.obj.d -o CMakeFiles/jobs_financial_period_tests.dir/tests/FinancialPeriodTests.cpp.obj -c C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/FinancialPeriodTests.cpp
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/FinancialPeriodTests.cpp: In function 'void {anonymous}::contracts()':
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/FinancialPeriodTests.cpp:279:53: warning: comparison of integer expressions of different signedness: 'std::vector<jobs::FinancialPeriodEvent>::size_type' {aka 'long long unsigned int'} and 'qsizetype' {aka 'long long int'} [-Wsign-compare]
+  279 |     check(d.project()->financialPeriodEvents.size() == body["financialPeriodEvents"].toArray().size(),
+      |           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/FinancialPeriodTests.cpp: In function 'void {anonymous}::externalIntegration()':
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/FinancialPeriodTests.cpp:309:29: error: 'xerFinancialProjectionHash' was not declared in this scope
+  309 |     const auto projection = xerFinancialProjectionHash(*d.project());
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+[121/188] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowTracking.cpp.obj
+[122/188] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowResources.cpp.obj
+[123/188] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowCosts.cpp.obj
+[124/188] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/AutoSaveController.cpp.obj
+[125/188] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowRecovery.cpp.obj
+[126/188] Building CXX object CMakeFiles/jobs_parser_seed_tests.dir/tests/fuzz/ParserSeeds.cpp.obj
+[127/188] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindow.cpp.obj
+ninja: build stopped: subcommand failed.

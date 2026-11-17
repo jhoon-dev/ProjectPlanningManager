@@ -1,0 +1,675 @@
+Start testing: Nov 15 17:06 대한민국 표준시
+----------------------------------------------------------
+39/236 Testing: xml_baseline_cost_contract
+39/236 Test: xml_baseline_cost_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_baseline_cost_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_baseline_cost_contract" start time: Nov 15 17:06 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS Baseline Cost: frozen v1 daily rates/fixed/material/expense, all scopes/strict groups, unknown/zero/error, currency62/archives/outputs;128 vectors
+<end of output>
+Test time =   9.44 sec
+----------------------------------------------------------
+Test Passed.
+"xml_baseline_cost_contract" end time: Nov 15 17:06 대한민국 표준시
+"xml_baseline_cost_contract" time elapsed: 00:00:09
+----------------------------------------------------------
+
+179/236 Testing: parser_seed_replay
+179/236 Test: parser_seed_replay
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_parser_seed_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"parser_seed_replay" start time: Nov 15 17:06 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: 960 parser seeds, schema 1..75, leveling/classification/views/dated work/formulas/financials, checksum/body separation, byte limit and store parity
+<end of output>
+Test time =  15.55 sec
+----------------------------------------------------------
+Test Passed.
+"parser_seed_replay" end time: Nov 15 17:06 대한민국 표준시
+"parser_seed_replay" time elapsed: 00:00:15
+----------------------------------------------------------
+
+1/236 Testing: project_currency_conversion_contract
+1/236 Test: project_currency_conversion_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_project_currency_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"project_currency_conversion_contract" start time: Nov 15 17:06 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: project-wide currency rates/budgets/materials/expenses/native observations/baselines/scenarios/closed periods/external EVM/XER projections, original archives and FX chains, schema34/replay/recovery/copy, sequential identity/currency operations, numerical cases, cancel/stale/readonly, export and native UI
+<end of output>
+Test time =  11.23 sec
+----------------------------------------------------------
+Test Passed.
+"project_currency_conversion_contract" end time: Nov 15 17:06 대한민국 표준시
+"project_currency_conversion_contract" time elapsed: 00:00:11
+----------------------------------------------------------
+
+209/236 Testing: undo_contract
+209/236 Test: undo_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_undo_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"undo_contract" start time: Nov 15 17:06 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: atomic input history, monotonic revisions/STALE, saved-content dirty state, save/branch/no-op/error boundaries, stable WBS/resource/cost IDs, immutable facts, count/memory limits, readonly and observers
+<end of output>
+Test time =   7.23 sec
+----------------------------------------------------------
+Test Passed.
+"undo_contract" end time: Nov 15 17:07 대한민국 표준시
+"undo_contract" time elapsed: 00:00:07
+----------------------------------------------------------
+
+33/236 Testing: xml_baseline_exchange_native
+33/236 Test: xml_baseline_exchange_native
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_baseline_exchange_tests.exe" "-platform" "offscreen" "--native"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_baseline_exchange_native" start time: Nov 15 17:06 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS native baseline exchange: frozen numbers + 1000 tasks
+<end of output>
+Test time =  23.91 sec
+----------------------------------------------------------
+Test Passed.
+"xml_baseline_exchange_native" end time: Nov 15 17:07 대한민국 표준시
+"xml_baseline_exchange_native" time elapsed: 00:00:23
+----------------------------------------------------------
+
+4/236 Testing: ledger_identity_migration_contract
+4/236 Test: ledger_identity_migration_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_ledger_identity_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"ledger_identity_migration_contract" start time: Nov 15 17:06 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: explicit task/resource identity migration, original/provenance/amount/date preservation, baseline/closed periods/Steps/external EVM/XER relink and schedule archives, fresh/merge IDs, schema33/replay/recovery/copy, sequential/cancel/stale/readonly, export and native UI
+<end of output>
+Test time =   7.27 sec
+----------------------------------------------------------
+Test Passed.
+"ledger_identity_migration_contract" end time: Nov 15 17:07 대한민국 표준시
+"ledger_identity_migration_contract" time elapsed: 00:00:07
+----------------------------------------------------------
+
+32/236 Testing: xml_baseline_exchange_contract
+32/236 Test: xml_baseline_exchange_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_baseline_exchange_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_baseline_exchange_contract" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS external XML baselines: slots/scopes/partial/flags/timephased, canonical adoption/export/replay, schema75/currency/ID/recovery/reports
+<end of output>
+Test time =   5.94 sec
+----------------------------------------------------------
+Test Passed.
+"xml_baseline_exchange_contract" end time: Nov 15 17:07 대한민국 표준시
+"xml_baseline_exchange_contract" time elapsed: 00:00:05
+----------------------------------------------------------
+
+45/236 Testing: xml_progress_adoption_contract
+45/236 Test: xml_progress_adoption_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_progress_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_progress_adoption_contract" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS XML task progress adoption: explicit new copy, raw mapping/source replay, missing/zero/status/precision, atomic/retry, native correction/archives/recovery/reports
+<end of output>
+Test time =   7.08 sec
+----------------------------------------------------------
+Test Passed.
+"xml_progress_adoption_contract" end time: Nov 15 17:07 대한민국 표준시
+"xml_progress_adoption_contract" time elapsed: 00:00:07
+----------------------------------------------------------
+
+49/236 Testing: xml_work_progress_contract
+49/236 Test: xml_work_progress_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_work_progress_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_work_progress_contract" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS work-driven XML duration merge: explicit exact remaining work, zero/unknown/completion, plan snapshots, heterogeneous calendars/curve/final minute, preserved plans/actuals/future/corrections, idempotency/cancel/stale/atomic/schema24/recovery/reports
+<end of output>
+Test time =   5.67 sec
+----------------------------------------------------------
+Test Passed.
+"xml_work_progress_contract" end time: Nov 15 17:07 대한민국 표준시
+"xml_work_progress_contract" time elapsed: 00:00:05
+----------------------------------------------------------
+
+30/236 Testing: xml_remaining_contract
+30/236 Test: xml_remaining_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_remaining_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_remaining_contract" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS remaining references: effective calendar/curve/work-driven/dated forecast, scopes/summaries, missing/stale/cancel, plan export isolation, schema49/archives/recovery/outputs
+<end of output>
+Test time =   5.16 sec
+----------------------------------------------------------
+Test Passed.
+"xml_remaining_contract" end time: Nov 15 17:07 대한민국 표준시
+"xml_remaining_contract" time elapsed: 00:00:05
+----------------------------------------------------------
+
+41/236 Testing: xml_baseline_contract
+41/236 Test: xml_baseline_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_baseline_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_baseline_contract" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS baseline: frozen v1 dates/calendars/curves/work-driven work, scopes/summaries, missing/malformed/cancel, schema50/archives/recovery/outputs
+<end of output>
+Test time =   5.32 sec
+----------------------------------------------------------
+Test Passed.
+"xml_baseline_contract" end time: Nov 15 17:07 대한민국 표준시
+"xml_baseline_contract" time elapsed: 00:00:05
+----------------------------------------------------------
+
+214/236 Testing: recovery_ui
+214/236 Test: recovery_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_recovery_ui_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"recovery_ui" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: background save retirement race, continuous deadline/pause/readonly/failure, startup selection, detached save, editor/document undo shortcuts, immutable notice, close cancel/discard, later and explicit discard
+<end of output>
+Test time =   4.20 sec
+----------------------------------------------------------
+Test Passed.
+"recovery_ui" end time: Nov 15 17:07 대한민국 표준시
+"recovery_ui" time elapsed: 00:00:04
+----------------------------------------------------------
+
+5/236 Testing: xer_schedule_adoption_contract
+5/236 Test: xer_schedule_adoption_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xer_schedule_adoption_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xer_schedule_adoption_contract" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: schedule/WBS/calendar scoped adoption, explicit task creation/ID mapping, local tasks and native histories preserved, schema32/replay/recovery/copy, worker stale/cancel/read-only, XER export and Windows UI
+<end of output>
+Test time =   4.65 sec
+----------------------------------------------------------
+Test Passed.
+"xer_schedule_adoption_contract" end time: Nov 15 17:07 대한민국 표준시
+"xer_schedule_adoption_contract" time elapsed: 00:00:04
+----------------------------------------------------------
+
+44/236 Testing: xml_early_late_ui
+44/236 Test: xml_early_late_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_early_late_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_early_late_ui" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS Early/Late UI: active result, worker preview, completed null, references/provenance
+<end of output>
+Test time =   1.40 sec
+----------------------------------------------------------
+Test Passed.
+"xml_early_late_ui" end time: Nov 15 17:07 대한민국 표준시
+"xml_early_late_ui" time elapsed: 00:00:01
+----------------------------------------------------------
+
+57/236 Testing: xml_progress_merge_contract
+57/236 Test: xml_progress_merge_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_progress_merge_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_progress_merge_contract" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS XML native merge: mapping/conflict, atomic append, retry/correction, stale/cancel, lock, save/recovery/audit
+<end of output>
+Test time =   4.71 sec
+----------------------------------------------------------
+Test Passed.
+"xml_progress_merge_contract" end time: Nov 15 17:07 대한민국 표준시
+"xml_progress_merge_contract" time elapsed: 00:00:04
+----------------------------------------------------------
+
+213/236 Testing: recovery_crash_file
+213/236 Test: recovery_crash_file
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_recovery_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"recovery_crash_file" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: actual process kill and pre-commit kill, stale/live locks, three generations, never-saved and Unicode recovery, immutable facts, detached copy, corruption/future/partial/race, missing/changed original, failed publish, exclusive discard and path confinement
+<end of output>
+Test time =   2.86 sec
+----------------------------------------------------------
+Test Passed.
+"recovery_crash_file" end time: Nov 15 17:07 대한민국 표준시
+"recovery_crash_file" time elapsed: 00:00:02
+----------------------------------------------------------
+
+37/236 Testing: xml_baseline_slots_contract
+37/236 Test: xml_baseline_slots_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_baseline_slots_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_baseline_slots_contract" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS numbered baseline slots: v1-v11, values/cost/calendars, missing/error isolation, schema/XML/recovery
+<end of output>
+Test time =   2.96 sec
+----------------------------------------------------------
+Test Passed.
+"xml_baseline_slots_contract" end time: Nov 15 17:07 대한민국 표준시
+"xml_baseline_slots_contract" time elapsed: 00:00:02
+----------------------------------------------------------
+
+51/236 Testing: xml_actual_export_contract
+51/236 Test: xml_actual_export_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_actual_export_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_actual_export_contract" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS standard XML actuals: deterministic as-of task/assignment/resource projection, exact daily work/cost/zero/unknown, future history, roundtrip date buckets, no guessed facts, strict unsupported shapes, replay/atomic publication
+<end of output>
+Test time =   3.13 sec
+----------------------------------------------------------
+Test Passed.
+"xml_actual_export_contract" end time: Nov 15 17:07 대한민국 표준시
+"xml_actual_export_contract" time elapsed: 00:00:03
+----------------------------------------------------------
+
+31/236 Testing: xml_remaining_ui
+31/236 Test: xml_remaining_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_remaining_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_remaining_ui" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS remaining UI: calculated table, worker preview, insertion/provenance/small layout
+<end of output>
+Test time =   1.02 sec
+----------------------------------------------------------
+Test Passed.
+"xml_remaining_ui" end time: Nov 15 17:07 대한민국 표준시
+"xml_remaining_ui" time elapsed: 00:00:01
+----------------------------------------------------------
+
+107/236 Testing: xml_formula_contract
+107/236 Test: xml_formula_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_formula_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_formula_contract" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS XML formulas: 4 scopes, typed bounded interpreter, stable refs, native/roll-up/roll-down dependencies, errors/missing/eager IIf, schema44/FX/archives/recovery/edit/models/reports, 400 arithmetic vectors
+<end of output>
+Test time =   2.50 sec
+----------------------------------------------------------
+Test Passed.
+"xml_formula_contract" end time: Nov 15 17:07 대한민국 표준시
+"xml_formula_contract" time elapsed: 00:00:02
+----------------------------------------------------------
+
+59/236 Testing: xml_quantity_contract
+59/236 Test: xml_quantity_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_quantity_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_quantity_contract" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS actual quantities: as-of corrections/null/zero, scope totals/summaries, exact units, schedule independence/cancel, schema48/archives/recovery, XML/XER/reports
+<end of output>
+Test time =   2.57 sec
+----------------------------------------------------------
+Test Passed.
+"xml_quantity_contract" end time: Nov 15 17:07 대한민국 표준시
+"xml_quantity_contract" time elapsed: 00:00:02
+----------------------------------------------------------
+
+46/236 Testing: xml_progress_adoption_ui
+46/236 Test: xml_progress_adoption_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_progress_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_progress_adoption_ui" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS XML progress UI: opt in/mapping/metadata/partial input, worker prepare, new published copy, previous ledger/cancel preservation
+<end of output>
+Test time =   2.42 sec
+----------------------------------------------------------
+Test Passed.
+"xml_progress_adoption_ui" end time: Nov 15 17:07 대한민국 표준시
+"xml_progress_adoption_ui" time elapsed: 00:00:02
+----------------------------------------------------------
+
+35/236 Testing: xml_summary_duration_contract
+35/236 Test: xml_summary_duration_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_summary_duration_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_summary_duration_contract" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS summary durations
+<end of output>
+Test time =   2.27 sec
+----------------------------------------------------------
+Test Passed.
+"xml_summary_duration_contract" end time: Nov 15 17:07 대한민국 표준시
+"xml_summary_duration_contract" time elapsed: 00:00:02
+----------------------------------------------------------
+
+111/236 Testing: xml_roll_down_contract
+111/236 Test: xml_roll_down_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_roll_down_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_roll_down_contract" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS XML roll-down: task/resource to assignment, all scalar/lookup/multi types, direct/empty/zero/missing priority, live XML inheritance, worker/undo, FX/archives/recovery/schema42, XER/reports
+<end of output>
+Test time =   2.18 sec
+----------------------------------------------------------
+Test Passed.
+"xml_roll_down_contract" end time: Nov 15 17:07 대한민국 표준시
+"xml_roll_down_contract" time elapsed: 00:00:02
+----------------------------------------------------------
+
+109/236 Testing: xml_roll_up_contract
+109/236 Test: xml_roll_up_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_roll_up_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_roll_up_contract" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS XML summary roll-up: 8 methods, nested weights, typed precision, missing/flags/overflow, metadata/snapshots/schema43, XML, edit/undo/worker/FX/archives/groups/reports
+<end of output>
+Test time =   1.66 sec
+----------------------------------------------------------
+Test Passed.
+"xml_roll_up_contract" end time: Nov 15 17:07 대한민국 표준시
+"xml_roll_up_contract" time elapsed: 00:00:01
+----------------------------------------------------------
+
+61/236 Testing: xml_actual_contract
+61/236 Test: xml_actual_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_actual_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_actual_contract" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS actual refs: as-of/corrections/nulls, scopes/summaries, schedule independence/cache, schema/XML/static outputs, calendar/native/roll-down, archives/recovery/FX/IDs
+<end of output>
+Test time =   1.57 sec
+----------------------------------------------------------
+Test Passed.
+"xml_actual_contract" end time: Nov 15 17:07 대한민국 표준시
+"xml_actual_contract" time elapsed: 00:00:01
+----------------------------------------------------------
+
+43/236 Testing: xml_early_late_contract
+43/236 Test: xml_early_late_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_early_late_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_early_late_contract" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS Early/Late: plan/remaining/ALAP/resource-order/clock/milestones, capabilities/stale/cancel, schema51/archives/recovery/outputs
+<end of output>
+Test time =   1.43 sec
+----------------------------------------------------------
+Test Passed.
+"xml_early_late_contract" end time: Nov 15 17:07 대한민국 표준시
+"xml_early_late_contract" time elapsed: 00:00:01
+----------------------------------------------------------
+
+52/236 Testing: xml_actual_export_ui
+52/236 Test: xml_actual_export_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_actual_export_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_actual_export_ui" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS standard XML actuals UI: explicit action, actual preview, create-only publication, original preserved, cancel and stale edit guard, 800px review
+<end of output>
+Test time =   1.42 sec
+----------------------------------------------------------
+Test Passed.
+"xml_actual_export_ui" end time: Nov 15 17:07 대한민국 표준시
+"xml_actual_export_ui" time elapsed: 00:00:01
+----------------------------------------------------------
+
+58/236 Testing: xml_progress_merge_ui
+58/236 Test: xml_progress_merge_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_progress_merge_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_progress_merge_ui" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS XML merge UI: manual mapping, conflict preview, explicit selection, apply, cancel/stale
+<end of output>
+Test time =   1.40 sec
+----------------------------------------------------------
+Test Passed.
+"xml_progress_merge_ui" end time: Nov 15 17:07 대한민국 표준시
+"xml_progress_merge_ui" time elapsed: 00:00:01
+----------------------------------------------------------
+
+40/236 Testing: xml_baseline_cost_ui
+40/236 Test: xml_baseline_cost_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_baseline_cost_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_baseline_cost_ui" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS baseline UI: table without current result, worker preview, insertion/provenance
+<end of output>
+Test time =   1.40 sec
+----------------------------------------------------------
+Test Passed.
+"xml_baseline_cost_ui" end time: Nov 15 17:07 대한민국 표준시
+"xml_baseline_cost_ui" time elapsed: 00:00:01
+----------------------------------------------------------
+
+50/236 Testing: xml_work_progress_ui
+50/236 Test: xml_work_progress_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_work_progress_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_work_progress_ui" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS work-driven XML UI: explicit mapping/selection, duration vs work, exact quantities, missing work guard, native apply/cancel, 800px review
+<end of output>
+Test time =   1.17 sec
+----------------------------------------------------------
+Test Passed.
+"xml_work_progress_ui" end time: Nov 15 17:07 대한민국 표준시
+"xml_work_progress_ui" time elapsed: 00:00:01
+----------------------------------------------------------
+
+233/236 Testing: file_lifecycle
+233/236 Test: file_lifecycle
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_file_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"file_lifecycle" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: file lifecycle, Unicode, locks/conflicts, corruption/schema, schedule input roundtrip, stale revision/identity, schema-1 copy migration
+<end of output>
+Test time =   0.96 sec
+----------------------------------------------------------
+Test Passed.
+"file_lifecycle" end time: Nov 15 17:07 대한민국 표준시
+"file_lifecycle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+42/236 Testing: xml_baseline_ui
+42/236 Test: xml_baseline_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_baseline_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_baseline_ui" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS baseline UI: table without current result, worker preview, insertion/provenance
+<end of output>
+Test time =   0.94 sec
+----------------------------------------------------------
+Test Passed.
+"xml_baseline_ui" end time: Nov 15 17:07 대한민국 표준시
+"xml_baseline_ui" time elapsed: 00:00:00
+----------------------------------------------------------
+
+62/236 Testing: xml_actual_ui
+62/236 Test: xml_actual_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_actual_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_actual_ui" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS actual UI: no-scheduler table, status undo/report corrections, preview/provenance/disable, small layout
+<end of output>
+Test time =   0.73 sec
+----------------------------------------------------------
+Test Passed.
+"xml_actual_ui" end time: Nov 15 17:07 대한민국 표준시
+"xml_actual_ui" time elapsed: 00:00:00
+----------------------------------------------------------
+
+108/236 Testing: xml_formula_ui
+108/236 Test: xml_formula_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_formula_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_formula_ui" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS XML formula UI: preview/disable/snapshot/undo, unsupported/stale, assignment refs, Windows small layout
+<end of output>
+Test time =   0.86 sec
+----------------------------------------------------------
+Test Passed.
+"xml_formula_ui" end time: Nov 15 17:07 대한민국 표준시
+"xml_formula_ui" time elapsed: 00:00:00
+----------------------------------------------------------
+
+60/236 Testing: xml_quantity_ui
+60/236 Test: xml_quantity_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_quantity_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_quantity_ui" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS quantity UI: table/status undo, worker preview/insertion/provenance/small layout
+<end of output>
+Test time =   0.73 sec
+----------------------------------------------------------
+Test Passed.
+"xml_quantity_ui" end time: Nov 15 17:07 대한민국 표준시
+"xml_quantity_ui" time elapsed: 00:00:00
+----------------------------------------------------------
+
+38/236 Testing: xml_baseline_slots_ui
+38/236 Test: xml_baseline_slots_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_baseline_slots_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_baseline_slots_ui" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS numbered baseline UI insertion
+<end of output>
+Test time =   0.66 sec
+----------------------------------------------------------
+Test Passed.
+"xml_baseline_slots_ui" end time: Nov 15 17:07 대한민국 표준시
+"xml_baseline_slots_ui" time elapsed: 00:00:00
+----------------------------------------------------------
+
+34/236 Testing: xml_baseline_exchange_ui
+34/236 Test: xml_baseline_exchange_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_baseline_exchange_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_baseline_exchange_ui" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS external baseline UI: unchecked slots, actual-value preview, worker adoption
+<end of output>
+Test time =   0.76 sec
+----------------------------------------------------------
+Test Passed.
+"xml_baseline_exchange_ui" end time: Nov 15 17:07 대한민국 표준시
+"xml_baseline_exchange_ui" time elapsed: 00:00:00
+----------------------------------------------------------
+
+230/236 Testing: tracking_file
+230/236 Test: tracking_file
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_tracking_file_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"tracking_file" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: tracking roundtrip, retained history/provenance/clone, calendar immutability, baseline recomputation integrity, malformed ledger rejection, schema-3 copy migration
+<end of output>
+Test time =   0.67 sec
+----------------------------------------------------------
+Test Passed.
+"tracking_file" end time: Nov 15 17:07 대한민국 표준시
+"tracking_file" time elapsed: 00:00:00
+----------------------------------------------------------
+
+36/236 Testing: xml_summary_duration_ui
+36/236 Test: xml_summary_duration_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_summary_duration_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_summary_duration_ui" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS summary durations
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"xml_summary_duration_ui" end time: Nov 15 17:07 대한민국 표준시
+"xml_summary_duration_ui" time elapsed: 00:00:00
+----------------------------------------------------------
+
+110/236 Testing: xml_roll_up_ui
+110/236 Test: xml_roll_up_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_roll_up_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_roll_up_ui" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS roll-up UI: WBS/resource preview, retained snapshots, weighted means, save/undo/stale, 800x600
+<end of output>
+Test time =   0.51 sec
+----------------------------------------------------------
+Test Passed.
+"xml_roll_up_ui" end time: Nov 15 17:07 대한민국 표준시
+"xml_roll_up_ui" time elapsed: 00:00:00
+----------------------------------------------------------
+
+112/236 Testing: xml_roll_down_ui
+112/236 Test: xml_roll_down_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_roll_down_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_roll_down_ui" start time: Nov 15 17:07 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS roll-down UI: preview/direct origin, disable/undo, inheritance restore worker, stale, 800x600
+<end of output>
+Test time =   0.62 sec
+----------------------------------------------------------
+Test Passed.
+"xml_roll_down_ui" end time: Nov 15 17:07 대한민국 표준시
+"xml_roll_down_ui" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Nov 15 17:07 대한민국 표준시

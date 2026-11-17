@@ -1,0 +1,444 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+            {
+                "resourceId": "NR-1",
+                "taskId": "TN-A",
+                "units": 100
+            },
+            {
+                "resourceId": "NR-2",
+                "taskId": "TN-A",
+                "units": 100
+            },
+            {
+                "resourceId": "NR-1",
+                "taskId": "TN-B",
+                "units": 100
+            }
+        ],
+        "baselines": [
+        ],
+        "calculationProfile": "native-fs0-workminutes-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "costEntries": [
+            {
+                "actualMinor": 5000,
+                "currency": "USD",
+                "id": "existing-ac",
+                "physicalBasisPoints": 2500,
+                "previousEntryId": "",
+                "reason": "기존 보고",
+                "recordedAt": "2026-11-12T08:00:00Z",
+                "recordedRevision": 4,
+                "reporter": "현장",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 17:00",
+                "taskId": "TN-A"
+            },
+            {
+                "actualMinor": 10000,
+                "currency": "USD",
+                "id": "e308da89-618f-4e78-b0ea-dd34d5894c2f-4",
+                "physicalBasisPoints": 2500,
+                "previousEntryId": "existing-ac",
+                "reason": "[XML-PERIOD sha256=a8619ca08d9287f80bbbaf88fe656ad5b7050cc2e16db36554740c88b4bce861 assignment=1] fragments.xml · 일별 배정 실적 대사",
+                "recordedAt": "2026-11-12T09:00:00Z",
+                "recordedRevision": 6,
+                "reporter": "PM",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 18:00",
+                "taskId": "TN-A"
+            },
+            {
+                "actualMinor": 10000,
+                "currency": "USD",
+                "id": "e308da89-618f-4e78-b0ea-dd34d5894c2f-6",
+                "physicalBasisPoints": 2500,
+                "previousEntryId": "e308da89-618f-4e78-b0ea-dd34d5894c2f-4",
+                "reason": "[XML-PERIOD sha256=a8619ca08d9287f80bbbaf88fe656ad5b7050cc2e16db36554740c88b4bce861 assignment=2] fragments.xml · 일별 배정 실적 대사",
+                "recordedAt": "2026-11-12T09:00:00Z",
+                "recordedRevision": 6,
+                "reporter": "PM",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 18:00",
+                "taskId": "TN-A"
+            },
+            {
+                "actualMinor": 4000,
+                "currency": "USD",
+                "id": "e308da89-618f-4e78-b0ea-dd34d5894c2f-8",
+                "physicalBasisPoints": null,
+                "previousEntryId": "",
+                "reason": "[XML-PERIOD sha256=a8619ca08d9287f80bbbaf88fe656ad5b7050cc2e16db36554740c88b4bce861 assignment=3] fragments.xml · 일별 배정 실적 대사",
+                "recordedAt": "2026-11-12T09:00:00Z",
+                "recordedRevision": 6,
+                "reporter": "PM",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 18:00",
+                "taskId": "TN-B"
+            },
+            {
+                "actualMinor": 10000,
+                "currency": "USD",
+                "id": "566d0b25-8ddd-41cc-8b63-44257f537e3e",
+                "physicalBasisPoints": 2500,
+                "previousEntryId": "e308da89-618f-4e78-b0ea-dd34d5894c2f-6",
+                "reason": "합산 후 정정",
+                "recordedAt": "2026-11-12T09:01:00Z",
+                "recordedRevision": 7,
+                "reporter": "현장",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 18:00",
+                "taskId": "TN-A"
+            },
+            {
+                "actualMinor": 10000,
+                "currency": "USD",
+                "id": "e5225259-a5dd-481a-8409-4faebc5cb6e3-4",
+                "physicalBasisPoints": 2500,
+                "previousEntryId": "566d0b25-8ddd-41cc-8b63-44257f537e3e",
+                "reason": "[XML-PERIOD sha256=54ec6f13940ec1eb1dcf3408e0b6d0ef456cd1bc639e911f41c646c8f7d16655 assignment=1] updated-fragments.xml · 일별 배정 실적 대사",
+                "recordedAt": "2026-11-12T09:00:00Z",
+                "recordedRevision": 9,
+                "reporter": "PM",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 18:00",
+                "taskId": "TN-A"
+            },
+            {
+                "actualMinor": 10000,
+                "currency": "USD",
+                "id": "e5225259-a5dd-481a-8409-4faebc5cb6e3-6",
+                "physicalBasisPoints": 2500,
+                "previousEntryId": "e5225259-a5dd-481a-8409-4faebc5cb6e3-4",
+                "reason": "[XML-PERIOD sha256=54ec6f13940ec1eb1dcf3408e0b6d0ef456cd1bc639e911f41c646c8f7d16655 assignment=2] updated-fragments.xml · 일별 배정 실적 대사",
+                "recordedAt": "2026-11-12T09:00:00Z",
+                "recordedRevision": 9,
+                "reporter": "PM",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 18:00",
+                "taskId": "TN-A"
+            },
+            {
+                "actualMinor": 4000,
+                "currency": "USD",
+                "id": "e5225259-a5dd-481a-8409-4faebc5cb6e3-8",
+                "physicalBasisPoints": null,
+                "previousEntryId": "e308da89-618f-4e78-b0ea-dd34d5894c2f-8",
+                "reason": "[XML-PERIOD sha256=54ec6f13940ec1eb1dcf3408e0b6d0ef456cd1bc639e911f41c646c8f7d16655 assignment=3] updated-fragments.xml · 일별 배정 실적 대사",
+                "recordedAt": "2026-11-12T09:00:00Z",
+                "recordedRevision": 9,
+                "reporter": "PM",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 18:00",
+                "taskId": "TN-B"
+            }
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "USD",
+        "derivedFrom": "",
+        "documentId": "xml-period-native",
+        "holidays": [
+        ],
+        "name": "기존 원장 보존",
+        "periodActuals": [
+            {
+                "actualMinor": 500,
+                "costEntryId": "existing-ac",
+                "currency": "USD",
+                "date": "2026-11-12",
+                "id": "existing-period-a",
+                "previousEntryId": "",
+                "reason": "기존 보고",
+                "recordedAt": "2026-11-12T08:00:00Z",
+                "recordedRevision": 4,
+                "reporter": "현장",
+                "resourceId": "NR-1",
+                "resourceType": "equipment",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 17:00",
+                "taskId": "TN-A",
+                "workUnitMinutes": 2000
+            },
+            {
+                "actualMinor": null,
+                "costEntryId": "",
+                "currency": "USD",
+                "date": "2026-11-10",
+                "id": "existing-period-b",
+                "previousEntryId": "",
+                "reason": "기존 보고",
+                "recordedAt": "2026-11-12T08:00:00Z",
+                "recordedRevision": 4,
+                "reporter": "현장",
+                "resourceId": "NR-1",
+                "resourceType": "equipment",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 17:00",
+                "taskId": "TN-B",
+                "workUnitMinutes": 1500
+            },
+            {
+                "actualMinor": 1250,
+                "costEntryId": "e308da89-618f-4e78-b0ea-dd34d5894c2f-4",
+                "currency": "USD",
+                "date": "2026-11-10",
+                "id": "e308da89-618f-4e78-b0ea-dd34d5894c2f-1",
+                "previousEntryId": "",
+                "reason": "[XML-PERIOD sha256=a8619ca08d9287f80bbbaf88fe656ad5b7050cc2e16db36554740c88b4bce861 assignment=1] fragments.xml · 일별 배정 실적 대사",
+                "recordedAt": "2026-11-12T09:00:00Z",
+                "recordedRevision": 6,
+                "reporter": "PM",
+                "resourceId": "NR-1",
+                "resourceType": "equipment",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 18:00",
+                "taskId": "TN-A",
+                "workUnitMinutes": 9001
+            },
+            {
+                "actualMinor": 0,
+                "costEntryId": "e308da89-618f-4e78-b0ea-dd34d5894c2f-4",
+                "currency": "USD",
+                "date": "2026-11-11",
+                "id": "e308da89-618f-4e78-b0ea-dd34d5894c2f-2",
+                "previousEntryId": "",
+                "reason": "[XML-PERIOD sha256=a8619ca08d9287f80bbbaf88fe656ad5b7050cc2e16db36554740c88b4bce861 assignment=1] fragments.xml · 일별 배정 실적 대사",
+                "recordedAt": "2026-11-12T09:00:00Z",
+                "recordedRevision": 6,
+                "reporter": "PM",
+                "resourceId": "NR-1",
+                "resourceType": "equipment",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 18:00",
+                "taskId": "TN-A",
+                "workUnitMinutes": 0
+            },
+            {
+                "actualMinor": 500,
+                "costEntryId": "e308da89-618f-4e78-b0ea-dd34d5894c2f-4",
+                "currency": "USD",
+                "date": "2026-11-12",
+                "id": "e308da89-618f-4e78-b0ea-dd34d5894c2f-3",
+                "previousEntryId": "existing-period-a",
+                "reason": "[XML-PERIOD sha256=a8619ca08d9287f80bbbaf88fe656ad5b7050cc2e16db36554740c88b4bce861 assignment=1] fragments.xml · 일별 배정 실적 대사",
+                "recordedAt": "2026-11-12T09:00:00Z",
+                "recordedRevision": 6,
+                "reporter": "PM",
+                "resourceId": "NR-1",
+                "resourceType": "equipment",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 18:00",
+                "taskId": "TN-A",
+                "workUnitMinutes": 3000
+            },
+            {
+                "actualMinor": 2025,
+                "costEntryId": "e308da89-618f-4e78-b0ea-dd34d5894c2f-6",
+                "currency": "USD",
+                "date": "2026-11-10",
+                "id": "e308da89-618f-4e78-b0ea-dd34d5894c2f-5",
+                "previousEntryId": "",
+                "reason": "[XML-PERIOD sha256=a8619ca08d9287f80bbbaf88fe656ad5b7050cc2e16db36554740c88b4bce861 assignment=2] fragments.xml · 일별 배정 실적 대사",
+                "recordedAt": "2026-11-12T09:00:00Z",
+                "recordedRevision": 6,
+                "reporter": "PM",
+                "resourceId": "NR-2",
+                "resourceType": "labor",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 18:00",
+                "taskId": "TN-A",
+                "workUnitMinutes": 12000
+            },
+            {
+                "actualMinor": 1000,
+                "costEntryId": "e308da89-618f-4e78-b0ea-dd34d5894c2f-8",
+                "currency": "USD",
+                "date": "2026-11-10",
+                "id": "e308da89-618f-4e78-b0ea-dd34d5894c2f-7",
+                "previousEntryId": "existing-period-b",
+                "reason": "[XML-PERIOD sha256=a8619ca08d9287f80bbbaf88fe656ad5b7050cc2e16db36554740c88b4bce861 assignment=3] fragments.xml · 일별 배정 실적 대사",
+                "recordedAt": "2026-11-12T09:00:00Z",
+                "recordedRevision": 6,
+                "reporter": "PM",
+                "resourceId": "NR-1",
+                "resourceType": "equipment",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 18:00",
+                "taskId": "TN-B",
+                "workUnitMinutes": 1500
+            },
+            {
+                "actualMinor": 1300,
+                "costEntryId": "566d0b25-8ddd-41cc-8b63-44257f537e3e",
+                "currency": "USD",
+                "date": "2026-11-10",
+                "id": "d7988ecc-78d1-4568-b28e-4d8bb6a78140",
+                "previousEntryId": "e308da89-618f-4e78-b0ea-dd34d5894c2f-1",
+                "reason": "합산 후 정정",
+                "recordedAt": "2026-11-12T09:01:00Z",
+                "recordedRevision": 7,
+                "reporter": "현장",
+                "resourceId": "NR-1",
+                "resourceType": "equipment",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 18:00",
+                "taskId": "TN-A",
+                "workUnitMinutes": 7500
+            },
+            {
+                "actualMinor": 1375,
+                "costEntryId": "e5225259-a5dd-481a-8409-4faebc5cb6e3-4",
+                "currency": "USD",
+                "date": "2026-11-10",
+                "id": "e5225259-a5dd-481a-8409-4faebc5cb6e3-1",
+                "previousEntryId": "d7988ecc-78d1-4568-b28e-4d8bb6a78140",
+                "reason": "[XML-PERIOD sha256=54ec6f13940ec1eb1dcf3408e0b6d0ef456cd1bc639e911f41c646c8f7d16655 assignment=1] updated-fragments.xml · 일별 배정 실적 대사",
+                "recordedAt": "2026-11-12T09:00:00Z",
+                "recordedRevision": 9,
+                "reporter": "PM",
+                "resourceId": "NR-1",
+                "resourceType": "equipment",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 18:00",
+                "taskId": "TN-A",
+                "workUnitMinutes": 9001
+            },
+            {
+                "actualMinor": 0,
+                "costEntryId": "e5225259-a5dd-481a-8409-4faebc5cb6e3-4",
+                "currency": "USD",
+                "date": "2026-11-11",
+                "id": "e5225259-a5dd-481a-8409-4faebc5cb6e3-2",
+                "previousEntryId": "e308da89-618f-4e78-b0ea-dd34d5894c2f-2",
+                "reason": "[XML-PERIOD sha256=54ec6f13940ec1eb1dcf3408e0b6d0ef456cd1bc639e911f41c646c8f7d16655 assignment=1] updated-fragments.xml · 일별 배정 실적 대사",
+                "recordedAt": "2026-11-12T09:00:00Z",
+                "recordedRevision": 9,
+                "reporter": "PM",
+                "resourceId": "NR-1",
+                "resourceType": "equipment",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 18:00",
+                "taskId": "TN-A",
+                "workUnitMinutes": 0
+            },
+            {
+                "actualMinor": 500,
+                "costEntryId": "e5225259-a5dd-481a-8409-4faebc5cb6e3-4",
+                "currency": "USD",
+                "date": "2026-11-12",
+                "id": "e5225259-a5dd-481a-8409-4faebc5cb6e3-3",
+                "previousEntryId": "e308da89-618f-4e78-b0ea-dd34d5894c2f-3",
+                "reason": "[XML-PERIOD sha256=54ec6f13940ec1eb1dcf3408e0b6d0ef456cd1bc639e911f41c646c8f7d16655 assignment=1] updated-fragments.xml · 일별 배정 실적 대사",
+                "recordedAt": "2026-11-12T09:00:00Z",
+                "recordedRevision": 9,
+                "reporter": "PM",
+                "resourceId": "NR-1",
+                "resourceType": "equipment",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 18:00",
+                "taskId": "TN-A",
+                "workUnitMinutes": 3000
+            },
+            {
+                "actualMinor": 2025,
+                "costEntryId": "e5225259-a5dd-481a-8409-4faebc5cb6e3-6",
+                "currency": "USD",
+                "date": "2026-11-10",
+                "id": "e5225259-a5dd-481a-8409-4faebc5cb6e3-5",
+                "previousEntryId": "e308da89-618f-4e78-b0ea-dd34d5894c2f-5",
+                "reason": "[XML-PERIOD sha256=54ec6f13940ec1eb1dcf3408e0b6d0ef456cd1bc639e911f41c646c8f7d16655 assignment=2] updated-fragments.xml · 일별 배정 실적 대사",
+                "recordedAt": "2026-11-12T09:00:00Z",
+                "recordedRevision": 9,
+                "reporter": "PM",
+                "resourceId": "NR-2",
+                "resourceType": "labor",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 18:00",
+                "taskId": "TN-A",
+                "workUnitMinutes": 12000
+            },
+            {
+                "actualMinor": 1000,
+                "costEntryId": "e5225259-a5dd-481a-8409-4faebc5cb6e3-8",
+                "currency": "USD",
+                "date": "2026-11-10",
+                "id": "e5225259-a5dd-481a-8409-4faebc5cb6e3-7",
+                "previousEntryId": "e308da89-618f-4e78-b0ea-dd34d5894c2f-7",
+                "reason": "[XML-PERIOD sha256=54ec6f13940ec1eb1dcf3408e0b6d0ef456cd1bc639e911f41c646c8f7d16655 assignment=3] updated-fragments.xml · 일별 배정 실적 대사",
+                "recordedAt": "2026-11-12T09:00:00Z",
+                "recordedRevision": 9,
+                "reporter": "PM",
+                "resourceId": "NR-1",
+                "resourceType": "equipment",
+                "sourceDocumentId": "xml-period-native",
+                "statusAt": "2026-11-12 18:00",
+                "taskId": "TN-B",
+                "workUnitMinutes": 1500
+            }
+        ],
+        "progress": [
+        ],
+        "resources": [
+            {
+                "exceptions": [
+                ],
+                "id": "NR-1",
+                "maxUnits": 100,
+                "name": "장비",
+                "rates": [
+                    {
+                        "effectiveDate": "2026-11-01",
+                        "hourlyMinor": 12345
+                    }
+                ],
+                "type": "equipment"
+            },
+            {
+                "exceptions": [
+                ],
+                "id": "NR-2",
+                "maxUnits": 100,
+                "name": "인력",
+                "rates": [
+                    {
+                        "effectiveDate": "2026-11-01",
+                        "hourlyMinor": 12345
+                    }
+                ],
+                "type": "labor"
+            }
+        ],
+        "revision": 9,
+        "scenarios": [
+        ],
+        "startDate": "2026-11-10",
+        "statusAt": "2026-11-12 18:00",
+        "taskCosts": [
+        ],
+        "tasks": [
+            {
+                "durationMinutes": 960,
+                "id": "TN-A",
+                "name": "보존할 새 편집",
+                "predecessors": [
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 480,
+                "id": "TN-B",
+                "name": "native B",
+                "predecessors": [
+                ],
+                "wbsId": ""
+            }
+        ],
+        "wbsNodes": [
+        ]
+    },
+    "schemaVersion": 11,
+    "sha256": "a264e5a5a1807cd10cd19b682169d47ef33c3e21dc1ad32a8f9e6939ff1cb2c2"
+}

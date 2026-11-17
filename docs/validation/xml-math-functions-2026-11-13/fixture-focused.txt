@@ -1,0 +1,9 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 58: xml_math_contract
+1/2 Test #58: xml_math_contract ................   Passed    3.06 sec
+    Start 59: xml_math_ui
+2/2 Test #59: xml_math_ui ......................   Passed    0.76 sec
+
+100% tests passed out of 2
+
+Total Test time (real) =   3.85 sec

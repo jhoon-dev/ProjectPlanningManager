@@ -1,0 +1,16 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 58: xml_math_contract
+1/2 Test #58: xml_math_contract ................***Failed    0.62 sec
+CStr(Exp(1)) expected [2.718282] got [숫자 형식이 필요합니다.]
+math scalar case
+
+    Start 59: xml_math_ui
+2/2 Test #59: xml_math_ui ......................   Passed    0.83 sec
+
+50% tests passed, 1 tests failed out of 2
+
+Total Test time (real) =   1.50 sec
+
+The following tests FAILED:
+	 58 - xml_math_contract (Failed)
+Errors while running CTest

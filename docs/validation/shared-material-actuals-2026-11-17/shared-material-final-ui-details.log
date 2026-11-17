@@ -1,0 +1,19 @@
+Start testing: Nov 17 13:17 대한민국 표준시
+----------------------------------------------------------
+71/257 Testing: shared_material_ui
+71/257 Test: shared_material_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_shared_material_tests.exe" "--ui" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"shared_material_ui" start time: Nov 17 13:17 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS shared material UI/remaining start/balances/actual correction/stale/reconfirm/source preservation
+<end of output>
+Test time =   2.77 sec
+----------------------------------------------------------
+Test Passed.
+"shared_material_ui" end time: Nov 17 13:17 대한민국 표준시
+"shared_material_ui" time elapsed: 00:00:02
+----------------------------------------------------------
+
+End testing: Nov 17 13:17 대한민국 표준시

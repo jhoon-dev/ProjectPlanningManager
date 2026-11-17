@@ -1,0 +1,26 @@
+[
+    {
+        "build_ms": 13.5511,
+        "query_ms": 0.9186,
+        "ready_ms": 102,
+        "relation_rows": 2,
+        "render_ms": 2.5093,
+        "scene_items": 314,
+        "shown_edges": 78,
+        "shown_nodes": 80,
+        "source_unchanged": true,
+        "tasks": 1000
+    },
+    {
+        "build_ms": 45.9804,
+        "query_ms": 1.2179,
+        "ready_ms": 71,
+        "relation_rows": 2,
+        "render_ms": 2.3177,
+        "scene_items": 314,
+        "shown_edges": 78,
+        "shown_nodes": 80,
+        "source_unchanged": true,
+        "tasks": 10000
+    }
+]

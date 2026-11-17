@@ -1,0 +1,29 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+      Start 38: xml_work_progress_contract
+      Start 36: xml_progress_adoption_contract
+      Start 40: xml_actual_export_contract
+      Start 46: xml_progress_merge_contract
+ 1/12 Test #40: xml_actual_export_contract .......   Passed    3.29 sec
+      Start 42: xml_period_fragment_contract
+ 2/12 Test #46: xml_progress_merge_contract ......   Passed    4.20 sec
+      Start 44: xml_period_actual_contract
+ 3/12 Test #38: xml_work_progress_contract .......   Passed    6.43 sec
+      Start 37: xml_progress_adoption_ui
+ 4/12 Test #42: xml_period_fragment_contract .....   Passed    3.44 sec
+      Start 41: xml_actual_export_ui
+ 5/12 Test #36: xml_progress_adoption_contract ...   Passed    8.15 sec
+      Start 39: xml_work_progress_ui
+ 6/12 Test #44: xml_period_actual_contract .......   Passed    3.37 sec
+      Start 47: xml_progress_merge_ui
+ 7/12 Test #41: xml_actual_export_ui .............   Passed    1.69 sec
+      Start 45: xml_period_actual_ui
+ 8/12 Test #37: xml_progress_adoption_ui .........   Passed    2.96 sec
+      Start 43: xml_period_fragment_ui
+ 9/12 Test #39: xml_work_progress_ui .............   Passed    1.76 sec
+10/12 Test #45: xml_period_actual_ui .............   Passed    1.44 sec
+11/12 Test #43: xml_period_fragment_ui ...........   Passed    1.32 sec
+12/12 Test #47: xml_progress_merge_ui ............   Passed    1.71 sec
+
+100% tests passed out of 12
+
+Total Test time (real) =  10.82 sec

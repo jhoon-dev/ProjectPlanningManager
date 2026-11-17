@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "source_sha256": "2f942e9a7be22b8314fb2b03c7d8d3460e780b68a39342a36351ed157e042dd8",
+  "schema": 11,
+  "merged_period_entries": 7,
+  "merged_cost_entries": 4,
+  "corrected_period_entries": 13,
+  "corrected_cost_entries": 8,
+  "work_units": 25501,
+  "allocated_minor": 4775,
+  "cumulative_minor": 14000,
+  "audit_rows": 13,
+  "pdf_pages": 16,
+  "external_product_run": false
+}

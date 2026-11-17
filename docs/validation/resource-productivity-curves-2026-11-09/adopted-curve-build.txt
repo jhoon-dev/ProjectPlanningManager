@@ -1,0 +1,4 @@
+[1/4] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ResourcePlanning.cpp.obj
+[2/4] Linking CXX static library libjobs_calculation.a
+[3/4] Linking CXX executable jobs_resource_planning_tests.exe
+[4/4] Linking CXX executable jobs_resource_planning_ui_tests.exe

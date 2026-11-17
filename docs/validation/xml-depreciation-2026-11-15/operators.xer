@@ -1,0 +1,165 @@
+﻿ERMHDR	20.12	2026-11-13	Project	PPM	PPM	dbxDatabaseNoName	Project Management	USD
+%T	ACTVCODE
+%F	actv_code_id	parent_actv_code_id	actv_code_type_id	short_name	actv_code_name	seq_num
+%T	ACTVTYPE
+%F	actv_code_type_id	actv_code_type	seq_num	actv_code_type_scope	proj_id
+%T	CALENDAR
+%F	clndr_id	default_flag	clndr_name	proj_id	base_clndr_id	clndr_type	day_hr_cnt	week_hr_cnt	rsrc_private	clndr_data
+%R	1	Y	PPM standard	1		CA_Project	8.000000	40.000000	N	(0||CalendarData()((0||DaysOfWeek()((0||1()())(0||2()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||3()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||4()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||5()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||6()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||7()())))(0||Exceptions()())))
+%T	CURRTYPE
+%F	curr_id	decimal_digit_cnt	curr_symbol	decimal_symbol	digit_group_symbol	pos_curr_fmt_type	neg_curr_fmt_type	curr_type	curr_short_name	group_digit_cnt	base_exch_rate
+%R	1	2	USD	.	,	#1.1	(#1.1)	USD	USD	3	1
+%T	FINDATES
+%F	fin_dates_id	fin_dates_name	start_date	end_date
+%T	PROJCOST
+%F	cost_item_id	proj_id	task_id	cost_name	cost_load_type	target_cost	act_cost	remain_cost	auto_compute_act_flag
+%T	PROJECT
+%F	proj_id	proj_short_name	clndr_id	plan_start_date	def_task_type	def_duration_type	task_code_prefix	task_code_base	task_code_step	last_recalc_date
+%R	1	PPM-dfed46f465ad	1	2026-11-13 09:00	TT_Task	DT_FixedDrtn	J	1	1	
+%T	PROJWBS
+%F	wbs_id	proj_id	seq_num	proj_node_flag	wbs_short_name	wbs_name	parent_wbs_id
+%R	1	1	0	Y	PPM-dfed46f465ad	XML 감가상각	
+%R	2	1	2	N	W2	요약	1
+%T	RSRC
+%F	rsrc_id	clndr_id	curr_id	rsrc_name	rsrc_short_name	rsrc_type	active_flag	cost_qty_type
+%R	1	1	1	장비	R1	RT_Equip	Y	QT_Hour
+%T	RSRCCURVDATA
+%F	curv_id	curv_name	default_flag	pct_usage_0	pct_usage_1	pct_usage_2	pct_usage_3	pct_usage_4	pct_usage_5	pct_usage_6	pct_usage_7	pct_usage_8	pct_usage_9	pct_usage_10	pct_usage_11	pct_usage_12	pct_usage_13	pct_usage_14	pct_usage_15	pct_usage_16	pct_usage_17	pct_usage_18	pct_usage_19	pct_usage_20
+%T	RSRCRATE
+%F	rsrc_rate_id	rsrc_id	start_date	max_qty_per_hr	cost_per_qty
+%R	1	1	2026-11-13 00:00	1.000000	
+%T	SCHEDOPTIONS
+%F	schedoptions_id	proj_id	sched_calendar_on_relationship_lag
+%R	1	1	rcal_Successor
+%T	TASK
+%F	task_id	proj_id	wbs_id	clndr_id	task_code	task_name	task_type	duration_type	status_code	complete_pct_type	target_drtn_hr_cnt	remain_drtn_hr_cnt	cstr_type	cstr_date	cstr_type2	cstr_date2	act_start_date	act_end_date	phys_complete_pct
+%R	1	1	2	1	J1	작업 A	TT_Task	DT_FixedDrtn	TK_NotStart	CP_Drtn	1.000000	1.000000							
+%R	2	1	2	1	J2	작업 B	TT_Task	DT_FixedDrtn	TK_NotStart	CP_Drtn	1.500000	1.500000							
+%T	TASKACTV
+%F	task_id	actv_code_id	proj_id	actv_code_type_id
+%T	TASKFIN
+%F	task_id	proj_id	fin_dates_id	act_work_qty	act_equip_qty	act_work_cost	act_equip_cost	act_mat_cost	act_expense_cost	bcwp	bcws
+%T	TASKPRED
+%F	task_pred_id	task_id	pred_task_id	proj_id	pred_proj_id	pred_type	lag_hr_cnt
+%T	TASKRSRC
+%F	taskrsrc_id	task_id	proj_id	rsrc_id	target_qty_per_hr	remain_qty_per_hr	target_qty	remain_qty	curv_id	act_reg_qty	act_ot_qty	act_reg_cost	act_ot_cost	cost_qty_link_flag	act_start_date	act_end_date
+%R	1	1	1	1	1.00	1.00	1.000000	1.000000						N		
+%R	2	2	1	1	1.00	1.00	1.500000	1.500000						N		
+%T	TRSRCFIN
+%F	taskrsrc_id	task_id	proj_id	fin_dates_id	act_qty	act_cost
+%T	UDFTYPE
+%F	udf_type_id	table_name	udf_type_name	udf_type_label	logical_data_type
+%R	1	TASK	user_field_1	입력문자	FT_TEXT
+%R	2	TASK	user_field_2	입력수	FT_FLOAT
+%R	3	TASK	user_field_3	입력금액	FT_TEXT
+%R	4	TASK	user_field_4	입력일시	FT_TEXT
+%R	5	TASK	user_field_5	미설정	FT_FLOAT
+%R	6	TASK	user_field_6	선택문자	FT_TEXT
+%R	7	TASK	user_field_7	검색위치	FT_FLOAT
+%R	8	TASK	user_field_8	문자비교	FT_FLOAT
+%R	9	TASK	user_field_9	왼쪽정리	FT_TEXT
+%R	10	TASK	user_field_10	오른쪽정리	FT_TEXT
+%R	11	TASK	user_field_11	공백	FT_TEXT
+%R	12	TASK	user_field_12	반복	FT_TEXT
+%R	13	TASK	user_field_13	문자코드	FT_FLOAT
+%R	14	TASK	user_field_14	코드문자	FT_TEXT
+%R	15	TASK	user_field_15	바이트변환	FT_FLOAT
+%R	16	TASK	user_field_16	통화변환	FT_TEXT
+%R	17	TASK	user_field_17	날짜추출	FT_START_DATE
+%R	18	TASK	user_field_18	제곱근	FT_FLOAT
+%R	19	TASK	user_field_19	계산기간	FT_TEXT
+%R	20	TASK	user_field_20	검색여부	FT_TEXT
+%R	21	TASK	user_field_21	전체평가오류	FT_FLOAT
+%R	22	TASK	user_field_22	미설정결과	FT_FLOAT
+%R	23	TASK	user_field_23	혼합계산	FT_FLOAT
+%R	24	TASK	user_field_24	요약문자	FT_TEXT
+%R	25	TASK	user_field_25	정액상각	FT_FLOAT
+%R	26	TASK	user_field_26	연수상각	FT_FLOAT
+%R	27	TASK	user_field_27	마지막상각	FT_FLOAT
+%R	28	TASK	user_field_28	음수상각	FT_FLOAT
+%R	29	TASK	user_field_29	소수상각	FT_FLOAT
+%R	30	TASK	user_field_30	상각오류	FT_TEXT
+%R	31	TASK	user_field_31	상각미설정	FT_TEXT
+%R	32	TASK	user_field_32	상각요약	FT_FLOAT
+%R	33	TASK	user_field_33	상각혼합식	FT_FLOAT
+%R	34	PROJECT	user_field_34	프로젝트수	FT_FLOAT
+%R	35	PROJECT	user_field_35	프로젝트근	FT_FLOAT
+%R	36	PROJECT	user_field_36	프로젝트상각	FT_FLOAT
+%R	37	RSRC	user_field_37	자원비교	FT_FLOAT
+%R	38	RSRC	user_field_38	자원상각	FT_FLOAT
+%R	39	TASKRSRC	user_field_39	수신변환	FT_FLOAT
+%R	40	TASKRSRC	user_field_40	배정근	FT_FLOAT
+%R	41	TASKRSRC	user_field_41	상각전파	FT_FLOAT
+%R	42	TASKRSRC	user_field_42	배정상각	FT_FLOAT
+%T	UDFVALUE
+%F	udf_type_id	fk_id	proj_id	udf_date	udf_number	udf_text	udf_code_id
+%R	1	1	1			  Alpha가  	
+%R	1	2	1			Beta	
+%R	2	1	1		2.5		
+%R	2	2	1		3.5		
+%R	3	1	1			12.34	
+%R	3	2	1			2	
+%R	4	1	1			2026-11-13T09:30:12.123456	
+%R	4	2	1			2026-11-13T09:30:12.123456	
+%R	6	1	1			two	
+%R	6	2	1			four	
+%R	7	1	1		8		
+%R	7	2	1		0		
+%R	8	1	1		0		
+%R	8	2	1		0		
+%R	9	1	1			Alpha가  	
+%R	9	2	1			Beta	
+%R	10	1	1			  Alpha가	
+%R	10	2	1			Beta	
+%R	11	1	1			x  y	
+%R	11	2	1			x  y	
+%R	12	1	1			가가가	
+%R	12	2	1			가가가	
+%R	13	1	1		65		
+%R	13	2	1		65		
+%R	14	1	1			A!	
+%R	14	2	1			A!	
+%R	15	1	1		2		
+%R	15	2	1		4		
+%R	16	1	1			4.11	
+%R	16	2	1			0.67	
+%R	17	1	1	2026-11-13 00:00			
+%R	17	2	1	2026-11-13 00:00			
+%R	18	1	1		1.414214		
+%R	18	2	1		1.414214		
+%R	19	1	1			60 m	
+%R	19	2	1			60 m	
+%R	20	1	1			예	
+%R	20	2	1			아니요	
+%R	23	1	1		6		
+%R	23	2	1		12		
+%R	24	1	1			말단	
+%R	24	2	1			말단	
+%R	25	1	1		4.936		
+%R	25	2	1		0.571429		
+%R	26	1	1		30		
+%R	26	2	1		30		
+%R	27	1	1		6		
+%R	27	2	1		6		
+%R	28	1	1		-18		
+%R	28	2	1		-18		
+%R	29	1	1		0.333333		
+%R	29	2	1		0.333333		
+%R	32	1	1		20		
+%R	32	2	1		20		
+%R	33	1	1		9.872		
+%R	33	2	1		1.142858		
+%R	34	1	1		16		
+%R	35	1	1		4		
+%R	36	1	1		8		
+%R	37	1	1		0		
+%R	38	1	1		1		
+%R	39	1	1		2		
+%R	39	2	1		4		
+%R	40	1	1		4		
+%R	40	2	1		6		
+%R	41	1	1		4.936		
+%R	41	2	1		0.571429		
+%R	42	1	1		1.25		
+%R	42	2	1		1.75		
+%E

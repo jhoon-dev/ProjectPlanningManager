@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "schema": 46,
+  "oracle_vectors": 180,
+  "xml_cells_both_exports": 68,
+  "formula_definitions_both_exports": 30,
+  "xer_static_values": 30,
+  "archive_plans": 6,
+  "external_product_run": false,
+  "report_cells": 36,
+  "xlsx_sheets": 26,
+  "pdf_pages": 16,
+  "resource_sheets": 4
+}

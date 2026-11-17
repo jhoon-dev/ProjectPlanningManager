@@ -1,0 +1,11 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 32: assignment_periods_contract
+    Start 21: resource_productivity_curve_ui
+    Start 84: parser_seed_replay
+1/3 Test #21: resource_productivity_curve_ui ...   Passed    3.02 sec
+2/3 Test #84: parser_seed_replay ...............   Passed    4.75 sec
+3/3 Test #32: assignment_periods_contract ......   Passed    6.38 sec
+
+100% tests passed out of 3
+
+Total Test time (real) =   6.43 sec

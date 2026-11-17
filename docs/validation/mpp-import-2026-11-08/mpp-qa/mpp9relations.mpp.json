@@ -1,0 +1,171 @@
+{
+    "assignments": [
+    ],
+    "baselines": [
+    ],
+    "calculationProfile": "native-effort-split-v1",
+    "calendar": "standard-mon-fri-8h-v1",
+    "calendars": [
+        {
+            "holidays": [
+            ],
+            "id": "xml-cal-1",
+            "name": "Standard",
+            "periods": [
+                {
+                    "begin": 480,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    ],
+    "costEntries": [
+    ],
+    "costProfile": "cost-day-minor-half-up-v1",
+    "currency": "KRW",
+    "derivedFrom": "",
+    "documentId": "c1987393-8438-4dfa-81f8-34be7c2e9b62",
+    "holidays": [
+    ],
+    "name": "mpp9relations",
+    "progress": [
+    ],
+    "resources": [
+    ],
+    "revision": 1,
+    "scenarios": [
+    ],
+    "startDate": "2006-09-21",
+    "statusAt": null,
+    "taskCosts": [
+    ],
+    "tasks": [
+        {
+            "breaks": [
+            ],
+            "calendarId": "xml-cal-1",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 480,
+            "id": "xml-task-1",
+            "name": "Task 1",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xml-cal-1",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 480,
+            "id": "xml-task-2",
+            "name": "Task 2",
+            "predecessors": [
+                "xml-task-1"
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xml-cal-1",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+                {
+                    "lagMinutes": 480,
+                    "predecessorId": "xml-task-2",
+                    "type": "SS"
+                }
+            ],
+            "durationMinutes": 480,
+            "id": "xml-task-3",
+            "name": "Task 3",
+            "predecessors": [
+                "xml-task-2"
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xml-cal-1",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+                {
+                    "lagMinutes": 0,
+                    "predecessorId": "xml-task-3",
+                    "type": "FF"
+                }
+            ],
+            "durationMinutes": 480,
+            "id": "xml-task-4",
+            "name": "Task 4",
+            "predecessors": [
+                "xml-task-3"
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xml-cal-1",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+                {
+                    "lagMinutes": 0,
+                    "predecessorId": "xml-task-4",
+                    "type": "SF"
+                }
+            ],
+            "durationMinutes": 480,
+            "id": "xml-task-5",
+            "name": "Task 5",
+            "predecessors": [
+                "xml-task-4"
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "",
+            "workDriven": false,
+            "workUnitMinutes": null
+        }
+    ],
+    "wbsNodes": [
+    ]
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-ninja"
+	tests="2"
+	failures="1"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-61CPKLN"
+	time="12"
+	timestamp="2026-11-14T11:28:17"
+	>
+	<testcase name="xml_project_conversion_contract" classname="xml_project_conversion_contract" time="12.1054" status="fail">
+		<failure message="SEGFAULT"/>
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="xml_project_conversion_ui" classname="xml_project_conversion_ui" time="0.844216" status="run">
+		<properties/>
+		<system-out>PASS conversion UI: examples/async preview/save/undo/cancel and small layout
+</system-out>
+	</testcase>
+</testsuite>

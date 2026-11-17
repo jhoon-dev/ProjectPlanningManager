@@ -1,0 +1,7 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 20: resource_productivity_curve_contract
+1/1 Test #20: resource_productivity_curve_contract ...   Passed   42.93 sec
+
+100% tests passed out of 1
+
+Total Test time (real) =  43.00 sec

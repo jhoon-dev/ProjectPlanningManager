@@ -1,6 +1,8 @@
 #include "persistence/JsonWorkspaceStore.h"
+#include "persistence/GovernanceJson.h"
 #include "persistence/WorkspaceFile.h"
 #include "persistence/NativeFilePath.h"
+#include "formatting/PlanTokens.h"
 #include <QCryptographicHash>
 #include <QDir>
 #include <QFile>
@@ -10,6 +12,7 @@
 #include <QJsonObject>
 #include <QSaveFile>
 #include <cmath>
+#include <algorithm>
 
 namespace jobs {
 namespace {
@@ -68,6 +71,21 @@ std::optional<int> units(const QJsonValue &value) {
 QJsonValue units(std::optional<int> value) {
     return value ? QJsonValue(*value) : QJsonValue(QJsonValue::Null);
 }
+int schema(const Workspace &w) {
+    if (std::any_of(w.resources.begin(), w.resources.end(), hasSharedResourceAvailability))
+        return 4;
+    return w.governance != Governance{} ? 3 : (w.links.empty() && w.integrated == IntegratedOptions{} ? 1 : 2);
+}
+QJsonValue stamp(const std::optional<std::string> &value) {
+    return value ? QJsonValue(qs(*value)) : QJsonValue(QJsonValue::Null);
+}
+std::optional<std::string> stamp(const QJsonValue &value) {
+    if (value.isNull())
+        return {};
+    if (!value.isString() || !validStamp(str(value.toString())))
+        invalid("availability timestamp");
+    return str(value.toString());
+}
 QByteArray read(const std::string &path) {
     QFile file(qs(path));
     if (!file.open(QIODevice::ReadOnly))
@@ -82,6 +100,7 @@ QByteArray read(const std::string &path) {
     return bytes;
 }
 QJsonObject encode(const Workspace &workspace, const QDir &directory) {
+    const auto version = schema(workspace);
     QJsonArray projects, resources, bindings;
     for (const auto &reference : workspace.projects)
         projects.append(QJsonObject{{"documentId", qs(reference.documentId)},
@@ -97,19 +116,49 @@ QJsonObject encode(const Workspace &workspace, const QDir &directory) {
             periods.append(QJsonObject{{"begin", period.begin}, {"end", period.end}});
         for (const auto &day : resource.calendar.holidays)
             holidays.append(qs(day));
-        resources.append(QJsonObject{
+        QJsonObject encoded{
             {"id", qs(resource.id)},
             {"name", qs(resource.name)},
             {"type", qs(resource.type)},
             {"maxUnits", units(resource.maxUnits)},
             {"exceptions", exceptions},
-            {"calendar", QJsonObject{{"weekdays", weekdays}, {"periods", periods}, {"holidays", holidays}}}});
+            {"calendar", QJsonObject{{"weekdays", weekdays}, {"periods", periods}, {"holidays", holidays}}}};
+        if (version >= 4) {
+            QJsonArray availability;
+            for (const auto &period : resource.availability)
+                availability.append(QJsonObject{
+                    {"from", stamp(period.from)}, {"to", stamp(period.to)}, {"units", units(period.units)}});
+            encoded["availableFrom"] = stamp(resource.availableFrom);
+            encoded["availableTo"] = stamp(resource.availableTo);
+            encoded["availability"] = availability;
+        }
+        resources.append(encoded);
     }
     for (const auto &binding : workspace.bindings)
         bindings.append(QJsonObject{{"projectId", qs(binding.projectId)},
                                     {"resourceId", qs(binding.resourceId)},
                                     {"sharedId", qs(binding.sharedId)}});
-    return {{"id", qs(workspace.id)}, {"projects", projects}, {"resources", resources}, {"bindings", bindings}};
+    QJsonObject result{
+        {"id", qs(workspace.id)}, {"projects", projects}, {"resources", resources}, {"bindings", bindings}};
+    if (version >= 2) {
+        QJsonArray links;
+        for (const auto &l : workspace.links)
+            links.append(QJsonObject{{"id", qs(l.id)},
+                                     {"predecessorProjectId", qs(l.predecessorProjectId)},
+                                     {"predecessorTaskId", qs(l.predecessorTaskId)},
+                                     {"successorProjectId", qs(l.successorProjectId)},
+                                     {"successorTaskId", qs(l.successorTaskId)},
+                                     {"type", qs(enumToken(l.type))},
+                                     {"lagMinutes", qint64(l.lagMinutes)}});
+        result["links"] = links;
+        result["integrated"] = QJsonObject{{"forecast", workspace.integrated.forecast},
+                                           {"levelShared", workspace.integrated.levelShared},
+                                           {"priority", qs(workspace.integrated.priority)},
+                                           {"horizonWorkDays", workspace.integrated.horizonWorkDays}};
+    }
+    if (version >= 3)
+        result["governance"] = encodeGovernance(workspace.governance);
+    return result;
 }
 } // namespace
 Workspace decodeWorkspaceFile(const QByteArray &bytes, const QString &baseDirectory) {
@@ -123,12 +172,21 @@ Workspace decodeWorkspaceFile(const QByteArray &bytes, const QString &baseDirect
     keys(root, {"format", "schemaVersion", "payload", "sha256"});
     if (root.value("format") != "JOBS-WORKSPACE")
         invalid("format");
-    if (root.value("schemaVersion") != QJsonValue(1))
+    if (root.value("schemaVersion") != QJsonValue(1) && root.value("schemaVersion") != QJsonValue(2) &&
+        root.value("schemaVersion") != QJsonValue(3) && root.value("schemaVersion") != QJsonValue(4))
         throw AppError(ErrorCode::FILE_VERSION_UNSUPPORTED);
     const auto payload = object(root.value("payload"));
     if (text(root, "sha256") != fingerprint(QJsonDocument(payload).toJson(QJsonDocument::Compact)))
         throw AppError(ErrorCode::FILE_INTEGRITY_FAILED);
-    keys(payload, {"id", "projects", "resources", "bindings"});
+    const bool availability = root.value("schemaVersion") == QJsonValue(4);
+    const bool governed = availability || root.value("schemaVersion") == QJsonValue(3);
+    const bool extended = governed || root.value("schemaVersion") == QJsonValue(2);
+    if (governed)
+        keys(payload, {"id", "projects", "resources", "bindings", "links", "integrated", "governance"});
+    else if (extended)
+        keys(payload, {"id", "projects", "resources", "bindings", "links", "integrated"});
+    else
+        keys(payload, {"id", "projects", "resources", "bindings"});
     Workspace workspace;
     workspace.id = text(payload, "id");
     const QDir directory(baseDirectory);
@@ -144,12 +202,26 @@ Workspace decodeWorkspaceFile(const QByteArray &bytes, const QString &baseDirect
     }
     for (const auto &item : array(payload, "resources", 1000)) {
         const auto value = object(item);
-        keys(value, {"id", "name", "type", "maxUnits", "exceptions", "calendar"});
+        if (availability)
+            keys(value, {"id", "name", "type", "maxUnits", "exceptions", "calendar", "availableFrom", "availableTo",
+                         "availability"});
+        else
+            keys(value, {"id", "name", "type", "maxUnits", "exceptions", "calendar"});
         SharedResource resource;
         resource.id = text(value, "id");
         resource.name = text(value, "name", limit);
         resource.type = text(value, "type");
         resource.maxUnits = units(value.value("maxUnits"));
+        if (availability) {
+            resource.availableFrom = stamp(value.value("availableFrom"));
+            resource.availableTo = stamp(value.value("availableTo"));
+            for (const auto &entry : array(value, "availability", 10000)) {
+                const auto period = object(entry);
+                keys(period, {"from", "to", "units"});
+                resource.availability.push_back(
+                    {stamp(period.value("from")), stamp(period.value("to")), units(period.value("units"))});
+            }
+        }
         for (const auto &day : array(value, "exceptions", 10000)) {
             const auto entry = object(day);
             keys(entry, {"date", "units"});
@@ -179,6 +251,30 @@ Workspace decodeWorkspaceFile(const QByteArray &bytes, const QString &baseDirect
         keys(value, {"projectId", "resourceId", "sharedId"});
         workspace.bindings.push_back({text(value, "projectId"), text(value, "resourceId"), text(value, "sharedId")});
     }
+    if (extended) {
+        for (const auto &item : array(payload, "links", 10000)) {
+            const auto o = object(item);
+            keys(o, {"id", "predecessorProjectId", "predecessorTaskId", "successorProjectId", "successorTaskId", "type",
+                     "lagMinutes"});
+            const auto token = text(o, "type");
+            const auto type = token == "FS"   ? DependencyType::FS
+                              : token == "SS" ? DependencyType::SS
+                              : token == "FF" ? DependencyType::FF
+                              : token == "SF" ? DependencyType::SF
+                                              : throw AppError(ErrorCode::DEPENDENCY_RULE_INVALID);
+            workspace.links.push_back({text(o, "id"), text(o, "predecessorProjectId"), text(o, "predecessorTaskId"),
+                                       text(o, "successorProjectId"), text(o, "successorTaskId"), type,
+                                       integer(o["lagMinutes"], -5000000, 5000000)});
+        }
+        const auto o = object(payload["integrated"]);
+        keys(o, {"forecast", "levelShared", "priority", "horizonWorkDays"});
+        if (!o["forecast"].isBool() || !o["levelShared"].isBool())
+            invalid("integrated bool");
+        workspace.integrated = {o["forecast"].toBool(), o["levelShared"].toBool(), text(o, "priority"),
+                                integer(o["horizonWorkDays"], 1, 5200)};
+    }
+    if (governed)
+        workspace.governance = decodeGovernance(object(payload["governance"]));
     validateWorkspace(workspace, true);
     return workspace;
 }
@@ -215,7 +311,7 @@ std::string JsonWorkspaceStore::save(const std::string &inputPath, const Workspa
     const auto payload = encode(workspace, QFileInfo(qs(path)).dir());
     const auto bytes =
         QJsonDocument(QJsonObject{{"format", "JOBS-WORKSPACE"},
-                                  {"schemaVersion", 1},
+                                  {"schemaVersion", schema(workspace)},
                                   {"payload", payload},
                                   {"sha256", QString::fromStdString(
                                                  fingerprint(QJsonDocument(payload).toJson(QJsonDocument::Compact)))}})

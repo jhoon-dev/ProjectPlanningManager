@@ -1,0 +1,137 @@
+{
+    "assignments": [
+        {
+            "overtimeMinor": 2034,
+            "overtimeWork": 3000,
+            "regularMinor": 9012,
+            "regularWork": 19500,
+            "resourceId": "xer-resource-99",
+            "taskId": "xer-task-20"
+        },
+        {
+            "overtimeMinor": 0,
+            "overtimeWork": 0,
+            "regularMinor": 0,
+            "regularWork": 0,
+            "resourceId": "xer-resource-99",
+            "taskId": "xer-task-30"
+        }
+    ],
+    "currency": "USD",
+    "importedAt": "2026-11-08T09:37:43Z",
+    "periods": [
+        {
+            "actualMinor": 7012,
+            "bcwp": null,
+            "bcws": null,
+            "equipmentMinor": null,
+            "equipmentWork": null,
+            "expenseMinor": null,
+            "finish": "2026-10-26 23:59",
+            "laborMinor": null,
+            "laborWork": null,
+            "materialMinor": null,
+            "resourceId": "xer-resource-99",
+            "start": "2026-10-19 00:00",
+            "taskId": "xer-task-20",
+            "work": 12000
+        },
+        {
+            "actualMinor": 3034,
+            "bcwp": null,
+            "bcws": null,
+            "equipmentMinor": null,
+            "equipmentWork": null,
+            "expenseMinor": null,
+            "finish": "2026-10-28 23:59",
+            "laborMinor": null,
+            "laborWork": null,
+            "materialMinor": null,
+            "resourceId": "xer-resource-99",
+            "start": "2026-10-28 00:00",
+            "taskId": "xer-task-20",
+            "work": 7500
+        },
+        {
+            "actualMinor": null,
+            "bcwp": 999900,
+            "bcws": 888800,
+            "equipmentMinor": 0,
+            "equipmentWork": null,
+            "expenseMinor": 234,
+            "finish": "2026-10-26 23:59",
+            "laborMinor": 7012,
+            "laborWork": null,
+            "materialMinor": 0,
+            "resourceId": "",
+            "start": "2026-10-19 00:00",
+            "taskId": "xer-task-20",
+            "work": null
+        },
+        {
+            "actualMinor": null,
+            "bcwp": 999900,
+            "bcws": 888800,
+            "equipmentMinor": 0,
+            "equipmentWork": null,
+            "expenseMinor": 300,
+            "finish": "2026-10-28 23:59",
+            "laborMinor": 3034,
+            "laborWork": null,
+            "materialMinor": 0,
+            "resourceId": "",
+            "start": "2026-10-28 00:00",
+            "taskId": "xer-task-20",
+            "work": null
+        }
+    ],
+    "projectId": "100",
+    "projectionSha256": "ed166c9dbff7e3277c781bba48f6823fe753f84261e08c80f28e10aa7fb2d234",
+    "resources": [
+        {
+            "id": "xer-resource-99",
+            "name": "설계자 <1>",
+            "type": "labor"
+        },
+        {
+            "id": "xer-resource-100",
+            "name": "크레인",
+            "type": "equipment"
+        }
+    ],
+    "sourceName": "original.xer",
+    "sourceSha256": "384625ce37fb418a20fcd17d8a62b8893c6a30be0079710ef1144be4b31faa0a",
+    "statusAt": "2026-10-28 18:00",
+    "tasks": [
+        {
+            "actualMinor": 12280,
+            "id": "xer-task-20",
+            "name": "A 설계"
+        },
+        {
+            "actualMinor": 0,
+            "id": "xer-task-30",
+            "name": "B 개발"
+        },
+        {
+            "actualMinor": null,
+            "id": "xer-task-40",
+            "name": "C SS"
+        },
+        {
+            "actualMinor": null,
+            "id": "xer-task-50",
+            "name": "D FF"
+        },
+        {
+            "actualMinor": null,
+            "id": "xer-task-60",
+            "name": "E SF"
+        },
+        {
+            "actualMinor": null,
+            "id": "xer-task-70",
+            "name": "완료점"
+        }
+    ]
+}

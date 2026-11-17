@@ -1,4 +1,5 @@
 #include "ParserHarness.h"
+#include "domain/NativeSchema.h"
 #include "persistence/ProjectFile.h"
 #include "persistence/ProjectJson.h"
 #include "persistence/ProjectXml.h"
@@ -28,14 +29,17 @@ ProbeResult probe(std::string_view parser, const QByteArray &bytes) {
         if (json.isObject()) {
             const auto root = json.object();
             const auto body = root.value("payload").isObject() ? root.value("payload").toObject() : root;
-            for (int schema = 1; schema <= 9; ++schema)
+            for (int schema = 1; schema <= maximumNativeSchema; ++schema)
                 attempt(result, [&] { (void)json::decodeProject(body, schema); });
         }
     } else if (parser == "xml") {
         attempt(result, [&] { (void)importProjectXml(bytes, "fuzz.xml"); });
     } else if (parser == "xer") {
         for (auto encoding : {XerEncoding::Utf8, XerEncoding::Windows1252})
-            attempt(result, [&] { (void)importPrimaveraXer(bytes, "fuzz.xer", encoding); });
+            attempt(result, [&] {
+                const auto projects = listPrimaveraXerProjects(bytes, encoding);
+                (void)importPrimaveraXer(bytes, "fuzz.xer", encoding, projects.front().id);
+            });
     } else if (parser == "workspace") {
         attempt(result, [&] { (void)decodeWorkspaceFile(bytes, QStringLiteral("/fuzz")); });
     } else {

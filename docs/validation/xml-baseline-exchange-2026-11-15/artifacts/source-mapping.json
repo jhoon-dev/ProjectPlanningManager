@@ -1,0 +1,417 @@
+{
+    "baselineReview": {
+        "defaultAdopted": false,
+        "rows": [
+            {
+                "id": "",
+                "issue": "",
+                "kind": "project",
+                "number": 1,
+                "xmlUid": "0"
+            },
+            {
+                "id": "xml-wbs-1",
+                "issue": "",
+                "kind": "wbs",
+                "number": 1,
+                "xmlUid": "1"
+            },
+            {
+                "id": "xml-task-2",
+                "issue": "",
+                "kind": "task",
+                "number": 0,
+                "xmlUid": "2"
+            },
+            {
+                "id": "xml-task-2",
+                "issue": "",
+                "kind": "task",
+                "number": 2,
+                "xmlUid": "2"
+            },
+            {
+                "id": "xml-task-2",
+                "issue": "",
+                "kind": "task",
+                "number": 3,
+                "xmlUid": "2"
+            },
+            {
+                "id": "xml-task-2",
+                "issue": "",
+                "kind": "task",
+                "number": 4,
+                "xmlUid": "2"
+            },
+            {
+                "id": "xml-task-2",
+                "issue": "",
+                "kind": "task",
+                "number": 5,
+                "xmlUid": "2"
+            },
+            {
+                "id": "xml-task-2",
+                "issue": "",
+                "kind": "task",
+                "number": 6,
+                "xmlUid": "2"
+            },
+            {
+                "id": "xml-task-2",
+                "issue": "",
+                "kind": "task",
+                "number": 7,
+                "xmlUid": "2"
+            },
+            {
+                "id": "xml-task-2",
+                "issue": "",
+                "kind": "task",
+                "number": 8,
+                "xmlUid": "2"
+            },
+            {
+                "id": "xml-task-2",
+                "issue": "",
+                "kind": "task",
+                "number": 9,
+                "xmlUid": "2"
+            },
+            {
+                "id": "xml-task-2",
+                "issue": "",
+                "kind": "task",
+                "number": 10,
+                "xmlUid": "2"
+            },
+            {
+                "id": "xml-task-2",
+                "issue": "",
+                "kind": "task",
+                "number": 1,
+                "xmlUid": "2"
+            },
+            {
+                "id": "xml-task-3",
+                "issue": "",
+                "kind": "task",
+                "number": 1,
+                "xmlUid": "3"
+            },
+            {
+                "id": "xml-resource-1",
+                "issue": "",
+                "kind": "resource",
+                "number": 1,
+                "xmlUid": "1"
+            },
+            {
+                "id": "xml-task-2",
+                "issue": "",
+                "kind": "assignment",
+                "number": 1,
+                "xmlUid": "1"
+            }
+        ]
+    },
+    "companionPolicy": "원본과 진단은 이 폴더의 동반 파일입니다. .ppm 사본 저장/이동 시 자동 복제되지 않습니다.",
+    "compatibility": {
+        "externalRoundTrip": "unverified",
+        "import": "mapped-subset",
+        "jobsRecomputation": "unverified",
+        "originalPreservation": "exact-xml-bytes"
+    },
+    "contract": "jobs-mspdi-plan-v1",
+    "diagnostics": [
+        {
+            "message": "기간 기반 계획 변환입니다. 원본 날짜·공수·실적·비용의 계산 동등성은 미검증입니다.",
+            "path": "/Project"
+        },
+        {
+            "message": "프로젝트 달력을 수입 작업/자원에 명시 배정합니다. 이후 새 작업은 PPM 기본 달력을 사용합니다.",
+            "path": "/Project/Calendars"
+        },
+        {
+            "message": "프로젝트 요약 · 실행 작업으로 변환하지 않음",
+            "path": "/Project/Tasks[1]/Task[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/CurrencyDigits[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/DefaultStartTime[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/DefaultFinishTime[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/MinutesPerDay[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/MinutesPerWeek[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Name[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[1]/Summary[1]"
+        },
+        {
+            "message": "외부 기준선 후보 · 기본 미채택 · 번호별 검토에서 값과 지원 여부 확인",
+            "path": "/Project/Tasks[1]/Task[1]/Baseline[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/ID[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/Type[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/DurationFormat[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[2]/Milestone[1]"
+        },
+        {
+            "message": "외부 기준선 후보 · 기본 미채택 · 번호별 검토에서 값과 지원 여부 확인",
+            "path": "/Project/Tasks[1]/Task[2]/Baseline[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[3]/ID[1]"
+        },
+        {
+            "message": "외부 기준선 후보 · 기본 미채택 · 번호별 검토에서 값과 지원 여부 확인",
+            "path": "/Project/Tasks[1]/Task[3]/Baseline[1]"
+        },
+        {
+            "message": "외부 기준선 후보 · 기본 미채택 · 번호별 검토에서 값과 지원 여부 확인",
+            "path": "/Project/Tasks[1]/Task[3]/Baseline[2]"
+        },
+        {
+            "message": "외부 기준선 후보 · 기본 미채택 · 번호별 검토에서 값과 지원 여부 확인",
+            "path": "/Project/Tasks[1]/Task[3]/Baseline[3]"
+        },
+        {
+            "message": "외부 기준선 후보 · 기본 미채택 · 번호별 검토에서 값과 지원 여부 확인",
+            "path": "/Project/Tasks[1]/Task[3]/Baseline[4]"
+        },
+        {
+            "message": "외부 기준선 후보 · 기본 미채택 · 번호별 검토에서 값과 지원 여부 확인",
+            "path": "/Project/Tasks[1]/Task[3]/Baseline[5]"
+        },
+        {
+            "message": "외부 기준선 후보 · 기본 미채택 · 번호별 검토에서 값과 지원 여부 확인",
+            "path": "/Project/Tasks[1]/Task[3]/Baseline[6]"
+        },
+        {
+            "message": "외부 기준선 후보 · 기본 미채택 · 번호별 검토에서 값과 지원 여부 확인",
+            "path": "/Project/Tasks[1]/Task[3]/Baseline[7]"
+        },
+        {
+            "message": "외부 기준선 후보 · 기본 미채택 · 번호별 검토에서 값과 지원 여부 확인",
+            "path": "/Project/Tasks[1]/Task[3]/Baseline[8]"
+        },
+        {
+            "message": "외부 기준선 후보 · 기본 미채택 · 번호별 검토에서 값과 지원 여부 확인",
+            "path": "/Project/Tasks[1]/Task[3]/Baseline[9]"
+        },
+        {
+            "message": "외부 기준선 후보 · 기본 미채택 · 번호별 검토에서 값과 지원 여부 확인",
+            "path": "/Project/Tasks[1]/Task[3]/Baseline[10]"
+        },
+        {
+            "message": "외부 기준선 후보 · 기본 미채택 · 번호별 검토에서 값과 지원 여부 확인",
+            "path": "/Project/Tasks[1]/Task[3]/Baseline[11]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[4]/ID[1]"
+        },
+        {
+            "message": "외부 기준선 후보 · 기본 미채택 · 번호별 검토에서 값과 지원 여부 확인",
+            "path": "/Project/Tasks[1]/Task[4]/Baseline[1]"
+        },
+        {
+            "message": "매핑하지 않음 · 원본 XML에 보존",
+            "path": "/Project/Tasks[1]/Task[5]/ID[1]"
+        },
+        {
+            "message": "외부 기준선 후보 · 기본 미채택 · 번호별 검토에서 값과 지원 여부 확인",
+            "path": "/Project/Resources[1]/Resource[1]/Baseline[1]"
+        },
+        {
+            "message": "외부 기준선 후보 · 기본 미채택 · 번호별 검토에서 값과 지원 여부 확인",
+            "path": "/Project/Assignments[1]/Assignment[1]/Baseline[1]"
+        }
+    ],
+    "direction": "import",
+    "documentId": "63ae550a-ab37-4685-83ed-bbd5c2ae5a4e",
+    "format": "Microsoft Project XML",
+    "mapping": [
+        {
+            "jobsId": "xml-cal-1",
+            "kind": "calendar",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "xml-wbs-1",
+            "kind": "wbs",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "xml-task-2",
+            "kind": "task",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "xml-task-3",
+            "kind": "task",
+            "xmlUid": "3"
+        },
+        {
+            "jobsId": "xml-task-4",
+            "kind": "task",
+            "xmlUid": "4"
+        },
+        {
+            "jobsId": "xml-resource-1",
+            "kind": "resource",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "xml-task-2/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "xml-task-3/xml-resource-1",
+            "kind": "assignment",
+            "xmlUid": "2"
+        },
+        {
+            "externalId": "188743732",
+            "jobsId": "xml-udf-TASK-188743732",
+            "kind": "udf",
+            "name": "TS",
+            "scope": "TASK",
+            "type": "start"
+        },
+        {
+            "externalId": "188743767",
+            "jobsId": "xml-udf-TASK-188743767",
+            "kind": "udf",
+            "name": "TD",
+            "scope": "TASK",
+            "type": "number"
+        },
+        {
+            "externalId": "188743783",
+            "jobsId": "xml-udf-TASK-188743783",
+            "kind": "udf",
+            "name": "TDF",
+            "scope": "TASK",
+            "type": "duration"
+        },
+        {
+            "externalId": "188743768",
+            "jobsId": "xml-udf-TASK-188743768",
+            "kind": "udf",
+            "name": "TW",
+            "scope": "TASK",
+            "type": "number"
+        },
+        {
+            "externalId": "188743786",
+            "jobsId": "xml-udf-TASK-188743786",
+            "kind": "udf",
+            "name": "TC",
+            "scope": "TASK",
+            "type": "cost"
+        },
+        {
+            "externalId": "190873600",
+            "jobsId": "xml-udf-PROJECT-190873600",
+            "kind": "udf",
+            "name": "PD",
+            "representation": "hex-element",
+            "scope": "PROJECT",
+            "type": "number",
+            "xmlFieldName": "PD",
+            "xmlGuid": "e172d78a-94e3-56b2-80fc-18b2f8ab0724"
+        },
+        {
+            "externalId": "190873601",
+            "jobsId": "xml-udf-PROJECT-190873601",
+            "kind": "udf",
+            "name": "PW",
+            "representation": "hex-element",
+            "scope": "PROJECT",
+            "type": "number",
+            "xmlFieldName": "PW",
+            "xmlGuid": "7ded80d5-d03b-5ccd-9c6b-f08ed3707202"
+        },
+        {
+            "externalId": "205521008",
+            "jobsId": "xml-udf-RSRC-205521008",
+            "kind": "udf",
+            "name": "RW",
+            "scope": "RSRC",
+            "type": "number"
+        },
+        {
+            "externalId": "255885312",
+            "jobsId": "xml-udf-ASSIGNMENT-255885312",
+            "kind": "udf",
+            "name": "AW",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "number",
+            "xmlFieldName": "AW",
+            "xmlGuid": "4e7ced57-f1d2-5d4b-8cc2-ec2daf2c4584"
+        },
+        {
+            "externalId": "255885313",
+            "jobsId": "xml-udf-ASSIGNMENT-255885313",
+            "kind": "udf",
+            "name": "TW",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "number",
+            "xmlFieldName": "TW",
+            "xmlGuid": "0ed9bfd7-fbd2-5282-9c08-1d5bc1347468"
+        }
+    ],
+    "namespace": "http://schemas.microsoft.com/project",
+    "nativeSnapshotProfile": "native-effort-split-v1",
+    "revision": "1",
+    "source": {
+        "buildNumber": "",
+        "name": "external-baselines.xml",
+        "producer": "unverified",
+        "saveVersion": "12",
+        "sha256": "f4541b226370d8275e676c8b746d4121435dba6d113d8c9968e25f9d0f87abfa"
+    },
+    "targetPolicy": {
+        "calculationProfile": "native-effort-split-v1",
+        "lagCalendar": "successor-working-calendar",
+        "projectStartAnchor": "09:00"
+    }
+}

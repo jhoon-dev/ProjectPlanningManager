@@ -1,0 +1,1 @@
+PASS resource productivity/curves: integer quantity-to-work, 72 independent minute curves, task-type maintenance, original plans/facts, schema36, cancel/stale/readonly, named and custom XML/XER readback, real report artifacts

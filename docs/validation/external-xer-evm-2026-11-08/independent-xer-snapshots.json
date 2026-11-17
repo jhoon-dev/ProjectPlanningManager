@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "schema": 25,
+  "snapshot_work_hours": "3.75",
+  "source_period_work_hours": "3.25",
+  "undated_work_hours": "0.50",
+  "native_dated_work_hours": "1.25",
+  "cumulative_ac_usd": "122.80",
+  "native_allocated_ac_usd": "33.34",
+  "native_evm_includes_external_bcwp": false,
+  "readers": [
+    "TSV/Decimal",
+    "native SHA256 and projection SHA256",
+    "MPXJ16.10.0 strict"
+  ],
+  "external_p6_execution": "not run"
+}

@@ -1,0 +1,28 @@
+{
+  "status": "success",
+  "ctest": {
+    "passed": 99,
+    "total": 99,
+    "seconds": 316.85,
+    "source_sha256": "1924edfb43ad0b562509629a6a2b4e775f0fb24c7b3c4e91518f39f9b4fca5bd"
+  },
+  "parser_seeds": 148,
+  "format": {
+    "tool": "clang-format version 18.1.8",
+    "files": 177,
+    "changes": 0
+  },
+  "independent_readers": [
+    "assignment-periods",
+    "object-fields",
+    "task-classification",
+    "leveling-decisions",
+    "leveling-float",
+    "leveling-selection-exports",
+    "progress-leveling",
+    "repartition-float",
+    "segment-leveling-float"
+  ],
+  "source_files": 220,
+  "source_sha256": "1924edfb43ad0b562509629a6a2b4e775f0fb24c7b3c4e91518f39f9b4fca5bd"
+}

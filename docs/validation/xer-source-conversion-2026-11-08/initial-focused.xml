@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-ninja"
+	tests="2"
+	failures="2"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-61CPKLN"
+	time="0"
+	timestamp="2026-11-08T18:28:46"
+	>
+	<testcase name="xer_source_conversion_contract" classname="xer_source_conversion_contract" time="0.692702" status="fail">
+		<failure message="Failed"/>
+		<properties/>
+		<system-out>FILE_PRIMAVERAXER_080
+</system-out>
+	</testcase>
+	<testcase name="parser_seed_replay" classname="parser_seed_replay" time="0.680061" status="fail">
+		<failure message="Failed"/>
+		<properties/>
+		<system-out>FAIL: external EVM envelope version accepted
+</system-out>
+	</testcase>
+</testsuite>

@@ -1,6 +1,7 @@
 #include "formatting/QtDiagnosticText.h"
 #include "persistence/JsonProjectStore.h"
 #include "persistence/ProjectJson.h"
+#include "domain/Classification.h"
 #include "persistence/ProjectFile.h"
 #include "persistence/NativeFilePath.h"
 #include <QCryptographicHash>
@@ -85,7 +86,7 @@ StoredProject JsonProjectStore::load(const std::string &path) const {
     requireNativeFilePath(qs(path), "ppm");
     auto bytes = read(qs(path));
     auto project = decodeProjectFile(bytes);
-    const bool legacy = QJsonDocument::fromJson(bytes).object().value("schemaVersion") != QJsonValue(9);
+    const bool legacy = QJsonDocument::fromJson(bytes).object().value("schemaVersion").toInt() < 9;
     return {std::move(project), hash(bytes).toStdString(), legacy};
 }
 std::string JsonProjectStore::save(const std::string &path, const Project &project, const std::string &expected) {
@@ -95,7 +96,7 @@ std::string JsonProjectStore::save(const std::string &path, const Project &proje
     auto bytes =
         QJsonDocument(
             QJsonObject{{"format", "JOBS"},
-                        {"schemaVersion", 9},
+                        {"schemaVersion", nativeSchemaFor(project)},
                         {"payload", body},
                         {"sha256", QString::fromLatin1(hash(QJsonDocument(body).toJson(QJsonDocument::Compact)))}})
             .toJson();

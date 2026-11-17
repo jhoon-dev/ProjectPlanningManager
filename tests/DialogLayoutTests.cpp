@@ -145,7 +145,7 @@ private slots:
                 dialog->resize(next);
                 QTest::qWait(10);
                 QTRY_COMPARE(dashboard->horizontalScrollBar()->maximum(), 0);
-                QCOMPARE(dashboard->widget()->findChildren<QFrame *>("reportKpiCard").size(), 12);
+                QCOMPARE(dashboard->widget()->findChildren<QFrame *>("reportKpiCard").size(), 13);
             }
             // Missing values remain readable on the highlighted cells in both palettes.
             auto *costs = dialog->findChild<QTableView *>("costs");

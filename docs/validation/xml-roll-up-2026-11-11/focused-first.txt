@@ -1,0 +1,45 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+      Start  36: xml_date_time_contract
+      Start  42: enterprise_udf_contract
+      Start  40: xml_lookup_contract
+      Start  30: xml_roll_up_contract
+ 1/17 Test  #36: xml_date_time_contract ...........   Passed    3.91 sec
+      Start  51: object_fields_ui
+ 2/17 Test  #30: xml_roll_up_contract .............   Passed    2.87 sec
+      Start  38: xml_field_types_contract
+ 3/17 Test  #42: enterprise_udf_contract ..........   Passed    4.60 sec
+      Start  32: xml_roll_down_contract
+ 4/17 Test  #40: xml_lookup_contract ..............   Passed    4.16 sec
+      Start  34: xml_code_mask_contract
+ 5/17 Test  #51: object_fields_ui .................   Passed    3.20 sec
+      Start  50: object_fields_contract
+ 6/17 Test  #38: xml_field_types_contract .........   Passed    2.94 sec
+      Start  43: enterprise_udf_ui
+ 7/17 Test  #32: xml_roll_down_contract ...........   Passed    2.62 sec
+      Start  35: xml_code_mask_ui
+ 8/17 Test  #34: xml_code_mask_contract ...........   Passed    2.32 sec
+      Start  41: xml_lookup_ui
+ 9/17 Test  #35: xml_code_mask_ui .................   Passed    1.07 sec
+      Start  31: xml_roll_up_ui
+10/17 Test  #41: xml_lookup_ui ....................   Passed    1.12 sec
+      Start 100: parser_seed_replay
+11/17 Test  #43: enterprise_udf_ui ................   Passed    1.80 sec
+      Start  39: xml_field_types_ui
+12/17 Test  #50: object_fields_contract ...........   Passed    2.53 sec
+      Start  37: xml_date_time_ui
+13/17 Test  #31: xml_roll_up_ui ...................   Passed    1.04 sec
+      Start  33: xml_roll_down_ui
+14/17 Test  #39: xml_field_types_ui ...............   Passed    1.08 sec
+15/17 Test  #33: xml_roll_down_ui .................   Passed    0.82 sec
+16/17 Test  #37: xml_date_time_ui .................   Passed    0.97 sec
+17/17 Test #100: parser_seed_replay ...............***Failed    5.34 sec
+FAIL: invalid seed was accepted: summary-roll-up-old.ppm
+
+
+94% tests passed, 1 tests failed out of 17
+
+Total Test time (real) =  14.25 sec
+
+The following tests FAILED:
+	100 - parser_seed_replay (Failed)
+Errors while running CTest

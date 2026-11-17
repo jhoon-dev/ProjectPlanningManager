@@ -1,0 +1,15 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+    Start  72: remaining_availability_contract
+    Start 186: shared_resource_intervals
+1/5 Test #186: shared_resource_intervals .........   Passed    0.72 sec
+    Start  73: remaining_availability_ui
+2/5 Test  #73: remaining_availability_ui .........   Passed    1.07 sec
+    Start  70: shared_availability_contract
+3/5 Test  #72: remaining_availability_contract ...   Passed    3.40 sec
+    Start  71: shared_availability_ui
+4/5 Test  #70: shared_availability_contract ......   Passed    2.02 sec
+5/5 Test  #71: shared_availability_ui ............   Passed    1.40 sec
+
+100% tests passed out of 5
+
+Total Test time (real) =   4.88 sec

@@ -1,0 +1,147 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-11-08T16:50:35.302956+09:00",
+  "environment": "Windows x64, Qt6.8.3, MinGW13.1, Release/Ninja",
+  "source_revision": "6a1cd0a5115f3400d6cee4e5d5df795f351195ea",
+  "working_tree_changes_included": true,
+  "source_sha256": "52fcf51b3137516b186a2751336aebaf152c745366006000321ab0b941666c76",
+  "test_source_sha256": {
+    "tests/ExternalEvmTests.cpp": "6819dc60bcff972aed9ba1bfb58a6184603010293ff1db1f92cddbf9d5629180",
+    "tests/ExternalEvmUiTests.cpp": "d9bd3b0344e797de60777bca47cf900bb98430dbcd1b13d2ce82edc4771202bf",
+    "tests/ExternalEvmFixture.h": "47ee15006d65e9364014efabb1ff91fd7779d4397eb087fc8e31c4ddbcf2d451",
+    "tests/fuzz/ParserHarness.cpp": "2b052ec018641f924e196b4b385fa36af2570baffe4aba9de96bcd81802d850f",
+    "tests/fuzz/ParserSeeds.cpp": "40deb4791c4d7f8edf74a06e7581bc18a02a810293e9871b38034b950d828c32",
+    "scripts/verify-external-xer-evm.py": "b9026a67f25f31f77fc8cd30a09d0ea695831313ee714fca1a62187e50023575"
+  },
+  "binaries": {
+    "PPM.exe": "9383abc11cca7f101c1864d72eb2d413e5a0369c4734929465a702033b912624",
+    "PPM-Automation.exe": "0a38af121f339547073ee7f1995cca70ece0aaf436010bd6795a1753ab56ea54",
+    "jobs_external_evm_tests.exe": "3f04d12205da3bab2d142dd0a8f5656c331627d80a137595da74e46f5f056404",
+    "jobs_external_evm_ui_tests.exe": "4002d53582da7c6cce80571fc727cdad492388558fb5ac5ccbe9d0ed0d26134c",
+    "jobs_parser_seed_tests.exe": "847622e16f1b5d7d7c98607007a7fc590d27303533b052eb37ce2bb343f919a0"
+  },
+  "regression": {
+    "passed": 132,
+    "total": 132,
+    "wall_seconds": 167.06
+  },
+  "focused_evm_cost_reports_period_xer_parser_files": {
+    "passed": 27,
+    "total": 27,
+    "wall_seconds": 34.64
+  },
+  "parser_seeds": 348,
+  "format": {
+    "status": "success",
+    "files": 350,
+    "tool": "clang-format version 18.1.8"
+  },
+  "native_ui": {
+    "status": "passed",
+    "platform": "windows",
+    "sizes": [
+      "1100x760",
+      "800x600"
+    ],
+    "main_window_action": true,
+    "final_binary_identity_verified": true
+  },
+  "independent_adoption": {
+    "status": "passed",
+    "policy": "xer-native-evm-v1",
+    "schema": 29,
+    "native_inputs_journals_and_original_unchanged": true,
+    "native_projection_sha256_unchanged": true,
+    "source_period_ev_minor": [
+      1200,
+      800
+    ],
+    "source_period_pv_minor": [
+      1000,
+      1500
+    ],
+    "adopted_ev_minor": 2000,
+    "adopted_pv_minor": 2500,
+    "native_ac_minor": 12280,
+    "oracle_numeric_cells": 2106,
+    "xlsx_files": 3,
+    "xlsx_formulas": 0,
+    "pdf_pages": {
+      "external-xer-evm-qa\\report.pdf": 5,
+      "external-xer-evm-ui-qa\\ui-report.pdf": 9
+    },
+    "external_product_execution": "not run"
+  },
+  "pdf_visual_check": {
+    "status": "passed",
+    "renderer": "PDFium/pypdfium2 4.30.0",
+    "core_a3_pages": 5,
+    "ui_a4_pages": 9,
+    "first_audit_and_chart_pages_rendered": true
+  },
+  "independent_checks": [
+    "raw XER TSV/Decimal",
+    "native body/envelope SHA256 and full native input/journal equality",
+    "original source SHA256 and immutable financial-period reference/anchor oracle",
+    "2106 numeric cells across day/week/month and project/task/WBS",
+    "real generic/native/UI XLSX and strict PDF readback",
+    "legacy native EVM/reports/period actuals/Usage/Steps",
+    "legacy XER actuals/snapshots/allocation/merge/relink readers"
+  ],
+  "persistence": {
+    "adoption_schema": 29,
+    "future_schema_rejected": 30,
+    "legacy_writers": "1..28 preserved without adoption history"
+  },
+  "external_product_execution": "not run",
+  "policy": "xer-native-evm-v1: explicit baseline/task/period/anchor choice replaces selected native EV/PV. Native AC/physical/Steps/original archive unchanged; unknown interior/gaps not interpolated; re-adoption/withdrawal immutable.",
+  "evidence": {
+    "adopted.json": "843a3539d6cd03522d56f3335a0c0f5132fb1a222f643f2f74e97e10fefd677b",
+    "adopted.ppm": "5eec4692490661116e833ec49b603ba2bae9c13b0173566dd6c577c7d72f54bc",
+    "all-test-output.txt": "ddcb530aa4c10c7058c564fe63bcfcd1b2033dba7d787e18a186d4a7f719e489",
+    "before.json": "5b7147ab7d31df33229df49b3f66e994e1e0593c0750c5b5966d5ef6c5e2d81b",
+    "build.txt": "2dacf8b807e10569b26bb41492560b20522941bbf9d4447741df3b80e292e320",
+    "ctest.txt": "a832014402026d0fc61875ff1978c1c3e060c75396eafa9209d394928481c901",
+    "ctest.xml": "c6c327025aca8e6df47fdb7e9b688348bafb97b58b57f71538c9b7e12fe4e807",
+    "daily.json": "87395ed580339bfd62a3841574bc9414d9549483a0a0db87595f0a244253414f",
+    "early-core.txt": "92b76f8d1c0801965ce350d5a340c71d770134b98c8e1ef8f4efac5b8fdd5a82",
+    "early-focused.txt": "032b9f8cf496ec8c69d3fad9fcc1b6e8b587fc0264c1a25a8d0187365fe86fa9",
+    "focused.txt": "92cf5b25b4fea5405b6840f8b97c791c86476c7f230a41ce0fe8c650ed916f83",
+    "format.json": "cea0991abf65a21de04ba286e80747db0b286269eba5468722d73dbf0334d9d3",
+    "generic.xlsx": "13f39be5480562e88a2d6947ee4e704642273b5102f308c81c4401a15f5b0a99",
+    "independent-activities.json": "0245257e2e459c4593ee23fd20d9a3f95fbcbc8f19c055f3ac5cf7728cf49065",
+    "independent-adoption.json": "46c842bc2930bf1cb56fc30405025c35534b0cb94d145ff3aa7b4ad3fa777d82",
+    "independent-classic-reports.txt": "76002089998b4c98415f2fd7da5e0b2a49128ea0cca9f47cf49f2b2a1dce447e",
+    "independent-native-period.json": "b208fad9684e10c82bcb7cb9a4720bb58ada62cbdc1c2ddae8f64e2ea5b36a82",
+    "independent-period-actuals.json": "93a90300da0c1fa2e683f3d089f6a0b2b80b054717a41acc0fc20eb67d1c6238",
+    "independent-usage.json": "d4fe3cf026c9e774f58dc413fb0334075b18b6878e1e33f3237af080f04ab5af",
+    "independent-xer-actual-costs.json": "2aa47f47918c0f8c54887400d4f1cdf9c34b8d0c2b753b3b1ee1a28612832d18",
+    "independent-xer-allocation.json": "43c86af4a7489af9a94250a01af92974f6f0b6378048fa374b1c1a1335902a95",
+    "independent-xer-merge.json": "f586bce7df813e01a6a76148ca9fc8df32e531835e8b70f571b3a08c6350cf0b",
+    "independent-xer-relink.json": "6c90f05d1fdd37c434e47368d879eae71b158e5679290b411e37167fb0e553df",
+    "independent-xer-snapshots.json": "7c9fc9b9a0cdd9590bbdf75847671619121c827f1d3349f14a557985af00e2d5",
+    "initial-parser-expectation.txt": "0a7faf17311f145cdef5d95e6a1f70ffb45ffce87bda5c6d94c085660e4434de",
+    "initial-seed-build-failure.txt": "5348815100363e7316570171840f57017a629c3abb77522261d54dc058b92a15",
+    "monthly.json": "b803fad535f68eeaa955f9ac3b07c408734db215727f0dae04d955b3aabb96e5",
+    "native-ui.txt": "89230517e545c9eb1334e6bc9df8a159eebfa90f0e4dcf2e6270951186f4cf69",
+    "pdf-core-audit.png": "987a337ff437a9fbca380cc5dc2a135fcb58a4e4d1acdb491c64f93b32ab33a7",
+    "pdf-core-chart.png": "c03dc6ec9711f52bb1defd9ce29797bd8765c0051a05c0fd4f8a994289b7bd9a",
+    "pdf-core-first.png": "3a999a66fe881a606cf1ff0693e185c1817f32b5f404fc8bcbda3599fc159943",
+    "pdf-ui-audit.png": "43240a929a11d2b39a90116ce8f7127c9970fd4e286cbdcaa37715e031bc9331",
+    "pdf-ui-chart.png": "206728ea7c4040a1bea46ffa8ea98291955332e8ba33051eb2bddc73bb23a595",
+    "pdf-ui-first.png": "93afd87d6f73a1ad03c377eac93088f6382a55a4ec54285e1a72db0d50ac3b29",
+    "preview.png": "1a889e8aa21f861c29ed4b5d5246d3016278d7cbb90086828f28906b285dd9b3",
+    "report.pdf": "a7d54b25be791c7de4313e18b99e55dec9050e4dbede4e1d29f775110fb7b16d",
+    "report.png": "e6a8a77f3b2b72c01e4fcf79b277a04a4c218c45649108db29ddcfcb1141c8b6",
+    "report.xlsx": "f0390308e372c221879a1912f10d63b15c570a8f521680605fd118100aa98acf",
+    "source-manifest.txt": "123514d21f45787c5ada8df3d1a0d1341cab3f3684eab12c718d439d55d75f3f",
+    "source-small.png": "e1d1cc5450c37396ef94fa9342a9ffc52b0f4c604ca7eec62a7703a3105cc5ff",
+    "source.png": "f655cb2dd2a26a849bb8a6f84b519108c8f235973d9d3b2f3759439884736de8",
+    "source.xer": "aecbeceb58688510ecf4b8e00e63afdbaf1c32f78d9fcd4b32d748f3ea430906",
+    "ui-adopted.ppm": "6621ecc72458dc3bb7fc9d7a6bc68b16396fcb3a10cc8d7d520394c76f93e112",
+    "ui-report.pdf": "3ffa7cad735c1d541dcb6a1310a6048f2e926228bf1211716fee982ce0c02a5d",
+    "ui-report.xlsx": "23747789f7a5fddddeec39351f7dc3ec0f205882e500b60d66638ddd3469733c",
+    "verify-external-xer-evm.py": "b9026a67f25f31f77fc8cd30a09d0ea695831313ee714fca1a62187e50023575",
+    "weekly.json": "432412d060dfa1fd78b3456abb577fa28e10c57284027e5cc036a5f5545af907"
+  }
+}

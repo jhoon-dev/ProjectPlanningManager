@@ -1,0 +1,12 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 140: exchange_async_recovery_diagnostics
+1/1 Test #140: exchange_async_recovery_diagnostics ...***Timeout 180.11 sec
+
+
+0% tests passed, 1 tests failed out of 1
+
+Total Test time (real) = 180.14 sec
+
+The following tests FAILED:
+	140 - exchange_async_recovery_diagnostics (Timeout)
+Errors while running CTest

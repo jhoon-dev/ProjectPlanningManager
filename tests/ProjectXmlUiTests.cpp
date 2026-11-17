@@ -38,7 +38,8 @@ void action(QWidget &w, const char *name) {
 struct Drive {
     QTimer timer;
     QString input, destination;
-    bool accept = true, errorExpected = false, seenPreview = false, seenError = false, captured = false;
+    bool accept = true, errorExpected = false, seenPreview = false, seenError = false, captured = false,
+         expectUdf = false;
     QMessageBox::StandardButton unsaved = QMessageBox::Discard;
     std::function<void()> beforeAccept;
     Drive(QString in, QString out) : input(std::move(in)), destination(std::move(out)) {
@@ -63,6 +64,8 @@ struct Drive {
                              detail->toPlainText().contains("동반"),
                          "preview lacks source/loss/verdict");
                 auto *path = modal->findChild<QLineEdit *>("xmlDestination");
+                if (expectUdf)
+                    callback(detail->toPlainText().contains("UDF TASK · 외부 점수"), "UDF mapping not reviewable");
                 callback(path, "destination missing");
                 path->setText(destination);
                 modal->grab().save("project-xml-preview-native.png");
@@ -148,6 +151,12 @@ int main(int argc, char **argv) {
         check(QFileInfo::exists(QDir(destination).filePath("original.xml")) &&
                   QFileInfo::exists(QDir(destination).filePath("conversion.json")),
               "import missing source report");
+        auto udfProject = *doc.project();
+        udfProject.customFields = {{"udf", "외부 점수", jobs::CustomFieldType::Number, "", {}}};
+        udfProject.tasks[0].attributes = {{"field:udf", "-2.123456"}};
+        const auto udfPath = dir.filePath("udf-source.ppm").toStdString();
+        store.save(udfPath, udfProject, {});
+        doc.open(udfPath);
         const auto imported = *doc.project();
         const auto importPath = doc.path();
         {
@@ -159,10 +168,16 @@ int main(int argc, char **argv) {
         }
         {
             Drive drive({}, dir.filePath("exported"));
+            drive.expectUdf = true;
             action(current, "exportProjectXml");
             check(drive.seenPreview && *doc.project() == imported && !doc.dirty() && !doc.canUndo() &&
                       doc.path() == importPath && QFileInfo::exists(QDir(drive.destination).filePath("source.ppm")),
                   "export changed document or lacked source");
+            const auto mapped =
+                jobs::importProjectXml(jobs::readProjectXml(QDir(drive.destination).filePath("project.xml")), "UI.xml")
+                    .project;
+            check(mapped.customFields.size() == 1 && mapped.tasks[0].attributes[0].value == "-2.123456",
+                  "UI UDF export");
         }
         {
             Drive drive({}, dir.filePath("stale"));

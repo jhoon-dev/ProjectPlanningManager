@@ -1,0 +1,1 @@
+{"documentId":"xml-baseline","format":"PPM-AUTOMATION-PROJECT-1","revision":3,"tasks":[{"durationMinutes":4,"name":"중단·곡선","taskId":"A"},{"durationMinutes":8,"name":"고정 공수","taskId":"B"},{"durationMinutes":0,"name":"이정표","taskId":"M"},{"durationMinutes":3,"name":"미배정","taskId":"D"},{"durationMinutes":1,"name":"이후 추가","taskId":"X"}]}

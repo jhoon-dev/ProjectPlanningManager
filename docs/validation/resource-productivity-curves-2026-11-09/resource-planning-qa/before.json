@@ -1,0 +1,343 @@
+{
+    "assignments": [
+        {
+            "resourceId": "R",
+            "taskId": "T",
+            "units": 100
+        }
+    ],
+    "baselines": [
+        {
+            "approvedBy": "PM",
+            "createdAt": "2026-11-09T01:00:00Z",
+            "engineVersion": "jobs-effort-1.1",
+            "id": "147d8149-0675-4788-9635-9062d45b6150",
+            "input": {
+                "assignments": [
+                    {
+                        "resourceId": "R",
+                        "taskId": "T",
+                        "units": 100
+                    }
+                ],
+                "calculationProfile": "native-effort-split-v1",
+                "calendar": "standard-mon-fri-8h-v1",
+                "calendars": [
+                ],
+                "costProfile": "cost-day-minor-half-up-v1",
+                "currency": "KRW",
+                "holidays": [
+                ],
+                "name": "생산성·고유 곡선 검증",
+                "resources": [
+                    {
+                        "calendarId": "",
+                        "exceptions": [
+                        ],
+                        "id": "R",
+                        "maxUnits": 200,
+                        "name": "작업 인력",
+                        "rates": [
+                            {
+                                "effectiveDate": "2026-11-02",
+                                "hourlyMinor": 600
+                            },
+                            {
+                                "effectiveDate": "2026-11-03",
+                                "hourlyMinor": 1200
+                            }
+                        ],
+                        "type": "labor"
+                    }
+                ],
+                "startDate": "2026-11-02",
+                "taskCosts": [
+                    {
+                        "accrual": "uniform",
+                        "credit": "physical",
+                        "fixedMinor": 0,
+                        "taskId": "T"
+                    }
+                ],
+                "tasks": [
+                    {
+                        "breaks": [
+                        ],
+                        "calendarId": "",
+                        "constraintAt": null,
+                        "constraintType": "ASAP",
+                        "deadlineAt": null,
+                        "dependencyRules": [
+                        ],
+                        "durationMinutes": 960,
+                        "id": "T",
+                        "name": "시공",
+                        "predecessors": [
+                        ],
+                        "taskType": "fixed-duration",
+                        "wbsId": "",
+                        "workDriven": false,
+                        "workUnitMinutes": null
+                    }
+                ],
+                "wbsNodes": [
+                ]
+            },
+            "inputRevision": 1,
+            "name": "승인",
+            "projectFinish": "2026-11-03 18:00",
+            "reason": "원래 계획",
+            "schedule": [
+                {
+                    "completedActual": false,
+                    "critical": true,
+                    "drivingPredecessors": [
+                    ],
+                    "earlyFinishMinutes": 2520,
+                    "earlyStartMinutes": 540,
+                    "finish": "2026-11-03 18:00",
+                    "freeFloatMinutes": 0,
+                    "lateFinishMinutes": 2520,
+                    "lateStartMinutes": 540,
+                    "remainingStart": null,
+                    "start": "2026-11-02 09:00",
+                    "taskId": "T",
+                    "totalFloatMinutes": 0
+                }
+            ],
+            "sourceDocumentId": "resource-planning",
+            "version": 1
+        }
+    ],
+    "calculationProfile": "native-effort-split-v1",
+    "calendar": "standard-mon-fri-8h-v1",
+    "calendars": [
+    ],
+    "costEntries": [
+        {
+            "actualMinor": 12345,
+            "currency": "KRW",
+            "id": "86b616b3-6c13-4ab6-9469-8e4735e8340a",
+            "physicalBasisPoints": null,
+            "previousEntryId": "",
+            "reason": "관측 AC",
+            "recordedAt": "2026-11-09T01:00:00Z",
+            "recordedRevision": 6,
+            "reporter": "원가 담당",
+            "sourceDocumentId": "resource-planning",
+            "statusAt": "2026-11-02 18:00",
+            "taskId": "T"
+        }
+    ],
+    "costProfile": "cost-day-minor-half-up-v1",
+    "currency": "KRW",
+    "derivedFrom": "",
+    "documentId": "resource-planning",
+    "holidays": [
+    ],
+    "name": "생산성·고유 곡선 검증",
+    "periodActuals": [
+        {
+            "actualMinor": null,
+            "costEntryId": "",
+            "currency": "KRW",
+            "date": "2026-11-02",
+            "id": "77217ef0-7353-4c69-a0dc-8ba3ba842740",
+            "previousEntryId": "",
+            "reason": "실측",
+            "recordedAt": "2026-11-09T01:00:00Z",
+            "recordedRevision": 5,
+            "reporter": "관측 담당",
+            "resourceId": "R",
+            "resourceType": "labor",
+            "sourceDocumentId": "resource-planning",
+            "statusAt": "2026-11-02 18:00",
+            "taskId": "T",
+            "workUnitMinutes": 6000
+        }
+    ],
+    "progress": [
+        {
+            "actualDurationMinutes": 480,
+            "actualFinish": null,
+            "actualStart": "2026-11-02 09:00",
+            "id": "579510b2-40c1-4710-a872-add1feee4d8f",
+            "planDurationMinutes": 960,
+            "previousEntryId": "",
+            "reason": "원래 보고 보존",
+            "recordedAt": "2026-11-09T01:00:00Z",
+            "recordedRevision": 4,
+            "remainingMinutes": 480,
+            "remainingWorkUnitMinutes": 48000,
+            "reporter": "관측 담당",
+            "sourceDocumentId": "resource-planning",
+            "statusAt": "2026-11-02 18:00",
+            "taskId": "T"
+        }
+    ],
+    "resources": [
+        {
+            "calendarId": "",
+            "exceptions": [
+            ],
+            "id": "R",
+            "maxUnits": 200,
+            "name": "작업 인력",
+            "productivity": {
+                "effectiveDate": "2026-11-09",
+                "quantityMilliPerHour": 30000,
+                "reference": "실측 30m3 / 인시",
+                "reporter": "담당",
+                "unit": "m3"
+            },
+            "rates": [
+                {
+                    "effectiveDate": "2026-11-02",
+                    "hourlyMinor": 600
+                },
+                {
+                    "effectiveDate": "2026-11-03",
+                    "hourlyMinor": 1200
+                }
+            ],
+            "type": "labor"
+        }
+    ],
+    "revision": 8,
+    "scenarios": [
+        {
+            "createdAt": "2026-11-09T01:00:00Z",
+            "horizonWorkDays": 30,
+            "id": "b4ba5800-26d3-4e8e-aca3-5e683ef3a05f",
+            "input": {
+                "assignments": [
+                    {
+                        "resourceId": "R",
+                        "taskId": "T",
+                        "units": 100
+                    }
+                ],
+                "calculationProfile": "native-effort-split-v1",
+                "calendar": "standard-mon-fri-8h-v1",
+                "calendars": [
+                ],
+                "costProfile": "cost-day-minor-half-up-v1",
+                "currency": "KRW",
+                "holidays": [
+                ],
+                "name": "생산성·고유 곡선 검증",
+                "resources": [
+                    {
+                        "calendarId": "",
+                        "exceptions": [
+                        ],
+                        "id": "R",
+                        "maxUnits": 200,
+                        "name": "작업 인력",
+                        "rates": [
+                            {
+                                "effectiveDate": "2026-11-02",
+                                "hourlyMinor": 600
+                            },
+                            {
+                                "effectiveDate": "2026-11-03",
+                                "hourlyMinor": 1200
+                            }
+                        ],
+                        "type": "labor"
+                    }
+                ],
+                "startDate": "2026-11-02",
+                "taskCosts": [
+                    {
+                        "accrual": "uniform",
+                        "credit": "physical",
+                        "fixedMinor": 0,
+                        "taskId": "T"
+                    }
+                ],
+                "tasks": [
+                    {
+                        "breaks": [
+                        ],
+                        "calendarId": "",
+                        "constraintAt": null,
+                        "constraintType": "ASAP",
+                        "deadlineAt": null,
+                        "dependencyRules": [
+                        ],
+                        "durationMinutes": 960,
+                        "id": "T",
+                        "name": "시공",
+                        "predecessors": [
+                        ],
+                        "taskType": "fixed-duration",
+                        "wbsId": "",
+                        "workDriven": false,
+                        "workUnitMinutes": null
+                    }
+                ],
+                "wbsNodes": [
+                ]
+            },
+            "inputRevision": 6,
+            "name": "변경 전 잔여",
+            "policy": "serial-effort-split-v2",
+            "priority": "task-order",
+            "progress": [
+                {
+                    "actualDurationMinutes": 480,
+                    "actualFinish": null,
+                    "actualStart": "2026-11-02 09:00",
+                    "id": "579510b2-40c1-4710-a872-add1feee4d8f",
+                    "planDurationMinutes": 960,
+                    "previousEntryId": "",
+                    "reason": "원래 보고 보존",
+                    "recordedAt": "2026-11-09T01:00:00Z",
+                    "recordedRevision": 4,
+                    "remainingMinutes": 480,
+                    "remainingWorkUnitMinutes": 48000,
+                    "reporter": "관측 담당",
+                    "sourceDocumentId": "resource-planning",
+                    "statusAt": "2026-11-02 18:00",
+                    "taskId": "T"
+                }
+            ],
+            "sourceDocumentId": "resource-planning",
+            "statusAt": "2026-11-02 18:00"
+        }
+    ],
+    "startDate": "2026-11-02",
+    "statusAt": "2026-11-02 18:00",
+    "taskCosts": [
+        {
+            "accrual": "uniform",
+            "credit": "physical",
+            "fixedMinor": 0,
+            "taskId": "T"
+        }
+    ],
+    "tasks": [
+        {
+            "breaks": [
+            ],
+            "calendarId": "",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 960,
+            "id": "T",
+            "name": "시공",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "",
+            "workDriven": false,
+            "workUnitMinutes": null
+        }
+    ],
+    "wbsNodes": [
+    ]
+}

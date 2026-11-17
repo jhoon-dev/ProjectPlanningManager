@@ -1,0 +1,17 @@
+# 표준 실적 XML 검증
+
+2026-11-13 · [XAE-01~06](../../xml-standard-actual-export.md). 표본 상태일은 2026-11-12 18:00이며 11월14일 미래 보고를 포함한다.
+
+전체 **185/185·298.87초**, 집중 **10/10**, 실패/건너뜀0이다. 로컬 서버 통합 검사를 포함한다. 파서 시드 **826개**, C++ 형식 **493파일** 차이0을 통과했다. [빌드](build.txt), [전체 CTest](ctest.txt), [JUnit](ctest.xml), [집중](focused.txt), [형식](quality.json), [독립 판독](independent-reader.json), [결과/해시](verification-summary.json).
+
+원가 wire 보정 후 기존 [일별 채택](independent-adoption.json)과 [구간 합산](independent-fragments.json)의 XML/native·XLSX/PDF 독립 대사도 통과했다.
+
+Windows 실행 패키지 **291파일**의 PPM/CLI 해시가 최종 빌드와 같다. Qt/MinGW가 없는 PATH에서 CLI가 schema11 원본 파일을 읽고 종료0을 반환했다. [패키지](runtime.json), [배포](runtime-deploy.txt), [읽기](runtime-inspect.json).
+
+[표준 실적 XML](project.xml), [계획 전용 XML](plan.xml), [변환 기록](conversion.json), [native 입력](native.json), [native 파일](source.ppm), [기본 재입력](roundtrip.json), [미보고 정정 XML](unknown.xml), [800×650 미리보기](actuals-preview-small.png).
+
+표본은 계획 기간960분인 작업 A의 최신 실제120분·잔여180분을 XML Duration300분으로 출력한다. 최신 같은 상태일 정정은 A/R1의 11월10일 공수9501u·원가1350센트다. 일별5건·표준 시간대 값10건의 공수26001u·원가4875센트와 작업 누계14000센트를 구분한다. A 누계10000·배분3875·미배분6125, B 누계4000·배분1000·미배분3000이며 누계0 작업과 미보고 작업을 함께 검사한다. 원래 계획·이전/미래 보고는 schema11 동반 native 파일에 그대로 남는다.
+
+검사 범위는 최신/정정/미래·0/미보고·정확한 단위, 작업/자원/배정 합계의 알려짐 조건, 실제/잔여 기간과 원래 계획의 분리, 계획 분포 생략·지원 밖 배정 거절, 당일 버킷 재입력·시간 초과 거절, 전체 변환 기록/원본 변조·덮어쓰기 거절, 원본 파일/문서 보존·취소/오래된 미리보기·800×650 화면이다. 외부 제품 실행·재계산·재저장은 미검증이다.
+
+독립 판독 중 ActualCost/Type6의 표시 통화×100 wire 단위를 보정했다. USD 100의 XML 값은10000, KRW 10000의 XML 값은1000000이다. 기존 채택 fixture도 표준 wire 값으로 교체하고 native 기대 금액과 원장·보고서 의미는 유지했다. 과거 검증 폴더는 변경하지 않으며 이전 빌드에서 채택한 native 금액을 자동 수정하지 않는다.

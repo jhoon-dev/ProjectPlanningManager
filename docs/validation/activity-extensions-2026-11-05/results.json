@@ -1,0 +1,25 @@
+{
+  "status": "success",
+  "full_ctest": {
+    "passed": 105,
+    "total": 105,
+    "seconds": 405.95,
+    "source_sha256": "524f4199dfa9f1c140fed365b3e19e78958dc580d5febf3c5cc5d52bfad81235"
+  },
+  "final_affected_checks": {
+    "passed": 5,
+    "total": 5,
+    "seconds": 17.97
+  },
+  "parser_seeds": 184,
+  "native_schema_max": 19,
+  "workspace_schema": 1,
+  "format_files": 208,
+  "format_changes": 0,
+  "independent_readers": 9,
+  "production_warnings": 0,
+  "final_source_sha256": "eb22778f6f12f1d5da9154f7091b50754a47cb69eaddd80a6f638c5496dd149b",
+  "support_interval_model": true,
+  "P6_roundtrip_run": false,
+  "remote_CI_run": false
+}

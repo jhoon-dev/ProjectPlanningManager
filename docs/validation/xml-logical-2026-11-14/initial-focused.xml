@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-ninja"
+	tests="2"
+	failures="2"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-61CPKLN"
+	time="3"
+	timestamp="2026-11-14T14:00:20"
+	>
+	<testcase name="xml_logical_contract" classname="xml_logical_contract" time="1.49379" status="fail">
+		<failure message="Failed"/>
+		<properties/>
+		<system-out>Boolean and numeric Null
+</system-out>
+	</testcase>
+	<testcase name="xml_logical_ui" classname="xml_logical_ui" time="2.40062" status="fail">
+		<failure message="Failed"/>
+		<properties/>
+		<system-out>Boolean and numeric Null
+</system-out>
+	</testcase>
+</testsuite>

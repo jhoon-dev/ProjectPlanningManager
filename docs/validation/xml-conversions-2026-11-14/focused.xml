@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite tests="38" failures="0" skipped="0" name="Focused subset of final full regression"><testcase name="xml_remaining_contract" classname="xml_remaining_contract" time="6.89312" status="run">
+		<properties />
+		<system-out>PASS remaining references: effective calendar/curve/work-driven/dated forecast, scopes/summaries, missing/stale/cancel, plan export isolation, schema49/archives/recovery/outputs
+</system-out>
+	</testcase>
+	<testcase name="xml_remaining_ui" classname="xml_remaining_ui" time="1.05292" status="run">
+		<properties />
+		<system-out>PASS remaining UI: calculated table, worker preview, insertion/provenance/small layout
+</system-out>
+	</testcase>
+	<testcase name="xml_baseline_contract" classname="xml_baseline_contract" time="7.26065" status="run">
+		<properties />
+		<system-out>PASS baseline: frozen v1 dates/calendars/curves/work-driven work, scopes/summaries, missing/malformed/cancel, schema50/archives/recovery/outputs
+</system-out>
+	</testcase>
+	<testcase name="xml_baseline_ui" classname="xml_baseline_ui" time="1.2106" status="run">
+		<properties />
+		<system-out>PASS baseline UI: table without current result, worker preview, insertion/provenance
+</system-out>
+	</testcase>
+	<testcase name="xml_early_late_contract" classname="xml_early_late_contract" time="2.47448" status="run">
+		<properties />
+		<system-out>PASS Early/Late: plan/remaining/ALAP/resource-order/clock/milestones, capabilities/stale/cancel, schema51/archives/recovery/outputs
+</system-out>
+	</testcase>
+	<testcase name="xml_early_late_ui" classname="xml_early_late_ui" time="0.926161" status="run">
+		<properties />
+		<system-out>PASS Early/Late UI: active result, worker preview, completed null, references/provenance
+</system-out>
+	</testcase>
+	<testcase name="xml_quantity_contract" classname="xml_quantity_contract" time="3.22657" status="run">
+		<properties />
+		<system-out>PASS actual quantities: as-of corrections/null/zero, scope totals/summaries, exact units, schedule independence/cancel, schema48/archives/recovery, XML/XER/reports
+</system-out>
+	</testcase>
+	<testcase name="xml_quantity_ui" classname="xml_quantity_ui" time="0.756941" status="run">
+		<properties />
+		<system-out>PASS quantity UI: table/status undo, worker preview/insertion/provenance/small layout
+</system-out>
+	</testcase>
+	<testcase name="xml_actual_contract" classname="xml_actual_contract" time="2.28175" status="run">
+		<properties />
+		<system-out>PASS actual refs: as-of/corrections/nulls, scopes/summaries, schedule independence/cache, schema/XML/static outputs, calendar/native/roll-down, archives/recovery/FX/IDs
+</system-out>
+	</testcase>
+	<testcase name="xml_actual_ui" classname="xml_actual_ui" time="1.11284" status="run">
+		<properties />
+		<system-out>PASS actual UI: no-scheduler table, status undo/report corrections, preview/provenance/disable, small layout
+</system-out>
+	</testcase>
+	<testcase name="xml_calendar_contract" classname="xml_calendar_contract" time="2.39162" status="run">
+		<properties />
+		<system-out>PASS calendar functions: calendars, scopes, working/elapsed math, precision/bounds/cache, schema/XML/recovery/report, 180 scheduler vectors
+</system-out>
+	</testcase>
+	<testcase name="xml_calendar_ui" classname="xml_calendar_ui" time="0.956226" status="run">
+		<properties />
+		<system-out>PASS calendar UI: worker preview, calendar/function insertion, save/undo, small layout
+</system-out>
+	</testcase>
+	<testcase name="xml_schedule_contract" classname="xml_schedule_contract" time="1.5467" status="run">
+		<properties />
+		<system-out>PASS schedule references: typed/date arithmetic, four scopes, summaries, cache isolation, invalid/stale/cancel, plan/forecast, schema/XML/report
+</system-out>
+	</testcase>
+	<testcase name="xml_schedule_ui" classname="xml_schedule_ui" time="1.21676" status="run">
+		<properties />
+		<system-out>PASS schedule reference table and asynchronous preview
+</system-out>
+	</testcase>
+	<testcase name="xml_conversion_contract" classname="xml_conversion_contract" time="3.33878" status="run">
+		<properties />
+		<system-out>PASS CDec/CSng/CVar: exact binary32/fixed6/type preservation/Null, scopes/archives/60/XML/XER/reports; 2058 vectors
+</system-out>
+	</testcase>
+	<testcase name="xml_conversion_ui" classname="xml_conversion_ui" time="0.91359" status="run">
+		<properties />
+		<system-out>PASS conversion UI: examples/async preview/save/undo/cancel and small layout
+</system-out>
+	</testcase>
+	<testcase name="xml_string_functions_contract" classname="xml_string_functions_contract" time="3.74412" status="run">
+		<properties />
+		<system-out>PASS Replace/InStrRev/StrReverse: BMP/ASCII/suffix/count/end-boundary/Null/errors, scopes/archives/59/XML/XER/reports; 1024 vectors
+</system-out>
+	</testcase>
+	<testcase name="xml_string_functions_ui" classname="xml_string_functions_ui" time="1.32455" status="run">
+		<properties />
+		<system-out>PASS string UI: examples/async preview/save/undo/cancel and small layout
+</system-out>
+	</testcase>
+	<testcase name="xml_math_contract" classname="xml_math_contract" time="4.23498" status="run">
+		<properties />
+		<system-out>PASS Atn/Cos/Exp/Log/Sin/Tan: domains/finite/range/fixed6/Null, scopes/summary/roll-down, schema58/archives/recovery/XML/XER/reports; 6189 vectors
+</system-out>
+	</testcase>
+	<testcase name="xml_math_ui" classname="xml_math_ui" time="1.1927" status="run">
+		<properties />
+		<system-out>PASS math UI: examples/async async preview/save/undo/cancel and small layout
+</system-out>
+	</testcase>
+	<testcase name="xml_number_text_contract" classname="xml_number_text_contract" time="3.70973" status="run">
+		<properties />
+		<system-out>PASS Str/Val/Hex/Oct: prefix/exponents/typed suffixes/fixed6/signed32, scopes/summary/roll-down, schema57/archives/recovery/XML/XER/reports; 1024 conversions and 1024 prefixes
+</system-out>
+	</testcase>
+	<testcase name="xml_number_text_ui" classname="xml_number_text_ui" time="1.02253" status="run">
+		<properties />
+		<system-out>PASS conversion UI: examples/leading-space async preview/save/undo/cancel and small layout
+</system-out>
+	</testcase>
+	<testcase name="xml_time_functions_contract" classname="xml_time_functions_contract" time="3.8194" status="run">
+		<properties />
+		<system-out>PASS TimeSerial/TimeValue: OLE carry/negative, half-even, English/ISO/micros, four scopes/summary/roll-down, schema56/archives/recovery/XML/XER/reports; 1024 serial and 3072 time vectors
+</system-out>
+	</testcase>
+	<testcase name="xml_time_functions_ui" classname="xml_time_functions_ui" time="0.952871" status="run">
+		<properties />
+		<system-out>PASS time UI: examples, anchored micros async preview/save/undo/cancel and small layout
+</system-out>
+	</testcase>
+	<testcase name="xml_date_functions_contract" classname="xml_date_functions_contract" time="4.16128" status="run">
+		<properties />
+		<system-out>PASS extended dates: four scopes, leap/month end/micros/week boundaries, legacy44/new55, archive/FX/ID/recovery, XML/XER/reports; 4608 parts/5120 additions/8192 differences
+</system-out>
+	</testcase>
+	<testcase name="xml_date_functions_ui" classname="xml_date_functions_ui" time="0.931887" status="run">
+		<properties />
+		<system-out>PASS date UI: four examples, week options, month-end async preview/save/undo/cancel and small layout
+</system-out>
+	</testcase>
+	<testcase name="xml_formatting_contract" classname="xml_formatting_contract" time="3.02607" status="run">
+		<properties />
+		<system-out>PASS Format/PPMFormat/StrConv: four scopes, decimals/sections/date/Unicode/null/errors, schema54/archives/recovery, XML/XER/reports; 2560 numeric and 31158 Unicode vectors
+</system-out>
+	</testcase>
+	<testcase name="xml_formatting_ui" classname="xml_formatting_ui" time="1.11341" status="run">
+		<properties />
+		<system-out>PASS formatting UI: locale examples, asynchronous preview/save/undo, table text and small layout
+</system-out>
+	</testcase>
+	<testcase name="xml_timezone_contract" classname="xml_timezone_contract" time="3.67929" status="run">
+		<properties />
+		<system-out>PASS timezone: explicit fixed/597 pinned IANA names, gaps/folds/half-hour/negative DST/skipped day, exact microseconds/offset text/UTC, four scopes and cache/host independence, schema53/legacy44/archives/recovery/XML/XER/reports; 92079 transition vectors
+</system-out>
+	</testcase>
+	<testcase name="xml_timezone_ui" classname="xml_timezone_ui" time="1.05905" status="run">
+		<properties />
+		<system-out>PASS timezone UI: explicit zones/policy/parse controls, fold text preview, save/undo/cancel/stale, 800px scroll views
+</system-out>
+	</testcase>
+	<testcase name="xml_additional_functions_contract" classname="xml_additional_functions_contract" time="3.05516" status="run">
+		<properties />
+		<system-out>PASS 13 additional functions: 4 scopes, BMP/ASCII, eager/null/errors, exact roots/half-even, schema52/old guards, XML/XER/reports, roll-up/down, FX/ID/frozen/recovery/read-only; 512 root vectors
+</system-out>
+	</testcase>
+	<testcase name="xml_additional_functions_ui" classname="xml_additional_functions_ui" time="0.811036" status="run">
+		<properties />
+		<system-out>PASS additional function UI: examples, typed asynchronous preview/save/undo, errors/cancel/stale and small layout
+</system-out>
+	</testcase>
+	<testcase name="xml_formula_contract" classname="xml_formula_contract" time="2.79056" status="run">
+		<properties />
+		<system-out>PASS XML formulas: 4 scopes, typed bounded interpreter, stable refs, native/roll-up/roll-down dependencies, errors/missing/eager IIf, schema44/FX/archives/recovery/edit/models/reports, 400 arithmetic vectors
+</system-out>
+	</testcase>
+	<testcase name="xml_formula_ui" classname="xml_formula_ui" time="1.0602" status="run">
+		<properties />
+		<system-out>PASS XML formula UI: preview/disable/snapshot/undo, unsupported/stale, assignment refs, Windows small layout
+</system-out>
+	</testcase>
+	<testcase name="xml_roll_up_contract" classname="xml_roll_up_contract" time="2.56224" status="run">
+		<properties />
+		<system-out>PASS XML summary roll-up: 8 methods, nested weights, typed precision, missing/flags/overflow, metadata/snapshots/schema43, XML, edit/undo/worker/FX/archives/groups/reports
+</system-out>
+	</testcase>
+	<testcase name="xml_roll_up_ui" classname="xml_roll_up_ui" time="0.550576" status="run">
+		<properties />
+		<system-out>PASS roll-up UI: WBS/resource preview, retained snapshots, weighted means, save/undo/stale, 800x600
+</system-out>
+	</testcase>
+	<testcase name="xml_roll_down_contract" classname="xml_roll_down_contract" time="2.40188" status="run">
+		<properties />
+		<system-out>PASS XML roll-down: task/resource to assignment, all scalar/lookup/multi types, direct/empty/zero/missing priority, live XML inheritance, worker/undo, FX/archives/recovery/schema42, XER/reports
+</system-out>
+	</testcase>
+	<testcase name="xml_roll_down_ui" classname="xml_roll_down_ui" time="0.929293" status="run">
+		<properties />
+		<system-out>PASS roll-down UI: preview/direct origin, disable/undo, inheritance restore worker, stale, 800x600
+</system-out>
+	</testcase>
+	</testsuite>

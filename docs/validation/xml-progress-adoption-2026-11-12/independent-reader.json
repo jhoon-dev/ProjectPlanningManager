@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "schema": 48,
+  "native_entries": 4,
+  "native_checks": 48,
+  "xml_formula_cells": 36,
+  "missing_formula_cells": 27,
+  "source_sha256": "76e56f015616bfcd1a0b3d02d74fdec1f42ef24514125bc876a9c3f99305a625",
+  "external_product_run": false,
+  "mpxj_tasks": 10,
+  "mpxj_assignments": 9,
+  "mpxj_errors": 0
+}

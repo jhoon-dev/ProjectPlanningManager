@@ -7,6 +7,7 @@ struct ResourceDay {
     std::optional<int> capacity;
     std::int64_t peakUnits = 0, demandUnitMinutes = 0, overloadMinutes = 0, excessUnitMinutes = 0;
     std::vector<std::string> taskIds;
+    bool capacityVaries = false;
 };
 struct ResourceLoad {
     CalculationStatus status = CalculationStatus::Incomplete;
@@ -26,6 +27,8 @@ ResourceLoad resourceLoad(const Project &, const ScheduleResult &);
 LevelingResult levelResources(const Project &, const std::string &priority, int horizonWorkDays,
                               const std::string &policy = {});
 Project scenarioProject(const LevelingScenario &);
+ScheduleResult selectedLevelingSchedule(const Project &, bool remaining);
+LevelingResult levelProgressPolicy(const Project &, const std::string &priority, int horizonWorkDays);
 struct ResourceOccupancy {
     std::string resourceId, taskId, start, finish;
     int units = 0;

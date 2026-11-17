@@ -1,0 +1,14 @@
+{
+  "msix": {
+    "skipped": 0,
+    "passed": 8
+  },
+  "apple_signing_preparation": {
+    "skipped": 0,
+    "passed": 3
+  },
+  "macos_packaging": {
+    "skipped": 2,
+    "passed": 10
+  }
+}

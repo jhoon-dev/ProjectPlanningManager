@@ -1,0 +1,13 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions
+    Start  1: leveling_decision_contract
+1/4 Test  #1: leveling_decision_contract .......   Passed    3.01 sec
+    Start  8: repartition_float_contract
+2/4 Test  #8: repartition_float_contract .......   Passed    5.60 sec
+    Start  9: leveling_float_contract
+3/4 Test  #9: leveling_float_contract ..........   Passed    8.04 sec
+    Start 92: file_lifecycle
+4/4 Test #92: file_lifecycle ...................   Passed    0.86 sec
+
+100% tests passed out of 4
+
+Total Test time (real) =  17.54 sec

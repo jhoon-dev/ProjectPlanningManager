@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "schema": 50,
+  "baseline": "BASE-1",
+  "xml_cells": 77,
+  "missing_xml_cells": 19,
+  "baseline_formula_definitions": 17,
+  "xer_baseline_numbers": 32,
+  "external_product_run": false,
+  "mpxj_tasks": 8,
+  "mpxj_assignments": 4,
+  "mpxj_errors": 0
+}

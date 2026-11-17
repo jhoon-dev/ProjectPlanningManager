@@ -1,0 +1,48 @@
+{
+  "status": "success",
+  "engine": "jobs-adopted-leveling-1.4",
+  "small_exhaustive_oracle": true,
+  "cases": [
+    {
+      "tasks": 65,
+      "fixed": 65,
+      "movable": 0,
+      "logical_chain": true,
+      "witnesses_checked": 65,
+      "analysis_ms": 20.2509
+    },
+    {
+      "tasks": 128,
+      "fixed": 0,
+      "movable": 128,
+      "logical_chain": true,
+      "witnesses_checked": 128,
+      "analysis_ms": 152.0569
+    },
+    {
+      "tasks": 65,
+      "fixed": 0,
+      "movable": 65,
+      "logical_chain": false,
+      "witnesses_checked": 65,
+      "analysis_ms": 93.5504
+    },
+    {
+      "tasks": 256,
+      "fixed": 192,
+      "movable": 64,
+      "logical_chain": true,
+      "witnesses_checked": 256,
+      "analysis_ms": 129.965
+    },
+    {
+      "tasks": 1000,
+      "fixed": 1000,
+      "movable": 0,
+      "logical_chain": true,
+      "witnesses_checked": 1000,
+      "analysis_ms": 187.5816
+    }
+  ],
+  "witnesses_checked": 1514
+}

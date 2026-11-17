@@ -39,7 +39,8 @@ void action(QWidget &w, const char *name) {
 struct Drive {
     QTimer timer;
     QString input, destination;
-    bool accept = true, errorExpected = false, seenPreview = false, seenError = false, captured = false;
+    bool accept = true, errorExpected = false, seenPreview = false, seenError = false, captured = false,
+         expectUdf = false, expectActual = false;
     bool cancelEncoding = false;
     QMessageBox::StandardButton unsaved = QMessageBox::Discard;
     std::function<void()> beforeAccept;
@@ -71,6 +72,16 @@ struct Drive {
                              detail->toPlainText().contains("동반"),
                          "preview lacks source/loss/verdict");
                 auto *path = modal->findChild<QLineEdit *>("xerDestination");
+                if (expectUdf)
+                    callback(detail->toPlainText().contains("UDF TASK · 외부 점수"), "UDF mapping not reviewable");
+                if (expectActual) {
+                    callback(detail->toPlainText().contains("실적·원가 상세 교환") &&
+                                 detail->toPlainText().contains("122.80 USD") &&
+                                 detail->toPlainText().contains("2026-10-28 18:00"),
+                             "actual/cost mapping not reviewable");
+                    modal->grab().save(input.isEmpty() ? "xer-actual-cost-export-native.png"
+                                                       : "xer-actual-cost-import-native.png");
+                }
                 callback(path, "destination missing");
                 path->setText(destination);
                 modal->grab().save("primavera-xer-preview-native.png");
@@ -163,6 +174,12 @@ int main(int argc, char **argv) {
         check(QFileInfo::exists(QDir(destination).filePath("original.xer")) &&
                   QFileInfo::exists(QDir(destination).filePath("conversion.json")),
               "import missing source report");
+        auto udfProject = *doc.project();
+        udfProject.customFields = {{"udf", "외부 점수", jobs::CustomFieldType::Number, "", {}}};
+        udfProject.tasks[0].attributes = {{"field:udf", "-2.123456"}};
+        const auto udfPath = dir.filePath("udf-source.ppm").toStdString();
+        store.save(udfPath, udfProject, {});
+        doc.open(udfPath);
         const auto imported = *doc.project();
         const auto importPath = doc.path();
         {
@@ -174,10 +191,16 @@ int main(int argc, char **argv) {
         }
         {
             Drive drive({}, dir.filePath("exported"));
+            drive.expectUdf = true;
             action(current, "exportPrimaveraXer");
             check(drive.seenPreview && *doc.project() == imported && !doc.dirty() && !doc.canUndo() &&
                       doc.path() == importPath && QFileInfo::exists(QDir(drive.destination).filePath("source.ppm")),
                   "export changed document or lacked source");
+            const auto mapped = jobs::importPrimaveraXer(
+                                    jobs::readPrimaveraXer(QDir(drive.destination).filePath("project.xer")), "UI.xer")
+                                    .project;
+            check(mapped.customFields.size() == 1 && mapped.tasks[0].attributes[0].value == "-2.123456",
+                  "UI UDF export");
         }
         {
             Drive drive({}, dir.filePath("stale"));
@@ -224,6 +247,34 @@ int main(int argc, char **argv) {
             check(drive.seenPreview && *readonly.project() == readSnapshot && readonly.readOnly() &&
                       !readonly.dirty() && QFileInfo::exists(QDir(drive.destination).filePath("project.xer")),
                   "readonly export failed");
+        }
+        {
+            const auto before = *doc.project();
+            Drive drive(QString::fromUtf8(JOBS_XER_ACTUAL_FIXTURE), dir.filePath("actual-cancel"));
+            drive.expectActual = true;
+            drive.accept = false;
+            action(current, "importPrimaveraXer");
+            check(drive.seenPreview && *doc.project() == before && !QFileInfo::exists(drive.destination),
+                  "actual cost cancellation changed document");
+        }
+        {
+            Drive drive(QString::fromUtf8(JOBS_XER_ACTUAL_FIXTURE), dir.filePath("actual-accepted"));
+            drive.expectActual = true;
+            action(current, "importPrimaveraXer");
+            check(drive.seenPreview && doc.project()->periodActuals.size() == 4 &&
+                      doc.project()->statusAt == "2026-10-28 18:00",
+                  "actual import not installed in document");
+        }
+        {
+            const auto before = *doc.project();
+            Drive drive({}, dir.filePath("actual-exported"));
+            drive.expectActual = true;
+            action(current, "exportPrimaveraXer");
+            const auto reopened = jobs::importPrimaveraXer(
+                jobs::readPrimaveraXer(QDir(drive.destination).filePath("project.xer")), "UI actual.xer");
+            check(drive.seenPreview && *doc.project() == before && !doc.dirty() &&
+                      reopened.project.periodActuals.size() == 4,
+                  "actual export changed document or lost dated actuals");
         }
         // Use a clean project snapshot to check support for empty native projects too.
         jobs::Project empty;

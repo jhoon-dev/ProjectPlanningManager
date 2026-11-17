@@ -1,0 +1,11 @@
+Usage: C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\build-governance\dated-float-udf-runtime-4cdd2e44\payload\PPM-Automation.exe [options]
+PPM local JSON API: inspect or preview/apply one atomic task batch. No server or authentication.
+
+Options:
+  -?, -h, --help        Displays help on commandline options.
+  --help-all            Displays help, including generic Qt options.
+  -p, --project <path>  Native project file
+  -r, --request <path>  JSON request; omit to inspect IDs/revision
+  --apply               Apply and atomically save; default is preview
+  --workspace <path>    Optional local role policy file
+  --actor <id>          Local member ID (requires --workspace)

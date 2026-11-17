@@ -1,5 +1,6 @@
 #include "formatting/QtDiagnosticText.h"
 #include "persistence/ProjectFile.h"
+#include "domain/NativeSchema.h"
 #include "persistence/ProjectJson.h"
 #include <QCryptographicHash>
 #include <QJsonDocument>
@@ -22,7 +23,8 @@ Project decodeProjectFile(const QByteArray &bytes) {
     if (root.value("format") != "JOBS")
         throw AppError(ErrorCode::FILE_PROJECTFILE_004, {});
     const auto version = root.value("schemaVersion");
-    if (!version.isDouble() || version.toDouble() != version.toInt() || version.toInt() < 1 || version.toInt() > 9)
+    if (!version.isDouble() || version.toDouble() != version.toInt() || version.toInt() < 1 ||
+        version.toInt() > maximumNativeSchema)
         throw AppError(ErrorCode::FILE_VERSION_UNSUPPORTED, {});
     if (!root.value("payload").isObject())
         throw AppError(ErrorCode::FILE_PROJECTFILE_006, {});

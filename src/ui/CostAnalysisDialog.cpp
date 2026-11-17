@@ -260,9 +260,10 @@ void CostAnalysisDialog::display(const CostAnalysis &r) {
               {qs(row.name), m(row.plan), m(e.bac), m(e.pv), m(e.ev), m(e.ac), m(e.cv), m(e.sv), ratio(e.cpi),
                ratio(e.spi), m(e.eac), m(e.etc),
                row.physicalBasisPoints ? moneyui::format(*row.physicalBasisPoints, "USD") : "—",
-               row.credit.empty()         ? "—"
-               : row.credit == "physical" ? "물리 진척"
-                                          : "완료 0/100",
+               row.credit == "external-ev" ? "채택 XER EV"
+               : row.credit.empty()        ? "—"
+               : row.credit == "physical"  ? "물리 진척"
+                                           : "완료 0/100",
                (row.baselineMember ? "기준선 작업" : "기준선 밖") + (issues.empty() ? "" : " · " + issues.join(" · "))},
               detail);
         tasks_->item(i, 0)->setData(Qt::UserRole, qs(row.taskId));

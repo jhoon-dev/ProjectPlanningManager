@@ -1,0 +1,433 @@
+{
+    "assignments": [
+        {
+            "resourceId": "xml-resource-1",
+            "taskId": "xml-task-2",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-1",
+            "taskId": "xml-task-3",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-1",
+            "taskId": "xml-task-4",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-1",
+            "taskId": "xml-task-5",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-1",
+            "taskId": "xml-task-6",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-1",
+            "taskId": "xml-task-7",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-1",
+            "taskId": "xml-task-8",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-1",
+            "taskId": "xml-task-9",
+            "units": 100
+        },
+        {
+            "resourceId": "xml-resource-1",
+            "taskId": "xml-task-10",
+            "units": 100
+        }
+    ],
+    "baselines": [
+    ],
+    "calculationProfile": "native-effort-split-v1",
+    "calendar": "standard-mon-fri-8h-v1",
+    "calendars": [
+        {
+            "holidays": [
+            ],
+            "id": "xml-cal-1",
+            "name": "PPM standard",
+            "periods": [
+                {
+                    "begin": 540,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1080
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    ],
+    "codeTypes": [
+    ],
+    "costEntries": [
+    ],
+    "costProfile": "cost-day-minor-half-up-v1",
+    "currency": "KRW",
+    "customFields": [
+        {
+            "id": "xml-udf-TASK-188743732",
+            "name": "AS",
+            "options": [
+            ],
+            "type": "start",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:actualstart",
+                        "scope": 0,
+                        "token": "Actual Start"
+                    }
+                ],
+                "source": "[Actual Start]"
+            }
+        },
+        {
+            "id": "xml-udf-TASK-188743733",
+            "name": "AF",
+            "options": [
+            ],
+            "type": "finish",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:actualfinish",
+                        "scope": 0,
+                        "token": "Actual Finish"
+                    }
+                ],
+                "source": "[Actual Finish]"
+            }
+        },
+        {
+            "id": "xml-udf-TASK-188743767",
+            "name": "AD",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:actualduration",
+                        "scope": 0,
+                        "token": "Actual Duration"
+                    }
+                ],
+                "source": "[Actual Duration]"
+            }
+        },
+        {
+            "id": "xml-udf-TASK-188743768",
+            "name": "AW",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:actualwork",
+                        "scope": 0,
+                        "token": "Actual Work"
+                    }
+                ],
+                "source": "[Actual Work]"
+            }
+        }
+    ],
+    "derivedFrom": "",
+    "documentId": "86e6833e-fca2-4488-8e05-8a761439239c",
+    "holidays": [
+    ],
+    "name": "작업 진척 채택",
+    "progress": [
+        {
+            "actualDurationMinutes": 120,
+            "actualFinish": "2026-11-12 11:00",
+            "actualStart": "2026-11-12 09:00",
+            "id": "xml-progress-e2d3fc6fddf4d34d12242b19662ae685",
+            "planDurationMinutes": 120,
+            "previousEntryId": "",
+            "reason": "[XML-PROGRESS sha256=76e56f015616bfcd1a0b3d02d74fdec1f42ef24514125bc876a9c3f99305a625 uid=2] progress.xml · 선택한 원본 진척 확인",
+            "recordedAt": "2026-11-12T03:00:00Z",
+            "recordedRevision": 2,
+            "remainingMinutes": 0,
+            "reporter": "PM",
+            "sourceDocumentId": "86e6833e-fca2-4488-8e05-8a761439239c",
+            "statusAt": "2026-11-12 12:00",
+            "taskId": "xml-task-2"
+        },
+        {
+            "actualDurationMinutes": 60,
+            "actualFinish": null,
+            "actualStart": "2026-11-12 11:00",
+            "id": "xml-progress-6d3f521d82b4bcccc97a68f58a87341c",
+            "planDurationMinutes": 240,
+            "previousEntryId": "",
+            "reason": "[XML-PROGRESS sha256=76e56f015616bfcd1a0b3d02d74fdec1f42ef24514125bc876a9c3f99305a625 uid=3] progress.xml · 선택한 원본 진척 확인",
+            "recordedAt": "2026-11-12T03:00:00Z",
+            "recordedRevision": 2,
+            "remainingMinutes": 180,
+            "reporter": "PM",
+            "sourceDocumentId": "86e6833e-fca2-4488-8e05-8a761439239c",
+            "statusAt": "2026-11-12 12:00",
+            "taskId": "xml-task-3"
+        },
+        {
+            "actualDurationMinutes": 0,
+            "actualFinish": null,
+            "actualStart": null,
+            "id": "xml-progress-f486db0238cef7e06c36ba174d35f12b",
+            "planDurationMinutes": 60,
+            "previousEntryId": "",
+            "reason": "[XML-PROGRESS sha256=76e56f015616bfcd1a0b3d02d74fdec1f42ef24514125bc876a9c3f99305a625 uid=4] progress.xml · 선택한 원본 진척 확인",
+            "recordedAt": "2026-11-12T03:00:00Z",
+            "recordedRevision": 2,
+            "remainingMinutes": 60,
+            "reporter": "PM",
+            "sourceDocumentId": "86e6833e-fca2-4488-8e05-8a761439239c",
+            "statusAt": "2026-11-12 12:00",
+            "taskId": "xml-task-4"
+        },
+        {
+            "actualDurationMinutes": 0,
+            "actualFinish": "2026-11-12 11:30",
+            "actualStart": "2026-11-12 11:30",
+            "id": "xml-progress-603804913b26911e3908e8b431458c9a",
+            "planDurationMinutes": 0,
+            "previousEntryId": "",
+            "reason": "[XML-PROGRESS sha256=76e56f015616bfcd1a0b3d02d74fdec1f42ef24514125bc876a9c3f99305a625 uid=5] progress.xml · 선택한 원본 진척 확인",
+            "recordedAt": "2026-11-12T03:00:00Z",
+            "recordedRevision": 2,
+            "remainingMinutes": 0,
+            "reporter": "PM",
+            "sourceDocumentId": "86e6833e-fca2-4488-8e05-8a761439239c",
+            "statusAt": "2026-11-12 12:00",
+            "taskId": "xml-task-5"
+        }
+    ],
+    "resources": [
+        {
+            "calendarId": "xml-cal-1",
+            "exceptions": [
+            ],
+            "id": "xml-resource-1",
+            "maxUnits": 100,
+            "name": "인력",
+            "rates": [
+            ],
+            "type": "labor"
+        }
+    ],
+    "revision": 2,
+    "scenarios": [
+    ],
+    "startDate": "2026-11-12",
+    "statusAt": "2026-11-12 12:00",
+    "taskCosts": [
+    ],
+    "tasks": [
+        {
+            "breaks": [
+            ],
+            "calendarId": "xml-cal-1",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 120,
+            "id": "xml-task-2",
+            "name": "완료-A",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "xml-wbs-1",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xml-cal-1",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 240,
+            "id": "xml-task-3",
+            "name": "진행-B",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "xml-wbs-1",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xml-cal-1",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 60,
+            "id": "xml-task-4",
+            "name": "미착수-C",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "xml-wbs-1",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xml-cal-1",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 0,
+            "id": "xml-task-5",
+            "name": "완료점-M",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "xml-wbs-1",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xml-cal-1",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 120,
+            "id": "xml-task-6",
+            "name": "기간누락-BAD",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "xml-wbs-1",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xml-cal-1",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 120,
+            "id": "xml-task-7",
+            "name": "미래-F",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "xml-wbs-1",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xml-cal-1",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 120,
+            "id": "xml-task-8",
+            "name": "초정밀-S",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "xml-wbs-1",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xml-cal-1",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 120,
+            "id": "xml-task-9",
+            "name": "소수기간-D",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "xml-wbs-1",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xml-cal-1",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 60,
+            "id": "xml-task-10",
+            "name": "미보고-N",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "xml-wbs-1",
+            "workDriven": false,
+            "workUnitMinutes": null
+        }
+    ],
+    "wbsNodes": [
+        {
+            "id": "xml-wbs-1",
+            "name": "공사",
+            "parentId": ""
+        }
+    ]
+}

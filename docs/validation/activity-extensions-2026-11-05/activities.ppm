@@ -1,0 +1,486 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "activities": [
+            {
+                "calendarId": "",
+                "finishTaskId": "B",
+                "id": "65510de7-82b6-4edd-9ae4-b9334a8ca441",
+                "kind": "loe",
+                "name": "현장 관리",
+                "physicalFromSteps": true,
+                "startTaskId": "A",
+                "steps": [
+                ],
+                "taskId": "",
+                "wbsId": ""
+            },
+            {
+                "calendarId": "",
+                "finishTaskId": "",
+                "id": "da119fab-3863-4d4c-bcfd-3ed9066ffd04",
+                "kind": "wbs-summary",
+                "name": "현장 요약",
+                "physicalFromSteps": true,
+                "startTaskId": "",
+                "steps": [
+                ],
+                "taskId": "",
+                "wbsId": "root"
+            },
+            {
+                "calendarId": "",
+                "finishTaskId": "",
+                "id": "a1013dfc-4c42-4bb9-a576-87c3fc329c82",
+                "kind": "steps",
+                "name": "설계 Steps",
+                "physicalFromSteps": true,
+                "startTaskId": "",
+                "steps": [
+                    {
+                        "id": "s1",
+                        "name": "도면",
+                        "weight": 7
+                    },
+                    {
+                        "id": "s2",
+                        "name": "승인",
+                        "weight": 1
+                    }
+                ],
+                "taskId": "A",
+                "wbsId": ""
+            }
+        ],
+        "assignments": [
+        ],
+        "baselines": [
+            {
+                "approvedBy": "PM",
+                "createdAt": "2026-11-02T00:00:00Z",
+                "engineVersion": "jobs-effort-1.1",
+                "id": "d7e8fe53-c978-46c6-a8c7-613c5fbe30f3",
+                "input": {
+                    "activities": [
+                        {
+                            "calendarId": "",
+                            "finishTaskId": "B",
+                            "id": "65510de7-82b6-4edd-9ae4-b9334a8ca441",
+                            "kind": "loe",
+                            "name": "현장 관리",
+                            "physicalFromSteps": true,
+                            "startTaskId": "A",
+                            "steps": [
+                            ],
+                            "taskId": "",
+                            "wbsId": ""
+                        },
+                        {
+                            "calendarId": "",
+                            "finishTaskId": "",
+                            "id": "da119fab-3863-4d4c-bcfd-3ed9066ffd04",
+                            "kind": "wbs-summary",
+                            "name": "현장 요약",
+                            "physicalFromSteps": true,
+                            "startTaskId": "",
+                            "steps": [
+                            ],
+                            "taskId": "",
+                            "wbsId": "root"
+                        },
+                        {
+                            "calendarId": "",
+                            "finishTaskId": "",
+                            "id": "a1013dfc-4c42-4bb9-a576-87c3fc329c82",
+                            "kind": "steps",
+                            "name": "설계 Steps",
+                            "physicalFromSteps": true,
+                            "startTaskId": "",
+                            "steps": [
+                                {
+                                    "id": "s1",
+                                    "name": "도면",
+                                    "weight": 1
+                                },
+                                {
+                                    "id": "s2",
+                                    "name": "승인",
+                                    "weight": 3
+                                }
+                            ],
+                            "taskId": "A",
+                            "wbsId": ""
+                        }
+                    ],
+                    "assignments": [
+                    ],
+                    "calculationProfile": "native-effort-split-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "calendars": [
+                    ],
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "KRW",
+                    "holidays": [
+                    ],
+                    "name": "지원 활동 검증",
+                    "resources": [
+                    ],
+                    "startDate": "2026-11-02",
+                    "taskCosts": [
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 100000,
+                            "taskId": "A"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "B"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "C"
+                        }
+                    ],
+                    "tasks": [
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 480,
+                            "id": "A",
+                            "name": "설계",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "root",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 480,
+                            "id": "B",
+                            "name": "시공",
+                            "predecessors": [
+                                "A"
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "child",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 60,
+                            "id": "C",
+                            "name": "독립",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        }
+                    ],
+                    "wbsNodes": [
+                        {
+                            "id": "root",
+                            "name": "현장",
+                            "parentId": ""
+                        },
+                        {
+                            "id": "child",
+                            "name": "구역",
+                            "parentId": "root"
+                        }
+                    ]
+                },
+                "inputRevision": 10,
+                "name": "승인 계획",
+                "projectFinish": "2026-11-03 18:00",
+                "reason": "test",
+                "schedule": [
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 1080,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-02 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 1080,
+                        "lateStartMinutes": 540,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:00",
+                        "taskId": "A",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "A"
+                        ],
+                        "earlyFinishMinutes": 2520,
+                        "earlyStartMinutes": 1980,
+                        "finish": "2026-11-03 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 2520,
+                        "lateStartMinutes": 1980,
+                        "remainingStart": null,
+                        "start": "2026-11-03 09:00",
+                        "taskId": "B",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": false,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 600,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-02 10:00",
+                        "freeFloatMinutes": 900,
+                        "lateFinishMinutes": 2520,
+                        "lateStartMinutes": 2460,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:00",
+                        "taskId": "C",
+                        "totalFloatMinutes": 900
+                    }
+                ],
+                "sourceDocumentId": "activity-fixture",
+                "version": 1
+            }
+        ],
+        "calculationProfile": "native-effort-split-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "calendars": [
+        ],
+        "costEntries": [
+            {
+                "actualMinor": 0,
+                "currency": "KRW",
+                "id": "bd3b791a-79bf-4708-acf7-ca4ff6d2ec7b",
+                "physicalBasisPoints": 1000,
+                "previousEntryId": "",
+                "reason": "원천 분리",
+                "recordedAt": "2026-11-05T00:00:00Z",
+                "recordedRevision": 21,
+                "reporter": "PM",
+                "sourceDocumentId": "activity-fixture",
+                "statusAt": "2026-11-02 18:00",
+                "taskId": "A"
+            }
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "KRW",
+        "derivedFrom": "activity-fixture",
+        "documentId": "f208d9f9-f750-43eb-9fd9-780f00e96ede",
+        "holidays": [
+        ],
+        "name": "지원 활동 검증",
+        "progress": [
+            {
+                "actualDurationMinutes": 240,
+                "actualFinish": null,
+                "actualStart": "2026-11-02 09:00",
+                "id": "ffa89136-8409-4257-ab36-4af10567705e",
+                "planDurationMinutes": 480,
+                "previousEntryId": "",
+                "reason": "fixture",
+                "recordedAt": "2026-11-03T00:00:00Z",
+                "recordedRevision": 13,
+                "remainingMinutes": 240,
+                "reporter": "tester",
+                "sourceDocumentId": "activity-fixture",
+                "statusAt": "2026-11-02 18:00",
+                "taskId": "A"
+            }
+        ],
+        "resources": [
+        ],
+        "revision": 23,
+        "scenarios": [
+        ],
+        "startDate": "2026-11-02",
+        "statusAt": "2026-11-02 18:00",
+        "stepReports": [
+            {
+                "id": "faad3ead-9368-43b5-8676-e027a05279ad",
+                "reason": "weighted test",
+                "recordedAt": "2026-11-05T00:00:00Z",
+                "recordedRevision": 14,
+                "reporter": "PM",
+                "sourceDocumentId": "activity-fixture",
+                "statusAt": "2026-11-02 18:00",
+                "steps": [
+                    {
+                        "basisPoints": 10000,
+                        "step": {
+                            "id": "s1",
+                            "name": "도면",
+                            "weight": 1
+                        }
+                    },
+                    {
+                        "basisPoints": 0,
+                        "step": {
+                            "id": "s2",
+                            "name": "승인",
+                            "weight": 3
+                        }
+                    }
+                ],
+                "taskId": "A"
+            },
+            {
+                "id": "58ab1551-a424-4f66-b217-e6426fe054ef",
+                "reason": "weighted test",
+                "recordedAt": "2026-11-05T00:00:00Z",
+                "recordedRevision": 18,
+                "reporter": "PM",
+                "sourceDocumentId": "activity-fixture",
+                "statusAt": "2026-11-02 18:00",
+                "steps": [
+                    {
+                        "basisPoints": 10000,
+                        "step": {
+                            "id": "s1",
+                            "name": "도면",
+                            "weight": 7
+                        }
+                    },
+                    {
+                        "basisPoints": 0,
+                        "step": {
+                            "id": "s2",
+                            "name": "승인",
+                            "weight": 1
+                        }
+                    }
+                ],
+                "taskId": "A"
+            }
+        ],
+        "taskCosts": [
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 100000,
+                "taskId": "A"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "B"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "C"
+            }
+        ],
+        "tasks": [
+            {
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 480,
+                "id": "A",
+                "name": "설계",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "root",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 480,
+                "id": "B",
+                "name": "시공",
+                "predecessors": [
+                    "A"
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "child",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 60,
+                "id": "C",
+                "name": "독립",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            }
+        ],
+        "wbsNodes": [
+            {
+                "id": "root",
+                "name": "현장",
+                "parentId": ""
+            },
+            {
+                "id": "child",
+                "name": "구역",
+                "parentId": "root"
+            }
+        ]
+    },
+    "schemaVersion": 19,
+    "sha256": "84d891848ac40c3dfee7cb488a4bd7bb72a7c70afaf5b5deef310919c3ee2626"
+}

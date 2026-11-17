@@ -1,6 +1,7 @@
 #pragma once
 #include "application/Document.h"
 #include "ui/TaskTableView.h"
+#include "ui/TaskViewProjection.h"
 #include <QMainWindow>
 #include <tuple>
 class QLabel;
@@ -82,7 +83,7 @@ private:
     void manageResources();
     void assignResources();
     void showResources();
-    QAction *rates_, *taskCost_, *costReport_, *evm_;
+    QAction *rates_, *taskCost_, *costReport_, *evm_, *periodEvm_, *externalEvm_, *financialPeriods_;
     void editRates();
     void editTaskCost();
     void reportCost();
@@ -121,11 +122,15 @@ private:
     void create();
     void open();
     void importXml();
-    void exportXml();
+    void mergeXmlProgress();
+    void mergeXmlBaselines();
+    void mergeXmlPeriodActuals();
+    void exportXml(bool includeActuals = false);
     void importXer();
     void exportXer();
+    void batchXer(bool importing);
     void refresh(bool rebuildTree = true);
-    using ViewKey = std::tuple<std::string, std::string, QString, int, int, bool, bool, bool, std::string>;
+    using ViewKey = std::tuple<std::string, std::string, QString, int, int, bool, bool, bool, std::string, std::string>;
     ViewKey viewKey() const;
     ViewKey renderedView_;
     bool rendered_ = false;
@@ -161,6 +166,17 @@ private:
     void copySelectedCells();
     void pasteCells();
     void applyTaskView();
+    TaskViewSettings classificationView_;
+    std::vector<TaskGroup> taskGroups_;
+    void setupClassification();
+    bool classificationActive() const;
+    std::string classificationToken() const;
+    TaskViewSettings currentTaskViewSettings() const;
+    void applyTaskViewSettings(const TaskViewSettings &);
+    void configureTaskView();
+    void saveTaskView();
+    void chooseSavedTaskView(bool remove);
+    void refreshClassificationGroups(const TaskViewProjection &);
     void restoreTaskSelection(int column);
     std::vector<std::string> selectedTaskIds() const;
     void rebuildWbsTree();

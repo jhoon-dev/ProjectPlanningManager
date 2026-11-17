@@ -1,0 +1,25 @@
+test_archive_accepts_internal_framework_links (test_mac_store_packaging.MacStorePackagingTests.test_archive_accepts_internal_framework_links) ... ok
+test_archive_rejects_traversal_and_external_symlink (test_mac_store_packaging.MacStorePackagingTests.test_archive_rejects_traversal_and_external_symlink) ... ok
+test_embedded_profile_is_public_but_private_signing_material_stays_private (test_mac_store_packaging.MacStorePackagingTests.test_embedded_profile_is_public_but_private_signing_material_stays_private) ... skipped 'POSIX permissions are verified on the Mac signing runner'
+test_exact_distribution_profile (test_mac_store_packaging.MacStorePackagingTests.test_exact_distribution_profile) ... ok
+test_expired_and_ambiguous_profile (test_mac_store_packaging.MacStorePackagingTests.test_expired_and_ambiguous_profile) ... ok
+test_identity_must_be_the_profile_distribution_certificate (test_mac_store_packaging.MacStorePackagingTests.test_identity_must_be_the_profile_distribution_certificate) ... ok
+test_payload_rejects_owner_only_files_directories_and_executables (test_mac_store_packaging.MacStorePackagingTests.test_payload_rejects_owner_only_files_directories_and_executables) ... skipped 'POSIX permissions are verified on the Mac signing runner'
+test_preparation_rejects_unpaired_status_and_duplicate_app_archives (test_mac_store_packaging.MacStorePackagingTests.test_preparation_rejects_unpaired_status_and_duplicate_app_archives) ... ok
+test_preparation_uses_app_status_with_separate_sandbox_evidence (test_mac_store_packaging.MacStorePackagingTests.test_preparation_uses_app_status_with_separate_sandbox_evidence) ... ok
+test_signing_keychain_preserves_and_restores_search_list_on_failure (test_mac_store_packaging.MacStorePackagingTests.test_signing_keychain_preserves_and_restores_search_list_on_failure) ... ok
+test_upload_requires_exact_source_runtime_and_external_qa (test_mac_store_packaging.MacStorePackagingTests.test_upload_requires_exact_source_runtime_and_external_qa) ... ok
+test_wrong_team_app_wildcard_and_debug_profiles (test_mac_store_packaging.MacStorePackagingTests.test_wrong_team_app_wildcard_and_debug_profiles) ... ok
+test_archive_roundtrip_detects_corruption_and_unexpected_content (test_msix_packaging.PackagingContract.test_archive_roundtrip_detects_corruption_and_unexpected_content) ... ok
+test_assets_match_vector_inventory (test_msix_packaging.PackagingContract.test_assets_match_vector_inventory) ... ok
+test_development_identity_separate_and_fixed (test_msix_packaging.PackagingContract.test_development_identity_separate_and_fixed) ... ok
+test_manifest_identity_xml_and_capability (test_msix_packaging.PackagingContract.test_manifest_identity_xml_and_capability) ... ok
+test_payload_rejects_secrets_installer_and_store_probe (test_msix_packaging.PackagingContract.test_payload_rejects_secrets_installer_and_store_probe) ... ok
+test_store_requires_exact_nonempty_identity (test_msix_packaging.PackagingContract.test_store_requires_exact_nonempty_identity) ... ok
+test_unsigned_packages_cannot_be_written_to_public_distribution (test_msix_packaging.PackagingContract.test_unsigned_packages_cannot_be_written_to_public_distribution) ... ok
+test_version_bounds (test_msix_packaging.PackagingContract.test_version_bounds) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.539s
+
+OK (skipped=2)

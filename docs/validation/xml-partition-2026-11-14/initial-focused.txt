@@ -1,0 +1,15 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 66: xml_partition_contract
+1/2 Test #66: xml_partition_contract ...........***Failed    0.78 sec
+Null propagates before domain validation
+
+    Start 67: xml_partition_ui
+2/2 Test #67: xml_partition_ui .................   Passed    0.86 sec
+
+50% tests passed, 1 tests failed out of 2
+
+Total Test time (real) =   1.71 sec
+
+The following tests FAILED:
+	 66 - xml_partition_contract (Failed)
+Errors while running CTest

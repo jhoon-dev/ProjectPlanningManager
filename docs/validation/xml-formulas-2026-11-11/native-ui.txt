@@ -1,0 +1,1 @@
+PASS XML formula UI: preview/disable/snapshot/undo, unsupported/stale, assignment refs, Windows small layout

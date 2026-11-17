@@ -1,0 +1,865 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "activities": [
+            {
+                "calendarId": "",
+                "finishTaskId": "",
+                "id": "aad3e48b-169e-4932-99ab-e5fcb1dc55a3",
+                "kind": "steps",
+                "name": "검사 Steps",
+                "physicalFromSteps": false,
+                "startTaskId": "",
+                "steps": [
+                    {
+                        "id": "S",
+                        "name": "검사",
+                        "weight": 1
+                    }
+                ],
+                "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade",
+                "wbsId": ""
+            }
+        ],
+        "assignments": [
+        ],
+        "baselines": [
+            {
+                "approvedBy": "PM",
+                "createdAt": "2026-10-25T00:00:00Z",
+                "engineVersion": "jobs-cpm-0.2",
+                "id": "11c1ada5-d910-4516-af60-894c8f712cac",
+                "input": {
+                    "assignments": [
+                    ],
+                    "calculationProfile": "native-fs0-workminutes-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "USD",
+                    "holidays": [
+                    ],
+                    "name": "native 기간 EVM 검증",
+                    "resources": [
+                    ],
+                    "startDate": "2026-10-26",
+                    "taskCosts": [
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 1000,
+                            "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 3000,
+                            "taskId": "a109f87d-7980-4849-a44f-960449321358"
+                        }
+                    ],
+                    "tasks": [
+                        {
+                            "durationMinutes": 960,
+                            "id": "3b3a1566-0ecb-4464-8024-19d5959d5ade",
+                            "name": "설계",
+                            "predecessors": [
+                            ],
+                            "wbsId": "cb14b869-9a24-4507-b580-359d3745b62c"
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "a109f87d-7980-4849-a44f-960449321358",
+                            "name": "시공",
+                            "predecessors": [
+                            ],
+                            "wbsId": "d9dee287-abc4-4baa-9878-78bb302ee647"
+                        }
+                    ],
+                    "wbsNodes": [
+                        {
+                            "id": "d9dee287-abc4-4baa-9878-78bb302ee647",
+                            "name": "전체 단계",
+                            "parentId": ""
+                        },
+                        {
+                            "id": "cb14b869-9a24-4507-b580-359d3745b62c",
+                            "name": "설계 단계",
+                            "parentId": "d9dee287-abc4-4baa-9878-78bb302ee647"
+                        }
+                    ]
+                },
+                "inputRevision": 10,
+                "name": "승인 예산",
+                "projectFinish": "2026-10-27 18:00",
+                "reason": "기간별 EVM",
+                "schedule": [
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 960,
+                        "earlyStartMinutes": 0,
+                        "finish": "2026-10-27 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 960,
+                        "lateStartMinutes": 0,
+                        "remainingStart": null,
+                        "start": "2026-10-26 09:00",
+                        "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 960,
+                        "earlyStartMinutes": 0,
+                        "finish": "2026-10-27 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 960,
+                        "lateStartMinutes": 0,
+                        "remainingStart": null,
+                        "start": "2026-10-26 09:00",
+                        "taskId": "a109f87d-7980-4849-a44f-960449321358",
+                        "totalFloatMinutes": 0
+                    }
+                ],
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "version": 1
+            }
+        ],
+        "calculationProfile": "native-fs0-workminutes-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "costEntries": [
+            {
+                "actualMinor": 0,
+                "currency": "USD",
+                "id": "a9c82820-6972-4468-8bf1-7f2425e8f467",
+                "physicalBasisPoints": 0,
+                "previousEntryId": "",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 13,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-25 23:59",
+                "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+            },
+            {
+                "actualMinor": 0,
+                "currency": "USD",
+                "id": "e4773730-e3cb-4f24-939c-6d7c25e01298",
+                "physicalBasisPoints": 0,
+                "previousEntryId": "",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 14,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-25 23:59",
+                "taskId": "a109f87d-7980-4849-a44f-960449321358"
+            },
+            {
+                "actualMinor": 100,
+                "currency": "USD",
+                "id": "4cc7212e-055d-4327-b14a-717a2529a4a8",
+                "physicalBasisPoints": 1000,
+                "previousEntryId": "a9c82820-6972-4468-8bf1-7f2425e8f467",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 16,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-26 12:00",
+                "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+            },
+            {
+                "actualMinor": 200,
+                "currency": "USD",
+                "id": "285ae0d3-2245-4e19-bf51-ea125d6b8de0",
+                "physicalBasisPoints": 2000,
+                "previousEntryId": "e4773730-e3cb-4f24-939c-6d7c25e01298",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 17,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-26 12:00",
+                "taskId": "a109f87d-7980-4849-a44f-960449321358"
+            },
+            {
+                "actualMinor": 600,
+                "currency": "USD",
+                "id": "4e772ead-030a-43d1-9920-d3bd64f5ca4c",
+                "physicalBasisPoints": 4000,
+                "previousEntryId": "4cc7212e-055d-4327-b14a-717a2529a4a8",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 19,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-26 18:00",
+                "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+            },
+            {
+                "actualMinor": 1200,
+                "currency": "USD",
+                "id": "662c4e07-ee8a-4382-bb58-cf503d57d070",
+                "physicalBasisPoints": 5000,
+                "previousEntryId": "285ae0d3-2245-4e19-bf51-ea125d6b8de0",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 20,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-26 18:00",
+                "taskId": "a109f87d-7980-4849-a44f-960449321358"
+            },
+            {
+                "actualMinor": 650,
+                "currency": "USD",
+                "id": "d3d8a96b-3e2f-4086-8031-2beebeb0723b",
+                "physicalBasisPoints": 4500,
+                "previousEntryId": "4e772ead-030a-43d1-9920-d3bd64f5ca4c",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 22,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-27 00:00",
+                "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+            },
+            {
+                "actualMinor": 800,
+                "currency": "USD",
+                "id": "301ce7a7-bad4-4d95-97af-7c8e13822790",
+                "physicalBasisPoints": 6000,
+                "previousEntryId": "d3d8a96b-3e2f-4086-8031-2beebeb0723b",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 24,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-27 18:00",
+                "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+            },
+            {
+                "actualMinor": 1700,
+                "currency": "USD",
+                "id": "eccdf7b4-703c-4989-aea4-f71c632c85c9",
+                "physicalBasisPoints": 7000,
+                "previousEntryId": "662c4e07-ee8a-4382-bb58-cf503d57d070",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 25,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-27 18:00",
+                "taskId": "a109f87d-7980-4849-a44f-960449321358"
+            },
+            {
+                "actualMinor": 700,
+                "currency": "USD",
+                "id": "9707c1b5-f155-4b48-81b2-eb5152f99cc4",
+                "physicalBasisPoints": 5000,
+                "previousEntryId": "301ce7a7-bad4-4d95-97af-7c8e13822790",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 27,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-28 10:00",
+                "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+            },
+            {
+                "actualMinor": 1700,
+                "currency": "USD",
+                "id": "0366c9a2-a946-48e6-a179-81689061a14b",
+                "physicalBasisPoints": 7000,
+                "previousEntryId": "eccdf7b4-703c-4989-aea4-f71c632c85c9",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 28,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-28 10:00",
+                "taskId": "a109f87d-7980-4849-a44f-960449321358"
+            },
+            {
+                "actualMinor": 750,
+                "currency": "USD",
+                "id": "cae76b9f-ab61-4e6b-b8cc-07f117441677",
+                "physicalBasisPoints": 5500,
+                "previousEntryId": "9707c1b5-f155-4b48-81b2-eb5152f99cc4",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 29,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-28 10:00",
+                "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+            },
+            {
+                "actualMinor": 1,
+                "currency": "USD",
+                "id": "3142d1c8-517b-441b-9caa-16332af96245",
+                "physicalBasisPoints": 1,
+                "previousEntryId": "cae76b9f-ab61-4e6b-b8cc-07f117441677",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 31,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-26 09:00",
+                "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+            },
+            {
+                "actualMinor": 750,
+                "currency": "USD",
+                "id": "8e385836-4071-4544-80e1-c7534e0bb143",
+                "physicalBasisPoints": 5500,
+                "previousEntryId": "3142d1c8-517b-441b-9caa-16332af96245",
+                "reason": "이미 보고한 누계 안에서 날짜 명세 연결",
+                "recordedAt": "2026-11-08T02:00:00Z",
+                "recordedRevision": 33,
+                "reporter": "날짜 배분 담당",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-29 12:00",
+                "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+            },
+            {
+                "actualMinor": 1700,
+                "currency": "USD",
+                "id": "26d61e4b-0f30-4c3c-a8df-c22a731df0d4",
+                "physicalBasisPoints": 7000,
+                "previousEntryId": "0366c9a2-a946-48e6-a179-81689061a14b",
+                "reason": "이미 보고한 누계 안에서 날짜 명세 연결",
+                "recordedAt": "2026-11-08T02:00:00Z",
+                "recordedRevision": 33,
+                "reporter": "날짜 배분 담당",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-29 12:00",
+                "taskId": "a109f87d-7980-4849-a44f-960449321358"
+            },
+            {
+                "actualMinor": 1200,
+                "currency": "USD",
+                "id": "f2b5480c-12a7-4399-b211-7ff45379bb63",
+                "physicalBasisPoints": 7000,
+                "previousEntryId": "8e385836-4071-4544-80e1-c7534e0bb143",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 40,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-29 12:00",
+                "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+            },
+            {
+                "actualMinor": 900,
+                "currency": "USD",
+                "id": "01fe2807-0bba-48fd-8160-cf6a82f65ed4",
+                "physicalBasisPoints": 6500,
+                "previousEntryId": "f2b5480c-12a7-4399-b211-7ff45379bb63",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 48,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-27 18:00",
+                "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+            }
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "USD",
+        "derivedFrom": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+        "documentId": "ba6b2331-a0ce-405b-81a0-3daf5f01ce51",
+        "financialPeriodEvents": [
+            {
+                "action": "define",
+                "confirmed": true,
+                "currency": "USD",
+                "formula": "budget-remaining-v1",
+                "id": "ac0c7b93-d302-48fa-8fb5-80607b11d925",
+                "knowledgeRevision": 33,
+                "period": {
+                    "baselineId": "11c1ada5-d910-4516-af60-894c8f712cac",
+                    "fromDate": "2026-10-26",
+                    "id": "ac0c7b93-d302-48fa-8fb5-80607b11d925",
+                    "name": "제1 관리기간",
+                    "toDate": "2026-10-27",
+                    "values": [
+                        {
+                            "budget": 500,
+                            "earned": 450,
+                            "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+                        }
+                    ]
+                },
+                "policy": "custom-financial-period-v1",
+                "reason": "승인된 기간 금액 및 마감",
+                "recordedAt": "2026-11-08T04:00:00Z",
+                "recordedRevision": 34,
+                "reporter": "기간 관리자",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-29 12:00",
+                "tasks": [
+                ]
+            },
+            {
+                "action": "close",
+                "confirmed": true,
+                "currency": "USD",
+                "formula": "budget-remaining-v1",
+                "id": "2825e2f7-04d6-4a59-96aa-130b6e02bb01",
+                "knowledgeRevision": 34,
+                "period": {
+                    "baselineId": "11c1ada5-d910-4516-af60-894c8f712cac",
+                    "fromDate": "2026-10-26",
+                    "id": "ac0c7b93-d302-48fa-8fb5-80607b11d925",
+                    "name": "제1 관리기간",
+                    "toDate": "2026-10-27",
+                    "values": [
+                        {
+                            "budget": 500,
+                            "earned": 450,
+                            "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+                        }
+                    ]
+                },
+                "policy": "custom-financial-period-v1",
+                "reason": "승인된 기간 금액 및 마감",
+                "recordedAt": "2026-11-08T04:00:00Z",
+                "recordedRevision": 35,
+                "reporter": "기간 관리자",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-29 12:00",
+                "tasks": [
+                    {
+                        "closing": {
+                            "ac": 800,
+                            "acReportId": "301ce7a7-bad4-4d95-97af-7c8e13822790",
+                            "bac": 1000,
+                            "estimateSupported": true,
+                            "ev": 600,
+                            "evReportId": "301ce7a7-bad4-4d95-97af-7c8e13822790",
+                            "pv": 1000
+                        },
+                        "dated": 500,
+                        "opening": {
+                            "ac": 0,
+                            "acReportId": "a9c82820-6972-4468-8bf1-7f2425e8f467",
+                            "bac": 1000,
+                            "estimateSupported": true,
+                            "ev": 0,
+                            "evReportId": "a9c82820-6972-4468-8bf1-7f2425e8f467",
+                            "pv": 0
+                        },
+                        "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+                    },
+                    {
+                        "closing": {
+                            "ac": 1700,
+                            "acReportId": "eccdf7b4-703c-4989-aea4-f71c632c85c9",
+                            "bac": 3000,
+                            "estimateSupported": true,
+                            "ev": 2100,
+                            "evReportId": "eccdf7b4-703c-4989-aea4-f71c632c85c9",
+                            "pv": 3000
+                        },
+                        "dated": 1500,
+                        "opening": {
+                            "ac": 0,
+                            "acReportId": "e4773730-e3cb-4f24-939c-6d7c25e01298",
+                            "bac": 3000,
+                            "estimateSupported": true,
+                            "ev": 0,
+                            "evReportId": "e4773730-e3cb-4f24-939c-6d7c25e01298",
+                            "pv": 0
+                        },
+                        "taskId": "a109f87d-7980-4849-a44f-960449321358"
+                    }
+                ]
+            },
+            {
+                "action": "define",
+                "confirmed": true,
+                "currency": "USD",
+                "formula": "budget-remaining-v1",
+                "id": "3b1c6233-24b6-4d79-a6f7-eba428790f1a",
+                "knowledgeRevision": 41,
+                "period": {
+                    "baselineId": "11c1ada5-d910-4516-af60-894c8f712cac",
+                    "fromDate": "2026-10-28",
+                    "id": "3b1c6233-24b6-4d79-a6f7-eba428790f1a",
+                    "name": "제2 관리기간",
+                    "toDate": "2026-10-29",
+                    "values": [
+                    ]
+                },
+                "policy": "custom-financial-period-v1",
+                "reason": "승인된 기간 금액 및 마감",
+                "recordedAt": "2026-11-08T04:00:00Z",
+                "recordedRevision": 42,
+                "reporter": "기간 관리자",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-29 12:00",
+                "tasks": [
+                ]
+            },
+            {
+                "action": "close",
+                "confirmed": true,
+                "currency": "USD",
+                "formula": "budget-remaining-v1",
+                "id": "cf136d62-72f4-4135-84ef-29dc176bc133",
+                "knowledgeRevision": 43,
+                "period": {
+                    "baselineId": "11c1ada5-d910-4516-af60-894c8f712cac",
+                    "fromDate": "2026-10-28",
+                    "id": "3b1c6233-24b6-4d79-a6f7-eba428790f1a",
+                    "name": "제2 관리기간",
+                    "toDate": "2026-10-29",
+                    "values": [
+                    ]
+                },
+                "policy": "custom-financial-period-v1",
+                "reason": "승인된 기간 금액 및 마감",
+                "recordedAt": "2026-11-08T04:00:00Z",
+                "recordedRevision": 44,
+                "reporter": "기간 관리자",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-29 23:59",
+                "tasks": [
+                    {
+                        "closing": {
+                            "ac": 1200,
+                            "acReportId": "f2b5480c-12a7-4399-b211-7ff45379bb63",
+                            "bac": 1000,
+                            "estimateSupported": true,
+                            "ev": 700,
+                            "evReportId": "f2b5480c-12a7-4399-b211-7ff45379bb63",
+                            "pv": 1000
+                        },
+                        "dated": 50,
+                        "opening": {
+                            "ac": 800,
+                            "acReportId": "301ce7a7-bad4-4d95-97af-7c8e13822790",
+                            "bac": 1000,
+                            "estimateSupported": true,
+                            "ev": 600,
+                            "evReportId": "301ce7a7-bad4-4d95-97af-7c8e13822790",
+                            "pv": 1000
+                        },
+                        "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+                    },
+                    {
+                        "closing": {
+                            "ac": 1700,
+                            "acReportId": "26d61e4b-0f30-4c3c-a8df-c22a731df0d4",
+                            "bac": 3000,
+                            "estimateSupported": true,
+                            "ev": 2100,
+                            "evReportId": "26d61e4b-0f30-4c3c-a8df-c22a731df0d4",
+                            "pv": 3000
+                        },
+                        "dated": 0,
+                        "opening": {
+                            "ac": 1700,
+                            "acReportId": "eccdf7b4-703c-4989-aea4-f71c632c85c9",
+                            "bac": 3000,
+                            "estimateSupported": true,
+                            "ev": 2100,
+                            "evReportId": "eccdf7b4-703c-4989-aea4-f71c632c85c9",
+                            "pv": 3000
+                        },
+                        "taskId": "a109f87d-7980-4849-a44f-960449321358"
+                    }
+                ]
+            },
+            {
+                "action": "reopen",
+                "confirmed": true,
+                "currency": "USD",
+                "formula": "budget-remaining-v1",
+                "id": "dff941bd-90c4-4eff-a051-c5127aa8b6a5",
+                "knowledgeRevision": 44,
+                "period": {
+                    "baselineId": "11c1ada5-d910-4516-af60-894c8f712cac",
+                    "fromDate": "2026-10-28",
+                    "id": "3b1c6233-24b6-4d79-a6f7-eba428790f1a",
+                    "name": "제2 관리기간",
+                    "toDate": "2026-10-29",
+                    "values": [
+                    ]
+                },
+                "policy": "custom-financial-period-v1",
+                "reason": "승인된 기간 금액 및 마감",
+                "recordedAt": "2026-11-08T04:00:00Z",
+                "recordedRevision": 45,
+                "reporter": "기간 관리자",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-29 23:59",
+                "tasks": [
+                ]
+            },
+            {
+                "action": "reopen",
+                "confirmed": true,
+                "currency": "USD",
+                "formula": "budget-remaining-v1",
+                "id": "743bf812-438e-4fb4-9cfa-b8d8ab3ae29b",
+                "knowledgeRevision": 45,
+                "period": {
+                    "baselineId": "11c1ada5-d910-4516-af60-894c8f712cac",
+                    "fromDate": "2026-10-26",
+                    "id": "ac0c7b93-d302-48fa-8fb5-80607b11d925",
+                    "name": "제1 관리기간",
+                    "toDate": "2026-10-27",
+                    "values": [
+                        {
+                            "budget": 500,
+                            "earned": 450,
+                            "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+                        }
+                    ]
+                },
+                "policy": "custom-financial-period-v1",
+                "reason": "승인된 기간 금액 및 마감",
+                "recordedAt": "2026-11-08T04:00:00Z",
+                "recordedRevision": 46,
+                "reporter": "기간 관리자",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-29 23:59",
+                "tasks": [
+                ]
+            },
+            {
+                "action": "close",
+                "confirmed": true,
+                "currency": "USD",
+                "formula": "budget-remaining-v1",
+                "id": "3d08bf17-f078-46a7-8e72-49813af447ea",
+                "knowledgeRevision": 49,
+                "period": {
+                    "baselineId": "11c1ada5-d910-4516-af60-894c8f712cac",
+                    "fromDate": "2026-10-26",
+                    "id": "ac0c7b93-d302-48fa-8fb5-80607b11d925",
+                    "name": "제1 관리기간",
+                    "toDate": "2026-10-27",
+                    "values": [
+                        {
+                            "budget": 500,
+                            "earned": 450,
+                            "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+                        }
+                    ]
+                },
+                "policy": "custom-financial-period-v1",
+                "reason": "승인된 기간 금액 및 마감",
+                "recordedAt": "2026-11-08T04:00:00Z",
+                "recordedRevision": 50,
+                "reporter": "기간 관리자",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-29 23:59",
+                "tasks": [
+                    {
+                        "closing": {
+                            "ac": 900,
+                            "acReportId": "01fe2807-0bba-48fd-8160-cf6a82f65ed4",
+                            "bac": 1000,
+                            "estimateSupported": true,
+                            "ev": 650,
+                            "evReportId": "01fe2807-0bba-48fd-8160-cf6a82f65ed4",
+                            "pv": 1000
+                        },
+                        "dated": 500,
+                        "opening": {
+                            "ac": 0,
+                            "acReportId": "a9c82820-6972-4468-8bf1-7f2425e8f467",
+                            "bac": 1000,
+                            "estimateSupported": true,
+                            "ev": 0,
+                            "evReportId": "a9c82820-6972-4468-8bf1-7f2425e8f467",
+                            "pv": 0
+                        },
+                        "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+                    },
+                    {
+                        "closing": {
+                            "ac": 1700,
+                            "acReportId": "eccdf7b4-703c-4989-aea4-f71c632c85c9",
+                            "bac": 3000,
+                            "estimateSupported": true,
+                            "ev": 2100,
+                            "evReportId": "eccdf7b4-703c-4989-aea4-f71c632c85c9",
+                            "pv": 3000
+                        },
+                        "dated": 1500,
+                        "opening": {
+                            "ac": 0,
+                            "acReportId": "e4773730-e3cb-4f24-939c-6d7c25e01298",
+                            "bac": 3000,
+                            "estimateSupported": true,
+                            "ev": 0,
+                            "evReportId": "e4773730-e3cb-4f24-939c-6d7c25e01298",
+                            "pv": 0
+                        },
+                        "taskId": "a109f87d-7980-4849-a44f-960449321358"
+                    }
+                ]
+            }
+        ],
+        "holidays": [
+        ],
+        "name": "native 기간 EVM 검증",
+        "periodActuals": [
+            {
+                "actualMinor": 400,
+                "costEntryId": "8e385836-4071-4544-80e1-c7534e0bb143",
+                "currency": "USD",
+                "date": "2026-10-26",
+                "id": "2f1ea9b9-5685-4a31-aa83-0ad9b019893d",
+                "previousEntryId": "",
+                "reason": "이미 보고한 누계 안에서 날짜 명세 연결",
+                "recordedAt": "2026-11-08T02:00:00Z",
+                "recordedRevision": 33,
+                "reporter": "날짜 배분 담당",
+                "resourceId": "",
+                "resourceType": "",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-29 12:00",
+                "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade",
+                "workUnitMinutes": null
+            },
+            {
+                "actualMinor": 100,
+                "costEntryId": "8e385836-4071-4544-80e1-c7534e0bb143",
+                "currency": "USD",
+                "date": "2026-10-27",
+                "id": "7fe7f29a-6884-40fa-8ccd-6ee07ccf8625",
+                "previousEntryId": "",
+                "reason": "이미 보고한 누계 안에서 날짜 명세 연결",
+                "recordedAt": "2026-11-08T02:00:00Z",
+                "recordedRevision": 33,
+                "reporter": "날짜 배분 담당",
+                "resourceId": "",
+                "resourceType": "",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-29 12:00",
+                "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade",
+                "workUnitMinutes": null
+            },
+            {
+                "actualMinor": 50,
+                "costEntryId": "8e385836-4071-4544-80e1-c7534e0bb143",
+                "currency": "USD",
+                "date": "2026-10-28",
+                "id": "4e3a384a-349f-4349-951d-2157aca4fd1d",
+                "previousEntryId": "",
+                "reason": "이미 보고한 누계 안에서 날짜 명세 연결",
+                "recordedAt": "2026-11-08T02:00:00Z",
+                "recordedRevision": 33,
+                "reporter": "날짜 배분 담당",
+                "resourceId": "",
+                "resourceType": "",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-29 12:00",
+                "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade",
+                "workUnitMinutes": null
+            },
+            {
+                "actualMinor": 1000,
+                "costEntryId": "26d61e4b-0f30-4c3c-a8df-c22a731df0d4",
+                "currency": "USD",
+                "date": "2026-10-26",
+                "id": "cffa8fc1-2f06-499a-b556-71e393b5452d",
+                "previousEntryId": "",
+                "reason": "이미 보고한 누계 안에서 날짜 명세 연결",
+                "recordedAt": "2026-11-08T02:00:00Z",
+                "recordedRevision": 33,
+                "reporter": "날짜 배분 담당",
+                "resourceId": "",
+                "resourceType": "",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-29 12:00",
+                "taskId": "a109f87d-7980-4849-a44f-960449321358",
+                "workUnitMinutes": null
+            },
+            {
+                "actualMinor": 500,
+                "costEntryId": "26d61e4b-0f30-4c3c-a8df-c22a731df0d4",
+                "currency": "USD",
+                "date": "2026-10-27",
+                "id": "03271cf8-6676-4731-89cd-8e3cd6395c17",
+                "previousEntryId": "",
+                "reason": "이미 보고한 누계 안에서 날짜 명세 연결",
+                "recordedAt": "2026-11-08T02:00:00Z",
+                "recordedRevision": 33,
+                "reporter": "날짜 배분 담당",
+                "resourceId": "",
+                "resourceType": "",
+                "sourceDocumentId": "4f9fb59b-d440-45ab-b7a4-af8ad602ec69",
+                "statusAt": "2026-10-29 12:00",
+                "taskId": "a109f87d-7980-4849-a44f-960449321358",
+                "workUnitMinutes": null
+            }
+        ],
+        "progress": [
+        ],
+        "resources": [
+        ],
+        "revision": 53,
+        "scenarios": [
+        ],
+        "startDate": "2026-10-26",
+        "statusAt": "2026-10-30 00:00",
+        "taskCosts": [
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 2000,
+                "taskId": "3b3a1566-0ecb-4464-8024-19d5959d5ade"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 3000,
+                "taskId": "a109f87d-7980-4849-a44f-960449321358"
+            }
+        ],
+        "tasks": [
+            {
+                "durationMinutes": 960,
+                "id": "3b3a1566-0ecb-4464-8024-19d5959d5ade",
+                "name": "설계",
+                "predecessors": [
+                ],
+                "wbsId": "cb14b869-9a24-4507-b580-359d3745b62c"
+            },
+            {
+                "durationMinutes": 960,
+                "id": "a109f87d-7980-4849-a44f-960449321358",
+                "name": "시공",
+                "predecessors": [
+                ],
+                "wbsId": "d9dee287-abc4-4baa-9878-78bb302ee647"
+            }
+        ],
+        "wbsNodes": [
+            {
+                "id": "d9dee287-abc4-4baa-9878-78bb302ee647",
+                "name": "전체 단계",
+                "parentId": ""
+            },
+            {
+                "id": "cb14b869-9a24-4507-b580-359d3745b62c",
+                "name": "설계 단계",
+                "parentId": "d9dee287-abc4-4baa-9878-78bb302ee647"
+            }
+        ]
+    },
+    "schemaVersion": 30,
+    "sha256": "e6417ac2f290a5127f72a8f45eca492f70eb71c653e1aaf994c87c3dd421269d"
+}

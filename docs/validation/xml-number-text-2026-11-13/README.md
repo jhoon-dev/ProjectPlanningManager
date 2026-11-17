@@ -1,0 +1,19 @@
+# XML 숫자 문자열 함수 검증 · 2026-11-13
+
+[기능 계약](../../xml-number-text.md) · XNT-01~06. Str/Val/Hex/Oct의 명시 지원 부분과 네 범위·요약/배정 전파·현재 값/원본 스냅샷·미리보기·교환/보고·schema57/전체 보관 사본을 확인한다. 전체 VBA/NLS 또는 실제 Microsoft Project 제품 왕복의 검증은 아니다.
+
+`xml_number_text_contract`는 Str의 부호 공백·1 미만의0 생략·작은 값의 지수, Hex/Oct의 짝수 반올림·부호 있는32비트, Val의 접두부/공백 제거·소수/지수·형식 접미사 지원 부분·16/32비트 부호·정확한 소수6자리·범위 전 검증과 underflow를 확인한다. Null·오류·전체 인수 평가·취소, 활성57/이전 태그 거절·비활성44, 현재/동결 사본·환산/ID 이력·복구/읽기 전용·이름 변경·undo/redo를 검증한다. 저장된 stale/777 스냅샷으로 결과나 오류를 대체하지 않는다.
+
+[Python 독립 검사기](../../../scripts/verify-xml-number-text.py)는 기본 변환 **1,024행**(Str/Hex/Oct/Val 왕복), 전체 native 범위의 소수6자리 Str/Val 왕복 **1,024건**, 숫자 접두부/지수 **1,024건**, 직접 식 **58건**을 확인한다. 정수 비트 마스크·진수 출력과 Decimal ROUND_HALF_UP을 사용한다. 정밀도가 큰 값은 Double로 바꾸지 않고 같은 고정점 값으로 돌아오는지 확인한다.
+
+별도의 [.NET VB 검사기](../../../scripts/verify-xml-number-text-dotnet.ps1)는 Invariant 문화권의 Int32 Str·Hex·Oct와 명시 Long 진수 Val **4,096건**을 비교한다. 고정 소수6자리의 큰 값/접두부 반올림을 Double 문자열과 같다고 가정하지 않으며 이 범위는 Python Decimal 검증으로 분리한다. `%/&`의 지수/소수와 지원하지 않는 접미사·64비트 진수 제한은 native 계약의 오류 검사에 포함한다.
+
+XML22값(전파 메타데이터로 해석한2칸 포함)·정의33개, XER 정적22값, XLSX 작업 필드72행·PDF19쪽을 확인한다. Str의 선행 공백이 native·XML·XER·XLSX에서 보존된다. 환산 전 금액 입력12.34의 ` 12.34`는 USD→EUR의1/2 환산 뒤 ` 6.17`로 다시 계산하고 숫자 단위 문자열이나 식의 상수는 환산하지 않는다.
+
+`xml_number_text_ui`는 예시5개, 선행 공백을 포함한 비동기 미리보기·저장/undo·취소·표 값과800×650 결과 배치를 확인한다. 기존 편집기 테스트가 오래된 편집·문서 변경·읽기 전용·오류 경로를 함께 검사한다.
+
+일반 회귀 **200/200·291.99초**를 통과했다. 대용량 단독 **1/1·167.44초**까지 합계 **201/201**, 실패/건너뜀0이다. 관련 집중32개는 전체 실행에서 추출한 같은 결과이며 중복 실행하지 않았다. 파서 **878개**(schema1~57), C++ 형식 **520파일** 차이0이다. [빌드](build.txt)·[200개 CTest](ctest.txt)·[JUnit](ctest.xml)·[대용량 단독](isolated.txt)·[단독 JUnit](isolated.xml)·[집중 부분집합](focused.xml)·[형식](quality.json)·[Python 독립 검증](independent.json)·[.NET VB 비교](dotnet.json)·[결과/해시](verification-summary.json).
+
+Windows 실행 패키지 **298파일**의 앱/CLI 해시가 최종 빌드와 같다. Qt/MinGW가 없는 PATH에서 CLI가 schema57 파일을 읽고 종료0을 반환했다. 실행 앱은 Python/.NET VB를 사용하지 않고 C++에서 계산한다. [패키지](runtime.json)·[배포](runtime-deploy.txt)·[파일 읽기](runtime-inspect.json).
+
+[native 입력](native.json)·[환산/동결 사본](archived.json)·[native 파일](source.ppm)·[XML](numbers.xml)·[XER](numbers.xer)·[매핑/진단](mapping.json)·[직접 식](cases.json)·[기본 변환/정밀도 왕복](conversions.json)·[숫자 접두부](prefixes.json)·[XLSX](fields.xlsx)·[PDF](fields.pdf)·[PDF 화면](report-page.png)·[편집기](editor.png)·[800×650 결과](editor-small.png).

@@ -1,0 +1,19 @@
+[1/19] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/ResourceAvailabilityDialog.cpp.obj
+[2/19] Linking CXX static library libjobs_ui.a
+[3/19] Building CXX object CMakeFiles/jobs_remaining_availability_tests.dir/tests/RemainingAvailabilityTests.cpp.obj
+[4/19] Linking CXX executable jobs_xml_remaining_tests.exe
+[5/19] Linking CXX executable jobs_xml_baseline_exchange_tests.exe
+[6/19] Linking CXX executable jobs_xml_formula_tests.exe
+[7/19] Linking CXX executable jobs_xml_unit_tests.exe
+[8/19] Linking CXX executable PPM.exe
+[9/19] Linking CXX executable jobs_xer_schedule_adoption_tests.exe
+[10/19] Linking CXX executable jobs_project_currency_tests.exe
+[11/19] Linking CXX executable jobs_xml_roll_up_tests.exe
+[12/19] Linking CXX executable jobs_ledger_identity_tests.exe
+[13/19] Linking CXX executable jobs_xml_roll_down_tests.exe
+[14/19] Linking CXX executable jobs_resource_availability_tests.exe
+[15/19] Linking CXX executable jobs_remaining_availability_tests.exe
+[16/19] Linking CXX executable jobs_project_xml_ui_tests.exe
+[17/19] Linking CXX executable jobs_report_ui_tests.exe
+[18/19] Linking CXX executable jobs_resource_ui_tests.exe
+[19/19] Linking CXX executable jobs_recovery_ui_tests.exe

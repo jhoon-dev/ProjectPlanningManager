@@ -1,0 +1,890 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+            {
+                "resourceId": "bd287398-bd3b-4ba9-b1ed-cf4bda7ab202",
+                "taskId": "f54ffc29-eaa4-47de-95f6-e6c92884ab4e",
+                "units": 100
+            }
+        ],
+        "baselines": [
+            {
+                "approvedBy": "PM",
+                "createdAt": "2026-11-05T00:00:00Z",
+                "engineVersion": "jobs-cpm-0.2",
+                "id": "15ac29f2-8260-4aae-8cd8-5457dd3d766c",
+                "input": {
+                    "assignments": [
+                        {
+                            "resourceId": "bd287398-bd3b-4ba9-b1ed-cf4bda7ab202",
+                            "taskId": "f54ffc29-eaa4-47de-95f6-e6c92884ab4e",
+                            "units": 100
+                        }
+                    ],
+                    "calculationProfile": "native-fs0-workminutes-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "codeTypes": [
+                    ],
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "KRW",
+                    "customFields": [
+                        {
+                            "id": "label",
+                            "name": "담당",
+                            "options": [
+                            ],
+                            "type": "text",
+                            "unit": ""
+                        },
+                        {
+                            "id": "amount",
+                            "name": "수량",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "m²"
+                        },
+                        {
+                            "id": "due",
+                            "name": "검토일",
+                            "options": [
+                            ],
+                            "type": "date",
+                            "unit": ""
+                        },
+                        {
+                            "id": "phase",
+                            "name": "검토 상태",
+                            "options": [
+                                {
+                                    "id": "review",
+                                    "name": "검토"
+                                },
+                                {
+                                    "id": "done",
+                                    "name": "완료"
+                                }
+                            ],
+                            "type": "choice",
+                            "unit": ""
+                        }
+                    ],
+                    "holidays": [
+                    ],
+                    "name": "프로젝트·자원 필드 검증",
+                    "projectAttributes": [
+                        {
+                            "key": "field:label",
+                            "value": "=2+3 발주처"
+                        },
+                        {
+                            "key": "field:amount",
+                            "value": "0"
+                        },
+                        {
+                            "key": "field:due",
+                            "value": "2028-02-29"
+                        },
+                        {
+                            "key": "field:phase",
+                            "value": "review"
+                        }
+                    ],
+                    "projectFields": [
+                        {
+                            "id": "label",
+                            "name": "담당",
+                            "options": [
+                            ],
+                            "type": "text",
+                            "unit": ""
+                        },
+                        {
+                            "id": "amount",
+                            "name": "수량",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "m²"
+                        },
+                        {
+                            "id": "due",
+                            "name": "검토일",
+                            "options": [
+                            ],
+                            "type": "date",
+                            "unit": ""
+                        },
+                        {
+                            "id": "phase",
+                            "name": "검토 상태",
+                            "options": [
+                                {
+                                    "id": "review",
+                                    "name": "검토"
+                                },
+                                {
+                                    "id": "done",
+                                    "name": "완료"
+                                }
+                            ],
+                            "type": "choice",
+                            "unit": ""
+                        }
+                    ],
+                    "resourceFields": [
+                        {
+                            "id": "label",
+                            "name": "담당",
+                            "options": [
+                            ],
+                            "type": "text",
+                            "unit": ""
+                        },
+                        {
+                            "id": "amount",
+                            "name": "수량",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "m²"
+                        },
+                        {
+                            "id": "due",
+                            "name": "검토일",
+                            "options": [
+                            ],
+                            "type": "date",
+                            "unit": ""
+                        },
+                        {
+                            "id": "phase",
+                            "name": "검토 상태",
+                            "options": [
+                                {
+                                    "id": "review",
+                                    "name": "검토"
+                                },
+                                {
+                                    "id": "done",
+                                    "name": "완료"
+                                }
+                            ],
+                            "type": "choice",
+                            "unit": ""
+                        }
+                    ],
+                    "resources": [
+                        {
+                            "attributes": [
+                                {
+                                    "key": "field:label",
+                                    "value": "토목"
+                                },
+                                {
+                                    "key": "field:amount",
+                                    "value": "12.500001"
+                                },
+                                {
+                                    "key": "field:due",
+                                    "value": "2026-12-01"
+                                },
+                                {
+                                    "key": "field:phase",
+                                    "value": "review"
+                                }
+                            ],
+                            "exceptions": [
+                            ],
+                            "id": "bd287398-bd3b-4ba9-b1ed-cf4bda7ab202",
+                            "maxUnits": 100,
+                            "name": "배정 인력",
+                            "rates": [
+                                {
+                                    "effectiveDate": "2026-11-02",
+                                    "hourlyMinor": 10
+                                }
+                            ],
+                            "type": "labor"
+                        },
+                        {
+                            "attributes": [
+                                {
+                                    "key": "field:label",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "field:amount",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "field:phase",
+                                    "value": "done"
+                                }
+                            ],
+                            "exceptions": [
+                            ],
+                            "id": "570bc0c9-fb51-44ec-b3f8-98d454a6f6ee",
+                            "maxUnits": 100,
+                            "name": "미배정 장비",
+                            "rates": [
+                                {
+                                    "effectiveDate": "2026-11-02",
+                                    "hourlyMinor": 10
+                                }
+                            ],
+                            "type": "equipment"
+                        }
+                    ],
+                    "startDate": "2026-11-02",
+                    "taskCosts": [
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 10,
+                            "taskId": "f54ffc29-eaa4-47de-95f6-e6c92884ab4e"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "d4f3b828-08f7-4350-a447-2cc1995e8b15"
+                        }
+                    ],
+                    "tasks": [
+                        {
+                            "attributes": [
+                                {
+                                    "key": "field:label",
+                                    "value": "작업 담당"
+                                }
+                            ],
+                            "durationMinutes": 480,
+                            "id": "f54ffc29-eaa4-47de-95f6-e6c92884ab4e",
+                            "name": "기초",
+                            "predecessors": [
+                            ],
+                            "wbsId": "33d9721a-694c-4154-9386-5105522513d8"
+                        },
+                        {
+                            "durationMinutes": 240,
+                            "id": "d4f3b828-08f7-4350-a447-2cc1995e8b15",
+                            "name": "설비",
+                            "predecessors": [
+                                "f54ffc29-eaa4-47de-95f6-e6c92884ab4e"
+                            ],
+                            "wbsId": ""
+                        }
+                    ],
+                    "wbsNodes": [
+                        {
+                            "id": "33d9721a-694c-4154-9386-5105522513d8",
+                            "name": "현장",
+                            "parentId": ""
+                        }
+                    ]
+                },
+                "inputRevision": 35,
+                "name": "객체 필드 기준선",
+                "projectFinish": "2026-11-03 14:00",
+                "reason": "승인",
+                "schedule": [
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 480,
+                        "earlyStartMinutes": 0,
+                        "finish": "2026-11-02 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 480,
+                        "lateStartMinutes": 0,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:00",
+                        "taskId": "f54ffc29-eaa4-47de-95f6-e6c92884ab4e",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "f54ffc29-eaa4-47de-95f6-e6c92884ab4e"
+                        ],
+                        "earlyFinishMinutes": 720,
+                        "earlyStartMinutes": 480,
+                        "finish": "2026-11-03 14:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 720,
+                        "lateStartMinutes": 480,
+                        "remainingStart": null,
+                        "start": "2026-11-03 09:00",
+                        "taskId": "d4f3b828-08f7-4350-a447-2cc1995e8b15",
+                        "totalFloatMinutes": 0
+                    }
+                ],
+                "sourceDocumentId": "4c81f604-9b6e-4111-a963-c98826aa621d",
+                "version": 1
+            }
+        ],
+        "calculationProfile": "native-fs0-workminutes-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "codeTypes": [
+        ],
+        "costEntries": [
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "KRW",
+        "customFields": [
+            {
+                "id": "label",
+                "name": "담당",
+                "options": [
+                ],
+                "type": "text",
+                "unit": ""
+            },
+            {
+                "id": "amount",
+                "name": "수량",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "m²"
+            },
+            {
+                "id": "due",
+                "name": "검토일",
+                "options": [
+                ],
+                "type": "date",
+                "unit": ""
+            },
+            {
+                "id": "phase",
+                "name": "검토 상태",
+                "options": [
+                    {
+                        "id": "review",
+                        "name": "검토"
+                    },
+                    {
+                        "id": "done",
+                        "name": "완료"
+                    }
+                ],
+                "type": "choice",
+                "unit": ""
+            }
+        ],
+        "derivedFrom": "",
+        "documentId": "4c81f604-9b6e-4111-a963-c98826aa621d",
+        "holidays": [
+        ],
+        "name": "프로젝트·자원 필드 검증",
+        "progress": [
+        ],
+        "projectAttributes": [
+            {
+                "key": "field:label",
+                "value": "=2+3 발주처"
+            },
+            {
+                "key": "field:amount",
+                "value": "0"
+            },
+            {
+                "key": "field:due",
+                "value": "2028-02-29"
+            },
+            {
+                "key": "field:phase",
+                "value": "review"
+            }
+        ],
+        "projectFields": [
+            {
+                "id": "label",
+                "name": "담당",
+                "options": [
+                ],
+                "type": "text",
+                "unit": ""
+            },
+            {
+                "id": "amount",
+                "name": "수량",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "m²"
+            },
+            {
+                "id": "due",
+                "name": "검토일",
+                "options": [
+                ],
+                "type": "date",
+                "unit": ""
+            },
+            {
+                "id": "phase",
+                "name": "검토 상태",
+                "options": [
+                    {
+                        "id": "review",
+                        "name": "검토"
+                    },
+                    {
+                        "id": "done",
+                        "name": "완료"
+                    }
+                ],
+                "type": "choice",
+                "unit": ""
+            }
+        ],
+        "resourceFields": [
+            {
+                "id": "label",
+                "name": "담당",
+                "options": [
+                ],
+                "type": "text",
+                "unit": ""
+            },
+            {
+                "id": "amount",
+                "name": "수량",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "m²"
+            },
+            {
+                "id": "due",
+                "name": "검토일",
+                "options": [
+                ],
+                "type": "date",
+                "unit": ""
+            },
+            {
+                "id": "phase",
+                "name": "검토 상태",
+                "options": [
+                    {
+                        "id": "review",
+                        "name": "검토 대기"
+                    },
+                    {
+                        "id": "done",
+                        "name": "완료"
+                    }
+                ],
+                "type": "choice",
+                "unit": ""
+            }
+        ],
+        "resources": [
+            {
+                "attributes": [
+                    {
+                        "key": "field:label",
+                        "value": "토목"
+                    },
+                    {
+                        "key": "field:amount",
+                        "value": "12.500001"
+                    },
+                    {
+                        "key": "field:due",
+                        "value": "2026-12-01"
+                    },
+                    {
+                        "key": "field:phase",
+                        "value": "review"
+                    }
+                ],
+                "exceptions": [
+                ],
+                "id": "bd287398-bd3b-4ba9-b1ed-cf4bda7ab202",
+                "maxUnits": 100,
+                "name": "배정 인력",
+                "rates": [
+                    {
+                        "effectiveDate": "2026-11-02",
+                        "hourlyMinor": 10
+                    }
+                ],
+                "type": "labor"
+            },
+            {
+                "attributes": [
+                    {
+                        "key": "field:label",
+                        "value": ""
+                    },
+                    {
+                        "key": "field:amount",
+                        "value": "0"
+                    },
+                    {
+                        "key": "field:phase",
+                        "value": "done"
+                    }
+                ],
+                "exceptions": [
+                ],
+                "id": "570bc0c9-fb51-44ec-b3f8-98d454a6f6ee",
+                "maxUnits": 100,
+                "name": "미배정 장비",
+                "rates": [
+                    {
+                        "effectiveDate": "2026-11-02",
+                        "hourlyMinor": 10
+                    }
+                ],
+                "type": "equipment"
+            }
+        ],
+        "revision": 38,
+        "scenarios": [
+            {
+                "createdAt": "2026-11-05T00:00:00Z",
+                "horizonWorkDays": 260,
+                "id": "7e197138-01f3-412f-8150-7ec37d544883",
+                "input": {
+                    "assignments": [
+                        {
+                            "resourceId": "bd287398-bd3b-4ba9-b1ed-cf4bda7ab202",
+                            "taskId": "f54ffc29-eaa4-47de-95f6-e6c92884ab4e",
+                            "units": 100
+                        }
+                    ],
+                    "calculationProfile": "native-fs0-workminutes-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "codeTypes": [
+                    ],
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "KRW",
+                    "customFields": [
+                        {
+                            "id": "label",
+                            "name": "담당",
+                            "options": [
+                            ],
+                            "type": "text",
+                            "unit": ""
+                        },
+                        {
+                            "id": "amount",
+                            "name": "수량",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "m²"
+                        },
+                        {
+                            "id": "due",
+                            "name": "검토일",
+                            "options": [
+                            ],
+                            "type": "date",
+                            "unit": ""
+                        },
+                        {
+                            "id": "phase",
+                            "name": "검토 상태",
+                            "options": [
+                                {
+                                    "id": "review",
+                                    "name": "검토"
+                                },
+                                {
+                                    "id": "done",
+                                    "name": "완료"
+                                }
+                            ],
+                            "type": "choice",
+                            "unit": ""
+                        }
+                    ],
+                    "holidays": [
+                    ],
+                    "name": "프로젝트·자원 필드 검증",
+                    "projectAttributes": [
+                        {
+                            "key": "field:label",
+                            "value": "=2+3 발주처"
+                        },
+                        {
+                            "key": "field:amount",
+                            "value": "0"
+                        },
+                        {
+                            "key": "field:due",
+                            "value": "2028-02-29"
+                        },
+                        {
+                            "key": "field:phase",
+                            "value": "review"
+                        }
+                    ],
+                    "projectFields": [
+                        {
+                            "id": "label",
+                            "name": "담당",
+                            "options": [
+                            ],
+                            "type": "text",
+                            "unit": ""
+                        },
+                        {
+                            "id": "amount",
+                            "name": "수량",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "m²"
+                        },
+                        {
+                            "id": "due",
+                            "name": "검토일",
+                            "options": [
+                            ],
+                            "type": "date",
+                            "unit": ""
+                        },
+                        {
+                            "id": "phase",
+                            "name": "검토 상태",
+                            "options": [
+                                {
+                                    "id": "review",
+                                    "name": "검토"
+                                },
+                                {
+                                    "id": "done",
+                                    "name": "완료"
+                                }
+                            ],
+                            "type": "choice",
+                            "unit": ""
+                        }
+                    ],
+                    "resourceFields": [
+                        {
+                            "id": "label",
+                            "name": "담당",
+                            "options": [
+                            ],
+                            "type": "text",
+                            "unit": ""
+                        },
+                        {
+                            "id": "amount",
+                            "name": "수량",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "m²"
+                        },
+                        {
+                            "id": "due",
+                            "name": "검토일",
+                            "options": [
+                            ],
+                            "type": "date",
+                            "unit": ""
+                        },
+                        {
+                            "id": "phase",
+                            "name": "검토 상태",
+                            "options": [
+                                {
+                                    "id": "review",
+                                    "name": "검토"
+                                },
+                                {
+                                    "id": "done",
+                                    "name": "완료"
+                                }
+                            ],
+                            "type": "choice",
+                            "unit": ""
+                        }
+                    ],
+                    "resources": [
+                        {
+                            "attributes": [
+                                {
+                                    "key": "field:label",
+                                    "value": "토목"
+                                },
+                                {
+                                    "key": "field:amount",
+                                    "value": "12.500001"
+                                },
+                                {
+                                    "key": "field:due",
+                                    "value": "2026-12-01"
+                                },
+                                {
+                                    "key": "field:phase",
+                                    "value": "review"
+                                }
+                            ],
+                            "exceptions": [
+                            ],
+                            "id": "bd287398-bd3b-4ba9-b1ed-cf4bda7ab202",
+                            "maxUnits": 100,
+                            "name": "배정 인력",
+                            "rates": [
+                                {
+                                    "effectiveDate": "2026-11-02",
+                                    "hourlyMinor": 10
+                                }
+                            ],
+                            "type": "labor"
+                        },
+                        {
+                            "attributes": [
+                                {
+                                    "key": "field:label",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "field:amount",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "field:phase",
+                                    "value": "done"
+                                }
+                            ],
+                            "exceptions": [
+                            ],
+                            "id": "570bc0c9-fb51-44ec-b3f8-98d454a6f6ee",
+                            "maxUnits": 100,
+                            "name": "미배정 장비",
+                            "rates": [
+                                {
+                                    "effectiveDate": "2026-11-02",
+                                    "hourlyMinor": 10
+                                }
+                            ],
+                            "type": "equipment"
+                        }
+                    ],
+                    "startDate": "2026-11-02",
+                    "taskCosts": [
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 10,
+                            "taskId": "f54ffc29-eaa4-47de-95f6-e6c92884ab4e"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "d4f3b828-08f7-4350-a447-2cc1995e8b15"
+                        }
+                    ],
+                    "tasks": [
+                        {
+                            "attributes": [
+                                {
+                                    "key": "field:label",
+                                    "value": "작업 담당"
+                                }
+                            ],
+                            "durationMinutes": 480,
+                            "id": "f54ffc29-eaa4-47de-95f6-e6c92884ab4e",
+                            "name": "기초",
+                            "predecessors": [
+                            ],
+                            "wbsId": "33d9721a-694c-4154-9386-5105522513d8"
+                        },
+                        {
+                            "durationMinutes": 240,
+                            "id": "d4f3b828-08f7-4350-a447-2cc1995e8b15",
+                            "name": "설비",
+                            "predecessors": [
+                                "f54ffc29-eaa4-47de-95f6-e6c92884ab4e"
+                            ],
+                            "wbsId": ""
+                        }
+                    ],
+                    "wbsNodes": [
+                        {
+                            "id": "33d9721a-694c-4154-9386-5105522513d8",
+                            "name": "현장",
+                            "parentId": ""
+                        }
+                    ]
+                },
+                "inputRevision": 36,
+                "name": "필드 동결",
+                "policy": "serial-no-split-v1",
+                "priority": "task-order",
+                "progress": [
+                ],
+                "sourceDocumentId": "4c81f604-9b6e-4111-a963-c98826aa621d",
+                "statusAt": null
+            }
+        ],
+        "startDate": "2026-11-02",
+        "statusAt": null,
+        "taskCosts": [
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 10,
+                "taskId": "f54ffc29-eaa4-47de-95f6-e6c92884ab4e"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "d4f3b828-08f7-4350-a447-2cc1995e8b15"
+            }
+        ],
+        "tasks": [
+            {
+                "attributes": [
+                    {
+                        "key": "field:label",
+                        "value": "작업 담당"
+                    }
+                ],
+                "durationMinutes": 480,
+                "id": "f54ffc29-eaa4-47de-95f6-e6c92884ab4e",
+                "name": "기초",
+                "predecessors": [
+                ],
+                "wbsId": "33d9721a-694c-4154-9386-5105522513d8"
+            },
+            {
+                "durationMinutes": 240,
+                "id": "d4f3b828-08f7-4350-a447-2cc1995e8b15",
+                "name": "설비",
+                "predecessors": [
+                    "f54ffc29-eaa4-47de-95f6-e6c92884ab4e"
+                ],
+                "wbsId": ""
+            }
+        ],
+        "wbsNodes": [
+            {
+                "id": "33d9721a-694c-4154-9386-5105522513d8",
+                "name": "현장",
+                "parentId": ""
+            }
+        ]
+    },
+    "schemaVersion": 16,
+    "sha256": "4f19b626cefbb953767fc9f42eaee0de87c74559fa47f273979389f75d1f8ecc"
+}

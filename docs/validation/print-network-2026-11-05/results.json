@@ -1,0 +1,18 @@
+{
+  "status": "success",
+  "full_suite": {
+    "passed": 101,
+    "total": 101,
+    "seconds": 342.12
+  },
+  "final_affected_checks": {
+    "passed": 8,
+    "total": 8,
+    "seconds": 23.63
+  },
+  "parser_seeds": 160,
+  "format_files": 190,
+  "independent_readers": 10,
+  "pdf_printer_identical_render_sha256": "7cf8e76cb80a39cb45aef9edcfebf684165c03d5921d20edc6933d1267427625",
+  "source_sha256": "67b0590f392bcf4d527c455bd413753eb8e8a3399030b2e457dfec7de33a3fab"
+}

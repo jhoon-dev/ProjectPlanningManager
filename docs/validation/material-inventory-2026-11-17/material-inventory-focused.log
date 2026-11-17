@@ -1,0 +1,19 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+    Start 15: integrated_workspace_contract
+    Start 14: resource_plan_contract
+1/4 Test #14: resource_plan_contract ...........   Passed    2.90 sec
+    Start 70: material_inventory_contract
+2/4 Test #15: integrated_workspace_contract ....   Passed    3.71 sec
+    Start 71: material_inventory_ui
+3/4 Test #70: material_inventory_contract ......   Passed    1.98 sec
+4/4 Test #71: material_inventory_ui ............***Failed   90.27 sec
+inventory timeout
+
+
+75% tests passed, 1 tests failed out of 4
+
+Total Test time (real) =  94.05 sec
+
+The following tests FAILED:
+	 71 - material_inventory_ui (Failed)
+Errors while running CTest

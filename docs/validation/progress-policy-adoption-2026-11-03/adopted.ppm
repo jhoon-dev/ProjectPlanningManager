@@ -1,0 +1,188 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+            {
+                "resourceId": "R",
+                "taskId": "B",
+                "units": 100
+            }
+        ],
+        "baselines": [
+        ],
+        "calculationProfile": "native-fs0-workminutes-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "costEntries": [
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "KRW",
+        "derivedFrom": "",
+        "documentId": "progress-policy-fixture",
+        "holidays": [
+        ],
+        "name": "진척 정책 A/B",
+        "progress": [
+            {
+                "actualDurationMinutes": 480,
+                "actualFinish": null,
+                "actualStart": "2026-11-02 09:00",
+                "id": "fact-A",
+                "planDurationMinutes": 960,
+                "previousEntryId": "",
+                "reason": "fixture",
+                "recordedAt": "2026-11-03T00:00:00Z",
+                "recordedRevision": 1,
+                "remainingMinutes": 480,
+                "reporter": "tester",
+                "sourceDocumentId": "progress-policy-fixture",
+                "statusAt": "2026-11-03 09:00",
+                "taskId": "A"
+            },
+            {
+                "actualDurationMinutes": 240,
+                "actualFinish": null,
+                "actualStart": "2026-11-02 14:00",
+                "id": "fact-B",
+                "planDurationMinutes": 480,
+                "previousEntryId": "",
+                "reason": "fixture",
+                "recordedAt": "2026-11-03T00:00:00Z",
+                "recordedRevision": 1,
+                "remainingMinutes": 240,
+                "reporter": "tester",
+                "sourceDocumentId": "progress-policy-fixture",
+                "statusAt": "2026-11-03 09:00",
+                "taskId": "B"
+            },
+            {
+                "actualDurationMinutes": 480,
+                "actualFinish": "2026-11-02 18:00",
+                "actualStart": "2026-11-02 09:00",
+                "id": "fact-E",
+                "planDurationMinutes": 480,
+                "previousEntryId": "",
+                "reason": "fixture",
+                "recordedAt": "2026-11-03T00:00:00Z",
+                "recordedRevision": 1,
+                "remainingMinutes": 0,
+                "reporter": "tester",
+                "sourceDocumentId": "progress-policy-fixture",
+                "statusAt": "2026-11-03 09:00",
+                "taskId": "E"
+            }
+        ],
+        "progressPolicy": {
+            "adoptedAt": "2026-11-03T08:53:02Z",
+            "adoptedBy": "PM",
+            "policy": "native-progress-override-v1",
+            "reason": "잔여 예측 검토",
+            "sourceDocumentId": "progress-policy-fixture",
+            "sourceRevision": 1
+        },
+        "resources": [
+            {
+                "exceptions": [
+                ],
+                "id": "R",
+                "maxUnits": 100,
+                "name": "인력",
+                "rates": [
+                    {
+                        "effectiveDate": "2026-11-02",
+                        "hourlyMinor": 60
+                    },
+                    {
+                        "effectiveDate": "2026-11-04",
+                        "hourlyMinor": 120
+                    }
+                ],
+                "type": "labor"
+            }
+        ],
+        "revision": 2,
+        "scenarios": [
+        ],
+        "startDate": "2026-11-02",
+        "statusAt": "2026-11-03 09:00",
+        "taskCosts": [
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "A"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "B"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "C"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "D"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "E"
+            }
+        ],
+        "tasks": [
+            {
+                "durationMinutes": 960,
+                "id": "A",
+                "name": "선행 A",
+                "predecessors": [
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 480,
+                "id": "B",
+                "name": "진행 B <원문>",
+                "predecessors": [
+                    "A"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 480,
+                "id": "C",
+                "name": "후행 C",
+                "predecessors": [
+                    "B"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 480,
+                "id": "D",
+                "name": "독립 D",
+                "predecessors": [
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 480,
+                "id": "E",
+                "name": "완료 E",
+                "predecessors": [
+                ],
+                "wbsId": ""
+            }
+        ],
+        "wbsNodes": [
+        ]
+    },
+    "schemaVersion": 13,
+    "sha256": "4b18d6cfdec47ee3abc6da31e08bf1f886508e28c20555fe7e48ec6bba0ffcfd"
+}

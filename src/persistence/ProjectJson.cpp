@@ -1,6 +1,29 @@
+#include "persistence/ResourcePlanJson.h"
+#include "persistence/MaterialActualJson.h"
+#include "persistence/ResourcePlanningJson.h"
+#include "persistence/RemainingWorkJson.h"
+#include "domain/ResourcePlan.h"
+#include "domain/NativeSchema.h"
+#include "persistence/ActivityJson.h"
 #include "formatting/QtDiagnosticText.h"
 #include "formatting/PlanTokens.h"
 #include "persistence/ProjectJson.h"
+#include "persistence/XmlBaselineJson.h"
+#include "persistence/XerFinancialJson.h"
+#include "persistence/ExternalEvmJson.h"
+#include "persistence/FinancialPeriodJson.h"
+#include "persistence/XerScheduleJson.h"
+#include "persistence/LedgerIdentityJson.h"
+#include "domain/LedgerIdentity.h"
+#include "domain/ProjectCurrency.h"
+#include "persistence/ProjectCurrencyJson.h"
+#include "persistence/PresentationJson.h"
+#include "persistence/ClassificationJson.h"
+#include "persistence/PeriodActualJson.h"
+#include "persistence/LevelingJson.h"
+#include "persistence/LevelingDecisionJson.h"
+#include "persistence/ProgressPolicySelectionJson.h"
+#include "domain/Classification.h"
 #include "calculation/Tracking.h"
 #include <QJsonArray>
 #include <cmath>
@@ -91,6 +114,26 @@ QStringList planKeys(int schema) {
         result.append({"currency", "costProfile", "taskCosts"});
     if (schema >= 7)
         result.append("calendars");
+    if (schema >= 10)
+        result.append({"customFields", "codeTypes"});
+    if (schema >= 12)
+        result.append("planLeveling");
+    if (schema >= 16)
+        result.append({"projectFields", "resourceFields", "projectAttributes"});
+    if (schema >= 19)
+        result.append("activities");
+    if (schema >= 20)
+        result.append("resourcePlan");
+    if (schema >= 37)
+        result.append("assignmentFields");
+    if (schema >= 41)
+        result.append("xmlWbs");
+    if (schema >= 43)
+        result.append("taskSummaryAttributes");
+    if (schema >= 46)
+        result.append("xmlFormulaCalendarId");
+    if (schema >= 75)
+        result.append("xmlBaselines");
     return result;
 }
 QJsonObject encodePlan(const PlanInput &p) {
@@ -130,8 +173,18 @@ QJsonObject encodePlan(const PlanInput &p) {
             }
             tasks[i] = t;
         }
-    for (const auto &n : p.wbsNodes)
-        nodes.append(QJsonObject{{"id", qs(n.id)}, {"name", qs(n.name)}, {"parentId", qs(n.parentId)}});
+    for (int i = 0; i < tasks.size(); ++i)
+        if (!p.tasks[std::size_t(i)].attributes.empty()) {
+            auto task = tasks[i].toObject();
+            task["attributes"] = encodeAttributes(p.tasks[std::size_t(i)].attributes);
+            tasks[i] = task;
+        }
+    for (const auto &n : p.wbsNodes) {
+        QJsonObject node{{"id", qs(n.id)}, {"name", qs(n.name)}, {"parentId", qs(n.parentId)}};
+        if (!n.attributes.empty())
+            node["attributes"] = encodeAttributes(n.attributes);
+        nodes.append(node);
+    }
     QJsonArray resources, assignments;
     for (const auto &r : p.resources) {
         QJsonArray exceptions;
@@ -148,14 +201,55 @@ QJsonObject encodePlan(const PlanInput &p) {
                                      {"maxUnits", r.maxUnits ? QJsonValue(*r.maxUnits) : QJsonValue(QJsonValue::Null)},
                                      {"exceptions", exceptions},
                                      {"rates", rates}});
+        if (r.availableFrom || r.availableTo || !r.availability.empty()) {
+            auto value = resources.last().toObject();
+            value["availableFrom"] = r.availableFrom ? QJsonValue(qs(*r.availableFrom)) : QJsonValue(QJsonValue::Null);
+            value["availableTo"] = r.availableTo ? QJsonValue(qs(*r.availableTo)) : QJsonValue(QJsonValue::Null);
+            QJsonArray periods;
+            for (const auto &v : r.availability)
+                periods.append(QJsonObject{{"from", v.from ? QJsonValue(qs(*v.from)) : QJsonValue(QJsonValue::Null)},
+                                           {"to", v.to ? QJsonValue(qs(*v.to)) : QJsonValue(QJsonValue::Null)},
+                                           {"units", v.units ? QJsonValue(*v.units) : QJsonValue(QJsonValue::Null)}});
+            value["availability"] = periods;
+            resources[resources.size() - 1] = value;
+        }
         if (isEffort(p)) {
             auto resource = resources.last().toObject();
             resource["calendarId"] = qs(r.calendarId);
             resources[resources.size() - 1] = resource;
         }
     }
-    for (const auto &a : p.assignments)
-        assignments.append(QJsonObject{{"taskId", qs(a.taskId)}, {"resourceId", qs(a.resourceId)}, {"units", a.units}});
+    for (qsizetype i = 0; i < resources.size(); ++i)
+        if (!p.resources[std::size_t(i)].attributes.empty()) {
+            auto resource = resources[i].toObject();
+            resource["attributes"] = encodeAttributes(p.resources[std::size_t(i)].attributes);
+            resources[i] = resource;
+        }
+    for (qsizetype i = 0; i < resources.size(); ++i)
+        if (p.resources[std::size_t(i)].productivity) {
+            auto resource = resources[i].toObject();
+            resource["productivity"] = encodeProductivityRate(*p.resources[std::size_t(i)].productivity);
+            resources[i] = resource;
+        }
+    for (const auto &a : p.assignments) {
+        QJsonObject value{{"taskId", qs(a.taskId)}, {"resourceId", qs(a.resourceId)}, {"units", a.units}};
+        if (!a.periods.empty()) {
+            QJsonArray periods;
+            for (const auto &v : a.periods)
+                periods.append(QJsonObject{
+                    {"fromMinute", double(v.fromMinute)}, {"toMinute", double(v.toMinute)}, {"units", v.units}});
+            value["periods"] = periods;
+        }
+        if (a.nativeCurve)
+            value["nativeCurve"] = encodeNativeCurve(*a.nativeCurve);
+        if (a.productivityEstimate)
+            value["productivityEstimate"] = encodeProductivityEstimate(*a.productivityEstimate);
+        if (!a.attributes.empty())
+            value["attributes"] = encodeAttributes(a.attributes);
+        if (!a.rollDownMissing.empty())
+            value["rollDownMissing"] = strings(a.rollDownMissing);
+        assignments.append(value);
+    }
     QJsonArray costs;
     for (const auto &c : p.taskCosts)
         costs.append(QJsonObject{{"taskId", qs(c.taskId)},
@@ -190,11 +284,88 @@ QJsonObject encodePlan(const PlanInput &p) {
         }
         result["calendars"] = calendars;
     }
+    if (hasClassification(p)) {
+        const auto classification = encodeClassification(p);
+        for (auto it = classification.begin(); it != classification.end(); ++it)
+            result[it.key()] = it.value();
+    }
+    if (!p.projectFields.empty())
+        result["projectFields"] = encodeCustomFields(p.projectFields);
+    if (!p.resourceFields.empty())
+        result["resourceFields"] = encodeCustomFields(p.resourceFields);
+    if (!p.assignmentFields.empty())
+        result["assignmentFields"] = encodeCustomFields(p.assignmentFields);
+    if (!p.projectAttributes.empty())
+        result["projectAttributes"] = encodeAttributes(p.projectAttributes);
+    if (hasResourcePlan(p))
+        result["resourcePlan"] = encodeResourcePlan(p.resourcePlan);
+    if (!p.activities.empty())
+        result["activities"] = encodeActivities(p.activities);
+    if (!p.taskSummaryAttributes.empty())
+        result["taskSummaryAttributes"] = encodeAttributes(p.taskSummaryAttributes);
+    if (p.xmlWbs) {
+        QJsonArray values;
+        for (const auto &v : p.xmlWbs->values)
+            values.append(QJsonObject{{"kind", qs(v.kind)}, {"id", qs(v.id)}, {"code", qs(v.code)}});
+        result["xmlWbs"] = QJsonObject{{"prefix", qs(p.xmlWbs->prefix)},
+                                       {"generate", p.xmlWbs->generate},
+                                       {"verifyUnique", p.xmlWbs->verifyUnique},
+                                       {"masks", encodeXmlCodeMasks(p.xmlWbs->masks)},
+                                       {"values", values}};
+    }
+    if (p.planLeveling)
+        result["planLeveling"] = encodeLeveling(*p.planLeveling);
+    if (!p.xmlFormulaCalendarId.empty())
+        result["xmlFormulaCalendarId"] = qs(p.xmlFormulaCalendarId);
+    if (p.xmlBaselines)
+        result["xmlBaselines"] = encodeXmlBaselines(*p.xmlBaselines);
     return result;
 }
 PlanInput decodePlan(const QJsonObject &o, int schema) {
     keys(o, planKeys(schema));
     PlanInput p;
+    if (schema >= 75 && o.contains("xmlBaselines"))
+        p.xmlBaselines = decodeXmlBaselines(object(o["xmlBaselines"]), schema >= 76, schema >= 77);
+    if (schema >= 46 && o.contains("xmlFormulaCalendarId"))
+        p.xmlFormulaCalendarId = string(o, "xmlFormulaCalendarId");
+    if (schema >= 43 && o.contains("taskSummaryAttributes"))
+        p.taskSummaryAttributes = decodeAttributes(o["taskSummaryAttributes"]);
+    if (schema >= 41 && o.contains("xmlWbs")) {
+        const auto w = object(o["xmlWbs"]);
+        keys(w, {"prefix", "generate", "verifyUnique", "masks", "values"});
+        XmlWbsCodes codes;
+        codes.prefix = string(w, "prefix");
+        codes.generate = boolean(w, "generate");
+        codes.verifyUnique = boolean(w, "verifyUnique");
+        codes.masks = decodeXmlCodeMasks(w["masks"]);
+        const auto values = array(w, "values");
+        if (values.size() > 20000)
+            throw AppError(ErrorCode::CLASSIFICATION_INVALID, {"WBS 코드 개수 한도 초과"});
+        for (const auto &entry : values) {
+            const auto v = object(entry);
+            keys(v, {"kind", "id", "code"});
+            codes.values.push_back({string(v, "kind"), string(v, "id"), string(v, "code")});
+        }
+        p.xmlWbs = std::move(codes);
+    }
+    if (schema >= 37 && o.contains("assignmentFields"))
+        p.assignmentFields = decodeCustomFields(o["assignmentFields"], schema);
+    if (schema >= 20 && o.contains("resourcePlan"))
+        p.resourcePlan = decodeResourcePlan(o["resourcePlan"], schema);
+    if (schema >= 19 && o.contains("activities"))
+        p.activities = decodeActivities(o["activities"]);
+    if (schema >= 12 && o.contains("planLeveling"))
+        p.planLeveling = decodeLeveling(o["planLeveling"]);
+    if (schema >= 10 && (o.contains("customFields") || o.contains("codeTypes")))
+        decodeClassification(p, o, schema);
+    if (schema >= 16) {
+        if (o.contains("projectFields"))
+            p.projectFields = decodeCustomFields(o["projectFields"], schema);
+        if (o.contains("resourceFields"))
+            p.resourceFields = decodeCustomFields(o["resourceFields"], schema);
+        if (o.contains("projectAttributes"))
+            p.projectAttributes = decodeAttributes(o["projectAttributes"]);
+    }
     p.name = string(o, "name");
     p.startDate = string(o, "startDate");
     p.calendar = string(o, "calendar");
@@ -237,19 +408,55 @@ PlanInput decodePlan(const QJsonObject &o, int schema) {
     if (schema >= 3)
         for (const auto &v : array(o, "wbsNodes")) {
             auto n = object(v);
-            keys(n, {"id", "name", "parentId"});
-            p.wbsNodes.push_back({string(n, "id"), string(n, "name"), string(n, "parentId")});
+            auto fields = QStringList{"id", "name", "parentId"};
+            if (schema >= 43)
+                fields.append("attributes");
+            keys(n, fields);
+            WbsNode node{string(n, "id"), string(n, "name"), string(n, "parentId")};
+            if (schema >= 43 && n.contains("attributes"))
+                node.attributes = decodeAttributes(n["attributes"]);
+            p.wbsNodes.push_back(std::move(node));
         }
     if (schema >= 5) {
         for (const auto &v : array(o, "resources")) {
             auto r = object(v);
             QStringList fields{"id", "name", "type", "maxUnits", "exceptions"};
+            if (schema >= 79)
+                fields.append({"availableFrom", "availableTo", "availability"});
             if (schema >= 6)
                 fields.append("rates");
             if (effort)
                 fields.append("calendarId");
+            if (schema >= 16)
+                fields.append("attributes");
+            if (schema >= 36)
+                fields.append("productivity");
             keys(r, fields);
             Resource resource;
+            if (schema >= 79) {
+                if (r.contains("availableFrom") && !r["availableFrom"].isNull())
+                    resource.availableFrom = string(r, "availableFrom");
+                if (r.contains("availableTo") && !r["availableTo"].isNull())
+                    resource.availableTo = string(r, "availableTo");
+                if (r.contains("availability")) {
+                    if (array(r, "availability").size() > 10000)
+                        throw AppError(ErrorCode::RESOURCE_EXCEPTION_INVALID);
+                    for (const auto &entry : array(r, "availability")) {
+                        const auto v = object(entry);
+                        keys(v, {"from", "to", "units"});
+                        if (!v.contains("from") || !v.contains("to") || !v.contains("units"))
+                            throw AppError(ErrorCode::RESOURCE_EXCEPTION_INVALID);
+                        resource.availability.push_back(
+                            {v["from"].isNull() ? std::optional<std::string>{} : string(v, "from"),
+                             v["to"].isNull() ? std::optional<std::string>{} : string(v, "to"),
+                             v["units"].isNull() ? std::optional<int>{} : int(integer(v, "units", 100000))});
+                    }
+                }
+            }
+            if (schema >= 36 && r.contains("productivity"))
+                resource.productivity = decodeProductivityRate(r["productivity"]);
+            if (schema >= 16 && r.contains("attributes"))
+                resource.attributes = decodeAttributes(r["attributes"]);
             resource.id = string(r, "id");
             resource.name = string(r, "name");
             resource.type = string(r, "type");
@@ -275,10 +482,44 @@ PlanInput decodePlan(const QJsonObject &o, int schema) {
                 }
             p.resources.push_back(std::move(resource));
         }
+        std::size_t periodCount = 0;
         for (const auto &v : array(o, "assignments")) {
             auto a = object(v);
-            keys(a, {"taskId", "resourceId", "units"});
-            p.assignments.push_back({string(a, "taskId"), string(a, "resourceId"), int(integer(a, "units", 100000))});
+            QStringList fields{"taskId", "resourceId", "units"};
+            if (schema >= 17)
+                fields.append("periods");
+            if (schema >= 36)
+                fields.append({"nativeCurve", "productivityEstimate"});
+            if (schema >= 37)
+                fields.append("attributes");
+            if (schema >= 42)
+                fields.append("rollDownMissing");
+            keys(a, fields);
+            Assignment value{string(a, "taskId"), string(a, "resourceId"), int(integer(a, "units", 100000))};
+            if (schema >= 42 && a.contains("rollDownMissing")) {
+                if (array(a, "rollDownMissing").size() > 64)
+                    throw AppError(ErrorCode::CLASSIFICATION_INVALID);
+                value.rollDownMissing = readStrings(a, "rollDownMissing");
+            }
+            if (schema >= 37 && a.contains("attributes"))
+                value.attributes = decodeAttributes(a["attributes"]);
+            if (schema >= 36 && a.contains("nativeCurve"))
+                value.nativeCurve = decodeNativeCurve(a["nativeCurve"]);
+            if (schema >= 36 && a.contains("productivityEstimate"))
+                value.productivityEstimate = decodeProductivityEstimate(a["productivityEstimate"]);
+            if (a.contains("periods")) {
+                const auto periods = array(a, "periods");
+                periodCount += std::size_t(periods.size());
+                if (periods.size() > 1024 || periodCount > 100000)
+                    throw AppError(ErrorCode::ASSIGNMENT_PERIOD_INVALID, {"구간 수 초과"});
+                for (const auto &period : periods) {
+                    const auto v = object(period);
+                    keys(v, {"fromMinute", "toMinute", "units"});
+                    value.periods.push_back({integer(v, "fromMinute", 5000000), integer(v, "toMinute", 5000000),
+                                             int(integer(v, "units", 100000))});
+                }
+            }
+            p.assignments.push_back(std::move(value));
         }
     }
     if (schema >= 6) {
@@ -304,6 +545,8 @@ PlanInput decodePlan(const QJsonObject &o, int schema) {
             fields.append({"constraintType", "constraintAt", "deadlineAt"});
         if (effort)
             fields.append({"taskType", "workDriven", "workUnitMinutes", "breaks"});
+        if (schema >= 10)
+            fields.append("attributes");
         keys(t, fields);
         Task task{string(t, "id"), string(t, "name"), std::nullopt, {}};
         if (schema >= 2) {
@@ -343,8 +586,15 @@ PlanInput decodePlan(const QJsonObject &o, int schema) {
                 task.breaks.push_back({string(b, "start"), string(b, "finish")});
             }
         }
+        if (schema >= 10 && t.contains("attributes"))
+            task.attributes = decodeAttributes(t.value("attributes"));
         p.tasks.push_back(std::move(task));
     }
+    if (schema < 24 &&
+        (hasWorkAssignmentPeriods(p) || (p.planLeveling && p.planLeveling->policy == "serial-effort-work-periods-v1")))
+        throw AppError(ErrorCode::FILE_VERSION_UNSUPPORTED);
+    if (schema < 40 && hasDateTimeFields(p))
+        throw AppError(ErrorCode::FILE_VERSION_UNSUPPORTED);
     return p;
 }
 QJsonObject encodeRow(const TaskSchedule &r) {
@@ -455,6 +705,8 @@ ProgressEntry decodeEntry(const QJsonObject &o, int schema) {
                        "remainingMinutes"};
     if (schema >= 9)
         fields.append("remainingWorkUnitMinutes");
+    if (schema >= 18)
+        fields.append({"printPreferences", "networkPositions"});
     keys(o, fields);
     ProgressEntry e;
     e.id = string(o, "id");
@@ -482,22 +734,41 @@ QJsonObject encodeScenario(const LevelingScenario &s) {
     QJsonArray entries;
     for (const auto &e : s.progress)
         entries.append(encodeEntry(e));
-    return {{"id", qs(s.id)},
-            {"name", qs(s.name)},
-            {"createdAt", qs(s.createdAt)},
-            {"sourceDocumentId", qs(s.sourceDocumentId)},
-            {"inputRevision", double(s.inputRevision)},
-            {"policy", qs(s.policy)},
-            {"priority", qs(s.priority)},
-            {"horizonWorkDays", s.horizonWorkDays},
-            {"input", encodePlan(s.input)},
-            {"statusAt", nullable(s.statusAt)},
-            {"progress", entries}};
+    QJsonObject result{{"id", qs(s.id)},
+                       {"name", qs(s.name)},
+                       {"createdAt", qs(s.createdAt)},
+                       {"sourceDocumentId", qs(s.sourceDocumentId)},
+                       {"inputRevision", double(s.inputRevision)},
+                       {"policy", qs(s.policy)},
+                       {"priority", qs(s.priority)},
+                       {"horizonWorkDays", s.horizonWorkDays},
+                       {"input", encodePlan(s.input)},
+                       {"statusAt", nullable(s.statusAt)},
+                       {"progress", entries}};
+    if (s.progressPolicy)
+        result["progressPolicy"] = encodeProgressPolicySelection(*s.progressPolicy);
+    if (!s.materialActuals.empty())
+        result["materialActuals"] = encodeMaterialActuals(s.materialActuals);
+    if (!s.remainingWork.empty())
+        result["remainingWork"] = encodeRemainingWork(s.remainingWork);
+    return result;
 }
 LevelingScenario decodeScenario(const QJsonObject &o, int schema) {
-    keys(o, {"id", "name", "createdAt", "sourceDocumentId", "inputRevision", "policy", "priority", "horizonWorkDays",
-             "input", "statusAt", "progress"});
+    QStringList fields{
+        "id",    "name",     "createdAt", "sourceDocumentId", "inputRevision", "policy", "priority", "horizonWorkDays",
+        "input", "statusAt", "progress"};
+    if (schema >= 14)
+        fields.append("progressPolicy");
+    if (schema >= 18)
+        fields.append({"printPreferences", "networkPositions"});
+    if (schema >= 22)
+        fields.append("remainingWork");
+    if (schema >= 83)
+        fields.append("materialActuals");
+    keys(o, fields);
     LevelingScenario s;
+    if (schema >= 83 && o.contains("materialActuals"))
+        s.materialActuals = decodeMaterialActuals(o["materialActuals"]);
     s.id = string(o, "id");
     s.name = string(o, "name");
     s.createdAt = string(o, "createdAt");
@@ -508,6 +779,10 @@ LevelingScenario decodeScenario(const QJsonObject &o, int schema) {
     s.horizonWorkDays = int(integer(o, "horizonWorkDays", 5200));
     s.input = decodePlan(object(o["input"]), schema);
     s.statusAt = optionalString(o, "statusAt");
+    if (schema >= 22 && o.contains("remainingWork"))
+        s.remainingWork = decodeRemainingWork(o["remainingWork"]);
+    if (schema >= 14 && o.contains("progressPolicy"))
+        s.progressPolicy = decodeProgressPolicySelection(o["progressPolicy"]);
     for (const auto &v : array(o, "progress"))
         s.progress.push_back(decodeEntry(object(v), schema));
     return s;
@@ -549,8 +824,30 @@ CostEntry decodeCostEntry(const QJsonObject &o) {
     return e;
 }
 } // namespace
-QJsonObject encodeProject(const Project &p) {
+QJsonObject encodePlanInput(const PlanInput &p) {
+    return encodePlan(p);
+}
+PlanInput decodePlanInput(const QJsonObject &p, int schema) {
+    return decodePlan(p, schema);
+}
+QJsonObject encodeProject(const Project &p, bool includeXerFinancials) {
     auto o = encodePlan(p);
+    if (!p.xmlBaselineMerges.empty())
+        o["xmlBaselineMerges"] = encodeXmlBaselineMerges(p.xmlBaselineMerges);
+    if (includeXerFinancials && !p.currencyConversions.empty())
+        o["currencyConversions"] = encodeCurrencyConversions(p.currencyConversions);
+    if (includeXerFinancials && !p.ledgerIdMigrations.empty())
+        o["ledgerIdMigrations"] = encodeLedgerIdMigrations(p.ledgerIdMigrations);
+    if (includeXerFinancials && !p.xerScheduleAdoptions.empty())
+        o["xerScheduleAdoptions"] = encodeXerScheduleAdoptions(p.xerScheduleAdoptions);
+    if (includeXerFinancials && !p.financialPeriodEvents.empty())
+        o["financialPeriodEvents"] = encodeFinancialPeriodEvents(p.financialPeriodEvents);
+    if (includeXerFinancials && !p.externalEvmAdoptions.empty())
+        o["externalEvmAdoptions"] = encodeExternalEvmAdoptions(p.externalEvmAdoptions);
+    if (includeXerFinancials && p.xerFinancials)
+        o["xerFinancials"] = encodeXerFinancials(*p.xerFinancials);
+    if (includeXerFinancials && !p.xerFinancialRevisions.empty())
+        o["xerFinancialRevisions"] = encodeXerFinancialRevisions(p.xerFinancialRevisions);
     o["documentId"] = qs(p.documentId);
     o["derivedFrom"] = qs(p.derivedFrom);
     o["revision"] = double(p.revision);
@@ -570,10 +867,47 @@ QJsonObject encodeProject(const Project &p) {
     o["progress"] = progress;
     o["scenarios"] = scenarios;
     o["costEntries"] = costs;
+    if (p.remainingLeveling)
+        o["remainingLeveling"] = encodeLeveling(*p.remainingLeveling);
+    if (!p.levelingDecisions.empty())
+        o["levelingDecisions"] = encodeLevelingDecisions(p.levelingDecisions);
+    if (p.progressPolicy)
+        o["progressPolicy"] = encodeProgressPolicySelection(*p.progressPolicy);
+    if (!p.materialActuals.empty())
+        o["materialActuals"] = encodeMaterialActuals(p.materialActuals);
+    if (!p.periodActuals.empty())
+        o["periodActuals"] = encodePeriodActuals(p.periodActuals);
+    if (!p.savedTaskViews.empty())
+        o["savedTaskViews"] = encodeSavedTaskViews(p.savedTaskViews);
+    if (!p.savedResourceViews.empty())
+        o["savedResourceViews"] = encodeSavedResourceViews(p.savedResourceViews);
+    if (!p.remainingWork.empty())
+        o["remainingWork"] = encodeRemainingWork(p.remainingWork);
+    if (!p.stepReports.empty())
+        o["stepReports"] = encodeStepReports(p.stepReports);
+    encodePresentation(o, p);
     return o;
 }
 Project decodeProject(const QJsonObject &o, int schema) {
     auto fields = planKeys(schema);
+    if (schema >= 83)
+        fields.append("materialActuals");
+    if (schema >= 76)
+        fields.append("xmlBaselineMerges");
+    if (schema >= 25)
+        fields.append("xerFinancials");
+    if (schema >= 26)
+        fields.append("xerFinancialRevisions");
+    if (schema >= 29)
+        fields.append("externalEvmAdoptions");
+    if (schema >= 30)
+        fields.append("financialPeriodEvents");
+    if (schema >= 32)
+        fields.append("xerScheduleAdoptions");
+    if (schema >= 33)
+        fields.append("ledgerIdMigrations");
+    if (schema >= 34)
+        fields.append("currencyConversions");
     fields.append({"documentId", "derivedFrom", "revision"});
     if (schema >= 4)
         fields.append({"statusAt", "baselines", "progress"});
@@ -581,12 +915,72 @@ Project decodeProject(const QJsonObject &o, int schema) {
         fields.append("scenarios");
     if (schema >= 6)
         fields.append("costEntries");
+    if (schema >= 10)
+        fields.append("savedTaskViews");
+    if (schema >= 11)
+        fields.append("periodActuals");
+    if (schema >= 12)
+        fields.append("remainingLeveling");
+    if (schema >= 13)
+        fields.append("progressPolicy");
+    if (schema >= 15)
+        fields.append("levelingDecisions");
+    if (schema >= 18)
+        fields.append({"printPreferences", "networkPositions"});
+    if (schema >= 19)
+        fields.append("stepReports");
+    if (schema >= 21)
+        fields.append("savedResourceViews");
+    if (schema >= 22)
+        fields.append("remainingWork");
     keys(o, fields);
     auto plan = o;
-    for (const auto &key :
-         {"documentId", "derivedFrom", "revision", "statusAt", "baselines", "progress", "scenarios", "costEntries"})
+    for (const auto &key : {"documentId",
+                            "derivedFrom",
+                            "revision",
+                            "statusAt",
+                            "baselines",
+                            "progress",
+                            "scenarios",
+                            "costEntries",
+                            "savedTaskViews",
+                            "periodActuals",
+                            "materialActuals",
+                            "remainingLeveling",
+                            "progressPolicy",
+                            "levelingDecisions",
+                            "printPreferences",
+                            "networkPositions",
+                            "stepReports",
+                            "savedResourceViews",
+                            "remainingWork",
+                            "xerFinancials",
+                            "xerFinancialRevisions",
+                            "externalEvmAdoptions",
+                            "financialPeriodEvents",
+                            "xerScheduleAdoptions",
+                            "ledgerIdMigrations",
+                            "currencyConversions",
+                            "xmlBaselineMerges"})
         plan.remove(key);
     Project p;
+    if (schema >= 76 && o.contains("xmlBaselineMerges"))
+        p.xmlBaselineMerges = decodeXmlBaselineMerges(o["xmlBaselineMerges"]);
+    if (schema >= 34 && o.contains("currencyConversions"))
+        p.currencyConversions = decodeCurrencyConversions(o["currencyConversions"]);
+    if (schema >= 33 && o.contains("ledgerIdMigrations"))
+        p.ledgerIdMigrations = decodeLedgerIdMigrations(o["ledgerIdMigrations"]);
+    if (schema >= 32 && o.contains("xerScheduleAdoptions"))
+        p.xerScheduleAdoptions = decodeXerScheduleAdoptions(o["xerScheduleAdoptions"]);
+    if (schema >= 30 && o.contains("financialPeriodEvents"))
+        p.financialPeriodEvents = decodeFinancialPeriodEvents(o["financialPeriodEvents"]);
+    if (schema >= 29 && o.contains("externalEvmAdoptions"))
+        p.externalEvmAdoptions = decodeExternalEvmAdoptions(o["externalEvmAdoptions"]);
+    if (schema >= 25 && o.contains("xerFinancials"))
+        p.xerFinancials = decodeXerFinancials(o["xerFinancials"]);
+    if (schema >= 26 && o.contains("xerFinancialRevisions"))
+        p.xerFinancialRevisions = decodeXerFinancialRevisions(o["xerFinancialRevisions"], schema >= 27, schema >= 28,
+                                                              schema >= 31, schema >= 34);
     static_cast<PlanInput &>(p) = decodePlan(plan, schema);
     p.documentId = string(o, "documentId");
     p.derivedFrom = string(o, "derivedFrom");
@@ -604,7 +998,44 @@ Project decodeProject(const QJsonObject &o, int schema) {
     if (schema >= 6)
         for (const auto &v : array(o, "costEntries"))
             p.costEntries.push_back(decodeCostEntry(object(v)));
+    if (schema >= 10 && o.contains("savedTaskViews"))
+        p.savedTaskViews = decodeSavedTaskViews(o.value("savedTaskViews"));
+    if (schema >= 21 && o.contains("savedResourceViews"))
+        p.savedResourceViews = decodeSavedResourceViews(o["savedResourceViews"]);
+    if (schema >= 22 && o.contains("remainingWork"))
+        p.remainingWork = decodeRemainingWork(o["remainingWork"]);
+    if (schema >= 83 && o.contains("materialActuals"))
+        p.materialActuals = decodeMaterialActuals(o["materialActuals"]);
+    if (schema >= 11 && o.contains("periodActuals"))
+        p.periodActuals = decodePeriodActuals(o.value("periodActuals"));
+    if (schema >= 12 && o.contains("remainingLeveling"))
+        p.remainingLeveling = decodeLeveling(o["remainingLeveling"]);
+    if (schema >= 13 && o.contains("progressPolicy"))
+        p.progressPolicy = decodeProgressPolicySelection(o["progressPolicy"]);
+    if (schema >= 15 && o.contains("levelingDecisions"))
+        p.levelingDecisions = decodeLevelingDecisions(o["levelingDecisions"]);
+    if (schema < 14 && p.progressPolicy && (p.planLeveling || p.remainingLeveling))
+        throw AppError(ErrorCode::PROGRESS_POLICY_LEVELING);
+    if (schema < 17 && nativeSchemaFor(p) >= 17)
+        throw AppError(ErrorCode::ASSIGNMENT_PERIOD_INVALID, {"기간별 배정/정책은 schema17부터 지원합니다."});
+    if (schema >= 19 && o.contains("stepReports"))
+        p.stepReports = decodeStepReports(o["stepReports"]);
+    if (schema < 20 && nativeSchemaFor(p) >= 20)
+        throw AppError(ErrorCode::FILE_VERSION_UNSUPPORTED);
+    const auto readSchema = nativeReadSchemaFor(p);
+    if (readSchema >= 21 && schema < readSchema)
+        throw AppError(ErrorCode::FILE_VERSION_UNSUPPORTED);
+    if (schema < 19 && nativeSchemaFor(p) >= 19)
+        throw AppError(ErrorCode::FILE_VERSION_UNSUPPORTED);
+    if (schema >= 18)
+        decodePresentation(p, o);
     validate(p);
+    validateCurrencyCurrent(p);
+    validateLedgerIdCurrent(p);
+    if (!p.xerScheduleAdoptions.empty() && p.xerScheduleAdoptions.back().recordedRevision == p.revision &&
+        p.xerScheduleAdoptions.back().after != static_cast<const PlanInput &>(p))
+        throw AppError(ErrorCode::FILE_PRIMAVERAXER_080,
+                       {"채택 직후의 현재 계획과 저장된 채택 결과가 일치하지 않습니다."});
     for (const auto &b : p.baselines)
         verifyBaseline(b);
     return p;

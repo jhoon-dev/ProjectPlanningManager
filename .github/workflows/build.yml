@@ -24,10 +24,21 @@ jobs:
           version: '6.8.3'
           arch: ${{ matrix.arch }}
           cache: true
-      - run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+      - name: Install optional server test runtime
+        run: python -m pip install -r server/requirements-lock.txt
+      - run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DJOBS_SERVER_TEST_PYTHON=python
       # Bound compiler memory for the Qt translation units on hosted runners.
       - run: cmake --build build --config Release --parallel 3
       - run: ctest --test-dir build -C Release --output-on-failure
+      - name: Preserve authenticated server integration evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: server-auth-sync-scheduler-${{ runner.os }}
+          path: |
+            build/server-qa/
+            build/Testing/Temporary/LastTest.log
+          if-no-files-found: warn
       - name: Capture task and Gantt workspace presentation
         run: python scripts/capture-workspace-ui.py build --store
       - name: Preserve task and Gantt workspace screens
@@ -69,7 +80,27 @@ jobs:
         run: |
           python -m pip install openpyxl==3.1.5 pypdf==6.10.0
           python scripts/verify-report-fixtures.py build
+          python scripts/verify-native-period-evm.py build > build/native-period-evm-qa/independent-reader.json
+          python scripts/verify-external-xer-evm.py build > build/external-xer-evm-qa/independent-reader.json
+          python scripts/verify-custom-financial-periods.py build > build/custom-financial-periods-qa/independent-reader.json
           python scripts/verify-project-xml.py build
+          python scripts/verify-progress-policy-adoption.py build > build/progress-policy-adoption-qa/independent-reader.json
+          python scripts/verify-progress-leveling.py build > build/progress-leveling-qa/independent-reader.json
+          python scripts/verify-leveling-decisions.py build > build/leveling-decision-qa/independent-reader.json
+          python scripts/verify-object-fields.py build > build/object-fields-qa/independent-reader.json
+          python scripts/verify-assignment-periods.py build > build/assignment-periods-qa/independent-reader.json
+          python scripts/verify-print-network.py build > build/print-network-qa/independent-reader.json
+          python scripts/verify-activity-extensions.py build > build/activity-extension-qa/independent-reader.json
+          python scripts/verify-governance-risk.py build
+          python scripts/verify-leveling-float.py build > build/leveling-float-qa/independent-reader.json
+          python scripts/verify-segment-leveling-float.py build > build/segment-leveling-float-qa/independent-reader.json
+          python scripts/verify-repartition-float.py build > build/repartition-float-qa/independent-reader.json
+          python scripts/verify-scaled-repartition-float.py build > build/scaled-repartition-float-qa/independent-reader.json
+          python scripts/verify-leveling-witness.py build > build/leveling-witness-qa/independent-reader.json
+          python scripts/verify-expanded-repartition-float.py build > build/expanded-repartition-float-qa/independent-reader.json
+          python scripts/verify-candidate-propagation.py build > build/candidate-propagation-qa/independent-reader.json
+          python scripts/verify-nonmonotone-propagation.py build > build/nonmonotone-propagation-qa/independent-reader.json
+          python scripts/verify-propagation-cost.py build > build/propagation-cost-qa/independent-reader.json
       - name: Measure deterministic 1k and 10k schedules and UI
         run: python scripts/run-performance-probes.py --repeats 3
       - name: Measure cell edits and retained undo at 1k and 10k tasks
@@ -127,9 +158,170 @@ jobs:
         run: |
           python -m pip install mpxj==16.10.0 JPype1==1.6.0
           python scripts/verify-primavera-xer.py build
+          python scripts/verify-xer-actual-costs.py build > build/xer-actual-cost-qa/independent-reader.json
+          python scripts/verify-xer-financials.py build > build/xer-financial-qa/independent-reader.json
+          python scripts/verify-xer-allocation.py build > build/xer-allocation-qa/independent-reader.json
+          python scripts/verify-xer-merge.py build > build/xer-merge-qa/independent-reader.json
+          python scripts/verify-xer-relink.py build > build/xer-relink-qa/independent-reader.json
+          ./build/jobs_xer_batch_tests build/xer-batch-qa/package
+          python scripts/verify-xer-batch.py build/xer-batch-qa/package > build/xer-batch-qa/independent-reader.json
+          python scripts/verify-xer-project-selection.py build > build/xer-selection-qa/independent-reader.json
+          python scripts/verify-p6-roundtrip.py --kit build/progress-policy-qa/p6-kit --self-test --mpxj-reopen > build/progress-policy-qa/comparator-selftest.json
           python scripts/verify-p6-corpus.py --build-dir build --corpus tests/fixtures/p6-public --output build/p6-public-comparison
           python scripts/fetch-p6-external-samples.py --output build/p6-external
           python scripts/verify-p6-corpus.py --build-dir build --corpus build/p6-external --output build/p6-external-comparison
+      - name: Preserve material and integrated workspace evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: resource-integrated-workspace-${{ runner.os }}
+          path: |
+            build/resource-plan-qa/
+            build/integrated-workspace-qa/
+            build/resource-workspace-ui-qa/
+          if-no-files-found: warn
+      - name: Preserve activity extension evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: activity-extensions-${{ runner.os }}
+          path: |
+            build/activity-extension-qa/
+            build/activity-policy-comparison.json
+          if-no-files-found: warn
+      - name: Preserve print and network extension evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: print-network-${{ runner.os }}
+          path: build/print-network-qa/
+          if-no-files-found: warn
+      - name: Preserve assignment period evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: assignment-periods-${{ runner.os }}
+          path: build/assignment-periods-qa/
+          if-no-files-found: warn
+      - name: Preserve object custom field evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: object-fields-${{ runner.os }}
+          path: build/object-fields-qa/
+          if-no-files-found: warn
+      - name: Preserve leveling decision history evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: leveling-decisions-${{ runner.os }}
+          path: build/leveling-decision-qa/
+          if-no-files-found: warn
+      - name: Preserve post-leveling float and critical path evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: leveling-float-${{ runner.os }}
+          path: build/leveling-float-qa/
+          if-no-files-found: warn
+      - name: Preserve repartition float evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: repartition-float-${{ runner.os }}
+          path: build/repartition-float-qa/
+          if-no-files-found: warn
+      - name: Preserve scaled repartition float evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scaled-repartition-float-${{ runner.os }}
+          path: build/scaled-repartition-float-qa/
+          if-no-files-found: warn
+      - name: Preserve leveling witness UI evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: leveling-witness-${{ runner.os }}
+          path: build/leveling-witness-qa/
+          if-no-files-found: warn
+      - name: Preserve expanded repartition evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: expanded-repartition-${{ runner.os }}
+          path: build/expanded-repartition-float-qa/
+          if-no-files-found: warn
+      - name: Preserve candidate propagation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: candidate-propagation-${{ runner.os }}
+          path: build/candidate-propagation-qa/
+          if-no-files-found: warn
+      - name: Preserve propagation cost decision evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: propagation-cost-${{ runner.os }}
+          path: build/propagation-cost-qa/
+          if-no-files-found: warn
+      - name: Preserve nonmonotone demand propagation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nonmonotone-propagation-${{ runner.os }}
+          path: build/nonmonotone-propagation-qa/
+          if-no-files-found: warn
+      - name: Preserve cross-split leveling float evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: segment-leveling-float-${{ runner.os }}
+          path: build/segment-leveling-float-qa/
+          if-no-files-found: warn
+      - name: Preserve combined progress policy and leveling evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: progress-leveling-${{ runner.os }}
+          path: build/progress-leveling-qa/
+          if-no-files-found: warn
+      - name: Preserve adopted progress policy screens and independent exports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: progress-policy-adoption-${{ runner.os }}
+          path: build/progress-policy-adoption-qa/
+          if-no-files-found: warn
+      - name: Preserve native progress comparison and unexecuted P6 kit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: progress-policy-${{ runner.os }}
+          path: build/progress-policy-qa/
+          if-no-files-found: warn
+      - name: Preserve batch XER diagnostics and screens
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xer-batch-${{ runner.os }}
+          path: build/xer-batch-qa/
+          if-no-files-found: warn
+      - name: Preserve selected-project XER diagnostics and screens
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xer-project-selection-${{ runner.os }}
+          path: build/xer-selection-qa/
+          if-no-files-found: warn
+      - name: Preserve local organization risk automation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: organization-risk-automation-${{ runner.os }}
+          path: build/governance-qa/
+          if-no-files-found: warn
       - name: Preserve independent public P6 comparison matrices
         if: always()
         uses: actions/upload-artifact@v4
@@ -168,6 +360,19 @@ jobs:
         with:
           name: primavera-xer-${{ runner.os }}
           path: |
+            build/xer-actual-cost-qa/
+            build/xer-financial-qa/
+            build/xer-allocation-qa/
+            build/xer-merge-qa/
+            build/xer-relink-qa/
+              build/native-period-evm-qa/
+              build/native-period-evm-ui-qa/
+              build/external-xer-evm-qa/
+              build/external-xer-evm-ui-qa/
+            build/custom-financial-periods-qa/
+            build/custom-financial-periods-ui-qa/
+            build/xer-actual-cost-import-native.png
+            build/xer-actual-cost-export-native.png
             build/primavera-export.xer
             build/primavera-24h.xer
             build/primavera-export.json

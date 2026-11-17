@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "definitions": 27,
+  "roll_down_links": 13,
+  "assignment_rows": 3,
+  "effective_cells": 42,
+  "inherited_nonmissing_cells": 28,
+  "explicit_values": 6,
+  "explicit_missing": 1,
+  "native_schema": 42,
+  "xer_effective_values": 34,
+  "currency_conversion": "inherited cost converted once",
+  "external_product_run": false,
+  "reports": {
+    "assignment_rows_checked": 42,
+    "pdf_pages": 14,
+    "numeric_cost_cells": true
+  }
+}

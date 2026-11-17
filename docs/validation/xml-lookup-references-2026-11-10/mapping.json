@@ -1,0 +1,140 @@
+{
+    "companionPolicy": "원본과 진단은 이 폴더의 동반 파일입니다. .ppm 사본 저장/이동 시 자동 복제되지 않습니다.",
+    "compatibility": {
+        "externalRoundTrip": "unverified",
+        "import": "not-applicable",
+        "jobsRecomputation": "unverified",
+        "originalPreservation": "exact-native-input-snapshot"
+    },
+    "contract": "jobs-mspdi-plan-v1",
+    "diagnostics": [
+        {
+            "message": "기간 기반 계획 투영입니다. 외부 제품의 계산/재저장 호환은 미검증입니다. 원본 전체 입력/이력은 source.ppm 참조.",
+            "path": "/Project"
+        },
+        {
+            "message": "지원 사용자 필드는 UDF 매핑표를 따릅니다. 작업 코드·저장된 보기는 source.ppm에 전체 데이터를 보존합니다.",
+            "path": "/Project/ExtendedAttribute"
+        },
+        {
+            "message": "기준선·실적·원가·상태일·시나리오는 XML에 포함하지 않음 · source.jobs에 보존",
+            "path": "/Project/history-costs"
+        }
+    ],
+    "direction": "export",
+    "documentId": "xml-lookup",
+    "format": "Microsoft Project XML",
+    "mapping": [
+        {
+            "externalId": "188743731",
+            "jobsId": "local",
+            "kind": "udf",
+            "name": "지역",
+            "scope": "TASK",
+            "type": "text"
+        },
+        {
+            "externalId": "188776449",
+            "jobsId": "multi",
+            "kind": "udf",
+            "name": "기업 다중 지역",
+            "representation": "hex-element",
+            "scope": "TASK",
+            "type": "text",
+            "xmlFieldName": "Enterprise regions",
+            "xmlGuid": "11111111-2222-4333-8444-000000000100"
+        },
+        {
+            "externalId": "190873600",
+            "jobsId": "number",
+            "kind": "udf",
+            "name": "프로젝트 등급",
+            "representation": "hex-element",
+            "scope": "PROJECT",
+            "type": "number",
+            "xmlFieldName": "프로젝트 등급",
+            "xmlGuid": "86846fc2-2174-5beb-897c-b386ab5da0f0"
+        },
+        {
+            "externalId": "205521069",
+            "jobsId": "date",
+            "kind": "udf",
+            "name": "자원 검토일",
+            "scope": "RSRC",
+            "type": "date"
+        },
+        {
+            "externalId": "205521174",
+            "jobsId": "xml-udf-RSRC-205521174",
+            "kind": "udf",
+            "name": "자원 계층",
+            "scope": "RSRC",
+            "type": "text"
+        },
+        {
+            "externalId": "255885312",
+            "jobsId": "shared",
+            "kind": "udf",
+            "name": "배정 다중 지역",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "text",
+            "xmlFieldName": "배정 다중 지역",
+            "xmlGuid": "9249a443-a545-562b-934e-631aa8f27a4e"
+        },
+        {
+            "externalId": "255885313",
+            "jobsId": "open",
+            "kind": "udf",
+            "name": "배정 열린 목록",
+            "representation": "hex-element",
+            "scope": "ASSIGNMENT",
+            "type": "text",
+            "xmlFieldName": "배정 열린 목록",
+            "xmlGuid": "987de5ee-d0d0-5733-8455-355a5eea40f0"
+        },
+        {
+            "jobsId": "",
+            "kind": "calendar",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "T",
+            "kind": "task",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "B",
+            "kind": "task",
+            "xmlUid": "2"
+        },
+        {
+            "jobsId": "R",
+            "kind": "resource",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "T/R",
+            "kind": "assignment",
+            "xmlUid": "1"
+        },
+        {
+            "jobsId": "B/R",
+            "kind": "assignment",
+            "xmlUid": "2"
+        }
+    ],
+    "namespace": "http://schemas.microsoft.com/project",
+    "nativeSnapshotProfile": "native-effort-split-v1",
+    "revision": "1",
+    "source": {
+        "name": "source.ppm",
+        "product": "PPM"
+    },
+    "targetPolicy": {
+        "calculationProfile": "native-effort-split-v1",
+        "lagCalendar": "successor-working-calendar",
+        "projectStartAnchor": "09:00"
+    },
+    "xmlSha256": "4aaf040779d286f3823f90ece10f1d614baa03531e110f94dbdfe26d47282b9d"
+}

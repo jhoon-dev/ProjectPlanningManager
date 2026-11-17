@@ -1,0 +1,1 @@
+PASS planned work UI: preview, draft transfer, atomic apply, undo, input invalidation, cancel, stale, role, readonly, close

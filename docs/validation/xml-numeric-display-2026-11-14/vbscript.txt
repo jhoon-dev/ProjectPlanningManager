@@ -1,0 +1,1 @@
+PASS: 7128 exact-binary inputs/options, scalar expressions and 8 errors; LCID1033

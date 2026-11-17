@@ -1,0 +1,19 @@
+[0/1] Re-running CMake...
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
+-- Configuring done (3.1s)
+CMake Error:
+  Running
+
+   'C:/Users/dow/AppData/Roaming/Python/Python314/Scripts/ninja.exe' '-C' 'C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance' '-t' 'restat' 'build.ninja' 'C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance/cmake_install.cmake' 'C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance/CTestTestfile.cmake'
+
+  failed with:
+
+   ninja: error: failed recompaction: Permission denied
+
+
+-- Generating done (2.0s)
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.
+FAILED: [code=1] build.ninja C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance/cmake_install.cmake C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance/CTestTestfile.cmake 
+C:\Users\dow\AppData\Roaming\Python\Python314\site-packages\cmake\data\bin\cmake.exe --regenerate-during-build -SC:\Users\dow\Development\ToolMoa\ProjectPlanningManager -BC:\Users\dow\Development\ToolMoa\ProjectPlanningManager\build-governance
+ninja: error: rebuilding 'build.ninja': subcommand failed

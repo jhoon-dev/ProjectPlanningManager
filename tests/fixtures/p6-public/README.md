@@ -18,6 +18,13 @@ effective weekly calendars and the supported exported projection. Rejected
 inputs retain their diagnostic codes. Multiple rate-period assignments and
 unsupported currencies are not silently merged or relabelled.
 
+The actual/cost exchange contract now rejects `percent-complete-8.4.xer`
+with `FILE_PRIMAVERAXER_080`: its data timestamp is `2015-02-24 00:00`,
+while several observed starts are `2015-02-24 08:00`. Before actuals were
+mapped, only its plan was imported. The unmodified generated fixture remains
+in the corpus with its original hash; the expected disposition records this
+explicit native timestamp restriction. This does not assert that P6 rejects it.
+
 Upstream provenance and P6-format headers are recorded; original customer/P6
 execution is not independently attested. Passing this corpus does not prove
 Oracle P6 recalculation equivalence or complete XER compatibility.

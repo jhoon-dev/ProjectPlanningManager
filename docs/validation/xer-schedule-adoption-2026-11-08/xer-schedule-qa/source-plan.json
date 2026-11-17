@@ -1,0 +1,307 @@
+{
+    "assignments": [
+        {
+            "resourceId": "xer-resource-1",
+            "taskId": "xer-task-1",
+            "units": 50
+        },
+        {
+            "resourceId": "xer-resource-1",
+            "taskId": "xer-task-2",
+            "units": 125
+        }
+    ],
+    "calculationProfile": "native-effort-split-v1",
+    "calendar": "standard-mon-fri-8h-v1",
+    "calendars": [
+        {
+            "holidays": [
+            ],
+            "id": "xer-cal-1",
+            "name": "PPM standard",
+            "periods": [
+                {
+                    "begin": 540,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1080
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "holidays": [
+                "2026-11-03"
+            ],
+            "id": "xer-cal-2",
+            "name": "표준 & 휴일",
+            "periods": [
+                {
+                    "begin": 540,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "holidays": [
+                "2026-11-03"
+            ],
+            "id": "xer-cal-3",
+            "name": "상속 달력",
+            "periods": [
+                {
+                    "begin": 540,
+                    "end": 720
+                },
+                {
+                    "begin": 780,
+                    "end": 1020
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    ],
+    "costProfile": "cost-day-minor-half-up-v1",
+    "currency": "USD",
+    "holidays": [
+    ],
+    "name": "한글 XER 계획",
+    "resources": [
+        {
+            "calendarId": "xer-cal-3",
+            "exceptions": [
+            ],
+            "id": "xer-resource-1",
+            "maxUnits": 150,
+            "name": "설계자 <1>",
+            "rates": [
+                {
+                    "effectiveDate": "2026-10-01",
+                    "hourlyMinor": 2550
+                }
+            ],
+            "type": "labor"
+        },
+        {
+            "calendarId": "xer-cal-2",
+            "exceptions": [
+            ],
+            "id": "xer-resource-2",
+            "maxUnits": 0,
+            "name": "크레인",
+            "rates": [
+                {
+                    "effectiveDate": "2026-10-01",
+                    "hourlyMinor": 4000
+                }
+            ],
+            "type": "equipment"
+        }
+    ],
+    "startDate": "2026-11-02",
+    "taskCosts": [
+        {
+            "accrual": "uniform",
+            "credit": "physical",
+            "fixedMinor": 10000,
+            "taskId": "xer-task-1"
+        }
+    ],
+    "tasks": [
+        {
+            "breaks": [
+            ],
+            "calendarId": "xer-cal-2",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 960,
+            "id": "xer-task-1",
+            "name": "후속 설계 변경",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "xer-wbs-2",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xer-cal-2",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+                {
+                    "lagMinutes": 60,
+                    "predecessorId": "xer-task-1",
+                    "type": "FS"
+                }
+            ],
+            "durationMinutes": 120,
+            "id": "xer-task-2",
+            "name": "B 개발",
+            "predecessors": [
+                "xer-task-1"
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "xer-wbs-2",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xer-cal-2",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+                {
+                    "lagMinutes": -60,
+                    "predecessorId": "xer-task-1",
+                    "type": "SS"
+                }
+            ],
+            "durationMinutes": 60,
+            "id": "xer-task-3",
+            "name": "C SS",
+            "predecessors": [
+                "xer-task-1"
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "xer-wbs-2",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xer-cal-2",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+                {
+                    "lagMinutes": -60,
+                    "predecessorId": "xer-task-1",
+                    "type": "FF"
+                }
+            ],
+            "durationMinutes": 120,
+            "id": "xer-task-4",
+            "name": "D FF",
+            "predecessors": [
+                "xer-task-1"
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "xer-wbs-2",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xer-cal-2",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+                {
+                    "lagMinutes": 60,
+                    "predecessorId": "xer-task-1",
+                    "type": "SF"
+                }
+            ],
+            "durationMinutes": 60,
+            "id": "xer-task-5",
+            "name": "E SF",
+            "predecessors": [
+                "xer-task-1"
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "xer-wbs-2",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xer-cal-2",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 0,
+            "id": "xer-task-6",
+            "name": "완료점",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "xer-wbs-3",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "xer-cal-2",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 60,
+            "id": "xer-task-7",
+            "name": "후속 신규 작업",
+            "predecessors": [
+                "xer-task-1"
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "xer-wbs-3",
+            "workDriven": false,
+            "workUnitMinutes": null
+        }
+    ],
+    "wbsNodes": [
+        {
+            "id": "xer-wbs-2",
+            "name": "후속 개발",
+            "parentId": "xer-wbs-3"
+        },
+        {
+            "id": "xer-wbs-3",
+            "name": "후속 검증",
+            "parentId": ""
+        }
+    ]
+}

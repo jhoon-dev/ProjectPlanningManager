@@ -1,0 +1,1 @@
+PASS: project-wide currency rates/budgets/materials/expenses/native observations/baselines/scenarios/closed periods/external EVM/XER projections, original archives and FX chains, schema34/replay/recovery/copy, sequential identity/currency operations, numerical cases, cancel/stale/readonly, export and native UI

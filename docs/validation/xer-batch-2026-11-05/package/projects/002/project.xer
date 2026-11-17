@@ -1,0 +1,59 @@
+﻿ERMHDR	20.12	2026-10-26	Project	PPM	PPM	dbxDatabaseNoName	Project Management	KRW
+%T	CURRTYPE
+%F	curr_id	decimal_digit_cnt	curr_symbol	decimal_symbol	digit_group_symbol	pos_curr_fmt_type	neg_curr_fmt_type	curr_type	curr_short_name	group_digit_cnt	base_exch_rate
+%R	1	0	KRW	.	,	#1.1	(#1.1)	KRW	KRW	3	1
+%T	PROJECT
+%F	proj_id	proj_short_name	clndr_id	plan_start_date	def_task_type	def_duration_type	task_code_prefix	task_code_base	task_code_step
+%R	1	PPM-8a040ce7da03	1	2026-10-26 09:00	TT_Task	DT_FixedDrtn	J	1	1
+%T	SCHEDOPTIONS
+%F	schedoptions_id	proj_id	sched_calendar_on_relationship_lag
+%R	1	1	rcal_Successor
+%T	CALENDAR
+%F	clndr_id	default_flag	clndr_name	proj_id	base_clndr_id	clndr_type	day_hr_cnt	week_hr_cnt	rsrc_private	clndr_data
+%R	1	Y	PPM standard	1		CA_Project	8.000000	40.000000	N	(0||CalendarData()((0||DaysOfWeek()((0||1()())(0||2()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||3()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||4()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||5()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||6()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||7()())))(0||Exceptions()())))
+%R	2	N	표준 & 휴일	1		CA_Project	8.000000	40.000000	N	(0||CalendarData()((0||DaysOfWeek()((0||1()())(0||2()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||3()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||4()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||5()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||6()((0||0(s|09:00|f|12:00)())(0||1(s|13:00|f|18:00)())))(0||7()())))(0||Exceptions()((0||0(d|46322)())))))
+%T	PROJWBS
+%F	wbs_id	proj_id	seq_num	proj_node_flag	wbs_short_name	wbs_name	parent_wbs_id
+%R	1	1	0	Y	PPM-8a040ce7da03	두 번째 현장	
+%R	2	1	2	N	W2	개발	1
+%R	3	1	3	N	W3	검증	2
+%T	TASK
+%F	task_id	proj_id	wbs_id	clndr_id	task_code	task_name	task_type	duration_type	status_code	complete_pct_type	target_drtn_hr_cnt	remain_drtn_hr_cnt	cstr_type	cstr_date	cstr_type2	cstr_date2
+%R	1	1	2	2	J1	다른 프로젝트의 같은 native 작업 ID	TT_Task	DT_FixedDrtn	TK_NotStart	CP_Drtn	8.000000	8.000000				
+%R	2	1	2	2	J2	B 개발	TT_Task	DT_FixedDrtn	TK_NotStart	CP_Drtn	2.000000	2.000000	CS_MSOA	2026-10-28 10:00		
+%R	3	1	2	2	J3	C SS	TT_Task	DT_FixedDrtn	TK_NotStart	CP_Drtn	1.000000	1.000000				
+%R	4	1	2	2	J4	D FF	TT_Task	DT_FixedDrtn	TK_NotStart	CP_Drtn	2.000000	2.000000				
+%R	5	1	2	2	J5	E SF	TT_Task	DT_FixedDrtn	TK_NotStart	CP_Drtn	1.000000	1.000000				
+%R	6	1	3	2	J6	완료점	TT_Mile	DT_FixedDrtn	TK_NotStart	CP_Drtn	0.000000	0.000000				
+%T	ACTVTYPE
+%F	actv_code_type_id	actv_code_type	seq_num	actv_code_type_scope	proj_id
+%R	1	공종	1	AS_Project	1
+%R	2	구역	2	AS_Project	1
+%T	ACTVCODE
+%F	actv_code_id	parent_actv_code_id	actv_code_type_id	short_name	actv_code_name	seq_num
+%R	1		1	설계	설계	1
+%R	2	1	1	상세	상세	2
+%R	3		1	시공	시공	3
+%R	4		2	A구역	A구역	4
+%T	TASKACTV
+%F	task_id	actv_code_id	proj_id	actv_code_type_id
+%R	1	2	1	1
+%R	1	4	1	2
+%R	2	3	1	1
+%T	TASKPRED
+%F	task_pred_id	task_id	pred_task_id	proj_id	pred_proj_id	pred_type	lag_hr_cnt
+%R	1	2	1	1	1	PR_FS	1.000000
+%R	2	3	1	1	1	PR_SS	-1.000000
+%R	3	4	1	1	1	PR_FF	-1.000000
+%R	4	5	1	1	1	PR_SF	1.000000
+%T	RSRC
+%F	rsrc_id	clndr_id	curr_id	rsrc_name	rsrc_short_name	rsrc_type	active_flag
+%R	1	2	1	설계자 <1>	R1	RT_Labor	Y
+%T	RSRCRATE
+%F	rsrc_rate_id	rsrc_id	start_date	max_qty_per_hr
+%R	1	1	2026-10-26 00:00	1.50
+%T	TASKRSRC
+%F	taskrsrc_id	task_id	proj_id	rsrc_id	target_qty_per_hr	remain_qty_per_hr	target_qty	remain_qty
+%R	1	1	1	1	0.50	0.50	4.000000	4.000000
+%R	2	2	1	1	1.25	1.25	2.500000	2.500000
+%E

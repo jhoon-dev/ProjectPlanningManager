@@ -1,0 +1,574 @@
+{
+    "assignmentFields": [
+        {
+            "id": "RW",
+            "name": "RW",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:remainingwork",
+                        "scope": 3,
+                        "token": "Remaining Work"
+                    }
+                ],
+                "source": "[Remaining Work]"
+            }
+        },
+        {
+            "id": "TD",
+            "name": "TD",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:remainingduration",
+                        "scope": 0,
+                        "token": "Task.Remaining Duration"
+                    }
+                ],
+                "source": "[Task.Remaining Duration]"
+            }
+        },
+        {
+            "id": "TW",
+            "name": "TW",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:remainingwork",
+                        "scope": 0,
+                        "token": "Task.RemainingWork"
+                    }
+                ],
+                "source": "[Task.RemainingWork]"
+            }
+        },
+        {
+            "id": "RWResource",
+            "name": "RWResource",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:remainingwork",
+                        "scope": 2,
+                        "token": "Resource.Remaining Work"
+                    }
+                ],
+                "source": "[Resource.Remaining Work]"
+            }
+        },
+        {
+            "id": "PW",
+            "name": "PW",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:remainingwork",
+                        "scope": 1,
+                        "token": "Project.Remaining Work"
+                    }
+                ],
+                "source": "[Project.Remaining Work]"
+            }
+        }
+    ],
+    "assignments": [
+        {
+            "resourceId": "R",
+            "taskId": "A",
+            "units": 100
+        },
+        {
+            "periods": [
+                {
+                    "fromMinute": 4,
+                    "toMinute": 6,
+                    "units": 50
+                },
+                {
+                    "fromMinute": 6,
+                    "toMinute": 8,
+                    "units": 150
+                }
+            ],
+            "resourceId": "R",
+            "taskId": "B",
+            "units": 100
+        },
+        {
+            "resourceId": "S",
+            "taskId": "B",
+            "units": 33
+        },
+        {
+            "resourceId": "R",
+            "taskId": "C",
+            "units": 50
+        },
+        {
+            "resourceId": "R",
+            "taskId": "W",
+            "units": 100
+        },
+        {
+            "resourceId": "S",
+            "taskId": "U",
+            "units": 100
+        }
+    ],
+    "baselines": [
+    ],
+    "calculationProfile": "native-effort-split-v1",
+    "calendar": "standard-mon-fri-8h-v1",
+    "calendars": [
+        {
+            "holidays": [
+            ],
+            "id": "C",
+            "name": "8분",
+            "periods": [
+                {
+                    "begin": 540,
+                    "end": 548
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "holidays": [
+            ],
+            "id": "R",
+            "name": "부분 6분",
+            "periods": [
+                {
+                    "begin": 541,
+                    "end": 547
+                }
+            ],
+            "weekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    ],
+    "codeTypes": [
+    ],
+    "costEntries": [
+    ],
+    "costProfile": "cost-day-minor-half-up-v1",
+    "currency": "KRW",
+    "customFields": [
+        {
+            "id": "RD",
+            "name": "RD",
+            "options": [
+            ],
+            "type": "duration",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:remainingduration",
+                        "scope": 0,
+                        "token": "Remaining Duration"
+                    }
+                ],
+                "source": "[Remaining Duration]"
+            },
+            "xmlRollUp": {
+                "calculationType": 2,
+                "rollupType": 0
+            }
+        },
+        {
+            "id": "DN",
+            "name": "DN",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:remainingduration",
+                        "scope": 0,
+                        "token": "RemainingDuration"
+                    }
+                ],
+                "source": "[RemainingDuration]"
+            }
+        },
+        {
+            "id": "RW",
+            "name": "RW",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:remainingwork",
+                        "scope": 0,
+                        "token": "Remaining Work"
+                    }
+                ],
+                "source": "[Remaining Work]"
+            },
+            "xmlRollUp": {
+                "calculationType": 2,
+                "rollupType": 0
+            }
+        },
+        {
+            "id": "hours",
+            "name": "hours",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:remainingwork",
+                        "scope": 0,
+                        "token": "RemainingWork"
+                    }
+                ],
+                "source": "[RemainingWork]/60"
+            }
+        },
+        {
+            "id": "start",
+            "name": "start",
+            "options": [
+            ],
+            "type": "start",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:start",
+                        "scope": 0,
+                        "token": "Start"
+                    }
+                ],
+                "source": "[Start]"
+            }
+        }
+    ],
+    "derivedFrom": "",
+    "documentId": "xml-remaining",
+    "holidays": [
+    ],
+    "name": "잔여 예측 참조",
+    "progress": [
+        {
+            "actualDurationMinutes": 1,
+            "actualFinish": "2026-11-12 09:01",
+            "actualStart": "2026-11-12 09:00",
+            "id": "A0",
+            "planDurationMinutes": 480,
+            "previousEntryId": "",
+            "reason": "실적 / 정정",
+            "recordedAt": "2026-11-18T09:00:00Z",
+            "recordedRevision": 1,
+            "remainingMinutes": 0,
+            "reporter": "PM",
+            "sourceDocumentId": "xml-remaining",
+            "statusAt": "2026-11-12 09:02",
+            "taskId": "A"
+        },
+        {
+            "actualDurationMinutes": 1,
+            "actualFinish": null,
+            "actualStart": "2026-11-12 09:00",
+            "id": "B0",
+            "planDurationMinutes": 480,
+            "previousEntryId": "",
+            "reason": "실적 / 정정",
+            "recordedAt": "2026-11-18T09:00:00Z",
+            "recordedRevision": 1,
+            "remainingMinutes": 4,
+            "reporter": "PM",
+            "sourceDocumentId": "xml-remaining",
+            "statusAt": "2026-11-12 09:02",
+            "taskId": "B"
+        },
+        {
+            "actualDurationMinutes": 1,
+            "actualFinish": null,
+            "actualStart": "2026-11-12 09:00",
+            "id": "W0",
+            "planDurationMinutes": 480,
+            "previousEntryId": "",
+            "reason": "실적 / 정정",
+            "recordedAt": "2026-11-18T09:00:00Z",
+            "recordedRevision": 1,
+            "remainingMinutes": 99,
+            "remainingWorkUnitMinutes": 501,
+            "reporter": "PM",
+            "sourceDocumentId": "xml-remaining",
+            "statusAt": "2026-11-12 09:02",
+            "taskId": "W"
+        }
+    ],
+    "projectFields": [
+        {
+            "id": "RW",
+            "name": "RW",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:remainingwork",
+                        "scope": 1,
+                        "token": "Remaining Work"
+                    }
+                ],
+                "source": "[Remaining Work]"
+            }
+        }
+    ],
+    "resourceFields": [
+        {
+            "id": "RW",
+            "name": "RW",
+            "options": [
+            ],
+            "type": "number",
+            "unit": "",
+            "xmlFormula": {
+                "enabled": true,
+                "references": [
+                    {
+                        "key": "builtin:remainingwork",
+                        "scope": 2,
+                        "token": "RemainingWork"
+                    }
+                ],
+                "source": "[RemainingWork]"
+            },
+            "xmlRollUp": {
+                "calculationType": 2,
+                "rollupType": 0
+            }
+        }
+    ],
+    "resources": [
+        {
+            "calendarId": "R",
+            "exceptions": [
+            ],
+            "id": "R",
+            "maxUnits": 300,
+            "name": "부분 인력",
+            "rates": [
+            ],
+            "type": "labor"
+        },
+        {
+            "calendarId": "C",
+            "exceptions": [
+            ],
+            "id": "S",
+            "maxUnits": 300,
+            "name": "지원",
+            "rates": [
+            ],
+            "type": "labor"
+        },
+        {
+            "calendarId": "C",
+            "exceptions": [
+            ],
+            "id": "Z",
+            "maxUnits": 300,
+            "name": "미사용",
+            "rates": [
+            ],
+            "type": "labor"
+        }
+    ],
+    "revision": 1,
+    "scenarios": [
+    ],
+    "startDate": "2026-11-12",
+    "statusAt": "2026-11-12 09:02",
+    "taskCosts": [
+    ],
+    "tasks": [
+        {
+            "breaks": [
+            ],
+            "calendarId": "C",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 2,
+            "id": "A",
+            "name": "완료",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "G",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+                {
+                    "finish": "2026-11-12 09:05",
+                    "start": "2026-11-12 09:04"
+                }
+            ],
+            "calendarId": "C",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 8,
+            "id": "B",
+            "name": "기간 곡선",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "G",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "C",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 3,
+            "id": "C",
+            "name": "미보고",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "G",
+            "workDriven": false,
+            "workUnitMinutes": null
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "C",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 8,
+            "id": "W",
+            "name": "고정 공수",
+            "predecessors": [
+            ],
+            "taskType": "fixed-work",
+            "wbsId": "G",
+            "workDriven": true,
+            "workUnitMinutes": 1000
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "C",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 8,
+            "id": "U",
+            "name": "고정 단위",
+            "predecessors": [
+            ],
+            "taskType": "fixed-units",
+            "wbsId": "G",
+            "workDriven": true,
+            "workUnitMinutes": 300
+        },
+        {
+            "breaks": [
+            ],
+            "calendarId": "C",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 0,
+            "id": "M",
+            "name": "이정표",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "H",
+            "workDriven": false,
+            "workUnitMinutes": null
+        }
+    ],
+    "wbsNodes": [
+        {
+            "id": "G",
+            "name": "공사",
+            "parentId": ""
+        },
+        {
+            "id": "H",
+            "name": "이정표",
+            "parentId": ""
+        }
+    ]
+}

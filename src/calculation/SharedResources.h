@@ -2,6 +2,7 @@
 #include "calculation/Resources.h"
 #include "domain/Workspace.h"
 #include <memory>
+#include <map>
 
 namespace jobs {
 struct ProjectTaskRef {
@@ -14,6 +15,8 @@ struct SharedResourceDay {
     std::int64_t peakUnits = 0, demandUnitMinutes = 0, overloadMinutes = 0, excessUnitMinutes = 0,
                  unknownCapacityMinutes = 0;
     std::vector<ProjectTaskRef> tasks;
+    // Configured capacity over occupied intervals; varying values are not an unknown constant.
+    bool variableCapacity = false;
 };
 struct WorkspaceProjectResult {
     std::string projectId, name;
@@ -31,5 +34,6 @@ struct SharedResourceResult {
     std::size_t includedProjects = 0, unmappedResources = 0, occupancyCount = 0, omittedDiagnostics = 0;
 };
 SharedResourceResult calculateSharedResources(const Workspace &, const std::vector<std::shared_ptr<const Project>> &,
-                                              bool forecast, const std::shared_ptr<CalculationControl> &control = {});
+                                              bool forecast, const std::shared_ptr<CalculationControl> &control = {},
+                                              const std::map<std::string, ScheduleResult> *supplied = nullptr);
 } // namespace jobs

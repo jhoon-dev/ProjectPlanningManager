@@ -37,7 +37,11 @@ std::vector<std::string> assignments(const PlanInput &p, const std::string &task
                 for (const auto &r : p.resources)
                     if (r.id == a.resourceId)
                         label = r.name + " ";
-            result.push_back(label + "[" + a.resourceId + "] " + std::to_string(a.units) + "%");
+            auto value = label + "[" + a.resourceId + "] " + std::to_string(a.units) + "%";
+            for (const auto &v : a.periods)
+                value += " [" + std::to_string(v.fromMinute) + "," + std::to_string(v.toMinute) +
+                         ")=" + std::to_string(v.units) + "%";
+            result.push_back(std::move(value));
         }
     return sorted(std::move(result));
 }
@@ -110,6 +114,8 @@ ComparisonReport compareToBaseline(const Project &p, const std::string &baseline
         report.forecastFinishVariance = delta(*calendar, report.baselineFinish, report.forecast.projectFinish);
         if (baseline->input.startDate != p.startDate)
             report.contextChanges.push_back("프로젝트 시작일 변경");
+        if (baseline->input.planLeveling != p.planLeveling)
+            report.contextChanges.push_back("계획 평준화 채택 변경");
         if (baseline->input.calendar != p.calendar || sorted(baseline->input.holidays) != sorted(p.holidays) ||
             baseline->input.calendars != p.calendars)
             report.contextChanges.push_back("달력/휴일 변경");
@@ -126,6 +132,13 @@ ComparisonReport compareToBaseline(const Project &p, const std::string &baseline
             report.contextChanges.push_back("통화/원가 정책 변경");
         if (baseline->input.taskCosts != p.taskCosts)
             report.contextChanges.push_back("작업 고정비/비용 발생/EV 측정법 변경");
+        if (baseline->input.projectAttributes != p.projectAttributes)
+            report.contextChanges.push_back("프로젝트 사용자 필드 값 변경");
+        if (baseline->input.customFields != p.customFields || baseline->input.projectFields != p.projectFields ||
+            baseline->input.resourceFields != p.resourceFields)
+            report.contextChanges.push_back("사용자 정의 필드 사전 변경");
+        if (baseline->input.codeTypes != p.codeTypes)
+            report.contextChanges.push_back("작업 코드 사전 변경");
     }
     if (report.plan.status == CalculationStatus::Valid)
         for (const auto &row : report.plan.tasks)
@@ -209,6 +222,12 @@ ComparisonReport compareToBaseline(const Project &p, const std::string &baseline
                     row.changes.push_back("작업 유형·공수·계산 기준 변경");
                 if (old.breaks != t.breaks)
                     row.changes.push_back("작업 분할 중단 구간 변경");
+                auto attributes = [](std::vector<TaskAttribute> values) {
+                    std::sort(values.begin(), values.end(), [](const auto &a, const auto &b) { return a.key < b.key; });
+                    return values;
+                };
+                if (attributes(old.attributes) != attributes(t.attributes))
+                    row.changes.push_back("사용자 필드·작업 코드 값 변경");
                 if (old.wbsId != t.wbsId)
                     row.changes.push_back("WBS 소속 변경");
                 if (assignments(baseline->input, t.id, false) != assignments(p, t.id, false))

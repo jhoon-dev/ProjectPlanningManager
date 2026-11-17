@@ -1,0 +1,80 @@
+{
+    "format": "JOBS-WORKSPACE",
+    "payload": {
+        "bindings": [
+            {
+                "projectId": "P",
+                "resourceId": "R",
+                "sharedId": "crew"
+            },
+            {
+                "projectId": "Q",
+                "resourceId": "R",
+                "sharedId": "crew"
+            }
+        ],
+        "id": "integrated-fixture",
+        "integrated": {
+            "forecast": false,
+            "horizonWorkDays": 260,
+            "levelShared": false,
+            "priority": "deadline-first"
+        },
+        "links": [
+            {
+                "id": "L",
+                "lagMinutes": 0,
+                "predecessorProjectId": "P",
+                "predecessorTaskId": "A",
+                "successorProjectId": "Q",
+                "successorTaskId": "A",
+                "type": "FS"
+            }
+        ],
+        "projects": [
+            {
+                "documentId": "P",
+                "name": "Project P",
+                "path": "P-integrated.ppm"
+            },
+            {
+                "documentId": "Q",
+                "name": "Project Q",
+                "path": "Q-integrated.ppm"
+            }
+        ],
+        "resources": [
+            {
+                "calendar": {
+                    "holidays": [
+                    ],
+                    "periods": [
+                        {
+                            "begin": 540,
+                            "end": 720
+                        },
+                        {
+                            "begin": 780,
+                            "end": 1080
+                        }
+                    ],
+                    "weekdays": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                    ]
+                },
+                "exceptions": [
+                ],
+                "id": "crew",
+                "maxUnits": 100,
+                "name": "공유 시공조",
+                "type": "labor"
+            }
+        ]
+    },
+    "schemaVersion": 2,
+    "sha256": "304967f21e9fec6ec3b1b180350893b86cdc797abfecee82b47c41f2f86256a5"
+}

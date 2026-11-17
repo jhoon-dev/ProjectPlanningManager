@@ -16,7 +16,7 @@ QString publishPlanExchange(const Project &project, const QByteArray &payload, Q
                             const QString &extension, const QString &destination, std::function<void()> beforePublish) {
     calculationCheckpoint();
     validate(project);
-    if (extension != "xml" && extension != "xer")
+    if (extension != "xml" && extension != "xer" && extension != "mpp")
         throw AppError(ErrorCode::FILE_EXCHANGEPACKAGE_001, {});
     auto target = QFileInfo(destination);
     auto parent = target.dir().canonicalPath();

@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "name_cases": 5992,
+  "scalar_cases": 26,
+  "error_cases": 8,
+  "engine": "Windows VBScript MonthName/WeekdayName; SetLocale1033",
+  "lcid": 1033,
+  "external_product_run": false
+}

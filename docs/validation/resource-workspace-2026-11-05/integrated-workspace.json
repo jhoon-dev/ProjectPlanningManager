@@ -1,0 +1,88 @@
+{
+    "contract": "jobs-integrated-workspace-v1",
+    "finish": "2026-11-03 18:00",
+    "forecast": false,
+    "generation": 42,
+    "leveled": false,
+    "links": [
+        {
+            "id": "L",
+            "lagMinutes": 0,
+            "predecessorProjectId": "P",
+            "predecessorTaskId": "A",
+            "successorProjectId": "Q",
+            "successorTaskId": "A",
+            "type": "FS"
+        }
+    ],
+    "policy": "native-integrated-v1/logical/deadline-first",
+    "sharedLoad": [
+        {
+            "capacity": 100,
+            "date": "2026-11-02",
+            "overloadMinutes": 0,
+            "peakUnits": 100,
+            "sharedId": "crew",
+            "tasks": [
+                {
+                    "projectId": "P",
+                    "taskId": "A"
+                }
+            ],
+            "unknownCapacityMinutes": 0
+        },
+        {
+            "capacity": 100,
+            "date": "2026-11-03",
+            "overloadMinutes": 0,
+            "peakUnits": 100,
+            "sharedId": "crew",
+            "tasks": [
+                {
+                    "projectId": "Q",
+                    "taskId": "A"
+                }
+            ],
+            "unknownCapacityMinutes": 0
+        }
+    ],
+    "tasks": [
+        {
+            "completedActual": false,
+            "driving": [
+            ],
+            "finish": "2026-11-02 18:00",
+            "name": "동일 작업 ID",
+            "originalFinish": "2026-11-02 18:00",
+            "originalStart": "2026-11-02 09:00",
+            "projectId": "P",
+            "projectName": "Project P",
+            "remainingStart": null,
+            "revision": 1,
+            "start": "2026-11-02 09:00",
+            "taskId": "A",
+            "totalFloatMinutes": 0
+        },
+        {
+            "completedActual": false,
+            "driving": [
+                {
+                    "projectId": "P",
+                    "taskId": "A"
+                }
+            ],
+            "finish": "2026-11-03 18:00",
+            "name": "동일 작업 ID",
+            "originalFinish": "2026-11-02 18:00",
+            "originalStart": "2026-11-02 09:00",
+            "projectId": "Q",
+            "projectName": "Project Q",
+            "remainingStart": null,
+            "revision": 1,
+            "start": "2026-11-03 09:00",
+            "taskId": "A",
+            "totalFloatMinutes": 0
+        }
+    ],
+    "workspaceId": "integrated-fixture"
+}

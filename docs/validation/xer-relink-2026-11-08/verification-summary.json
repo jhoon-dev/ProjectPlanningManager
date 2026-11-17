@@ -1,0 +1,82 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-11-08T14:59:36.373332+09:00",
+  "environment": "Windows x64, Qt6.8.3, MinGW13.1, Release/Ninja",
+  "source_revision": "6a1cd0a5115f3400d6cee4e5d5df795f351195ea",
+  "working_tree_changes_included": true,
+  "source_sha256": "541d806b3bca043061c0272a685d6f1ab992e870e8f0d4271035f99761ac171e",
+  "binaries": {
+    "PPM.exe": "3bce610190ec85618ed3aa71fbe8b06ff54fae60306586dbc0665227f9bb18e2",
+    "PPM-Automation.exe": "e102fbb8aab5638a33cf7ea5a1492d44a281f51021e987d84a707d154555aa89",
+    "jobs_xer_source_relink_tests.exe": "6dc49944bd694d9ec06b6c4eba314305d6328a2fad01c495a9d73dbc173341af"
+  },
+  "regression": {
+    "passed": 128,
+    "total": 128,
+    "wall_seconds": 161.21
+  },
+  "focused_xer_period_parser_public": {
+    "passed": 15,
+    "total": 15,
+    "wall_seconds": 20.79
+  },
+  "parser_seeds": 326,
+  "format": {
+    "status": "success",
+    "files": 327,
+    "tool": "clang-format version 18.1.8"
+  },
+  "native_ui": {
+    "status": "passed",
+    "platform": "windows",
+    "mapping_sizes": [
+      "1100x700",
+      "800x600"
+    ],
+    "review_size": "1100x760",
+    "main_window_action": true,
+    "final_binary_identity_verified": true
+  },
+  "independent_checks": [
+    "native full input/journal equality and SHA256",
+    "source SHA256/selected project and explicit ID map oracle",
+    "deleted task ID reconnection",
+    "TSV/Decimal",
+    "MPXJ16.10.0 strict",
+    "legacy merge/allocation/snapshots/actual costs",
+    "seven unmodified public P6 fixtures"
+  ],
+  "initial_build_issue": "Concurrent regeneration in the same Ninja tree failed with permission denied. Builds were serialized; both final build and all final tests passed.",
+  "external_p6_execution": "not run",
+  "mpp_reader": "not part of this increment",
+  "source_preservation_scope": "Typed financial/ID snapshots, project metadata and whole-file SHA256; full original XER bytes must be kept separately.",
+  "relink_scope": "Explicit subsequent-source ID maps with existing financial merge review; current plan, native facts and first source snapshot unchanged.",
+  "evidence": {
+    "all-test-output.txt": "174a6e42f27babf2101bccd369a25cadf6bb2d2f83c28c178712e264cebb846c",
+    "before.json": "6da40f2f7270750113886023d7fabdcde86c49ec1724581784ca75e24e7f3c9c",
+    "build.txt": "2fcac2d7bd302a097209470a8cd580b4fb0a1a9bf4af7b845589c013c5290a2b",
+    "ctest.txt": "e65ca1703778b1ef97c530ee35c8a2b23b1a86016bc7275d585c719c2ad6eb02",
+    "ctest.xml": "8ac1abb005cad7127461e803a20e4165bab184fe14e348a8938f90180384f54e",
+    "early-focused.txt": "51e3bfd22919797508cb6a91d07f146a3c5ce928c2dacf0982c8984b6a32f522",
+    "export-report.json": "54853762697f22e9d7dc709632f9bec08ca429602d00209cd31bfb6fe1260b9b",
+    "export.xer": "a27ba9f579eb57f24edf148c72e180508c94cc562c7d66054031b653d0a58b4c",
+    "final-build.txt": "ea76431b7c4b9e08eeb8326fde81a9675a2e2adb768625510d1c4fc8aac06166",
+    "focused.txt": "f7ddb695060f5e6b8f9aaae65bd423efddb6bdeec4f9b386342f6dec03fe47ce",
+    "format.json": "932f39810a5908ffe25af7aeda5800d9d6e3bc9148ac5a2c828be2e56f7e2468",
+    "independent-actual-costs.json": "2aa47f47918c0f8c54887400d4f1cdf9c34b8d0c2b753b3b1ee1a28612832d18",
+    "independent-allocation.json": "43c86af4a7489af9a94250a01af92974f6f0b6378048fa374b1c1a1335902a95",
+    "independent-merge.json": "f586bce7df813e01a6a76148ca9fc8df32e531835e8b70f571b3a08c6350cf0b",
+    "independent-public.json": "983ed098baf2d555b45b50e99a6b155b4c6cf397f0a49cbaf0897dfec34eccc2",
+    "independent-relink.json": "6c90f05d1fdd37c434e47368d879eae71b158e5679290b411e37167fb0e553df",
+    "independent-snapshot.json": "7c9fc9b9a0cdd9590bbdf75847671619121c827f1d3349f14a557985af00e2d5",
+    "initial-concurrent-build-failure.txt": "8f8493d2fae31250af92119cd9a1e68b2d30c4677ed4cab8b8e34d30df9be1d1",
+    "mapping-small.png": "704e48062db178036a1432d18c2fd6616f9a4576762eec3e3e402b06739bbbf9",
+    "mapping.png": "04f4673d14ae9d168f354179a861912d818f26fcc6484ec80d3e5447160f291c",
+    "native-ui.txt": "0d662f56ad88b06ba69160fcff0777f907453d19169ae810f5154d6e4b209b44",
+    "relinked.json": "6bd571e388a477907c2057aea931b5f6eb6dc3f34662721e4b85e27620b5bf7c",
+    "relinked.ppm": "8deb364d323248256a296ec050c05f6b78d507841a24e6f4243acd5a0266e166",
+    "review.png": "0df8cba3a83051b54e5878501d05ea120993fcc94e82ebadbbf446ba0b919fcd",
+    "source.xer": "384625ce37fb418a20fcd17d8a62b8893c6a30be0079710ef1144be4b31faa0a",
+    "version2.xer": "7016902f7fc24cfa2eed5ed9bd5654e9a4da1a4c42263f4e9b3c83f134583a25"
+  }
+}

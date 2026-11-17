@@ -1,0 +1,23 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+    Start 14: resource_plan_contract
+1/6 Test #14: resource_plan_contract ...........   Passed    3.57 sec
+    Start 15: integrated_workspace_contract
+2/6 Test #15: integrated_workspace_contract ....   Passed    3.66 sec
+    Start 70: material_delay_contract
+3/6 Test #70: material_delay_contract ..........***Failed    4.45 sec
+bounded search returns a limit diagnosis and no candidate dates
+
+    Start 71: material_delay_ui
+4/6 Test #71: material_delay_ui ................   Passed    1.35 sec
+    Start 72: material_inventory_contract
+5/6 Test #72: material_inventory_contract ......   Passed    2.76 sec
+    Start 73: material_inventory_ui
+6/6 Test #73: material_inventory_ui ............   Passed    3.74 sec
+
+83% tests passed, 1 tests failed out of 6
+
+Total Test time (real) =  19.73 sec
+
+The following tests FAILED:
+	 70 - material_delay_contract (Failed)
+Errors while running CTest

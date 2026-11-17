@@ -1,0 +1,5 @@
+[1/5] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/XmlCalendar.cpp.obj
+[2/5] Linking CXX static library libjobs_domain.a
+[3/5] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectXml.cpp.obj
+[4/5] Linking CXX static library libjobs_persistence.a
+[5/5] Linking CXX executable jobs_xml_calendar_tests.exe

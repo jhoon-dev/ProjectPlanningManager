@@ -1,0 +1,127 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+        ],
+        "baselines": [
+        ],
+        "calculationProfile": "native-fs0-workminutes-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "costEntries": [
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "KRW",
+        "derivedFrom": "",
+        "documentId": "progress-policy-fixture",
+        "holidays": [
+        ],
+        "name": "진척 정책 A/B",
+        "progress": [
+            {
+                "actualDurationMinutes": 480,
+                "actualFinish": null,
+                "actualStart": "2026-11-02 09:00",
+                "id": "fact-A",
+                "planDurationMinutes": 960,
+                "previousEntryId": "",
+                "reason": "fixture",
+                "recordedAt": "2026-11-03T00:00:00Z",
+                "recordedRevision": 1,
+                "remainingMinutes": 480,
+                "reporter": "tester",
+                "sourceDocumentId": "progress-policy-fixture",
+                "statusAt": "2026-11-03 09:00",
+                "taskId": "A"
+            },
+            {
+                "actualDurationMinutes": 240,
+                "actualFinish": null,
+                "actualStart": "2026-11-02 14:00",
+                "id": "fact-B",
+                "planDurationMinutes": 480,
+                "previousEntryId": "",
+                "reason": "fixture",
+                "recordedAt": "2026-11-03T00:00:00Z",
+                "recordedRevision": 1,
+                "remainingMinutes": 240,
+                "reporter": "tester",
+                "sourceDocumentId": "progress-policy-fixture",
+                "statusAt": "2026-11-03 09:00",
+                "taskId": "B"
+            },
+            {
+                "actualDurationMinutes": 480,
+                "actualFinish": "2026-11-02 18:00",
+                "actualStart": "2026-11-02 09:00",
+                "id": "fact-E",
+                "planDurationMinutes": 480,
+                "previousEntryId": "",
+                "reason": "fixture",
+                "recordedAt": "2026-11-03T00:00:00Z",
+                "recordedRevision": 1,
+                "remainingMinutes": 0,
+                "reporter": "tester",
+                "sourceDocumentId": "progress-policy-fixture",
+                "statusAt": "2026-11-03 09:00",
+                "taskId": "E"
+            }
+        ],
+        "resources": [
+        ],
+        "revision": 1,
+        "scenarios": [
+        ],
+        "startDate": "2026-11-02",
+        "statusAt": "2026-11-03 09:00",
+        "taskCosts": [
+        ],
+        "tasks": [
+            {
+                "durationMinutes": 960,
+                "id": "A",
+                "name": "선행 A",
+                "predecessors": [
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 480,
+                "id": "B",
+                "name": "진행 B <원문>",
+                "predecessors": [
+                    "A"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 480,
+                "id": "C",
+                "name": "후행 C",
+                "predecessors": [
+                    "B"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 480,
+                "id": "D",
+                "name": "독립 D",
+                "predecessors": [
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 480,
+                "id": "E",
+                "name": "완료 E",
+                "predecessors": [
+                ],
+                "wbsId": ""
+            }
+        ],
+        "wbsNodes": [
+        ]
+    },
+    "schemaVersion": 9,
+    "sha256": "f4333a8362ac4de80a00d7688feae85d29fd879d486047bac49a150f8ae45958"
+}

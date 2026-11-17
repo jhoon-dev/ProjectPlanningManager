@@ -1,0 +1,1202 @@
+[
+    {
+        "left": "True",
+        "op": "Eqv",
+        "right": "True",
+        "value": "True"
+    },
+    {
+        "left": "True",
+        "op": "Imp",
+        "right": "True",
+        "value": "True"
+    },
+    {
+        "left": "True",
+        "op": "Eqv",
+        "right": "False",
+        "value": "False"
+    },
+    {
+        "left": "True",
+        "op": "Imp",
+        "right": "False",
+        "value": "False"
+    },
+    {
+        "left": "True",
+        "op": "Eqv",
+        "right": "Null",
+        "value": null
+    },
+    {
+        "left": "True",
+        "op": "Imp",
+        "right": "Null",
+        "value": null
+    },
+    {
+        "left": "True",
+        "op": "Eqv",
+        "right": "-2147483648",
+        "value": "-2147483648"
+    },
+    {
+        "left": "True",
+        "op": "Imp",
+        "right": "-2147483648",
+        "value": "-2147483648"
+    },
+    {
+        "left": "True",
+        "op": "Eqv",
+        "right": "-2",
+        "value": "-2"
+    },
+    {
+        "left": "True",
+        "op": "Imp",
+        "right": "-2",
+        "value": "-2"
+    },
+    {
+        "left": "True",
+        "op": "Eqv",
+        "right": "-1",
+        "value": "-1"
+    },
+    {
+        "left": "True",
+        "op": "Imp",
+        "right": "-1",
+        "value": "-1"
+    },
+    {
+        "left": "True",
+        "op": "Eqv",
+        "right": "0",
+        "value": "0"
+    },
+    {
+        "left": "True",
+        "op": "Imp",
+        "right": "0",
+        "value": "0"
+    },
+    {
+        "left": "True",
+        "op": "Eqv",
+        "right": "1",
+        "value": "1"
+    },
+    {
+        "left": "True",
+        "op": "Imp",
+        "right": "1",
+        "value": "1"
+    },
+    {
+        "left": "True",
+        "op": "Eqv",
+        "right": "2",
+        "value": "2"
+    },
+    {
+        "left": "True",
+        "op": "Imp",
+        "right": "2",
+        "value": "2"
+    },
+    {
+        "left": "True",
+        "op": "Eqv",
+        "right": "2147483647",
+        "value": "2147483647"
+    },
+    {
+        "left": "True",
+        "op": "Imp",
+        "right": "2147483647",
+        "value": "2147483647"
+    },
+    {
+        "left": "False",
+        "op": "Eqv",
+        "right": "True",
+        "value": "False"
+    },
+    {
+        "left": "False",
+        "op": "Imp",
+        "right": "True",
+        "value": "True"
+    },
+    {
+        "left": "False",
+        "op": "Eqv",
+        "right": "False",
+        "value": "True"
+    },
+    {
+        "left": "False",
+        "op": "Imp",
+        "right": "False",
+        "value": "True"
+    },
+    {
+        "left": "False",
+        "op": "Eqv",
+        "right": "Null",
+        "value": null
+    },
+    {
+        "left": "False",
+        "op": "Imp",
+        "right": "Null",
+        "value": "True"
+    },
+    {
+        "left": "False",
+        "op": "Eqv",
+        "right": "-2147483648",
+        "value": "2147483647"
+    },
+    {
+        "left": "False",
+        "op": "Imp",
+        "right": "-2147483648",
+        "value": "-1"
+    },
+    {
+        "left": "False",
+        "op": "Eqv",
+        "right": "-2",
+        "value": "1"
+    },
+    {
+        "left": "False",
+        "op": "Imp",
+        "right": "-2",
+        "value": "-1"
+    },
+    {
+        "left": "False",
+        "op": "Eqv",
+        "right": "-1",
+        "value": "0"
+    },
+    {
+        "left": "False",
+        "op": "Imp",
+        "right": "-1",
+        "value": "-1"
+    },
+    {
+        "left": "False",
+        "op": "Eqv",
+        "right": "0",
+        "value": "-1"
+    },
+    {
+        "left": "False",
+        "op": "Imp",
+        "right": "0",
+        "value": "-1"
+    },
+    {
+        "left": "False",
+        "op": "Eqv",
+        "right": "1",
+        "value": "-2"
+    },
+    {
+        "left": "False",
+        "op": "Imp",
+        "right": "1",
+        "value": "-1"
+    },
+    {
+        "left": "False",
+        "op": "Eqv",
+        "right": "2",
+        "value": "-3"
+    },
+    {
+        "left": "False",
+        "op": "Imp",
+        "right": "2",
+        "value": "-1"
+    },
+    {
+        "left": "False",
+        "op": "Eqv",
+        "right": "2147483647",
+        "value": "-2147483648"
+    },
+    {
+        "left": "False",
+        "op": "Imp",
+        "right": "2147483647",
+        "value": "-1"
+    },
+    {
+        "left": "Null",
+        "op": "Eqv",
+        "right": "True",
+        "value": null
+    },
+    {
+        "left": "Null",
+        "op": "Imp",
+        "right": "True",
+        "value": "True"
+    },
+    {
+        "left": "Null",
+        "op": "Eqv",
+        "right": "False",
+        "value": null
+    },
+    {
+        "left": "Null",
+        "op": "Imp",
+        "right": "False",
+        "value": null
+    },
+    {
+        "left": "Null",
+        "op": "Eqv",
+        "right": "Null",
+        "value": null
+    },
+    {
+        "left": "Null",
+        "op": "Imp",
+        "right": "Null",
+        "value": null
+    },
+    {
+        "left": "Null",
+        "op": "Eqv",
+        "right": "-2147483648",
+        "value": null
+    },
+    {
+        "left": "Null",
+        "op": "Imp",
+        "right": "-2147483648",
+        "value": "-2147483648"
+    },
+    {
+        "left": "Null",
+        "op": "Eqv",
+        "right": "-2",
+        "value": null
+    },
+    {
+        "left": "Null",
+        "op": "Imp",
+        "right": "-2",
+        "value": "-2"
+    },
+    {
+        "left": "Null",
+        "op": "Eqv",
+        "right": "-1",
+        "value": null
+    },
+    {
+        "left": "Null",
+        "op": "Imp",
+        "right": "-1",
+        "value": "-1"
+    },
+    {
+        "left": "Null",
+        "op": "Eqv",
+        "right": "0",
+        "value": null
+    },
+    {
+        "left": "Null",
+        "op": "Imp",
+        "right": "0",
+        "value": null
+    },
+    {
+        "left": "Null",
+        "op": "Eqv",
+        "right": "1",
+        "value": null
+    },
+    {
+        "left": "Null",
+        "op": "Imp",
+        "right": "1",
+        "value": "1"
+    },
+    {
+        "left": "Null",
+        "op": "Eqv",
+        "right": "2",
+        "value": null
+    },
+    {
+        "left": "Null",
+        "op": "Imp",
+        "right": "2",
+        "value": "2"
+    },
+    {
+        "left": "Null",
+        "op": "Eqv",
+        "right": "2147483647",
+        "value": null
+    },
+    {
+        "left": "Null",
+        "op": "Imp",
+        "right": "2147483647",
+        "value": "2147483647"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Eqv",
+        "right": "True",
+        "value": "-2147483648"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Imp",
+        "right": "True",
+        "value": "-1"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Eqv",
+        "right": "False",
+        "value": "2147483647"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Imp",
+        "right": "False",
+        "value": "2147483647"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Eqv",
+        "right": "Null",
+        "value": null
+    },
+    {
+        "left": "-2147483648",
+        "op": "Imp",
+        "right": "Null",
+        "value": "2147483647"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Eqv",
+        "right": "-2147483648",
+        "value": "-1"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Imp",
+        "right": "-2147483648",
+        "value": "-1"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Eqv",
+        "right": "-2",
+        "value": "-2147483647"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Imp",
+        "right": "-2",
+        "value": "-1"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Eqv",
+        "right": "-1",
+        "value": "-2147483648"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Imp",
+        "right": "-1",
+        "value": "-1"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Eqv",
+        "right": "0",
+        "value": "2147483647"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Imp",
+        "right": "0",
+        "value": "2147483647"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Eqv",
+        "right": "1",
+        "value": "2147483646"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Imp",
+        "right": "1",
+        "value": "2147483647"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Eqv",
+        "right": "2",
+        "value": "2147483645"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Imp",
+        "right": "2",
+        "value": "2147483647"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Eqv",
+        "right": "2147483647",
+        "value": "0"
+    },
+    {
+        "left": "-2147483648",
+        "op": "Imp",
+        "right": "2147483647",
+        "value": "2147483647"
+    },
+    {
+        "left": "-2",
+        "op": "Eqv",
+        "right": "True",
+        "value": "-2"
+    },
+    {
+        "left": "-2",
+        "op": "Imp",
+        "right": "True",
+        "value": "-1"
+    },
+    {
+        "left": "-2",
+        "op": "Eqv",
+        "right": "False",
+        "value": "1"
+    },
+    {
+        "left": "-2",
+        "op": "Imp",
+        "right": "False",
+        "value": "1"
+    },
+    {
+        "left": "-2",
+        "op": "Eqv",
+        "right": "Null",
+        "value": null
+    },
+    {
+        "left": "-2",
+        "op": "Imp",
+        "right": "Null",
+        "value": "1"
+    },
+    {
+        "left": "-2",
+        "op": "Eqv",
+        "right": "-2147483648",
+        "value": "-2147483647"
+    },
+    {
+        "left": "-2",
+        "op": "Imp",
+        "right": "-2147483648",
+        "value": "-2147483647"
+    },
+    {
+        "left": "-2",
+        "op": "Eqv",
+        "right": "-2",
+        "value": "-1"
+    },
+    {
+        "left": "-2",
+        "op": "Imp",
+        "right": "-2",
+        "value": "-1"
+    },
+    {
+        "left": "-2",
+        "op": "Eqv",
+        "right": "-1",
+        "value": "-2"
+    },
+    {
+        "left": "-2",
+        "op": "Imp",
+        "right": "-1",
+        "value": "-1"
+    },
+    {
+        "left": "-2",
+        "op": "Eqv",
+        "right": "0",
+        "value": "1"
+    },
+    {
+        "left": "-2",
+        "op": "Imp",
+        "right": "0",
+        "value": "1"
+    },
+    {
+        "left": "-2",
+        "op": "Eqv",
+        "right": "1",
+        "value": "0"
+    },
+    {
+        "left": "-2",
+        "op": "Imp",
+        "right": "1",
+        "value": "1"
+    },
+    {
+        "left": "-2",
+        "op": "Eqv",
+        "right": "2",
+        "value": "3"
+    },
+    {
+        "left": "-2",
+        "op": "Imp",
+        "right": "2",
+        "value": "3"
+    },
+    {
+        "left": "-2",
+        "op": "Eqv",
+        "right": "2147483647",
+        "value": "2147483646"
+    },
+    {
+        "left": "-2",
+        "op": "Imp",
+        "right": "2147483647",
+        "value": "2147483647"
+    },
+    {
+        "left": "-1",
+        "op": "Eqv",
+        "right": "True",
+        "value": "-1"
+    },
+    {
+        "left": "-1",
+        "op": "Imp",
+        "right": "True",
+        "value": "-1"
+    },
+    {
+        "left": "-1",
+        "op": "Eqv",
+        "right": "False",
+        "value": "0"
+    },
+    {
+        "left": "-1",
+        "op": "Imp",
+        "right": "False",
+        "value": "0"
+    },
+    {
+        "left": "-1",
+        "op": "Eqv",
+        "right": "Null",
+        "value": null
+    },
+    {
+        "left": "-1",
+        "op": "Imp",
+        "right": "Null",
+        "value": null
+    },
+    {
+        "left": "-1",
+        "op": "Eqv",
+        "right": "-2147483648",
+        "value": "-2147483648"
+    },
+    {
+        "left": "-1",
+        "op": "Imp",
+        "right": "-2147483648",
+        "value": "-2147483648"
+    },
+    {
+        "left": "-1",
+        "op": "Eqv",
+        "right": "-2",
+        "value": "-2"
+    },
+    {
+        "left": "-1",
+        "op": "Imp",
+        "right": "-2",
+        "value": "-2"
+    },
+    {
+        "left": "-1",
+        "op": "Eqv",
+        "right": "-1",
+        "value": "-1"
+    },
+    {
+        "left": "-1",
+        "op": "Imp",
+        "right": "-1",
+        "value": "-1"
+    },
+    {
+        "left": "-1",
+        "op": "Eqv",
+        "right": "0",
+        "value": "0"
+    },
+    {
+        "left": "-1",
+        "op": "Imp",
+        "right": "0",
+        "value": "0"
+    },
+    {
+        "left": "-1",
+        "op": "Eqv",
+        "right": "1",
+        "value": "1"
+    },
+    {
+        "left": "-1",
+        "op": "Imp",
+        "right": "1",
+        "value": "1"
+    },
+    {
+        "left": "-1",
+        "op": "Eqv",
+        "right": "2",
+        "value": "2"
+    },
+    {
+        "left": "-1",
+        "op": "Imp",
+        "right": "2",
+        "value": "2"
+    },
+    {
+        "left": "-1",
+        "op": "Eqv",
+        "right": "2147483647",
+        "value": "2147483647"
+    },
+    {
+        "left": "-1",
+        "op": "Imp",
+        "right": "2147483647",
+        "value": "2147483647"
+    },
+    {
+        "left": "0",
+        "op": "Eqv",
+        "right": "True",
+        "value": "0"
+    },
+    {
+        "left": "0",
+        "op": "Imp",
+        "right": "True",
+        "value": "-1"
+    },
+    {
+        "left": "0",
+        "op": "Eqv",
+        "right": "False",
+        "value": "-1"
+    },
+    {
+        "left": "0",
+        "op": "Imp",
+        "right": "False",
+        "value": "-1"
+    },
+    {
+        "left": "0",
+        "op": "Eqv",
+        "right": "Null",
+        "value": null
+    },
+    {
+        "left": "0",
+        "op": "Imp",
+        "right": "Null",
+        "value": "-1"
+    },
+    {
+        "left": "0",
+        "op": "Eqv",
+        "right": "-2147483648",
+        "value": "2147483647"
+    },
+    {
+        "left": "0",
+        "op": "Imp",
+        "right": "-2147483648",
+        "value": "-1"
+    },
+    {
+        "left": "0",
+        "op": "Eqv",
+        "right": "-2",
+        "value": "1"
+    },
+    {
+        "left": "0",
+        "op": "Imp",
+        "right": "-2",
+        "value": "-1"
+    },
+    {
+        "left": "0",
+        "op": "Eqv",
+        "right": "-1",
+        "value": "0"
+    },
+    {
+        "left": "0",
+        "op": "Imp",
+        "right": "-1",
+        "value": "-1"
+    },
+    {
+        "left": "0",
+        "op": "Eqv",
+        "right": "0",
+        "value": "-1"
+    },
+    {
+        "left": "0",
+        "op": "Imp",
+        "right": "0",
+        "value": "-1"
+    },
+    {
+        "left": "0",
+        "op": "Eqv",
+        "right": "1",
+        "value": "-2"
+    },
+    {
+        "left": "0",
+        "op": "Imp",
+        "right": "1",
+        "value": "-1"
+    },
+    {
+        "left": "0",
+        "op": "Eqv",
+        "right": "2",
+        "value": "-3"
+    },
+    {
+        "left": "0",
+        "op": "Imp",
+        "right": "2",
+        "value": "-1"
+    },
+    {
+        "left": "0",
+        "op": "Eqv",
+        "right": "2147483647",
+        "value": "-2147483648"
+    },
+    {
+        "left": "0",
+        "op": "Imp",
+        "right": "2147483647",
+        "value": "-1"
+    },
+    {
+        "left": "1",
+        "op": "Eqv",
+        "right": "True",
+        "value": "1"
+    },
+    {
+        "left": "1",
+        "op": "Imp",
+        "right": "True",
+        "value": "-1"
+    },
+    {
+        "left": "1",
+        "op": "Eqv",
+        "right": "False",
+        "value": "-2"
+    },
+    {
+        "left": "1",
+        "op": "Imp",
+        "right": "False",
+        "value": "-2"
+    },
+    {
+        "left": "1",
+        "op": "Eqv",
+        "right": "Null",
+        "value": null
+    },
+    {
+        "left": "1",
+        "op": "Imp",
+        "right": "Null",
+        "value": "-2"
+    },
+    {
+        "left": "1",
+        "op": "Eqv",
+        "right": "-2147483648",
+        "value": "2147483646"
+    },
+    {
+        "left": "1",
+        "op": "Imp",
+        "right": "-2147483648",
+        "value": "-2"
+    },
+    {
+        "left": "1",
+        "op": "Eqv",
+        "right": "-2",
+        "value": "0"
+    },
+    {
+        "left": "1",
+        "op": "Imp",
+        "right": "-2",
+        "value": "-2"
+    },
+    {
+        "left": "1",
+        "op": "Eqv",
+        "right": "-1",
+        "value": "1"
+    },
+    {
+        "left": "1",
+        "op": "Imp",
+        "right": "-1",
+        "value": "-1"
+    },
+    {
+        "left": "1",
+        "op": "Eqv",
+        "right": "0",
+        "value": "-2"
+    },
+    {
+        "left": "1",
+        "op": "Imp",
+        "right": "0",
+        "value": "-2"
+    },
+    {
+        "left": "1",
+        "op": "Eqv",
+        "right": "1",
+        "value": "-1"
+    },
+    {
+        "left": "1",
+        "op": "Imp",
+        "right": "1",
+        "value": "-1"
+    },
+    {
+        "left": "1",
+        "op": "Eqv",
+        "right": "2",
+        "value": "-4"
+    },
+    {
+        "left": "1",
+        "op": "Imp",
+        "right": "2",
+        "value": "-2"
+    },
+    {
+        "left": "1",
+        "op": "Eqv",
+        "right": "2147483647",
+        "value": "-2147483647"
+    },
+    {
+        "left": "1",
+        "op": "Imp",
+        "right": "2147483647",
+        "value": "-1"
+    },
+    {
+        "left": "2",
+        "op": "Eqv",
+        "right": "True",
+        "value": "2"
+    },
+    {
+        "left": "2",
+        "op": "Imp",
+        "right": "True",
+        "value": "-1"
+    },
+    {
+        "left": "2",
+        "op": "Eqv",
+        "right": "False",
+        "value": "-3"
+    },
+    {
+        "left": "2",
+        "op": "Imp",
+        "right": "False",
+        "value": "-3"
+    },
+    {
+        "left": "2",
+        "op": "Eqv",
+        "right": "Null",
+        "value": null
+    },
+    {
+        "left": "2",
+        "op": "Imp",
+        "right": "Null",
+        "value": "-3"
+    },
+    {
+        "left": "2",
+        "op": "Eqv",
+        "right": "-2147483648",
+        "value": "2147483645"
+    },
+    {
+        "left": "2",
+        "op": "Imp",
+        "right": "-2147483648",
+        "value": "-3"
+    },
+    {
+        "left": "2",
+        "op": "Eqv",
+        "right": "-2",
+        "value": "3"
+    },
+    {
+        "left": "2",
+        "op": "Imp",
+        "right": "-2",
+        "value": "-1"
+    },
+    {
+        "left": "2",
+        "op": "Eqv",
+        "right": "-1",
+        "value": "2"
+    },
+    {
+        "left": "2",
+        "op": "Imp",
+        "right": "-1",
+        "value": "-1"
+    },
+    {
+        "left": "2",
+        "op": "Eqv",
+        "right": "0",
+        "value": "-3"
+    },
+    {
+        "left": "2",
+        "op": "Imp",
+        "right": "0",
+        "value": "-3"
+    },
+    {
+        "left": "2",
+        "op": "Eqv",
+        "right": "1",
+        "value": "-4"
+    },
+    {
+        "left": "2",
+        "op": "Imp",
+        "right": "1",
+        "value": "-3"
+    },
+    {
+        "left": "2",
+        "op": "Eqv",
+        "right": "2",
+        "value": "-1"
+    },
+    {
+        "left": "2",
+        "op": "Imp",
+        "right": "2",
+        "value": "-1"
+    },
+    {
+        "left": "2",
+        "op": "Eqv",
+        "right": "2147483647",
+        "value": "-2147483646"
+    },
+    {
+        "left": "2",
+        "op": "Imp",
+        "right": "2147483647",
+        "value": "-1"
+    },
+    {
+        "left": "2147483647",
+        "op": "Eqv",
+        "right": "True",
+        "value": "2147483647"
+    },
+    {
+        "left": "2147483647",
+        "op": "Imp",
+        "right": "True",
+        "value": "-1"
+    },
+    {
+        "left": "2147483647",
+        "op": "Eqv",
+        "right": "False",
+        "value": "-2147483648"
+    },
+    {
+        "left": "2147483647",
+        "op": "Imp",
+        "right": "False",
+        "value": "-2147483648"
+    },
+    {
+        "left": "2147483647",
+        "op": "Eqv",
+        "right": "Null",
+        "value": null
+    },
+    {
+        "left": "2147483647",
+        "op": "Imp",
+        "right": "Null",
+        "value": "-2147483648"
+    },
+    {
+        "left": "2147483647",
+        "op": "Eqv",
+        "right": "-2147483648",
+        "value": "0"
+    },
+    {
+        "left": "2147483647",
+        "op": "Imp",
+        "right": "-2147483648",
+        "value": "-2147483648"
+    },
+    {
+        "left": "2147483647",
+        "op": "Eqv",
+        "right": "-2",
+        "value": "2147483646"
+    },
+    {
+        "left": "2147483647",
+        "op": "Imp",
+        "right": "-2",
+        "value": "-2"
+    },
+    {
+        "left": "2147483647",
+        "op": "Eqv",
+        "right": "-1",
+        "value": "2147483647"
+    },
+    {
+        "left": "2147483647",
+        "op": "Imp",
+        "right": "-1",
+        "value": "-1"
+    },
+    {
+        "left": "2147483647",
+        "op": "Eqv",
+        "right": "0",
+        "value": "-2147483648"
+    },
+    {
+        "left": "2147483647",
+        "op": "Imp",
+        "right": "0",
+        "value": "-2147483648"
+    },
+    {
+        "left": "2147483647",
+        "op": "Eqv",
+        "right": "1",
+        "value": "-2147483647"
+    },
+    {
+        "left": "2147483647",
+        "op": "Imp",
+        "right": "1",
+        "value": "-2147483647"
+    },
+    {
+        "left": "2147483647",
+        "op": "Eqv",
+        "right": "2",
+        "value": "-2147483646"
+    },
+    {
+        "left": "2147483647",
+        "op": "Imp",
+        "right": "2",
+        "value": "-2147483646"
+    },
+    {
+        "left": "2147483647",
+        "op": "Eqv",
+        "right": "2147483647",
+        "value": "-1"
+    },
+    {
+        "left": "2147483647",
+        "op": "Imp",
+        "right": "2147483647",
+        "value": "-1"
+    }
+]

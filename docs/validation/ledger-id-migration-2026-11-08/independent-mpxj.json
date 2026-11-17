@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "leaf_checks": 16239,
+  "ledger_totals_preserved": {
+    "actualMinor": {
+      "known_total": 3334,
+      "unknown_rows": 0
+    },
+    "workUnitMinutes": {
+      "known_total": 7500,
+      "unknown_rows": 1
+    }
+  },
+  "receipts": [
+    {
+      "case": "first",
+      "revision": 13,
+      "links": [
+        {
+          "kind": "task",
+          "sourceId": "xer-task-20",
+          "targetId": "xsa-59cab609-6154-4108-9854-aba3ad231e7b-task-xer-task-20"
+        },
+        {
+          "kind": "resource",
+          "sourceId": "xer-resource-99",
+          "targetId": "7c3498f4-4eff-438b-9b8e-416292fc4de6"
+        }
+      ],
+      "original_sha256": "bab8b0808fca7ebb554f43df6b9b4dd0e948208c144c0f199502dc6fac6c906f",
+      "result_sha256": "95231171669035cbb2549bccc73e798a48b0f8811adbfe218cda143dce1e65ca"
+    },
+    {
+      "case": "sequential",
+      "revision": 13,
+      "links": [
+        {
+          "kind": "task",
+          "sourceId": "xer-task-20",
+          "targetId": "xsa-59cab609-6154-4108-9854-aba3ad231e7b-task-xer-task-20"
+        },
+        {
+          "kind": "resource",
+          "sourceId": "xer-resource-99",
+          "targetId": "7c3498f4-4eff-438b-9b8e-416292fc4de6"
+        }
+      ],
+      "original_sha256": "bab8b0808fca7ebb554f43df6b9b4dd0e948208c144c0f199502dc6fac6c906f",
+      "result_sha256": "95231171669035cbb2549bccc73e798a48b0f8811adbfe218cda143dce1e65ca"
+    },
+    {
+      "case": "sequential",
+      "revision": 19,
+      "links": [
+        {
+          "kind": "task",
+          "sourceId": "xsa-59cab609-6154-4108-9854-aba3ad231e7b-task-xer-task-20",
+          "targetId": "final-task"
+        },
+        {
+          "kind": "resource",
+          "sourceId": "7c3498f4-4eff-438b-9b8e-416292fc4de6",
+          "targetId": "final-resource"
+        }
+      ],
+      "original_sha256": "bc18fbc6ba6fd88780a4e84ca08a34e2479aeea901fd771199bb5335708a5e43",
+      "result_sha256": "b3c728502a69958fb89e61a19be6964ef2531131661a682e2db0a1de32c71c04"
+    },
+    {
+      "case": "detailed",
+      "revision": 5,
+      "links": [
+        {
+          "kind": "task",
+          "sourceId": "T",
+          "targetId": "T-new"
+        },
+        {
+          "kind": "resource",
+          "sourceId": "R",
+          "targetId": "R-new"
+        }
+      ],
+      "original_sha256": "f6729959e02d2fd579dacaff5e3195ea1d501966c79f6dab40d46ad2ef729b1b",
+      "result_sha256": "75b1ecbb75eb681c10d2d5cd10b28e889df299745f6a433fbe1c339380d98679"
+    }
+  ],
+  "archives": "XER schedule sources and raw relink incoming unchanged",
+  "coverage": "all JSON fields, before/after replay, typed owner references, baseline/scenario/closed period/EVM/XER, metadata, leveling invalidation, sequential history",
+  "independent_reader": {
+    "reader": "MPXJ16.10.0 strict",
+    "ignored_errors": 0,
+    "tasks": 6,
+    "planned_durations": "matched",
+    "resource_names": "matched"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "schema": 14,
+  "original_relation_preserved": true,
+  "B_finish": "2026-11-03 14:00",
+  "D_remaining_start": "2026-11-03 14:00",
+  "D_finish": "2026-11-04 14:00",
+  "remaining_hours": 12,
+  "remaining_cost": 960,
+  "plan_cost": 1440,
+  "resource_order_float": true,
+  "both_adoption_provenances": true,
+  "xlsx_files": 2,
+  "pdf_pages": {
+    "schedule": 11,
+    "usage": 5,
+    "print": 3
+  }
+}

@@ -1,0 +1,9 @@
+[New Thread 17348.0xa89c]
+[New Thread 17348.0x8ce4]
+[New Thread 17348.0x78f8]
+
+Thread 1 received signal SIGSEGV, Segmentation fault.
+0x00007ff621947dbd in jobs::CustomField::CustomField(jobs::CustomField const&) ()
+#0  0x00007ff621947dbd in jobs::CustomField::CustomField(jobs::CustomField const&) ()
+#1  0x00007ff62146c9a0 in (anonymous namespace)::contract() ()
+#2  0x00007ff6219f4702 in main ()

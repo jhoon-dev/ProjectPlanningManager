@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "schema": 67,
+  "name_vectors": 5992,
+  "scalar_cases": 27,
+  "xml_cells": 20,
+  "xml_missing_cells": 4,
+  "xml_inherited_cells": 2,
+  "xer_static_values": 20,
+  "formula_definitions": 32,
+  "report_rows": 66,
+  "pdf_pages": 19,
+  "native_file_sha256": "804bd945c5b9c9d3db2f54e8ff7c9fbac2a77252d03a8995d82d6fadf61dc0bc",
+  "external_product_run": false
+}

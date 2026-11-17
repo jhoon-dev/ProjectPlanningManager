@@ -50,7 +50,8 @@ std::string diagnosticRecommendation(const Diagnostic &diagnostic, DiagnosticLan
     const auto &code = diagnostic.code;
     if (code.starts_with("POLICY_") || code.ends_with("_POLICY") || code == "BASELINE_SCOPE" ||
         code == "RESOURCE_NOT_CHECKED" || code == "RESOURCE_DELAY" || code == "RESOURCE_WAIT" ||
-        code == "WORKSPACE_UNMAPPED_RESOURCES" || code == "WORKSPACE_CANCELLED")
+        code == "WORKSPACE_UNMAPPED_RESOURCES" || code == "WORKSPACE_CANCELLED" || code == "MATERIAL_DELAY" ||
+        code == "LEVELING_REPARTITION_WITNESS" || code == "LEVELING_REPARTITION_WITNESS_PREVIEW")
         return {};
     if (language == DiagnosticLanguage::English)
         return "Review the related task, resource, calendar or file and correct the indicated input before retrying.";

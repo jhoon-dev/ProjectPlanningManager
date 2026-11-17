@@ -1,0 +1,212 @@
+{
+    "assignments": [
+        {
+            "nativeCurve": {
+                "baseUnits": 100,
+                "durationMinutes": 960,
+                "externalId": "6",
+                "mspCode": 6,
+                "name": "Bell",
+                "projectedPeriods": [
+                    {
+                        "fromMinute": 0,
+                        "toMinute": 96,
+                        "units": 10
+                    },
+                    {
+                        "fromMinute": 96,
+                        "toMinute": 192,
+                        "units": 30
+                    },
+                    {
+                        "fromMinute": 192,
+                        "toMinute": 288,
+                        "units": 80
+                    },
+                    {
+                        "fromMinute": 288,
+                        "toMinute": 384,
+                        "units": 150
+                    },
+                    {
+                        "fromMinute": 384,
+                        "toMinute": 576,
+                        "units": 230
+                    },
+                    {
+                        "fromMinute": 576,
+                        "toMinute": 672,
+                        "units": 150
+                    },
+                    {
+                        "fromMinute": 672,
+                        "toMinute": 768,
+                        "units": 80
+                    },
+                    {
+                        "fromMinute": 768,
+                        "toMinute": 864,
+                        "units": 30
+                    },
+                    {
+                        "fromMinute": 864,
+                        "toMinute": 960,
+                        "units": 10
+                    }
+                ],
+                "recordedAt": "",
+                "reference": "",
+                "reporter": "",
+                "source": "mspdi",
+                "weights": [
+                    0,
+                    500000,
+                    500000,
+                    1500000,
+                    1500000,
+                    4000000,
+                    4000000,
+                    7500000,
+                    7500000,
+                    11500000,
+                    11500000,
+                    11500000,
+                    11500000,
+                    7500000,
+                    7500000,
+                    4000000,
+                    4000000,
+                    1500000,
+                    1500000,
+                    500000,
+                    500000
+                ],
+                "workUnitMinutes": 96000
+            },
+            "periods": [
+                {
+                    "fromMinute": 0,
+                    "toMinute": 96,
+                    "units": 10
+                },
+                {
+                    "fromMinute": 96,
+                    "toMinute": 192,
+                    "units": 30
+                },
+                {
+                    "fromMinute": 192,
+                    "toMinute": 288,
+                    "units": 80
+                },
+                {
+                    "fromMinute": 288,
+                    "toMinute": 384,
+                    "units": 150
+                },
+                {
+                    "fromMinute": 384,
+                    "toMinute": 576,
+                    "units": 230
+                },
+                {
+                    "fromMinute": 576,
+                    "toMinute": 672,
+                    "units": 150
+                },
+                {
+                    "fromMinute": 672,
+                    "toMinute": 768,
+                    "units": 80
+                },
+                {
+                    "fromMinute": 768,
+                    "toMinute": 864,
+                    "units": 30
+                },
+                {
+                    "fromMinute": 864,
+                    "toMinute": 960,
+                    "units": 10
+                }
+            ],
+            "resourceId": "R",
+            "taskId": "T",
+            "units": 100
+        }
+    ],
+    "baselines": [
+    ],
+    "calculationProfile": "native-effort-split-v1",
+    "calendar": "standard-mon-fri-8h-v1",
+    "calendars": [
+    ],
+    "costEntries": [
+    ],
+    "costProfile": "cost-day-minor-half-up-v1",
+    "currency": "KRW",
+    "derivedFrom": "",
+    "documentId": "resource-planning",
+    "holidays": [
+    ],
+    "name": "생산성·고유 곡선 검증",
+    "progress": [
+    ],
+    "resources": [
+        {
+            "calendarId": "",
+            "exceptions": [
+            ],
+            "id": "R",
+            "maxUnits": 200,
+            "name": "작업 인력",
+            "rates": [
+                {
+                    "effectiveDate": "2026-11-02",
+                    "hourlyMinor": 600
+                },
+                {
+                    "effectiveDate": "2026-11-03",
+                    "hourlyMinor": 1200
+                }
+            ],
+            "type": "labor"
+        }
+    ],
+    "revision": 1,
+    "scenarios": [
+    ],
+    "startDate": "2026-11-02",
+    "statusAt": null,
+    "taskCosts": [
+        {
+            "accrual": "uniform",
+            "credit": "physical",
+            "fixedMinor": 0,
+            "taskId": "T"
+        }
+    ],
+    "tasks": [
+        {
+            "breaks": [
+            ],
+            "calendarId": "",
+            "constraintAt": null,
+            "constraintType": "ASAP",
+            "deadlineAt": null,
+            "dependencyRules": [
+            ],
+            "durationMinutes": 960,
+            "id": "T",
+            "name": "시공",
+            "predecessors": [
+            ],
+            "taskType": "fixed-duration",
+            "wbsId": "",
+            "workDriven": false,
+            "workUnitMinutes": null
+        }
+    ],
+    "wbsNodes": [
+    ]
+}

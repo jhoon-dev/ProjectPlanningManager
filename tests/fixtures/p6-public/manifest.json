@@ -74,7 +74,9 @@
       "sha256": "71e56568075852d00507ff5506d5c055912ce0ba0982b97b8ace6269f794d10a",
       "encoding": "windows-1252",
       "header": "ERMHDR\t8.4\t2015-02-25\tProject\tadmin\tadmin\tdbxDatabaseNoName\tProject Management\tUSD",
-      "expected_status": "imported"
+      "expected_status": "rejected",
+      "expected_error": "FILE_PRIMAVERAXER_080",
+      "rejection_reason": "Generated percent-complete fixture has data date 2015-02-24 00:00 and actual starts at 2015-02-24 08:00. The native observed-progress contract rejects future actual timestamps; source bytes and SHA256 are unchanged."
     }
   ]
 }

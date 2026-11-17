@@ -1,0 +1,2291 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignmentFields": [
+            {
+                "id": "BW",
+                "name": "BW",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinework",
+                            "scope": 3,
+                            "token": "Baseline Work"
+                        }
+                    ],
+                    "source": "[Baseline Work]"
+                }
+            },
+            {
+                "id": "TS",
+                "name": "TS",
+                "options": [
+                ],
+                "type": "start",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinestart",
+                            "scope": 0,
+                            "token": "Task.Baseline Start"
+                        }
+                    ],
+                    "source": "[Task.Baseline Start]"
+                }
+            },
+            {
+                "id": "TF",
+                "name": "TF",
+                "options": [
+                ],
+                "type": "finish",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinefinish",
+                            "scope": 0,
+                            "token": "Task.BaselineFinish"
+                        }
+                    ],
+                    "source": "[Task.BaselineFinish]"
+                }
+            },
+            {
+                "id": "TD",
+                "name": "TD",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselineduration",
+                            "scope": 0,
+                            "token": "Task.Baseline Duration"
+                        }
+                    ],
+                    "source": "[Task.Baseline Duration]"
+                }
+            },
+            {
+                "id": "TW",
+                "name": "TW",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinework",
+                            "scope": 0,
+                            "token": "Task.Baseline Work"
+                        }
+                    ],
+                    "source": "[Task.Baseline Work]"
+                }
+            },
+            {
+                "id": "RW",
+                "name": "RW",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinework",
+                            "scope": 2,
+                            "token": "Resource.Baseline Work"
+                        }
+                    ],
+                    "source": "[Resource.Baseline Work]"
+                }
+            },
+            {
+                "id": "PW",
+                "name": "PW",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinework",
+                            "scope": 1,
+                            "token": "Project.Baseline Work"
+                        }
+                    ],
+                    "source": "[Project.Baseline Work]"
+                }
+            },
+            {
+                "id": "BC",
+                "name": "BC",
+                "options": [
+                ],
+                "type": "cost",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinecost",
+                            "scope": 3,
+                            "token": "Baseline Cost"
+                        }
+                    ],
+                    "source": "[Baseline Cost]"
+                }
+            },
+            {
+                "id": "TC",
+                "name": "TC",
+                "options": [
+                ],
+                "type": "cost",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinecost",
+                            "scope": 0,
+                            "token": "Task.Baseline Cost"
+                        }
+                    ],
+                    "source": "[Task.Baseline Cost]"
+                }
+            },
+            {
+                "id": "RC",
+                "name": "RC",
+                "options": [
+                ],
+                "type": "cost",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinecost",
+                            "scope": 2,
+                            "token": "Resource.BaselineCost"
+                        }
+                    ],
+                    "source": "[Resource.BaselineCost]"
+                }
+            },
+            {
+                "id": "PC",
+                "name": "PC",
+                "options": [
+                ],
+                "type": "cost",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinecost",
+                            "scope": 1,
+                            "token": "Project.Baseline Cost"
+                        }
+                    ],
+                    "source": "[Project.Baseline Cost]"
+                }
+            },
+            {
+                "id": "receivedBC",
+                "name": "원가전파",
+                "options": [
+                ],
+                "type": "cost",
+                "unit": ""
+            }
+        ],
+        "assignments": [
+            {
+                "resourceId": "R",
+                "taskId": "A",
+                "units": 25
+            },
+            {
+                "resourceId": "S",
+                "taskId": "A",
+                "units": 33
+            },
+            {
+                "resourceId": "S",
+                "taskId": "B",
+                "units": 100
+            },
+            {
+                "resourceId": "NEW",
+                "taskId": "X",
+                "units": 100
+            }
+        ],
+        "baselines": [
+            {
+                "approvedBy": "PM",
+                "createdAt": "2026-11-12T09:00:00Z",
+                "engineVersion": "jobs-effort-periods-1.0",
+                "id": "BASE-1",
+                "input": {
+                    "assignmentFields": [
+                        {
+                            "id": "BW",
+                            "name": "BW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinework",
+                                        "scope": 3,
+                                        "token": "Baseline Work"
+                                    }
+                                ],
+                                "source": "[Baseline Work]"
+                            }
+                        },
+                        {
+                            "id": "TS",
+                            "name": "TS",
+                            "options": [
+                            ],
+                            "type": "start",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinestart",
+                                        "scope": 0,
+                                        "token": "Task.Baseline Start"
+                                    }
+                                ],
+                                "source": "[Task.Baseline Start]"
+                            }
+                        },
+                        {
+                            "id": "TF",
+                            "name": "TF",
+                            "options": [
+                            ],
+                            "type": "finish",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinefinish",
+                                        "scope": 0,
+                                        "token": "Task.BaselineFinish"
+                                    }
+                                ],
+                                "source": "[Task.BaselineFinish]"
+                            }
+                        },
+                        {
+                            "id": "TD",
+                            "name": "TD",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselineduration",
+                                        "scope": 0,
+                                        "token": "Task.Baseline Duration"
+                                    }
+                                ],
+                                "source": "[Task.Baseline Duration]"
+                            }
+                        },
+                        {
+                            "id": "TW",
+                            "name": "TW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinework",
+                                        "scope": 0,
+                                        "token": "Task.Baseline Work"
+                                    }
+                                ],
+                                "source": "[Task.Baseline Work]"
+                            }
+                        },
+                        {
+                            "id": "RW",
+                            "name": "RW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinework",
+                                        "scope": 2,
+                                        "token": "Resource.Baseline Work"
+                                    }
+                                ],
+                                "source": "[Resource.Baseline Work]"
+                            }
+                        },
+                        {
+                            "id": "PW",
+                            "name": "PW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinework",
+                                        "scope": 1,
+                                        "token": "Project.Baseline Work"
+                                    }
+                                ],
+                                "source": "[Project.Baseline Work]"
+                            }
+                        }
+                    ],
+                    "assignments": [
+                        {
+                            "periods": [
+                                {
+                                    "fromMinute": 2,
+                                    "toMinute": 6,
+                                    "units": 50
+                                }
+                            ],
+                            "resourceId": "R",
+                            "taskId": "A",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "S",
+                            "taskId": "A",
+                            "units": 33
+                        },
+                        {
+                            "resourceId": "S",
+                            "taskId": "B",
+                            "units": 100
+                        }
+                    ],
+                    "calculationProfile": "native-effort-split-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "calendars": [
+                        {
+                            "holidays": [
+                            ],
+                            "id": "C",
+                            "name": "8분",
+                            "periods": [
+                                {
+                                    "begin": 540,
+                                    "end": 548
+                                }
+                            ],
+                            "weekdays": [
+                                1,
+                                2,
+                                3,
+                                4,
+                                5
+                            ]
+                        },
+                        {
+                            "holidays": [
+                            ],
+                            "id": "R",
+                            "name": "부분 6분",
+                            "periods": [
+                                {
+                                    "begin": 541,
+                                    "end": 547
+                                }
+                            ],
+                            "weekdays": [
+                                1,
+                                2,
+                                3,
+                                4,
+                                5
+                            ]
+                        }
+                    ],
+                    "codeTypes": [
+                    ],
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "USD",
+                    "customFields": [
+                        {
+                            "id": "BS",
+                            "name": "BS",
+                            "options": [
+                            ],
+                            "type": "start",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinestart",
+                                        "scope": 0,
+                                        "token": "Baseline Start"
+                                    }
+                                ],
+                                "source": "[Baseline Start]"
+                            },
+                            "xmlRollUp": {
+                                "calculationType": 2,
+                                "rollupType": 0
+                            }
+                        },
+                        {
+                            "id": "BF",
+                            "name": "BF",
+                            "options": [
+                            ],
+                            "type": "finish",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinefinish",
+                                        "scope": 0,
+                                        "token": "BaselineFinish"
+                                    }
+                                ],
+                                "source": "[BaselineFinish]"
+                            },
+                            "xmlRollUp": {
+                                "calculationType": 2,
+                                "rollupType": 0
+                            }
+                        },
+                        {
+                            "id": "BD",
+                            "name": "BD",
+                            "options": [
+                            ],
+                            "type": "duration",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselineduration",
+                                        "scope": 0,
+                                        "token": "Baseline Duration"
+                                    }
+                                ],
+                                "source": "[Baseline Duration]"
+                            },
+                            "xmlRollUp": {
+                                "calculationType": 2,
+                                "rollupType": 0
+                            }
+                        },
+                        {
+                            "id": "DN",
+                            "name": "DN",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselineduration",
+                                        "scope": 0,
+                                        "token": "BaselineDuration"
+                                    }
+                                ],
+                                "source": "[BaselineDuration]"
+                            }
+                        },
+                        {
+                            "id": "BW",
+                            "name": "BW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinework",
+                                        "scope": 0,
+                                        "token": "Baseline Work"
+                                    }
+                                ],
+                                "source": "[Baseline Work]"
+                            },
+                            "xmlRollUp": {
+                                "calculationType": 2,
+                                "rollupType": 0
+                            }
+                        },
+                        {
+                            "id": "hours",
+                            "name": "hours",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinework",
+                                        "scope": 0,
+                                        "token": "BaselineWork"
+                                    }
+                                ],
+                                "source": "[BaselineWork]/60"
+                            }
+                        }
+                    ],
+                    "holidays": [
+                    ],
+                    "name": "최초 기준선 참조",
+                    "projectFields": [
+                        {
+                            "id": "BS",
+                            "name": "BS",
+                            "options": [
+                            ],
+                            "type": "start",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinestart",
+                                        "scope": 1,
+                                        "token": "BaselineStart"
+                                    }
+                                ],
+                                "source": "[BaselineStart]"
+                            }
+                        },
+                        {
+                            "id": "BF",
+                            "name": "BF",
+                            "options": [
+                            ],
+                            "type": "finish",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinefinish",
+                                        "scope": 1,
+                                        "token": "Baseline Finish"
+                                    }
+                                ],
+                                "source": "[Baseline Finish]"
+                            }
+                        },
+                        {
+                            "id": "BW",
+                            "name": "BW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinework",
+                                        "scope": 1,
+                                        "token": "Baseline Work"
+                                    }
+                                ],
+                                "source": "[Baseline Work]"
+                            }
+                        }
+                    ],
+                    "resourceFields": [
+                        {
+                            "id": "BW",
+                            "name": "BW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinework",
+                                        "scope": 2,
+                                        "token": "BaselineWork"
+                                    }
+                                ],
+                                "source": "[BaselineWork]"
+                            },
+                            "xmlRollUp": {
+                                "calculationType": 2,
+                                "rollupType": 0
+                            }
+                        }
+                    ],
+                    "resourcePlan": {
+                        "demands": [
+                        ],
+                        "expenses": [
+                            {
+                                "account": "GENERAL",
+                                "accrual": "finish",
+                                "amountMinor": 83,
+                                "id": "EXP",
+                                "name": "경비",
+                                "taskId": "D"
+                            }
+                        ],
+                        "materials": [
+                            {
+                                "id": "MAT",
+                                "name": "자재",
+                                "stockMilli": 10000,
+                                "unit": "개",
+                                "unitPriceMinor": 107
+                            }
+                        ],
+                        "roles": [
+                        ],
+                        "uses": [
+                            {
+                                "accrual": "start",
+                                "id": "USE",
+                                "materialId": "MAT",
+                                "quantityMilli": 1500,
+                                "taskId": "D"
+                            }
+                        ]
+                    },
+                    "resources": [
+                        {
+                            "calendarId": "R",
+                            "exceptions": [
+                            ],
+                            "id": "R",
+                            "maxUnits": 100,
+                            "name": "부분 인력",
+                            "rates": [
+                                {
+                                    "effectiveDate": "2026-11-01",
+                                    "hourlyMinor": 1001
+                                },
+                                {
+                                    "effectiveDate": "2026-11-13",
+                                    "hourlyMinor": 2001
+                                }
+                            ],
+                            "type": "labor"
+                        },
+                        {
+                            "calendarId": "C",
+                            "exceptions": [
+                            ],
+                            "id": "S",
+                            "maxUnits": 100,
+                            "name": "지원",
+                            "rates": [
+                                {
+                                    "effectiveDate": "2026-11-01",
+                                    "hourlyMinor": 3001
+                                },
+                                {
+                                    "effectiveDate": "2026-11-13",
+                                    "hourlyMinor": 4001
+                                }
+                            ],
+                            "type": "labor"
+                        },
+                        {
+                            "calendarId": "C",
+                            "exceptions": [
+                            ],
+                            "id": "Z",
+                            "maxUnits": 100,
+                            "name": "미사용",
+                            "rates": [
+                            ],
+                            "type": "labor"
+                        }
+                    ],
+                    "startDate": "2026-11-12",
+                    "taskCosts": [
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 101,
+                            "taskId": "A"
+                        },
+                        {
+                            "accrual": "finish",
+                            "credit": "physical",
+                            "fixedMinor": 203,
+                            "taskId": "B"
+                        },
+                        {
+                            "accrual": "start",
+                            "credit": "physical",
+                            "fixedMinor": 307,
+                            "taskId": "M"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "D"
+                        }
+                    ],
+                    "tasks": [
+                        {
+                            "breaks": [
+                                {
+                                    "finish": "2026-11-12 09:05",
+                                    "start": "2026-11-12 09:04"
+                                }
+                            ],
+                            "calendarId": "C",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 8,
+                            "id": "A",
+                            "name": "중단·곡선",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "G",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "C",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 8,
+                            "id": "B",
+                            "name": "고정 공수",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-work",
+                            "wbsId": "G",
+                            "workDriven": true,
+                            "workUnitMinutes": 501
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "C",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 0,
+                            "id": "M",
+                            "name": "이정표",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "H",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "C",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 3,
+                            "id": "D",
+                            "name": "미배정",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "G",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        }
+                    ],
+                    "wbsNodes": [
+                        {
+                            "id": "G",
+                            "name": "시공",
+                            "parentId": ""
+                        },
+                        {
+                            "id": "H",
+                            "name": "이정표",
+                            "parentId": ""
+                        }
+                    ]
+                },
+                "inputRevision": 1,
+                "name": "원래 계획",
+                "projectFinish": "2026-11-13 09:01",
+                "reason": "승인",
+                "schedule": [
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 1981,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-13 09:01",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 1981,
+                        "lateStartMinutes": 540,
+                        "remainingStart": null,
+                        "start": "2026-11-12 09:00",
+                        "taskId": "A",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": false,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 546,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-12 09:06",
+                        "freeFloatMinutes": 3,
+                        "lateFinishMinutes": 1981,
+                        "lateStartMinutes": 543,
+                        "remainingStart": null,
+                        "start": "2026-11-12 09:00",
+                        "taskId": "B",
+                        "totalFloatMinutes": 3
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": false,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 540,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-12 09:00",
+                        "freeFloatMinutes": 9,
+                        "lateFinishMinutes": 1981,
+                        "lateStartMinutes": 1981,
+                        "remainingStart": null,
+                        "start": "2026-11-12 09:00",
+                        "taskId": "M",
+                        "totalFloatMinutes": 9
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": false,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 543,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-12 09:03",
+                        "freeFloatMinutes": 6,
+                        "lateFinishMinutes": 1981,
+                        "lateStartMinutes": 546,
+                        "remainingStart": null,
+                        "start": "2026-11-12 09:00",
+                        "taskId": "D",
+                        "totalFloatMinutes": 6
+                    }
+                ],
+                "sourceDocumentId": "xml-baseline",
+                "version": 1
+            },
+            {
+                "approvedBy": "PM",
+                "createdAt": "2026-11-12T09:01:00Z",
+                "engineVersion": "jobs-effort-1.1",
+                "id": "BASE-2",
+                "input": {
+                    "assignmentFields": [
+                        {
+                            "id": "BW",
+                            "name": "BW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinework",
+                                        "scope": 3,
+                                        "token": "Baseline Work"
+                                    }
+                                ],
+                                "source": "[Baseline Work]"
+                            }
+                        },
+                        {
+                            "id": "TS",
+                            "name": "TS",
+                            "options": [
+                            ],
+                            "type": "start",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinestart",
+                                        "scope": 0,
+                                        "token": "Task.Baseline Start"
+                                    }
+                                ],
+                                "source": "[Task.Baseline Start]"
+                            }
+                        },
+                        {
+                            "id": "TF",
+                            "name": "TF",
+                            "options": [
+                            ],
+                            "type": "finish",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinefinish",
+                                        "scope": 0,
+                                        "token": "Task.BaselineFinish"
+                                    }
+                                ],
+                                "source": "[Task.BaselineFinish]"
+                            }
+                        },
+                        {
+                            "id": "TD",
+                            "name": "TD",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselineduration",
+                                        "scope": 0,
+                                        "token": "Task.Baseline Duration"
+                                    }
+                                ],
+                                "source": "[Task.Baseline Duration]"
+                            }
+                        },
+                        {
+                            "id": "TW",
+                            "name": "TW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinework",
+                                        "scope": 0,
+                                        "token": "Task.Baseline Work"
+                                    }
+                                ],
+                                "source": "[Task.Baseline Work]"
+                            }
+                        },
+                        {
+                            "id": "RW",
+                            "name": "RW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinework",
+                                        "scope": 2,
+                                        "token": "Resource.Baseline Work"
+                                    }
+                                ],
+                                "source": "[Resource.Baseline Work]"
+                            }
+                        },
+                        {
+                            "id": "PW",
+                            "name": "PW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinework",
+                                        "scope": 1,
+                                        "token": "Project.Baseline Work"
+                                    }
+                                ],
+                                "source": "[Project.Baseline Work]"
+                            }
+                        }
+                    ],
+                    "assignments": [
+                        {
+                            "resourceId": "R",
+                            "taskId": "A",
+                            "units": 25
+                        },
+                        {
+                            "resourceId": "S",
+                            "taskId": "A",
+                            "units": 33
+                        },
+                        {
+                            "resourceId": "S",
+                            "taskId": "B",
+                            "units": 100
+                        }
+                    ],
+                    "calculationProfile": "native-effort-split-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "calendars": [
+                        {
+                            "holidays": [
+                            ],
+                            "id": "C",
+                            "name": "8분",
+                            "periods": [
+                                {
+                                    "begin": 540,
+                                    "end": 552
+                                }
+                            ],
+                            "weekdays": [
+                                1,
+                                2,
+                                3,
+                                4,
+                                5
+                            ]
+                        },
+                        {
+                            "holidays": [
+                            ],
+                            "id": "R",
+                            "name": "부분 6분",
+                            "periods": [
+                                {
+                                    "begin": 541,
+                                    "end": 547
+                                }
+                            ],
+                            "weekdays": [
+                                1,
+                                2,
+                                3,
+                                4,
+                                5
+                            ]
+                        }
+                    ],
+                    "codeTypes": [
+                    ],
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "USD",
+                    "customFields": [
+                        {
+                            "id": "BS",
+                            "name": "BS",
+                            "options": [
+                            ],
+                            "type": "start",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinestart",
+                                        "scope": 0,
+                                        "token": "Baseline Start"
+                                    }
+                                ],
+                                "source": "[Baseline Start]"
+                            },
+                            "xmlRollUp": {
+                                "calculationType": 2,
+                                "rollupType": 0
+                            }
+                        },
+                        {
+                            "id": "BF",
+                            "name": "BF",
+                            "options": [
+                            ],
+                            "type": "finish",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinefinish",
+                                        "scope": 0,
+                                        "token": "BaselineFinish"
+                                    }
+                                ],
+                                "source": "[BaselineFinish]"
+                            },
+                            "xmlRollUp": {
+                                "calculationType": 2,
+                                "rollupType": 0
+                            }
+                        },
+                        {
+                            "id": "BD",
+                            "name": "BD",
+                            "options": [
+                            ],
+                            "type": "duration",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselineduration",
+                                        "scope": 0,
+                                        "token": "Baseline Duration"
+                                    }
+                                ],
+                                "source": "[Baseline Duration]"
+                            },
+                            "xmlRollUp": {
+                                "calculationType": 2,
+                                "rollupType": 0
+                            }
+                        },
+                        {
+                            "id": "DN",
+                            "name": "DN",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselineduration",
+                                        "scope": 0,
+                                        "token": "BaselineDuration"
+                                    }
+                                ],
+                                "source": "[BaselineDuration]"
+                            }
+                        },
+                        {
+                            "id": "BW",
+                            "name": "BW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinework",
+                                        "scope": 0,
+                                        "token": "Baseline Work"
+                                    }
+                                ],
+                                "source": "[Baseline Work]"
+                            },
+                            "xmlRollUp": {
+                                "calculationType": 2,
+                                "rollupType": 0
+                            }
+                        },
+                        {
+                            "id": "hours",
+                            "name": "hours",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinework",
+                                        "scope": 0,
+                                        "token": "BaselineWork"
+                                    }
+                                ],
+                                "source": "[BaselineWork]/60"
+                            }
+                        }
+                    ],
+                    "holidays": [
+                    ],
+                    "name": "최초 기준선 참조",
+                    "projectFields": [
+                        {
+                            "id": "BS",
+                            "name": "BS",
+                            "options": [
+                            ],
+                            "type": "start",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinestart",
+                                        "scope": 1,
+                                        "token": "BaselineStart"
+                                    }
+                                ],
+                                "source": "[BaselineStart]"
+                            }
+                        },
+                        {
+                            "id": "BF",
+                            "name": "BF",
+                            "options": [
+                            ],
+                            "type": "finish",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinefinish",
+                                        "scope": 1,
+                                        "token": "Baseline Finish"
+                                    }
+                                ],
+                                "source": "[Baseline Finish]"
+                            }
+                        },
+                        {
+                            "id": "BW",
+                            "name": "BW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinework",
+                                        "scope": 1,
+                                        "token": "Baseline Work"
+                                    }
+                                ],
+                                "source": "[Baseline Work]"
+                            }
+                        }
+                    ],
+                    "resourceFields": [
+                        {
+                            "id": "BW",
+                            "name": "BW",
+                            "options": [
+                            ],
+                            "type": "number",
+                            "unit": "",
+                            "xmlFormula": {
+                                "enabled": true,
+                                "references": [
+                                    {
+                                        "key": "builtin:baselinework",
+                                        "scope": 2,
+                                        "token": "BaselineWork"
+                                    }
+                                ],
+                                "source": "[BaselineWork]"
+                            },
+                            "xmlRollUp": {
+                                "calculationType": 2,
+                                "rollupType": 0
+                            }
+                        }
+                    ],
+                    "resourcePlan": {
+                        "demands": [
+                        ],
+                        "expenses": [
+                            {
+                                "account": "GENERAL",
+                                "accrual": "finish",
+                                "amountMinor": 166,
+                                "id": "EXP",
+                                "name": "경비",
+                                "taskId": "D"
+                            }
+                        ],
+                        "materials": [
+                            {
+                                "id": "MAT",
+                                "name": "자재",
+                                "stockMilli": 10000,
+                                "unit": "개",
+                                "unitPriceMinor": 214
+                            }
+                        ],
+                        "roles": [
+                        ],
+                        "uses": [
+                            {
+                                "accrual": "start",
+                                "id": "USE",
+                                "materialId": "MAT",
+                                "quantityMilli": 1500,
+                                "taskId": "D"
+                            }
+                        ]
+                    },
+                    "resources": [
+                        {
+                            "calendarId": "R",
+                            "exceptions": [
+                            ],
+                            "id": "R",
+                            "maxUnits": 100,
+                            "name": "부분 인력",
+                            "rates": [
+                                {
+                                    "effectiveDate": "2026-11-01",
+                                    "hourlyMinor": 2002
+                                },
+                                {
+                                    "effectiveDate": "2026-11-13",
+                                    "hourlyMinor": 4002
+                                }
+                            ],
+                            "type": "labor"
+                        },
+                        {
+                            "calendarId": "C",
+                            "exceptions": [
+                            ],
+                            "id": "S",
+                            "maxUnits": 100,
+                            "name": "지원",
+                            "rates": [
+                                {
+                                    "effectiveDate": "2026-11-01",
+                                    "hourlyMinor": 6002
+                                },
+                                {
+                                    "effectiveDate": "2026-11-13",
+                                    "hourlyMinor": 8002
+                                }
+                            ],
+                            "type": "labor"
+                        },
+                        {
+                            "calendarId": "C",
+                            "exceptions": [
+                            ],
+                            "id": "Z",
+                            "maxUnits": 100,
+                            "name": "미사용",
+                            "rates": [
+                            ],
+                            "type": "labor"
+                        }
+                    ],
+                    "startDate": "2026-11-16",
+                    "taskCosts": [
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 202,
+                            "taskId": "A"
+                        },
+                        {
+                            "accrual": "finish",
+                            "credit": "physical",
+                            "fixedMinor": 406,
+                            "taskId": "B"
+                        },
+                        {
+                            "accrual": "start",
+                            "credit": "physical",
+                            "fixedMinor": 614,
+                            "taskId": "M"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "D"
+                        }
+                    ],
+                    "tasks": [
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "C",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 4,
+                            "id": "A",
+                            "name": "중단·곡선",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "G",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "C",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 8,
+                            "id": "B",
+                            "name": "고정 공수",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-work",
+                            "wbsId": "G",
+                            "workDriven": true,
+                            "workUnitMinutes": 501
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "C",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 0,
+                            "id": "M",
+                            "name": "이정표",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "H",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "C",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 3,
+                            "id": "D",
+                            "name": "미배정",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "G",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        }
+                    ],
+                    "wbsNodes": [
+                        {
+                            "id": "G",
+                            "name": "시공",
+                            "parentId": ""
+                        },
+                        {
+                            "id": "H",
+                            "name": "이정표",
+                            "parentId": ""
+                        }
+                    ]
+                },
+                "inputRevision": 2,
+                "name": "수정 계획",
+                "projectFinish": "2026-11-16 09:06",
+                "reason": "재승인",
+                "schedule": [
+                    {
+                        "completedActual": false,
+                        "critical": false,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 544,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-16 09:04",
+                        "freeFloatMinutes": 2,
+                        "lateFinishMinutes": 546,
+                        "lateStartMinutes": 542,
+                        "remainingStart": null,
+                        "start": "2026-11-16 09:00",
+                        "taskId": "A",
+                        "totalFloatMinutes": 2
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 546,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-16 09:06",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 546,
+                        "lateStartMinutes": 540,
+                        "remainingStart": null,
+                        "start": "2026-11-16 09:00",
+                        "taskId": "B",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": false,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 540,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-16 09:00",
+                        "freeFloatMinutes": 6,
+                        "lateFinishMinutes": 546,
+                        "lateStartMinutes": 546,
+                        "remainingStart": null,
+                        "start": "2026-11-16 09:00",
+                        "taskId": "M",
+                        "totalFloatMinutes": 6
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": false,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 543,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-16 09:03",
+                        "freeFloatMinutes": 3,
+                        "lateFinishMinutes": 546,
+                        "lateStartMinutes": 543,
+                        "remainingStart": null,
+                        "start": "2026-11-16 09:00",
+                        "taskId": "D",
+                        "totalFloatMinutes": 3
+                    }
+                ],
+                "sourceDocumentId": "xml-baseline",
+                "version": 2
+            }
+        ],
+        "calculationProfile": "native-effort-split-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "calendars": [
+            {
+                "holidays": [
+                ],
+                "id": "C",
+                "name": "8분",
+                "periods": [
+                    {
+                        "begin": 540,
+                        "end": 552
+                    }
+                ],
+                "weekdays": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ]
+            },
+            {
+                "holidays": [
+                ],
+                "id": "R",
+                "name": "부분 6분",
+                "periods": [
+                    {
+                        "begin": 541,
+                        "end": 547
+                    }
+                ],
+                "weekdays": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ]
+            }
+        ],
+        "codeTypes": [
+        ],
+        "costEntries": [
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "USD",
+        "customFields": [
+            {
+                "id": "BS",
+                "name": "BS",
+                "options": [
+                ],
+                "type": "start",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinestart",
+                            "scope": 0,
+                            "token": "Baseline Start"
+                        }
+                    ],
+                    "source": "[Baseline Start]"
+                },
+                "xmlRollUp": {
+                    "calculationType": 2,
+                    "rollupType": 0
+                }
+            },
+            {
+                "id": "BF",
+                "name": "BF",
+                "options": [
+                ],
+                "type": "finish",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinefinish",
+                            "scope": 0,
+                            "token": "BaselineFinish"
+                        }
+                    ],
+                    "source": "[BaselineFinish]"
+                },
+                "xmlRollUp": {
+                    "calculationType": 2,
+                    "rollupType": 0
+                }
+            },
+            {
+                "id": "BD",
+                "name": "BD",
+                "options": [
+                ],
+                "type": "duration",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselineduration",
+                            "scope": 0,
+                            "token": "Baseline Duration"
+                        }
+                    ],
+                    "source": "[Baseline Duration]"
+                },
+                "xmlRollUp": {
+                    "calculationType": 2,
+                    "rollupType": 0
+                }
+            },
+            {
+                "id": "DN",
+                "name": "DN",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselineduration",
+                            "scope": 0,
+                            "token": "BaselineDuration"
+                        }
+                    ],
+                    "source": "[BaselineDuration]"
+                }
+            },
+            {
+                "id": "BW",
+                "name": "BW",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinework",
+                            "scope": 0,
+                            "token": "Baseline Work"
+                        }
+                    ],
+                    "source": "[Baseline Work]"
+                },
+                "xmlRollUp": {
+                    "calculationType": 2,
+                    "rollupType": 0
+                }
+            },
+            {
+                "id": "hours",
+                "name": "hours",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinework",
+                            "scope": 0,
+                            "token": "BaselineWork"
+                        }
+                    ],
+                    "source": "[BaselineWork]/60"
+                }
+            },
+            {
+                "id": "BC",
+                "name": "BC",
+                "options": [
+                ],
+                "type": "cost",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinecost",
+                            "scope": 0,
+                            "token": "Baseline Cost"
+                        }
+                    ],
+                    "source": "[Baseline Cost]"
+                },
+                "xmlRollDown": {
+                    "assignmentFieldId": "receivedBC",
+                    "automatic": true
+                },
+                "xmlRollUp": {
+                    "calculationType": 2,
+                    "rollupType": 0
+                }
+            },
+            {
+                "id": "BCN",
+                "name": "BCN",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinecost",
+                            "scope": 0,
+                            "token": "BaselineCost"
+                        }
+                    ],
+                    "source": "[BaselineCost]"
+                }
+            },
+            {
+                "id": "DOUBLE",
+                "name": "DOUBLE",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinecost",
+                            "scope": 0,
+                            "token": "Baseline Cost"
+                        }
+                    ],
+                    "source": "[Baseline Cost]*2"
+                }
+            }
+        ],
+        "derivedFrom": "",
+        "documentId": "xml-baseline",
+        "holidays": [
+        ],
+        "name": "최초 기준선 원가",
+        "progress": [
+        ],
+        "projectFields": [
+            {
+                "id": "BS",
+                "name": "BS",
+                "options": [
+                ],
+                "type": "start",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinestart",
+                            "scope": 1,
+                            "token": "BaselineStart"
+                        }
+                    ],
+                    "source": "[BaselineStart]"
+                }
+            },
+            {
+                "id": "BF",
+                "name": "BF",
+                "options": [
+                ],
+                "type": "finish",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinefinish",
+                            "scope": 1,
+                            "token": "Baseline Finish"
+                        }
+                    ],
+                    "source": "[Baseline Finish]"
+                }
+            },
+            {
+                "id": "BW",
+                "name": "BW",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinework",
+                            "scope": 1,
+                            "token": "Baseline Work"
+                        }
+                    ],
+                    "source": "[Baseline Work]"
+                }
+            },
+            {
+                "id": "BC",
+                "name": "BC",
+                "options": [
+                ],
+                "type": "cost",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinecost",
+                            "scope": 1,
+                            "token": "Baseline Cost"
+                        }
+                    ],
+                    "source": "[Baseline Cost]"
+                }
+            }
+        ],
+        "resourceFields": [
+            {
+                "id": "BW",
+                "name": "BW",
+                "options": [
+                ],
+                "type": "number",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinework",
+                            "scope": 2,
+                            "token": "BaselineWork"
+                        }
+                    ],
+                    "source": "[BaselineWork]"
+                },
+                "xmlRollUp": {
+                    "calculationType": 2,
+                    "rollupType": 0
+                }
+            },
+            {
+                "id": "BC",
+                "name": "BC",
+                "options": [
+                ],
+                "type": "cost",
+                "unit": "",
+                "xmlFormula": {
+                    "enabled": true,
+                    "references": [
+                        {
+                            "key": "builtin:baselinecost",
+                            "scope": 2,
+                            "token": "Baseline Cost"
+                        }
+                    ],
+                    "source": "[Baseline Cost]"
+                },
+                "xmlRollUp": {
+                    "calculationType": 2,
+                    "rollupType": 0
+                }
+            }
+        ],
+        "resourcePlan": {
+            "demands": [
+            ],
+            "expenses": [
+                {
+                    "account": "GENERAL",
+                    "accrual": "finish",
+                    "amountMinor": 830,
+                    "id": "EXP",
+                    "name": "경비",
+                    "taskId": "D"
+                }
+            ],
+            "materials": [
+                {
+                    "id": "MAT",
+                    "name": "자재",
+                    "stockMilli": 10000,
+                    "unit": "개",
+                    "unitPriceMinor": 1070
+                }
+            ],
+            "roles": [
+            ],
+            "uses": [
+                {
+                    "accrual": "start",
+                    "id": "USE",
+                    "materialId": "MAT",
+                    "quantityMilli": 1500,
+                    "taskId": "D"
+                }
+            ]
+        },
+        "resources": [
+            {
+                "calendarId": "R",
+                "exceptions": [
+                ],
+                "id": "R",
+                "maxUnits": 100,
+                "name": "부분 인력",
+                "rates": [
+                    {
+                        "effectiveDate": "2026-11-01",
+                        "hourlyMinor": 10010
+                    },
+                    {
+                        "effectiveDate": "2026-11-13",
+                        "hourlyMinor": 20010
+                    }
+                ],
+                "type": "labor"
+            },
+            {
+                "calendarId": "C",
+                "exceptions": [
+                ],
+                "id": "S",
+                "maxUnits": 100,
+                "name": "지원",
+                "rates": [
+                    {
+                        "effectiveDate": "2026-11-01",
+                        "hourlyMinor": 30010
+                    },
+                    {
+                        "effectiveDate": "2026-11-13",
+                        "hourlyMinor": 40010
+                    }
+                ],
+                "type": "labor"
+            },
+            {
+                "calendarId": "C",
+                "exceptions": [
+                ],
+                "id": "Z",
+                "maxUnits": 100,
+                "name": "미사용",
+                "rates": [
+                ],
+                "type": "labor"
+            },
+            {
+                "calendarId": "C",
+                "exceptions": [
+                ],
+                "id": "NEW",
+                "maxUnits": 100,
+                "name": "이후 자원",
+                "rates": [
+                ],
+                "type": "labor"
+            }
+        ],
+        "revision": 3,
+        "scenarios": [
+        ],
+        "startDate": "2026-11-16",
+        "statusAt": null,
+        "taskCosts": [
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 1010,
+                "taskId": "A"
+            },
+            {
+                "accrual": "finish",
+                "credit": "physical",
+                "fixedMinor": 2030,
+                "taskId": "B"
+            },
+            {
+                "accrual": "start",
+                "credit": "physical",
+                "fixedMinor": 3070,
+                "taskId": "M"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "D"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "X"
+            }
+        ],
+        "tasks": [
+            {
+                "attributes": [
+                    {
+                        "key": "field:BC",
+                        "value": "99"
+                    }
+                ],
+                "breaks": [
+                ],
+                "calendarId": "C",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 4,
+                "id": "A",
+                "name": "중단·곡선",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "G",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "C",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 8,
+                "id": "B",
+                "name": "고정 공수",
+                "predecessors": [
+                ],
+                "taskType": "fixed-work",
+                "wbsId": "G",
+                "workDriven": true,
+                "workUnitMinutes": 501
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "C",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 0,
+                "id": "M",
+                "name": "이정표",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "H",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "C",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 3,
+                "id": "D",
+                "name": "미배정",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "G",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "attributes": [
+                    {
+                        "key": "field:BC",
+                        "value": "777"
+                    }
+                ],
+                "breaks": [
+                ],
+                "calendarId": "C",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 1,
+                "id": "X",
+                "name": "이후 추가",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            }
+        ],
+        "wbsNodes": [
+            {
+                "id": "G",
+                "name": "시공",
+                "parentId": ""
+            },
+            {
+                "id": "H",
+                "name": "이정표",
+                "parentId": ""
+            }
+        ]
+    },
+    "schemaVersion": 62,
+    "sha256": "658f30387c84aa6391399e7ccb6f2548f9afb243b90f1e7036cd3532f456afb9"
+}

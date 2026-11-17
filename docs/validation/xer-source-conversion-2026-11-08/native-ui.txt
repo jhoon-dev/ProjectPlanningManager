@@ -1,0 +1,1 @@
+PASS: explicit XER currency/type conversions, exact work, half-up/overflow oracle cases, immutable sources/native ledger, schema31/replay/recovery/copy, export, stale/cancel/read-only and native UI

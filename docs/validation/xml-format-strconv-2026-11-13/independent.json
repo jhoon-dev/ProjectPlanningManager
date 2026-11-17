@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "schema": 54,
+  "functions": 3,
+  "numeric_vectors": 2560,
+  "date_vectors": 1344,
+  "unicode_vectors": 31158,
+  "unicode_version": "16.0.0",
+  "scalar_cases": 46,
+  "xml_cells": 12,
+  "formula_definitions": 28,
+  "xer_static_values": 12,
+  "report_rows": 56,
+  "pdf_pages": 18,
+  "native_file_sha256": "ac9e35b9834cd9a1b23128014413c52b309a12c14ac61f13f4198c0c5a35126f",
+  "external_product_run": false
+}

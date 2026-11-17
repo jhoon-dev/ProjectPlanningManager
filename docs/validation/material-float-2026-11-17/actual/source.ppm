@@ -1,0 +1,715 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+            {
+                "resourceId": "R",
+                "taskId": "A",
+                "units": 100
+            },
+            {
+                "resourceId": "R",
+                "taskId": "B",
+                "units": 100
+            }
+        ],
+        "baselines": [
+        ],
+        "calculationProfile": "native-effort-split-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "calendars": [
+        ],
+        "costEntries": [
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "KRW",
+        "derivedFrom": "",
+        "documentId": "material-actuals",
+        "holidays": [
+        ],
+        "levelingDecisions": [
+            {
+                "action": "adopt",
+                "afterPlan": null,
+                "afterRemaining": {
+                    "adoptedAt": "2026-11-17T03:00:00Z",
+                    "horizonWorkDays": 2,
+                    "policy": "serial-material-remaining-v1",
+                    "priority": "task-order",
+                    "reason": "실제 재고 잔여 배치",
+                    "sourceDocumentId": "material-actuals",
+                    "sourceRevision": 3
+                },
+                "afterStatusAt": "2026-11-17 09:30",
+                "beforePlan": null,
+                "beforeRemaining": null,
+                "beforeStatusAt": "2026-11-17 09:30",
+                "id": "material-actuals:leveling:4",
+                "previousEntryId": "",
+                "reason": "실제 재고 잔여 배치",
+                "recordedAt": "2026-11-17T05:07:15Z",
+                "recordedRevision": 4,
+                "sourceDocumentId": "material-actuals",
+                "sourceRevision": 3
+            },
+            {
+                "action": "invalidate",
+                "afterPlan": null,
+                "afterRemaining": null,
+                "afterStatusAt": "2026-11-17 09:30",
+                "beforePlan": null,
+                "beforeRemaining": {
+                    "adoptedAt": "2026-11-17T03:00:00Z",
+                    "horizonWorkDays": 2,
+                    "policy": "serial-material-remaining-v1",
+                    "priority": "task-order",
+                    "reason": "실제 재고 잔여 배치",
+                    "sourceDocumentId": "material-actuals",
+                    "sourceRevision": 3
+                },
+                "beforeStatusAt": "2026-11-17 09:30",
+                "id": "material-actuals:leveling:6",
+                "previousEntryId": "material-actuals:leveling:4",
+                "reason": "실제 자재 원장 제출",
+                "recordedAt": "2026-11-17T05:07:15Z",
+                "recordedRevision": 6,
+                "sourceDocumentId": "material-actuals",
+                "sourceRevision": 5
+            },
+            {
+                "action": "adopt",
+                "afterPlan": null,
+                "afterRemaining": {
+                    "adoptedAt": "2026-11-17T03:00:00Z",
+                    "horizonWorkDays": 2,
+                    "policy": "serial-material-remaining-v1",
+                    "priority": "task-order",
+                    "reason": "실제 재고 잔여 배치",
+                    "sourceDocumentId": "material-actuals",
+                    "sourceRevision": 7
+                },
+                "afterStatusAt": "2026-11-17 09:30",
+                "beforePlan": null,
+                "beforeRemaining": null,
+                "beforeStatusAt": "2026-11-17 09:30",
+                "id": "material-actuals:leveling:8",
+                "previousEntryId": "material-actuals:leveling:6",
+                "reason": "실제 재고 잔여 배치",
+                "recordedAt": "2026-11-17T05:07:15Z",
+                "recordedRevision": 8,
+                "sourceDocumentId": "material-actuals",
+                "sourceRevision": 7
+            }
+        ],
+        "materialActuals": [
+            {
+                "at": "2026-11-17 09:15",
+                "id": "mat-21",
+                "kind": "receipt",
+                "materialId": "M",
+                "openingAt": "2026-11-17 09:00",
+                "openingMilli": 2000,
+                "previousEntryId": "",
+                "quantityMilli": 1000,
+                "reason": "실제 입고·소모 확인",
+                "receiptId": "r1",
+                "recordedAt": "2026-11-17T03:00:00Z",
+                "recordedRevision": 2,
+                "reporter": "자재 담당",
+                "sourceDocumentId": "material-actuals",
+                "statusAt": "2026-11-17 09:30",
+                "taskId": "",
+                "transactionId": "mat-21",
+                "unit": "kg",
+                "useId": ""
+            },
+            {
+                "at": "2026-11-17 09:20",
+                "id": "mat-22",
+                "kind": "consume",
+                "materialId": "M",
+                "openingAt": "2026-11-17 09:00",
+                "openingMilli": 2000,
+                "previousEntryId": "",
+                "quantityMilli": 3000,
+                "reason": "실제 입고·소모 확인",
+                "receiptId": "",
+                "recordedAt": "2026-11-17T03:00:00Z",
+                "recordedRevision": 2,
+                "reporter": "자재 담당",
+                "sourceDocumentId": "material-actuals",
+                "statusAt": "2026-11-17 09:30",
+                "taskId": "A",
+                "transactionId": "mat-22",
+                "unit": "kg",
+                "useId": ""
+            },
+            {
+                "at": "2026-11-17 09:30",
+                "id": "mat-23",
+                "kind": "confirm",
+                "materialId": "M",
+                "openingAt": "2026-11-17 09:00",
+                "openingMilli": 2000,
+                "previousEntryId": "",
+                "quantityMilli": 0,
+                "reason": "실제 입고·소모 확인",
+                "receiptId": "",
+                "recordedAt": "2026-11-17T03:00:00Z",
+                "recordedRevision": 3,
+                "reporter": "자재 담당",
+                "sourceDocumentId": "material-actuals",
+                "statusAt": "2026-11-17 09:30",
+                "taskId": "",
+                "transactionId": "mat-23",
+                "unit": "kg",
+                "useId": ""
+            },
+            {
+                "at": "2026-11-17 09:30",
+                "id": "mat-24",
+                "kind": "remaining",
+                "materialId": "M",
+                "openingAt": "2026-11-17 09:00",
+                "openingMilli": 2000,
+                "previousEntryId": "",
+                "quantityMilli": 1000,
+                "reason": "실제 입고·소모 확인",
+                "receiptId": "",
+                "recordedAt": "2026-11-17T03:00:00Z",
+                "recordedRevision": 3,
+                "reporter": "자재 담당",
+                "sourceDocumentId": "material-actuals",
+                "statusAt": "2026-11-17 09:30",
+                "taskId": "A",
+                "transactionId": "mat-24",
+                "unit": "kg",
+                "useId": "uA"
+            },
+            {
+                "at": "2026-11-17 09:30",
+                "id": "mat-25",
+                "kind": "remaining",
+                "materialId": "M",
+                "openingAt": "2026-11-17 09:00",
+                "openingMilli": 2000,
+                "previousEntryId": "",
+                "quantityMilli": 1000,
+                "reason": "실제 입고·소모 확인",
+                "receiptId": "",
+                "recordedAt": "2026-11-17T03:00:00Z",
+                "recordedRevision": 3,
+                "reporter": "자재 담당",
+                "sourceDocumentId": "material-actuals",
+                "statusAt": "2026-11-17 09:30",
+                "taskId": "B",
+                "transactionId": "mat-25",
+                "unit": "kg",
+                "useId": "uB"
+            },
+            {
+                "at": "2026-11-17 09:15",
+                "id": "bf0030f8-57a2-48f6-bcd5-fc7be64ea1d9",
+                "kind": "receipt",
+                "materialId": "M",
+                "openingAt": "2026-11-17 09:00",
+                "openingMilli": 2000,
+                "previousEntryId": "mat-21",
+                "quantityMilli": 1500,
+                "reason": "실제 입고·소모 확인",
+                "receiptId": "r1",
+                "recordedAt": "2026-11-17T03:00:00Z",
+                "recordedRevision": 6,
+                "reporter": "자재 담당",
+                "sourceDocumentId": "material-actuals",
+                "statusAt": "2026-11-17 09:30",
+                "taskId": "",
+                "transactionId": "mat-21",
+                "unit": "kg",
+                "useId": ""
+            },
+            {
+                "at": "2026-11-17 09:30",
+                "id": "4ab4878f-c46a-469e-8870-141b8d75401d",
+                "kind": "confirm",
+                "materialId": "M",
+                "openingAt": "2026-11-17 09:00",
+                "openingMilli": 2000,
+                "previousEntryId": "",
+                "quantityMilli": 500,
+                "reason": "실제 입고·소모 확인",
+                "receiptId": "",
+                "recordedAt": "2026-11-17T03:00:00Z",
+                "recordedRevision": 7,
+                "reporter": "자재 담당",
+                "sourceDocumentId": "material-actuals",
+                "statusAt": "2026-11-17 09:30",
+                "taskId": "",
+                "transactionId": "4ab4878f-c46a-469e-8870-141b8d75401d",
+                "unit": "kg",
+                "useId": ""
+            },
+            {
+                "at": "2026-11-17 09:30",
+                "id": "300ded63-0f03-4d8d-8bfc-f4673e427888",
+                "kind": "remaining",
+                "materialId": "M",
+                "openingAt": "2026-11-17 09:00",
+                "openingMilli": 2000,
+                "previousEntryId": "",
+                "quantityMilli": 1000,
+                "reason": "실제 입고·소모 확인",
+                "receiptId": "",
+                "recordedAt": "2026-11-17T03:00:00Z",
+                "recordedRevision": 7,
+                "reporter": "자재 담당",
+                "sourceDocumentId": "material-actuals",
+                "statusAt": "2026-11-17 09:30",
+                "taskId": "A",
+                "transactionId": "300ded63-0f03-4d8d-8bfc-f4673e427888",
+                "unit": "kg",
+                "useId": "uA"
+            },
+            {
+                "at": "2026-11-17 09:30",
+                "id": "0fe3318f-9964-41de-a6a6-29a17e95eafd",
+                "kind": "remaining",
+                "materialId": "M",
+                "openingAt": "2026-11-17 09:00",
+                "openingMilli": 2000,
+                "previousEntryId": "",
+                "quantityMilli": 1000,
+                "reason": "실제 입고·소모 확인",
+                "receiptId": "",
+                "recordedAt": "2026-11-17T03:00:00Z",
+                "recordedRevision": 7,
+                "reporter": "자재 담당",
+                "sourceDocumentId": "material-actuals",
+                "statusAt": "2026-11-17 09:30",
+                "taskId": "B",
+                "transactionId": "0fe3318f-9964-41de-a6a6-29a17e95eafd",
+                "unit": "kg",
+                "useId": "uB"
+            }
+        ],
+        "name": "실제 자재 잔여 자동 대기",
+        "progress": [
+            {
+                "actualDurationMinutes": 30,
+                "actualFinish": null,
+                "actualStart": "2026-11-17 09:00",
+                "id": "progress-A",
+                "planDurationMinutes": 60,
+                "previousEntryId": "",
+                "reason": "진행 확인",
+                "recordedAt": "2026-11-17T03:00:00Z",
+                "recordedRevision": 1,
+                "remainingMinutes": 60,
+                "reporter": "현장",
+                "sourceDocumentId": "material-actuals",
+                "statusAt": "2026-11-17 09:30",
+                "taskId": "A"
+            }
+        ],
+        "remainingLeveling": {
+            "adoptedAt": "2026-11-17T03:00:00Z",
+            "horizonWorkDays": 2,
+            "policy": "serial-material-remaining-v1",
+            "priority": "task-order",
+            "reason": "실제 재고 잔여 배치",
+            "sourceDocumentId": "material-actuals",
+            "sourceRevision": 7
+        },
+        "resourcePlan": {
+            "autoDelayRemainingForReceipts": true,
+            "demands": [
+            ],
+            "expenses": [
+            ],
+            "materials": [
+                {
+                    "id": "M",
+                    "name": "철근",
+                    "stockMilli": 2000,
+                    "unit": "kg",
+                    "unitPriceMinor": 0
+                }
+            ],
+            "receipts": [
+                {
+                    "at": "2026-11-17 11:00",
+                    "id": "r1",
+                    "materialId": "M",
+                    "quantityMilli": 3000
+                }
+            ],
+            "roles": [
+            ],
+            "uses": [
+                {
+                    "accrual": "start",
+                    "id": "uA",
+                    "materialId": "M",
+                    "quantityMilli": 3000,
+                    "taskId": "A"
+                },
+                {
+                    "accrual": "finish",
+                    "id": "uB",
+                    "materialId": "M",
+                    "quantityMilli": 1000,
+                    "taskId": "B"
+                }
+            ]
+        },
+        "resources": [
+            {
+                "calendarId": "",
+                "exceptions": [
+                ],
+                "id": "R",
+                "maxUnits": 200,
+                "name": "시공조",
+                "rates": [
+                ],
+                "type": "labor"
+            }
+        ],
+        "revision": 8,
+        "scenarios": [
+            {
+                "createdAt": "2026-11-17T03:00:00Z",
+                "horizonWorkDays": 2,
+                "id": "b94ec0db-5928-4eb0-8ef2-cefbdba40d9d",
+                "input": {
+                    "assignments": [
+                        {
+                            "resourceId": "R",
+                            "taskId": "A",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "R",
+                            "taskId": "B",
+                            "units": 100
+                        }
+                    ],
+                    "calculationProfile": "native-effort-split-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "calendars": [
+                    ],
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "KRW",
+                    "holidays": [
+                    ],
+                    "name": "실제 자재 잔여 자동 대기",
+                    "resourcePlan": {
+                        "autoDelayRemainingForReceipts": true,
+                        "demands": [
+                        ],
+                        "expenses": [
+                        ],
+                        "materials": [
+                            {
+                                "id": "M",
+                                "name": "철근",
+                                "stockMilli": 2000,
+                                "unit": "kg",
+                                "unitPriceMinor": 0
+                            }
+                        ],
+                        "receipts": [
+                            {
+                                "at": "2026-11-17 11:00",
+                                "id": "r1",
+                                "materialId": "M",
+                                "quantityMilli": 3000
+                            }
+                        ],
+                        "roles": [
+                        ],
+                        "uses": [
+                            {
+                                "accrual": "start",
+                                "id": "uA",
+                                "materialId": "M",
+                                "quantityMilli": 3000,
+                                "taskId": "A"
+                            },
+                            {
+                                "accrual": "finish",
+                                "id": "uB",
+                                "materialId": "M",
+                                "quantityMilli": 1000,
+                                "taskId": "B"
+                            }
+                        ]
+                    },
+                    "resources": [
+                        {
+                            "calendarId": "",
+                            "exceptions": [
+                            ],
+                            "id": "R",
+                            "maxUnits": 200,
+                            "name": "시공조",
+                            "rates": [
+                            ],
+                            "type": "labor"
+                        }
+                    ],
+                    "startDate": "2026-11-17",
+                    "taskCosts": [
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "A"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "B"
+                        }
+                    ],
+                    "tasks": [
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 60,
+                            "id": "A",
+                            "name": "진행 작업",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 60,
+                            "id": "B",
+                            "name": "후속 작업",
+                            "predecessors": [
+                                "A"
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        }
+                    ],
+                    "wbsNodes": [
+                    ]
+                },
+                "inputRevision": 4,
+                "materialActuals": [
+                    {
+                        "at": "2026-11-17 09:15",
+                        "id": "mat-21",
+                        "kind": "receipt",
+                        "materialId": "M",
+                        "openingAt": "2026-11-17 09:00",
+                        "openingMilli": 2000,
+                        "previousEntryId": "",
+                        "quantityMilli": 1000,
+                        "reason": "실제 입고·소모 확인",
+                        "receiptId": "r1",
+                        "recordedAt": "2026-11-17T03:00:00Z",
+                        "recordedRevision": 2,
+                        "reporter": "자재 담당",
+                        "sourceDocumentId": "material-actuals",
+                        "statusAt": "2026-11-17 09:30",
+                        "taskId": "",
+                        "transactionId": "mat-21",
+                        "unit": "kg",
+                        "useId": ""
+                    },
+                    {
+                        "at": "2026-11-17 09:20",
+                        "id": "mat-22",
+                        "kind": "consume",
+                        "materialId": "M",
+                        "openingAt": "2026-11-17 09:00",
+                        "openingMilli": 2000,
+                        "previousEntryId": "",
+                        "quantityMilli": 3000,
+                        "reason": "실제 입고·소모 확인",
+                        "receiptId": "",
+                        "recordedAt": "2026-11-17T03:00:00Z",
+                        "recordedRevision": 2,
+                        "reporter": "자재 담당",
+                        "sourceDocumentId": "material-actuals",
+                        "statusAt": "2026-11-17 09:30",
+                        "taskId": "A",
+                        "transactionId": "mat-22",
+                        "unit": "kg",
+                        "useId": ""
+                    },
+                    {
+                        "at": "2026-11-17 09:30",
+                        "id": "mat-23",
+                        "kind": "confirm",
+                        "materialId": "M",
+                        "openingAt": "2026-11-17 09:00",
+                        "openingMilli": 2000,
+                        "previousEntryId": "",
+                        "quantityMilli": 0,
+                        "reason": "실제 입고·소모 확인",
+                        "receiptId": "",
+                        "recordedAt": "2026-11-17T03:00:00Z",
+                        "recordedRevision": 3,
+                        "reporter": "자재 담당",
+                        "sourceDocumentId": "material-actuals",
+                        "statusAt": "2026-11-17 09:30",
+                        "taskId": "",
+                        "transactionId": "mat-23",
+                        "unit": "kg",
+                        "useId": ""
+                    },
+                    {
+                        "at": "2026-11-17 09:30",
+                        "id": "mat-24",
+                        "kind": "remaining",
+                        "materialId": "M",
+                        "openingAt": "2026-11-17 09:00",
+                        "openingMilli": 2000,
+                        "previousEntryId": "",
+                        "quantityMilli": 1000,
+                        "reason": "실제 입고·소모 확인",
+                        "receiptId": "",
+                        "recordedAt": "2026-11-17T03:00:00Z",
+                        "recordedRevision": 3,
+                        "reporter": "자재 담당",
+                        "sourceDocumentId": "material-actuals",
+                        "statusAt": "2026-11-17 09:30",
+                        "taskId": "A",
+                        "transactionId": "mat-24",
+                        "unit": "kg",
+                        "useId": "uA"
+                    },
+                    {
+                        "at": "2026-11-17 09:30",
+                        "id": "mat-25",
+                        "kind": "remaining",
+                        "materialId": "M",
+                        "openingAt": "2026-11-17 09:00",
+                        "openingMilli": 2000,
+                        "previousEntryId": "",
+                        "quantityMilli": 1000,
+                        "reason": "실제 입고·소모 확인",
+                        "receiptId": "",
+                        "recordedAt": "2026-11-17T03:00:00Z",
+                        "recordedRevision": 3,
+                        "reporter": "자재 담당",
+                        "sourceDocumentId": "material-actuals",
+                        "statusAt": "2026-11-17 09:30",
+                        "taskId": "B",
+                        "transactionId": "mat-25",
+                        "unit": "kg",
+                        "useId": "uB"
+                    }
+                ],
+                "name": "실제 재고 시나리오",
+                "policy": "serial-material-remaining-v1",
+                "priority": "task-order",
+                "progress": [
+                    {
+                        "actualDurationMinutes": 30,
+                        "actualFinish": null,
+                        "actualStart": "2026-11-17 09:00",
+                        "id": "progress-A",
+                        "planDurationMinutes": 60,
+                        "previousEntryId": "",
+                        "reason": "진행 확인",
+                        "recordedAt": "2026-11-17T03:00:00Z",
+                        "recordedRevision": 1,
+                        "remainingMinutes": 60,
+                        "reporter": "현장",
+                        "sourceDocumentId": "material-actuals",
+                        "statusAt": "2026-11-17 09:30",
+                        "taskId": "A"
+                    }
+                ],
+                "sourceDocumentId": "material-actuals",
+                "statusAt": "2026-11-17 09:30"
+            }
+        ],
+        "startDate": "2026-11-17",
+        "statusAt": "2026-11-17 09:30",
+        "taskCosts": [
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "A"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "B"
+            }
+        ],
+        "tasks": [
+            {
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 60,
+                "id": "A",
+                "name": "진행 작업",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 60,
+                "id": "B",
+                "name": "후속 작업",
+                "predecessors": [
+                    "A"
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            }
+        ],
+        "wbsNodes": [
+        ]
+    },
+    "schemaVersion": 83,
+    "sha256": "dee0ceb36034d08ab9307a8cf141088da50ea5a716fe42dbb286ddb96f10b304"
+}

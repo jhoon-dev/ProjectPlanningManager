@@ -2,6 +2,8 @@
 #include "domain/Project.h"
 #include <QJsonObject>
 namespace jobs::json {
-QJsonObject encodeProject(const Project& project);
-Project decodeProject(const QJsonObject& object, int schema);
-}
+QJsonObject encodePlanInput(const PlanInput &);
+PlanInput decodePlanInput(const QJsonObject &, int schema);
+QJsonObject encodeProject(const Project &project, bool includeXerFinancials = true);
+Project decodeProject(const QJsonObject &object, int schema);
+} // namespace jobs::json

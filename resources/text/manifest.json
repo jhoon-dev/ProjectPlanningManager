@@ -1,0 +1,12 @@
+{
+  "version": "16.0.0",
+  "source": "https://www.unicode.org/Public/16.0.0/ucd/UCD.zip",
+  "source_sha256": "c86dd81f2b14a43b0cc064aa5f89aa7241386801e35c59c7984e579832634eb2",
+  "table_sha256": "fbc3775f19eb8201761c667a1dfd729f73fb3e1b727af1dfbb2ecca7fae996c0",
+  "records": 5457,
+  "files": {
+    "UnicodeData.txt": "ff58e5823bd095166564a006e47d111130813dcf8bf234ef79fa51a870edb48f",
+    "SpecialCasing.txt": "8d5de354eef79f2395a54c9c7dcebbaf3d30fc962d0f85611ea97aa973a0c451",
+    "DerivedCoreProperties.txt": "39d35161f2954497f69e08bdb9e701493f476a3d30222de20028feda36c1dabd"
+  }
+}

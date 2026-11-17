@@ -1,0 +1,200 @@
+{
+  "status": "PASS_WITH_TIMING_LIMIT",
+  "date": "2026-11-14",
+  "contract": "XLG-01~06",
+  "tests": 215,
+  "validated_tests": 215,
+  "skipped": 0,
+  "standard_ctest_failures": 4,
+  "full_run": {
+    "tests": 214,
+    "passed": 211,
+    "failures": 3,
+    "seconds": 637.02
+  },
+  "isolated_run": {
+    "tests": 1,
+    "passed": 0,
+    "failures": 1,
+    "seconds": 180.12
+  },
+  "extended_revalidation": {
+    "status": "PASS",
+    "test": "exchange_async_recovery_diagnostics",
+    "standard_ctest_timeout_seconds": 180,
+    "verification_timeout_seconds": 300,
+    "command": [
+      "C:\\Users\\dow\\Development\\ToolMoa\\ProjectPlanningManager\\build-governance\\jobs_exchange_recovery_tests.exe",
+      "-platform",
+      "offscreen"
+    ],
+    "cwd": "C:\\Users\\dow\\Development\\ToolMoa\\ProjectPlanningManager\\build-governance",
+    "exit_code": 0,
+    "seconds": 224.57112059998326,
+    "executable_sha256": "1cb02bbd3de8f084b8265c51eaa1c49c0aeb1788efd4c5755ab02379693747c4",
+    "source_changed": false
+  },
+  "general_extended_revalidation": {
+    "status": "PASS",
+    "standard_failures": 3,
+    "source_changed": false,
+    "build_identity_sha256": "3b5e43a45d73869d1435a12f1d65150dbc876fe469e382afb1521a9eeffb7a75",
+    "executions": [
+      {
+        "name": "resource_productivity_curve_contract",
+        "command": [
+          "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance/jobs_resource_planning_tests.exe",
+          "-platform",
+          "offscreen"
+        ],
+        "cwd": "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance",
+        "standard_timeout_seconds": 180,
+        "verification_timeout_seconds": 300,
+        "executable_sha256": "315ce2c29d832dbfb5ee7ee9f34ac401f9ab8d517e5128530e67b0c549912bf3",
+        "log": "general-extended-resource_productivity_curve_contract.txt",
+        "status": "PASS",
+        "exit_code": 0,
+        "seconds": 109.7896867999807
+      },
+      {
+        "name": "work_contour_contract",
+        "command": [
+          "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance/jobs_work_contour_tests.exe",
+          "-platform",
+          "offscreen"
+        ],
+        "cwd": "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance",
+        "standard_timeout_seconds": 180,
+        "verification_timeout_seconds": 300,
+        "executable_sha256": "7b3b5298645cb4ce0ced318e06f12bfc4dabc3f83314995e4b1ca450c4975a50",
+        "log": "general-extended-work_contour_contract.txt",
+        "status": "PASS",
+        "exit_code": 0,
+        "seconds": 128.5565413000004
+      },
+      {
+        "name": "server_http_auth_sync_scheduler",
+        "command": [
+          "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/.deps/server/Scripts/python.exe",
+          "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/test_server.py"
+        ],
+        "cwd": "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance",
+        "standard_timeout_seconds": 240,
+        "verification_timeout_seconds": 360,
+        "executable_sha256": "0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+        "log": "general-extended-server_http_auth_sync_scheduler.txt",
+        "engine_sha256": "f9425ed90edf98a2ab9d47815899ea4a722d108c115c2715bd43eca8dc84d7f3",
+        "status": "PASS",
+        "exit_code": 0,
+        "seconds": 92.60533310001483
+      }
+    ]
+  },
+  "focused_tests": 46,
+  "focused_execution": "subset of final full run",
+  "parser_seeds": 906,
+  "format_files": 541,
+  "maximum_supported_schema": 64,
+  "active_logical_schema": 64,
+  "disabled_source_read_schema": 44,
+  "native_layout_changed": false,
+  "independent": {
+    "status": "PASS",
+    "schema": 64,
+    "bitwise_vectors": 4096,
+    "typed_truth_cases": 200,
+    "scalar_cases": 33,
+    "xml_cells": 20,
+    "xml_missing_cells": 4,
+    "xml_inherited_cells": 2,
+    "xer_static_values": 20,
+    "formula_definitions": 32,
+    "report_rows": 66,
+    "pdf_pages": 19,
+    "native_file_sha256": "b64c13ecf8d1543bd6dbd9f6a1adb29b5b86c61cb5f6e1a431f4d90d20183f47",
+    "external_product_run": false
+  },
+  "vbscript": {
+    "status": "PASS",
+    "comparisons": 4296,
+    "bitwise_vectors": 4096,
+    "typed_truth_cases": 200,
+    "engine": "Windows VBScript",
+    "scope": "32-bit integer and Boolean/Null operands; no fractional or text coercion.",
+    "legacy_precedence_difference": {
+      "expression": "True Or True Xor True",
+      "native_legacy": "True",
+      "vbscript": "False",
+      "native_with_eqv_profile": "VBA order"
+    },
+    "external_product_run": false
+  },
+  "external_product_run": false,
+  "runtime": {
+    "executable": "C:\\Users\\dow\\Development\\ToolMoa\\ProjectPlanningManager\\build-governance\\xml-logical-runtime-41c0f531\\payload\\PPM.exe",
+    "file_count": 298,
+    "standalone_schema64_read": true
+  },
+  "sources": {
+    "CMakeLists.txt": "7f659fca46fd91101ed3eba58e9373120c7d661e7684f17e402b470aa1bb837f",
+    "src/domain/XmlLogical.cpp": "3f6eeb80c3a42f5167ab5d334a6ab9defbc5ab3dac65cba3cac57d0e6bb82a67",
+    "src/domain/XmlLogical.h": "e8322f702a09b80f6a3f94254ea81d9e26276a954ee99fa4a4990b968f31e12d",
+    "src/domain/XmlFormula.cpp": "4f1c32e9e5e77ab56d9772f59fa428e459a2f0d86460b0814d90a6729c228106",
+    "src/domain/NativeSchema.h": "5d9157afe1f015e6340f2f9d80e184667bef0df5e87ed2e4871ef8645d9c0ef3",
+    "src/domain/Classification.cpp": "9064ee530329ad4d689b054c0f616ec3f1613a67c7ce198b9024247daaa18252",
+    "src/persistence/ClassificationJson.cpp": "0fee6cada13042e36f44189fd56fb84dd0f7539d54d554ea10a5213bf25361d0",
+    "src/ui/XmlFormulaDialog.cpp": "39a7a60ee9514077c15b51f3fd54dd86c3c863f043f6501304fe7725309e6f14",
+    "tests/XmlLogicalTests.cpp": "b95a38a518451f034a1840c25144d2fe71596acfc927261356c3c4099149fea3",
+    "scripts/verify-xml-logical.py": "e93804453697b60a42e8818d2bc0dc16c5f64cda2e3050b0cc5c290392f5ac09",
+    "scripts/verify-xml-logical-vbscript.py": "c338c903690a32182feca2b41e8c1bd53f8614ba879b2f3ce6ac722de61f7c76",
+    "docs/xml-logical-operators.md": "9772f433f47707570bf793c46a1941b1d1775246ad20856e1a038fafd7e0eb53"
+  },
+  "artifacts": {
+    "guard-focused.txt": "0e87f6a3797423ee0f5b45b578494982e8a7869e1aa8cbb5a4943168496e6a69",
+    "guard-focused.xml": "e9e040e064455ae09232b20dd241c02d68bf1f4f1186082cc69f738f1a506690",
+    "refined-build.txt": "a41e73bc84e7887b5f06e7563b4c49a22ea55aa700e9ac31a61eb1496dbea4a8",
+    "refined-focused.txt": "cf3728c975ae37e3959aca4a14b958c893de2fc1436e47fa2607fc85449bf06d",
+    "refined-focused.xml": "2fbd38c6315ba1f5000e54c52203388a391bb4043c1252345a44448534656284",
+    "build-interrupted.txt": "945c0a260b30c9e559bab2e37bd01a2445a76a6ba559cc12d510eb61280684e1",
+    "truth.json": "dfe4756549c4e3aea2d77d52b01da94cf93e9b64e023896dff2ece868d9f2037",
+    "initial-build.txt": "9388a77936fa0a82653d60dd4407723d206955b5dd107f9ce6e34b85dc57c838",
+    "initial-focused.txt": "d529fe1fbdb6ecb5f150cf54ec6588240fae43914751309a6fe2a498c6052f33",
+    "initial-focused.xml": "d003fc87f303ff25976e26ae9b8212e25e3c272ebfa69c1a3eda3a981f63213b",
+    "build.txt": "f3cbe8746d84b7cc365728812dbe7cfd2021122249b080fb03ca22dae32db748",
+    "ctest.txt": "7d513ca918629662ba89f71d32feee5324bd90bca994c960337de392206450d9",
+    "ctest.xml": "77e823c89ab683e3d84a4ae349df2df465bb6ea91b44480be94ad9c4da993c23",
+    "isolated.txt": "0856dea8482ee6416f891301ec79bebc0f8cbaa5dcba3858bf62afdbf3ba5227",
+    "isolated.xml": "d57c80754836166b87b90be3c5745d497dcbe01c185945a8a25dc7ca5d0437b1",
+    "focused.txt": "bb14c6b40300b4ac22c58d9c5478f3bffac82171c1593df652bbed097b014450",
+    "focused.xml": "a913d2065a7fb7a8a7a844ede56ca17d0680decd7e95fb4c6b93234108b0a1db",
+    "quality.json": "c4fa6a614c997f82a1a377930794254d63783bbae8a1f687976e5f4850d9b8f8",
+    "independent.json": "a2444da51897aad24e0ac24a7b26860dab005cafcc392e9c22f5675a38d2b890",
+    "runtime.json": "d77f9a35e509049f2ead0dfe578aa52b8d5c2bd5c3eaafe3acb21049503e9ece",
+    "runtime-deploy.txt": "1b8929f9cfeefaa55987b0cf8424fc70d7729713d70f8f3f13adbf8abbd6e66f",
+    "runtime-inspect.json": "00dc86d2e80fe9e60f2235c152ae64b67662b87d4d0b0b4c59adaafc234345ea",
+    "native.json": "b06aadb78c09ff83f582dfe7ae3c58559dcf0ade90491f172ea5b7757d9559a1",
+    "archived.json": "68d472668d9504f4abf58a9dc3cc83ebae0cdfa56e8528fa0e5852c75d488fa9",
+    "operators.xml": "17579a75c6f0686f50614f89775d3c132a951754f82477276cc5b611c4406ff9",
+    "operators.xer": "08e884cd2d33f5702228444fe168682fa2431c3c14a6e33d76f5ab21d389c958",
+    "cases.json": "abe30c551e1b3081db208cae83bde4f9091dd4eededeb691f1593ecf915a4d29",
+    "vbscript.json": "14b3d3bcee375a468067dcfa1beddfc11ad18be424c14204cd05256abdfc9372",
+    "vbscript.txt": "d117f50936d07a99b79e487af096c910a744904a8db44a585aa8a86991f71766",
+    "vbscript-oracle.vbs": "8b5ba2af07e3d09b5f3925173df9582b09f333a03eb38217f025bb98f4833219",
+    "vbscript-input.tsv": "f0dd57327216bfa67164d93142b61b19bac961f3f8b1966e3e8ce9a48782ee5f",
+    "vbscript-output.tsv": "b4f60813b97721b84d1e811ca3dc505187050be34d5c7edfbdda858405f415d0",
+    "mapping.json": "b70f4ae71205b1153b2b94fae303ff339751473691584025c502043000bf9bf5",
+    "vectors.json": "83afbdcd8de8ce5faa80ee31512d70d292cfa26c70b23c400604b4455a2fb369",
+    "source.ppm": "b64c13ecf8d1543bd6dbd9f6a1adb29b5b86c61cb5f6e1a431f4d90d20183f47",
+    "fields.xlsx": "669a203ac003a3229c86a9f2508f4df05e4c3673da145a5a8900ff92e9d5ec3f",
+    "fields.pdf": "180ad1c887037cd9ffafe20756b359c7567ad8018c48ab3743dc9299c4b90657",
+    "report-page.png": "7ba11dbb6bf1c8d66c0f52a012e3c4c2d5057f16f20c96e14b9e36d248c1237e",
+    "editor.png": "f80cb32eead3b3363aad8e338778cb8c69e3f018ef7252cfe244a95545d2c412",
+    "editor-small.png": "21b7e3c45560e8e0604f90cfd53898199d1688d74f41bf94bd25377d7f96ca81",
+    "extended.json": "79b74769d50383ba6dab9a7ca97a458776c8a3f59422a8cdba1e8460bfa23c30",
+    "extended.txt": "43b3ae1c6b10ef709e5b895a8742cdd600d3ec34ccdeda81eb397da081ed04ad",
+    "general-extended.json": "d672624fb038fb63c6c2ca32adb9311d2c40f5b4d19e9a1d1fb832b0261d0ad4",
+    "general-extended-resource_productivity_curve_contract.txt": "43bce5b274bc1f09f775f74f769005c006cd98c76f135acef9a1d63217d81436",
+    "general-extended-work_contour_contract.txt": "1e4f1c26985917981c46e8df0c695d71989b607096a9c905cee63175333e361b",
+    "general-extended-server_http_auth_sync_scheduler.txt": "8ddf88798e2ecfbf8d205daf90c75ba93d32e5272fffd96f07327ef6273431e2"
+  }
+}

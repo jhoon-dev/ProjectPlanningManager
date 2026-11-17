@@ -1,0 +1,131 @@
+Start testing: Nov 05 14:35 대한민국 표준시
+----------------------------------------------------------
+1/101 Testing: presentation_contract
+1/101 Test: presentation_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions/jobs_presentation_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions
+"presentation_contract" start time: Nov 05 14:35 대한민국 표준시
+Output:
+----------------------------------------------------------
+Presentation: schema18/history/dirty/recovery/scoped-WBS/relations/vector PDF/printer/cancel passed
+<end of output>
+Test time =   5.10 sec
+----------------------------------------------------------
+Test Passed.
+"presentation_contract" end time: Nov 05 14:35 대한민국 표준시
+"presentation_contract" time elapsed: 00:00:05
+----------------------------------------------------------
+
+2/101 Testing: presentation_ui
+2/101 Test: presentation_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions/jobs_presentation_ui_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions
+"presentation_ui" start time: Nov 05 14:35 대한민국 표준시
+Output:
+----------------------------------------------------------
+Presentation UI: reopen prefs/layout/relations atomic failure/print preview/readonly passed
+<end of output>
+Test time =   2.00 sec
+----------------------------------------------------------
+Test Passed.
+"presentation_ui" end time: Nov 05 14:35 대한민국 표준시
+"presentation_ui" time elapsed: 00:00:02
+----------------------------------------------------------
+
+25/101 Testing: network_diagram_contract
+25/101 Test: network_diagram_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions/jobs_network_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions
+"network_diagram_contract" start time: Nov 05 14:35 대한민국 표준시
+Output:
+----------------------------------------------------------
+network: plan/forecast/PDM binding, filtered graph, paging, leveling unknown, SCC, missing IDs, capped edges, cancellation, 1k/10k passed
+<end of output>
+Test time =   0.34 sec
+----------------------------------------------------------
+Test Passed.
+"network_diagram_contract" end time: Nov 05 14:35 대한민국 표준시
+"network_diagram_contract" time elapsed: 00:00:00
+----------------------------------------------------------
+
+26/101 Testing: network_diagram_ui
+26/101 Test: network_diagram_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions/jobs_network_ui_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions
+"network_diagram_ui" start time: Nov 05 14:35 대한민국 표준시
+Output:
+----------------------------------------------------------
+network UI: source selection, graph/relations, table/Gantt jump, escaped names, revision/cancel/session, readonly/cycle, 1k/10k bounded scene passed
+<end of output>
+Test time =   3.07 sec
+----------------------------------------------------------
+Test Passed.
+"network_diagram_ui" end time: Nov 05 14:35 대한민국 표준시
+"network_diagram_ui" time elapsed: 00:00:03
+----------------------------------------------------------
+
+27/101 Testing: schedule_print_contract
+27/101 Test: schedule_print_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions/jobs_schedule_print_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions
+"schedule_print_contract" start time: Nov 05 14:35 대한민국 표준시
+Output:
+----------------------------------------------------------
+schedule print: row/column/time pagination, wrapping/continuation, actual/baseline, fresh dates, selected/empty, PDF/printer/range/reverse/copies, atomic/cancel passed
+<end of output>
+Test time =   7.11 sec
+----------------------------------------------------------
+Test Passed.
+"schedule_print_contract" end time: Nov 05 14:35 대한민국 표준시
+"schedule_print_contract" time elapsed: 00:00:07
+----------------------------------------------------------
+
+28/101 Testing: schedule_print_ui
+28/101 Test: schedule_print_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions/jobs_schedule_print_ui_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions
+"schedule_print_ui" start time: Nov 05 14:35 대한민국 표준시
+Output:
+----------------------------------------------------------
+print UI: filter/order/columns/selection, prepare/options/preview, cancel, same-id session, readonly, file cancellation, menu passed
+<end of output>
+Test time =   4.41 sec
+----------------------------------------------------------
+Test Passed.
+"schedule_print_ui" end time: Nov 05 14:35 대한민국 표준시
+"schedule_print_ui" time elapsed: 00:00:04
+----------------------------------------------------------
+
+51/101 Testing: parser_seed_replay
+51/101 Test: parser_seed_replay
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions/jobs_parser_seed_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions
+"parser_seed_replay" start time: Nov 05 14:35 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: 160 parser seeds, schema 1..18, leveling/classification/views, checksum/body separation, byte limit and store parity
+<end of output>
+Test time =   0.53 sec
+----------------------------------------------------------
+Test Passed.
+"parser_seed_replay" end time: Nov 05 14:35 대한민국 표준시
+"parser_seed_replay" time elapsed: 00:00:00
+----------------------------------------------------------
+
+98/101 Testing: file_lifecycle
+98/101 Test: file_lifecycle
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions/jobs_file_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions
+"file_lifecycle" start time: Nov 05 14:35 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: file lifecycle, Unicode, locks/conflicts, corruption/schema, schedule input roundtrip, stale revision/identity, schema-1 copy migration
+<end of output>
+Test time =   1.01 sec
+----------------------------------------------------------
+Test Passed.
+"file_lifecycle" end time: Nov 05 14:35 대한민국 표준시
+"file_lifecycle" time elapsed: 00:00:01
+----------------------------------------------------------
+
+End testing: Nov 05 14:35 대한민국 표준시

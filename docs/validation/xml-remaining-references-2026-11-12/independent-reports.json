@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "schema": 49,
+  "xml_cells": 64,
+  "missing_xml_cells": 3,
+  "remaining_formula_definitions": 11,
+  "xer_remaining_values": 52,
+  "external_product_run": false,
+  "report_cells": 64,
+  "xlsx_sheets": 27,
+  "pdf_pages": 22
+}

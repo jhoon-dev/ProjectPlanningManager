@@ -1,0 +1,15 @@
+test_long_poll_wakes_on_commit (__main__.ServerTests.test_long_poll_wakes_on_commit) ... C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\server\ppm_server\service.py:746: NotAppKeyWarning: It is recommended to use web.AppKey instances for keys.
+https://docs.aiohttp.org/en/stable/web_advanced.html#application-s-config
+  app["service"] = service
+C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\server\ppm_server\service.py:747: NotAppKeyWarning: It is recommended to use web.AppKey instances for keys.
+https://docs.aiohttp.org/en/stable/web_advanced.html#application-s-config
+  app["public_origin"] = public_origin.rstrip("/")
+Executing <Task pending name='Task-1' coro=<ServerTests.asyncSetUp() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\tests\test_server.py:46> cb=[_run_until_complete_cb() at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:181] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\runners.py:100> took 0.532 seconds
+Executing <Task pending name='Task-4' coro=<RequestHandler.start() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\.deps\server\Lib\site-packages\aiohttp\web_protocol.py:686> wait_for=<Task pending name='Task-14' coro=<RequestHandler._handle_request() running at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\.deps\server\Lib\site-packages\aiohttp\web_protocol.py:577> wait_for=<Future pending cb=[Task.task_wakeup()] created at C:\Users\dow\AppData\Local\Python\pythoncore-3.12-64\Lib\asyncio\base_events.py:448> cb=[Task.task_wakeup()] created at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\.deps\server\Lib\site-packages\aiohttp\web_protocol.py:682> created at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\.deps\server\Lib\site-packages\aiohttp\web_protocol.py:381> took 0.156 seconds
+Executing <Task finished name='Task-26' coro=<RequestHandler._handle_request() done, defined at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\.deps\server\Lib\site-packages\aiohttp\web_protocol.py:567> result=(<Response OK eof>, False) created at C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\.deps\server\Lib\site-packages\aiohttp\web_protocol.py:682> took 0.140 seconds
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.849s
+
+OK

@@ -1,0 +1,38 @@
+{
+    "at": "2026-11-17 10:01",
+    "contract": "ppm-material-inventory-v1",
+    "documentId": "inventory",
+    "mode": "plan",
+    "points": [
+        {
+            "availableMilli": 0,
+            "consumedMilli": 7001,
+            "firstShortage": "2026-11-17 10:01",
+            "issue": "",
+            "materialId": "M",
+            "name": "철근",
+            "openingMilli": 2000,
+            "receivedMilli": 5000,
+            "remainingMilli": -1,
+            "shortageMilli": 1,
+            "stockAt": "2026-11-17 09:00",
+            "unit": "kg"
+        },
+        {
+            "availableMilli": null,
+            "consumedMilli": 0,
+            "firstShortage": "",
+            "issue": "개시 재고가 미정입니다.",
+            "materialId": "N",
+            "name": "미정 재고",
+            "openingMilli": null,
+            "receivedMilli": 1000,
+            "remainingMilli": null,
+            "shortageMilli": null,
+            "stockAt": "2026-11-17 09:00",
+            "unit": "개"
+        }
+    ],
+    "quantityScale": 1000,
+    "revision": 3
+}

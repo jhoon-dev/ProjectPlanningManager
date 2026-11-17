@@ -1,0 +1,7 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+    Start 142: exchange_async_recovery_diagnostics
+1/1 Test #142: exchange_async_recovery_diagnostics ...   Passed  139.01 sec
+
+100% tests passed out of 1
+
+Total Test time (real) = 139.03 sec

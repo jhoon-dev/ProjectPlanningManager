@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "schema": 44,
+  "arithmetic_vectors": 400,
+  "checked_xml_cells": 126,
+  "formula_definitions_in_both_exports": 40,
+  "xer_static_values": 48,
+  "preserved_snapshots": {
+    "n": 999,
+    "summaryCost": "999.99"
+  },
+  "external_product_run": false,
+  "reports": {
+    "task_attribute_rows": 42,
+    "summary_rows": 8,
+    "numeric_cost": true,
+    "formula_metadata": true,
+    "pdf_pages": 15
+  }
+}

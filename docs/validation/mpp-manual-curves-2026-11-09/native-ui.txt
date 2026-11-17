@@ -1,0 +1,1 @@
+PASS: real MPP8/9/12/14 reading, exact original/native publication, no inferred observations, malformed/password/missing runtime/timeout/cancel boundaries

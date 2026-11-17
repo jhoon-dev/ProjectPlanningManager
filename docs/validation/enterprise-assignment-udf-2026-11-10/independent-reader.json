@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "xml_definitions": 7,
+  "xml_scalar_values": 9,
+  "xer_projects": [
+    1,
+    2
+  ],
+  "native_assignment_fields": 3,
+  "empty_zero_missing": "distinct",
+  "strict_reader": [
+    {
+      "file": "export.xml",
+      "ignored_errors": 0,
+      "definitions_read": true,
+      "limitation": "MPXJ16.10.0 omits enterprise hex-element values; exact values checked independently above"
+    },
+    {
+      "file": "export.xer",
+      "ignored_errors": 0,
+      "assignment_values": 2
+    }
+  ]
+}

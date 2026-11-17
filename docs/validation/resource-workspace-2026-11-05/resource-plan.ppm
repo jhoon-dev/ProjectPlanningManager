@@ -1,0 +1,490 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+            {
+                "resourceId": "R",
+                "taskId": "A",
+                "units": 100
+            }
+        ],
+        "baselines": [
+            {
+                "approvedBy": "PM",
+                "createdAt": "2026-11-05T00:00:00Z",
+                "engineVersion": "jobs-effort-1.1",
+                "id": "3f5bcc5c-a0ff-4f3b-92cc-9ee852392db7",
+                "input": {
+                    "assignments": [
+                        {
+                            "resourceId": "R",
+                            "taskId": "A",
+                            "units": 100
+                        }
+                    ],
+                    "calculationProfile": "native-effort-split-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "calendars": [
+                    ],
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "KRW",
+                    "holidays": [
+                    ],
+                    "name": "자재·비용·역할 검증",
+                    "resourcePlan": {
+                        "demands": [
+                            {
+                                "id": "D",
+                                "resourceId": "R",
+                                "roleId": "ROLE",
+                                "taskId": "A",
+                                "units": 100
+                            }
+                        ],
+                        "expenses": [
+                            {
+                                "account": "운송비",
+                                "accrual": "uniform",
+                                "amountMinor": 101,
+                                "id": "E",
+                                "name": "운송",
+                                "taskId": "A"
+                            }
+                        ],
+                        "materials": [
+                            {
+                                "id": "M",
+                                "name": "볼트",
+                                "stockMilli": 2000,
+                                "unit": "개",
+                                "unitPriceMinor": 199
+                            }
+                        ],
+                        "roles": [
+                            {
+                                "id": "ROLE",
+                                "name": "설치조",
+                                "type": "labor"
+                            }
+                        ],
+                        "uses": [
+                            {
+                                "accrual": "start",
+                                "id": "U",
+                                "materialId": "M",
+                                "quantityMilli": 1500,
+                                "taskId": "A"
+                            }
+                        ]
+                    },
+                    "resources": [
+                        {
+                            "calendarId": "",
+                            "exceptions": [
+                            ],
+                            "id": "R",
+                            "maxUnits": 100,
+                            "name": "시공조",
+                            "rates": [
+                                {
+                                    "effectiveDate": "2026-01-01",
+                                    "hourlyMinor": 0
+                                }
+                            ],
+                            "type": "labor"
+                        }
+                    ],
+                    "startDate": "2026-11-02",
+                    "taskCosts": [
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "A"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "B"
+                        }
+                    ],
+                    "tasks": [
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 960,
+                            "id": "A",
+                            "name": "시공",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 480,
+                            "id": "B",
+                            "name": "검사",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        }
+                    ],
+                    "wbsNodes": [
+                    ]
+                },
+                "inputRevision": 10,
+                "name": "기준",
+                "projectFinish": "2026-11-03 18:00",
+                "reason": "검증",
+                "schedule": [
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 2520,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-03 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 2520,
+                        "lateStartMinutes": 540,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:00",
+                        "taskId": "A",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": false,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 1080,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-02 18:00",
+                        "freeFloatMinutes": 480,
+                        "lateFinishMinutes": 2520,
+                        "lateStartMinutes": 1980,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:00",
+                        "taskId": "B",
+                        "totalFloatMinutes": 480
+                    }
+                ],
+                "sourceDocumentId": "resource-fixture",
+                "version": 1
+            }
+        ],
+        "calculationProfile": "native-effort-split-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "calendars": [
+        ],
+        "costEntries": [
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "KRW",
+        "derivedFrom": "resource-fixture",
+        "documentId": "235eb335-4eb4-45de-b1d8-12669cd5b868",
+        "holidays": [
+        ],
+        "name": "자재·비용·역할 검증",
+        "progress": [
+        ],
+        "resourcePlan": {
+            "demands": [
+                {
+                    "id": "D",
+                    "resourceId": "R",
+                    "roleId": "ROLE",
+                    "taskId": "A",
+                    "units": 100
+                }
+            ],
+            "expenses": [
+                {
+                    "account": "운송비",
+                    "accrual": "uniform",
+                    "amountMinor": 101,
+                    "id": "E",
+                    "name": "운송",
+                    "taskId": "A"
+                }
+            ],
+            "materials": [
+                {
+                    "id": "M",
+                    "name": "볼트",
+                    "stockMilli": 2000,
+                    "unit": "개",
+                    "unitPriceMinor": 399
+                }
+            ],
+            "roles": [
+                {
+                    "id": "ROLE",
+                    "name": "설치조",
+                    "type": "labor"
+                }
+            ],
+            "uses": [
+                {
+                    "accrual": "start",
+                    "id": "U",
+                    "materialId": "M",
+                    "quantityMilli": 1500,
+                    "taskId": "A"
+                }
+            ]
+        },
+        "resources": [
+            {
+                "calendarId": "",
+                "exceptions": [
+                ],
+                "id": "R",
+                "maxUnits": 100,
+                "name": "시공조",
+                "rates": [
+                    {
+                        "effectiveDate": "2026-01-01",
+                        "hourlyMinor": 0
+                    }
+                ],
+                "type": "labor"
+            }
+        ],
+        "revision": 14,
+        "scenarios": [
+            {
+                "createdAt": "2026-11-05T00:00:00Z",
+                "horizonWorkDays": 260,
+                "id": "c647f419-1397-4da0-8290-dfab025671c2",
+                "input": {
+                    "assignments": [
+                        {
+                            "resourceId": "R",
+                            "taskId": "A",
+                            "units": 100
+                        }
+                    ],
+                    "calculationProfile": "native-effort-split-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "calendars": [
+                    ],
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "KRW",
+                    "holidays": [
+                    ],
+                    "name": "자재·비용·역할 검증",
+                    "resourcePlan": {
+                        "demands": [
+                            {
+                                "id": "D",
+                                "resourceId": "R",
+                                "roleId": "ROLE",
+                                "taskId": "A",
+                                "units": 100
+                            }
+                        ],
+                        "expenses": [
+                            {
+                                "account": "운송비",
+                                "accrual": "uniform",
+                                "amountMinor": 101,
+                                "id": "E",
+                                "name": "운송",
+                                "taskId": "A"
+                            }
+                        ],
+                        "materials": [
+                            {
+                                "id": "M",
+                                "name": "볼트",
+                                "stockMilli": 2000,
+                                "unit": "개",
+                                "unitPriceMinor": 399
+                            }
+                        ],
+                        "roles": [
+                            {
+                                "id": "ROLE",
+                                "name": "설치조",
+                                "type": "labor"
+                            }
+                        ],
+                        "uses": [
+                            {
+                                "accrual": "start",
+                                "id": "U",
+                                "materialId": "M",
+                                "quantityMilli": 1500,
+                                "taskId": "A"
+                            }
+                        ]
+                    },
+                    "resources": [
+                        {
+                            "calendarId": "",
+                            "exceptions": [
+                            ],
+                            "id": "R",
+                            "maxUnits": 100,
+                            "name": "시공조",
+                            "rates": [
+                                {
+                                    "effectiveDate": "2026-01-01",
+                                    "hourlyMinor": 0
+                                }
+                            ],
+                            "type": "labor"
+                        }
+                    ],
+                    "startDate": "2026-11-02",
+                    "taskCosts": [
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "A"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "B"
+                        }
+                    ],
+                    "tasks": [
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 960,
+                            "id": "A",
+                            "name": "시공",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 480,
+                            "id": "B",
+                            "name": "검사",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        }
+                    ],
+                    "wbsNodes": [
+                    ]
+                },
+                "inputRevision": 12,
+                "name": "자재 시나리오",
+                "policy": "serial-effort-split-v2",
+                "priority": "deadline-first",
+                "progress": [
+                ],
+                "sourceDocumentId": "resource-fixture",
+                "statusAt": null
+            }
+        ],
+        "startDate": "2026-11-02",
+        "statusAt": null,
+        "taskCosts": [
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "A"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "B"
+            }
+        ],
+        "tasks": [
+            {
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 960,
+                "id": "A",
+                "name": "시공",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 480,
+                "id": "B",
+                "name": "복구 검사",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            }
+        ],
+        "wbsNodes": [
+        ]
+    },
+    "schemaVersion": 20,
+    "sha256": "2a473cb08939f4a72cb8785fced7bce53a5b910c60f914dc67eb440ee4b63bae"
+}

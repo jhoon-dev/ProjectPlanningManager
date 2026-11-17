@@ -1,0 +1,32 @@
+[0/1] Re-running CMake...
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
+-- Configuring done (2.7s)
+-- Generating done (2.4s)
+-- Build files have been written to: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+[1/30] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/XmlRollUp.cpp.obj
+[2/30] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/XmlFormula.cpp.obj
+[3/30] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/FormulaFields.cpp.obj
+[4/30] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Project.cpp.obj
+[5/30] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/XmlColors.cpp.obj
+[6/30] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Classification.cpp.obj
+[7/30] Linking CXX static library libjobs_domain.a
+[8/30] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/FormulaFieldReports.cpp.obj
+[9/30] Linking CXX static library libjobs_calculation.a
+[10/30] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectFile.cpp.obj
+[11/30] Building CXX object CMakeFiles/jobs_application.dir/src/application/ClassificationEditing.cpp.obj
+[12/30] Linking CXX static library libjobs_application.a
+[13/30] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/JsonRecoveryStore.cpp.obj
+[14/30] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectJson.cpp.obj
+[15/30] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/UdfMapping.cpp.obj
+[16/30] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectCurrencyJson.cpp.obj
+[17/30] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/LedgerIdentityJson.cpp.obj
+[18/30] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/XerScheduleJson.cpp.obj
+[19/30] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ClassificationJson.cpp.obj
+[20/30] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/PrimaveraXer.cpp.obj
+[21/30] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectXml.cpp.obj
+[22/30] Linking CXX static library libjobs_persistence.a
+[23/30] Automatic MOC for target jobs_updates
+[24/28] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/XmlFormulaDialog.cpp.obj
+[25/28] Building CXX object CMakeFiles/jobs_xml_color_tests.dir/tests/XmlColorTests.cpp.obj
+[26/28] Linking CXX static library libjobs_ui.a
+[27/28] Linking CXX executable jobs_xml_color_tests.exe

@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "schema": 55,
+  "parts": 4608,
+  "additions": 5120,
+  "differences": 8192,
+  "scalar_cases": 38,
+  "xml_cells": 22,
+  "xml_inherited_cells": 2,
+  "xer_static_values": 22,
+  "formula_definitions": 33,
+  "report_rows": 70,
+  "pdf_pages": 19,
+  "native_file_sha256": "add1604252f98701c2d6b109d20a4fe6c9bdd505fc746105aec4d0f296c8b81e",
+  "external_product_run": false
+}

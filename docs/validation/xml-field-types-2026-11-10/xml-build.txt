@@ -1,0 +1,8 @@
+[1/8] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectFile.cpp.obj
+[2/8] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/XerScheduleJson.cpp.obj
+[3/8] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/LedgerIdentityJson.cpp.obj
+[4/8] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectCurrencyJson.cpp.obj
+[5/8] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectXml.cpp.obj
+[6/8] Linking CXX static library libjobs_persistence.a
+[7/8] Building CXX object CMakeFiles/jobs_xml_field_types_tests.dir/tests/XmlFieldTypesTests.cpp.obj
+[8/8] Linking CXX executable jobs_xml_field_types_tests.exe

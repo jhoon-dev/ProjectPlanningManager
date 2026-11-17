@@ -1,0 +1,49 @@
+[0/1] Re-running CMake...
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
+-- Configuring done (3.0s)
+-- Generating done (1.9s)
+-- Build files have been written to: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+[1/96] Building CXX object CMakeFiles/jobs_formatting.dir/src/formatting/DiagnosticText.cpp.obj
+[2/96] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/ExternalEvmReports.cpp.obj
+[3/96] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/PeriodEvm.cpp.obj
+[4/96] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/ExternalEvm.cpp.obj
+[5/96] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/Project.cpp.obj
+[6/96] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Costs.cpp.obj
+[7/96] Linking CXX static library libjobs_domain.a
+[8/96] Linking CXX static library libjobs_formatting.a
+[9/96] Building CXX object CMakeFiles/jobs_application.dir/src/application/ClassificationEditing.cpp.obj
+[10/96] Building CXX object CMakeFiles/jobs_application.dir/src/application/TaskEditing.cpp.obj
+[11/96] Building CXX object CMakeFiles/jobs_application.dir/src/application/Document.cpp.obj
+[12/96] Building CXX object CMakeFiles/jobs_application.dir/src/application/ActivityEditing.cpp.obj
+[13/96] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Reports.cpp.obj
+[14/96] Building CXX object CMakeFiles/jobs_application.dir/src/application/ResourcePlanEditing.cpp.obj
+[15/96] Building CXX object CMakeFiles/jobs_application.dir/src/application/DatedRemainingWorkEditing.cpp.obj
+[16/96] Building CXX object CMakeFiles/jobs_application.dir/src/application/PeriodActualEditing.cpp.obj
+[17/96] Building CXX object CMakeFiles/jobs_application.dir/src/application/XerFinancialEditing.cpp.obj
+[18/96] Building CXX object CMakeFiles/jobs_application.dir/src/application/XerFinancialMerging.cpp.obj
+[19/96] Linking CXX static library libjobs_calculation.a
+[20/96] Building CXX object CMakeFiles/jobs_application.dir/src/application/LevelingEditing.cpp.obj
+[21/96] Building CXX object CMakeFiles/jobs_application.dir/src/application/XerSourceRelinking.cpp.obj
+[22/96] Building CXX object CMakeFiles/jobs_application.dir/src/application/ProgressPolicyEditing.cpp.obj
+[23/96] Building CXX object CMakeFiles/jobs_application.dir/src/application/ProjectState.cpp.obj
+[24/96] Building CXX object CMakeFiles/jobs_application.dir/src/application/ExternalEvmAdoption.cpp.obj
+[25/96] Building CXX object CMakeFiles/jobs_application.dir/src/application/PreparedEdit.cpp.obj
+[26/96] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ExternalEvmJson.cpp.obj
+[27/96] Linking CXX static library libjobs_application.a
+[28/96] Building CXX object CMakeFiles/jobs_parser_harness.dir/tests/fuzz/ParserHarness.cpp.obj
+[29/96] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectJson.cpp.obj
+[30/96] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/Automation.cpp.obj
+[31/96] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/XerActualCosts.cpp.obj
+[32/96] Building CXX object CMakeFiles/jobs_parser_seed_tests.dir/tests/fuzz/ParserSeeds.cpp.obj
+FAILED: [code=1] CMakeFiles/jobs_parser_seed_tests.dir/tests/fuzz/ParserSeeds.cpp.obj 
+C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\.deps\Qt\Tools\mingw1310_64\bin\c++.exe -DJOBS_FIXTURES=\"C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/fixtures\" -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_NO_DEBUG -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 -IC:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/fuzz -IC:/Users/dow/Development/ToolMoa/ProjectPlanningManager/src -isystem C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/.deps/Qt/6.8.3/mingw_64/include/QtCore -isystem C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/.deps/Qt/6.8.3/mingw_64/include -isystem C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/.deps/Qt/6.8.3/mingw_64/mkspecs/win32-g++ -O3 -DNDEBUG -std=c++20 -Wall -Wextra -Wpedantic -MD -MT CMakeFiles/jobs_parser_seed_tests.dir/tests/fuzz/ParserSeeds.cpp.obj -MF CMakeFiles\jobs_parser_seed_tests.dir\tests\fuzz\ParserSeeds.cpp.obj.d -o CMakeFiles/jobs_parser_seed_tests.dir/tests/fuzz/ParserSeeds.cpp.obj -c C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/fuzz/ParserSeeds.cpp
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/fuzz/ParserSeeds.cpp: In function 'int main(int, char**)':
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/fuzz/ParserSeeds.cpp:369:20: error: conflicting declaration 'const auto adoptedBody'
+  369 |         const auto adoptedBody = jobs::json::encodeProject(*evmDocument.project());
+      |                    ^~~~~~~~~~~
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/fuzz/ParserSeeds.cpp:107:20: note: previous declaration as 'const QJsonObject adoptedBody'
+  107 |         const auto adoptedBody = jobs::json::encodeProject(adopted);
+      |                    ^~~~~~~~~~~
+[33/96] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectXml.cpp.obj
+[34/96] Building CXX object CMakeFiles/jobs_external_evm_tests.dir/tests/ExternalEvmTests.cpp.obj
+ninja: build stopped: subcommand failed.

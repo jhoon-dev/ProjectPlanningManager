@@ -1,0 +1,12 @@
+MPP reading uses the unmodified MPXJ 16.10.0 library (LGPL-2.1-or-later) in a separate Java process.
+Upstream: https://github.com/joniles/mpxj/tree/v16.10.0
+Source: https://repo.maven.apache.org/maven2/net/sf/mpxj/mpxj/16.10.0/mpxj-16.10.0-sources.jar
+Its dependency notices are in licenses/. Libraries remain separate, replaceable JAR files.
+MppBridge.java and the build command in docs/mpp-import.md allow rebuilding this interface.
+The application neither changes MPXJ nor bypasses password protection.
+
+The bundled runtime is produced from the JDK identified in manifest.json, with its original legal/ notices.
+OpenJDK source and build information: https://github.com/adoptium/temurin21-binaries/releases
+The matching complete OpenJDK and MPXJ source archives accompany the runtime under sources/.
+Their official download URLs and hashes are recorded in manifest.json. Library replacement and rebuilding
+are described in docs/mpp-import.md. The manifest is an inventory, not a digital signature.

@@ -1,0 +1,620 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+        ],
+        "baselines": [
+            {
+                "approvedBy": "PM",
+                "createdAt": "2026-10-25T00:00:00Z",
+                "engineVersion": "jobs-cpm-0.2",
+                "id": "bd0df517-4c37-481b-afcf-b0574a2918fc",
+                "input": {
+                    "assignments": [
+                    ],
+                    "calculationProfile": "native-fs0-workminutes-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "USD",
+                    "holidays": [
+                    ],
+                    "name": "native 기간 EVM 검증",
+                    "resources": [
+                    ],
+                    "startDate": "2026-10-26",
+                    "taskCosts": [
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 1000,
+                            "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 3000,
+                            "taskId": "4669f2d6-8643-4aef-bf36-1ec9f9821257"
+                        }
+                    ],
+                    "tasks": [
+                        {
+                            "durationMinutes": 960,
+                            "id": "05ea6524-8ae6-4789-ac2c-6431cc12a047",
+                            "name": "설계",
+                            "predecessors": [
+                            ],
+                            "wbsId": "936027a7-f031-4221-987b-3bee78853c05"
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "4669f2d6-8643-4aef-bf36-1ec9f9821257",
+                            "name": "시공",
+                            "predecessors": [
+                            ],
+                            "wbsId": "181aa216-2a09-49e7-a270-79ed4b59e2bb"
+                        }
+                    ],
+                    "wbsNodes": [
+                        {
+                            "id": "181aa216-2a09-49e7-a270-79ed4b59e2bb",
+                            "name": "전체 단계",
+                            "parentId": ""
+                        },
+                        {
+                            "id": "936027a7-f031-4221-987b-3bee78853c05",
+                            "name": "설계 단계",
+                            "parentId": "181aa216-2a09-49e7-a270-79ed4b59e2bb"
+                        }
+                    ]
+                },
+                "inputRevision": 10,
+                "name": "승인 예산",
+                "projectFinish": "2026-10-27 18:00",
+                "reason": "기간별 EVM",
+                "schedule": [
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 960,
+                        "earlyStartMinutes": 0,
+                        "finish": "2026-10-27 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 960,
+                        "lateStartMinutes": 0,
+                        "remainingStart": null,
+                        "start": "2026-10-26 09:00",
+                        "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 960,
+                        "earlyStartMinutes": 0,
+                        "finish": "2026-10-27 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 960,
+                        "lateStartMinutes": 0,
+                        "remainingStart": null,
+                        "start": "2026-10-26 09:00",
+                        "taskId": "4669f2d6-8643-4aef-bf36-1ec9f9821257",
+                        "totalFloatMinutes": 0
+                    }
+                ],
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "version": 1
+            }
+        ],
+        "calculationProfile": "native-fs0-workminutes-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "costEntries": [
+            {
+                "actualMinor": 0,
+                "currency": "USD",
+                "id": "0b414002-c076-4a2f-8403-c4620044df41",
+                "physicalBasisPoints": 0,
+                "previousEntryId": "",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 13,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-25 23:59",
+                "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047"
+            },
+            {
+                "actualMinor": 0,
+                "currency": "USD",
+                "id": "80608dff-7a6c-4183-a500-bc3df9e60472",
+                "physicalBasisPoints": 0,
+                "previousEntryId": "",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 14,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-25 23:59",
+                "taskId": "4669f2d6-8643-4aef-bf36-1ec9f9821257"
+            },
+            {
+                "actualMinor": 100,
+                "currency": "USD",
+                "id": "d3063162-a740-47ba-b744-aa0e6fa4481f",
+                "physicalBasisPoints": 1000,
+                "previousEntryId": "0b414002-c076-4a2f-8403-c4620044df41",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 16,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-26 12:00",
+                "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047"
+            },
+            {
+                "actualMinor": 200,
+                "currency": "USD",
+                "id": "2219c886-393c-401f-8358-8f9a4c993c6d",
+                "physicalBasisPoints": 2000,
+                "previousEntryId": "80608dff-7a6c-4183-a500-bc3df9e60472",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 17,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-26 12:00",
+                "taskId": "4669f2d6-8643-4aef-bf36-1ec9f9821257"
+            },
+            {
+                "actualMinor": 600,
+                "currency": "USD",
+                "id": "d40964a1-87f8-4a33-aa26-6a155e25ad62",
+                "physicalBasisPoints": 4000,
+                "previousEntryId": "d3063162-a740-47ba-b744-aa0e6fa4481f",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 19,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-26 18:00",
+                "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047"
+            },
+            {
+                "actualMinor": 1200,
+                "currency": "USD",
+                "id": "24f414f0-220a-42a5-834d-1ba9def73a01",
+                "physicalBasisPoints": 5000,
+                "previousEntryId": "2219c886-393c-401f-8358-8f9a4c993c6d",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 20,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-26 18:00",
+                "taskId": "4669f2d6-8643-4aef-bf36-1ec9f9821257"
+            },
+            {
+                "actualMinor": 650,
+                "currency": "USD",
+                "id": "7223d0f7-5cc9-45be-950b-aa3cba5cc4cf",
+                "physicalBasisPoints": 4500,
+                "previousEntryId": "d40964a1-87f8-4a33-aa26-6a155e25ad62",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 22,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-27 00:00",
+                "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047"
+            },
+            {
+                "actualMinor": 800,
+                "currency": "USD",
+                "id": "d8e7e33c-0340-4995-831c-714637ea2a4e",
+                "physicalBasisPoints": 6000,
+                "previousEntryId": "7223d0f7-5cc9-45be-950b-aa3cba5cc4cf",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 24,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-27 18:00",
+                "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047"
+            },
+            {
+                "actualMinor": 1700,
+                "currency": "USD",
+                "id": "539b628b-2dff-493d-8361-ebdf7945c181",
+                "physicalBasisPoints": 7000,
+                "previousEntryId": "24f414f0-220a-42a5-834d-1ba9def73a01",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 25,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-27 18:00",
+                "taskId": "4669f2d6-8643-4aef-bf36-1ec9f9821257"
+            },
+            {
+                "actualMinor": 700,
+                "currency": "USD",
+                "id": "1c4ef199-4a43-4501-8a07-e3e52b7ca0f4",
+                "physicalBasisPoints": 5000,
+                "previousEntryId": "d8e7e33c-0340-4995-831c-714637ea2a4e",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 27,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-28 10:00",
+                "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047"
+            },
+            {
+                "actualMinor": 1700,
+                "currency": "USD",
+                "id": "e32cdee4-dc5d-4d06-82c4-83e0c135946f",
+                "physicalBasisPoints": 7000,
+                "previousEntryId": "539b628b-2dff-493d-8361-ebdf7945c181",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 28,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-28 10:00",
+                "taskId": "4669f2d6-8643-4aef-bf36-1ec9f9821257"
+            },
+            {
+                "actualMinor": 750,
+                "currency": "USD",
+                "id": "1a4aff34-2cb0-43c9-9ab3-7fc59c28c4da",
+                "physicalBasisPoints": 5500,
+                "previousEntryId": "1c4ef199-4a43-4501-8a07-e3e52b7ca0f4",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 29,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-28 10:00",
+                "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047"
+            },
+            {
+                "actualMinor": 1,
+                "currency": "USD",
+                "id": "818054cf-5e80-4192-b9b0-4fe1461f5156",
+                "physicalBasisPoints": 1,
+                "previousEntryId": "1a4aff34-2cb0-43c9-9ab3-7fc59c28c4da",
+                "reason": "관측 누계 / 정정",
+                "recordedAt": "2026-11-08T01:00:00Z",
+                "recordedRevision": 31,
+                "reporter": "기간 EVM 검증",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-26 09:00",
+                "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047"
+            },
+            {
+                "actualMinor": 750,
+                "currency": "USD",
+                "id": "00ccf986-9a87-4cd4-a651-e2d193b880f9",
+                "physicalBasisPoints": 5500,
+                "previousEntryId": "818054cf-5e80-4192-b9b0-4fe1461f5156",
+                "reason": "이미 보고한 누계 안에서 날짜 명세 연결",
+                "recordedAt": "2026-11-08T02:00:00Z",
+                "recordedRevision": 33,
+                "reporter": "날짜 배분 담당",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-29 12:00",
+                "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047"
+            },
+            {
+                "actualMinor": 1700,
+                "currency": "USD",
+                "id": "26065947-6991-400a-9268-01c93c9aac7d",
+                "physicalBasisPoints": 7000,
+                "previousEntryId": "e32cdee4-dc5d-4d06-82c4-83e0c135946f",
+                "reason": "이미 보고한 누계 안에서 날짜 명세 연결",
+                "recordedAt": "2026-11-08T02:00:00Z",
+                "recordedRevision": 33,
+                "reporter": "날짜 배분 담당",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-29 12:00",
+                "taskId": "4669f2d6-8643-4aef-bf36-1ec9f9821257"
+            }
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "USD",
+        "derivedFrom": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+        "documentId": "25a73a4c-4de2-4e39-9bcb-3e3337114c9d",
+        "financialPeriodEvents": [
+            {
+                "action": "define",
+                "confirmed": true,
+                "currency": "USD",
+                "formula": "budget-remaining-v1",
+                "id": "187e36f7-bc1d-4136-adc1-ee25288dd5ae-1",
+                "knowledgeRevision": 33,
+                "period": {
+                    "baselineId": "bd0df517-4c37-481b-afcf-b0574a2918fc",
+                    "fromDate": "2026-10-26",
+                    "id": "187e36f7-bc1d-4136-adc1-ee25288dd5ae-1",
+                    "name": "현장 1차 기간",
+                    "toDate": "2026-10-27",
+                    "values": [
+                        {
+                            "budget": 500,
+                            "earned": 450,
+                            "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047"
+                        }
+                    ]
+                },
+                "policy": "custom-financial-period-v1",
+                "reason": "기간별 예산·성과 및 당시 지식 확인",
+                "recordedAt": "2026-11-08T08:55:31Z",
+                "recordedRevision": 34,
+                "reporter": "기간 담당자",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-29 12:00",
+                "tasks": [
+                ]
+            },
+            {
+                "action": "close",
+                "confirmed": true,
+                "currency": "USD",
+                "formula": "budget-remaining-v1",
+                "id": "dd1f6f1e-35eb-42a9-92e3-f596e26f2d29-1",
+                "knowledgeRevision": 34,
+                "period": {
+                    "baselineId": "bd0df517-4c37-481b-afcf-b0574a2918fc",
+                    "fromDate": "2026-10-26",
+                    "id": "187e36f7-bc1d-4136-adc1-ee25288dd5ae-1",
+                    "name": "현장 1차 기간",
+                    "toDate": "2026-10-27",
+                    "values": [
+                        {
+                            "budget": 500,
+                            "earned": 450,
+                            "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047"
+                        }
+                    ]
+                },
+                "policy": "custom-financial-period-v1",
+                "reason": "수정 사유",
+                "recordedAt": "2026-11-08T08:55:31Z",
+                "recordedRevision": 35,
+                "reporter": "기간 담당자",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-29 12:00",
+                "tasks": [
+                    {
+                        "closing": {
+                            "ac": 800,
+                            "acReportId": "d8e7e33c-0340-4995-831c-714637ea2a4e",
+                            "bac": 1000,
+                            "estimateSupported": true,
+                            "ev": 600,
+                            "evReportId": "d8e7e33c-0340-4995-831c-714637ea2a4e",
+                            "pv": 1000
+                        },
+                        "dated": 500,
+                        "opening": {
+                            "ac": 0,
+                            "acReportId": "0b414002-c076-4a2f-8403-c4620044df41",
+                            "bac": 1000,
+                            "estimateSupported": true,
+                            "ev": 0,
+                            "evReportId": "0b414002-c076-4a2f-8403-c4620044df41",
+                            "pv": 0
+                        },
+                        "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047"
+                    },
+                    {
+                        "closing": {
+                            "ac": 1700,
+                            "acReportId": "539b628b-2dff-493d-8361-ebdf7945c181",
+                            "bac": 3000,
+                            "estimateSupported": true,
+                            "ev": 2100,
+                            "evReportId": "539b628b-2dff-493d-8361-ebdf7945c181",
+                            "pv": 3000
+                        },
+                        "dated": 1500,
+                        "opening": {
+                            "ac": 0,
+                            "acReportId": "80608dff-7a6c-4183-a500-bc3df9e60472",
+                            "bac": 3000,
+                            "estimateSupported": true,
+                            "ev": 0,
+                            "evReportId": "80608dff-7a6c-4183-a500-bc3df9e60472",
+                            "pv": 0
+                        },
+                        "taskId": "4669f2d6-8643-4aef-bf36-1ec9f9821257"
+                    }
+                ]
+            },
+            {
+                "action": "reopen",
+                "confirmed": true,
+                "currency": "USD",
+                "formula": "budget-remaining-v1",
+                "id": "06ee8304-107e-442b-af40-3594978cbed5-1",
+                "knowledgeRevision": 35,
+                "period": {
+                    "baselineId": "bd0df517-4c37-481b-afcf-b0574a2918fc",
+                    "fromDate": "2026-10-26",
+                    "id": "187e36f7-bc1d-4136-adc1-ee25288dd5ae-1",
+                    "name": "현장 1차 기간",
+                    "toDate": "2026-10-27",
+                    "values": [
+                        {
+                            "budget": 500,
+                            "earned": 450,
+                            "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047"
+                        }
+                    ]
+                },
+                "policy": "custom-financial-period-v1",
+                "reason": "수정 사유",
+                "recordedAt": "2026-11-08T08:55:36Z",
+                "recordedRevision": 36,
+                "reporter": "기간 담당자",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-29 12:00",
+                "tasks": [
+                ]
+            }
+        ],
+        "holidays": [
+        ],
+        "name": "native 기간 EVM 검증",
+        "periodActuals": [
+            {
+                "actualMinor": 400,
+                "costEntryId": "00ccf986-9a87-4cd4-a651-e2d193b880f9",
+                "currency": "USD",
+                "date": "2026-10-26",
+                "id": "f03ad246-a9b2-41fb-a55d-019442a0b3e2",
+                "previousEntryId": "",
+                "reason": "이미 보고한 누계 안에서 날짜 명세 연결",
+                "recordedAt": "2026-11-08T02:00:00Z",
+                "recordedRevision": 33,
+                "reporter": "날짜 배분 담당",
+                "resourceId": "",
+                "resourceType": "",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-29 12:00",
+                "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047",
+                "workUnitMinutes": null
+            },
+            {
+                "actualMinor": 100,
+                "costEntryId": "00ccf986-9a87-4cd4-a651-e2d193b880f9",
+                "currency": "USD",
+                "date": "2026-10-27",
+                "id": "4fabcda7-0d64-472d-9426-ab804a592ebd",
+                "previousEntryId": "",
+                "reason": "이미 보고한 누계 안에서 날짜 명세 연결",
+                "recordedAt": "2026-11-08T02:00:00Z",
+                "recordedRevision": 33,
+                "reporter": "날짜 배분 담당",
+                "resourceId": "",
+                "resourceType": "",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-29 12:00",
+                "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047",
+                "workUnitMinutes": null
+            },
+            {
+                "actualMinor": 50,
+                "costEntryId": "00ccf986-9a87-4cd4-a651-e2d193b880f9",
+                "currency": "USD",
+                "date": "2026-10-28",
+                "id": "5f8872d9-472c-4395-b4c5-0354068880fb",
+                "previousEntryId": "",
+                "reason": "이미 보고한 누계 안에서 날짜 명세 연결",
+                "recordedAt": "2026-11-08T02:00:00Z",
+                "recordedRevision": 33,
+                "reporter": "날짜 배분 담당",
+                "resourceId": "",
+                "resourceType": "",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-29 12:00",
+                "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047",
+                "workUnitMinutes": null
+            },
+            {
+                "actualMinor": 1000,
+                "costEntryId": "26065947-6991-400a-9268-01c93c9aac7d",
+                "currency": "USD",
+                "date": "2026-10-26",
+                "id": "569bf4f7-2bcd-49be-bcc3-16338497bac3",
+                "previousEntryId": "",
+                "reason": "이미 보고한 누계 안에서 날짜 명세 연결",
+                "recordedAt": "2026-11-08T02:00:00Z",
+                "recordedRevision": 33,
+                "reporter": "날짜 배분 담당",
+                "resourceId": "",
+                "resourceType": "",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-29 12:00",
+                "taskId": "4669f2d6-8643-4aef-bf36-1ec9f9821257",
+                "workUnitMinutes": null
+            },
+            {
+                "actualMinor": 500,
+                "costEntryId": "26065947-6991-400a-9268-01c93c9aac7d",
+                "currency": "USD",
+                "date": "2026-10-27",
+                "id": "0fbb42af-a7dc-4d83-8375-f5d58d13454b",
+                "previousEntryId": "",
+                "reason": "이미 보고한 누계 안에서 날짜 명세 연결",
+                "recordedAt": "2026-11-08T02:00:00Z",
+                "recordedRevision": 33,
+                "reporter": "날짜 배분 담당",
+                "resourceId": "",
+                "resourceType": "",
+                "sourceDocumentId": "b8b30f07-6973-4521-a8fd-75cb473c5ae3",
+                "statusAt": "2026-10-29 12:00",
+                "taskId": "4669f2d6-8643-4aef-bf36-1ec9f9821257",
+                "workUnitMinutes": null
+            }
+        ],
+        "progress": [
+        ],
+        "resources": [
+        ],
+        "revision": 36,
+        "scenarios": [
+        ],
+        "startDate": "2026-10-26",
+        "statusAt": "2026-10-29 12:00",
+        "taskCosts": [
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 1000,
+                "taskId": "05ea6524-8ae6-4789-ac2c-6431cc12a047"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 3000,
+                "taskId": "4669f2d6-8643-4aef-bf36-1ec9f9821257"
+            }
+        ],
+        "tasks": [
+            {
+                "durationMinutes": 960,
+                "id": "05ea6524-8ae6-4789-ac2c-6431cc12a047",
+                "name": "설계",
+                "predecessors": [
+                ],
+                "wbsId": "936027a7-f031-4221-987b-3bee78853c05"
+            },
+            {
+                "durationMinutes": 960,
+                "id": "4669f2d6-8643-4aef-bf36-1ec9f9821257",
+                "name": "시공",
+                "predecessors": [
+                ],
+                "wbsId": "181aa216-2a09-49e7-a270-79ed4b59e2bb"
+            }
+        ],
+        "wbsNodes": [
+            {
+                "id": "181aa216-2a09-49e7-a270-79ed4b59e2bb",
+                "name": "전체 단계",
+                "parentId": ""
+            },
+            {
+                "id": "936027a7-f031-4221-987b-3bee78853c05",
+                "name": "설계 단계",
+                "parentId": "181aa216-2a09-49e7-a270-79ed4b59e2bb"
+            }
+        ]
+    },
+    "schemaVersion": 30,
+    "sha256": "a4b6e63f65d32e351ce3cb176570d0a213bed3ffa1e5cfb1ebf26d775ae85d52"
+}

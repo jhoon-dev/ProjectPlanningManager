@@ -1,0 +1,904 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+            {
+                "resourceId": "R",
+                "taskId": "A",
+                "units": 40
+            },
+            {
+                "resourceId": "R",
+                "taskId": "B",
+                "units": 40
+            },
+            {
+                "resourceId": "R",
+                "taskId": "C0",
+                "units": 40
+            },
+            {
+                "resourceId": "R",
+                "taskId": "C1",
+                "units": 40
+            }
+        ],
+        "baselines": [
+            {
+                "approvedBy": "PM",
+                "createdAt": "2026-11-04T00:00:00Z",
+                "engineVersion": "jobs-adopted-leveling-1.7",
+                "id": "old-7",
+                "input": {
+                    "assignments": [
+                        {
+                            "resourceId": "R",
+                            "taskId": "A",
+                            "units": 40
+                        },
+                        {
+                            "resourceId": "R",
+                            "taskId": "B",
+                            "units": 40
+                        },
+                        {
+                            "resourceId": "R",
+                            "taskId": "C0",
+                            "units": 40
+                        },
+                        {
+                            "resourceId": "R",
+                            "taskId": "C1",
+                            "units": 40
+                        }
+                    ],
+                    "calculationProfile": "native-effort-split-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "calendars": [
+                        {
+                            "holidays": [
+                            ],
+                            "id": "task",
+                            "name": "작업 달력",
+                            "periods": [
+                                {
+                                    "begin": 540,
+                                    "end": 548
+                                }
+                            ],
+                            "weekdays": [
+                                1,
+                                2,
+                                3,
+                                4,
+                                5
+                            ]
+                        },
+                        {
+                            "holidays": [
+                            ],
+                            "id": "resource",
+                            "name": "작업 달력",
+                            "periods": [
+                                {
+                                    "begin": 540,
+                                    "end": 542
+                                },
+                                {
+                                    "begin": 544,
+                                    "end": 548
+                                }
+                            ],
+                            "weekdays": [
+                                1,
+                                2,
+                                3,
+                                4,
+                                5
+                            ]
+                        }
+                    ],
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "KRW",
+                    "holidays": [
+                    ],
+                    "name": "비단조 수요 전파",
+                    "planLeveling": {
+                        "adoptedAt": "2026-11-04T00:00:00Z",
+                        "horizonWorkDays": 260,
+                        "policy": "serial-effort-split-v2",
+                        "priority": "task-order",
+                        "reason": "전파 비용 정책",
+                        "sourceDocumentId": "nonmonotone-propagation",
+                        "sourceRevision": 1
+                    },
+                    "resources": [
+                        {
+                            "calendarId": "resource",
+                            "exceptions": [
+                            ],
+                            "id": "R",
+                            "maxUnits": 100,
+                            "name": "R",
+                            "rates": [
+                                {
+                                    "effectiveDate": "2026-11-02",
+                                    "hourlyMinor": 60
+                                }
+                            ],
+                            "type": "labor"
+                        }
+                    ],
+                    "startDate": "2026-11-02",
+                    "taskCosts": [
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "A"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "B"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "C0"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "C1"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "H"
+                        }
+                    ],
+                    "tasks": [
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "task",
+                            "constraintAt": "2026-11-02 09:00",
+                            "constraintType": "MSO",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 8,
+                            "id": "A",
+                            "name": "고정 A",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "task",
+                            "constraintAt": "2026-11-02 09:00",
+                            "constraintType": "MSO",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 8,
+                            "id": "B",
+                            "name": "고정 B",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "task",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 1,
+                            "id": "C0",
+                            "name": "C0",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "task",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 1,
+                            "id": "C1",
+                            "name": "C1",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "task",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 8,
+                            "id": "H",
+                            "name": "완료일",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        }
+                    ],
+                    "wbsNodes": [
+                    ]
+                },
+                "inputRevision": 1,
+                "name": "1.7 보존",
+                "projectFinish": "2026-11-02 09:08",
+                "reason": "검토",
+                "schedule": [
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 548,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-02 09:08",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 548,
+                        "lateStartMinutes": 540,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:00",
+                        "taskId": "A",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 548,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-02 09:08",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 548,
+                        "lateStartMinutes": 540,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:00",
+                        "taskId": "B",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": false,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 543,
+                        "earlyStartMinutes": 542,
+                        "finish": "2026-11-02 09:03",
+                        "freeFloatMinutes": 1,
+                        "lateFinishMinutes": 544,
+                        "lateStartMinutes": 543,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:02",
+                        "taskId": "C0",
+                        "totalFloatMinutes": 1
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": false,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 543,
+                        "earlyStartMinutes": 542,
+                        "finish": "2026-11-02 09:03",
+                        "freeFloatMinutes": 1,
+                        "lateFinishMinutes": 544,
+                        "lateStartMinutes": 543,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:02",
+                        "taskId": "C1",
+                        "totalFloatMinutes": 1
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 548,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-02 09:08",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 548,
+                        "lateStartMinutes": 540,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:00",
+                        "taskId": "H",
+                        "totalFloatMinutes": 0
+                    }
+                ],
+                "sourceDocumentId": "nonmonotone-propagation",
+                "version": 1
+            },
+            {
+                "approvedBy": "PM",
+                "createdAt": "2026-11-04T00:00:00Z",
+                "engineVersion": "jobs-adopted-leveling-1.8",
+                "id": "new-8",
+                "input": {
+                    "assignments": [
+                        {
+                            "resourceId": "R",
+                            "taskId": "A",
+                            "units": 40
+                        },
+                        {
+                            "resourceId": "R",
+                            "taskId": "B",
+                            "units": 40
+                        },
+                        {
+                            "resourceId": "R",
+                            "taskId": "C0",
+                            "units": 40
+                        },
+                        {
+                            "resourceId": "R",
+                            "taskId": "C1",
+                            "units": 40
+                        }
+                    ],
+                    "calculationProfile": "native-effort-split-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "calendars": [
+                        {
+                            "holidays": [
+                            ],
+                            "id": "task",
+                            "name": "작업 달력",
+                            "periods": [
+                                {
+                                    "begin": 540,
+                                    "end": 548
+                                }
+                            ],
+                            "weekdays": [
+                                1,
+                                2,
+                                3,
+                                4,
+                                5
+                            ]
+                        },
+                        {
+                            "holidays": [
+                            ],
+                            "id": "resource",
+                            "name": "작업 달력",
+                            "periods": [
+                                {
+                                    "begin": 540,
+                                    "end": 542
+                                },
+                                {
+                                    "begin": 544,
+                                    "end": 548
+                                }
+                            ],
+                            "weekdays": [
+                                1,
+                                2,
+                                3,
+                                4,
+                                5
+                            ]
+                        }
+                    ],
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "KRW",
+                    "holidays": [
+                    ],
+                    "name": "비단조 수요 전파",
+                    "planLeveling": {
+                        "adoptedAt": "2026-11-04T00:00:00Z",
+                        "horizonWorkDays": 260,
+                        "policy": "serial-effort-split-v2",
+                        "priority": "task-order",
+                        "reason": "전파 비용 정책",
+                        "sourceDocumentId": "nonmonotone-propagation",
+                        "sourceRevision": 1
+                    },
+                    "resources": [
+                        {
+                            "calendarId": "resource",
+                            "exceptions": [
+                            ],
+                            "id": "R",
+                            "maxUnits": 100,
+                            "name": "R",
+                            "rates": [
+                                {
+                                    "effectiveDate": "2026-11-02",
+                                    "hourlyMinor": 60
+                                }
+                            ],
+                            "type": "labor"
+                        }
+                    ],
+                    "startDate": "2026-11-02",
+                    "taskCosts": [
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "A"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "B"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "C0"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "C1"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "H"
+                        }
+                    ],
+                    "tasks": [
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "task",
+                            "constraintAt": "2026-11-02 09:00",
+                            "constraintType": "MSO",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 8,
+                            "id": "A",
+                            "name": "고정 A",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "task",
+                            "constraintAt": "2026-11-02 09:00",
+                            "constraintType": "MSO",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 8,
+                            "id": "B",
+                            "name": "고정 B",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "task",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 1,
+                            "id": "C0",
+                            "name": "C0",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "task",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 1,
+                            "id": "C1",
+                            "name": "C1",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "task",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 8,
+                            "id": "H",
+                            "name": "완료일",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        }
+                    ],
+                    "wbsNodes": [
+                    ]
+                },
+                "inputRevision": 2,
+                "name": "1.8 비용",
+                "projectFinish": "2026-11-02 09:08",
+                "reason": "검토",
+                "schedule": [
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 548,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-02 09:08",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 548,
+                        "lateStartMinutes": 540,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:00",
+                        "taskId": "A",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 548,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-02 09:08",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 548,
+                        "lateStartMinutes": 540,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:00",
+                        "taskId": "B",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": false,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 543,
+                        "earlyStartMinutes": 542,
+                        "finish": "2026-11-02 09:03",
+                        "freeFloatMinutes": 1,
+                        "lateFinishMinutes": 544,
+                        "lateStartMinutes": 543,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:02",
+                        "taskId": "C0",
+                        "totalFloatMinutes": 1
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": false,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 543,
+                        "earlyStartMinutes": 542,
+                        "finish": "2026-11-02 09:03",
+                        "freeFloatMinutes": 1,
+                        "lateFinishMinutes": 544,
+                        "lateStartMinutes": 543,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:02",
+                        "taskId": "C1",
+                        "totalFloatMinutes": 1
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 548,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-02 09:08",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 548,
+                        "lateStartMinutes": 540,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:00",
+                        "taskId": "H",
+                        "totalFloatMinutes": 0
+                    }
+                ],
+                "sourceDocumentId": "nonmonotone-propagation",
+                "version": 2
+            }
+        ],
+        "calculationProfile": "native-effort-split-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "calendars": [
+            {
+                "holidays": [
+                ],
+                "id": "task",
+                "name": "작업 달력",
+                "periods": [
+                    {
+                        "begin": 540,
+                        "end": 548
+                    }
+                ],
+                "weekdays": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ]
+            },
+            {
+                "holidays": [
+                ],
+                "id": "resource",
+                "name": "작업 달력",
+                "periods": [
+                    {
+                        "begin": 540,
+                        "end": 542
+                    },
+                    {
+                        "begin": 544,
+                        "end": 548
+                    }
+                ],
+                "weekdays": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ]
+            }
+        ],
+        "costEntries": [
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "KRW",
+        "derivedFrom": "",
+        "documentId": "nonmonotone-propagation",
+        "holidays": [
+        ],
+        "name": "비단조 수요 전파",
+        "planLeveling": {
+            "adoptedAt": "2026-11-04T00:00:00Z",
+            "horizonWorkDays": 260,
+            "policy": "serial-effort-split-v2",
+            "priority": "task-order",
+            "reason": "전파 비용 정책",
+            "sourceDocumentId": "nonmonotone-propagation",
+            "sourceRevision": 1
+        },
+        "progress": [
+        ],
+        "resources": [
+            {
+                "calendarId": "resource",
+                "exceptions": [
+                ],
+                "id": "R",
+                "maxUnits": 100,
+                "name": "R",
+                "rates": [
+                    {
+                        "effectiveDate": "2026-11-02",
+                        "hourlyMinor": 60
+                    }
+                ],
+                "type": "labor"
+            }
+        ],
+        "revision": 3,
+        "scenarios": [
+        ],
+        "startDate": "2026-11-02",
+        "statusAt": null,
+        "taskCosts": [
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "A"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "B"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "C0"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "C1"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "H"
+            }
+        ],
+        "tasks": [
+            {
+                "breaks": [
+                ],
+                "calendarId": "task",
+                "constraintAt": "2026-11-02 09:00",
+                "constraintType": "MSO",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 8,
+                "id": "A",
+                "name": "고정 A",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "task",
+                "constraintAt": "2026-11-02 09:00",
+                "constraintType": "MSO",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 8,
+                "id": "B",
+                "name": "고정 B",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "task",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 1,
+                "id": "C0",
+                "name": "C0",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "task",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 1,
+                "id": "C1",
+                "name": "C1",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "task",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 8,
+                "id": "H",
+                "name": "완료일",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            }
+        ],
+        "wbsNodes": [
+        ]
+    },
+    "schemaVersion": 12,
+    "sha256": "2d344fb5401953cc3a909e3d6fa461e28121bcae62f410d3ada0a2b9d94e3c0f"
+}

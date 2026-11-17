@@ -7,6 +7,11 @@
 #include "ui/UpdateUi.h"
 #include "ui/AsyncEditController.h"
 #include "ui/AutoSaveController.h"
+#include "persistence/Automation.h"
+#include "persistence/GovernanceJson.h"
+#include <QDateTime>
+#include <QJsonDocument>
+#include <QCryptographicHash>
 #include <QApplication>
 #include <QDialog>
 #include <QFileDialog>
@@ -61,6 +66,10 @@ MainWindow *DesktopWorkspace::adopt(std::unique_ptr<Document> document) {
     session->serial = ++serial_;
     session->document = std::move(document);
     auto *pointer = session.get();
+    session->document->setWriteAuthorization([this, pointer] {
+        const auto p = pointer->document->snapshot();
+        return !p || permits(configuration_, actorId_, p->documentId, WorkspaceAction::Edit);
+    });
     auto *window = new MainWindow(*session->document, recovery_.get(), this);
     session->window = window;
     window->setAttribute(Qt::WA_DeleteOnClose);
@@ -78,8 +87,15 @@ MainWindow *DesktopWorkspace::adopt(std::unique_ptr<Document> document) {
                 return;
             if (const auto snapshot = (*it)->document->snapshot(); snapshot && (*it)->document->path().empty()) {
                 const auto id = snapshot->documentId;
-                std::erase_if(configuration_.projects, [&](const auto &ref) { return ref.documentId == id; });
-                std::erase_if(configuration_.bindings, [&](const auto &binding) { return binding.projectId == id; });
+                const bool linked =
+                    std::any_of(configuration_.links.begin(), configuration_.links.end(), [&](const auto &link) {
+                        return link.predecessorProjectId == id || link.successorProjectId == id;
+                    });
+                if (!linked) {
+                    std::erase_if(configuration_.projects, [&](const auto &ref) { return ref.documentId == id; });
+                    std::erase_if(configuration_.bindings,
+                                  [&](const auto &binding) { return binding.projectId == id; });
+                }
             }
             sessions_.erase(it);
             ++generation_;
@@ -153,15 +169,83 @@ bool DesktopWorkspace::activate(const std::string &projectId, const std::string 
     return taskId.empty() || target->selectTaskById(taskId);
 }
 void DesktopWorkspace::applyConfiguration(Workspace proposed) {
+    if (!permits(configuration_, actorId_, {}, WorkspaceAction::Administer))
+        throw AppError(ErrorCode::WORKSPACE_INVALID, {"작업공간 설정은 소유자만 변경할 수 있습니다."});
+    if (proposed.governance.events != configuration_.governance.events)
+        throw AppError(ErrorCode::WORKSPACE_INVALID, {"협업 기록은 전용 추가 명령을 사용하세요."});
+    if (proposed.governance.audit != configuration_.governance.audit)
+        throw AppError(ErrorCode::WORKSPACE_INVALID, {"감사 기록은 변경할 수 없습니다."});
+    if (proposed.governance != Governance{} && proposed.governance != configuration_.governance) {
+        const auto digest = QCryptographicHash::hash(
+                                QJsonDocument(encodeGovernance(proposed.governance)).toJson(QJsonDocument::Compact),
+                                QCryptographicHash::Sha256)
+                                .toHex()
+                                .toStdString();
+        proposed.governance.audit.push_back({newId(), actorId_.empty() ? "local-setup" : actorId_, "configuration",
+                                             QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm").toStdString(),
+                                             "governance sha256 " + digest});
+    }
     validateWorkspace(proposed);
     configuration_ = std::move(proposed);
     engaged_ = true;
     ++generation_;
     ++catalogGeneration_;
+    selectActor(actorId_);
+}
+void DesktopWorkspace::selectActor(std::string actor) {
+    if (!actor.empty() &&
+        std::none_of(configuration_.governance.members.begin(), configuration_.governance.members.end(),
+                     [&](const auto &m) { return m.id == actor; }))
+        actor.clear();
+    actorId_ = std::move(actor);
+    for (auto &session : sessions_) {
+        auto *pointer = session.get();
+        session->document->setWriteAuthorization([this, pointer] {
+            const auto p = pointer->document->snapshot();
+            return !p || permits(configuration_, actorId_, p->documentId, WorkspaceAction::Edit);
+        });
+    }
+    ++generation_;
+}
+void DesktopWorkspace::recordCollaboration(CollaborationEvent event) {
+    if (event.actorId != actorId_)
+        throw AppError(ErrorCode::WORKSPACE_INVALID, {"협업 작성자 불일치"});
+    const auto *doc = document(event.projectId);
+    if (!doc || !doc->project() || doc->project()->revision != event.projectRevision)
+        throw AppError(ErrorCode::WORKSPACE_INVALID, {"협업 원본 프로젝트 revision이 변경되었습니다."});
+    appendCollaboration(configuration_, std::move(event));
+    engaged_ = true;
+    ++generation_;
+    ++catalogGeneration_;
+}
+QJsonObject DesktopWorkspace::executeAutomation(const std::string &id, AutomationPreview &preview) {
+    auto *doc = document(id);
+    if (!doc || !doc->project())
+        throw AppError(ErrorCode::DOCUMENT_NOT_OPEN);
+    auto next = configuration_;
+    if (next.governance != Governance{}) {
+        if (!permits(next, actorId_, id, WorkspaceAction::Edit))
+            throw AppError(ErrorCode::DOCUMENT_NOT_EDITABLE);
+        const auto detail = preview.receipt.value("requestId").toString().toStdString() + " sha256 " +
+                            preview.receipt.value("requestSha256").toString().toStdString() + " project " + id +
+                            " revision " + std::to_string(doc->project()->revision);
+        next.governance.audit.push_back({newId(), actorId_, "automation",
+                                         QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm").toStdString(),
+                                         detail});
+        validateWorkspace(next);
+    }
+    auto receipt = applyAutomation(*doc, preview);
+    configuration_.governance.audit.swap(next.governance.audit);
+    ++generation_;
+    ++catalogGeneration_;
+    return receipt;
 }
 void DesktopWorkspace::removeClosedProject(const std::string &id) {
     if (document(id))
         throw AppError(ErrorCode::WORKSPACE_INVALID, {"close the project window first"});
+    for (const auto &link : configuration_.links)
+        if (link.predecessorProjectId == id || link.successorProjectId == id)
+            throw AppError(ErrorCode::WORKSPACE_INVALID, {"통합 일정에서 이 프로젝트의 링크를 먼저 제거하세요."});
     auto proposed = configuration_;
     std::erase_if(proposed.projects, [&](const auto &ref) { return ref.documentId == id; });
     std::erase_if(proposed.bindings, [&](const auto &binding) { return binding.projectId == id; });
@@ -339,6 +423,7 @@ void DesktopWorkspace::openWorkspace(const std::string &path, QWidget *parent) {
         adopt(std::move(document));
     configuration_ = std::move(proposed);
     saved_ = saved;
+    selectActor({});
     path_ = result->stored.path;
     fingerprint_ = result->stored.fingerprint;
     if (!same)

@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "schema": 27,
+  "merge_audits": 2,
+  "native_facts_unchanged": true,
+  "native_ac_minor": 12280,
+  "native_allocated_minor": 4534,
+  "native_dated_work_units": 9300,
+  "union_period_work_units": 21300,
+  "unallocated_assignment_work_units": 1200,
+  "taskfin_keys_unique": true,
+  "readers": [
+    "native equality and SHA256",
+    "as-of/revision ownership oracle",
+    "TSV/Decimal",
+    "MPXJ16.10.0 strict"
+  ],
+  "external_p6_execution": "not run"
+}

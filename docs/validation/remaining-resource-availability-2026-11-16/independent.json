@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "civil_minute_points": 1440,
+  "scalar_comparisons": 7200,
+  "xml_resource_values": 12,
+  "xer_resource_values": 9,
+  "xlsx_resource_rows": 3,
+  "pdf_pages": 15,
+  "external_product_run": false
+}

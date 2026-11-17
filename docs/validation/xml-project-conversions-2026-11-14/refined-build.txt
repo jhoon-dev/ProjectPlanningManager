@@ -1,0 +1,2 @@
+[1/2] Building CXX object CMakeFiles/jobs_xml_project_conversion_tests.dir/tests/XmlProjectConversionTests.cpp.obj
+[2/2] Linking CXX executable jobs_xml_project_conversion_tests.exe

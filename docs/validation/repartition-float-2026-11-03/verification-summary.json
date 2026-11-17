@@ -1,0 +1,17 @@
+{
+  "final_status": "success",
+  "full_ctest": {
+    "passed": 88,
+    "total": 88,
+    "seconds": 278.39
+  },
+  "final_ui_after_policy_copy": {
+    "passed": 2,
+    "total": 2,
+    "seconds": 5.8
+  },
+  "parser_seeds": 114,
+  "format_files": 145,
+  "independent_readers_and_selftests": 16,
+  "P6_actual_roundtrip": "not-run; user confirmed P6 not installed"
+}

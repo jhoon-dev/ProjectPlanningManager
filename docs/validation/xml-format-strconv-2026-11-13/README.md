@@ -1,0 +1,19 @@
+# XML Format·StrConv 검증 · 2026-11-13
+
+[기능 계약](../../xml-format-strconv.md) · XFS-01~06. 새 함수 세 개(표준 이름 Format/StrConv의 지원 부분과 PPMFormat 확장)를 기존 XML 계산 경로에 연결한다. 네 범위의 재계산, 정확한 십진 표시, Null/계산 오류, 명시 프로필과 유니코드 자료 고정, UI/교환/보고와 schema54/보관 사본을 확인한다. 전체 VBA 또는 실제 Microsoft Project 제품 왕복의 통과를 뜻하지 않는다.
+
+`xml_formatting_contract`는 숫자 반올림·그룹·백만 배율·지수 carry·큰 백분율, 양수/음수/0/Null 구간, 문자열 맞춤·날짜/주 번호·한글/가나/보충 평면·마지막 시그마·대소문자 확장을 검사한다. 잘못된 형식·범위·LCID·플래그·UTF-8·결과 크기를 거절하며 미설정/오류를 원래 스냅샷으로 대체하지 않는다. 현재 프로젝트·작업·자원·배정, 활성54/오래된 태그 거절·비활성44/52 보존·기준선/시나리오만 남은 사본·통화 환산 뒤 Cost 표시 재계산·ID 이력·복구·읽기 전용·undo/redo를 확인한다.
+
+독립 [검증기](../../../scripts/verify-xml-formatting.py)는 CPython Unicode16과 Decimal ROUND_HALF_UP을 사용한다. 숫자 **2,560건**, Gregorian 날짜/주 번호 **1,344건**, Unicode 변환 **31,158건**, 직접 식 **46건**을 기록한다. UCD 원본 ZIP/개별 파일/내장 표의 SHA를 확인한다. XML의 새 함수12칸·정의28개와 XER의 정적12값, XLSX 작업 사용자 필드56행 및 PDF18쪽을 확인한다. 네 범위의 새 필드가 전부 포함된다.
+
+Windows의 별도 [OLE/NLS 검증기](../../../scripts/verify-xml-formatting-windows.py)는 명시 LCID를 사용해 지원 표본 **25건**을 비교한다. NLS 제목 변환은 en-US에서 하이픈 뒤를 대문자로 바꾸고 숫자 단어를 다르게 처리하는 사례가 있다. PPM은 VBA 문서의 명시 경계를 고정하므로 해당1건의 차이를 `windows-oracle.json`에 별도 보존한다. OS NLS와의 전체 동등성이나 제품 실행을 주장하지 않는다.
+
+`xml_formatting_ui`는 예시7개·고정 프로필3개·명시 LCID 삽입, Hello World 비동기 미리보기·저장/undo·읽기 전용 표와760×600 하단 레이아웃을 확인한다. 기존 계산식 테스트가 취소·문서 변경·읽기 전용/오류 경로를 함께 검증한다.
+
+중간 회귀는193/194·299.23초였고 `server_native_realtime_ui`가 준비 주소 검증에서 실패했다. 테스트용 서버는 ready.json의 존재를 신호로 사용하면서 내용을 직접 기록해 완료 전 빈 파일을 읽을 수 있었다. 준비 JSON을 임시 파일에 완성한 뒤 atomic rename으로 공개하도록 수정했다. 소문자 am/pm·a/p 보정도 포함해 최종 빌드/전체 회귀를 다시 수행한다. [중간 CTest](pre-final-ctest.txt)·[중간 JUnit](pre-final-ctest.xml)은 별도로 보존한다.
+
+일반 회귀 **194/194·295.05초**를 통과했다. 대용량 단독 **1/1·147.78초**까지 합계 **195/195**, 실패/건너뜀0이다. 관련 집중26개는 전체 실행에서 추출한 같은 통과 결과이며 중복 실행하지 않았다. 파서 **866개**(schema1~54), C++ 형식 **513파일** 차이0이다. [빌드](build.txt)·[최종 빌드](final-build.txt)·[194개 CTest](ctest.txt)·[JUnit](ctest.xml)·[대용량 단독](isolated.txt)·[단독 JUnit](isolated.xml)·[집중 부분집합](focused.xml)·[형식](quality.json)·[독립 검증](independent.json)·[Windows 비교/차이](windows-oracle.json)·[결과/해시](verification-summary.json).
+
+Windows 실행 패키지 **298파일**의 앱/CLI 해시가 최종 빌드와 같다. Qt/MinGW가 없는 PATH에서 CLI가 schema54 파일을 읽고 종료0을 반환했다. Unicode 출처/라이선스3파일이 같은 해시로 포함된다. [패키지](runtime.json)·[배포](runtime-deploy.txt)·[파일 읽기](runtime-inspect.json).
+
+[native 입력](native.json)·[환산/동결 사본](archived.json)·[native 파일](source.ppm)·[XML](format.xml)·[XER](format.xer)·[매핑/진단](mapping.json)·[직접 식](cases.json)·[숫자](numbers.json)·[날짜](dates.json)·[Unicode](unicode.json)·[XLSX](fields.xlsx)·[PDF](fields.pdf)·[PDF 화면](report-page.png)·[편집기](editor.png)·[작은 화면 결과](editor-small.png). offscreen 검증은 설치된 Malgun/MS Gothic을 명시 로드한다. 화면/PDF의 문자 모양은 사용 가능한 글꼴에 따른다.

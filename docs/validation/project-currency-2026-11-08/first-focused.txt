@@ -1,0 +1,2 @@
+[INTERNAL_ERROR] 처리 중 내부 오류가 발생했습니다: baseline/current EVM BAC conversion
+관련 대상과 입력값을 확인해 수정한 뒤 다시 시도하세요.

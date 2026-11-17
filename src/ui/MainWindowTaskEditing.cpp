@@ -1,9 +1,12 @@
 #include "formatting/QtDiagnosticText.h"
 #include "ui/MainWindow.h"
+#include "ui/NetworkDialog.h"
 #include "ui/EditorUi.h"
 #include "ui/GanttView.h"
 #include "ui/TaskInput.h"
 #include "ui/TaskViewProjection.h"
+#include "ui/TaskTableModel.h"
+#include "domain/Classification.h"
 #include "calculation/WorkCalendar.h"
 #include <QAction>
 #include <QApplication>
@@ -138,6 +141,7 @@ void MainWindow::setupTaskEditing(QMenu *menu, QVBoxLayout *layout) {
         taskSearch_->clear();
         taskFilter_->setCurrentIndex(0);
         taskSort_->setCurrentIndex(0);
+        classificationView_ = {};
         refresh(false);
     });
     table_->horizontalHeader()->setSectionsClickable(true);
@@ -201,7 +205,7 @@ void MainWindow::updateCompactLayout() {
     }
 }
 void MainWindow::syncTaskSelection() {
-
+    const auto previous = selectedTask_;
     selectedTaskIds_ = selectedTaskIds();
     const auto row = table_->currentRow();
     if (document_.project() && row >= 0 && std::size_t(row) < visibleRows_.size() &&
@@ -225,6 +229,8 @@ void MainWindow::syncTaskSelection() {
     assignWbs_->setEnabled(!selectedTask_.empty() && !document_.readOnly());
     progressEdit_->setEnabled(!selectedTask_.empty() && !document_.readOnly() &&
                               document_.project()->statusAt.has_value());
+    if (previous != selectedTask_)
+        syncNetworkSelection(this, selectedTask_);
 }
 std::vector<std::string> MainWindow::selectedTaskIds() const {
     QSet<int> rows;
@@ -266,7 +272,8 @@ void MainWindow::restoreTaskSelection(int column) {
         const auto &id = document_.project()->tasks[visibleRows_[std::size_t(row)]].id;
         if (!requested.contains(id)) {
             if (run >= 0) {
-                selection.select(table_->model()->index(run, 0), table_->model()->index(row - 1, 13));
+                selection.select(table_->model()->index(run, 0),
+                                 table_->model()->index(row - 1, taskModel_->columnCount() - 1));
                 run = -1;
             }
             continue;
@@ -280,14 +287,16 @@ void MainWindow::restoreTaskSelection(int column) {
             active = row;
     }
     if (run >= 0)
-        selection.select(table_->model()->index(run, 0), table_->model()->index(int(visibleRows_.size()) - 1, 13));
+        selection.select(table_->model()->index(run, 0),
+                         table_->model()->index(int(visibleRows_.size()) - 1, taskModel_->columnCount() - 1));
     table_->selectionModel()->select(selection, QItemSelectionModel::ClearAndSelect);
     selectedTaskIds_ = std::move(kept);
     if (active < 0)
         active = first;
     if (active >= 0) {
         selectedTask_ = document_.project()->tasks[visibleRows_[std::size_t(active)]].id;
-        table_->setCurrentCell(active, std::clamp(column, 0, 13), QItemSelectionModel::NoUpdate);
+        table_->setCurrentCell(active, std::clamp(column, 0, taskModel_->columnCount() - 1),
+                               QItemSelectionModel::NoUpdate);
     } else
         selectedTask_.clear();
     updateTaskActions();
@@ -299,10 +308,16 @@ void MainWindow::applyTaskView() {
         return;
     }
     const auto &result = document_.calculation();
-    const auto view =
-        projectTaskView(*document_.project(), result ? &*result : nullptr,
-                        {selectedWbs_, taskSearch_->text(), taskFilter_->currentIndex(), taskSort_->currentIndex()});
+    try {
+        validateTaskView(*document_.project(), currentTaskViewSettings());
+    } catch (const std::exception &) {
+        classificationView_ = {};
+    }
+    const auto view = projectTaskView(*document_.project(), result ? &*result : nullptr,
+                                      {selectedWbs_, taskSearch_->text(), taskFilter_->currentIndex(),
+                                       taskSort_->currentIndex(), classificationView_});
     visibleRows_ = view.rows;
+    refreshClassificationGroups(view);
     const int sort = taskSort_->currentIndex(), filter = taskFilter_->currentIndex();
     table_->horizontalHeader()->setSortIndicatorShown(sort != 0);
     if (sort)

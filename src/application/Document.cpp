@@ -1,13 +1,17 @@
 #include "domain/Diagnostics.h"
+#include "domain/XmlCodes.h"
 #include "application/Document.h"
+#include "domain/FinancialPeriods.h"
 #include "calculation/WorkCalendar.h"
 #include "calculation/Effort.h"
+#include "calculation/WorkContourInverse.h"
 #include <stdexcept>
 #include <algorithm>
+#include <set>
 
 namespace jobs {
 bool Document::isEditable() const {
-    return project_ && !readOnly_;
+    return project_ && !readOnly();
 }
 void Document::requireEditable() const {
     if (!isEditable())
@@ -81,6 +85,12 @@ void Document::open(const std::string &path, bool readOnly) {
 }
 void Document::renameTask(std::size_t row, std::string name) {
     requireEditable();
+    if (project_->planLeveling || project_->remainingLeveling) {
+        auto p = *project_;
+        p.tasks.at(row).name = std::move(name);
+        edit(std::move(p), "작업 이름 변경");
+        return;
+    }
     const auto &original = project_->tasks.at(row);
     if (original.name == name)
         return;
@@ -155,9 +165,26 @@ void Document::assignWbs(std::size_t row, std::string id) {
     p.tasks.at(row).wbsId = std::move(id);
     edit(std::move(p), "작업 WBS 변경");
 }
+void Document::setPrintPreferences(std::optional<PrintPreferences> value) {
+    requireEditable();
+    auto p = *project_;
+    p.printPreferences = std::move(value);
+    edit(std::move(p), "인쇄 설정 저장", true);
+}
+void Document::setNetworkPositions(std::vector<NetworkPosition> value) {
+    requireEditable();
+    auto p = *project_;
+    p.networkPositions = std::move(value);
+    std::sort(p.networkPositions.begin(), p.networkPositions.end(),
+              [](const auto &a, const auto &b) { return a.taskId < b.taskId; });
+    edit(std::move(p), "네트워크 배치 저장", true);
+}
 void Document::setDuration(std::size_t row, std::optional<std::int64_t> minutes) {
     requireEditable();
-    if (project_->tasks.at(row).taskType == TaskType::FixedWork) {
+    if (std::any_of(project_->assignments.begin(), project_->assignments.end(),
+                    [&](const auto &a) { return a.taskId == project_->tasks.at(row).id && !a.periods.empty(); }) ||
+        project_->tasks.at(row).taskType == TaskType::FixedWork || project_->planLeveling ||
+        project_->remainingLeveling) {
         auto p = *project_;
         changeDuration(p, row, minutes);
         edit(std::move(p), "작업 기간 변경");
@@ -285,7 +312,7 @@ void Document::editGantt(const std::string &id, std::uint64_t revision, const st
                          const std::string &target) {
     if (!isEditable() || project_->documentId != id || project_->revision != revision || !calculation_ ||
         calculation_->status != CalculationStatus::Valid || calculation_->inputRevision != revision ||
-        project_->statusAt)
+        project_->statusAt || calculation_->resourceLeveled)
         throw AppError(ErrorCode::GANTT_REQUIRES_CURRENT_PLAN, {});
     if (!validStamp(target))
         throw AppError(ErrorCode::GANTT_TIMESTAMP_INVALID, {});
@@ -390,6 +417,59 @@ void Document::recordProgress(ProgressEntry entry) {
     p.progress.push_back(std::move(entry));
     edit(std::move(p));
 }
+void Document::mergeProgress(std::vector<ProgressEntry> entries) {
+    requireEditable();
+    if (!project_->statusAt)
+        throw AppError(ErrorCode::STATUS_DATE_REQUIRED, {});
+    if (entries.empty())
+        return;
+    auto p = *project_;
+    std::set<std::string> selected;
+    std::map<std::string, const Task *> tasks;
+    std::map<std::string, std::string> previous;
+    for (const auto &t : p.tasks)
+        tasks.emplace(t.id, &t);
+    for (const auto &e : p.progress)
+        previous[e.taskId] = e.id;
+    std::map<std::string, std::optional<std::int64_t>> workDurations;
+    std::set<std::string> workTasks;
+    for (const auto &e : entries)
+        if (tasks.contains(e.taskId) && isEffort(p) && usesWork(*tasks.at(e.taskId)))
+            workTasks.insert(e.taskId);
+    if (!workTasks.empty()) {
+        const auto plan = calculatePlan(p);
+        const ExecutionInputs inputs(p);
+        if (plan.status == CalculationStatus::Valid)
+            for (const auto &row : plan.tasks)
+                if (workTasks.contains(row.taskId)) {
+                    const auto duration = TaskExecution(p, *tasks.at(row.taskId), &inputs).duration(row);
+                    if (duration <= 5000000)
+                        workDurations[row.taskId] = duration;
+                }
+    }
+    for (auto &entry : entries) {
+        calculationCheckpoint();
+        if (entry.statusAt != *p.statusAt || entry.previousEntryId != previous[entry.taskId] ||
+            !selected.insert(entry.taskId).second || !tasks.contains(entry.taskId))
+            throw AppError(ErrorCode::XML_PROGRESS_INVALID, {"병합 상태일·대상 작업·이전 보고가 변경되었습니다."});
+        entry.id = store_.newId();
+        entry.sourceDocumentId = p.documentId;
+        entry.recordedRevision = p.revision + 1;
+        entry.planDurationMinutes = tasks.at(entry.taskId)->durationMinutes;
+        const auto &task = *tasks.at(entry.taskId);
+        if (isEffort(p) && usesWork(task)) {
+            const bool zeroUnstarted = !entry.actualStart && entry.actualDurationMinutes == 0 &&
+                                       entry.remainingMinutes == 0 && task.workUnitMinutes == 0;
+            if (!entry.actualFinish &&
+                (!entry.remainingWorkUnitMinutes || (*entry.remainingWorkUnitMinutes == 0 && !zeroUnstarted)))
+                throw AppError(ErrorCode::XML_PROGRESS_INVALID, {"공수 기반 작업의 명시 잔여 공수가 필요합니다."});
+            entry.planDurationMinutes = workDurations[task.id];
+        }
+        p.progress.push_back(std::move(entry));
+    }
+    // One validation/financial-lock boundary, one revision, one live notification.
+    edit(std::move(p));
+}
 void Document::staleCalculation() {
     bulkView_.reset();
     if (calculation_ && calculation_->status != CalculationStatus::Stale) {
@@ -402,10 +482,18 @@ void Document::setCurrency(std::string currency) {
     if (currency == project_->currency)
         return;
     auto monetary = [](const PlanInput &p) {
+        for (const auto *fields : {&p.customFields, &p.projectFields, &p.resourceFields, &p.assignmentFields})
+            if (std::any_of(fields->begin(), fields->end(), [](const auto &f) {
+                    return f.type == CustomFieldType::Cost ||
+                           (f.xmlLookup && f.xmlLookup->valueType == CustomFieldType::Cost);
+                }))
+                return true;
         return std::any_of(p.resources.begin(), p.resources.end(), [](const auto &r) { return !r.rates.empty(); }) ||
-               !p.taskCosts.empty();
+               !p.taskCosts.empty() || !p.resourcePlan.materials.empty() || !p.resourcePlan.expenses.empty();
     };
-    bool used = monetary(*project_) || !project_->costEntries.empty();
+    bool used = monetary(*project_) || !project_->costEntries.empty() || !project_->periodActuals.empty() ||
+                !project_->externalEvmAdoptions.empty() || !project_->financialPeriodEvents.empty() ||
+                !project_->currencyConversions.empty() || project_->xerFinancials.has_value();
     for (const auto &b : project_->baselines)
         used = used || monetary(b.input);
     for (const auto &s : project_->scenarios)
@@ -467,12 +555,27 @@ std::string Document::putResource(Resource r) {
 void Document::removeResource(const std::string &id) {
     requireEditable();
     auto p = *project_;
+    if (std::any_of(p.periodActuals.begin(), p.periodActuals.end(), [&](const auto &e) { return e.resourceId == id; }))
+        throw AppError(ErrorCode::PERIOD_ACTUAL_INVALID);
     for (const auto &a : p.assignments)
         if (a.resourceId == id)
             throw AppError(ErrorCode::RESOURCE_HAS_ASSIGNMENTS, {});
     if (!std::erase_if(p.resources, [&](const auto &r) { return r.id == id; }))
         throw AppError(ErrorCode::RESOURCE_NOT_FOUND, {});
     edit(std::move(p), "자원 삭제");
+}
+void Document::setAssignmentPeriods(const std::string &taskId, const std::string &resourceId,
+                                    std::vector<AssignmentPeriod> periods) {
+    requireEditable();
+    auto p = *project_;
+    const auto it = std::find_if(p.assignments.begin(), p.assignments.end(),
+                                 [&](const auto &a) { return a.taskId == taskId && a.resourceId == resourceId; });
+    if (it == p.assignments.end())
+        throw AppError(ErrorCode::ASSIGNMENT_INPUT_INVALID);
+    if (it->periods == periods)
+        return;
+    changeAssignmentContour(p, taskId, resourceId, std::move(periods));
+    edit(std::move(p), "기간별 계획 배정 변경");
 }
 void Document::setAssignments(const std::string &id, std::vector<Assignment> assignments) {
     requireEditable();
@@ -482,6 +585,16 @@ void Document::setAssignments(const std::string &id, std::vector<Assignment> ass
     for (auto &a : assignments) {
         if (a.taskId != id)
             throw AppError(ErrorCode::ASSIGNMENT_TASK_MISMATCH, {});
+        for (const auto &old : p.assignments)
+            if (old.taskId == a.taskId && old.resourceId == a.resourceId) {
+                if (a.attributes.empty())
+                    a.attributes = old.attributes;
+                a.rollDownMissing = old.rollDownMissing;
+                if (!a.nativeCurve)
+                    a.nativeCurve = old.nativeCurve;
+                if (!a.productivityEstimate)
+                    a.productivityEstimate = old.productivityEstimate;
+            }
     }
     std::vector<Assignment> previous;
     for (const auto &a : p.assignments)
@@ -535,31 +648,60 @@ std::string Document::saveScenario(std::string name, std::string priority, int h
     s.input = static_cast<const PlanInput &>(p);
     s.statusAt = p.statusAt;
     s.progress = p.progress;
+    s.remainingWork = p.remainingWork;
+    s.materialActuals = p.materialActuals;
+    s.progressPolicy = p.progressPolicy;
     s.policy = levelingPolicyFor(p);
     auto id = s.id;
     p.scenarios.push_back(std::move(s));
     edit(std::move(p));
     return id;
 }
-void Document::edit(Project p, std::string label) {
+void Document::edit(Project p, std::string label, bool preserveSchedule) {
+    synchronizeXmlWbsCodes(p, &*project_);
+    invalidateLevelingSelection(p, *project_);
     if (p == *project_)
         return;
     ++p.revision;
+    const auto &selection = p.planLeveling ? p.planLeveling : p.remainingLeveling;
+    appendLevelingDecision(p, *project_,
+                           selection                     ? "adopt"
+                           : label == "평준화 채택 해제" ? "release"
+                                                         : "invalidate",
+                           selection ? selection->reason : label);
+    guardFinancialPeriodEdits(*project_, p);
     validate(p);
-    const bool immutable = p.baselines != project_->baselines || p.progress != project_->progress ||
-                           p.costEntries != project_->costEntries || p.scenarios != project_->scenarios;
+    const bool immutable =
+        p.materialActuals != project_->materialActuals || p.baselines != project_->baselines ||
+        p.progress != project_->progress || p.costEntries != project_->costEntries ||
+        p.scenarios != project_->scenarios || p.periodActuals != project_->periodActuals ||
+        p.stepReports != project_->stepReports || p.xerFinancialRevisions != project_->xerFinancialRevisions ||
+        p.externalEvmAdoptions != project_->externalEvmAdoptions ||
+        p.financialPeriodEvents != project_->financialPeriodEvents ||
+        p.xerScheduleAdoptions != project_->xerScheduleAdoptions ||
+        p.xmlBaselineMerges != project_->xmlBaselineMerges || p.ledgerIdMigrations != project_->ledgerIdMigrations ||
+        p.currencyConversions != project_->currencyConversions;
+    preserveSchedule = preserveSchedule && !immutable && p.progressPolicy == project_->progressPolicy &&
+                       p.statusAt == project_->statusAt &&
+                       static_cast<const PlanInput &>(p) == static_cast<const PlanInput &>(*project_);
     if (immutable)
         clearHistory(
-            "승인 기준선·제출 실적/원가·저장 시나리오는 이력으로 보존합니다. 실적/원가는 정정 보고를 사용하세요.");
+            "승인 기준선·제출 실적/원가/자재·저장 시나리오·통화 전환·ID 이관은 이력으로 보존합니다. 실적/원가는 "
+            "정정 보고를 사용하세요.");
     else {
         InputDelta delta(*project_, p);
         const auto weight = sizeof(HistoryStep) + delta.bytes() + label.size();
-        pushHistory({std::make_shared<const InputDelta>(std::move(delta)), std::move(label), weight});
+        pushHistory(
+            {std::make_shared<const InputDelta>(std::move(delta)), std::move(label), weight, false, preserveSchedule});
     }
     project_ = std::move(p);
     taskChange_.reset();
     updateDirty();
-    staleCalculation();
+    if (preserveSchedule && calculation_ && calculation_->status == CalculationStatus::Valid) {
+        calculation_->inputRevision = project_->revision;
+        ++calculationGeneration_;
+    } else
+        staleCalculation();
     notify(Event::Edited);
 }
 void Document::applyCalculation(ScheduleResult result) {
@@ -704,6 +846,8 @@ void Document::applyHistory(const HistoryStep &step, bool forward) {
         auto p = *project_;
         std::get<std::shared_ptr<const InputDelta>>(step.change)->apply(p, forward);
         ++p.revision;
+        appendLevelingDecision(p, *project_, forward ? "redo" : "undo", step.label);
+        validateLevelingDecisions(p);
         if (step.planOnly)
             validatePlan(p);
         else
@@ -712,7 +856,11 @@ void Document::applyHistory(const HistoryStep &step, bool forward) {
         taskChange_.reset();
         updateDirty();
     }
-    staleCalculation();
+    if (step.preserveSchedule && calculation_ && calculation_->status == CalculationStatus::Valid) {
+        calculation_->inputRevision = project_->revision;
+        ++calculationGeneration_;
+    } else
+        staleCalculation();
 }
 bool Document::historyNeedsWorker(bool redo) const {
     return redo ? canRedo() && history_[historyCursor_].planOnly : canUndo() && history_[historyCursor_ - 1].planOnly;

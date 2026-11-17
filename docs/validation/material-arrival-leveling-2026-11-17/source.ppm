@@ -1,0 +1,564 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+            {
+                "resourceId": "R",
+                "taskId": "A",
+                "units": 100
+            },
+            {
+                "resourceId": "R",
+                "taskId": "B",
+                "units": 100
+            }
+        ],
+        "baselines": [
+            {
+                "approvedBy": "PM",
+                "createdAt": "2026-11-17T03:00:00Z",
+                "engineVersion": "jobs-adopted-leveling-1.8",
+                "id": "ecc7d93b-b0dc-4856-941e-c1a7284b4473",
+                "input": {
+                    "assignments": [
+                        {
+                            "resourceId": "R",
+                            "taskId": "A",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "R",
+                            "taskId": "B",
+                            "units": 100
+                        }
+                    ],
+                    "calculationProfile": "native-effort-split-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "calendars": [
+                    ],
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "KRW",
+                    "holidays": [
+                    ],
+                    "name": "자재 입고 자동 대기",
+                    "planLeveling": {
+                        "adoptedAt": "2026-11-17T03:00:00Z",
+                        "horizonWorkDays": 2,
+                        "policy": "serial-material-arrivals-v1",
+                        "priority": "task-order",
+                        "reason": "입고 자동 대기",
+                        "sourceDocumentId": "material-delay",
+                        "sourceRevision": 1
+                    },
+                    "resourcePlan": {
+                        "autoDelayForReceipts": true,
+                        "demands": [
+                        ],
+                        "expenses": [
+                        ],
+                        "materials": [
+                            {
+                                "id": "M",
+                                "name": "철근",
+                                "stockMilli": 0,
+                                "unit": "kg",
+                                "unitPriceMinor": 0
+                            }
+                        ],
+                        "receipts": [
+                            {
+                                "at": "2026-11-17 10:00",
+                                "id": "receipt",
+                                "materialId": "M",
+                                "quantityMilli": 1000
+                            }
+                        ],
+                        "roles": [
+                        ],
+                        "uses": [
+                            {
+                                "accrual": "start",
+                                "id": "use-A",
+                                "materialId": "M",
+                                "quantityMilli": 1000,
+                                "taskId": "A"
+                            }
+                        ]
+                    },
+                    "resources": [
+                        {
+                            "calendarId": "",
+                            "exceptions": [
+                            ],
+                            "id": "R",
+                            "maxUnits": 200,
+                            "name": "시공조",
+                            "rates": [
+                            ],
+                            "type": "labor"
+                        }
+                    ],
+                    "startDate": "2026-11-17",
+                    "taskCosts": [
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "A"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "B"
+                        }
+                    ],
+                    "tasks": [
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 60,
+                            "id": "A",
+                            "name": "자재 작업",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 60,
+                            "id": "B",
+                            "name": "후속 작업",
+                            "predecessors": [
+                                "A"
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        }
+                    ],
+                    "wbsNodes": [
+                    ]
+                },
+                "inputRevision": 4,
+                "name": "입고 승인",
+                "projectFinish": "2026-11-17 12:00",
+                "reason": "입고 대기",
+                "schedule": [
+                    {
+                        "completedActual": false,
+                        "critical": false,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 660,
+                        "earlyStartMinutes": 600,
+                        "finish": "2026-11-17 11:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 660,
+                        "lateStartMinutes": 600,
+                        "remainingStart": null,
+                        "start": "2026-11-17 10:00",
+                        "taskId": "A",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": false,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 720,
+                        "earlyStartMinutes": 660,
+                        "finish": "2026-11-17 12:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 720,
+                        "lateStartMinutes": 660,
+                        "remainingStart": null,
+                        "start": "2026-11-17 11:00",
+                        "taskId": "B",
+                        "totalFloatMinutes": 0
+                    }
+                ],
+                "sourceDocumentId": "material-delay",
+                "version": 1
+            }
+        ],
+        "calculationProfile": "native-effort-split-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "calendars": [
+        ],
+        "costEntries": [
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "KRW",
+        "derivedFrom": "",
+        "documentId": "material-delay",
+        "holidays": [
+        ],
+        "levelingDecisions": [
+            {
+                "action": "adopt",
+                "afterPlan": {
+                    "adoptedAt": "2026-11-17T03:00:00Z",
+                    "horizonWorkDays": 2,
+                    "policy": "serial-material-arrivals-v1",
+                    "priority": "task-order",
+                    "reason": "입고 자동 대기",
+                    "sourceDocumentId": "material-delay",
+                    "sourceRevision": 1
+                },
+                "afterRemaining": null,
+                "afterStatusAt": null,
+                "beforePlan": null,
+                "beforeRemaining": null,
+                "beforeStatusAt": null,
+                "id": "material-delay:leveling:2",
+                "previousEntryId": "",
+                "reason": "입고 자동 대기",
+                "recordedAt": "2026-11-17T01:20:24Z",
+                "recordedRevision": 2,
+                "sourceDocumentId": "material-delay",
+                "sourceRevision": 1
+            },
+            {
+                "action": "undo",
+                "afterPlan": null,
+                "afterRemaining": null,
+                "afterStatusAt": null,
+                "beforePlan": {
+                    "adoptedAt": "2026-11-17T03:00:00Z",
+                    "horizonWorkDays": 2,
+                    "policy": "serial-material-arrivals-v1",
+                    "priority": "task-order",
+                    "reason": "입고 자동 대기",
+                    "sourceDocumentId": "material-delay",
+                    "sourceRevision": 1
+                },
+                "beforeRemaining": null,
+                "beforeStatusAt": null,
+                "id": "material-delay:leveling:3",
+                "previousEntryId": "material-delay:leveling:2",
+                "reason": "평준화 결과 채택",
+                "recordedAt": "2026-11-17T01:20:24Z",
+                "recordedRevision": 3,
+                "sourceDocumentId": "material-delay",
+                "sourceRevision": 2
+            },
+            {
+                "action": "redo",
+                "afterPlan": {
+                    "adoptedAt": "2026-11-17T03:00:00Z",
+                    "horizonWorkDays": 2,
+                    "policy": "serial-material-arrivals-v1",
+                    "priority": "task-order",
+                    "reason": "입고 자동 대기",
+                    "sourceDocumentId": "material-delay",
+                    "sourceRevision": 1
+                },
+                "afterRemaining": null,
+                "afterStatusAt": null,
+                "beforePlan": null,
+                "beforeRemaining": null,
+                "beforeStatusAt": null,
+                "id": "material-delay:leveling:4",
+                "previousEntryId": "material-delay:leveling:3",
+                "reason": "평준화 결과 채택",
+                "recordedAt": "2026-11-17T01:20:24Z",
+                "recordedRevision": 4,
+                "sourceDocumentId": "material-delay",
+                "sourceRevision": 3
+            }
+        ],
+        "name": "자재 입고 자동 대기",
+        "planLeveling": {
+            "adoptedAt": "2026-11-17T03:00:00Z",
+            "horizonWorkDays": 2,
+            "policy": "serial-material-arrivals-v1",
+            "priority": "task-order",
+            "reason": "입고 자동 대기",
+            "sourceDocumentId": "material-delay",
+            "sourceRevision": 1
+        },
+        "progress": [
+        ],
+        "resourcePlan": {
+            "autoDelayForReceipts": true,
+            "demands": [
+            ],
+            "expenses": [
+            ],
+            "materials": [
+                {
+                    "id": "M",
+                    "name": "철근",
+                    "stockMilli": 0,
+                    "unit": "kg",
+                    "unitPriceMinor": 0
+                }
+            ],
+            "receipts": [
+                {
+                    "at": "2026-11-17 10:00",
+                    "id": "receipt",
+                    "materialId": "M",
+                    "quantityMilli": 1000
+                }
+            ],
+            "roles": [
+            ],
+            "uses": [
+                {
+                    "accrual": "start",
+                    "id": "use-A",
+                    "materialId": "M",
+                    "quantityMilli": 1000,
+                    "taskId": "A"
+                }
+            ]
+        },
+        "resources": [
+            {
+                "calendarId": "",
+                "exceptions": [
+                ],
+                "id": "R",
+                "maxUnits": 200,
+                "name": "시공조",
+                "rates": [
+                ],
+                "type": "labor"
+            }
+        ],
+        "revision": 6,
+        "scenarios": [
+            {
+                "createdAt": "2026-11-17T03:00:00Z",
+                "horizonWorkDays": 2,
+                "id": "c6239cbe-81e5-4475-83ee-6ae811c8d91c",
+                "input": {
+                    "assignments": [
+                        {
+                            "resourceId": "R",
+                            "taskId": "A",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "R",
+                            "taskId": "B",
+                            "units": 100
+                        }
+                    ],
+                    "calculationProfile": "native-effort-split-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "calendars": [
+                    ],
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "KRW",
+                    "holidays": [
+                    ],
+                    "name": "자재 입고 자동 대기",
+                    "planLeveling": {
+                        "adoptedAt": "2026-11-17T03:00:00Z",
+                        "horizonWorkDays": 2,
+                        "policy": "serial-material-arrivals-v1",
+                        "priority": "task-order",
+                        "reason": "입고 자동 대기",
+                        "sourceDocumentId": "material-delay",
+                        "sourceRevision": 1
+                    },
+                    "resourcePlan": {
+                        "autoDelayForReceipts": true,
+                        "demands": [
+                        ],
+                        "expenses": [
+                        ],
+                        "materials": [
+                            {
+                                "id": "M",
+                                "name": "철근",
+                                "stockMilli": 0,
+                                "unit": "kg",
+                                "unitPriceMinor": 0
+                            }
+                        ],
+                        "receipts": [
+                            {
+                                "at": "2026-11-17 10:00",
+                                "id": "receipt",
+                                "materialId": "M",
+                                "quantityMilli": 1000
+                            }
+                        ],
+                        "roles": [
+                        ],
+                        "uses": [
+                            {
+                                "accrual": "start",
+                                "id": "use-A",
+                                "materialId": "M",
+                                "quantityMilli": 1000,
+                                "taskId": "A"
+                            }
+                        ]
+                    },
+                    "resources": [
+                        {
+                            "calendarId": "",
+                            "exceptions": [
+                            ],
+                            "id": "R",
+                            "maxUnits": 200,
+                            "name": "시공조",
+                            "rates": [
+                            ],
+                            "type": "labor"
+                        }
+                    ],
+                    "startDate": "2026-11-17",
+                    "taskCosts": [
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "A"
+                        },
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "B"
+                        }
+                    ],
+                    "tasks": [
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 60,
+                            "id": "A",
+                            "name": "자재 작업",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        },
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 60,
+                            "id": "B",
+                            "name": "후속 작업",
+                            "predecessors": [
+                                "A"
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        }
+                    ],
+                    "wbsNodes": [
+                    ]
+                },
+                "inputRevision": 5,
+                "name": "입고 시나리오",
+                "policy": "serial-material-arrivals-v1",
+                "priority": "task-order",
+                "progress": [
+                ],
+                "sourceDocumentId": "material-delay",
+                "statusAt": null
+            }
+        ],
+        "startDate": "2026-11-17",
+        "statusAt": null,
+        "taskCosts": [
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "A"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "B"
+            }
+        ],
+        "tasks": [
+            {
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 60,
+                "id": "A",
+                "name": "자재 작업",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 60,
+                "id": "B",
+                "name": "후속 작업",
+                "predecessors": [
+                    "A"
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            }
+        ],
+        "wbsNodes": [
+        ]
+    },
+    "schemaVersion": 82,
+    "sha256": "1a64a72b7106acea8d3237523547e30ec4556ca8bec128557e3125da74994911"
+}

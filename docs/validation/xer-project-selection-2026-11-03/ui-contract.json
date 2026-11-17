@@ -1,0 +1,12 @@
+{
+    "A_resources": 1,
+    "B_resources": 2,
+    "explicit_selection": true,
+    "external_relation_block": true,
+    "preview_cancel": true,
+    "revision_stale": true,
+    "same_id_session_stale": true,
+    "selection_cancel": true,
+    "source_read_once": true,
+    "stable_id_after_filter": true
+}

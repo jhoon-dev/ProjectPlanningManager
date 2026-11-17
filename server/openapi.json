@@ -1,0 +1,1110 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "PPM authenticated collaboration API",
+    "version": "1.0.0",
+    "description": "Bearer identity is server-issued. Native batches require stable IDs/revision and server version. SQLite is authoritative; native files are explicitly imported/exported. Only task name/duration are editable remotely."
+  },
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "paths": {
+    "/api/v1/login": {
+      "post": {
+        "summary": "Create opaque bearer session",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": [],
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/logout": {
+      "post": {
+        "summary": "Revoke current session",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/api/v1/me": {
+      "get": {
+        "summary": "Read current authenticated identity",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/api/v1/users": {
+      "get": {
+        "summary": "Administrator: list server accounts",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": []
+      },
+      "post": {
+        "summary": "Administrator: create non-admin account",
+        "responses": {
+          "201": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/{user}": {
+      "put": {
+        "summary": "Administrator: enable/disable non-admin account; revoke sessions",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": [
+          {
+            "name": "user",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountState"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects": {
+      "get": {
+        "summary": "List authorized projects",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": []
+      },
+      "post": {
+        "summary": "Administrator: register native project, create only",
+        "responses": {
+          "201": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project}": {
+      "get": {
+        "summary": "Read authoritative snapshot and server version",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": [
+          {
+            "name": "project",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/projects/{project}/native": {
+      "get": {
+        "summary": "Download validated native project bytes",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": [
+          {
+            "name": "project",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/projects/{project}/grant": {
+      "put": {
+        "summary": "Administrator: grant or revoke project role",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": [
+          {
+            "name": "project",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Grant"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project}/preview": {
+      "post": {
+        "summary": "Validate native batch without changing project; ticket expires after 600 seconds",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": [
+          {
+            "name": "project",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Batch"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project}/apply": {
+      "post": {
+        "summary": "Atomically apply reviewed ticket; duplicate replay returns stored receipt",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": [
+          {
+            "name": "project",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Apply"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project}/receipts/{request_id}": {
+      "get": {
+        "summary": "Read caller-owned committed execution receipt",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": [
+          {
+            "name": "project",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/events": {
+      "get": {
+        "summary": "Resumable ACL-filtered change feed",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": [
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          },
+          {
+            "name": "wait",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 25,
+              "default": 0
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/stream": {
+      "get": {
+        "summary": "WebSocket: initial JSON {token,after}; then connected/changes; heartbeat20 seconds",
+        "responses": {
+          "101": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": [],
+        "security": []
+      }
+    },
+    "/api/v1/jobs": {
+      "get": {
+        "summary": "List caller-owned durable schedules",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": []
+      },
+      "post": {
+        "summary": "Create validated fixed-interval schedule",
+        "responses": {
+          "201": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Job"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/jobs/{job}": {
+      "delete": {
+        "summary": "Cancel caller-owned schedule and uncommitted in-flight run",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": [
+          {
+            "name": "job",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/runs": {
+      "get": {
+        "summary": "Read latest 200 caller-owned run outcomes",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Session missing/expired/revoked"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Version conflict or request ID reuse"
+          },
+          "410": {
+            "description": "Preview expired"
+          },
+          "422": {
+            "description": "Native validation rejected"
+          },
+          "429": {
+            "description": "Limit exceeded"
+          },
+          "503": {
+            "description": "Engine timeout"
+          }
+        },
+        "parameters": []
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "opaque random session"
+      }
+    },
+    "schemas": {
+      "Login": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "username",
+          "password"
+        ],
+        "properties": {
+          "username": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 256
+          }
+        }
+      },
+      "Operation": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "taskId"
+        ],
+        "properties": {
+          "taskId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "durationMinutes": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 5000000
+          }
+        },
+        "anyOf": [
+          {
+            "required": [
+              "name"
+            ]
+          },
+          {
+            "required": [
+              "durationMinutes"
+            ]
+          }
+        ]
+      },
+      "NativeRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "format",
+          "documentId",
+          "revision",
+          "requestId",
+          "operations"
+        ],
+        "properties": {
+          "format": {
+            "const": "PPM-AUTOMATION-1"
+          },
+          "documentId": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "description": "At most 200 UTF-8 bytes; no NUL or line breaks"
+          },
+          "operations": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 10000,
+            "items": {
+              "$ref": "#/components/schemas/Operation"
+            }
+          }
+        }
+      },
+      "Batch": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "expectedVersion",
+          "request"
+        ],
+        "properties": {
+          "expectedVersion": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "request": {
+            "$ref": "#/components/schemas/NativeRequest"
+          }
+        }
+      },
+      "Apply": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "previewId"
+        ],
+        "properties": {
+          "previewId": {
+            "type": "string"
+          }
+        }
+      },
+      "Grant": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "userId",
+          "role"
+        ],
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "editor",
+              "reviewer",
+              "viewer",
+              null
+            ]
+          }
+        }
+      },
+      "Job": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "projectId",
+          "intervalSeconds",
+          "startAt",
+          "expectedVersion",
+          "request"
+        ],
+        "properties": {
+          "projectId": {
+            "type": "string"
+          },
+          "intervalSeconds": {
+            "type": "integer",
+            "minimum": 60,
+            "maximum": 2592000
+          },
+          "startAt": {
+            "type": "integer",
+            "description": "Unix seconds UTC",
+            "minimum": 0,
+            "maximum": 4102444800
+          },
+          "expectedVersion": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "request": {
+            "$ref": "#/components/schemas/NativeRequest"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "password"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 12,
+            "maxLength": 256
+          }
+        }
+      },
+      "AccountState": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "enabled"
+        ],
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,152 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+            {
+                "resourceId": "e00ad739-7566-40f0-a8ca-ffd7e6113dbd",
+                "taskId": "23fb72b6-f38c-4ec3-8370-d6abe260dcf6",
+                "units": 100
+            },
+            {
+                "resourceId": "e00ad739-7566-40f0-a8ca-ffd7e6113dbd",
+                "taskId": "77752e94-e35f-4332-8bb7-b63dc46dd69a",
+                "units": 100
+            }
+        ],
+        "baselines": [
+        ],
+        "calculationProfile": "native-effort-split-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "calendars": [
+        ],
+        "costEntries": [
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "KRW",
+        "derivedFrom": "",
+        "documentId": "a2913797-3ddf-4735-9bc5-9bf535f0caa2",
+        "holidays": [
+        ],
+        "name": "평준화 후 여유·임계",
+        "planLeveling": {
+            "adoptedAt": "2026-11-04T05:19:16Z",
+            "horizonWorkDays": 260,
+            "policy": "serial-effort-split-v2",
+            "priority": "task-order",
+            "reason": "자원 순서 고정 검토",
+            "sourceDocumentId": "a2913797-3ddf-4735-9bc5-9bf535f0caa2",
+            "sourceRevision": 13
+        },
+        "progress": [
+        ],
+        "resources": [
+            {
+                "calendarId": "",
+                "exceptions": [
+                ],
+                "id": "e00ad739-7566-40f0-a8ca-ffd7e6113dbd",
+                "maxUnits": 100,
+                "name": "공유 인력",
+                "rates": [
+                    {
+                        "effectiveDate": "2026-11-02",
+                        "hourlyMinor": 60
+                    }
+                ],
+                "type": "labor"
+            }
+        ],
+        "revision": 14,
+        "scenarios": [
+        ],
+        "startDate": "2026-11-02",
+        "statusAt": null,
+        "taskCosts": [
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "23fb72b6-f38c-4ec3-8370-d6abe260dcf6"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "77752e94-e35f-4332-8bb7-b63dc46dd69a"
+            },
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "06720f6c-988b-4ed8-92e3-e3e9e3ffd80a"
+            }
+        ],
+        "tasks": [
+            {
+                "breaks": [
+                    {
+                        "finish": "2026-11-03 09:00",
+                        "start": "2026-11-02 12:00"
+                    }
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 480,
+                "id": "23fb72b6-f38c-4ec3-8370-d6abe260dcf6",
+                "name": "작업 A",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 240,
+                "id": "77752e94-e35f-4332-8bb7-b63dc46dd69a",
+                "name": "작업 B",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            },
+            {
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 1440,
+                "id": "06720f6c-988b-4ed8-92e3-e3e9e3ffd80a",
+                "name": "독립 C",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            }
+        ],
+        "wbsNodes": [
+        ]
+    },
+    "schemaVersion": 12,
+    "sha256": "9596be72796f8039ab06a81ad4633dfc5e62a1d463da63aa3fc233bc6ea812bb"
+}

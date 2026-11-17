@@ -1,0 +1,954 @@
+Start testing: Nov 17 11:54 대한민국 표준시
+----------------------------------------------------------
+1/255 Testing: project_currency_conversion_contract
+1/255 Test: project_currency_conversion_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_project_currency_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"project_currency_conversion_contract" start time: Nov 17 11:54 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: project-wide currency rates/budgets/materials/expenses/native observations/baselines/scenarios/closed periods/external EVM/XER projections, original archives and FX chains, schema34/replay/recovery/copy, sequential identity/currency operations, numerical cases, cancel/stale/readonly, export and native UI
+<end of output>
+Test time =  14.40 sec
+----------------------------------------------------------
+Test Passed.
+"project_currency_conversion_contract" end time: Nov 17 11:54 대한민국 표준시
+"project_currency_conversion_contract" time elapsed: 00:00:14
+----------------------------------------------------------
+
+198/255 Testing: parser_seed_replay
+198/255 Test: parser_seed_replay
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_parser_seed_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"parser_seed_replay" start time: Nov 17 11:54 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: 1100 parser seeds, schema 1..83, leveling/classification/views/dated work/formulas/financials, checksum/body separation, byte limit and store parity
+<end of output>
+Test time =  22.21 sec
+----------------------------------------------------------
+Test Passed.
+"parser_seed_replay" end time: Nov 17 11:54 대한민국 표준시
+"parser_seed_replay" time elapsed: 00:00:22
+----------------------------------------------------------
+
+158/255 Testing: leveling_float_contract
+158/255 Test: leveling_float_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_leveling_float_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"leveling_float_contract" start time: Nov 17 11:54 대한민국 표준시
+Output:
+----------------------------------------------------------
+leveling float: engines, resource flow, capacity fences, cycles, actuals, baseline versions, lifecycle and drivers passed
+<end of output>
+Test time =   8.65 sec
+----------------------------------------------------------
+Test Passed.
+"leveling_float_contract" end time: Nov 17 11:54 대한민국 표준시
+"leveling_float_contract" time elapsed: 00:00:08
+----------------------------------------------------------
+
+228/255 Testing: undo_contract
+228/255 Test: undo_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_undo_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"undo_contract" start time: Nov 17 11:54 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: atomic input history, monotonic revisions/STALE, saved-content dirty state, save/branch/no-op/error boundaries, stable WBS/resource/cost IDs, immutable facts, count/memory limits, readonly and observers
+<end of output>
+Test time =   8.97 sec
+----------------------------------------------------------
+Test Passed.
+"undo_contract" end time: Nov 17 11:54 대한민국 표준시
+"undo_contract" time elapsed: 00:00:08
+----------------------------------------------------------
+
+4/255 Testing: ledger_identity_migration_contract
+4/255 Test: ledger_identity_migration_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_ledger_identity_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"ledger_identity_migration_contract" start time: Nov 17 11:54 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: explicit task/resource identity migration, original/provenance/amount/date preservation, baseline/closed periods/Steps/external EVM/XER relink and schedule archives, fresh/merge IDs, schema33/replay/recovery/copy, sequential/cancel/stale/readonly, export and native UI
+<end of output>
+Test time =   9.13 sec
+----------------------------------------------------------
+Test Passed.
+"ledger_identity_migration_contract" end time: Nov 17 11:54 대한민국 표준시
+"ledger_identity_migration_contract" time elapsed: 00:00:09
+----------------------------------------------------------
+
+72/255 Testing: material_delay_contract
+72/255 Test: material_delay_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_material_delay_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"material_delay_contract" start time: Nov 17 11:54 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS material automatic delay/all engines/reservations/future protection/finish/uniform/constraints/calendar/curves/integrated/schema82/adoption/archives/recovery; 24 oracle fixtures
+<end of output>
+Test time =   6.23 sec
+----------------------------------------------------------
+Test Passed.
+"material_delay_contract" end time: Nov 17 11:54 대한민국 표준시
+"material_delay_contract" time elapsed: 00:00:06
+----------------------------------------------------------
+
+12/255 Testing: governance_risk_automation_contract
+12/255 Test: governance_risk_automation_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_governance_risk_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"governance_risk_automation_contract" start time: Nov 17 11:54 대한민국 표준시
+Output:
+----------------------------------------------------------
+governance/risk/automation contracts passed
+<end of output>
+Test time =   7.80 sec
+----------------------------------------------------------
+Test Passed.
+"governance_risk_automation_contract" end time: Nov 17 11:54 대한민국 표준시
+"governance_risk_automation_contract" time elapsed: 00:00:07
+----------------------------------------------------------
+
+233/255 Testing: recovery_ui
+233/255 Test: recovery_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_recovery_ui_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"recovery_ui" start time: Nov 17 11:54 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: background save retirement race, continuous deadline/pause/readonly/failure, startup selection, detached save, editor/document undo shortcuts, immutable notice, close cancel/discard, later and explicit discard
+<end of output>
+Test time =   4.68 sec
+----------------------------------------------------------
+Test Passed.
+"recovery_ui" end time: Nov 17 11:54 대한민국 표준시
+"recovery_ui" time elapsed: 00:00:04
+----------------------------------------------------------
+
+84/255 Testing: xml_unit_fields_contract
+84/255 Test: xml_unit_fields_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_unit_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_unit_fields_contract" start time: Nov 17 11:54 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS units/max-units and explicit daily availability: ratio/null/scopes/cache/XML periods/schema78/undo/recovery/reports
+<end of output>
+Test time =   6.91 sec
+----------------------------------------------------------
+Test Passed.
+"xml_unit_fields_contract" end time: Nov 17 11:54 대한민국 표준시
+"xml_unit_fields_contract" time elapsed: 00:00:06
+----------------------------------------------------------
+
+70/255 Testing: material_actual_contract
+70/255 Test: material_actual_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_material_actual_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"material_actual_contract" start time: Nov 17 11:54 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS actual material ledger/corrections/reconciliation/remaining stock/all engines/future receipt residuals/remaining spans/curves/native83/adoption/scenario/recovery
+<end of output>
+Test time =   5.38 sec
+----------------------------------------------------------
+Test Passed.
+"material_actual_contract" end time: Nov 17 11:54 대한민국 표준시
+"material_actual_contract" time elapsed: 00:00:05
+----------------------------------------------------------
+
+210/255 Testing: project_xml_ui
+210/255 Test: project_xml_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_project_xml_ui_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"project_xml_ui" start time: Nov 17 11:54 대한민국 표준시
+Output:
+----------------------------------------------------------
+Project XML UI preview/cancel/import/export/stale/readonly tests passed
+<end of output>
+Test time =   4.38 sec
+----------------------------------------------------------
+Test Passed.
+"project_xml_ui" end time: Nov 17 11:54 대한민국 표준시
+"project_xml_ui" time elapsed: 00:00:04
+----------------------------------------------------------
+
+168/255 Testing: xer_batch_ui
+168/255 Test: xer_batch_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xer_batch_ui_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xer_batch_ui" start time: Nov 17 11:54 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: batch selection, blocked links, menus, preview/cancel/stale, publish, additive workspace adoption
+<end of output>
+Test time =   4.85 sec
+----------------------------------------------------------
+Test Passed.
+"xer_batch_ui" end time: Nov 17 11:55 대한민국 표준시
+"xer_batch_ui" time elapsed: 00:00:04
+----------------------------------------------------------
+
+235/255 Testing: reports_ui
+235/255 Test: reports_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_report_ui_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"reports_ui" start time: Nov 17 11:54 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: dashboard, report models, WBS/global demand, EAC/filter controls, XLSX/PDF dialogs, cancel/no mutation, stale snapshot during chooser/worker, readonly, invalid source text
+<end of output>
+Test time =   4.55 sec
+----------------------------------------------------------
+Test Passed.
+"reports_ui" end time: Nov 17 11:55 대한민국 표준시
+"reports_ui" time elapsed: 00:00:04
+----------------------------------------------------------
+
+157/255 Testing: repartition_float_contract
+157/255 Test: repartition_float_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_repartition_float_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"repartition_float_contract" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+Repartition float: disappearing windows, exact capacity, witnesses, policy, legacy baseline and lifecycle passed
+<end of output>
+Test time =   3.55 sec
+----------------------------------------------------------
+Test Passed.
+"repartition_float_contract" end time: Nov 17 11:55 대한민국 표준시
+"repartition_float_contract" time elapsed: 00:00:03
+----------------------------------------------------------
+
+246/255 Testing: resource_ui
+246/255 Test: resource_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_resource_ui_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"resource_ui" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: resource registration/exception validation, stable IDs, task assignments, peak/daily load, options invalidate results, saved A/B scenarios, unresolved horizon, source preservation and persistence, readonly
+<end of output>
+Test time =   3.47 sec
+----------------------------------------------------------
+Test Passed.
+"resource_ui" end time: Nov 17 11:55 대한민국 표준시
+"resource_ui" time elapsed: 00:00:03
+----------------------------------------------------------
+
+232/255 Testing: recovery_crash_file
+232/255 Test: recovery_crash_file
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_recovery_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"recovery_crash_file" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: actual process kill and pre-commit kill, stale/live locks, three generations, never-saved and Unicode recovery, immutable facts, detached copy, corruption/future/partial/race, missing/changed original, failed publish, exclusive discard and path confinement
+<end of output>
+Test time =   3.68 sec
+----------------------------------------------------------
+Test Passed.
+"recovery_crash_file" end time: Nov 17 11:55 대한민국 표준시
+"recovery_crash_file" time elapsed: 00:00:03
+----------------------------------------------------------
+
+220/255 Testing: milestone_baseline_regressions
+220/255 Test: milestone_baseline_regressions
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_milestone_baseline_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"milestone_baseline_regressions" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: milestone endpoints/relations/constraints/forecast/leveling/float, historical engines and scenario replay, thread isolation, archive bytes and deleted effort baseline UI
+<end of output>
+Test time =   5.02 sec
+----------------------------------------------------------
+Test Passed.
+"milestone_baseline_regressions" end time: Nov 17 11:55 대한민국 표준시
+"milestone_baseline_regressions" time elapsed: 00:00:05
+----------------------------------------------------------
+
+80/255 Testing: remaining_availability_contract
+80/255 Test: remaining_availability_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_remaining_availability_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"remaining_availability_contract" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS remaining availability capacity/demand/deficit/calendar/forecast/context/cache/XML/reports/schema80/undo/recovery
+<end of output>
+Test time =   4.52 sec
+----------------------------------------------------------
+Test Passed.
+"remaining_availability_contract" end time: Nov 17 11:55 대한민국 표준시
+"remaining_availability_contract" time elapsed: 00:00:04
+----------------------------------------------------------
+
+150/255 Testing: leveling_decision_contract
+150/255 Test: leveling_decision_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_leveling_decision_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"leveling_decision_contract" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+decision lifecycle, worker/cancel/session, legacy/schema15/recovery, validation/limit and UI passed
+<end of output>
+Test time =   3.79 sec
+----------------------------------------------------------
+Test Passed.
+"leveling_decision_contract" end time: Nov 17 11:55 대한민국 표준시
+"leveling_decision_contract" time elapsed: 00:00:03
+----------------------------------------------------------
+
+196/255 Testing: multi_project_workspace_ui
+196/255 Test: multi_project_workspace_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_workspace_ui_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"multi_project_workspace_ui" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: independent windows, leases/duplicate IDs, dirty/undo, workspace save/reopen/rollback, cancellation and stale-result UI
+<end of output>
+Test time =   3.20 sec
+----------------------------------------------------------
+Test Passed.
+"multi_project_workspace_ui" end time: Nov 17 11:55 대한민국 표준시
+"multi_project_workspace_ui" time elapsed: 00:00:03
+----------------------------------------------------------
+
+77/255 Testing: shared_periods_ui
+77/255 Test: shared_periods_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_shared_period_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"shared_periods_ui" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS shared period editor/overlap repair/cancel/create retry/query null/capacity invalidation
+<end of output>
+Test time =   4.09 sec
+----------------------------------------------------------
+Test Passed.
+"shared_periods_ui" end time: Nov 17 11:55 대한민국 표준시
+"shared_periods_ui" time elapsed: 00:00:04
+----------------------------------------------------------
+
+199/255 Testing: governance_ui
+199/255 Test: governance_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_governance_ui_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"governance_ui" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+governance UI passed
+<end of output>
+Test time =   3.34 sec
+----------------------------------------------------------
+Test Passed.
+"governance_ui" end time: Nov 17 11:55 대한민국 표준시
+"governance_ui" time elapsed: 00:00:03
+----------------------------------------------------------
+
+126/255 Testing: xml_formula_contract
+126/255 Test: xml_formula_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_formula_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_formula_contract" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS XML formulas: 4 scopes, typed bounded interpreter, stable refs, native/roll-up/roll-down dependencies, errors/missing/eager IIf, schema44/FX/archives/recovery/edit/models/reports, 400 arithmetic vectors
+<end of output>
+Test time =   3.08 sec
+----------------------------------------------------------
+Test Passed.
+"xml_formula_contract" end time: Nov 17 11:55 대한민국 표준시
+"xml_formula_contract" time elapsed: 00:00:03
+----------------------------------------------------------
+
+13/255 Testing: resource_workspace_ui
+13/255 Test: resource_workspace_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_resource_workspace_ui_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"resource_workspace_ui" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+Resource/workspace UI: catalogs, exact input, binding, atomic save/cancel/undo/read-only/stale, qualified links, calculation and stale exports passed
+<end of output>
+Test time =   3.01 sec
+----------------------------------------------------------
+Test Passed.
+"resource_workspace_ui" end time: Nov 17 11:55 대한민국 표준시
+"resource_workspace_ui" time elapsed: 00:00:03
+----------------------------------------------------------
+
+209/255 Testing: project_xml_contract
+209/255 Test: project_xml_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_project_xml_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"project_xml_contract" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+Project XML contract, source preservation, roundtrip and rejection tests passed
+<end of output>
+Test time =   2.93 sec
+----------------------------------------------------------
+Test Passed.
+"project_xml_contract" end time: Nov 17 11:55 대한민국 표준시
+"project_xml_contract" time elapsed: 00:00:02
+----------------------------------------------------------
+
+169/255 Testing: xer_batch_contract
+169/255 Test: xer_batch_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xer_batch_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xer_batch_contract" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: batch import/export, remapping, codes, native workspace, rollback/race/cancel/relocation
+<end of output>
+Test time =   2.33 sec
+----------------------------------------------------------
+Test Passed.
+"xer_batch_contract" end time: Nov 17 11:55 대한민국 표준시
+"xer_batch_contract" time elapsed: 00:00:02
+----------------------------------------------------------
+
+82/255 Testing: resource_availability_contract
+82/255 Test: resource_availability_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_resource_availability_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"resource_availability_contract" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS resource availability minute boundaries/open ranges/precedence/three leveling engines/load/XML/schema79/cache/undo/recovery/reports
+<end of output>
+Test time =   2.73 sec
+----------------------------------------------------------
+Test Passed.
+"resource_availability_contract" end time: Nov 17 11:55 대한민국 표준시
+"resource_availability_contract" time elapsed: 00:00:02
+----------------------------------------------------------
+
+76/255 Testing: shared_periods_contract
+76/255 Test: shared_periods_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_shared_period_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"shared_periods_contract" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS shared open/inclusive capacity periods/bounds/day precedence/calendar/daily integration/pooled leveling/schema1..4/strict parsing/atomic save/report exports
+<end of output>
+Test time =   2.28 sec
+----------------------------------------------------------
+Test Passed.
+"shared_periods_contract" end time: Nov 17 11:55 대한민국 표준시
+"shared_periods_contract" time elapsed: 00:00:02
+----------------------------------------------------------
+
+234/255 Testing: reports_export
+234/255 Test: reports_export
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_report_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"reports_export" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: snapshot/WBS/shared resources/empty scope/filters/unknown/stale inputs/F10/no-baseline AC/typed OOXML/injection/atomic create-only/PDF pagination; 10 PDF pages
+<end of output>
+Test time =   2.43 sec
+----------------------------------------------------------
+Test Passed.
+"reports_export" end time: Nov 17 11:55 대한민국 표준시
+"reports_export" time elapsed: 00:00:02
+----------------------------------------------------------
+
+78/255 Testing: shared_availability_contract
+78/255 Test: shared_availability_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_shared_availability_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"shared_availability_contract" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS shared remaining capacity/simultaneity/qualified bindings/missing files/lower bounds/mixed cutoffs/stale schedules/calendar/exports
+<end of output>
+Test time =   2.47 sec
+----------------------------------------------------------
+Test Passed.
+"shared_availability_contract" end time: Nov 17 11:55 대한민국 표준시
+"shared_availability_contract" time elapsed: 00:00:02
+----------------------------------------------------------
+
+245/255 Testing: resource_contract_file
+245/255 Test: resource_contract_file
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_resource_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"resource_contract_file" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: F05 peak/work, short overlap, fractional/unknown/zero/date capacity, deterministic priority/FS/horizon, retained actuals, independent minute oracle, transactional commands, immutable snapshots, persistence/provenance, v4 migration
+<end of output>
+Test time =   1.75 sec
+----------------------------------------------------------
+Test Passed.
+"resource_contract_file" end time: Nov 17 11:55 대한민국 표준시
+"resource_contract_file" time elapsed: 00:00:01
+----------------------------------------------------------
+
+79/255 Testing: shared_availability_ui
+79/255 Test: shared_availability_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_shared_availability_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"shared_availability_ui" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS workspace shared remaining UI/pooled demand/revision invalidation/export guard
+<end of output>
+Test time =   1.66 sec
+----------------------------------------------------------
+Test Passed.
+"shared_availability_ui" end time: Nov 17 11:55 대한민국 표준시
+"shared_availability_ui" time elapsed: 00:00:01
+----------------------------------------------------------
+
+195/255 Testing: workspace_file_contract
+195/255 Test: workspace_file_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_workspace_file_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"workspace_file_contract" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: workspace roundtrip, relative paths, checksum, version/field/size/reference validation, lock and external-change protection
+<end of output>
+Test time =   1.37 sec
+----------------------------------------------------------
+Test Passed.
+"workspace_file_contract" end time: Nov 17 11:55 대한민국 표준시
+"workspace_file_contract" time elapsed: 00:00:01
+----------------------------------------------------------
+
+81/255 Testing: remaining_availability_ui
+81/255 Test: remaining_availability_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_remaining_availability_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"remaining_availability_ui" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS remaining availability UI query/edit/invalidation
+<end of output>
+Test time =   1.14 sec
+----------------------------------------------------------
+Test Passed.
+"remaining_availability_ui" end time: Nov 17 11:55 대한민국 표준시
+"remaining_availability_ui" time elapsed: 00:00:01
+----------------------------------------------------------
+
+73/255 Testing: material_delay_ui
+73/255 Test: material_delay_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_material_delay_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"material_delay_ui" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS automatic option/undo/replay/comparison/material explanation/adoption/read-only
+<end of output>
+Test time =   1.07 sec
+----------------------------------------------------------
+Test Passed.
+"material_delay_ui" end time: Nov 17 11:55 대한민국 표준시
+"material_delay_ui" time elapsed: 00:00:01
+----------------------------------------------------------
+
+83/255 Testing: resource_availability_ui
+83/255 Test: resource_availability_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_resource_availability_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"resource_availability_ui" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS resource availability editor fill/save
+<end of output>
+Test time =   1.19 sec
+----------------------------------------------------------
+Test Passed.
+"resource_availability_ui" end time: Nov 17 11:55 대한민국 표준시
+"resource_availability_ui" time elapsed: 00:00:01
+----------------------------------------------------------
+
+75/255 Testing: material_inventory_ui
+75/255 Test: material_inventory_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_material_inventory_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"material_inventory_ui" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS receipt editor/null/signed stock/three exports/revision invalidation
+<end of output>
+Test time =   2.45 sec
+----------------------------------------------------------
+Test Passed.
+"material_inventory_ui" end time: Nov 17 11:55 대한민국 표준시
+"material_inventory_ui" time elapsed: 00:00:02
+----------------------------------------------------------
+
+127/255 Testing: xml_formula_ui
+127/255 Test: xml_formula_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_formula_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_formula_ui" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS XML formula UI: preview/disable/snapshot/undo, unsupported/stale, assignment refs, Windows small layout
+<end of output>
+Test time =   1.09 sec
+----------------------------------------------------------
+Test Passed.
+"xml_formula_ui" end time: Nov 17 11:55 대한민국 표준시
+"xml_formula_ui" time elapsed: 00:00:01
+----------------------------------------------------------
+
+85/255 Testing: xml_unit_fields_ui
+85/255 Test: xml_unit_fields_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_xml_unit_tests.exe" "-platform" "offscreen" "--ui"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"xml_unit_fields_ui" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS unit reference editor insertions/preview/save
+<end of output>
+Test time =   1.17 sec
+----------------------------------------------------------
+Test Passed.
+"xml_unit_fields_ui" end time: Nov 17 11:55 대한민국 표준시
+"xml_unit_fields_ui" time elapsed: 00:00:01
+----------------------------------------------------------
+
+243/255 Testing: cost_day_boundaries
+243/255 Test: cost_day_boundaries
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_cost_day_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"cost_day_boundaries" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: last-minute uniform/resource cost, exclusive midnight events/reports, exact status, month/year/leap-day and final supported date boundaries
+<end of output>
+Test time =   1.05 sec
+----------------------------------------------------------
+Test Passed.
+"cost_day_boundaries" end time: Nov 17 11:55 대한민국 표준시
+"cost_day_boundaries" time elapsed: 00:00:01
+----------------------------------------------------------
+
+176/255 Testing: leveling_selection_contract
+176/255 Test: leveling_selection_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_leveling_selection_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"leveling_selection_contract" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+adoption: source/serial-dates/cost/baseline/undo/invalidation/forecast/readonly/session/cancel/schema/recovery passed
+<end of output>
+Test time =   1.07 sec
+----------------------------------------------------------
+Test Passed.
+"leveling_selection_contract" end time: Nov 17 11:55 대한민국 표준시
+"leveling_selection_contract" time elapsed: 00:00:01
+----------------------------------------------------------
+
+194/255 Testing: shared_resource_intervals
+194/255 Test: shared_resource_intervals
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_shared_resource_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"shared_resource_intervals" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: absolute half-open overlap, capacity, scoped IDs, calendars, splits, remaining effort, missing scope and cancellation
+<end of output>
+Test time =   1.07 sec
+----------------------------------------------------------
+Test Passed.
+"shared_resource_intervals" end time: Nov 17 11:55 대한민국 표준시
+"shared_resource_intervals" time elapsed: 00:00:01
+----------------------------------------------------------
+
+71/255 Testing: material_actual_ui
+71/255 Test: material_actual_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_material_actual_tests.exe" "--ui" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"material_actual_ui" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS actual ledger UI/receipt/consumption/reconciliation/adoption/stale/reload/readonly
+<end of output>
+Test time =   1.32 sec
+----------------------------------------------------------
+Test Passed.
+"material_actual_ui" end time: Nov 17 11:55 대한민국 표준시
+"material_actual_ui" time elapsed: 00:00:01
+----------------------------------------------------------
+
+74/255 Testing: material_inventory_contract
+74/255 Test: material_inventory_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_material_inventory_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"material_inventory_contract" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS material receipts/stock baseline/inclusive events/uniform allocation/breaks/unknown/shortage/leveling/schema81/undo/recovery
+<end of output>
+Test time =   1.85 sec
+----------------------------------------------------------
+Test Passed.
+"material_inventory_contract" end time: Nov 17 11:55 대한민국 표준시
+"material_inventory_contract" time elapsed: 00:00:01
+----------------------------------------------------------
+
+14/255 Testing: resource_plan_contract
+14/255 Test: resource_plan_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_resource_plan_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"resource_plan_contract" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+Resource plan: exact costs, unknowns, stock, roles, history, archives, recovery, schema20, advanced priorities and reports passed
+<end of output>
+Test time =   2.86 sec
+----------------------------------------------------------
+Test Passed.
+"resource_plan_contract" end time: Nov 17 11:55 대한민국 표준시
+"resource_plan_contract" time elapsed: 00:00:02
+----------------------------------------------------------
+
+249/255 Testing: tracking_file
+249/255 Test: tracking_file
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_tracking_file_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"tracking_file" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: tracking roundtrip, retained history/provenance/clone, calendar immutability, baseline recomputation integrity, malformed ledger rejection, schema-3 copy migration
+<end of output>
+Test time =   0.84 sec
+----------------------------------------------------------
+Test Passed.
+"tracking_file" end time: Nov 17 11:55 대한민국 표준시
+"tracking_file" time elapsed: 00:00:00
+----------------------------------------------------------
+
+180/255 Testing: timephased_usage_contract
+180/255 Test: timephased_usage_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_usage_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"timephased_usage_contract" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+Usage: independent buckets/work/cost/frozen/ledger/limits passed
+<end of output>
+Test time =   0.88 sec
+----------------------------------------------------------
+Test Passed.
+"timephased_usage_contract" end time: Nov 17 11:55 대한민국 표준시
+"timephased_usage_contract" time elapsed: 00:00:00
+----------------------------------------------------------
+
+248/255 Testing: tracking_contract
+248/255 Test: tracking_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_tracking_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"tracking_contract" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS: F09 +8h, immutable/versioned baseline, plan-vs-forecast variance, calendar snapshot, as-of corrections, validation/atomicity, completed actuals, F08 retained logic, unknowns/read-only
+<end of output>
+Test time =   0.39 sec
+----------------------------------------------------------
+Test Passed.
+"tracking_contract" end time: Nov 17 11:55 대한민국 표준시
+"tracking_contract" time elapsed: 00:00:00
+----------------------------------------------------------
+
+15/255 Testing: integrated_workspace_contract
+15/255 Test: integrated_workspace_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_integrated_workspace_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"integrated_workspace_contract" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+Integrated workspace: qualified links, FS/SS/FF/SF signed lag, cycle, release/status/calendar safety, shared leveling, workspace2 relocation, immutable source and exports passed
+<end of output>
+Test time =   3.15 sec
+----------------------------------------------------------
+Test Passed.
+"integrated_workspace_contract" end time: Nov 17 11:55 대한민국 표준시
+"integrated_workspace_contract" time elapsed: 00:00:03
+----------------------------------------------------------
+
+25/255 Testing: dated_remaining_contract
+25/255 Test: dated_remaining_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_dated_remaining_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"dated_remaining_contract" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS dated remaining work: exact days, inherited/zero, calendars, status/window review, cost/usage, float witness, leveling/adoption, immutable facts, history, schema/recovery, exports
+<end of output>
+Test time =   8.06 sec
+----------------------------------------------------------
+Test Passed.
+"dated_remaining_contract" end time: Nov 17 11:55 대한민국 표준시
+"dated_remaining_contract" time elapsed: 00:00:08
+----------------------------------------------------------
+
+26/255 Testing: dated_remaining_ui
+26/255 Test: dated_remaining_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_dated_remaining_ui_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"dated_remaining_ui" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS dated remaining UI: inherited/zero, preview, edits invalidate certificate, atomic apply/clear, undo, stale, cancel, role, outdated/readonly, close/menu
+PASS dated effort UI: FixedWork/FixedUnits, future date input, inverse completion preview, invalid total, preservation/undo and readonly, native/screens at default/800x600
+<end of output>
+Test time =   6.78 sec
+----------------------------------------------------------
+Test Passed.
+"dated_remaining_ui" end time: Nov 17 11:56 대한민국 표준시
+"dated_remaining_ui" time elapsed: 00:00:06
+----------------------------------------------------------
+
+160/255 Testing: progress_leveling_contract
+160/255 Test: progress_leveling_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_progress_leveling_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"progress_leveling_contract" start time: Nov 17 11:56 대한민국 표준시
+Output:
+----------------------------------------------------------
+engine native-fs0-workminutes-v1
+engine native-pdm-taskcal-v1
+engine native-pdm-constraints-v1
+engine native-effort-split-v1
+relation matrix
+lifecycle
+combined progress/leveling engines, active graph, facts, lifecycle, schema14 and scenarios passed
+<end of output>
+Test time =   1.99 sec
+----------------------------------------------------------
+Test Passed.
+"progress_leveling_contract" end time: Nov 17 11:56 대한민국 표준시
+"progress_leveling_contract" time elapsed: 00:00:01
+----------------------------------------------------------
+
+161/255 Testing: progress_leveling_ui
+161/255 Test: progress_leveling_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_progress_leveling_ui_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"progress_leveling_ui" start time: Nov 17 11:56 대한민국 표준시
+Output:
+----------------------------------------------------------
+combined policy leveling preview/adoption/scenario/switch/readonly/exports passed
+<end of output>
+Test time =   4.09 sec
+----------------------------------------------------------
+Test Passed.
+"progress_leveling_ui" end time: Nov 17 11:56 대한민국 표준시
+"progress_leveling_ui" time elapsed: 00:00:04
+----------------------------------------------------------
+
+162/255 Testing: progress_policy_adoption_contract
+162/255 Test: progress_policy_adoption_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_progress_policy_adoption_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"progress_policy_adoption_contract" start time: Nov 17 11:56 대한민국 표준시
+Output:
+----------------------------------------------------------
+progress policy adoption persistence/history/worker/forecast/integration passed
+<end of output>
+Test time =   2.51 sec
+----------------------------------------------------------
+Test Passed.
+"progress_policy_adoption_contract" end time: Nov 17 11:56 대한민국 표준시
+"progress_policy_adoption_contract" time elapsed: 00:00:02
+----------------------------------------------------------
+
+163/255 Testing: progress_policy_adoption_ui
+163/255 Test: progress_policy_adoption_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_progress_policy_adoption_ui_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"progress_policy_adoption_ui" start time: Nov 17 11:56 대한민국 표준시
+Output:
+----------------------------------------------------------
+progress policy adoption UI/metadata/stale/table/Gantt/exports passed
+<end of output>
+Test time =   4.87 sec
+----------------------------------------------------------
+Test Passed.
+"progress_policy_adoption_ui" end time: Nov 17 11:56 대한민국 표준시
+"progress_policy_adoption_ui" time elapsed: 00:00:04
+----------------------------------------------------------
+
+178/255 Testing: period_actual_contract
+178/255 Test: period_actual_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_period_actual_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"period_actual_contract" start time: Nov 17 11:56 대한민국 표준시
+Output:
+----------------------------------------------------------
+period actuals: atomic ledger/precision/correction/asof/reconciliation/AC/frozen/schema/recovery/stale/cancel passed
+<end of output>
+Test time =   0.99 sec
+----------------------------------------------------------
+Test Passed.
+"period_actual_contract" end time: Nov 17 11:56 대한민국 표준시
+"period_actual_contract" time elapsed: 00:00:00
+----------------------------------------------------------
+
+179/255 Testing: period_actual_ui
+179/255 Test: period_actual_ui
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_period_actual_ui_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"period_actual_ui" start time: Nov 17 11:56 대한민국 표준시
+Output:
+----------------------------------------------------------
+period actual UI: input/correction/unknown-zero/history/readonly/worker-cancel/session/Usage/export passed
+<end of output>
+Test time =   3.41 sec
+----------------------------------------------------------
+Test Passed.
+"period_actual_ui" end time: Nov 17 11:56 대한민국 표준시
+"period_actual_ui" time elapsed: 00:00:03
+----------------------------------------------------------
+
+184/255 Testing: forecast_float_contract
+184/255 Test: forecast_float_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_forecast_float_tests.exe"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"forecast_float_contract" start time: Nov 17 11:56 대한민국 표준시
+Output:
+----------------------------------------------------------
+forecast float: golden/oracle/constraints/calendars/history/cancellation passed
+<end of output>
+Test time =   2.17 sec
+----------------------------------------------------------
+Test Passed.
+"forecast_float_contract" end time: Nov 17 11:56 대한민국 표준시
+"forecast_float_contract" time elapsed: 00:00:02
+----------------------------------------------------------
+
+24/255 Testing: dated_effort_contract
+24/255 Test: dated_effort_contract
+Command: "C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/jobs_dated_effort_tests.exe" "-platform" "offscreen"
+Directory: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+"dated_effort_contract" start time: Nov 17 11:55 대한민국 표준시
+Output:
+----------------------------------------------------------
+PASS dated effort: 72 independent civil-minute cases, exact work/targets, FixedWork/FixedUnits duration/work basis, calendars/curves, original facts, float/leveling/witness/adoption/scenario, schema35/recovery/undo, worker protections and exports
+<end of output>
+Test time =  37.58 sec
+----------------------------------------------------------
+Test Passed.
+"dated_effort_contract" end time: Nov 17 11:56 대한민국 표준시
+"dated_effort_contract" time elapsed: 00:00:37
+----------------------------------------------------------
+
+End testing: Nov 17 11:56 대한민국 표준시

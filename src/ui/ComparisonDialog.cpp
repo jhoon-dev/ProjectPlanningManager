@@ -9,6 +9,7 @@
 #include <QTableWidget>
 #include <QVBoxLayout>
 #include <QtConcurrent/QtConcurrentRun>
+#include <unordered_map>
 namespace jobs {
 namespace {
 QString qs(const std::string &s) {
@@ -57,12 +58,13 @@ ComparisonDialog::ComparisonDialog(Document &doc, const std::string &id, QWidget
     summary_->setMinimumHeight(96);
     summary_->setTextInteractionFlags(Qt::TextSelectableByMouse);
     layout->addWidget(summary_);
-    table_ = new QTableWidget(0, 15, this);
+    table_ = new QTableWidget(0, 18, this);
     table_->setObjectName("comparisonTable");
     table_->setAccessibleName("계획 대비 변경 비교 표");
     table_->setHorizontalHeaderLabels({"작업", "기준선 완료", "현재 계획 완료", "계획 완료 편차(h)", "실제 시작",
                                        "실제 완료", "실제 소요(h)", "잔여(h)", "기간 진척(%)", "예측 완료",
-                                       "예측 완료 편차(h)", "변경 항목", "기준선 시작", "현재 계획 시작", "예측 시작"});
+                                       "예측 완료 편차(h)", "변경 항목", "기준선 시작", "현재 계획 시작", "예측 시작",
+                                       "잔여 총여유(h)", "잔여 자유여유(h)", "예측 임계/상태"});
     table_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     table_->setSelectionBehavior(QAbstractItemView::SelectRows);
     table_->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -84,7 +86,8 @@ ComparisonDialog::ComparisonDialog(Document &doc, const std::string &id, QWidget
     layout->addWidget(diagnostics_);
     auto *note = new QLabel("편차 단위: 선택 기준선 달력의 근무시간(+지연 / −앞당김). —는 기준선·유효 결과 없음 또는 "
                             "비교 범위 밖입니다.\n기간 진척=실제 소요/(실제 소요+잔여), 완료 보고=100%. 미보고 작업은 "
-                            "진척 미정이며 계획 기간을 잔여로 가정합니다.",
+                            "진척 미정이며 계획 기간을 잔여로 가정합니다.\n잔여 여유는 현재 작업 달력의 근무시간이며 "
+                            "완료 실적은 적용 대상이 아닙니다. 자원 용량 평준화 전 논리 일정입니다.",
                             this);
     note->setWordWrap(true);
     layout->addWidget(note);
@@ -141,6 +144,10 @@ void ComparisonDialog::display(const ComparisonReport &r) {
                       stamp(r.forecast.projectFinish) + " (" + variance(r.forecastFinishVariance) + "h)" +
                       (context.isEmpty() ? "" : "\n프로젝트 변경: " + context.join(" · ")));
     table_->setRowCount(int(r.tasks.size()));
+    std::unordered_map<std::string, const TaskSchedule *> forecasts;
+    if (r.forecast.isForecast && r.forecast.status == CalculationStatus::Valid)
+        for (const auto &row : r.forecast.tasks)
+            forecasts.emplace(row.taskId, &row);
     for (int i = 0; i < int(r.tasks.size()); ++i) {
         const auto &row = r.tasks[std::size_t(i)];
         QStringList changes;
@@ -163,6 +170,14 @@ void ComparisonDialog::display(const ComparisonReport &r) {
                            stamp(row.baselineStart),
                            stamp(row.planStart),
                            stamp(row.forecastStart)};
+        const auto *future = forecasts.contains(row.taskId) ? forecasts.at(row.taskId) : nullptr;
+        const bool floatKnown = future && hasScheduleFloat(r.forecast, *future);
+        values << (floatKnown ? hours(future->totalFloatMinutes) : "—")
+               << (floatKnown ? hours(future->freeFloatMinutes) : "—")
+               << (!future                   ? "—"
+                   : future->completedActual ? "실제 완료"
+                   : floatKnown              ? (future->critical ? "예측 임계" : "예측 여유")
+                                             : "미산정");
         QStringList oldPred, newPred, oldResources, newResources;
         for (const auto &id : row.baselinePredecessors)
             oldPred << qs(id);

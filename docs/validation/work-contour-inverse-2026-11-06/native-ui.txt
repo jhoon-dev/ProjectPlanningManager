@@ -1,0 +1,1 @@
+PASS work contour UI: FW/FU preview equals atomic apply, exact work and actual duration, draft/cancel/undo/stale/readonly, bounded screen

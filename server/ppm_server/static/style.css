@@ -1,0 +1,159 @@
+:root {
+  font-family: system-ui, "Malgun Gothic", sans-serif;
+  color: #152d3b;
+  background: #f3f6f8;
+}
+body {
+  margin: 0;
+}
+header {
+  background: #133c50;
+  color: white;
+  padding: 24px max(24px, calc((100vw - 1100px) / 2));
+}
+h1 {
+  margin: 0 0 8px;
+}
+header p {
+  margin: 0 0 12px;
+}
+main {
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 0 20px;
+}
+section {
+  background: white;
+  padding: 24px;
+  border: 1px solid #d7e2e7;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+h2 {
+  margin: 0 0 18px;
+  font-size: 1.2rem;
+}
+h3 {
+  font-size: 1rem;
+}
+label {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 8px 12px 8px 0;
+}
+input,
+select,
+button {
+  font: inherit;
+  padding: 9px;
+  border: 1px solid #9bafb9;
+  border-radius: 5px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+button {
+  background: #175776;
+  color: white;
+  border: 0;
+  cursor: pointer;
+  margin: 6px 8px 6px 0;
+}
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid #e7ae38;
+  outline-offset: 2px;
+}
+nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+nav strong {
+  margin-right: auto;
+}
+.table {
+  max-height: 440px;
+  overflow: auto;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th,
+td {
+  text-align: left;
+  border-bottom: 1px solid #d7e2e7;
+  padding: 10px;
+}
+th {
+  position: sticky;
+  top: 0;
+  background: #eaf1f5;
+}
+td input {
+  width: 100%;
+  min-width: 100px;
+}
+td:last-child {
+  font-size: 0.8rem;
+  overflow-wrap: anywhere;
+}
+pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 320px;
+  overflow: auto;
+  background: #f3f6f8;
+  padding: 14px;
+  border-radius: 5px;
+}
+#conflict {
+  color: #9a3d14;
+  font-weight: 600;
+}
+#status {
+  min-height: 24px;
+}
+footer {
+  padding: 24px;
+  text-align: center;
+  color: #4d6470;
+}
+form {
+  display: flex;
+  gap: 12px;
+  align-items: end;
+  flex-wrap: wrap;
+}
+#userForm {
+  margin-top: 20px;
+}
+#userForm h3 {
+  width: 100%;
+}
+[hidden] {
+  display: none !important;
+}
+@media (max-width: 600px) {
+  section {
+    padding: 16px;
+  }
+  label {
+    display: flex;
+  }
+  th,
+  td {
+    padding: 6px;
+  }
+  .table {
+    max-height: 360px;
+  }
+}

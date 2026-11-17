@@ -1,0 +1,174 @@
+{
+  "status": "PASS",
+  "date": "2026-11-09",
+  "platform": "Windows x64 / Qt6.8.3 / MinGW13.1 Release",
+  "ctest": {
+    "tests": 143,
+    "failures": 0,
+    "seconds": 223.86,
+    "report": "ctest.xml"
+  },
+  "parser_seeds": 566,
+  "cpp_format_files": 416,
+  "packaging": {
+    "passed": 28,
+    "platform_skips": 2
+  },
+  "independent": {
+    "independent-oracle.json": {
+      "status": "PASS",
+      "arithmetic_cases": 25,
+      "calendar_cases": 72,
+      "resource_minutes": 3146,
+      "unchanged": "all fields except reviewed plan periods/metadata and one revision"
+    },
+    "independent-exchange.json": {
+      "status": "PASS",
+      "reader": "MPXJ16.10.0",
+      "jpype": "1.6.0",
+      "files": [
+        {
+          "file": "curve.xml",
+          "ignored_errors": 0,
+          "total_hours": 16,
+          "curve_points": 21,
+          "daily_hours": [
+            8.0,
+            8.000000000000002
+          ]
+        },
+        {
+          "file": "curve.xer",
+          "ignored_errors": 0,
+          "total_hours": 16,
+          "curve_points": 21
+        },
+        {
+          "file": "manual.xml",
+          "ignored_errors": 0,
+          "total_hours": 16.5,
+          "daily_hours": [
+            4.5,
+            12.0
+          ]
+        }
+      ]
+    },
+    "report-verification.json": {
+      "status": "PASS",
+      "reports": {
+        "report": {
+          "sheets": 26,
+          "pdf_pages": 13
+        },
+        "curve-report": {
+          "sheets": 26,
+          "pdf_pages": 15
+        }
+      }
+    }
+  },
+  "native_ui": "PASS: default/800x600, confirmation, invalidation, cancellation, stale, role, readonly and menu",
+  "sources_sha256": {
+    "src/domain/ProductivityTypes.h": "8c71f6c40e49d3b4496e7852b27b16d088595f1e6d0cc28c8708edee29281c15",
+    "src/domain/Productivity.h": "24ccf8f3a084ae4c161c365f1d42794c95c66c89cc2d1d58c2c9811ec61cae49",
+    "src/domain/Productivity.cpp": "114687e215c178f0b8df1ef07937f1e4230b7f7d7660bea5803f0118e6972108",
+    "src/domain/Project.h": "6d674c2639ac5cb654f731ee45ce96cba4cbaef160d609548f6d132c054a6325",
+    "src/domain/Project.cpp": "3cf65afe0c8a122460b8894c67698b4c181de56e5a86cf6775e90c504e708e4f",
+    "src/domain/Classification.cpp": "d2324dec0160be559a836aaf3267d0a9cb55635a118a930fbb83435ca1887a3c",
+    "src/application/Document.h": "7aa4c7eef5b1417632ed1da78954708cd051364630ecba4ac3a7fb542da9a33e",
+    "src/application/Document.cpp": "b9bc6b7bb646c47c24f06abe53aced21b97cc5a2fa9e1d91ae483d1ddbabe506",
+    "src/application/EditCommand.h": "a0a4cc9e70198b927c3e2c36cdaba6e7cbb51d9ba4ffa6328f8c4e5dc077ea94",
+    "src/application/PreparedEdit.cpp": "bfa5be1727eef290481d2d5caa1bb92fabead2f39c517bc40d6daed091c2bef5",
+    "src/application/ResourcePlanningEditing.cpp": "b2f0ef8ed2f6a0810ad7c8ceda5ea1649535b2cc02a1c46fd267961fe667fd35",
+    "src/calculation/ResourcePlanning.h": "89db64e6ae8d5075e4980dfcc3e9c32a8e304cb26bc7b6eda9c01d24af7918fa",
+    "src/calculation/ResourcePlanning.cpp": "4ff7dfcfb103164e6d66e0b221ee7d770fcc3e9de5a7c011476294bd4d6f4c46",
+    "src/calculation/Reports.cpp": "5669c56db07611cfd01b9cb3a589f180b982711249bd4438107bd97daacd39ff",
+    "src/persistence/ResourcePlanningJson.h": "4da896b1f373af694f6a893cce4451e3a441f6d36f5c4f54a6119c4a8592b7f9",
+    "src/persistence/ResourcePlanningJson.cpp": "3accec44b93974cee80173a9d4eea93074348ff6eba661f776f5cd0901bf7b5c",
+    "src/persistence/ResourceCurveExchange.h": "22abd6a6529dccdb7420b1ed8861a2783bfe9321e740cd9e9e4f26c553c0cebd",
+    "src/persistence/ResourceCurveExchange.cpp": "5dad667db3db45a07689734a91d1d5664208067a3de6d8374c570c5d84fa2726",
+    "src/persistence/ProjectJson.cpp": "7427c450be9cbae72beed985ce122d3694ef2bc4fa41004c6377d6a05419f42f",
+    "src/persistence/ProjectFile.cpp": "57275b01c5a84fd1dfabeddd720e2d8626400dd01e3de95766468d4c4379e008",
+    "src/persistence/JsonRecoveryStore.cpp": "dfd2eca17f2e2587db0a18726ee92341d8c27235692e864e83c6c8acc4a757e9",
+    "src/persistence/LedgerIdentityJson.cpp": "98df00dce6e920e7ccb607c85817121339b1d6762766eba5a338396e967c85d2",
+    "src/persistence/ProjectCurrencyJson.cpp": "da7cbbebcd511d8d7e9d2bfedae36795f3b0eda42a3944b8b8f8ff6a58b572a7",
+    "src/persistence/XerScheduleJson.cpp": "f60765b4fb013a69ab508b7184b789ff6ef086a23271b4373a6b26de58164d2b",
+    "src/persistence/PrimaveraXer.cpp": "a98217f936186427358861e89f5c5cab6ffcab2884d4aea257dac987dc935d4f",
+    "src/persistence/ProjectXml.cpp": "c149f896cffe7a025250d99d9fd6ca5ee2b0cdde47af9b5ef18c0c44aa5a9dff",
+    "src/ui/ResourcePlanningDialog.h": "789c0445d72e649bdd51ce8a57912bcad8a5c7aef9a0df9923dbe5ada476b45d",
+    "src/ui/ResourcePlanningDialog.cpp": "4e6f2e6ee7da3ef0ec75ca05059ded05c2749b6500d124f5da094824c7423ee6",
+    "src/ui/MainWindow.cpp": "d65562a0563c6465995b752bb368324fafe638f899f0cdb2f14f28e0a7957cc6",
+    "src/ui/MainWindowResources.cpp": "afe2d353c771e9cedf30e9e335d725e188c88a2fd80febaf76eab696a207235e",
+    "src/formatting/DiagnosticCatalog.h": "a1c7d053afe99cbf3e86e7d498af51b9124819f81ee41689a4a9b955e9ebcbb5",
+    "tests/ResourcePlanningTests.cpp": "75756beff9e5e025198e7ab44f97c01f00c7448eb8874c9cfc552ec5f4bcfd8e",
+    "tests/FileLifecycleTests.cpp": "ca0380603cf043e81616d81075bd8984a30f1a87399e3b429fe251ed6d6ba83c",
+    "tests/fuzz/ParserHarness.cpp": "907edc88dfa0ab86ee4fad2e5aab9cc1473f05bf2cf6c78bf6f0fd0085116442",
+    "tests/fuzz/ParserSeeds.cpp": "b317bf2ec8cc247adcf5f7da67c97eb118be40f5e8c34eb03659bb11b66eca6a",
+    "tests/LedgerIdentityTests.cpp": "c77a3f898ebf393d3420b78fe327d487f80793242c4b112191a3d91fce83cc5b",
+    "tests/ProjectCurrencyTests.cpp": "e3062e13284aea6eb915c06f2e26d6a8342d185dc24596bebb0bef242a0c3c64",
+    "tests/XerFinancialMergeTests.cpp": "625045f5bfeb35bb4afb79a19ae0981714e16d4aa03fde8917625507c852066f",
+    "tests/XerFinancialTests.cpp": "d190a3481b2094368d58df9de2e310945431f939bca8e5b2a1df4b5d3afce394",
+    "tests/XerFinancialEditingTests.cpp": "8f878d706ea27c8a4c31ca1eeb5e6c5d847b7649a4e6a45130399764f721061b",
+    "tests/XerScheduleAdoptionTests.cpp": "92423368f85c5acf834ebaa996d959d90f2dcd156f4045200a83df65789601c6",
+    "tests/XerSourceConversionTests.cpp": "20e51d14c66146f2c04ea9da8339e8847212409f84aa36173194b0106ac0950b",
+    "tests/XerSourceRelinkTests.cpp": "b7ad194cc7aea3de8d8d692e2dfb2dd28e8d809ddb5d63e160d41f7c20fd301a",
+    "tests/ResourcePlanningUiTests.cpp": "5dc21db1dd4a55e46d2a17032c0f1d62af527240430557436d894fd58a6faa29",
+    "tests/AssignmentPeriodsTests.cpp": "5a271b6dca72c0ad5dba7d4974f7dbd158adff3fafdf7b200fcf46ced5349899",
+    "CMakeLists.txt": "0f59e3596c392c4e18f132b7c730e03257d5a950f0e51e5fba920d25e7aa648f",
+    "scripts/verify-resource-planning.py": "5570ca15591bc9d6addcffd0a1630c6995dc7cd7cca6f4402beac04f967a53d1",
+    "scripts/verify-resource-curve-exchange.py": "1758197b1f0cdd0821bd652746076d0d0f4d5074d4947e5af1d1c300156cbdc4"
+  },
+  "evidence_sha256": {
+    "adopted-curve-build.txt": "4d253ff97515d93a061327d8686d8ebc3e447b4da7aaf800dbd2df22d9ca83f8",
+    "adopted-final-build.txt": "6610fe576c5f99402a6f15371536bd6451acb74cdfb8d4813cba375c98d929a2",
+    "all-test-output.txt": "12687e0d93fd2333aacd3c1ebd24c82ba73517a72d94b00ac10427363ecd7b65",
+    "apple-signing.txt": "6764c0b2b999b2f9c0b073082e307230534eb0f8334b539fb5b260b949a0c4fc",
+    "build.txt": "d3580dc3255fae63b76d72f550750dda23570da4ab48ae6a20ae0800a6389a65",
+    "changed-cpp.json": "88c915d66a03290527ce6ee77ce6fa72bbbc91498c45a0bccc2a544f0ac6ab17",
+    "ctest-console.txt": "7b102a491f72058dd5ead3b8e4266d22bdad57ca74bfd44e25e85a28d76bc6d7",
+    "ctest.txt": "7b102a491f72058dd5ead3b8e4266d22bdad57ca74bfd44e25e85a28d76bc6d7",
+    "ctest.xml": "bcfa4a96ae54a3cd869adda0f90b843be4b8f91df25b9139a83f98e2e8356c73",
+    "final-build.txt": "aebc0414c4385dbf1a155e92f85c5f07decd8e2ae15590364df2ab85bcfde374",
+    "final-focused-build.txt": "e6ecf75eea3845756bde2962021e08b73fefea800bff6ad4543db7f8dbb19ebc",
+    "final-focused.txt": "ecf9b663430fdd9b0fffb4f6a586f6d3e003a002ce3e4b48281dcf737d4c2771",
+    "first-build.txt": "6b3686ad65bd880eae8ca37a7ea48a59c0f7568f83d75af6cabb371d8c336fb5",
+    "first-focused.txt": "a4815726d65621796ff4a4ee2efa20ff863d57eaae8626d0e3bfece7602cad25",
+    "focused.txt": "d0109d7b66fe55abc8e95fb8d3c9c8507f10a3de5faeb2e031b4f88b5f91147d",
+    "format.txt": "848cf454bb742ac51ee2459778cf2354fc06794d23c59df8894b6de8fa92e837",
+    "independent-exchange.json": "82bbc65c8d43ad86ed7bb8f761d9db198b599b9fc656017e5f3edc3733efc54b",
+    "independent-oracle.json": "6e3ecd591353f63a0a2556bfd98b26ea4fa71f126b81ec94be99897fe4b23fe1",
+    "mac-packaging.txt": "29fd469f3bed1cb3f38e8485e196a5a42f8699e345b65b2e8ae53c11e1bc7dbb",
+    "mpp-packaging.txt": "373a4d1a67a5101b9e51c1475f4bb463748fdbbf10c37e97a9236a7f841dbd80",
+    "msix-packaging.txt": "e6a9de07dcf44f8d22b7275cade7e9efca329448fda54e58aaba0b388e91ca65",
+    "native-domain.txt": "43bce5b274bc1f09f775f74f769005c006cd98c76f135acef9a1d63217d81436",
+    "native-ui.txt": "fb9466de5ceff7155b2bcc2c0ab8824583aa446e30916730a0d977391943d1f7",
+    "preliminary-ctest-console.txt": "1c9595a7b619143b2af986c774efa95ecdf928db7260793f512acffdf714b471",
+    "preliminary-ctest.txt": "1c9595a7b619143b2af986c774efa95ecdf928db7260793f512acffdf714b471",
+    "preliminary-ctest.xml": "384c74204dacf4d295aff7411a18733ad3db97a0999869391fea77b7a1bf3aeb",
+    "repaired-build.txt": "155524e7bbfcdf121adc99c487c0436ba0f9128509744bb303933a28319b5da2",
+    "report-verification.json": "dcad642913dc606a380b6f2241945d6cdf22cdd608017a24041b93eb82c76c3c",
+    "second-build.txt": "dd0b9f96bfe56e370e7d969cc46e795cf2647d87bc187acbfe204721a70f17f4",
+    "third-build.txt": "046991dd467f25f18002ac5d92d16857f618a1a8a50780f92a701c1fdf970249",
+    "resource-planning-qa/archived-only.ppm": "1a5e22506b12b0d52ecf61338ca3fab31f9e1d277d052b64103ae5721011451c",
+    "resource-planning-qa/before.json": "f49ebcdfe98e78edc9ba08a5ea0c67e2f976af8d5a54d749ecc25dd122c19137",
+    "resource-planning-qa/curve-cases.json": "18812efa9ca0fa0545239a745ddc8d36c818332aa7db40b85e6aef22286b3f40",
+    "resource-planning-qa/curve-estimated.json": "7634f090a28046924918a8623a185a9826444ac2e9aafcfbdcd38fbb21aec659",
+    "resource-planning-qa/curve-report-page-14.png": "153416f145aa3648acbd83175958a8e6cbc96428c8705682b61a2d91755687b1",
+    "resource-planning-qa/curve-report.pdf": "5c81f3f74ca0072c435e7910100bb509c1c25c63ae130625d660ff24a75a8f45",
+    "resource-planning-qa/curve-report.xlsx": "49739f59fe5b40dcef769b3828de27f01e45fccfdd28d6c55ec87a685865bfe8",
+    "resource-planning-qa/curve-small.png": "7de6feb776400b037b7d524022f55099289f42f2579b41fe3ea4618e5ac8395e",
+    "resource-planning-qa/curve.png": "1c327012ece2cf3f40cb2ef81e13a37f1a369d1c3e3d058d0ccd09fa6309cfe0",
+    "resource-planning-qa/curve.xer": "69430f9e9a3503ae443eb03e3c9534c150188df7b67f974d798bc69f1fb31f51",
+    "resource-planning-qa/curve.xml": "bc47382947046e7e289cf5feef19c67c2c1b17cf0cfaae78176523dbe7d0419e",
+    "resource-planning-qa/curved.json": "6317964bebfeab68bd364156043a4ec351e21da306b5df132911f4cf8375d099",
+    "resource-planning-qa/estimated.json": "e7920760bce3e7e4fe89c80af58af372875a77a0edfa8ca9e6287f92f2454b90",
+    "resource-planning-qa/manual.json": "72bdaa03b354457bf8a099c64d35bb6b603c1cfc027a92d3b9f8bf9d426d95af",
+    "resource-planning-qa/manual.xml": "152f1b4a23818d0d54e5e4bde7874d5ea2a4af93044694fcfcf1aa7620e9f014",
+    "resource-planning-qa/productivity-arithmetic.json": "0195acadd2663937fcc1b4ec95389d7110738ca4155b7af12bc54a895e43f7ae",
+    "resource-planning-qa/productivity-small.png": "de29dd186e2410b707c5fbd11c8d659c911ff0fa58511d668d01f88211dd6288",
+    "resource-planning-qa/productivity.png": "3912fc66cf0d60daeb5cf0bf7379be8d605a79ab8c2410ef751ea6d5fdec8057",
+    "resource-planning-qa/report.pdf": "919926bc099e5a11077ec3605d88840e5f14c32f3851b74a4ef93e7678efe690",
+    "resource-planning-qa/report.xlsx": "6c5f3d0777193197068759531c708d2dc68e51793d4cb6ab40ac3a081442d130"
+  }
+}

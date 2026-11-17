@@ -1,0 +1,11 @@
+{
+    "EV": 87500,
+    "correctedWeight": 7,
+    "durationBasisPoints": 5000,
+    "firstReportWeight": 1,
+    "originalTasks": 3,
+    "physicalBasisPoints": 8750,
+    "schema": 19,
+    "stepReports": 2,
+    "supportActivities": 2
+}

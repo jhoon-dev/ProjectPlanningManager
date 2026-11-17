@@ -1,0 +1,17 @@
+# XML Baseline Cost 검증 · 2026-11-14
+
+[기능 계약](../../xml-baseline-cost.md) · XBC-01~06. 최초 native 기준선의 날짜별 동결 단가·부분 공수·곡선/중단·FixedWork·고정비·자재·경비와 작업/프로젝트/자원/배정·현재 그룹 구성·전파를 확인한다. 현재 단가·후속 기준선·실제 원장을 원본 대신 사용하지 않는다.
+
+USD 예제는 작업289/454/307/244센트, 프로젝트1294센트, 자원50/389/0센트, 배정50/138/251센트다. 자재107센트×1.5개는161센트로 반올림하고 경비83센트를 더한다. S 배정의231u/33u와 FixedWork501u에 날짜별 단가를 적용한다.1/2 통화 전환 뒤 항목별 반올림을 적용한 EUR 합계는649센트다. JPY의 주요/최소 단위 표현도 확인한다.
+
+[Python 독립 검사기](../../../scripts/verify-xml-baseline-cost.py)는128개 생성 사례에 배정/날짜별 유리수 반올림을 직접 계산해 작업/자원/배정/프로젝트 합계를 대조한다. XML 원가의 최소통화 단위와 Number 값·XER 정적 값, XLSX/PDF를 별도로 판독한다. 실제 Microsoft Project/P6 실행 비교가 아니다.
+
+누락 기준선·새 객체·단가/고정비 미확정·알려진0·통화 불일치·합계 초과·잘못된 일정·취소와 원가 오류가 기존 기간/공수에 영향을 주지 않는 경로를 검사한다. 저장값99/777을 대체 값으로 쓰지 않는다. 현재 계획 stale·삭제된 객체·그룹 엄격 합산·활성/비활성62·이전 태그 거절·전체 사본/환산/ID 이력·복구/읽기 전용·편집/undo/redo를 확인한다.
+
+UI는 현재 계획 결과 없이 표·worker 미리보기·새 참조 삽입·BASE-1 출처와 작은 화면을 확인한다. XML 재수입은 원래 native 기준선이 없으므로 값이 미설정이며 저장 결과를 새 기준선으로 채택하지 않는다.
+
+일반 회귀 **210/210·452.48초**를 통과했다. 대용량 단독 CTest는180초 제한으로 시간 초과했다. 코드/실행 파일 변경 없이300초 한도 직접 재검증 **1/1·227.84초**를 확인했다. 기능211개를 확인했으나 표준 시간 제한 실패1건은 보존한다. [확장 기록](extended.json). 관련42개는 최종 전체 결과에서 추출했다. 파서 **898개**(schema1~62), C++ 형식 **535파일** 차이0이다. [전체 빌드](build.txt)·[수정 집중 결과](refined-focused.txt)·[전체 CTest](ctest.txt)·[JUnit](ctest.xml)·[대용량 단독](isolated.txt)·[단독 JUnit](isolated.xml)·[집중 부분집합](focused.xml)·[형식](quality.json)·[독립 검사](independent.json)·[결과/해시](verification-summary.json). 확장 검사 첫 실행은 개발 런타임 PATH 누락으로 시작하지 못했다. Qt/MinGW PATH 복원 뒤 동일 바이너리를 실행했으며 [첫 실행 기록](extended-launch.json)을 보존한다.
+
+독립 유리수128사례·1408값, XML32값(전파 메타데이터3칸 포함)/미설정8칸·식 정의26개와 XER32값, XLSX45행·PDF24쪽을 확인했다. 첫 테스트 입력의 경비/고정비 발생 방식·경비 계정, 중복 그룹 구성과 끝자리0 기대값을 기존 계약에 맞춰 수정했다. [첫 결과](initial-focused.txt)도 보존한다. [입력](native.json)·[환산/동결 사본](archived.json)·[native 파일](source.ppm)·[XML](baseline.xml)·[XER](baseline.xer)·[매핑](mapping.json)·[산술 사례](vectors.json)·[XLSX](fields.xlsx)·[PDF](fields.pdf)·[PDF 화면](report-page.png)·[편집기](editor.png)·[800×650 화면](baseline-small.png).
+
+Windows 실행 패키지 **298파일**의 앱/CLI 해시가 최종 빌드와 같다. Qt/MinGW가 없는 PATH에서 CLI가 schema62 문서를 읽고 종료0을 반환했다. 앱은 Python 없이 C++에서 계산한다. [패키지](runtime.json)·[배포](runtime-deploy.txt)·[파일 읽기](runtime-inspect.json).

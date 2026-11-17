@@ -1,6 +1,7 @@
 #include "formatting/QtDiagnosticText.h"
 #include "reporting/ReportExport.h"
 #include "formatting/Money.h"
+#include "domain/Classification.h"
 #include <QPainter>
 #include <QPainterPath>
 #include <QDate>
@@ -22,6 +23,8 @@ QString reportText(const std::string &s) {
 QString numericCell(const ReportCell &c, const std::string &currency) {
     double n;
     if (const auto *i = std::get_if<std::int64_t>(&c.value)) {
+        if (c.format == CellFormat::FieldNumber)
+            return QString::fromStdString(formatFieldNumber(*i));
         if (c.format == CellFormat::Money) {
             if (*i < -maxMoney || *i > maxMoney)
                 throw AppError(ErrorCode::REPORTFORMAT_003, {});

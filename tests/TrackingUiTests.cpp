@@ -135,9 +135,9 @@ int main(int argc, char *argv[]) {
         };
         recalculate();
         check(doc.calculation()->isForecast && cellText(table, 0, 3) == "2026-10-26 09:00" &&
-                  cellText(table, 0, 4) == "2026-10-28 18:00" && cellText(table, 0, 5) == "—" &&
-                  count(gantt, "baseline") == 2,
-              "forecast actual dates / unsupported float / baseline overlay mismatch");
+                  cellText(table, 0, 4) == "2026-10-28 18:00" && cellText(table, 0, 5) == "0" &&
+                  cellText(table, 0, 6) == "예측 임계" && count(gantt, "baseline") == 2,
+              "forecast actual dates / remaining float / baseline overlay mismatch");
         auto *choice = window.findChild<QComboBox *>("baselineChoice");
         choice->setCurrentIndex(0);
         check(count(gantt, "baseline") == 0, "baseline overlay toggle failed");

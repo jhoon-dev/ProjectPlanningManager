@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "latest_rows": 3,
+  "history_rows": 4,
+  "labor_hours": 6,
+  "equipment_hours": 1,
+  "cumulative_ac": 80,
+  "allocated_actual": 25,
+  "unallocated_actual": 55,
+  "zero_distinct_from_unreported": true,
+  "correction_preserved_original": true,
+  "pdf_pages": 8
+}

@@ -1,3 +1,5 @@
+#include "calculation/CapacityTimeline.h"
+#include "calculation/MaterialReservations.h"
 #include "domain/Diagnostics.h"
 #include "calculation/PdmResources.h"
 #include "calculation/Pdm.h"
@@ -15,10 +17,15 @@ LevelingResult levelPdmResources(const Project &p, const std::string &priority, 
     out.before = resourceLoad(p, out.original);
     out.leveled = out.original;
     out.leveled.calculationPolicy = calculationLevelingPolicyFor(p) + "/" + priority;
+    out.leveled.forecastFloatCalculated = false;
     if (out.original.status != CalculationStatus::Valid)
         return out;
     try {
+        MaterialReservations materials(p, true, out.original.isForecast);
         WorkCalendar clock(p);
+        std::map<std::string, CapacityTimeline> capacities;
+        for (const auto &r : p.resources)
+            capacities.emplace(r.id, CapacityTimeline(r, clock));
         PlanInput standard = p;
         standard.calculationProfile = "native-fs0-workminutes-v1";
         WorkCalendar horizonCalendar(standard);
@@ -77,6 +84,7 @@ LevelingResult levelPdmResources(const Project &p, const std::string &priority, 
             std::vector<std::pair<std::string, std::string>> segments;
             for (;;) {
                 pdmDates(clock, cal, trial, local, duration);
+                trial.taskId = task.id;
                 if (trial.finish > horizon)
                     break;
                 if (p.calculationProfile == constraintProfile) {
@@ -112,11 +120,9 @@ LevelingResult levelPdmResources(const Project &p, const std::string &priority, 
                                 auto change = std::int64_t((at / 1440 + 1) * 1440);
                                 if (ev != events.end())
                                     change = std::min(change, ev->first);
-                                const auto date = clock.boundary(at, false).substr(0, 10);
-                                auto cap = r.maxUnits;
-                                for (const auto &d : r.exceptions)
-                                    if (d.date == date)
-                                        cap = d.units;
+                                const auto &capacity = capacities.at(r.id);
+                                change = capacity.next(at, change);
+                                auto cap = capacity.at(at);
                                 if (!cap || used + a.units > *cap) {
                                     unknown = unknown || !cap;
                                     next = std::max(
@@ -133,6 +139,12 @@ LevelingResult levelPdmResources(const Project &p, const std::string &priority, 
                                 break;
                         }
                     }
+                if (next == local && !materials.fits(trial)) {
+                    const auto bound = materials.nextStart(trial);
+                    next =
+                        bound ? std::max(local + 1, duration ? cal.startAtLeast(*bound) : cal.pointStartAtLeast(*bound))
+                              : local + 1;
+                }
                 if (next == local) {
                     found = true;
                     break;
@@ -162,6 +174,9 @@ LevelingResult levelPdmResources(const Project &p, const std::string &priority, 
             if (out.original.isForecast)
                 trial.remainingStart = duration == 0 ? cal.pointBoundary(local) : cal.boundary(local, false);
             row = trial;
+            materials.commit(row);
+            if (auto delay = materials.delay(row))
+                out.diagnostics.push_back(*delay);
             if (row.remainingStart.value_or(row.start) != originalStart)
                 out.diagnostics.push_back({"RESOURCE_DELAY", {}, {task.id}, "RESOURCE_DELAY_2"});
         }

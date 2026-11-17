@@ -1,0 +1,33 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
+      Start  21: mpp_manual_curve_contract
+      Start  38: enterprise_udf_contract
+      Start  32: xml_date_time_contract
+      Start  36: xml_lookup_contract
+ 1/14 Test  #38: enterprise_udf_contract ..........   Passed    2.79 sec
+      Start  34: xml_field_types_contract
+ 2/14 Test  #32: xml_date_time_contract ...........   Passed    2.79 sec
+      Start  30: xml_code_mask_contract
+ 3/14 Test  #36: xml_lookup_contract ..............   Passed    2.82 sec
+      Start 109: project_xml_contract
+ 4/14 Test  #34: xml_field_types_contract .........   Passed    2.27 sec
+      Start  39: enterprise_udf_ui
+ 5/14 Test  #30: xml_code_mask_contract ...........   Passed    1.95 sec
+      Start  37: xml_lookup_ui
+ 6/14 Test #109: project_xml_contract .............   Passed    2.22 sec
+      Start  33: xml_date_time_ui
+ 7/14 Test  #39: enterprise_udf_ui ................   Passed    0.97 sec
+      Start  35: xml_field_types_ui
+ 8/14 Test  #37: xml_lookup_ui ....................   Passed    0.86 sec
+      Start  31: xml_code_mask_ui
+ 9/14 Test  #33: xml_date_time_ui .................   Passed    0.89 sec
+      Start  29: udf_mapping_contract
+10/14 Test  #35: xml_field_types_ui ...............   Passed    0.99 sec
+      Start  96: parser_seed_replay
+11/14 Test  #31: xml_code_mask_ui .................   Passed    1.21 sec
+12/14 Test  #29: udf_mapping_contract .............   Passed    1.11 sec
+13/14 Test  #96: parser_seed_replay ...............   Passed    4.88 sec
+14/14 Test  #21: mpp_manual_curve_contract ........   Passed   57.63 sec
+
+100% tests passed out of 14
+
+Total Test time (real) =  57.65 sec

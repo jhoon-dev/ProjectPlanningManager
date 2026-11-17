@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "xml_definitions": 18,
+  "typed_lookup_tables": 2,
+  "scalar_cells": 18,
+  "false_zero_missing": "distinct",
+  "cost_scale": 100,
+  "duration_minutes_precision": 6,
+  "external_product_run": false,
+  "reports": {
+    "pdf_pages": 13,
+    "numeric_cost": true,
+    "flag_duration_labels": true
+  }
+}

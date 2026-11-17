@@ -8,6 +8,14 @@
 #include <numeric>
 
 namespace jobs {
+static_assert(std::is_nothrow_move_constructible_v<EditCommandValue>);
+static_assert(std::is_nothrow_move_assignable_v<EditCommandValue>);
+EditCommand::EditCommand() = default;
+EditCommand::EditCommand(const EditCommand &) = default;
+EditCommand::EditCommand(EditCommand &&) noexcept = default;
+EditCommand &EditCommand::operator=(const EditCommand &) = default;
+EditCommand &EditCommand::operator=(EditCommand &&) noexcept = default;
+EditCommand::~EditCommand() = default;
 namespace {
 // A worker can issue its reserved fact ID, but can never access project files.
 class PreparationStore final : public ProjectStore {
@@ -74,6 +82,8 @@ std::unordered_map<std::string, std::string> assignmentLabels(const PlanInput &i
         if (!label.empty())
             label += ", ";
         label += names.at(assignment.resourceId) + " " + std::to_string(assignment.units) + "%";
+        if (!assignment.periods.empty())
+            label += " (기간별 " + std::to_string(assignment.periods.size()) + "구간)";
     }
     return labels;
 }
@@ -130,7 +140,13 @@ std::shared_ptr<BulkView> prepareView(const Project &before, const Project &afte
 Document::EditRequest Document::makeEditRequest(EditCommand command, ViewPreparation viewPreparation) const {
     requireEditable();
     const bool reserve =
-        std::holds_alternative<ProgressEdit>(command) || std::holds_alternative<BaselineEdit>(command) ||
+        std::holds_alternative<ProgressEdit>(command) || std::holds_alternative<ProgressMergeEdit>(command) ||
+        std::holds_alternative<BaselineEdit>(command) || std::holds_alternative<PeriodActualEdit>(command) ||
+        std::holds_alternative<PeriodActualBatchEdit>(command) || std::holds_alternative<XerFinancialEdit>(command) ||
+        std::holds_alternative<XerFinancialMergeEdit>(command) || std::holds_alternative<XerRelinkEdit>(command) ||
+        std::holds_alternative<ExternalEvmEdit>(command) || std::holds_alternative<FinancialPeriodEdit>(command) ||
+        std::holds_alternative<XerScheduleEdit>(command) || std::holds_alternative<XmlBaselineMergeEdit>(command) ||
+        std::holds_alternative<LedgerIdEdit>(command) || std::holds_alternative<CurrencyConversionEdit>(command) ||
         std::holds_alternative<InsertTasksEdit>(command) || std::holds_alternative<DuplicateTasksEdit>(command) ||
         std::holds_alternative<DeferredTaskEdit>(command);
     auto request = EditRequest(project_, savedState_, dirtyState_, std::move(command), sessionGeneration_,
@@ -193,11 +209,61 @@ std::shared_ptr<Document::PreparedEdit> Document::prepareEdit(EditRequest reques
                 else if constexpr (std::is_same_v<T, EffortEdit>)
                     trial.setTaskEffort(taskRow(*trial.project_, command.taskId), std::move(command.type),
                                         command.workInput, command.duration, command.work, std::move(command.breaks));
-                else if constexpr (std::is_same_v<T, AssignmentEdit>)
+                else if constexpr (std::is_same_v<T, AssignmentPeriodsEdit>)
+                    trial.setAssignmentPeriods(command.taskId, command.resourceId, std::move(command.periods));
+                else if constexpr (std::is_same_v<T, ResourcePlanningEdit>)
+                    trial.resourcePlanning(std::move(command.submission));
+                else if constexpr (std::is_same_v<T, DatedRemainingWorkEdit>) {
+                    if (command.clearAll)
+                        trial.clearDatedRemainingWork();
+                    else
+                        trial.setDatedRemainingWork(std::move(command.plan));
+                } else if constexpr (std::is_same_v<T, AssignmentEdit>)
                     trial.setAssignments(command.taskId, std::move(command.assignments));
                 else if constexpr (std::is_same_v<T, ProgressEdit>)
                     trial.recordProgress(std::move(command.entry));
-                else if constexpr (std::is_same_v<T, BaselineEdit>)
+                else if constexpr (std::is_same_v<T, ProgressMergeEdit>)
+                    trial.mergeProgress(std::move(command.entries));
+                else if constexpr (std::is_same_v<T, PeriodActualEdit>)
+                    trial.recordPeriodActuals(std::move(command.submission));
+                else if constexpr (std::is_same_v<T, PeriodActualBatchEdit>)
+                    trial.recordPeriodActualBatch(std::move(command.submissions), command.statusAt);
+                else if constexpr (std::is_same_v<T, XerFinancialEdit>)
+                    trial.recordXerFinancials(std::move(command.submission), command.projectionHash);
+                else if constexpr (std::is_same_v<T, XerFinancialMergeEdit>)
+                    trial.recordXerFinancialMerge(std::move(command.submission), command.projectionHash);
+                else if constexpr (std::is_same_v<T, XerRelinkEdit>)
+                    trial.recordXerRelink(std::move(command.submission), command.projectionHash);
+                else if constexpr (std::is_same_v<T, XerScheduleEdit>)
+                    trial.recordXerSchedule(std::move(command.submission));
+                else if constexpr (std::is_same_v<T, XmlBaselineMergeEdit>)
+                    trial.recordXmlBaselineMerge(std::move(command.submission));
+                else if constexpr (std::is_same_v<T, LedgerIdEdit>)
+                    trial.migrateLedgerIds(std::move(command.submission));
+                else if constexpr (std::is_same_v<T, CurrencyConversionEdit>)
+                    trial.convertCurrency(std::move(command.submission));
+                else if constexpr (std::is_same_v<T, FinancialPeriodEdit>)
+                    trial.recordFinancialPeriod(std::move(command.submission));
+                else if constexpr (std::is_same_v<T, ExternalEvmEdit>)
+                    trial.recordExternalEvm(std::move(command.submission));
+                else if constexpr (std::is_same_v<T, AdoptLevelingEdit>)
+                    trial.adoptLeveling(std::move(command.selection));
+                else if constexpr (std::is_same_v<T, AdoptProgressPolicyEdit>)
+                    trial.adoptProgressPolicy(std::move(command.selection));
+                else if constexpr (std::is_same_v<T, ClearProgressPolicyEdit>)
+                    trial.clearProgressPolicy();
+                else if constexpr (std::is_same_v<T, ClearLevelingEdit>)
+                    trial.clearLeveling();
+                else if constexpr (std::is_same_v<T, ObjectAttributeEdit>) {
+                    if (command.scope == FieldScope::Project && command.resourceIds.empty())
+                        trial.setProjectAttribute(command.key, std::move(command.value));
+                    else if (command.scope == FieldScope::Resource)
+                        trial.setResourceAttribute(command.resourceIds, command.key, std::move(command.value));
+                    else if (command.scope == FieldScope::Assignment)
+                        trial.setAssignmentAttribute(command.resourceIds, command.key, std::move(command.value));
+                    else
+                        throw AppError(ErrorCode::CLASSIFICATION_INVALID, {"객체 필드 편집 범위를 확인하세요."});
+                } else if constexpr (std::is_same_v<T, BaselineEdit>)
                     trial.captureBaseline(std::move(command.name), std::move(command.approvedBy),
                                           std::move(command.reason), std::move(command.createdAt));
                 else if constexpr (std::is_same_v<T, BatchTaskEdit>)
@@ -225,6 +291,11 @@ std::shared_ptr<Document::PreparedEdit> Document::prepareEdit(EditRequest reques
         if (trial.project_->revision == result->revision_)
             result->state_ = EditState::NoChange;
         else {
+            if (std::holds_alternative<AdoptLevelingEdit>(request.command_) ||
+                std::holds_alternative<ClearLevelingEdit>(request.command_) ||
+                std::holds_alternative<AdoptProgressPolicyEdit>(request.command_) ||
+                std::holds_alternative<ClearProgressPolicyEdit>(request.command_))
+                result->selectedCalculation_ = trial.calculation_;
             result->notice_ = std::move(trial.historyNotice_);
             if (!trial.history_.empty())
                 result->history_.emplace(std::move(trial.history_.back()));
@@ -295,7 +366,11 @@ EditState Document::applyPreparedEdit(PreparedEdit &result) {
     dirty_ = dirty.dirty();
     dirtyComparisons_ = 0;
     taskChange_ = result.taskChange_;
-    staleCalculation();
+    if (result.selectedCalculation_) {
+        calculation_ = std::move(result.selectedCalculation_);
+        ++calculationGeneration_;
+    } else
+        staleCalculation();
     bulkView_ = std::move(result.view_);
     notify(Event::Edited);
     return EditState::Applied;

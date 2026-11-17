@@ -1,0 +1,29 @@
+[
+    {
+        "capacity": null,
+        "date": "2026-11-16",
+        "demandUnitMinutes": 58500,
+        "excessUnitMinutes": 1500,
+        "overloadMinutes": 30,
+        "unknownCapacityMinutes": 45,
+        "variableCapacity": true
+    },
+    {
+        "capacity": 75,
+        "date": "2026-11-17",
+        "demandUnitMinutes": 60000,
+        "excessUnitMinutes": 24000,
+        "overloadMinutes": 480,
+        "unknownCapacityMinutes": 0,
+        "variableCapacity": false
+    },
+    {
+        "capacity": null,
+        "date": "2026-11-18",
+        "demandUnitMinutes": 19500,
+        "excessUnitMinutes": 11250,
+        "overloadMinutes": 150,
+        "unknownCapacityMinutes": 0,
+        "variableCapacity": true
+    }
+]

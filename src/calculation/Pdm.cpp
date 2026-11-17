@@ -2,6 +2,7 @@
 #include "calculation/Pdm.h"
 #include "calculation/Constraints.h"
 #include "calculation/EnginePolicy.h"
+#include "calculation/ForecastFloat.h"
 #include <algorithm>
 #include <map>
 #include <deque>
@@ -161,10 +162,12 @@ ScheduleResult calculatePdmForecast(const Project &p, ScheduleResult out) {
         }
         std::vector<TaskSchedule> rows(n);
         std::size_t unreported = 0;
+        std::vector<std::size_t> order;
         std::size_t completed = 0;
         for (; !ready.empty(); ready.pop_front()) {
             calculationProgress(CalculationStage::Forward, completed++, n);
             const auto i = ready.front();
+            order.push_back(i);
             const auto &t = p.tasks[i];
             const auto &cal = calendars.at(t);
             auto &row = rows[i];
@@ -235,6 +238,30 @@ ScheduleResult calculatePdmForecast(const Project &p, ScheduleResult out) {
         if (unreported)
             out.diagnostics.push_back({"UNREPORTED_REMAINING", {}, {}, "UNREPORTED_REMAINING_2"});
         out.diagnostics.push_back({"FORECAST_POLICY", {}, {}, "FORECAST_POLICY_2"});
+        std::vector<RemainingExecution> models;
+        for (std::size_t i = 0; i < n; ++i) {
+            const auto &task = p.tasks[i];
+            const auto *actual = progressAsOf(p, task.id);
+            const auto duration = actual ? actual->remainingMinutes : *task.durationMinutes;
+            const auto *cal = &calendars.at(task);
+            models.push_back({cal,
+                              [&, cal, duration](std::int64_t local) {
+                                  TaskSchedule row;
+                                  pdmDates(clock, *cal, row, local, duration);
+                                  return row;
+                              },
+                              [cal, duration](const std::string &at) {
+                                  return duration == 0 ? cal->pointOffset(at) : cal->offset(at);
+                              },
+                              [cal, duration](const std::string &at, bool finish) {
+                                  TaskSchedule source;
+                                  source.finish = at;
+                                  return pdmRequiredStart(*cal,
+                                                          {"", finish ? DependencyType::FF : DependencyType::FS, 0},
+                                                          source, duration);
+                              }});
+        }
+        calculateRemainingFloat(p, out, order, models);
     } catch (const std::exception &e) {
         out.status = CalculationStatus::Conflict;
         out.tasks.clear();

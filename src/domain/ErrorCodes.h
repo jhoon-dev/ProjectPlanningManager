@@ -2,6 +2,23 @@
 #include <string_view>
 namespace jobs {
 enum class ErrorCode {
+    XML_PROGRESS_INVALID,
+    XML_ACTUAL_EXPORT_INVALID,
+    LEDGER_ID_INVALID,
+    FINANCIAL_PERIOD_INVALID,
+    EXTERNAL_EVM_INVALID,
+    FILE_PRIMAVERAXER_080,
+    FORMULA_INVALID,
+    LEVEL_DECISION_INVALID,
+    PROGRESS_POLICY_INVALID,
+    PROGRESS_POLICY_LEVELING,
+    PERIOD_ACTUAL_INVALID,
+    PERIOD_ACTUAL_BALANCE,
+    PERIOD_ACTUAL_LIMIT,
+    CLASSIFICATION_INVALID,
+    CLASSIFICATION_IN_USE,
+    CLASSIFICATION_NOT_FOUND,
+    ASSIGNMENT_PERIOD_INVALID,
     ASSIGNMENT_INPUT_INVALID,
     ASSIGNMENT_TASK_MISMATCH,
     BASELINE_METADATA_INVALID,
@@ -465,8 +482,38 @@ enum class ErrorCode {
 };
 constexpr std::string_view errorCodeToken(ErrorCode code) {
     switch (code) {
+    case ErrorCode::LEDGER_ID_INVALID:
+        return "LEDGER_ID_INVALID";
+    case ErrorCode::FILE_PRIMAVERAXER_080:
+        return "FILE_PRIMAVERAXER_080";
+    case ErrorCode::FINANCIAL_PERIOD_INVALID:
+        return "FINANCIAL_PERIOD_INVALID";
+    case ErrorCode::EXTERNAL_EVM_INVALID:
+        return "EXTERNAL_EVM_INVALID";
+    case ErrorCode::FORMULA_INVALID:
+        return "FORMULA_INVALID";
+    case ErrorCode::LEVEL_DECISION_INVALID:
+        return "LEVEL_DECISION_INVALID";
+    case ErrorCode::PROGRESS_POLICY_INVALID:
+        return "PROGRESS_POLICY_INVALID";
+    case ErrorCode::PROGRESS_POLICY_LEVELING:
+        return "PROGRESS_POLICY_LEVELING";
+    case ErrorCode::CLASSIFICATION_INVALID:
+        return "CLASSIFICATION_INVALID";
+    case ErrorCode::CLASSIFICATION_IN_USE:
+        return "CLASSIFICATION_IN_USE";
+    case ErrorCode::CLASSIFICATION_NOT_FOUND:
+        return "CLASSIFICATION_NOT_FOUND";
+    case ErrorCode::ASSIGNMENT_PERIOD_INVALID:
+        return "ASSIGNMENT_PERIOD_INVALID";
     case ErrorCode::ASSIGNMENT_INPUT_INVALID:
         return "ASSIGNMENT_INPUT_INVALID";
+    case ErrorCode::PERIOD_ACTUAL_INVALID:
+        return "PERIOD_ACTUAL_INVALID";
+    case ErrorCode::PERIOD_ACTUAL_BALANCE:
+        return "PERIOD_ACTUAL_BALANCE";
+    case ErrorCode::PERIOD_ACTUAL_LIMIT:
+        return "PERIOD_ACTUAL_LIMIT";
     case ErrorCode::ASSIGNMENT_TASK_MISMATCH:
         return "ASSIGNMENT_TASK_MISMATCH";
     case ErrorCode::BASELINE_METADATA_INVALID:
@@ -1021,6 +1068,10 @@ constexpr std::string_view errorCodeToken(ErrorCode code) {
         return "FILE_PROJECTXML_076";
     case ErrorCode::FILE_PROJECTXML_077:
         return "FILE_PROJECTXML_077";
+    case ErrorCode::XML_PROGRESS_INVALID:
+        return "XML_PROGRESS_INVALID";
+    case ErrorCode::XML_ACTUAL_EXPORT_INVALID:
+        return "XML_ACTUAL_EXPORT_INVALID";
     case ErrorCode::FILE_PROJECTXML_078:
         return "FILE_PROJECTXML_078";
     case ErrorCode::FILE_PROJECTXML_079:

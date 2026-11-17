@@ -31,3 +31,5 @@ Developer `jhoon-dev`, Brand `Toolmoa`, 제품 App ID `app.toolmoa.ppm`, Display
 `python scripts/package-msix.py`는 개발용 unsigned MSIX를 `build/msix-development`에 생성한다. `--mode store --identity <실제 Partner Center JSON>`은 `build/msix-store-upload`에 업로드 준비 파일을 생성한다. 이는 Microsoft가 서명하기 전의 입력 파일이며 사용자가 직접 설치하는 배포 파일이 아니다. 사용자 배포는 Store 인증·서명 후에만 진행한다.
 
 MSIX CI는 개발 패키지를 실제 설치·업그레이드·복구·제거하지만 artifact에는 로그·PNG 화면·JSON 검사 결과만 올린다. `dist/`나 MSIX/EXE/DLL/앱 payload 전체를 업로드하지 않는다. 제출용 소개·아이콘·화면 묶음은 `build/store-materials`의 내부 준비 자료다.
+
+2026-11-03 인쇄 기능의 Qt6PrintSupport.dll은 windeployqt 링크 추적과 공통 payload 필수 파일 검사에 포함한다. 설치 패키지/서명/스토어 제출을 이번 로컬 기능 검증으로 간주하지 않는다. [인쇄 계약](schedule-printing.md).

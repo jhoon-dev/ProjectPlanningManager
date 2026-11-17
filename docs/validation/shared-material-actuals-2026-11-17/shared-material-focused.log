@@ -1,0 +1,17 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+    Start 72: material_actual_contract
+    Start 13: resource_workspace_ui
+1/6 Test #13: resource_workspace_ui ............   Passed    2.66 sec
+    Start 73: material_actual_ui
+2/6 Test #73: material_actual_ui ...............   Passed    1.06 sec
+    Start 15: integrated_workspace_contract
+3/6 Test #72: material_actual_contract .........   Passed    5.27 sec
+    Start 70: shared_material_contract
+4/6 Test #15: integrated_workspace_contract ....   Passed    2.79 sec
+    Start 71: shared_material_ui
+5/6 Test #71: shared_material_ui ...............   Passed    1.62 sec
+6/6 Test #70: shared_material_contract .........   Passed    4.49 sec
+
+100% tests passed out of 6
+
+Total Test time (real) =   9.80 sec

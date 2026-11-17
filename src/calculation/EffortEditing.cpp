@@ -1,5 +1,6 @@
 #include "domain/Diagnostics.h"
 #include "calculation/Effort.h"
+#include "calculation/WorkContourInverse.h"
 #include <algorithm>
 #include <cmath>
 #include <stdexcept>
@@ -9,6 +10,10 @@ void scaleAssignments(Project &p, std::size_t index, std::int64_t target, std::i
                       const TaskSchedule *source = nullptr) {
     calculationCheckpoint();
     auto t = p.tasks.at(index);
+    const bool curved = std::any_of(p.assignments.begin(), p.assignments.end(),
+                                    [&](const auto &a) { return a.taskId == t.id && !a.periods.empty(); });
+    if (curved && t.taskType == TaskType::FixedWork && !target && !duration)
+        return;
     t.taskType = TaskType::FixedDuration;
     t.workDriven = false;
     t.workUnitMinutes.reset();
@@ -22,6 +27,9 @@ void scaleAssignments(Project &p, std::size_t index, std::int64_t target, std::i
             trial.revision = p.revision;
         } else
             trial = p;
+        trial.planLeveling.reset();
+        trial.remainingLeveling.reset();
+        trial.levelingDecisions.clear();
         trial.tasks[index] = t;
         const auto plan = calculatePlan(trial);
         if (plan.status != CalculationStatus::Valid)
@@ -32,6 +40,10 @@ void scaleAssignments(Project &p, std::size_t index, std::int64_t target, std::i
             throw AppError(ErrorCode::INVERSE_PLAN_REQUIRED, {});
         scheduled = *row;
         source = &scheduled;
+    }
+    if (curved) {
+        scaleWorkContours(p, index, target, duration, *source);
+        return;
     }
     TaskExecution model(p, t);
     const auto local = model.offset(source->start);
@@ -59,6 +71,8 @@ void changeFixedWorkDurations(Project &p, const std::vector<std::size_t> &indice
         static_cast<PlanInput &>(trial) = p;
         trial.documentId = p.documentId;
         trial.revision = p.revision;
+        trial.planLeveling.reset();
+        trial.remainingLeveling.reset();
         // Every requested duration participates in the same schedule, including
         // predecessors that appear below their successors in the task table.
         for (const auto index : indices) {
@@ -68,6 +82,10 @@ void changeFixedWorkDurations(Project &p, const std::vector<std::size_t> &indice
             if (task.taskType != TaskType::FixedWork || !task.durationMinutes ||
                 (*task.durationMinutes == 0 && task.workUnitMinutes.value_or(0) > 0))
                 throw AppError(ErrorCode::FIXED_WORK_DURATION_REQUIRED, {});
+            if (task.durationMinutes == 0 && task.workUnitMinutes == 0 &&
+                std::any_of(trial.assignments.begin(), trial.assignments.end(),
+                            [&](const auto &a) { return a.taskId == task.id && !a.periods.empty(); }))
+                continue;
             task.taskType = TaskType::FixedDuration;
             task.workDriven = false;
             task.workUnitMinutes.reset();
@@ -85,6 +103,7 @@ void changeFixedWorkDurations(Project &p, const std::vector<std::size_t> &indice
             scaleAssignments(p, index, task.workUnitMinutes.value(), task.durationMinutes.value(), true,
                              rows.at(task.id));
         }
+        certifyWorkContourDurations(p, indices);
     } catch (const std::exception &error) {
         const auto &task = p.tasks.at(current);
         auto diagnostic = diagnosticFromException(error, "TASK_EDIT_FAILED", {task.id});
@@ -103,6 +122,7 @@ void changeDuration(Project &p, std::size_t index, std::optional<std::int64_t> d
         t.workUnitMinutes.reset();
     }
     t.durationMinutes = duration;
+    certifyWorkContourDurations(p, {index});
 }
 void changeWork(Project &p, std::size_t index, std::int64_t work) {
     if (work < 0 || work > maxWork)

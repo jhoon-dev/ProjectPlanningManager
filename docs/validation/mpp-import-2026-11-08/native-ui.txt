@@ -1,0 +1,35 @@
+READ: mpp9relations.mpp
+REJECT: [FILE_EXCHANGEPACKAGE_002] 존재하지 않는 새 교환 폴더를 지정하세요.
+파일 경로·권한·열린 원본의 변경 여부를 확인하세요. 원본을 보존하려면 새 경로에 사본을 저장하세요.
+READ: mpp12relations.mpp
+REJECT: [FILE_EXCHANGEPACKAGE_002] 존재하지 않는 새 교환 폴더를 지정하세요.
+파일 경로·권한·열린 원본의 변경 여부를 확인하세요. 원본을 보존하려면 새 경로에 사본을 저장하세요.
+READ: mpp14relations.mpp
+REJECT: [FILE_EXCHANGEPACKAGE_002] 존재하지 않는 새 교환 폴더를 지정하세요.
+파일 경로·권한·열린 원본의 변경 여부를 확인하세요. 원본을 보존하려면 새 경로에 사본을 저장하세요.
+READ: assigned-resources-mpp8-project2003.mpp
+REJECT: [FILE_EXCHANGEPACKAGE_002] 존재하지 않는 새 교환 폴더를 지정하세요.
+파일 경로·권한·열린 원본의 변경 여부를 확인하세요. 원본을 보존하려면 새 경로에 사본을 저장하세요.
+REJECT: [MPP_IMPORT_INVALID] MPP 파일 읽기를 확인하세요: MPP OLE 파일이 아니거나 32MiB 한도를 넘었습니다. XML 파일은 Project XML 가져오기를 사용하세요.
+관련 대상과 입력값을 확인해 수정한 뒤 다시 시도하세요.
+REJECT: [MPP_IMPORT_INVALID] MPP 파일 읽기를 확인하세요: MPP OLE 파일이 아니거나 32MiB 한도를 넘었습니다. XML 파일은 Project XML 가져오기를 사용하세요.
+관련 대상과 입력값을 확인해 수정한 뒤 다시 시도하세요.
+REJECT: [MPP_IMPORT_INVALID] MPP 파일 읽기를 확인하세요: 암호·손상·미지원 파일을 확인하세요. MPP_READER_ERROR: Block 128 not found
+
+
+관련 대상과 입력값을 확인해 수정한 뒤 다시 시도하세요.
+REJECT: [MPP_IMPORT_INVALID] MPP 파일 읽기를 확인하세요: 암호·손상·미지원 파일을 확인하세요. MPP_READER_ERROR: File is password protected. Please enter password.
+
+
+관련 대상과 입력값을 확인해 수정한 뒤 다시 시도하세요.
+REJECT: [MPP_IMPORT_INVALID] MPP 파일 읽기를 확인하세요: MPP reader 구성 요소가 없습니다. mpp-reader가 포함된 앱 배포본을 사용하세요.
+관련 대상과 입력값을 확인해 수정한 뒤 다시 시도하세요.
+REJECT: [MPP_IMPORT_INVALID] MPP 파일 읽기를 확인하세요: MPP 읽기 시간이 초과되었습니다.
+관련 대상과 입력값을 확인해 수정한 뒤 다시 시도하세요.
+REJECT: [MPP_IMPORT_INVALID] MPP 파일 읽기를 확인하세요: MPP OLE 파일이 아니거나 32MiB 한도를 넘었습니다. XML 파일은 Project XML 가져오기를 사용하세요.
+관련 대상과 입력값을 확인해 수정한 뒤 다시 시도하세요.
+REJECT: [CURRENCY_UNSUPPORTED] 지원 통화는 KRW/JPY/USD/EUR입니다. 통화 환산은 지원하지 않습니다.
+관련 대상과 입력값을 확인해 수정한 뒤 다시 시도하세요.
+REJECT: [MPP_IMPORT_INVALID] MPP 파일 읽기를 확인하세요: MPP 읽기 제한 시간을 확인하세요.
+관련 대상과 입력값을 확인해 수정한 뒤 다시 시도하세요.
+PASS: real MPP8/9/12/14 reading, exact original/native publication, no inferred observations, malformed/password/missing runtime/timeout/cancel boundaries

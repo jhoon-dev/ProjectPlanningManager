@@ -1,0 +1,324 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+            {
+                "periods": [
+                    {
+                        "fromMinute": 0,
+                        "toMinute": 480,
+                        "units": 150
+                    },
+                    {
+                        "fromMinute": 480,
+                        "toMinute": 960,
+                        "units": 100
+                    },
+                    {
+                        "fromMinute": 960,
+                        "toMinute": 1440,
+                        "units": 50
+                    }
+                ],
+                "resourceId": "R",
+                "taskId": "T",
+                "units": 100
+            }
+        ],
+        "baselines": [
+            {
+                "approvedBy": "검토자",
+                "createdAt": "2026-11-05T01:00:00Z",
+                "engineVersion": "jobs-effort-periods-1.0",
+                "id": "a45e035c-c0ad-4c9c-8baf-4d75bab4baed",
+                "input": {
+                    "assignments": [
+                        {
+                            "periods": [
+                                {
+                                    "fromMinute": 0,
+                                    "toMinute": 480,
+                                    "units": 150
+                                },
+                                {
+                                    "fromMinute": 480,
+                                    "toMinute": 960,
+                                    "units": 100
+                                },
+                                {
+                                    "fromMinute": 960,
+                                    "toMinute": 1440,
+                                    "units": 50
+                                }
+                            ],
+                            "resourceId": "R",
+                            "taskId": "T",
+                            "units": 100
+                        }
+                    ],
+                    "calculationProfile": "native-effort-split-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "calendars": [
+                    ],
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "KRW",
+                    "holidays": [
+                    ],
+                    "name": "기간별 계획 배정 검증",
+                    "resources": [
+                        {
+                            "calendarId": "",
+                            "exceptions": [
+                            ],
+                            "id": "R",
+                            "maxUnits": 200,
+                            "name": "설계 인력",
+                            "rates": [
+                                {
+                                    "effectiveDate": "2026-11-02",
+                                    "hourlyMinor": 60
+                                },
+                                {
+                                    "effectiveDate": "2026-11-03",
+                                    "hourlyMinor": 120
+                                }
+                            ],
+                            "type": "labor"
+                        }
+                    ],
+                    "startDate": "2026-11-02",
+                    "taskCosts": [
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "T"
+                        }
+                    ],
+                    "tasks": [
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 1440,
+                            "id": "T",
+                            "name": "설계",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        }
+                    ],
+                    "wbsNodes": [
+                    ]
+                },
+                "inputRevision": 1,
+                "name": "배정 승인",
+                "projectFinish": "2026-11-04 18:00",
+                "reason": "계획 확정",
+                "schedule": [
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 3960,
+                        "earlyStartMinutes": 540,
+                        "finish": "2026-11-04 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 3960,
+                        "lateStartMinutes": 540,
+                        "remainingStart": null,
+                        "start": "2026-11-02 09:00",
+                        "taskId": "T",
+                        "totalFloatMinutes": 0
+                    }
+                ],
+                "sourceDocumentId": "assignment-period-contract",
+                "version": 1
+            }
+        ],
+        "calculationProfile": "native-effort-split-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "calendars": [
+        ],
+        "costEntries": [
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "KRW",
+        "derivedFrom": "assignment-period-contract",
+        "documentId": "c9848f8b-c0e3-4891-8f12-91006d10d109",
+        "holidays": [
+        ],
+        "name": "기간별 계획 배정 검증",
+        "progress": [
+        ],
+        "resources": [
+            {
+                "calendarId": "",
+                "exceptions": [
+                ],
+                "id": "R",
+                "maxUnits": 200,
+                "name": "설계 인력",
+                "rates": [
+                    {
+                        "effectiveDate": "2026-11-02",
+                        "hourlyMinor": 60
+                    },
+                    {
+                        "effectiveDate": "2026-11-03",
+                        "hourlyMinor": 120
+                    }
+                ],
+                "type": "labor"
+            }
+        ],
+        "revision": 14,
+        "scenarios": [
+            {
+                "createdAt": "2026-11-05T01:00:00Z",
+                "horizonWorkDays": 30,
+                "id": "5cef883d-838f-4cd5-b249-804c2fd96efe",
+                "input": {
+                    "assignments": [
+                        {
+                            "periods": [
+                                {
+                                    "fromMinute": 0,
+                                    "toMinute": 480,
+                                    "units": 150
+                                },
+                                {
+                                    "fromMinute": 480,
+                                    "toMinute": 960,
+                                    "units": 100
+                                },
+                                {
+                                    "fromMinute": 960,
+                                    "toMinute": 1440,
+                                    "units": 50
+                                }
+                            ],
+                            "resourceId": "R",
+                            "taskId": "T",
+                            "units": 100
+                        }
+                    ],
+                    "calculationProfile": "native-effort-split-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "calendars": [
+                    ],
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "KRW",
+                    "holidays": [
+                    ],
+                    "name": "기간별 계획 배정 검증",
+                    "resources": [
+                        {
+                            "calendarId": "",
+                            "exceptions": [
+                            ],
+                            "id": "R",
+                            "maxUnits": 200,
+                            "name": "설계 인력",
+                            "rates": [
+                                {
+                                    "effectiveDate": "2026-11-02",
+                                    "hourlyMinor": 60
+                                },
+                                {
+                                    "effectiveDate": "2026-11-03",
+                                    "hourlyMinor": 120
+                                }
+                            ],
+                            "type": "labor"
+                        }
+                    ],
+                    "startDate": "2026-11-02",
+                    "taskCosts": [
+                        {
+                            "accrual": "uniform",
+                            "credit": "physical",
+                            "fixedMinor": 0,
+                            "taskId": "T"
+                        }
+                    ],
+                    "tasks": [
+                        {
+                            "breaks": [
+                            ],
+                            "calendarId": "",
+                            "constraintAt": null,
+                            "constraintType": "ASAP",
+                            "deadlineAt": null,
+                            "dependencyRules": [
+                            ],
+                            "durationMinutes": 1440,
+                            "id": "T",
+                            "name": "설계",
+                            "predecessors": [
+                            ],
+                            "taskType": "fixed-duration",
+                            "wbsId": "",
+                            "workDriven": false,
+                            "workUnitMinutes": null
+                        }
+                    ],
+                    "wbsNodes": [
+                    ]
+                },
+                "inputRevision": 2,
+                "name": "곡선 시나리오",
+                "policy": "serial-effort-periods-v1",
+                "priority": "task-order",
+                "progress": [
+                ],
+                "sourceDocumentId": "assignment-period-contract",
+                "statusAt": null
+            }
+        ],
+        "startDate": "2026-11-02",
+        "statusAt": null,
+        "taskCosts": [
+            {
+                "accrual": "uniform",
+                "credit": "physical",
+                "fixedMinor": 0,
+                "taskId": "T"
+            }
+        ],
+        "tasks": [
+            {
+                "breaks": [
+                ],
+                "calendarId": "",
+                "constraintAt": null,
+                "constraintType": "ASAP",
+                "deadlineAt": null,
+                "dependencyRules": [
+                ],
+                "durationMinutes": 1440,
+                "id": "T",
+                "name": "설계",
+                "predecessors": [
+                ],
+                "taskType": "fixed-duration",
+                "wbsId": "",
+                "workDriven": false,
+                "workUnitMinutes": null
+            }
+        ],
+        "wbsNodes": [
+        ]
+    },
+    "schemaVersion": 17,
+    "sha256": "85804119bd32f0b9739518021a8aa274e03bcfb684456d8b04860b040b1d6caa"
+}

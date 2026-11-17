@@ -1,0 +1,6 @@
+[1/6] Building CXX object CMakeFiles/jobs_leveling_selection_ui_tests.dir/tests/LevelingSelectionUiTests.cpp.obj
+[2/6] Linking CXX executable jobs_leveling_selection_ui_tests.exe
+[3/6] Building CXX object CMakeFiles/jobs_xml_baseline_exchange_tests.dir/tests/XmlBaselineExchangeTests.cpp.obj
+[4/6] Linking CXX executable jobs_xml_baseline_exchange_tests.exe
+[5/6] Building CXX object CMakeFiles/jobs_parser_seed_tests.dir/tests/fuzz/ParserSeeds.cpp.obj
+[6/6] Linking CXX executable jobs_parser_seed_tests.exe

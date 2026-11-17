@@ -1,0 +1,4 @@
+[1/4] Building CXX object CMakeFiles/jobs_persistence.dir/src/persistence/ProjectMpp.cpp.obj
+[2/4] Linking CXX static library libjobs_persistence.a
+[3/4] Building CXX object CMakeFiles/jobs_mpp_curve_tests.dir/tests/MppCurveTests.cpp.obj
+[4/4] Linking CXX executable jobs_mpp_curve_tests.exe

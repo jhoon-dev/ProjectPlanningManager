@@ -1,0 +1,34 @@
+{
+  "status": "success",
+  "engine": "jobs-adopted-leveling-1.5",
+  "small_exhaustive_oracle": true,
+  "cases": [
+    {
+      "movable": 129,
+      "search_units": 1,
+      "largest_unit": 129,
+      "witnesses": 129,
+      "analysis_ms": 153.8606
+    },
+    {
+      "movable": 512,
+      "search_units": 1,
+      "largest_unit": 512,
+      "witnesses": 512,
+      "analysis_ms": 2110.5532
+    },
+    {
+      "movable": 1000,
+      "search_units": 1000,
+      "largest_unit": 1,
+      "witnesses": 2000,
+      "analysis_ms": 6793.8127
+    }
+  ],
+  "witnesses_checked": 2641,
+  "date_references_checked": 280785,
+  "legacy_1_4_preserved": true,
+  "native_schema": 12,
+  "xlsx_preview_explicit": true,
+  "pdf_pages": 217
+}
