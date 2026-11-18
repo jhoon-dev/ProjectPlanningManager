@@ -1,2 +1,0 @@
-[1/2] Building CXX object CMakeFiles/jobs_work_contour_tests.dir/tests/WorkContourTests.cpp.obj
-[2/2] Linking CXX executable jobs_work_contour_tests.exe

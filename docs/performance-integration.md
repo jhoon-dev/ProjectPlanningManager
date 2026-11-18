@@ -44,7 +44,7 @@ python scripts/run-performance-probes.py --build-dir build --repeats 3
 
 ## 정합성·운영 흐름 증거
 
-최적화 전 `9a401853bb2c42b90ceba354b6671b298a2d8e0f`의 domain/calculation 원본을 별도로 빌드해 같은 1천 작업 두 사례의 전체 TaskSchedule 필드를 직렬화했다. 그 SHA-256을 [참조 기록](validation/performance-2026-10-26/reference-schedule-sha256.json)과 `PerformanceProbe.cpp`에 고정했다. CI도 전 작업의 시작/완료·조기/늦은 날짜·총/자유 여유·임계·driving 선행·실제/잔여 플래그가 같은지 검사한다. 1만 사례는 전체 결과의 반복 결정성을 검사하며 최적화 전 1만 실행을 검증했다고 표시하지 않는다.
+최적화 전 `9a401853bb2c42b90ceba354b6671b298a2d8e0f`의 domain/calculation 원본을 별도로 빌드해 같은 1천 작업 두 사례의 전체 TaskSchedule 필드를 직렬화했다. 그 SHA-256을 [참조 기록](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/performance-2026-10-26/reference-schedule-sha256.json)과 `PerformanceProbe.cpp`에 고정했다. CI도 전 작업의 시작/완료·조기/늦은 날짜·총/자유 여유·임계·driving 선행·실제/잔여 플래그가 같은지 검사한다. 1만 사례는 전체 결과의 반복 결정성을 검사하며 최적화 전 1만 실행을 검증했다고 표시하지 않는다.
 
 추가 CTest는 다음과 같다.
 
@@ -58,7 +58,7 @@ python scripts/run-performance-probes.py --build-dir build --repeats 3
 
 Windows 11 26H2 x86_64 / 논리 CPU 16개 / Qt 6.8.3 / MinGW GCC 13.1.0 / Release / 기본 1560×900 창, Qt 네이티브 Windows 플랫폼. 사례별 별도 프로세스에서 계산/UI 준비 각 3표본, 스크롤 36표본이다. 계산은 순수 `calculate(Project)` 호출이며 실제 F9의 사본 생성·진행 제어·이벤트 전달 시간을 포함하지 않는다. 준비는 MainWindow 생성/전체 표·간트 갱신/최초 show와 processEvents, 스크롤은 위치 변경과 processEvents다. FPS나 최악 응답시간 보장이 아니다.
 
-최적화 전 제품 소스는 `9a40185`, 측정 도구를 추가한 작업 트리의 표기 revision은 `6f77b03+dirty`다. 최종 측정은 깨끗한 구현 커밋 `0c60f8f`에서 실행했다. [원시 JSON과 전체 결과 참조](validation/performance-2026-10-26/)를 보존한다. 두 1천 작업의 전체 결과 해시는 전후 일치했다. 1만 작업의 전 버전은 1천 작업에서의 큰 메모리 사용을 확인한 뒤 실행하지 않았다.
+최적화 전 제품 소스는 `9a40185`, 측정 도구를 추가한 작업 트리의 표기 revision은 `6f77b03+dirty`다. 최종 측정은 깨끗한 구현 커밋 `0c60f8f`에서 실행했다. [원시 JSON과 전체 결과 참조](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/performance-2026-10-26)를 보존한다. 두 1천 작업의 전체 결과 해시는 전후 일치했다. 1만 작업의 전 버전은 1천 작업에서의 큰 메모리 사용을 확인한 뒤 실행하지 않았다.
 
 | 사례 | 계산 median / 관측 P95 ms | UI 준비 median / 관측 P95 ms | 스크롤 median / 관측 P95 ms | 최대 resident MiB | 최대 간트 객체 |
 |---|---:|---:|---:|---:|---:|

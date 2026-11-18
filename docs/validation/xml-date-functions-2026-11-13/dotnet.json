@@ -1,8 +1,0 @@
-{
-  "external_product_run": false,
-  "scope": "Integer additions/parts; difference vectors use identical time-of-day. VB.NET elapsed subday differences are not the PPM boundary contract.",
-  "runtime": "10.0.14",
-  "culture": "Invariant Gregorian",
-  "comparisons": 17920,
-  "status": "PASS"
-}

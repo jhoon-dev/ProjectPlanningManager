@@ -1,17 +1,19 @@
 # 외부 XML 기준선 채택·내보내기 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-baseline-exchange-2026-11-15)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-15 · Windows · Qt6.8.3 / MinGW13.1 / Release · 조건부 native schema75.
 
-후속 실제 제품 왕복 요청으로 설치 경로·등록 정보·실행 프로세스와 Computer Use 앱40개를 조사했으나 MS Project/P6를 찾지 못했다. 사용자가 **제품 실행 환경 없음**을 확인했다. 따라서 두 제품의 가져오기·재계산·재저장·재내보내기는 **미실행**이다. [실행 상태](product-execution-status.json). 아래 독립 판독 결과는 실제 제품 실행 증거가 아니다.
+후속 실제 제품 왕복 요청으로 설치 경로·등록 정보·실행 프로세스와 Computer Use 앱40개를 조사했으나 MS Project/P6를 찾지 못했다. 사용자가 **제품 실행 환경 없음**을 확인했다. 따라서 두 제품의 가져오기·재계산·재저장·재내보내기는 **미실행**이다. [실행 상태](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-baseline-exchange-2026-11-15/product-execution-status.json). 아래 독립 판독 결과는 실제 제품 실행 증거가 아니다.
 
 [XBE-01~07](../../xml-baseline-exchange.md)의 새 사본 채택과 표준 Baseline 출력을 구현했다. Baseline0~10의 작업·프로젝트 UID0·WBS·자원·배정 명시 값, 0/미설정, 표시 속성과 Baseline 안의 작업/배정 시간분포를 보존한다. 외부 채택 번호의 계산식 우선순위, 나머지 native 승인본 투영, 저장/복구·통화/ID 이관과 원본 재대조를 포함한다. 기존 문서 병합과 native 상세 시간분포 투영은 포함하지 않는다.
 
 ## 실행 결과
 
-- 집중 회귀 **42/42 통과·53.36초**. 새 계약/native 투영/UI와 기존 기준선/원가/번호별·요약·실제/잔여·진척 채택·XML 식/전파·통화·ID·XER 일정 채택·파일/undo/복구를 포함한다. [최종 로그](final-tests.log), [빌드 로그](final-build.log).
-- 같은 실행의 parser replay **960개·schema1~75** 통과. [상세 로그](LastTest.log).
+- 집중 회귀 **42/42 통과·53.36초**. 새 계약/native 투영/UI와 기존 기준선/원가/번호별·요약·실제/잔여·진척 채택·XML 식/전파·통화·ID·XER 일정 채택·파일/undo/복구를 포함한다. [최종 로그](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-baseline-exchange-2026-11-15/final-tests.log), [빌드 로그](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-baseline-exchange-2026-11-15/final-build.log).
+- 같은 실행의 parser replay **960개·schema1~75** 통과. [상세 로그](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-baseline-exchange-2026-11-15/LastTest.log).
 - native 승인본의 번호·동결 값·삭제 객체 생략 진단과 1000작업/1001기준선 행의 출력·재채택을 통과했다.
-- 독립 ElementTree/Decimal 검산: 원본16행/11번호, 채택6행, 시간분포4행, native 투영26행, USD→EUR 1/2 전환을 통과했다. XLSX25시트와 PDF15쪽을 확인했다. [수치 결과](independent.json), [검증 자료](artifacts/), [UI 화면](artifacts/review.png).
+- 독립 ElementTree/Decimal 검산: 원본16행/11번호, 채택6행, 시간분포4행, native 투영26행, USD→EUR 1/2 전환을 통과했다. XLSX25시트와 PDF15쪽을 확인했다. [수치 결과](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-baseline-exchange-2026-11-15/independent.json), [검증 자료](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-baseline-exchange-2026-11-15/artifacts), [UI 화면](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-baseline-exchange-2026-11-15/artifacts/review.png).
 - 기존 독립 검사도 통과했다. 기준선 XML77/XER32값·XLSX77칸/PDF20쪽, 잔여 XML64/XER52값·XLSX64칸/PDF21쪽, 실제 XML50/XER30값·XLSX50칸/PDF23쪽, 기준선 원가128사례/1408값·XML/XER32값·XLSX45행/PDF24쪽, 요약 기간129사례다.
 - 변경 C++27파일 clang-format과 Python 검사기 구문 검사를 통과했다. 최종 Release 앱을 빌드했다.
 

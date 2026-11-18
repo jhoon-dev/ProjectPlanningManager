@@ -1,9 +1,0 @@
-{
-  "status": "PASS",
-  "cases": 24,
-  "scheduled_tasks": 48,
-  "exact_date_comparisons": 96,
-  "exhaustive_candidates": 5443,
-  "native_schema": 84,
-  "pdf_pages": 17
-}

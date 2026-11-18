@@ -30,7 +30,7 @@ CI의 같은 실행기 전후 참조는 이번 전환 전 검증 커밋 `d9270cd
 
 로컬 Windows 11 26H2 / Qt 6.8.3 / MinGW GCC 13.1.0 Release에서 전체 **37/37** CTest를 통과했다(126.51초). 새 최종 화면 캡처 시험도 네이티브 `windows` 플랫폼에서 통과했다. XLSX 5개/PDF 6개와 Project XML, XER TSV/MPXJ 16.10.0의 독립 reader를 통과했다. 1천/1만 기본·공수 일정 네 사례 모두 이전 검증의 전체 `TaskSchedule` SHA-256과 일치했다. 파일 schema 9와 계산 정책/엔진은 유지한다.
 
-[원시 로컬 증거](validation/model-async-2026-10-28/)에 CTest 로그, JSON 표본/소스 식별, 해시 비교와 네이티브 PNG를 보존한다. 셀 측정은 깨끗한 `8906677`, 최종 네이티브 캡처는 `2e6d31c+dirty`다. dirty 항목은 문서/검증 증거이며 제품 소스 해시는 JSON에 보존한다. 구현 이후 커밋은 시험의 빌드 식별·최종 유효 화면·네이티브 동기화와 CI의 컴파일 병렬 수 제한을 보강했다. 네이티브 캡처 중에는 다른 GUI 시험을 동시에 실행하지 않는다. 초기 로컬 실행과 CI `40527937202`의 Windows 네이티브 붙여넣기 단계는 시험 타이밍 가정으로 실패했다. OS 클립보드 값/액션 활성화를 기다리도록 하고, 짧은 전진 단계만 샘플링하던 UI 취소 시험을 달력/전진/후진의 실제 진행으로 보강했다. 코어의 명시적 전진 단계 취소 시험과 완료 직전 취소 시험은 유지한다. 이후 화면 없는 Qt 실행과 네이티브 Windows 2회 연속 실행을 통과했으며 아래 표본은 최종 단독 실행에서 얻었다.
+[원시 로컬 증거](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/model-async-2026-10-28)에 CTest 로그, JSON 표본/소스 식별, 해시 비교와 네이티브 PNG를 보존한다. 셀 측정은 깨끗한 `8906677`, 최종 네이티브 캡처는 `2e6d31c+dirty`다. dirty 항목은 문서/검증 증거이며 제품 소스 해시는 JSON에 보존한다. 구현 이후 커밋은 시험의 빌드 식별·최종 유효 화면·네이티브 동기화와 CI의 컴파일 병렬 수 제한을 보강했다. 네이티브 캡처 중에는 다른 GUI 시험을 동시에 실행하지 않는다. 초기 로컬 실행과 CI `40527937202`의 Windows 네이티브 붙여넣기 단계는 시험 타이밍 가정으로 실패했다. OS 클립보드 값/액션 활성화를 기다리도록 하고, 짧은 전진 단계만 샘플링하던 UI 취소 시험을 달력/전진/후진의 실제 진행으로 보강했다. 코어의 명시적 전진 단계 취소 시험과 완료 직전 취소 시험은 유지한다. 이후 화면 없는 Qt 실행과 네이티브 Windows 2회 연속 실행을 통과했으며 아래 표본은 최종 단독 실행에서 얻었다.
 
 | 작업 수 / 기준선 | 이름 UI 중앙값 | 일반 기간 UI 중앙값 | 이름 변경 100회 후 이력 |
 |---|---:|---:|---:|
@@ -72,6 +72,6 @@ python scripts/run-performance-probes.py --repeats 3
 
 CI의 1만 공수 작업 네이티브 관측은 Windows 요청 반환 3.57ms / 성공 완료 566.71ms, macOS 4.90ms / 543.99ms였다. 두 OS에서 계산 중 heartbeat와 취소/재시도 검사를 통과했다. 각 JSON은 단일 시험 관측 범위와 타이머 간격의 한계를 명시한다. CI에서도 일정 네 사례의 전체 결과 해시가 각 OS에서 이전 검증과 동일함을 별도로 확인했다.
 
-[원시 CI 전후 표본과 관측](validation/model-async-2026-10-28/)의 `ci-Windows/`, `ci-macOS/`, `ci-results.json`에서 빌드 식별·표본·해시·완료 상태를 확인한다.
+[원시 CI 전후 표본과 관측](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/model-async-2026-10-28)의 `ci-Windows/`, `ci-macOS/`, `ci-results.json`에서 빌드 식별·표본·해시·완료 상태를 확인한다.
 
 후속 RESPONSIVE-01~04 증분에서 이 기록 당시 UI에 남았던 요청의 큰 입력 복사와 전체 dirty 비교를 worker로 이동하고, 일반 기간의 단일 작업 delta 및 연속 변경의 모델/WBS 증분 갱신을 추가했다. 이전 버전의 원시 관측과 한계는 이 문서에 보존하며 최신 계약·검증은 [대규모 편집 응답성](responsive-editing.md)을 따른다.

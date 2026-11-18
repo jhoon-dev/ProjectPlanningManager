@@ -88,4 +88,4 @@ worker의 깊은 복사와 정확한 비교가 늘어 일부 준비 시간은 �
 
 개발 중 C++20에서 제거된 shared_ptr::unique()를 MSVC/Clang CI가 검출해 use_count()로 수정했다. 최초 전체 회귀의 제약 진단 탐색 실패는 데이터가 같더라도 선택 요청을 처리하도록 갱신 캐시를 무효화해 해결했다. 새 검색 검사는 기존 debounce 대기를 반영했다. 반영 뒤 dirty bookkeeping의 중도 취소를 막는 회귀도 추가했다. 위 완료 판정은 이 수정을 포함한 최종 코드에 대한 것이다.
 
-[원시 전후·CI 표본, 완료 manifest와 로그](validation/responsive-editing-2026-10-28/)에 환경·소스/빌드 식별·제외 범위·관측 P95와 전체 일정 해시를 보존한다.
+[원시 전후·CI 표본, 완료 manifest와 로그](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/responsive-editing-2026-10-28)에 환경·소스/빌드 식별·제외 범위·관측 P95와 전체 일정 해시를 보존한다.

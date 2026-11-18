@@ -1,6 +1,8 @@
 # 다중 프로젝트 XER 선택 로컬 검증
 
-2026-11-03 [GAP-09 첫 증분 계약](../../xer-project-selection.md)의 Windows Release / Qt 6.8.3 / MinGW GCC 13.1.0 결과다. **전체 CTest 79개 통과, 실패 0개, 247.21초**다. [전체 로그](full-ctest.log), [시험별 출력](ctest-details.log), [제품 빌드](build.log)를 보존한다.
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
+2026-11-03 [GAP-09 첫 증분 계약](../../xer-project-selection.md)의 Windows Release / Qt 6.8.3 / MinGW GCC 13.1.0 결과다. **전체 CTest 79개 통과, 실패 0개, 247.21초**다. [전체 로그](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/full-ctest.log), [시험별 출력](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/ctest-details.log), [제품 빌드](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/build.log)를 보존한다.
 
 | 검사 | 결과 |
 |---|---|
@@ -14,15 +16,15 @@
 | 취소 | 사전 취소와 실제 worker 처리 중 inventory 취소. 기존 일반 교환/게시 취소 회귀도 함께 실행 |
 | 품질 | 포맷 117 C++ 파일 변경 없음, 소스/빌드 해시 일치. 독립 reader와 기존 출력 검사 기록은 아래 참조 |
 
-[core 계약](contract.json), [UI 계약](ui-contract.json), [A 선택/제외 보고](selected-a.json), [B 선택/제외 보고](selected-b.json), [순수 worker 측정](core-metrics.json), [포맷](format-check.json), [소스 식별](source-identity.json), [시험/fixture/검증 스크립트 해시](test-script-sha256.json), [문서 링크](markdown-links.json), [기계 판독 기록](verification.json)을 보존한다. 소스 SHA-256은 `62bf2a9e5fcdfd3d9b5f7cc5c5b8b566fef5a55caac153a905accef72ebe362b`이며 빌드 값과 일치한다. case-sensitive 정렬된 src cpp/h·CMakeLists.txt 레시피는 tests/mm/scripts/CI를 제외하므로 별도 해시를 남긴다. 기존 검증 폴더는 수정하지 않았다.
+[core 계약](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/contract.json), [UI 계약](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/ui-contract.json), [A 선택/제외 보고](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/selected-a.json), [B 선택/제외 보고](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/selected-b.json), [순수 worker 측정](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/core-metrics.json), [포맷](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/format-check.json), [소스 식별](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/source-identity.json), [시험/fixture/검증 스크립트 해시](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/test-script-sha256.json), [문서 링크](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/markdown-links.json), [기계 판독 기록](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/verification.json)을 보존한다. 소스 SHA-256은 `62bf2a9e5fcdfd3d9b5f7cc5c5b8b566fef5a55caac153a905accef72ebe362b`이며 빌드 값과 일치한다. case-sensitive 정렬된 src cpp/h·CMakeLists.txt 레시피는 tests/mm/scripts/CI를 제외하므로 별도 해시를 남긴다. 기존 검증 폴더는 수정하지 않았다.
 
 ## 독립 reader와 범위
 
-[TSV/MPXJ 결과](independent-selection.json)는 입력 두 PROJECT 목록·선택 ID/이름/직접 관계/배정과 native 계획 투영의 재수출 기간·자원, 전체 입력 SHA-256·선택/제외 행을 대조한다. Python 3.12.10 / MPXJ 16.10.0 / JPype1 1.6.0 / Temurin Java 21.0.11이며 [설치 로그](reader-dependencies.log)와 [버전](reader-versions.log)을 보존한다. `listProjects`는 UTF-8 BOM을 명시 처리하고 선택 원본/재수출 읽기는 UniversalProjectReader proxy의 BOM 처리를 사용한다. 원본 바이트는 변경하지 않는다.
+[TSV/MPXJ 결과](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/independent-selection.json)는 입력 두 PROJECT 목록·선택 ID/이름/직접 관계/배정과 native 계획 투영의 재수출 기간·자원, 전체 입력 SHA-256·선택/제외 행을 대조한다. Python 3.12.10 / MPXJ 16.10.0 / JPype1 1.6.0 / Temurin Java 21.0.11이며 [설치 로그](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/reader-dependencies.log)와 [버전](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/reader-versions.log)을 보존한다. `listProjects`는 UTF-8 BOM을 명시 처리하고 선택 원본/재수출 읽기는 UniversalProjectReader proxy의 BOM 처리를 사용한다. 원본 바이트는 변경하지 않는다.
 
 원본은 실제 시작/status 필드도 포함하는 수작업 fixture다. native 가져오기는 target 기간 기반 계획 투영이다. MPXJ의 원본 실적 기간 산정이나 글로벌 자원 집합과 동일한 모델이라는 주장을 하지 않는다. 원본의 ID/이름/관계/배정과 계획 투영 출력의 기간을 구분해 검사한다. strict reader 성공은 P6 설치본의 수용·재계산/재저장 왕복을 대신하지 않는다.
 
-독립 검증 9종이 모두 통과했다: 위 선택 reader, [기존 XER TSV/MPXJ](independent-legacy-xer.log), [일정 인쇄](independent-schedule-print.json), [평준화](independent-leveling-selection-exports.json), [일반 보고서](independent-report-exports.log), [Usage](independent-usage-exports.json), [분류](independent-classification-exports.json), [예측 여유](independent-forecast-float-exports.json), [기간 실적](independent-period-actual-exports.json). 파서 seed replay는 schema 1~12의 92개를 통과했다.
+독립 검증 9종이 모두 통과했다: 위 선택 reader, [기존 XER TSV/MPXJ](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/independent-legacy-xer.log), [일정 인쇄](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/independent-schedule-print.json), [평준화](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/independent-leveling-selection-exports.json), [일반 보고서](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/independent-report-exports.log), [Usage](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/independent-usage-exports.json), [분류](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/independent-classification-exports.json), [예측 여유](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/independent-forecast-float-exports.json), [기간 실적](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/independent-period-actual-exports.json). 파서 seed replay는 schema 1~12의 92개를 통과했다.
 
 ## 규모 관측
 
@@ -35,9 +37,9 @@
 
 ## 화면
 
-![프로젝트 목록과 외부 관계 건수](project-picker.png)
+![프로젝트 목록과 외부 관계 건수](https://raw.githubusercontent.com/jhoon-dev/ProjectPlanningManager/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/project-picker.png)
 
-![선택 ID와 전체 원본 보존 범위 미리보기](selection-preview.png)
+![선택 ID와 전체 원본 보존 범위 미리보기](https://raw.githubusercontent.com/jhoon-dev/ProjectPlanningManager/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xer-project-selection-2026-11-03/selection-preview.png)
 
 ## 재현/미실행
 

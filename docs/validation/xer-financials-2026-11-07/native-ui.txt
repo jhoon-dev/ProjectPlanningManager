@@ -1,1 +1,0 @@
-PASS: schema25 XER financial snapshots, preserved intervals/undated regular+OT, AC/EVM isolation, stale/undo/copy/recovery, strict validation, combined references, virtual tables and search

@@ -1,7 +1,0 @@
-Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
-    Start 1: xer_source_conversion_contract
-1/1 Test #1: xer_source_conversion_contract ...   Passed    2.28 sec
-
-100% tests passed out of 1
-
-Total Test time (real) =   2.30 sec

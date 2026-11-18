@@ -91,7 +91,7 @@ PRD/계약은 `4434568`에서 먼저 커밋하고 실제 decoder·harness·seed/
 | Project XML | 5,000 | 1,805 / 2,915 | 151 | 415 |
 | Primavera XER | 5,000 | 2,215 / 4,634 | 243 | 423 |
 
-cov/ft는 libFuzzer의 계측 카운터이며 형식/분기 검증률(%)이 아니다. new_units_added는 실행 중 추가 이벤트 수이며 최종 파일 수와 같지 않다. [검증 묶음](validation/parser-safety-2026-10-28/verification.json)에 revision·OS별 시간·일정 해시를 기록했다. Linux 하위 폴더에 실행 명령/반환 코드·환경·컴파일러·계측 목록·CTest와 seed/fuzz 원시 로그, 실제 corpus 319개 압축본과 파일별 SHA-256 manifest를 보존했다. 초기 재생 seed 56개가 모두 압축본에 포함됐음을 확인했다. 원시 입력/명령/도구 버전으로 후속 발견을 조사하며, 이번 통과를 취약점 부재나 외부 제품 전체 호환으로 확대하지 않는다.
+cov/ft는 libFuzzer의 계측 카운터이며 형식/분기 검증률(%)이 아니다. new_units_added는 실행 중 추가 이벤트 수이며 최종 파일 수와 같지 않다. [검증 묶음](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/parser-safety-2026-10-28/verification.json)에 revision·OS별 시간·일정 해시를 기록했다. Linux 하위 폴더에 실행 명령/반환 코드·환경·컴파일러·계측 목록·CTest와 seed/fuzz 원시 로그, 실제 corpus 319개 압축본과 파일별 SHA-256 manifest를 보존했다. 초기 재생 seed 56개가 모두 압축본에 포함됐음을 확인했다. 원시 입력/명령/도구 버전으로 후속 발견을 조사하며, 이번 통과를 취약점 부재나 외부 제품 전체 호환으로 확대하지 않는다.
 
 평준화 채택 증분은 schema1~12와 유효 채택·알 수 없는 정책/필드 seed를 재생한다. 이는 seed 회귀이며 coverage fuzz 실행으로 간주하지 않는다. [채택 계약](leveling-adoption.md)을 따른다.
 

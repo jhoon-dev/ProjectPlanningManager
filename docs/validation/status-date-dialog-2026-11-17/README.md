@@ -1,5 +1,7 @@
 # UX-W01 상태일 입력창 수정·검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/status-date-dialog-2026-11-17)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-17 Windows 11 / Qt6.8.3 / MinGW13.1 Release.
 [최초 UX 점검](../../planning/21-weekly-update-ux-review.md)의 P0 상태일 입력창 표시 장애만 수정했다.
 
@@ -39,14 +41,14 @@
 
 | 단계 | 실제 입력/행동 | 확인 결과와 화면 |
 |---|---|---|
-| 최초 진입 | 추적 → 상태일 설정 | 날짜11-13 09:00·설명·해제 옵션·버튼이 잘리지 않음. [화면](01-initial-layout-1.png) |
-| 입력·적용 | 날짜/시각을 `2026-11-16 18:00`으로 입력 → OK | [입력](02-entered-date-1.png), [주 창 적용](03-applied-date-0.png) 확인 |
-| 적용 후 재진입 | 추적 → 상태일 설정 | 적용한11-16 18:00과 해제 옵션 미선택을 [복원](04-reopened-applied-1.png) |
-| 취소 | `2026-11-20 12:00`으로 변경하고 해제도 선택 → Cancel | 기존11-16 18:00 유지. [초안](06-cancel-clear-draft-1.png) · [취소 후](07-cancelled-0.png). 취소 전후 Ctrl+S 저장 파일은 바이트 동일 |
-| 취소 후 재진입 | 상태일 설정 다시 열기 | 취소한 날짜와 체크 상태가 남지 않고11-16 18:00·미선택 [복원](08-reopened-after-cancel-1.png) |
-| 해제 | 해제 체크 → OK → Ctrl+S | [주 창](10-cleared-0.png)의 상태일 미설정·현재 계획 모드. 저장 파일의 상태일null, 기준선1개·실적3건 보존 |
-| 해제 후 재진입 | 상태일 설정 다시 열기 | 기존 기본 동작인 프로젝트 시작일11-09 18:00·해제 옵션 미선택으로 [열림](11-reopened-after-clear-1.png). 취소하면 상태일 미설정 [유지](12-final-cleared-state-0.png) |
-| 최종 빌드 재확인 | 확대 글꼴 대응 후 앱 재실행 → 저장 사본 열기 → 상태일 진입 → 취소 | [날짜·설명 전체 표시](13-final-build-reopened-1.png), [취소 후 미설정 유지](14-final-build-cancelled-0.png) |
+| 최초 진입 | 추적 → 상태일 설정 | 날짜11-13 09:00·설명·해제 옵션·버튼이 잘리지 않음. [화면](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/status-date-dialog-2026-11-17/01-initial-layout-1.png) |
+| 입력·적용 | 날짜/시각을 `2026-11-16 18:00`으로 입력 → OK | [입력](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/status-date-dialog-2026-11-17/02-entered-date-1.png), [주 창 적용](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/status-date-dialog-2026-11-17/03-applied-date-0.png) 확인 |
+| 적용 후 재진입 | 추적 → 상태일 설정 | 적용한11-16 18:00과 해제 옵션 미선택을 [복원](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/status-date-dialog-2026-11-17/04-reopened-applied-1.png) |
+| 취소 | `2026-11-20 12:00`으로 변경하고 해제도 선택 → Cancel | 기존11-16 18:00 유지. [초안](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/status-date-dialog-2026-11-17/06-cancel-clear-draft-1.png) · [취소 후](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/status-date-dialog-2026-11-17/07-cancelled-0.png). 취소 전후 Ctrl+S 저장 파일은 바이트 동일 |
+| 취소 후 재진입 | 상태일 설정 다시 열기 | 취소한 날짜와 체크 상태가 남지 않고11-16 18:00·미선택 [복원](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/status-date-dialog-2026-11-17/08-reopened-after-cancel-1.png) |
+| 해제 | 해제 체크 → OK → Ctrl+S | [주 창](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/status-date-dialog-2026-11-17/10-cleared-0.png)의 상태일 미설정·현재 계획 모드. 저장 파일의 상태일null, 기준선1개·실적3건 보존 |
+| 해제 후 재진입 | 상태일 설정 다시 열기 | 기존 기본 동작인 프로젝트 시작일11-09 18:00·해제 옵션 미선택으로 [열림](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/status-date-dialog-2026-11-17/11-reopened-after-clear-1.png). 취소하면 상태일 미설정 [유지](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/status-date-dialog-2026-11-17/12-final-cleared-state-0.png) |
+| 최종 빌드 재확인 | 확대 글꼴 대응 후 앱 재실행 → 저장 사본 열기 → 상태일 진입 → 취소 | [날짜·설명 전체 표시](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/status-date-dialog-2026-11-17/13-final-build-reopened-1.png), [취소 후 미설정 유지](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/status-date-dialog-2026-11-17/14-final-build-cancelled-0.png) |
 
 01~12는 초기560×280 수정 빌드의 입력·취소·해제·재진입 기록이다. 이후150% 글꼴의
 offscreen 넘침을 해결하고 최종 빌드로13~14의 재진입·취소를 재확인했다.

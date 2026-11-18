@@ -1,5 +1,7 @@
 # 공유 통합 실제 자재 원장·잔여 재고 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/shared-material-actuals-2026-11-17)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-17 Windows/Qt6.8.3 MinGW Release · `build-numbered-summary`. [SMAT-01~07 사용법/계약](../../shared-material-actuals.md).
 
 - **관련 회귀61/61,115.11초**. 새 공유 실제 자재·기존 단일 원장/계획 자재·공유/로컬 가용량·통합 일정/작업공간·날짜별 잔여 공수/곡선·진척 정책/채택·실적/원가·보고/교환·통화/ID 이관·undo/복구·파서의 영향 범위다. 전체257개 suite 실행을 의미하지 않는다. 앞 집중6/6,9.80초와 원시 로그도 보존한다. 앱 `PPM.exe`/`PPM-Automation.exe`를 갱신 빌드했다.

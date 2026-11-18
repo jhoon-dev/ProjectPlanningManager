@@ -1,1 +1,0 @@
-PASS custom period menu, manual values, preview/confirmation, define/close/reopen, read-only/stale/cancel/invalid input, 800x600, historical reports and XLSX/PDF

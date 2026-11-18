@@ -1,4 +1,0 @@
-[1/4] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MaterialInventoryDialog.cpp.obj
-[2/4] Linking CXX static library libjobs_ui.a
-[3/4] Linking CXX executable jobs_material_inventory_tests.exe
-[4/4] Linking CXX executable PPM.exe

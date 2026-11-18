@@ -1,1 +1,0 @@
-PASS: schema27 original/current ledger merge; disjoint residual union, allocated corrections/withdrawals, explicit overlap/OT decisions, immutable native facts and AC, identity/status guards, post-merge edit, save/copy/recovery, XER coalescing and native UI

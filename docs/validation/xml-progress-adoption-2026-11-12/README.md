@@ -1,12 +1,14 @@
 # XML 작업 진척 새 사본 채택 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-12 · XPA-01~06 · Windows / Qt6.8.3 MinGW13.1 Release.
 
 [지원 계약](../../xml-progress-adoption.md), [C++ 검사](../../../tests/XmlProgressTests.cpp), [fixture](../../../tests/XmlProgressFixture.h), [독립 검사기](../../../scripts/verify-xml-progress-adoption.py).
 
 ## 결과
 
-최종 전체 **177/177·259.24초**, 실패/건너뜀0이다. 로컬 HTTP/WebSocket 통합 검사를 포함해 제한 밖에서 실행했다. 파서 시드 **808개(지원 schema1~51)**와 C++ 형식 **481파일** 차이0을 통과했다. [빌드](build.txt), [전체 CTest](ctest.txt), [JUnit](ctest.xml), [형식](quality.json), [독립 보고서 대조](independent-reports.json), [독립 리더 대조](independent-reader.json).
+최종 전체 **177/177·259.24초**, 실패/건너뜀0이다. 로컬 HTTP/WebSocket 통합 검사를 포함해 제한 밖에서 실행했다. 파서 시드 **808개(지원 schema1~51)**와 C++ 형식 **481파일** 차이0을 통과했다. [빌드](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/build.txt), [전체 CTest](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/ctest.txt), [JUnit](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/ctest.xml), [형식](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/quality.json), [독립 보고서 대조](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/independent-reports.json), [독립 리더 대조](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/independent-reader.json).
 
 독립 Python은 original.xml의 UID·실제 날짜·실제/잔여 기간을 직접 읽어 conversion.json의 선택/매핑과 native 진척4건·48항목을 대조했다. native schema48 원본과 실제 XML 사용자 필드36칸(미설정27칸)·보고서36칸, 최초 원장4행과 정정 후5행의 이전 보고 링크·선택 상태를 검사했다. XLSX23시트·PDF22페이지와 MPXJ strict reader 작업10행·배정9개·오류0을 확인했다.
 
@@ -14,9 +16,9 @@
 
 Windows800×650 검토 창에서 기본 미채택/선택 해제, UID 연결·명시 메타데이터·불완전 행 비활성, worker 원본 재검증·새 폴더 게시·새 사본 열기를 검사했다. 이전 native 실적 파일이 그대로이고 검토 취소·오래된 검토의 거절이 사용자 수정을 보존하는지 확인한다.
 
-실행 패키지291파일의 PPM/CLI 해시가 최종 빌드와 일치한다. Qt·MinGW 경로가 없는 PATH에서 CLI가 채택 진척을 가진 기존 schema48 원본을 읽고 종료0을 반환했다. [실행 기록](runtime.json), [배포 로그](runtime-deploy.txt), [CLI 읽기](runtime-inspect.json).
+실행 패키지291파일의 PPM/CLI 해시가 최종 빌드와 일치한다. Qt·MinGW 경로가 없는 PATH에서 CLI가 채택 진척을 가진 기존 schema48 원본을 읽고 종료0을 반환했다. [실행 기록](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/runtime.json), [배포 로그](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/runtime-deploy.txt), [CLI 읽기](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/runtime-inspect.json).
 
-[검토 화면](progress-small.png), [XML 원본](original.xml), [사용자 필드 XML](fields.xml), [입력](native.json), [native 원본](source.ppm), [변환/채택 기록](conversion.json), [내보내기 매핑](export-mapping.json), [XLSX](fields.xlsx), [정정 후 XLSX](corrected.xlsx), [PDF](fields.pdf). [verification-summary.json](verification-summary.json)에 소스와 자료 SHA-256을 기록한다.
+[검토 화면](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/progress-small.png), [XML 원본](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/original.xml), [사용자 필드 XML](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/fields.xml), [입력](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/native.json), [native 원본](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/source.ppm), [변환/채택 기록](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/conversion.json), [내보내기 매핑](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/export-mapping.json), [XLSX](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/fields.xlsx), [정정 후 XLSX](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/corrected.xlsx), [PDF](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/fields.pdf). [verification-summary.json](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-adoption-2026-11-12/verification-summary.json)에 소스와 자료 SHA-256을 기록한다.
 
 ## 검사 범위와 보정
 

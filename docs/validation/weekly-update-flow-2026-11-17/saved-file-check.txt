@@ -1,5 +1,0 @@
-PASS: schema, tasks, baseline and original 3 progress entries preserved
-PASS: exactly 2 new reports (B 2d/1d, C explicit not-started 0d/2d); D/E remain unreported
-PASS: status change retains adoption history and appends its expected invalidation
-PASS: reopen, browse, cancel, save and calculate leave submitted file bytes unchanged
-SHA-256: bb744aee38936434c20d2a33c3650f7e452efedbeba75aedc087e56c84de94be

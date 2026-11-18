@@ -1,1 +1,0 @@
-PASS calendar UI: worker preview, calendar/function insertion, save/undo, small layout

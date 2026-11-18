@@ -1,9 +1,0 @@
-{
-  "status": "success",
-  "comparatorSelfTests": 6,
-  "independentPlanRead": "MPXJ 16.10.0 strict; plan subset only",
-  "nativeSmallCaseVerified": true,
-  "P6ActualRoundTrip": "not-run",
-  "reason": "P6 not installed; user confirmed",
-  "syntheticSelfTestIsP6Evidence": false
-}

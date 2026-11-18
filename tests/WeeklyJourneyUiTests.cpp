@@ -66,7 +66,8 @@ private slots:
     void weeklyJourney_data() {
         QTest::addColumn<QString>("fixturePath");
         QTest::addColumn<QString>("tag");
-        QTest::newRow("five") << QFINDTESTDATA("../docs/validation/weekly-update-ux-2026-11-17/weekly-prepared.ppm")
+        QTest::newRow("five") << QFINDTESTDATA(
+                                     "fixtures/native-history/weekly-update-ux-2026-11-17/weekly-prepared.ppm")
                               << QString("five");
         QTest::newRow("pilot") << QFINDTESTDATA("../docs/validation/weekly-pm-pilot-2026-11-18/pilot-start.ppm")
                                << QString("pilot");

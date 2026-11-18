@@ -1,24 +1,26 @@
 # MPP 수동 계획 곡선 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-manual-curves-2026-11-09)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-09 · Windows x64 / Qt6.8.3 / MinGW13.1 Release / MPXJ16.10.0 / Java21. [기능 계약](../../mpp-manual-curves.md)을 따른다.
 
 ## 최종 결과
 
-- 전체 **145/145 통과 · 250.91초**: [CTest](ctest.txt) · [JUnit](ctest.xml) · [검사별 출력](all-test-output.txt).
+- 전체 **145/145 통과 · 250.91초**: [CTest](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-manual-curves-2026-11-09/ctest.txt) · [JUnit](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-manual-curves-2026-11-09/ctest.xml) · [검사별 출력](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-manual-curves-2026-11-09/all-test-output.txt).
 - 파서 **566개** 결정적 시드, C++ 형식 **417파일**, Java 투영 **16개 assertion** 통과.
-- 독립 원본/자원분 대조 **9배정·10,080분**, [XML/XER strict reader](independent-exports.json) 각9개 곡선 공수 일치·무시 오류0.
-- 별도 패키징 **28개 통과/플랫폼 조건2개 제외**, protocol2 reader **216파일/대응 소스** 검증: [bundle 검사](reader-verification.json).
-- Windows 기본/800×600 UI 통과. [소스·증거 SHA256 요약](verification-summary.json).
+- 독립 원본/자원분 대조 **9배정·10,080분**, [XML/XER strict reader](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-manual-curves-2026-11-09/independent-exports.json) 각9개 곡선 공수 일치·무시 오류0.
+- 별도 패키징 **28개 통과/플랫폼 조건2개 제외**, protocol2 reader **216파일/대응 소스** 검증: [bundle 검사](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-manual-curves-2026-11-09/reader-verification.json).
+- Windows 기본/800×600 UI 통과. [소스·증거 SHA256 요약](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-manual-curves-2026-11-09/verification-summary.json).
 
 ## 검증 범위와 근거
 
-[집중 검사](refined-focused.txt)는4/4 통과했다. 기존 MPP8/9/12/14의 원본 보존·손상/암호/timeout/cancel 검사, 원래 UI와 새 수동 곡선 UI, 새 실제 binary 곡선 계약을 함께 실행했다. [Windows UI](native-ui.txt)는 실제 Windows plugin에서 파일 선택·명시 통화·미리보기/확인·취소·stale/session·권한 철회·읽기 전용 원본에서 새 사본 열기를 검사했다. [기본900×650](mpp-qa/preview.png)·[800×600](mpp-qa/preview-small.png)을 직접 확인했다. 요약 수치와 확인/제출 버튼이 보이며 상세 내용은 스크롤한다.
+[집중 검사](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-manual-curves-2026-11-09/refined-focused.txt)는4/4 통과했다. 기존 MPP8/9/12/14의 원본 보존·손상/암호/timeout/cancel 검사, 원래 UI와 새 수동 곡선 UI, 새 실제 binary 곡선 계약을 함께 실행했다. [Windows UI](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-manual-curves-2026-11-09/native-ui.txt)는 실제 Windows plugin에서 파일 선택·명시 통화·미리보기/확인·취소·stale/session·권한 철회·읽기 전용 원본에서 새 사본 열기를 검사했다. [기본900×650](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-manual-curves-2026-11-09/mpp-qa/preview.png)·[800×600](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-manual-curves-2026-11-09/mpp-qa/preview-small.png)을 직접 확인했다. 요약 수치와 확인/제출 버튼이 보이며 상세 내용은 스크롤한다.
 
 [공개 원본](../../../tests/fixtures/mpp-public/manifest.json)의 timephased-multi-rate.mpp는 실제 MPP14다. 정규 계획9배정/13구간을 채택하고 초과근무3배정은 제외한다. 수동2곡선의16h·0구간과 분할로 인한2개 기간 창 확장을 검사했다. 실제/실제 초과근무 표본에서는 원장·기준선·AC를 생성하지 않는다. 복잡한 MPP9/12/14timephasedsegments는 추가 근무일 달력을 지원하는 것으로 오인하지 않고 기존 제한에 따라 거절한다. 모든 기존 제작 버전의 수동 곡선 전체 복원이나 외부 제품 동등성을 주장하지 않는다.
 
-[독립 스크립트](../../../scripts/verify-mpp-curves.py)는 원본을 직접 MPPReader로 읽고 bridge/MSPDIWriter를 거치지 않은 정규 원본 값과 native 구간을 대조했다. 별도 civil-minute 반복으로 작업·자원 달력 교집합과0구간을 계산해9배정/10,080개 자원분의 위치·배정률/총공수를 대조한다. native 논리 일정 날짜에 대한 투영 검산이며 source의 절대 시각 재계산 동등성 검사가 아니다. [결과](independent-curves.json).
+[독립 스크립트](../../../scripts/verify-mpp-curves.py)는 원본을 직접 MPPReader로 읽고 bridge/MSPDIWriter를 거치지 않은 정규 원본 값과 native 구간을 대조했다. 별도 civil-minute 반복으로 작업·자원 달력 교집합과0구간을 계산해9배정/10,080개 자원분의 위치·배정률/총공수를 대조한다. native 논리 일정 날짜에 대한 투영 검산이며 source의 절대 시각 재계산 동등성 검사가 아니다. [결과](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-manual-curves-2026-11-09/independent-curves.json).
 
-[Java 계약 검사](../../../tests/java/CurveProjectionContract.java)는 고정 입력16개 assertion으로 최대 나머지의 소수 동률·총공수·원본 row 소유,0/미정 구분, 실제/초과근무/없는 자료 제외, 양수 분 미만 구간 접힘·순서·음수·합계·1,024행 한도·올림 근거를 검사한다. [실행](java-contract.txt).
+[Java 계약 검사](../../../tests/java/CurveProjectionContract.java)는 고정 입력16개 assertion으로 최대 나머지의 소수 동률·총공수·원본 row 소유,0/미정 구분, 실제/초과근무/없는 자료 제외, 양수 분 미만 구간 접힘·순서·음수·합계·1,024행 한도·올림 근거를 검사한다. [실행](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-manual-curves-2026-11-09/java-contract.txt).
 
 ## 구현 중 확인한 경계
 

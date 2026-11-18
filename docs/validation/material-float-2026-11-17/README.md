@@ -1,5 +1,7 @@
 # 자재 제약 여유·임계 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/material-float-2026-11-17)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-17 Windows / Qt6.8.3 MinGW Release · `build-numbered-summary`. [MF-01~07 계약](../../material-float.md).
 
 - **관련 회귀74/74, 231.01초**. 직전 자재/잔여/공유61개 영향 범위에 새 자재 여유2개와 기존 곡선·재분할·전파·증인/여유 화면·일정 인쇄 검사를 추가했다. 전체 suite 실행을 의미하지 않는다. 앱 `PPM.exe`, `PPM-Automation.exe`를 갱신했다. `material-float-regression.log`, `regression-details.log`, `material-float-final-build.log`.

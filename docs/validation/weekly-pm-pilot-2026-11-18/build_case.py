@@ -5,7 +5,7 @@ import hashlib
 import json
 
 folder = Path(__file__).resolve().parent
-source = json.loads((folder.parent / "weekly-update-ux-2026-11-17/weekly-prepared.ppm").read_text(encoding="utf-8"))
+source = json.loads((folder.parents[2] / "tests/fixtures/native-history/weekly-update-ux-2026-11-17/weekly-prepared.ppm").read_text(encoding="utf-8"))
 old = source["payload"]
 p = deepcopy(old)
 p["documentId"] = "weekly-pm-pilot-30-20261118"

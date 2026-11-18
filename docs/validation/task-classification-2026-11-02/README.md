@@ -1,5 +1,7 @@
 # 작업 분류·그룹·저장된 보기 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/task-classification-2026-11-02)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-02. 사용자 후속 요청에 따른 GAP-03의 작업 객체 증분이다. [사용 방법과 계약](../../task-classification.md), [PRD](../../planning/01-product-prd.md), [기능 우선순위](../../planning/16-product-gap-priorities.md)를 연결한다. 전체 객체 범위나 MSP/P6 동등성의 완료 기록은 아니다.
 
 ## 구현과 결과
@@ -10,7 +12,7 @@
 - 새 데이터는 native schema 10에 저장하고 데이터가 없으면 schema 9 writer를 유지한다. XML/XER에는 분류를 매핑하지 않고 손실 진단 및 전체 `source.ppm` 보존으로 처리한다.
 - 그룹 밖 작업을 진단/탐색으로 선택할 때 필터를 해제한 뒤 해당 작업의 선택이 풀리던 문제를 수정했다.
 
-**전체 CTest 67개 통과, 189.30초.** [전체 로그](full-ctest.log)와 [검증 요약·소스 식별](verification.json)을 보존한다. Release 빌드와 [clang-format 18.1.8 검사](format.json)도 통과했다.
+**전체 CTest 67개 통과, 189.30초.** [전체 로그](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/task-classification-2026-11-02/full-ctest.log)와 [검증 요약·소스 식별](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/task-classification-2026-11-02/verification.json)을 보존한다. Release 빌드와 [clang-format 18.1.8 검사](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/task-classification-2026-11-02/format.json)도 통과했다.
 
 | 검사 | 검증 내용 |
 |---|---|
@@ -24,17 +26,17 @@
 
 ## 출력과 화면
 
-[독립 출력 검사](independent-export.json)는 openpyxl로 분류 명세 12행(3작업 × 4키), 숫자 셀의 `10`, `0`, `-0.125001`, 미설정과 코드 경로, 수식·외부 링크·VBA 부재를 대조했다. pypdf로 7페이지의 한국어 분류 레이블·코드·6자리 음수와 제어문자 부재를 확인했다. 화면에서 2작업만 보이는 상태에도 보고서는 선택한 WBS 전체의 3작업을 포함한다.
+[독립 출력 검사](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/task-classification-2026-11-02/independent-export.json)는 openpyxl로 분류 명세 12행(3작업 × 4키), 숫자 셀의 `10`, `0`, `-0.125001`, 미설정과 코드 경로, 수식·외부 링크·VBA 부재를 대조했다. pypdf로 7페이지의 한국어 분류 레이블·코드·6자리 음수와 제어문자 부재를 확인했다. 화면에서 2작업만 보이는 상태에도 보고서는 선택한 WBS 전체의 3작업을 포함한다.
 
 기존 보고 fixture의 XLSX 5개/PDF 6개와 GAP-01 예측 출력도 독립 reader로 재검사해 통과했다. PDF 텍스트 검사는 페이지 렌더링 시각 QA를 대신하지 않는다.
 
-![그룹별 작업 표와 간트](groups.png)
+![그룹별 작업 표와 간트](https://raw.githubusercontent.com/jhoon-dev/ProjectPlanningManager/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/task-classification-2026-11-02/groups.png)
 
 Qt offscreen 화면이다. 수량 열이 첫 열로 이동해 B의 0과 A의 10을 오름차순으로 표시하며, 원본 선행 번호와 그룹 범위의 두 간트 막대를 유지한다. 읽기 전용 파일에도 저장된 보기 적용은 가능하다. 글꼴은 Windows 맑은 고딕을 명시 로드했다.
 
 ## 1천/1만 작업 화면 적용 측정
 
-Windows·MinGW GCC 13.1·Qt 6.8.3·Release에서 100개 폭의 선행 체인과 20개 코드·5개 범주를 가진 fixture를 사용했다. 2단계 분류의 그룹 노드는 40개다. 같은 프로세스에서 매번 초기 보기로 복귀한 다음 저장된 보기를 3회 적용했다. 측정은 Qt offscreen의 보기 선택 대화상자·트리·모델·간트 갱신을 포함하며 순수 계산 엔진 측정이 아니다. [모든 원시 표본](performance.json)을 보존한다.
+Windows·MinGW GCC 13.1·Qt 6.8.3·Release에서 100개 폭의 선행 체인과 20개 코드·5개 범주를 가진 fixture를 사용했다. 2단계 분류의 그룹 노드는 40개다. 같은 프로세스에서 매번 초기 보기로 복귀한 다음 저장된 보기를 3회 적용했다. 측정은 Qt offscreen의 보기 선택 대화상자·트리·모델·간트 갱신을 포함하며 순수 계산 엔진 측정이 아니다. [모든 원시 표본](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/task-classification-2026-11-02/performance.json)을 보존한다.
 
 | 작업 수 | 중앙값(ms) | 관측 P95(ms) | 표본(ms) |
 |---|---|---|---|

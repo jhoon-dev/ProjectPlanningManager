@@ -39,7 +39,7 @@ python scripts/check-cpp-quality.py format --base a4b1fa1 --tool .deps/cpp-quali
 
 ## 2026-10-28 검증 결과
 
-검증한 코드 revision은 `d35712898d432154098d21994d99ce5440fcf657`이다. [원시 로그·도구 설정·결과 요약](validation/plan-enums-2026-10-28/verification.json)을 저장했다.
+검증한 코드 revision은 `d35712898d432154098d21994d99ce5440fcf657`이다. [원시 로그·도구 설정·결과 요약](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/plan-enums-2026-10-28/verification.json)을 저장했다.
 
 | 검사 | 결과 |
 |---|---|

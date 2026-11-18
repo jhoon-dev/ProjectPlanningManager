@@ -1,1 +1,0 @@
-PASS dated remaining UI: inherited/zero, preview, edits invalidate certificate, atomic apply/clear, undo, stale, cancel, role, outdated/readonly, close/menu

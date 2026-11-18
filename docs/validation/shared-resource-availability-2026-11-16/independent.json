@@ -1,9 +1,0 @@
-{
-  "status": "PASS",
-  "civil_minutes": 4320,
-  "scalar_comparisons": 21600,
-  "daily_rows": 3,
-  "workspace_schema": 4,
-  "xlsx_pool_rows": 2,
-  "pdf_pages": 4
-}

@@ -1,5 +1,7 @@
 # 화면 배치·잔여 선 점검 · 2026-11-02
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/ui-layout-2026-11-02)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 Windows 11 / Qt 6.8.3 / MinGW 13.1.0 Release에서 확인했다. 앞선 우하단 상태 표시줄 이중 선 수정에 이어 주요 편집기, 분석·보고서, 작업공간, 복구, 업데이트, XML/XER 변환 창을 점검했다.
 
 ## 확인한 문제와 수정
@@ -41,9 +43,9 @@ Qt/MinGW의 `bin`과 CMake/CTest가 PATH에 있는 개발 환경에서 실행한
 
 | 화면 | 캡처 |
 |---|---|
-| 작은 보고서 · 2열 카드와 고정 내보내기 | [640 / dark](report-640-dark.png) |
-| 일반 보고서 · 4열 카드 | [1440 / light](report-1440-light.png) |
-| 작은 자원 비교 · 컨트롤과 고정 닫기 | [640 / dark](resource-640-dark.png) |
-| 작은 복구 선택 · 하단 동작 유지 | [640 / dark](recovery-640-dark.png) |
-| 작은 작업공간 | [640 / light](workspace-640-light.png) |
-| 작은 업데이트 창 | [640 / dark](update-640-dark.png) |
+| 작은 보고서 · 2열 카드와 고정 내보내기 | [640 / dark](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/ui-layout-2026-11-02/report-640-dark.png) |
+| 일반 보고서 · 4열 카드 | [1440 / light](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/ui-layout-2026-11-02/report-1440-light.png) |
+| 작은 자원 비교 · 컨트롤과 고정 닫기 | [640 / dark](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/ui-layout-2026-11-02/resource-640-dark.png) |
+| 작은 복구 선택 · 하단 동작 유지 | [640 / dark](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/ui-layout-2026-11-02/recovery-640-dark.png) |
+| 작은 작업공간 | [640 / light](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/ui-layout-2026-11-02/workspace-640-light.png) |
+| 작은 업데이트 창 | [640 / dark](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/ui-layout-2026-11-02/update-640-dark.png) |

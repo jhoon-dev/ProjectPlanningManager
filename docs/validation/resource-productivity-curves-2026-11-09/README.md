@@ -1,14 +1,16 @@
 # 자원 생산성·외부 고유 곡선 교환 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-productivity-curves-2026-11-09)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-09, Windows x64·Qt6.8.3/MinGW13.1 Release·Python3.14에서 수행했다. [기능 계약](../../resource-productivity-curves.md)과 실행 로그를 함께 보존한다.
 
 ## 최종 결과
 
-- 전체 CTest **143/143 통과 · 223.86초**: [실행 로그](ctest.txt) · [JUnit](ctest.xml) · [검사별 출력](all-test-output.txt).
+- 전체 CTest **143/143 통과 · 223.86초**: [실행 로그](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-productivity-curves-2026-11-09/ctest.txt) · [JUnit](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-productivity-curves-2026-11-09/ctest.xml) · [검사별 출력](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-productivity-curves-2026-11-09/all-test-output.txt).
 - 파서 **566개** 결정적 시드(schema1~36), clang-format18.1.8 **416파일**, 별도 패키징 **28개 통과/플랫폼 조건2개 제외**.
-- Windows 도메인/UI 검사 통과, 독립 Fraction25개·달력72개/3,146자원분 및 변경 외 전체 필드 대조 통과: [검산 결과](independent-oracle.json).
-- MPXJ16.10.0 strict reader의 XML/XER 원본 곡선/총공수·XML 일별 공수 일치(무시 오류0): [외부 교환](independent-exchange.json). 두 XLSX 각26시트와 PDF13/15페이지에서 물량120m3·생산성30/h·산정4h·현재 예산3600/관측AC12345·21값을 확인: [보고서 판독](report-verification.json).
-- [최종 빌드](adopted-final-build.txt), [집중3/3](final-focused.txt), [소스/증거 SHA256 요약](verification-summary.json).
+- Windows 도메인/UI 검사 통과, 독립 Fraction25개·달력72개/3,146자원분 및 변경 외 전체 필드 대조 통과: [검산 결과](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-productivity-curves-2026-11-09/independent-oracle.json).
+- MPXJ16.10.0 strict reader의 XML/XER 원본 곡선/총공수·XML 일별 공수 일치(무시 오류0): [외부 교환](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-productivity-curves-2026-11-09/independent-exchange.json). 두 XLSX 각26시트와 PDF13/15페이지에서 물량120m3·생산성30/h·산정4h·현재 예산3600/관측AC12345·21값을 확인: [보고서 판독](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-productivity-curves-2026-11-09/report-verification.json).
+- [최종 빌드](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-productivity-curves-2026-11-09/adopted-final-build.txt), [집중3/3](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-productivity-curves-2026-11-09/final-focused.txt), [소스/증거 SHA256 요약](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-productivity-curves-2026-11-09/verification-summary.json).
 
 ## 범위
 
@@ -20,9 +22,9 @@
 
 ## 화면과 실행 기록
 
-[Windows UI](native-ui.txt)는 기본1100×900·800×600의 실제 Qt Windows plugin을 사용했다. [생산성](resource-planning-qa/productivity.png)·[작은 화면](resource-planning-qa/productivity-small.png)·[곡선](resource-planning-qa/curve.png)·[작은 곡선](resource-planning-qa/curve-small.png)을 직접 확인했다. 작은 화면은 본문을 스크롤하고 하단 실행 버튼을 유지한다. 새 보고서 표의 [PDF14페이지](resource-planning-qa/curve-report-page-14.png)도 렌더링해21개 비중·산정 근거의 줄바꿈/표 범위를 확인했다.
+[Windows UI](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-productivity-curves-2026-11-09/native-ui.txt)는 기본1100×900·800×600의 실제 Qt Windows plugin을 사용했다. [생산성](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-productivity-curves-2026-11-09/resource-planning-qa/productivity.png)·[작은 화면](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-productivity-curves-2026-11-09/resource-planning-qa/productivity-small.png)·[곡선](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-productivity-curves-2026-11-09/resource-planning-qa/curve.png)·[작은 곡선](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-productivity-curves-2026-11-09/resource-planning-qa/curve-small.png)을 직접 확인했다. 작은 화면은 본문을 스크롤하고 하단 실행 버튼을 유지한다. 새 보고서 표의 [PDF14페이지](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-productivity-curves-2026-11-09/resource-planning-qa/curve-report-page-14.png)도 렌더링해21개 비중·산정 근거의 줄바꿈/표 범위를 확인했다.
 
-초기 빌드에서 공수/날짜의 서로 다른 auto 선언과 XML export 배치 오류를 수정했다. 첫 집중 검사에서72개 곡선 사례를 통과했다. 후속 집중 검사의 평준화 fixture는 revision0을 adoption 근거로 사용해 기존 검증에 거절됐으므로 revision1의 정상 사전 상태로 교정했다. [첫 전체 회귀](preliminary-ctest.txt)는141/143을 통과하고 평준화 연계와 기존 곡선 비지원 진단을 기대하던 검사에서 실패했다. 물리 계획 검산용 사본에서 이전 채택/결정 이력을 분리하고 실제 문서 적용 시 무효화/이력 추가를 수행하도록 보완했다. 기존 구간 교환 검사는 XML 계획 시간대/ XER21값 및 집계 손실의 존재를 확인하도록 갱신했다. [후속 집중 검사](final-focused.txt)는3/3을 통과했다. offscreen PDF는 native Windows 글꼴 출력과 달라 독립 PDF 판독에는 `-platform windows` 산출물을 사용한다.
+초기 빌드에서 공수/날짜의 서로 다른 auto 선언과 XML export 배치 오류를 수정했다. 첫 집중 검사에서72개 곡선 사례를 통과했다. 후속 집중 검사의 평준화 fixture는 revision0을 adoption 근거로 사용해 기존 검증에 거절됐으므로 revision1의 정상 사전 상태로 교정했다. [첫 전체 회귀](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-productivity-curves-2026-11-09/preliminary-ctest.txt)는141/143을 통과하고 평준화 연계와 기존 곡선 비지원 진단을 기대하던 검사에서 실패했다. 물리 계획 검산용 사본에서 이전 채택/결정 이력을 분리하고 실제 문서 적용 시 무효화/이력 추가를 수행하도록 보완했다. 기존 구간 교환 검사는 XML 계획 시간대/ XER21값 및 집계 손실의 존재를 확인하도록 갱신했다. [후속 집중 검사](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-productivity-curves-2026-11-09/final-focused.txt)는3/3을 통과했다. offscreen PDF는 native Windows 글꼴 출력과 달라 독립 PDF 판독에는 `-platform windows` 산출물을 사용한다.
 
 ## 재현
 

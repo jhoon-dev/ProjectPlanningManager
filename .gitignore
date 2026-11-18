@@ -11,7 +11,13 @@
 __pycache__/
 aqtinstall.log
 # Local browser automation, scratch space, and root-level report previews.
-# Keep durable regression evidence under docs/validation tracked.
+# Raw validation outputs belong in ignored build directories and CI artifacts.
 /.playwright-mcp/
 /tmp/
 /leveling-selection-qa/
+/docs/validation/**
+!/docs/validation/**/
+!/docs/validation/**/*.md
+# The active PM pilot includes a small reproducible input and its generator.
+!/docs/validation/weekly-pm-pilot-2026-11-18/pilot-start.ppm
+!/docs/validation/weekly-pm-pilot-2026-11-18/build_case.py

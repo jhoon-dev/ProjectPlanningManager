@@ -1,5 +1,0 @@
-[1/19] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\build-decisions && C:\Users\dow\AppData\Roaming\Python\Python314\site-packages\cmake\data\bin\cmake.exe -DSOURCE_DIR=C:/Users/dow/Development/ToolMoa/ProjectPlanningManager -DOUTPUT=C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions/BuildIdentity.h -P C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/scripts/WriteBuildIdentity.cmake"
-[2/5] Building CXX object CMakeFiles/jobs_object_fields_ui_tests.dir/tests/ObjectFieldsUiTests.cpp.obj
-[3/5] Building CXX object CMakeFiles/jobs_object_fields_tests.dir/tests/ObjectFieldsTests.cpp.obj
-[4/5] Linking CXX executable jobs_object_fields_tests.exe
-[5/5] Linking CXX executable jobs_object_fields_ui_tests.exe

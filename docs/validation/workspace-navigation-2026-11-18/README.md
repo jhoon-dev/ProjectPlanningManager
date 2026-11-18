@@ -1,5 +1,7 @@
 # UX-W07 열 보기·자원 메뉴·완료일 탐색 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-18 · [기획·수용조건](../../planning/21-weekly-update-ux-review.md) · [사용법](../../workspace-navigation.md).
 기준 커밋 `36fdb3c` 이후 변경이다. 엔진·도메인·저장 schema를 변경하지 않았다.
 
@@ -18,34 +20,34 @@ Windows 네이티브 앱을 직접 조작했다. 주 창은1562×932, 어두운 
 
 ## 실제 화면 점검
 
-[review.ppm](review.ppm)은 이전 UX-W06의 같은 파일을 바이트 그대로 복사한 것이다.
+[review.ppm](../../../tests/fixtures/native-history/workspace-navigation-2026-11-18/review.ppm)은 이전 UX-W06의 같은 파일을 바이트 그대로 복사한 것이다.
 작업5개·보고 원장6건(보고 작업3개)·기준선1개·결정3건, 상태일11-16 09:00을 사용했다.
 기준선 완료11-17 18:00, 자원 조정 채택 후 전체 완료11-24 18:00이다.
 이번 수동 점검에서는 입력·채택·명시 저장을 하지 않았고 종료 후 저장 바이트가 같음을 확인했다.
 
 | 증거 | 직접 확인한 동작 |
 |---|---|
-| [manual-01](manual-01-calculated-outside.png) | 파일 열기·F9, 전체 완료11-24와 화면 밖 안내 |
-| [manual-02](manual-02-weekly-columns.png) | 주간 열: A 완료 보고, B 보고 있음, C 미착수 보고, D/E 미보고·미정; E +5d(+40h) |
-| [manual-03](manual-03-finish-visible.png) | 표시 완료일 보기로11-24를 화면 안에 표시 |
-| [manual-04](manual-04-filter-and-selection-scope.png) | 조립 검색·C 선택: 표시1/5·선택1·ID C, 표시 완료11-19와 전체 완료11-24 구분 |
-| [manual-05](manual-05-resource-menu.png) | 자원 기본5명령과3개 하위 메뉴. 캡처는 메뉴 팝업 영역 |
-| [manual-06](manual-06-resource-advanced-menu.png) | 기존 고급6명령. 캡처는 하위 메뉴 영역 |
-| [manual-07](manual-07-resource-columns.png) | 자원 확인: C 2d·설치 기술자100%·평준화 임계, 필터/선택 유지 |
-| [manual-08](manual-08-schedule-columns.png) | 일정 핵심: C 기간·선행·시작·완료 표시 |
-| [manual-09](manual-09-original-columns-restored.png) | 전체·직접 배치로 원래 열 복원, 필터/선택 유지 |
-| [manual-10](manual-10-resource-full-project-scope.png) | 필터1/5 상태에서 자원 비교는 전체5개·보고3/5·배정2/5, 원본 과부하16h→현재0h |
-| [manual-11](manual-11-return-preserves-filter.png) | 비교창을 닫은 뒤 조립 필터·C 선택·저장됨 유지 |
+| [manual-01](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/manual-01-calculated-outside.png) | 파일 열기·F9, 전체 완료11-24와 화면 밖 안내 |
+| [manual-02](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/manual-02-weekly-columns.png) | 주간 열: A 완료 보고, B 보고 있음, C 미착수 보고, D/E 미보고·미정; E +5d(+40h) |
+| [manual-03](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/manual-03-finish-visible.png) | 표시 완료일 보기로11-24를 화면 안에 표시 |
+| [manual-04](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/manual-04-filter-and-selection-scope.png) | 조립 검색·C 선택: 표시1/5·선택1·ID C, 표시 완료11-19와 전체 완료11-24 구분 |
+| [manual-05](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/manual-05-resource-menu.png) | 자원 기본5명령과3개 하위 메뉴. 캡처는 메뉴 팝업 영역 |
+| [manual-06](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/manual-06-resource-advanced-menu.png) | 기존 고급6명령. 캡처는 하위 메뉴 영역 |
+| [manual-07](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/manual-07-resource-columns.png) | 자원 확인: C 2d·설치 기술자100%·평준화 임계, 필터/선택 유지 |
+| [manual-08](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/manual-08-schedule-columns.png) | 일정 핵심: C 기간·선행·시작·완료 표시 |
+| [manual-09](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/manual-09-original-columns-restored.png) | 전체·직접 배치로 원래 열 복원, 필터/선택 유지 |
+| [manual-10](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/manual-10-resource-full-project-scope.png) | 필터1/5 상태에서 자원 비교는 전체5개·보고3/5·배정2/5, 원본 과부하16h→현재0h |
+| [manual-11](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/manual-11-return-preserves-filter.png) | 비교창을 닫은 뒤 조립 필터·C 선택·저장됨 유지 |
 
 ## 자동 검사
 
-[regression-verified.log](regression-verified.log): 최종 소스 기준 관련 CTest **11/11 통과**, 26.24초.
+[regression-verified.log](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/regression-verified.log): 최종 소스 기준 관련 CTest **11/11 통과**, 26.24초.
 navigation_ui, task_table_model_contract, workspace_presentation, task_classification_ui,
 schedule_print_ui, meeting_print_ui, wbs_gantt_ui, resource_ui, tracking_ui, workflow_ui, dialog_layout이다.
 영향받는 실행 파일을 최종 제품 소스로 다시 링크했다.
-[native-tests.txt](native-tests.txt): Windows 플랫폼 검사 **5건 통과**(본문3개와 init/cleanup), 5285ms.
-[navigation-tests.txt](navigation-tests.txt)는 offscreen 최종 결과다.
-[layout-tests.txt](layout-tests.txt)54건·[workspace-tests.txt](workspace-tests.txt)10건의 상세 결과도 보존했다.
+[native-tests.txt](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/native-tests.txt): Windows 플랫폼 검사 **5건 통과**(본문3개와 init/cleanup), 5285ms.
+[navigation-tests.txt](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/navigation-tests.txt)는 offscreen 최종 결과다.
+[layout-tests.txt](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/layout-tests.txt)54건·[workspace-tests.txt](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/workspace-tests.txt)10건의 상세 결과도 보존했다.
 
 새 navigation_ui는 QAbstractItemModelTester로 조회 열 추가·제거를 검사한다.
 읽기 전용, 기존 열 배치 정확한 복원, 필터·선택 보존, 전체/표시 완료 차이,
@@ -54,10 +56,10 @@ schedule_print_ui, meeting_print_ui, wbs_gantt_ui, resource_ui, tracking_ui, wor
 이 변경 검사는 임시 사본에서만 실행했다. 기존 분류·모델 계약 검사로 사용자 필드/코드 번호도 확인했다.
 
 Windows 네이티브 Qt 캡처는 실제 앱 직접 조작 증거와 구분해 보존한다.
-[01](01-weekly-columns.png)~[06](06-original-columns-restored.png)은 열·탐색·복원,
-[03b](03b-different-displayed-and-project-finish.png)는 표시/전체 완료 차이,
-[07](07-resource-menu.png)·[08](08-resource-advanced-menu.png)은 메뉴,
-[09](09-stale-no-variance.png)·[10](10-recalculated-variance.png)은 임시 변경 후 오래됨/재계산이다.
+[01](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/01-weekly-columns.png)~[06](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/06-original-columns-restored.png)은 열·탐색·복원,
+[03b](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/03b-different-displayed-and-project-finish.png)는 표시/전체 완료 차이,
+[07](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/07-resource-menu.png)·[08](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/08-resource-advanced-menu.png)은 메뉴,
+[09](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/09-stale-no-variance.png)·[10](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/10-recalculated-variance.png)은 임시 변경 후 오래됨/재계산이다.
 01·03b·09·10과 수동 흐름의 화면을 시각 확인했다.
 
 초기 실패 기록도 보존했다. build-final.log의 테스트 캐스트 컴파일 오류를 수정했다.
@@ -70,8 +72,8 @@ regression.log/regression-final.log의 직접 문서 변경 후 표 갱신 및 �
 
 `python docs/validation/workspace-navigation-2026-11-18/verify_saved.py`는 원본과 저장 파일 전체 바이트,
 schema·작업·보고·기준선·채택·결정·상태일 보존을 읽기 전용으로 확인한다.
-[saved-file-check.txt](saved-file-check.txt)에 결과를 보존했다.
-[manifest.json](manifest.json)은 기준 커밋·분기·제품 바이너리·변경 소스 및 증거 SHA-256을 기록한다.
+[saved-file-check.txt](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/saved-file-check.txt)에 결과를 보존했다.
+[manifest.json](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/workspace-navigation-2026-11-18/manifest.json)은 기준 커밋·분기·제품 바이너리·변경 소스 및 증거 SHA-256을 기록한다.
 증거는 .gitattributes로 원시 바이트를 보존하며 staging blob과 일치함을 확인했다.
 clang-format --dry-run --Werror, git diff --check와 이 문서의 로컬 링크 검사도 통과했다.
 

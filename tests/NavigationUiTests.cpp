@@ -35,7 +35,7 @@ void capture(QWidget &widget, const char *name) {
     QVERIFY(widget.grab().save(QDir(folder).filePath(QString::fromLatin1(name) + ".png")));
 }
 void fixture(jobs::Document &doc, const QTemporaryDir &folder) {
-    const auto input = QFINDTESTDATA("../docs/validation/outcome-summary-2026-11-17/review.ppm");
+    const auto input = QFINDTESTDATA("fixtures/native-history/outcome-summary-2026-11-17/review.ppm");
     QVERIFY(!input.isEmpty());
     QVERIFY(QFile::copy(input, folder.filePath("review.ppm")));
     doc.open(folder.filePath("review.ppm").toStdString());

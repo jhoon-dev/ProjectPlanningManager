@@ -1,5 +1,7 @@
 # 이동 가능128개 초과 여유·임계 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/expanded-repartition-float-2026-11-04)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 검증일: 2026-11-04. Windows Release / Qt6.8.3 / MinGW GCC13.1. 전체 CTest **91/91**, **351.73초**, 파서114 seeds(schema1~14), clang-format18.1.8 **151파일**, 독립 reader/비교기 자체시험 **19/19** 통과. 원시 근거는 `ctest.log`, `format-gate.json`, `independent-summary.json`, `verification-summary.json`에 보존한다.
 
 ## 계산 범위와 분해의 근거

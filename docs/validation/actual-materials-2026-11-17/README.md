@@ -1,5 +1,7 @@
 # 실제 자재 원장·잔여 일정 자동 대기 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/actual-materials-2026-11-17)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-17 Windows/Qt6.8.3 MinGW Release · `build-numbered-summary`. [MAT-01~08 계약/사용법](../../actual-materials.md).
 
 - **관련 회귀59/59,132.35초**. 새 원장/잔여 자동 대기와 기존 계획 자재 재고/지연, 실적/원가 정정·날짜별 잔여 공수·공수 역산/여유·진척 정책/채택·로컬/공유 가용량·통합 일정·원가/Usage·XML/XER 교환·보고·시나리오/승인·통화/ID 이관·undo/복구·파서의 영향 범위다. 전체 suite 실행을 의미하지 않는다. 앞 집중7/7,17.41초도 보존한다.

@@ -1,10 +1,12 @@
 # 작업·자원 시간축 Usage 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/timephased-usage-2026-11-03)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-03 사용자 다음 단계 요청에 따른 GAP-04의 조회/출력 증분이다. [사용 방법·계산 계약](../../timephased-usage.md), [PRD](../../planning/01-product-prd.md), [우선순위](../../planning/16-product-gap-priorities.md)를 따른다. 기간별 실제 입력과 실제 배정/원가 원장 확대는 후속이다.
 
 ## 결과와 범위
 
-**전체 CTest 69개 통과, 237.67초.** 새 `timephased_usage_contract`와 `timephased_usage_ui`, 기존 일정·공수·원가·분류·예측·교환·파일/복구 회귀를 포함한다. Release 빌드와 [clang-format 18.1.8](format.json), 독립 출력 검사도 통과했다. [전체 실행 로그](full-ctest.log)와 [검증 요약·소스/증거 식별](verification.json)을 보존한다.
+**전체 CTest 69개 통과, 237.67초.** 새 `timephased_usage_contract`와 `timephased_usage_ui`, 기존 일정·공수·원가·분류·예측·교환·파일/복구 회귀를 포함한다. Release 빌드와 [clang-format 18.1.8](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/timephased-usage-2026-11-03/format.json), 독립 출력 검사도 통과했다. [전체 실행 로그](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/timephased-usage-2026-11-03/full-ctest.log)와 [검증 요약·소스/증거 식별](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/timephased-usage-2026-11-03/verification.json)을 보존한다.
 
 - 일/주/월 기간과 작업→배정·자원→배정 계층에서 계획·승인 기준선·잔여 공수/원가를 조회한다. 인시/장비시를 따로 집계하고 고정비를 별도 행으로 한 번만 포함한다.
 - 기준선의 사전·단가·일정을 동결하고 삭제된 기준선 작업/배정을 안정 ID의 합집합에 보존한다. 일정 미확정·기준선/상태일 미설정·단가/고정비 미정과 알려진 0을 구분한다.
@@ -39,19 +41,19 @@
 
 ## 출력과 화면
 
-[독립 검사](independent-export.json)는 openpyxl로 일별 84행(고유 6배정/고정비 × 14일), 수치형 계획 16인시/4장비시/212·기준선 212·잔여 12인시/2장비시/74를 대조한다. 고정비의 잔여 셀은 `고정비 제외`이고 실제원가 명세는 작업 3개·누계 80이다. 실제 UI 버튼이 생성한 주별 12행도 총계 212/74를 확인한다. 수식·외부 링크·VBA를 포함하지 않는다.
+[독립 검사](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/timephased-usage-2026-11-03/independent-export.json)는 openpyxl로 일별 84행(고유 6배정/고정비 × 14일), 수치형 계획 16인시/4장비시/212·기준선 212·잔여 12인시/2장비시/74를 대조한다. 고정비의 잔여 셀은 `고정비 제외`이고 실제원가 명세는 작업 3개·누계 80이다. 실제 UI 버튼이 생성한 주별 12행도 총계 212/74를 확인한다. 수식·외부 링크·VBA를 포함하지 않는다.
 
-pypdf로 10페이지의 한국어 레이블·고정비 제외·문서 ID·정책과 제어문자 부재를 검사했다. 이는 PDF 렌더링 시각 QA를 대신하지 않는다. 이번 로컬 검증은 [분류 출력](classification-export.json)과 [예측 여유 출력](forecast-export.json)도 독립 reader로 재검사했다.
+pypdf로 10페이지의 한국어 레이블·고정비 제외·문서 ID·정책과 제어문자 부재를 검사했다. 이는 PDF 렌더링 시각 QA를 대신하지 않는다. 이번 로컬 검증은 [분류 출력](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/timephased-usage-2026-11-03/classification-export.json)과 [예측 여유 출력](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/timephased-usage-2026-11-03/forecast-export.json)도 독립 reader로 재검사했다.
 
-기존 보고 fixture의 XLSX 5개/PDF 6개도 독립 재검사를 통과했다. [검사 로그](existing-report-exports.log)를 보존한다.
+기존 보고 fixture의 XLSX 5개/PDF 6개도 독립 재검사를 통과했다. [검사 로그](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/timephased-usage-2026-11-03/existing-report-exports.log)를 보존한다.
 
-![자원 계층의 주별 잔여 배정원가](usage.png)
+![자원 계층의 주별 잔여 배정원가](https://raw.githubusercontent.com/jhoon-dev/ProjectPlanningManager/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/timephased-usage-2026-11-03/usage.png)
 
 Qt offscreen 화면이다. 인력 60+장비 14=범위 74를 표시하고, 누적 실제원가 80은 범위에서 한 번만 표시하며 자원/배정에는 미정이다. 고정비는 잔여 배정원가에서 제외한다. Windows 맑은 고딕을 테스트에 명시 로드했으며 실제 Windows 데스크톱 상호작용의 증거로 확대하지 않는다.
 
 ## 제한된 규모 측정
 
-Windows·MinGW GCC 13.1·Qt 6.8.3·Release의 offscreen UI에서 1,000/10,000 작업을 각각 **하루 범위로 한 번** 조회했다. 각 작업은 1분·인력 33%·고정비 0이며 기준선/상태일은 없다. 최초 계획 계산·공수/원가 집계·트리 모델 생성까지 포함하고 초기 파일 열기/입력 생성은 제외한다. [원시 측정](performance.json)에 범위·작업 수·반복 수를 기록한다.
+Windows·MinGW GCC 13.1·Qt 6.8.3·Release의 offscreen UI에서 1,000/10,000 작업을 각각 **하루 범위로 한 번** 조회했다. 각 작업은 1분·인력 33%·고정비 0이며 기준선/상태일은 없다. 최초 계획 계산·공수/원가 집계·트리 모델 생성까지 포함하고 초기 파일 열기/입력 생성은 제외한다. [원시 측정](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/timephased-usage-2026-11-03/performance.json)에 범위·작업 수·반복 수를 기록한다.
 
 관측 시간은 1,000 작업 67ms, 10,000 작업 776ms다. 각각 수요 `작업 수 × 33 %·분`과 모든 작업 행의 존재를 함께 확인했다. 한 번의 관측값이며 중앙값/P95·변경 전 대비 성능·메모리 보장이 아니다. 10,000 작업을 장기간/많은 배정·기준선·실적 원장과 함께 조회하는 측정을 대신하지 않는다. 화면과 출력의 셀 한도가 다르므로 큰 범위는 WBS/기간을 좁혀야 한다.
 

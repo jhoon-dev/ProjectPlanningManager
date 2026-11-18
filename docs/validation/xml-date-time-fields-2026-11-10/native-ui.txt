@@ -1,1 +1,0 @@
-PASS XML datetime UI: timestamp entry/canonicalization, assignment batch worker, task Finish midnight, 800x600, stale

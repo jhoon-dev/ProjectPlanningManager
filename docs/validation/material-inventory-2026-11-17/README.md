@@ -1,5 +1,7 @@
 # 시간축 계획 입고·잔여 자재 재고 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/material-inventory-2026-11-17)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-17 Windows/Qt6.8.3 MinGW Release · `build-numbered-summary`. [MINV-01~07 계약](../../material-inventory.md).
 
 - 관련 회귀 **44/44,66.22초**. 새 재고/입고·기존 자재 계획·공유 가용기간/잔여/부하·통합 평준화/작업공간·로컬 가용기간/계산식·XML/XER batch·보고/원가/Usage·자원 계획·운영/위험/자동화·통화/ID 이관·평준화 채택·마일스톤/승인·tracking·undo/복구·파서의 영향 범위 부분집합이다. 전체251개 suite 실행을 의미하지 않는다. JSON에 자재 이름/단위도 포함한 뒤 출력 UI를 별도로 재확인했다.

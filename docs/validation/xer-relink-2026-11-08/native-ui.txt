@@ -1,1 +1,0 @@
-PASS: new XER source/schema28, changed/deleted ID maps and unobserved retirement, source archive/native fact preservation, ambiguity/type/zero guards, undated dictionary, post-version merge, recovery/copy/stale/cancel/read-only, async file and native review UI

@@ -1,6 +1,8 @@
 # 네트워크 다이어그램 로컬 검증
 
-2026-11-03 [GAP-08 native 계약](../../network-diagram.md)의 Windows Release / Qt 6.8.3 / MinGW GCC 13.1.0 결과다. **전체 CTest 77개 통과, 실패 0개, 313.30초**다. [전체 로그](full-ctest.log), [시험별 출력](ctest-details.log), [제품 빌드](build.log)를 보존한다.
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
+2026-11-03 [GAP-08 native 계약](../../network-diagram.md)의 Windows Release / Qt 6.8.3 / MinGW GCC 13.1.0 결과다. **전체 CTest 77개 통과, 실패 0개, 313.30초**다. [전체 로그](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/full-ctest.log), [시험별 출력](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/ctest-details.log), [제품 빌드](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/build.log)를 보존한다.
 
 | 검사 | 결과 |
 |---|---|
@@ -11,9 +13,9 @@
 | 대용량 | 1천/1만 체인의 주변 제한, 전체 묶음 80카드/78선/314장면 항목, 직접 목록 2행, 다음/이전 묶음과 기준 카드의 실제 viewport 내 표시 확인 |
 | 품질 | clang-format 18.1.8 111파일 변경 없음, 소스/빌드 해시 일치. 기존 출력의 독립 reader 검사는 아래 기록 참조 |
 
-[작은 사례 기록](contract.json), [순수 계산/query 측정](core-metrics.json), [UI 측정](ui-metrics.json), [포맷 검사](format-check.json), [소스 식별](source-identity.json), [시험/스크립트 해시](test-script-sha256.json), [문서 링크 검사](markdown-links.json), [기계 판독 기록](verification.json)을 남긴다. 제품 소스 SHA-256은 `d6f77915ace53882f0e7ade11bac0ed5d5cf7bd74e854b2bbb1f8b2266890851`이며 빌드 값과 일치한다. src cpp/h·CMakeLists.txt의 case-sensitive 정렬 레시피는 tests/mm/scripts를 제외하며 관련 시험/검증 스크립트는 별도 해시다. 이전 증분의 검증 폴더는 수정하지 않았다.
+[작은 사례 기록](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/contract.json), [순수 계산/query 측정](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/core-metrics.json), [UI 측정](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/ui-metrics.json), [포맷 검사](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/format-check.json), [소스 식별](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/source-identity.json), [시험/스크립트 해시](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/test-script-sha256.json), [문서 링크 검사](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/markdown-links.json), [기계 판독 기록](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/verification.json)을 남긴다. 제품 소스 SHA-256은 `d6f77915ace53882f0e7ade11bac0ed5d5cf7bd74e854b2bbb1f8b2266890851`이며 빌드 값과 일치한다. src cpp/h·CMakeLists.txt의 case-sensitive 정렬 레시피는 tests/mm/scripts를 제외하며 관련 시험/검증 스크립트는 별도 해시다. 이전 증분의 검증 폴더는 수정하지 않았다.
 
-기존 산출물의 독립 reader 검사 7종도 모두 통과했다: [인쇄](independent-schedule-print.json), [평준화](independent-leveling-selection-exports.json), [일반 보고서](independent-report-exports.log), [Usage](independent-usage-exports.json), [분류](independent-classification-exports.json), [예측 여유](independent-forecast-float-exports.json), [기간 실적](independent-period-actual-exports.json). 전체 회귀의 파서 seed replay는 schema 1~12의 90개를 통과했다. 이 실행은 새 coverage-guided fuzz가 아니다.
+기존 산출물의 독립 reader 검사 7종도 모두 통과했다: [인쇄](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/independent-schedule-print.json), [평준화](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/independent-leveling-selection-exports.json), [일반 보고서](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/independent-report-exports.log), [Usage](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/independent-usage-exports.json), [분류](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/independent-classification-exports.json), [예측 여유](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/independent-forecast-float-exports.json), [기간 실적](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/independent-period-actual-exports.json). 전체 회귀의 파서 seed replay는 schema 1~12의 90개를 통과했다. 이 실행은 새 coverage-guided fuzz가 아니다.
 
 ## 규모 측정
 
@@ -28,11 +30,11 @@
 
 ## 화면
 
-![선행 관계와 표·간트 연결](diagram.png)
+![선행 관계와 표·간트 연결](https://raw.githubusercontent.com/jhoon-dev/ProjectPlanningManager/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/diagram.png)
 
-![구조 순환과 계산 미산정](cycle.png)
+![구조 순환과 계산 미산정](https://raw.githubusercontent.com/jhoon-dev/ProjectPlanningManager/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/cycle.png)
 
-![1만 작업 중 제한된 다음 묶음과 기준 카드](large-10000.png)
+![1만 작업 중 제한된 다음 묶음과 기준 카드](https://raw.githubusercontent.com/jhoon-dev/ProjectPlanningManager/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/network-diagram-2026-11-03/large-10000.png)
 
 ## 범위와 재현
 

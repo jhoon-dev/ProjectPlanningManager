@@ -1,8 +1,0 @@
-********* Start testing of WeeklyJourneyUiTests *********
-Config: Using QtTest library 6.8.3, Qt 6.8.3 (x86_64-little_endian-llp64 shared (dynamic) release build; by GCC 13.1.0), windows 11
-PASS   : WeeklyJourneyUiTests::initTestCase()
-PASS   : WeeklyJourneyUiTests::weeklyJourney(five)
-FAIL!  : WeeklyJourneyUiTests::weeklyJourney() Caught unhandled exception
-C:/Users/qt/work/qt/qtbase/src/testlib/qtestcase.cpp(1982) : failure location
-Totals: 2 passed, 1 failed, 0 skipped, 0 blacklisted, 12482ms
-********* Finished testing of WeeklyJourneyUiTests *********

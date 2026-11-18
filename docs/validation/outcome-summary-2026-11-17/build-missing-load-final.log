@@ -1,7 +1,0 @@
-[1/7] Linking CXX executable PPM.exe
-[2/7] Linking CXX executable jobs_dialog_layout_tests.exe
-[3/7] Linking CXX executable jobs_workspace_presentation_tests.exe
-[4/7] Building CXX object CMakeFiles/jobs_outcome_summary_ui_tests.dir/tests/OutcomeSummaryUiTests.cpp.obj
-[5/7] Linking CXX executable jobs_resource_ui_tests.exe
-[6/7] Linking CXX executable jobs_tracking_ui_tests.exe
-[7/7] Linking CXX executable jobs_outcome_summary_ui_tests.exe

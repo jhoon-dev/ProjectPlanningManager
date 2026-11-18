@@ -1,1 +1,0 @@
-PASS formula UI: named reference insertion, unit/check preview, cycle rejection, computed readonly cells, project dependencies, task/resource views, role/readonly, bounded rendering

@@ -1,0 +1,383 @@
+{
+  "sourceCommit": "77bb5a1cead1cb2c47f36e57b00d478746f32434",
+  "files": [
+    {
+      "path": "activity-extensions-2026-11-05/activities.ppm",
+      "source": "docs/validation/activity-extensions-2026-11-05/activities.ppm",
+      "sha256": "ad4769be321a256e31b4062c79fefaae379497a871f05519a450f64725f92ad5",
+      "baselines": 1
+    },
+    {
+      "path": "assignment-periods-2026-11-05/periods.ppm",
+      "source": "docs/validation/assignment-periods-2026-11-05/periods.ppm",
+      "sha256": "ffaaa5105e8aec938dead3a35842eefe8904bc03646a4a1b7cc6c33fcec28de5",
+      "baselines": 1
+    },
+    {
+      "path": "candidate-propagation-2026-11-04/selected.ppm",
+      "source": "docs/validation/candidate-propagation-2026-11-04/selected.ppm",
+      "sha256": "ac56ce8b120525ded10eb9bd7b6d15355e071640d6c2f6bb4f26dff8b58bca3d",
+      "baselines": 2
+    },
+    {
+      "path": "custom-financial-periods-2026-11-08/closed.ppm",
+      "source": "docs/validation/custom-financial-periods-2026-11-08/closed.ppm",
+      "sha256": "d616aa86f5c50027ee52896d9f0cbe486effd121f76bbd015f88045b70fe3811",
+      "baselines": 1
+    },
+    {
+      "path": "custom-financial-periods-2026-11-08/native-ui-periods.ppm",
+      "source": "docs/validation/custom-financial-periods-2026-11-08/native-ui-periods.ppm",
+      "sha256": "5cc9161ac27532324d10701f2fc995c94438ab36f2948daf8a5e64adf4714e10",
+      "baselines": 1
+    },
+    {
+      "path": "duration-units-2026-11-17/plan-2d.ppm",
+      "source": "docs/validation/duration-units-2026-11-17/plan-2d.ppm",
+      "sha256": "99de3de4b1c8dbce7975924e262549958033d0a7b255e7f2e880ae9513e404d3",
+      "baselines": 1
+    },
+    {
+      "path": "duration-units-2026-11-17/plan-equivalent.ppm",
+      "source": "docs/validation/duration-units-2026-11-17/plan-equivalent.ppm",
+      "sha256": "99de3de4b1c8dbce7975924e262549958033d0a7b255e7f2e880ae9513e404d3",
+      "baselines": 1
+    },
+    {
+      "path": "duration-units-2026-11-17/progress-after-cancel.ppm",
+      "source": "docs/validation/duration-units-2026-11-17/progress-after-cancel.ppm",
+      "sha256": "98c7a06ce2335cdbca15b0a75d263bd1f0c25b474da200752bfdd23af7963276",
+      "baselines": 1
+    },
+    {
+      "path": "duration-units-2026-11-17/progress-applied.ppm",
+      "source": "docs/validation/duration-units-2026-11-17/progress-applied.ppm",
+      "sha256": "98c7a06ce2335cdbca15b0a75d263bd1f0c25b474da200752bfdd23af7963276",
+      "baselines": 1
+    },
+    {
+      "path": "duration-units-2026-11-17/review.ppm",
+      "source": "docs/validation/duration-units-2026-11-17/review.ppm",
+      "sha256": "be94edbd008cc3cc8760b61956ea6e0edc8448119a78262a891ce7668b910bd9",
+      "baselines": 1
+    },
+    {
+      "path": "duration-units-2026-11-17/seven-hour-plan.ppm",
+      "source": "docs/validation/duration-units-2026-11-17/seven-hour-plan.ppm",
+      "sha256": "be94edbd008cc3cc8760b61956ea6e0edc8448119a78262a891ce7668b910bd9",
+      "baselines": 1
+    },
+    {
+      "path": "expanded-repartition-float-2026-11-04/selected.ppm",
+      "source": "docs/validation/expanded-repartition-float-2026-11-04/selected.ppm",
+      "sha256": "3efea5d5b1cc31e46d70c43d9740273465a544e51069aa8d957f0ea2ab936f54",
+      "baselines": 2
+    },
+    {
+      "path": "external-xer-evm-2026-11-08/adopted.ppm",
+      "source": "docs/validation/external-xer-evm-2026-11-08/adopted.ppm",
+      "sha256": "5eec4692490661116e833ec49b603ba2bae9c13b0173566dd6c577c7d72f54bc",
+      "baselines": 1
+    },
+    {
+      "path": "external-xer-evm-2026-11-08/ui-adopted.ppm",
+      "source": "docs/validation/external-xer-evm-2026-11-08/ui-adopted.ppm",
+      "sha256": "6621ecc72458dc3bb7fc9d7a6bc68b16396fcb3a10cc8d7d520394c76f93e112",
+      "baselines": 1
+    },
+    {
+      "path": "ledger-id-migration-2026-11-08/initial-qa/migrated.ppm",
+      "source": "docs/validation/ledger-id-migration-2026-11-08/initial-qa/migrated.ppm",
+      "sha256": "349b7bda194be8bb44344921061d76e92b53b69a252334e2dfc362b896f5bc6a",
+      "baselines": 1
+    },
+    {
+      "path": "ledger-id-migration-2026-11-08/initial-qa/sequential.ppm",
+      "source": "docs/validation/ledger-id-migration-2026-11-08/initial-qa/sequential.ppm",
+      "sha256": "a265f88b88e3540a7cae308a104a6d4064132b2cdc193c344b760356795bbe94",
+      "baselines": 1
+    },
+    {
+      "path": "ledger-id-migration-2026-11-08/ledger-id-qa/migrated.ppm",
+      "source": "docs/validation/ledger-id-migration-2026-11-08/ledger-id-qa/migrated.ppm",
+      "sha256": "faf775e0c52425875a4975465b8832e7c2ad8380823855874815dd9f344b62c9",
+      "baselines": 1
+    },
+    {
+      "path": "ledger-id-migration-2026-11-08/ledger-id-qa/sequential.ppm",
+      "source": "docs/validation/ledger-id-migration-2026-11-08/ledger-id-qa/sequential.ppm",
+      "sha256": "fc0891ea15d8e2a8b6de31a34be17c5abd996ea0f7d94ccd7bfe490461c8c8c3",
+      "baselines": 1
+    },
+    {
+      "path": "leveling-decisions-2026-11-05/source.ppm",
+      "source": "docs/validation/leveling-decisions-2026-11-05/source.ppm",
+      "sha256": "ca60d2243db90487c2fb0fd77f141214bce7f082d2513e6d2e6f6c799487f1f7",
+      "baselines": 1
+    },
+    {
+      "path": "material-arrival-leveling-2026-11-17/source.ppm",
+      "source": "docs/validation/material-arrival-leveling-2026-11-17/source.ppm",
+      "sha256": "5e9fba166b353d32fe2d9af524bfb611ea57eb4d9a301dafd8045ec469a491e2",
+      "baselines": 1
+    },
+    {
+      "path": "material-float-2026-11-17/arrival/source.ppm",
+      "source": "docs/validation/material-float-2026-11-17/arrival/source.ppm",
+      "sha256": "5031b4eede3874d42ee3b7e44dff6c724115c993ab2581ecb53dd5b97e2c9f9d",
+      "baselines": 1
+    },
+    {
+      "path": "material-float-2026-11-17/baseline84.ppm",
+      "source": "docs/validation/material-float-2026-11-17/baseline84.ppm",
+      "sha256": "fae8fafabcdce69dfb32f7f48b70b4230b898cfc866d55732889636df1486d02",
+      "baselines": 1
+    },
+    {
+      "path": "material-float-2026-11-17/historical82.ppm",
+      "source": "docs/validation/material-float-2026-11-17/historical82.ppm",
+      "sha256": "d11104c41cb026e965457a6cb59fc99fdad57a5ebcc4e877ea5be3c9a00a2186",
+      "baselines": 1
+    },
+    {
+      "path": "meeting-print-2026-11-18/review.ppm",
+      "source": "docs/validation/meeting-print-2026-11-18/review.ppm",
+      "sha256": "667b44e0831ecd92a0cf6b98f486d694b7b1123b0cf9c48d817e29480d60865c",
+      "baselines": 1
+    },
+    {
+      "path": "native-period-evm-2026-11-08/source.ppm",
+      "source": "docs/validation/native-period-evm-2026-11-08/source.ppm",
+      "sha256": "0be43ad99ea55f6975e6d524a04a3efdb74c98e46e60518c7527f4bee0f663ed",
+      "baselines": 1
+    },
+    {
+      "path": "nonmonotone-propagation-2026-11-04/selected.ppm",
+      "source": "docs/validation/nonmonotone-propagation-2026-11-04/selected.ppm",
+      "sha256": "05d3cf1e3c87da1dd064a4e4e4e7926d917ead405f112bdd54d0aad1d5e00760",
+      "baselines": 2
+    },
+    {
+      "path": "object-fields-2026-11-05/objects.ppm",
+      "source": "docs/validation/object-fields-2026-11-05/objects.ppm",
+      "sha256": "5acb52b8adcd74df40cb6ccaa31c9156b204e33d84fd6d6dfdccc5a31632f8a9",
+      "baselines": 1
+    },
+    {
+      "path": "outcome-summary-2026-11-17/before-explicit-save.ppm",
+      "source": "docs/validation/outcome-summary-2026-11-17/before-explicit-save.ppm",
+      "sha256": "43b342a55ce7eecbdf52079870786001a89ca4f2af3306cacecb85ec704bb6d1",
+      "baselines": 1
+    },
+    {
+      "path": "outcome-summary-2026-11-17/review.ppm",
+      "source": "docs/validation/outcome-summary-2026-11-17/review.ppm",
+      "sha256": "667b44e0831ecd92a0cf6b98f486d694b7b1123b0cf9c48d817e29480d60865c",
+      "baselines": 1
+    },
+    {
+      "path": "print-network-2026-11-05/presentation.ppm",
+      "source": "docs/validation/print-network-2026-11-05/presentation.ppm",
+      "sha256": "8367697704b013fc04fdf4f7249cb325d6a8a03d506100e673496d06bc2d62b7",
+      "baselines": 1
+    },
+    {
+      "path": "project-currency-2026-11-08/project-currency-qa/converted.ppm",
+      "source": "docs/validation/project-currency-2026-11-08/project-currency-qa/converted.ppm",
+      "sha256": "b3e1446f1ba1f917f10fd86c3ea32454ded203077532bfe170f844916bb26317",
+      "baselines": 1
+    },
+    {
+      "path": "project-currency-2026-11-08/project-currency-qa/intermediate.ppm",
+      "source": "docs/validation/project-currency-2026-11-08/project-currency-qa/intermediate.ppm",
+      "sha256": "9e67f3e49076e9833525e731eebc87b0d2fcbc7e2c5d0e0ad700bc392cc38743",
+      "baselines": 1
+    },
+    {
+      "path": "project-currency-2026-11-08/project-currency-qa/sequential.ppm",
+      "source": "docs/validation/project-currency-2026-11-08/project-currency-qa/sequential.ppm",
+      "sha256": "0d232aee7414b5e63df1977402db8f43d99fb5f687d86cc562a5378573be765f",
+      "baselines": 1
+    },
+    {
+      "path": "propagation-cost-2026-11-04/selected.ppm",
+      "source": "docs/validation/propagation-cost-2026-11-04/selected.ppm",
+      "sha256": "60406110f2576058adac5ae5bd3d1fa4db2a250bafa3d32893ca9dea10398943",
+      "baselines": 2
+    },
+    {
+      "path": "resource-productivity-curves-2026-11-09/resource-planning-qa/archived-only.ppm",
+      "source": "docs/validation/resource-productivity-curves-2026-11-09/resource-planning-qa/archived-only.ppm",
+      "sha256": "1a5e22506b12b0d52ecf61338ca3fab31f9e1d277d052b64103ae5721011451c",
+      "baselines": 1
+    },
+    {
+      "path": "resource-workspace-2026-11-05/resource-plan.ppm",
+      "source": "docs/validation/resource-workspace-2026-11-05/resource-plan.ppm",
+      "sha256": "65598732f6a63baa6c8033f9451cbd8113aa0d0cf43cbee8b38108e49a234f94",
+      "baselines": 1
+    },
+    {
+      "path": "save-reforecast-flow-2026-11-17/after-reforecast-before-save.ppm",
+      "source": "docs/validation/save-reforecast-flow-2026-11-17/after-reforecast-before-save.ppm",
+      "sha256": "bb744aee38936434c20d2a33c3650f7e452efedbeba75aedc087e56c84de94be",
+      "baselines": 1
+    },
+    {
+      "path": "save-reforecast-flow-2026-11-17/before-explicit-save.ppm",
+      "source": "docs/validation/save-reforecast-flow-2026-11-17/before-explicit-save.ppm",
+      "sha256": "bb744aee38936434c20d2a33c3650f7e452efedbeba75aedc087e56c84de94be",
+      "baselines": 1
+    },
+    {
+      "path": "save-reforecast-flow-2026-11-17/review.ppm",
+      "source": "docs/validation/save-reforecast-flow-2026-11-17/review.ppm",
+      "sha256": "43b342a55ce7eecbdf52079870786001a89ca4f2af3306cacecb85ec704bb6d1",
+      "baselines": 1
+    },
+    {
+      "path": "save-reforecast-flow-2026-11-17/submitted.ppm",
+      "source": "docs/validation/save-reforecast-flow-2026-11-17/submitted.ppm",
+      "sha256": "43b342a55ce7eecbdf52079870786001a89ca4f2af3306cacecb85ec704bb6d1",
+      "baselines": 1
+    },
+    {
+      "path": "status-date-dialog-2026-11-17/after-cancel.ppm",
+      "source": "docs/validation/status-date-dialog-2026-11-17/after-cancel.ppm",
+      "sha256": "2f2d244fbd5d5a402933cb7782db503e2e916885c75691052cc4d741e520dcc8",
+      "baselines": 1
+    },
+    {
+      "path": "status-date-dialog-2026-11-17/applied.ppm",
+      "source": "docs/validation/status-date-dialog-2026-11-17/applied.ppm",
+      "sha256": "2f2d244fbd5d5a402933cb7782db503e2e916885c75691052cc4d741e520dcc8",
+      "baselines": 1
+    },
+    {
+      "path": "status-date-dialog-2026-11-17/cleared.ppm",
+      "source": "docs/validation/status-date-dialog-2026-11-17/cleared.ppm",
+      "sha256": "a00a8335c1b33781a423b02a784d7b7fd10410eacd2544fba17b63440d2f455a",
+      "baselines": 1
+    },
+    {
+      "path": "status-date-dialog-2026-11-17/review.ppm",
+      "source": "docs/validation/status-date-dialog-2026-11-17/review.ppm",
+      "sha256": "a00a8335c1b33781a423b02a784d7b7fd10410eacd2544fba17b63440d2f455a",
+      "baselines": 1
+    },
+    {
+      "path": "weekly-pm-pilot-2026-11-18/pilot-start.ppm",
+      "source": "docs/validation/weekly-pm-pilot-2026-11-18/pilot-start.ppm",
+      "sha256": "1f58cb3c1742d3365e5c47e962240b8150b3cea6c8035aa11703aa2288cd02d8",
+      "baselines": 1
+    },
+    {
+      "path": "weekly-update-flow-2026-11-17/after-cancel.ppm",
+      "source": "docs/validation/weekly-update-flow-2026-11-17/after-cancel.ppm",
+      "sha256": "bb744aee38936434c20d2a33c3650f7e452efedbeba75aedc087e56c84de94be",
+      "baselines": 1
+    },
+    {
+      "path": "weekly-update-flow-2026-11-17/review.ppm",
+      "source": "docs/validation/weekly-update-flow-2026-11-17/review.ppm",
+      "sha256": "bb744aee38936434c20d2a33c3650f7e452efedbeba75aedc087e56c84de94be",
+      "baselines": 1
+    },
+    {
+      "path": "weekly-update-flow-2026-11-17/submitted.ppm",
+      "source": "docs/validation/weekly-update-flow-2026-11-17/submitted.ppm",
+      "sha256": "bb744aee38936434c20d2a33c3650f7e452efedbeba75aedc087e56c84de94be",
+      "baselines": 1
+    },
+    {
+      "path": "weekly-update-integrated-2026-11-18/before-fix-saved.ppm",
+      "source": "docs/validation/weekly-update-integrated-2026-11-18/before-fix-saved.ppm",
+      "sha256": "563c3484f97ea0ad09cf47c7f2c272ed94206947b0e3c925567e27183aea92bb",
+      "baselines": 1
+    },
+    {
+      "path": "weekly-update-integrated-2026-11-18/before-save.ppm",
+      "source": "docs/validation/weekly-update-integrated-2026-11-18/before-save.ppm",
+      "sha256": "2c4d81986ff5d0092f9a888cd2bd0bbc26b38678e3b5bfd2684a5d24e21f94ea",
+      "baselines": 1
+    },
+    {
+      "path": "weekly-update-integrated-2026-11-18/five-final.ppm",
+      "source": "docs/validation/weekly-update-integrated-2026-11-18/five-final.ppm",
+      "sha256": "9bd6104bff2f428b5ed45966558c6274d18f5181a41d549f60f68de254abfd62",
+      "baselines": 1
+    },
+    {
+      "path": "weekly-update-integrated-2026-11-18/pilot-final.ppm",
+      "source": "docs/validation/weekly-update-integrated-2026-11-18/pilot-final.ppm",
+      "sha256": "0125f7fa147593916c7918eb61fec86da8744ac32f3c9d22b8114cea3d91e96d",
+      "baselines": 1
+    },
+    {
+      "path": "weekly-update-integrated-2026-11-18/review.ppm",
+      "source": "docs/validation/weekly-update-integrated-2026-11-18/review.ppm",
+      "sha256": "563c3484f97ea0ad09cf47c7f2c272ed94206947b0e3c925567e27183aea92bb",
+      "baselines": 1
+    },
+    {
+      "path": "weekly-update-integrated-2026-11-18/start.ppm",
+      "source": "docs/validation/weekly-update-integrated-2026-11-18/start.ppm",
+      "sha256": "2c4d81986ff5d0092f9a888cd2bd0bbc26b38678e3b5bfd2684a5d24e21f94ea",
+      "baselines": 1
+    },
+    {
+      "path": "weekly-update-ux-2026-11-17/baseline-ready.ppm",
+      "source": "docs/validation/weekly-update-ux-2026-11-17/baseline-ready.ppm",
+      "sha256": "50d37f12c1b67525012ef8d703c23c0258724615f552dfa22c1496a7ee2d3108",
+      "baselines": 1
+    },
+    {
+      "path": "weekly-update-ux-2026-11-17/weekly-prepared-input.ppm",
+      "source": "docs/validation/weekly-update-ux-2026-11-17/weekly-prepared-input.ppm",
+      "sha256": "8d761c34e44d755a0f4e5d0a51334a6e85b3d826a38e644a9c1bd32c2b382708",
+      "baselines": 1
+    },
+    {
+      "path": "weekly-update-ux-2026-11-17/weekly-prepared.ppm",
+      "source": "docs/validation/weekly-update-ux-2026-11-17/weekly-prepared.ppm",
+      "sha256": "2c4d81986ff5d0092f9a888cd2bd0bbc26b38678e3b5bfd2684a5d24e21f94ea",
+      "baselines": 1
+    },
+    {
+      "path": "workspace-navigation-2026-11-18/review.ppm",
+      "source": "docs/validation/workspace-navigation-2026-11-18/review.ppm",
+      "sha256": "667b44e0831ecd92a0cf6b98f486d694b7b1123b0cf9c48d817e29480d60865c",
+      "baselines": 1
+    },
+    {
+      "path": "xer-schedule-adoption-2026-11-08/xer-schedule-qa/adopted.ppm",
+      "source": "docs/validation/xer-schedule-adoption-2026-11-08/xer-schedule-qa/adopted.ppm",
+      "sha256": "33a3c8bbf61b47c1dabaf68a8334196096484e0e240ada75a42060a865e2266b",
+      "baselines": 1
+    },
+    {
+      "path": "xml-baseline-cost-2026-11-14/source.ppm",
+      "source": "docs/validation/xml-baseline-cost-2026-11-14/source.ppm",
+      "sha256": "ad65efb4859dc65cc7176575c7ccd9c7c5f2346f2a9105dffd4bface14722c1c",
+      "baselines": 2
+    },
+    {
+      "path": "xml-baseline-merge-2026-11-15/artifacts/merged.ppm",
+      "source": "docs/validation/xml-baseline-merge-2026-11-15/artifacts/merged.ppm",
+      "sha256": "c092723f4506c6ec92932301f63139560c12b207b24c5579017a157dfefffd9a",
+      "baselines": 1
+    },
+    {
+      "path": "xml-baseline-references-2026-11-12/source.ppm",
+      "source": "docs/validation/xml-baseline-references-2026-11-12/source.ppm",
+      "sha256": "20d0b953c89e4763306db2a49a0ed98d4dcda6c6741b6618bc35316947f9fb4d",
+      "baselines": 2
+    },
+    {
+      "path": "xml-code-masks-2026-11-11/source.ppm",
+      "source": "docs/validation/xml-code-masks-2026-11-11/source.ppm",
+      "sha256": "8d55071277ff76d7e8333b2033fe74a1774beb2042a5b42d48160946887d57b7",
+      "baselines": 1
+    }
+  ]
+}

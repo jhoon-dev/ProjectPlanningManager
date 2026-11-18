@@ -35,7 +35,7 @@
 
 ## 로컬 전후 관측 · 2026-10-27
 
-Windows 11 26H2 / 논리 CPU 16 / Qt 6.8.3 / MinGW GCC 13.1.0 / Release / 네이티브 Windows 플랫폼 / 1560×900 창. 개선 전 제품 코드는 측정 도구 커밋 `3570d28`에 해당하며 당시 빌드 식별에는 PRD 커밋 `baaa01c+dirty`가 기록돼 있다. 최종 제품 코드는 깨끗한 `a9e889c`다. 실제 빌드 소스 해시와 실행 리비전은 각 JSON에 별도로 보존한다. [원시 전후 표본과 비교](validation/editing-performance-2026-10-27/)를 따른다.
+Windows 11 26H2 / 논리 CPU 16 / Qt 6.8.3 / MinGW GCC 13.1.0 / Release / 네이티브 Windows 플랫폼 / 1560×900 창. 개선 전 제품 코드는 측정 도구 커밋 `3570d28`에 해당하며 당시 빌드 식별에는 PRD 커밋 `baaa01c+dirty`가 기록돼 있다. 최종 제품 코드는 깨끗한 `a9e889c`다. 실제 빌드 소스 해시와 실행 리비전은 각 JSON에 별도로 보존한다. [원시 전후 표본과 비교](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-performance-2026-10-27)를 따른다.
 
 아래 값은 셀 변경/동기 갱신/`processEvents`를 포함한 중앙값(ms)이다. OS 표시 완료·FPS·자동 저장·공수 역산/실적·배정 계산은 포함하지 않는다.
 

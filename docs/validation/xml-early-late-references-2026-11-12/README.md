@@ -1,12 +1,14 @@
 # XML Early/Late 참조 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-12 · XMLE-01~05 · Windows / Qt6.8.3 MinGW13.1 Release.
 
 [지원 계약](../../xml-early-late-references.md), [C++ 검사](../../../tests/XmlEarlyLateTests.cpp), [fixture](../../../tests/XmlEarlyLateFixture.h), [독립 검사기](../../../scripts/verify-xml-early-late.py).
 
 ## 결과
 
-최종 전체 **175/175·259.48초**, 실패/건너뜀0이다. 로컬 HTTP/WebSocket 통합 검사를 포함해 제한 밖에서 실행했다. 파서 시드 **800개(schema1~51)**와 C++ 형식 **471파일** 차이0을 통과했다. [빌드](build.txt), [전체 CTest](ctest.txt), [JUnit](ctest.xml), [형식](quality.json), [독립 보고서 대조](independent-reports.json), [독립 리더 대조](independent-reader.json).
+최종 전체 **175/175·259.48초**, 실패/건너뜀0이다. 로컬 HTTP/WebSocket 통합 검사를 포함해 제한 밖에서 실행했다. 파서 시드 **800개(schema1~51)**와 C++ 형식 **471파일** 차이0을 통과했다. [빌드](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12/build.txt), [전체 CTest](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12/ctest.txt), [JUnit](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12/ctest.xml), [형식](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12/quality.json), [독립 보고서 대조](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12/independent-reports.json), [독립 리더 대조](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12/independent-reader.json).
 
 독립 Python은 raw 입력·실적을 읽고 서로 다른 근무 달력의 분/이정표 후보를 열거한다. 전진 최소 날짜와 후진 최대 실행 가능 날짜를 따로 계산하며 native 좌표나 수식 결과를 oracle로 재사용하지 않는다. XML 계획60칸·XER 계획48값·수식18개와 보고서 예측60칸(미설정9칸), XLSX21시트·PDF16페이지를 대조했다. MPXJ strict reader는 작업7행·배정4개·판독 오류0이다.
 
@@ -14,9 +16,9 @@
 
 Windows800×800 미리보기에서 완료 미설정 사유와 후진 날짜·출처·참조 삽입을 확인했다. 표의 상태일 변경 후 오래된 날짜 제거, undo·재계산 후 복원도 검사한다.
 
-실행 패키지291파일의 PPM/CLI 해시가 최종 빌드와 일치한다. Qt·MinGW 경로가 없는 PATH에서 CLI가 schema51 원본을 읽고 종료0을 반환했다. [실행 기록](runtime.json), [배포 로그](runtime-deploy.txt), [CLI 읽기](runtime-inspect.json).
+실행 패키지291파일의 PPM/CLI 해시가 최종 빌드와 일치한다. Qt·MinGW 경로가 없는 PATH에서 CLI가 schema51 원본을 읽고 종료0을 반환했다. [실행 기록](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12/runtime.json), [배포 로그](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12/runtime-deploy.txt), [CLI 읽기](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12/runtime-inspect.json).
 
-[화면](timing-small.png), [XML](timing.xml), [XER](timing.xer), [입력](native.json), [원본](source.ppm), [매핑/진단](mapping.json), [XLSX](fields.xlsx), [PDF](fields.pdf). [verification-summary.json](verification-summary.json)에 소스와 자료 SHA-256을 기록한다.
+[화면](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12/timing-small.png), [XML](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12/timing.xml), [XER](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12/timing.xer), [입력](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12/native.json), [원본](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12/source.ppm), [매핑/진단](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12/mapping.json), [XLSX](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12/fields.xlsx), [PDF](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12/fields.pdf). [verification-summary.json](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-early-late-references-2026-11-12/verification-summary.json)에 소스와 자료 SHA-256을 기록한다.
 
 ## 범위와 보정
 

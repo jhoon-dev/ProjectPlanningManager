@@ -1,5 +1,7 @@
 # 계획 enum 전환 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/plan-enums-2026-10-28)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 PRD `06d4580`의 ENUM-01~04, 포맷 분리 `2cab025`, 최종 코드 `d35712898d432154098d21994d99ce5440fcf657`을 검증했다. `verification.json`이 실행 ID·상태·시간·기존 일정 hash 대조를 묶는다.
 
 - `local/`: 최종 증분 빌드, 전체 CTest/402개 enum 검사, 전체 변경 파일 포맷 검사, 독립 reader, 일정 probe 4개. probe는 hash 목적 1회 실행이다.

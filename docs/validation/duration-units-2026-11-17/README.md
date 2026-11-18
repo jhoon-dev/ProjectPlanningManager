@@ -1,5 +1,7 @@
 # UX-W02 기간 입력·표시 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/duration-units-2026-11-17)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-17 · Windows11 / Qt6.8.3 / MinGW13.1 Release.
 [사용법과 단위 계약](../../duration-input.md) · [최초 UX 점검](../../planning/21-weekly-update-ux-review.md).
 
@@ -42,17 +44,17 @@ Qt platform plugin 경로를 `.deps/Qt/6.8.3/mingw_64/plugins/platforms`로 지�
 
 | 확인 | 조작과 결과 | 화면 |
 |---|---|---|
-| 기존 파일 | 원래960분을2d, 480분을1d로 표시. 열기만으로 파일 변경 없음 | [01](01-existing-file-days-0.png) |
-| 숫자 입력 | 시운전의 기간에2 입력 →2d, 저장960분 | [초안](02-bare-days-draft-0.png) · [적용](03-bare-days-applied-0.png) |
-| 시간 입력 | 같은 셀에16h 입력 →2d로 복원, 미저장 변경 없음. 저장 전후 바이트 동일 | [초안](04-equivalent-hours-draft-0.png) · [복원](05-equivalent-hours-normalized-0.png) |
-| 오류 설명 | 부품 준비 잔여0.1m →Save 거절. 중간07의 숨은 설명을 고쳐 최종09에서는 오류 전체 표시 | [수정 후](09-final-invalid-visible-1.png) |
-| 보고 정정 | 실제960m·잔여1.5d와 새 사유 →Save. 기존3건을 남기고4번째 보고 추가 | [입력](10-corrected-units-draft-1.png) |
-| 재진입 | 실제2d·잔여1.5d와 기존 이력의2d/2d·새 이력2d/1.5d 표시 | [12](12-progress-reopened-1.png) |
-| 취소 | 잔여를3d로 바꾼 초안 Cancel →Ctrl+S. 이전 저장 파일과 바이트 동일 | [초안](13-cancel-draft-1.png) · [취소 후](14-progress-cancelled-0.png) |
-| 다른 달력 | 09~12/13~17의7시간 달력을 UI에서 등록·시운전에 배정. 기존960분은16h로 보존 | [등록](15-seven-hour-calendar-1.png) · [배정 후](16-calendar-preserves-minutes-0.png) |
-| 7시간 입력 | 시운전에2d 입력 →840분 저장, 주 창1d=7h 표시 | [18](18-seven-hour-two-days-applied-0.png) |
-| 상세/잔여 조회 | 공수·유형 창의 기간2d·1d=7h·공수 자원시간 구분, 실적 창의 잔여2d·같은 기준 표시. 둘 다 취소 | [상세](19-effort-days-help-1.png) · [실적](20-seven-hour-progress-help-1.png) |
-| 재계산 | F9로 유효한 잔여 예측 재생성. 시운전 계획 기간 표시는2d 유지 | [21](21-final-recalculated-0.png) |
+| 기존 파일 | 원래960분을2d, 480분을1d로 표시. 열기만으로 파일 변경 없음 | [01](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/duration-units-2026-11-17/01-existing-file-days-0.png) |
+| 숫자 입력 | 시운전의 기간에2 입력 →2d, 저장960분 | [초안](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/duration-units-2026-11-17/02-bare-days-draft-0.png) · [적용](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/duration-units-2026-11-17/03-bare-days-applied-0.png) |
+| 시간 입력 | 같은 셀에16h 입력 →2d로 복원, 미저장 변경 없음. 저장 전후 바이트 동일 | [초안](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/duration-units-2026-11-17/04-equivalent-hours-draft-0.png) · [복원](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/duration-units-2026-11-17/05-equivalent-hours-normalized-0.png) |
+| 오류 설명 | 부품 준비 잔여0.1m →Save 거절. 중간07의 숨은 설명을 고쳐 최종09에서는 오류 전체 표시 | [수정 후](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/duration-units-2026-11-17/09-final-invalid-visible-1.png) |
+| 보고 정정 | 실제960m·잔여1.5d와 새 사유 →Save. 기존3건을 남기고4번째 보고 추가 | [입력](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/duration-units-2026-11-17/10-corrected-units-draft-1.png) |
+| 재진입 | 실제2d·잔여1.5d와 기존 이력의2d/2d·새 이력2d/1.5d 표시 | [12](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/duration-units-2026-11-17/12-progress-reopened-1.png) |
+| 취소 | 잔여를3d로 바꾼 초안 Cancel →Ctrl+S. 이전 저장 파일과 바이트 동일 | [초안](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/duration-units-2026-11-17/13-cancel-draft-1.png) · [취소 후](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/duration-units-2026-11-17/14-progress-cancelled-0.png) |
+| 다른 달력 | 09~12/13~17의7시간 달력을 UI에서 등록·시운전에 배정. 기존960분은16h로 보존 | [등록](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/duration-units-2026-11-17/15-seven-hour-calendar-1.png) · [배정 후](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/duration-units-2026-11-17/16-calendar-preserves-minutes-0.png) |
+| 7시간 입력 | 시운전에2d 입력 →840분 저장, 주 창1d=7h 표시 | [18](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/duration-units-2026-11-17/18-seven-hour-two-days-applied-0.png) |
+| 상세/잔여 조회 | 공수·유형 창의 기간2d·1d=7h·공수 자원시간 구분, 실적 창의 잔여2d·같은 기준 표시. 둘 다 취소 | [상세](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/duration-units-2026-11-17/19-effort-days-help-1.png) · [실적](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/duration-units-2026-11-17/20-seven-hour-progress-help-1.png) |
+| 재계산 | F9로 유효한 잔여 예측 재생성. 시운전 계획 기간 표시는2d 유지 | [21](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/duration-units-2026-11-17/21-final-recalculated-0.png) |
 
 `plan-2d.ppm`과 `plan-equivalent.ppm`이 같고, `progress-applied.ppm`과
 `progress-after-cancel.ppm`도 같다. 최종 `seven-hour-plan.ppm`/`review.ppm`의 시운전은840분,

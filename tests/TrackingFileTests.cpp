@@ -1,7 +1,9 @@
 #include "application/Document.h"
+#include "calculation/Tracking.h"
 #include "persistence/JsonProjectStore.h"
 #include <QCoreApplication>
 #include <QCryptographicHash>
+#include <QDir>
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -41,6 +43,35 @@ QByteArray signedPayload(QJsonObject root, QJsonObject payload) {
             .toHex());
     return QJsonDocument(root).toJson();
 }
+void archivedBaselines(jobs::JsonProjectStore &store) {
+    const QDir directory(QString::fromUtf8(JOBS_NATIVE_HISTORY_FIXTURES));
+    const auto manifest = QJsonDocument::fromJson(read(directory.filePath("manifest.json"))).object();
+    check(manifest["sourceCommit"] == "77bb5a1cead1cb2c47f36e57b00d478746f32434", "archive provenance changed");
+    const auto files = manifest["files"].toArray();
+    check(files.size() == 63, "historical input coverage changed");
+    std::size_t baselines = 0;
+    for (const auto &value : files) {
+        const auto entry = value.toObject();
+        const auto path = directory.filePath(entry["path"].toString());
+        try {
+            const auto bytes = read(path);
+            check(QString::fromLatin1(QCryptographicHash::hash(bytes, QCryptographicHash::Sha256).toHex()) ==
+                      entry["sha256"].toString(),
+                  "historical input bytes changed");
+            const auto loaded = store.load(path.toUtf8().toStdString());
+            check(loaded.project.baselines.size() == std::size_t(entry["baselines"].toInt()),
+                  "historical baseline coverage changed");
+            for (const auto &baseline : loaded.project.baselines)
+                jobs::verifyBaseline(baseline);
+            baselines += loaded.project.baselines.size();
+            check(read(path) == bytes, "historical input was modified");
+        } catch (const std::exception &e) {
+            throw std::runtime_error(path.toStdString() + ": " + e.what());
+        }
+    }
+    check(baselines == 69, "historical baseline count changed");
+    std::cout << "PASS: 63 archived native inputs, 69 past-engine baseline replays and immutable source hashes\n";
+}
 } // namespace
 int main(int argc, char *argv[]) {
     QCoreApplication app(argc, argv);
@@ -48,6 +79,7 @@ int main(int argc, char *argv[]) {
         QTemporaryDir dir;
         check(dir.isValid(), "temporary folder failed");
         jobs::JsonProjectStore store;
+        archivedBaselines(store);
         jobs::Document doc(store);
         doc.create("기준선·실적", "2026-10-26", {"설계"});
         doc.setDuration(0, 960);

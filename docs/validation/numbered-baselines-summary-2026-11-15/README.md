@@ -1,5 +1,7 @@
 # 번호별 기준선과 요약 기간 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/numbered-baselines-summary-2026-11-15)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-15 · Windows · Qt6.8.3 / MinGW13.1 / Release.
 
 ## 구현 범위
@@ -10,8 +12,8 @@
 
 ## 실행 결과
 
-- 번호별 기준선 구현 후 기존 기준선/원가 및 새 번호별 계약·UI 6/6 통과, 13.49초. [로그](numbered-tests.log).
-- 두 기능 결합 최종 회귀 29/29 통과, 35.65초. 기준선/원가/번호별·요약·실제/잔여·Early/Late·표준 실적 내보내기·XML 식/roll-up/down의 계약/UI, 파일 생명주기·tracking 저장·undo·복구를 포함한다. [로그](final-tests.log).
+- 번호별 기준선 구현 후 기존 기준선/원가 및 새 번호별 계약·UI 6/6 통과, 13.49초. [로그](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/numbered-baselines-summary-2026-11-15/numbered-tests.log).
+- 두 기능 결합 최종 회귀 29/29 통과, 35.65초. 기준선/원가/번호별·요약·실제/잔여·Early/Late·표준 실적 내보내기·XML 식/roll-up/down의 계약/UI, 파일 생명주기·tracking 저장·undo·복구를 포함한다. [로그](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/numbered-baselines-summary-2026-11-15/final-tests.log).
 - 별도 Python 정수 마이크로초/Decimal 검산: 잔여 예측 1건 + 요일·휴일·분할 근무·소수 초 경계128건 일치.
 - 기존 독립 검사기도 새 요약 의미와 구버전 증거를 함께 판독하도록 확장했다. 기준선 XML77값/XER32값·XLSX77칸/PDF20쪽, 잔여 XML64값/XER52값·XLSX64칸/PDF21쪽, 실제 XML50값/XER30값·XLSX50칸/PDF23쪽을 통과했다.
 - 기준선 원가의 독립 유리수128사례/1408값, XML/XER 각32값·XLSX45행/PDF24쪽을 통과했다.

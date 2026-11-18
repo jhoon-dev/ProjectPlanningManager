@@ -1,8 +1,0 @@
-[1/8] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/Effort.cpp.obj
-[2/8] Linking CXX static library libjobs_calculation.a
-[3/8] Linking CXX executable jobs_parser_seed_tests.exe
-[4/8] Linking CXX executable jobs_dated_remaining_tests.exe
-[5/8] Building CXX object CMakeFiles/jobs_dated_effort_tests.dir/tests/DatedEffortTests.cpp.obj
-[6/8] Linking CXX executable jobs_dated_effort_tests.exe
-[7/8] Building CXX object CMakeFiles/jobs_dated_remaining_ui_tests.dir/tests/DatedRemainingWorkUiTests.cpp.obj
-[8/8] Linking CXX executable jobs_dated_remaining_ui_tests.exe

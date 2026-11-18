@@ -1,5 +1,7 @@
 # 비단조 수요 후보 축소·연쇄 전파 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/nonmonotone-propagation-2026-11-04)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 검증일: 2026-11-04. Windows Release / Qt6.8.3 / MinGW GCC13.1. 전체 CTest **93/93**, **399.70초**, 파서 **114 seeds**(schema1~14), clang-format18.1.8 **155파일**, 독립 reader/비교기 자체시험 **21/21** 통과. 전용 계약은 **12.42초**에 통과했다. `ctest.log`, `ctest-details.log`, `format-gate.json`, `independent-summary.json`, `verification-summary.json`에 실행 근거를 보존한다.
 
 ## 계산과 보존

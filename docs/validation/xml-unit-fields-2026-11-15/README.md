@@ -1,5 +1,7 @@
 # Units·가용률 참조 실행 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-unit-fields-2026-11-15)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-15 Windows/Qt6.8.3 MinGW Release, `build-numbered-summary`. [기능 계약](../../xml-unit-fields.md).
 
 - 최종 회귀 **61/61**,93.01초: Units·XML 식·기준선/시간분포/병합·요약·실제/잔여·진척·달력·형 변환·계층·원가/Usage·기존 Project XML·통화/ID·일정 채택·undo·파일/복구·준비 편집/평준화.

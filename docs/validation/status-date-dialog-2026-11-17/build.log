@@ -1,5 +1,0 @@
-[1/5] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowTracking.cpp.obj
-[2/5] Linking CXX static library libjobs_ui.a
-[3/5] Linking CXX executable jobs_tracking_ui_tests.exe
-[4/5] Linking CXX executable PPM.exe
-[5/5] Linking CXX executable jobs_dialog_layout_tests.exe

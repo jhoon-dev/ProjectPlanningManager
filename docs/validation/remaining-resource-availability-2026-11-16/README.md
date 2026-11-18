@@ -1,5 +1,7 @@
 # 현재 부하·잔여 가용량 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/remaining-resource-availability-2026-11-16)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-16 Windows/Qt6.8.3 MinGW Release, `build-numbered-summary`. [기능 계약](../../remaining-resource-availability.md).
 
 - 관련 회귀 **37/37**,79.23초. 새 조회/계산식·Units/가용기간·부하/평준화/재분배 여유·XML 기준선 교환/병합/상세 분포·잔여 참조/roll-up/down·보고/원가/Usage·통화/ID·일정 채택·undo/복구·파서를 포함한 영향 범위 부분집합이다. 집중6/6도 먼저 통과했다.

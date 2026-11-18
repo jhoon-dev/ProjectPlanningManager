@@ -1,4 +1,0 @@
-[1/4] Building CXX object CMakeFiles/jobs_project_xml_tests.dir/tests/ProjectXmlTests.cpp.obj
-[2/4] Linking CXX executable jobs_project_xml_tests.exe
-[3/4] Building CXX object CMakeFiles/jobs_xml_unit_tests.dir/tests/XmlUnitFieldsTests.cpp.obj
-[4/4] Linking CXX executable jobs_xml_unit_tests.exe

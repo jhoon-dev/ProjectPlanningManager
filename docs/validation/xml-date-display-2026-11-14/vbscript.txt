@@ -1,1 +1,0 @@
-PASS: 7370 whole-second displays, scalar expressions and 4 errors; LCID1033

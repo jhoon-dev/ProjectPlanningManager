@@ -1,5 +1,7 @@
 # UX-W06 회의용 출력 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-18 · [사용법](../../meeting-print.md) · [기획 우선순위](../../planning/21-weekly-update-ux-review.md).
 
 ## 구현 범위
@@ -14,25 +16,25 @@
 
 ## 실제 Windows 화면
 
-앞 단계의 합성 [review.ppm](../outcome-summary-2026-11-17/review.ppm)을 복사해 native 앱에서 열었다.
+앞 단계의 합성 [review.ppm](../../../tests/fixtures/native-history/outcome-summary-2026-11-17/review.ppm)을 복사해 native 앱에서 열었다.
 1562×932 어두운 테마의 전문가 점검이다. 작업5개·실적6건·기준선1개·상태일11-16 09:00,
 잔여 예측 자원 조정 채택 상태이며 완료일11-24 18:00, 기준선 완료11-17 18:00이다.
 설치 버전과 구분해 작업 폴더의 최종 빌드로 클릭·키보드 조작했다.
 
 | 단계 | 실제 확인 | 증거 |
 | --- | --- | --- |
-| 열기 | 원본 저장됨·계산 필요. 인쇄는 전체 입력을 새로 계산하며 화면의 미계산 날짜를 사용하지 않음 | [01](01-open-source.png) |
-| 회의용 기본값 | 전체 프로젝트5작업, 핵심 표+간트1페이지와 출처2페이지. 상태일·보고3/5·기준선·채택 완료와+5d(+40h) 반복 | [02](02-full-preview.png) |
-| 전체 PDF | 실제 저장 완료, 미리보기와 동일3페이지 | [03](03-full-exported.png), [PDF](meeting-full.pdf) |
-| 다음 주 프리셋 | 11-23~29일 자동 적용.5개 작업 행 유지, 시간축 안의 현장 준비/시운전 막대만 표시 | [04](04-next-week-preview.png) |
-| 다음 주 PDF | 실제 저장 완료, 동일3페이지 | [05](05-next-week-exported.png), [PDF](meeting-next-week.pdf) |
-| 상세로 복귀 | 기존 화면 열·표52%·작업명140pt·기간 자동으로 돌아감. 같은 입력은7페이지 | [06](06-detailed-restored.png) |
-| 닫기 | 파일 저장됨·계산 필요 유지. 인쇄 계산이 주 화면 캐시나 문서 수정을 대신하지 않음 | [07](07-close-unchanged.png) |
+| 열기 | 원본 저장됨·계산 필요. 인쇄는 전체 입력을 새로 계산하며 화면의 미계산 날짜를 사용하지 않음 | [01](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/01-open-source.png) |
+| 회의용 기본값 | 전체 프로젝트5작업, 핵심 표+간트1페이지와 출처2페이지. 상태일·보고3/5·기준선·채택 완료와+5d(+40h) 반복 | [02](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/02-full-preview.png) |
+| 전체 PDF | 실제 저장 완료, 미리보기와 동일3페이지 | [03](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/03-full-exported.png), [PDF](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/meeting-full.pdf) |
+| 다음 주 프리셋 | 11-23~29일 자동 적용.5개 작업 행 유지, 시간축 안의 현장 준비/시운전 막대만 표시 | [04](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/04-next-week-preview.png) |
+| 다음 주 PDF | 실제 저장 완료, 동일3페이지 | [05](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/05-next-week-exported.png), [PDF](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/meeting-next-week.pdf) |
+| 상세로 복귀 | 기존 화면 열·표52%·작업명140pt·기간 자동으로 돌아감. 같은 입력은7페이지 | [06](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/06-detailed-restored.png) |
+| 닫기 | 파일 저장됨·계산 필요 유지. 인쇄 계산이 주 화면 캐시나 문서 수정을 대신하지 않음 | [07](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/07-close-unchanged.png) |
 
 이미지를 판단 기준으로 사용했다. 같은 이름의txt는 접근성 원문이며 일부 자식 창은 텍스트를 반환하지 않아 빈 파일이다.
 중간 화면 제어 요청1회가 다른 요청 진행 중으로 거절돼 창 목록·화면을 다시 관찰한 뒤 계속했다.
 프리셋 변경·두 PDF 출력·상세 복귀·닫기를 모두 완료했다.
-[현재 사본](review.ppm)은 원본과 바이트가 같으며 페이지 설정·작업·실적·기준선·채택·이력을 보존했다.
+[현재 사본](../../../tests/fixtures/native-history/meeting-print-2026-11-18/review.ppm)은 원본과 바이트가 같으며 페이지 설정·작업·실적·기준선·채택·이력을 보존했다.
 
 ## PDF 독립 판독과 시각 점검
 
@@ -41,24 +43,24 @@
 첫 페이지에 작업5개와6개 핵심 열·간트가 함께 있고 뒤2페이지에 전체 문서/엔진/정책/사유/진단을 유지한다.
 다음 주 밖의 완료 작업은 행을 유지하며 막대만 시간축 밖으로 나간다.
 
-- 전체 일정: [1](full-page-1.png), [2](full-page-2.png), [3](full-page-3.png).
-- 다음 주: [1](week-page-1.png), [2](week-page-2.png), [3](week-page-3.png).
-- [독립 검사 스크립트](verify_print.py)와 [결과](pdf-check.txt): 미리보기와 동일3쪽,
+- 전체 일정: [1](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/full-page-1.png), [2](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/full-page-2.png), [3](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/full-page-3.png).
+- 다음 주: [1](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/week-page-1.png), [2](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/week-page-2.png), [3](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/week-page-3.png).
+- [독립 검사 스크립트](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/verify_print.py)와 [결과](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/pdf-check.txt): 미리보기와 동일3쪽,
   A4가로842×595pt, 반복 상태·완료·편차·보고 범위, 작업5개·핵심 열, 출처/진단·채택 사유,
   입력 파일 바이트 보존을 pypdf로 확인한다. 텍스트 판독만으로 배치 품질을 판정하지 않았다.
 
 ## 자동 검사와 한계
 
-- [관련 회귀](regression.log)6/6 통과: meeting_print_ui, schedule_print_contract, schedule_print_ui,
-  presentation_contract, presentation_ui, dialog_layout. [빌드](build-final.log).
-- 새 [회의용 검사](meeting-tests.txt)5건(실제3개+초기화/정리), [Windows native](native-tests.txt)5건 통과.
+- [관련 회귀](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/regression.log)6/6 통과: meeting_print_ui, schedule_print_contract, schedule_print_ui,
+  presentation_contract, presentation_ui, dialog_layout. [빌드](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/build-final.log).
+- 새 [회의용 검사](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/meeting-tests.txt)5건(실제3개+초기화/정리), [Windows native](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/native-tests.txt)5건 통과.
   핵심 열 가로 분할 없음·완료/기준선 편차·보고 미정·유효 날짜 재계산·동일 PDF 쪽 수·다음 주 시간축,
   기준선 없음·불완전 입력·휴일 제외 편차·명시적 표시/선택 범위·상세 복귀·문서/디스크 무변경을 검사한다.
-- 최초 [실행](initial-tests.log)은 새 검사가 전체 출처도1페이지일 것으로 가정해 총2쪽을 요구한 부분에서 실패했다.
+- 최초 [실행](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/initial-tests.log)은 새 검사가 전체 출처도1페이지일 것으로 가정해 총2쪽을 요구한 부분에서 실패했다.
   실제 출처2페이지를 보존하고 데이터 표는1페이지인지 확인하도록 검사 조건을 수정했다.
   출처를 버리거나 축소해 맞추지 않았다. 기존 출력2개 검사는 최초부터 통과했다.
-- [dialog_layout](layout-tests.txt)54건 통과. 새 인쇄 창의 OS DPI 변경·작은 화면 수동 시험은 이번 범위가 아니다.
+- [dialog_layout](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/layout-tests.txt)54건 통과. 새 인쇄 창의 OS DPI 변경·작은 화면 수동 시험은 이번 범위가 아니다.
   offscreen 실행에는 글꼴 디렉터리/크기 힌트 경고가 있으나 native 검사와 실제 PDF의 글꼴·배치를 별도로 확인했다.
 - 물리 프린터 제출·macOS·실제 PM 무도움 사용자 시험·외부 MSP/P6 왕복·전체 테스트 모음은 수행하지 않았다.
 
-소스 기준점은 `4b23a52`이며 실행 파일·소스·증거 SHA-256은 [manifest.json](manifest.json)에 기록한다.
+소스 기준점은 `4b23a52`이며 실행 파일·소스·증거 SHA-256은 [manifest.json](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/meeting-print-2026-11-18/manifest.json)에 기록한다.

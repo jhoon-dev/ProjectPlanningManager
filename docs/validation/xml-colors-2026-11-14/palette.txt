@@ -1,1 +1,0 @@
-PASS: Microsoft.VisualBasic.Information.QBColor 16-entry palette

@@ -1,16 +1,18 @@
 # 기업·배정 UDF와 XML 프로젝트 필드 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/enterprise-assignment-udf-2026-11-10)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-10 · Windows x64 / Qt6.8.3 / MinGW13.1 Release. [EUDF-01~05 계약](../../enterprise-assignment-udf.md)을 따른다.
 
 ## 결과
 
-- 전체 **147/147 통과 · 277.58초**: [CTest](ctest.txt) · [JUnit/검사별 출력](ctest.xml).
-- 최종 집중 **5/5 통과 · 9.69초**: 기업/배정 계약·화면, 기존 UDF·프로젝트/자원 필드, 파서. [실행 기록](focused.txt).
+- 전체 **147/147 통과 · 277.58초**: [CTest](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/enterprise-assignment-udf-2026-11-10/ctest.txt) · [JUnit/검사별 출력](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/enterprise-assignment-udf-2026-11-10/ctest.xml).
+- 최종 집중 **5/5 통과 · 9.69초**: 기업/배정 계약·화면, 기존 UDF·프로젝트/자원 필드, 파서. [실행 기록](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/enterprise-assignment-udf-2026-11-10/focused.txt).
 - 파서 **582개** 결정적 시드, schema1~37의 checksum/body 구분과 구버전 envelope의 새 필드 거절을 통과했다.
-- C++ 형식 **418파일**, 차이0: [품질 결과](quality.json). 원래 Release 최적화 설정으로 [최종 빌드](build.txt)를 통과했다.
-- Windows 실제 플랫폼에서 배정 일괄 입력·소유 구분·stale 차단을 통과했다. [실행](native-ui.txt) · [기본 화면](assignment.png) · [800×600 화면](assignment-small.png).
-- XML **7개 정의/9개 값**, 네 범위·공식 ID/요소 이름·날짜·수치/0/빈 값·재내보내기 GUID를 독립 ElementTree/Decimal로 확인했다. XER 단일/결합2프로젝트의 배정 외래키와 값도 독립 TSV로 대조했다. [독립 결과](independent-reader.json).
-- XLSX 배정 **6행**의 실제 숫자0·소수6자리·빈 텍스트/미정을 구분하고 PDF **12페이지**에서 한국어와 필드 수치를 판독했다. [결과](independent-reports.json) · [XLSX](fields.xlsx) · [PDF](fields.pdf).
+- C++ 형식 **418파일**, 차이0: [품질 결과](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/enterprise-assignment-udf-2026-11-10/quality.json). 원래 Release 최적화 설정으로 [최종 빌드](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/enterprise-assignment-udf-2026-11-10/build.txt)를 통과했다.
+- Windows 실제 플랫폼에서 배정 일괄 입력·소유 구분·stale 차단을 통과했다. [실행](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/enterprise-assignment-udf-2026-11-10/native-ui.txt) · [기본 화면](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/enterprise-assignment-udf-2026-11-10/assignment.png) · [800×600 화면](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/enterprise-assignment-udf-2026-11-10/assignment-small.png).
+- XML **7개 정의/9개 값**, 네 범위·공식 ID/요소 이름·날짜·수치/0/빈 값·재내보내기 GUID를 독립 ElementTree/Decimal로 확인했다. XER 단일/결합2프로젝트의 배정 외래키와 값도 독립 TSV로 대조했다. [독립 결과](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/enterprise-assignment-udf-2026-11-10/independent-reader.json).
+- XLSX 배정 **6행**의 실제 숫자0·소수6자리·빈 텍스트/미정을 구분하고 PDF **12페이지**에서 한국어와 필드 수치를 판독했다. [결과](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/enterprise-assignment-udf-2026-11-10/independent-reports.json) · [XLSX](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/enterprise-assignment-udf-2026-11-10/fields.xlsx) · [PDF](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/enterprise-assignment-udf-2026-11-10/fields.pdf).
 
 ## 기능과 예외 범위
 
@@ -47,4 +49,4 @@ Pop-Location
 python scripts/check-cpp-quality.py format --tool .deps/cpp-quality/Lib/site-packages/clang_format/data/bin/clang-format.exe
 ```
 
-[검증 파일/소스 SHA256](verification-summary.json). 위 결과는 이 지원 범위의 증거이며 전체 GAP-03/09나 외부 제품 동등성의 완료 선언이 아니다.
+[검증 파일/소스 SHA256](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/enterprise-assignment-udf-2026-11-10/verification-summary.json). 위 결과는 이 지원 범위의 증거이며 전체 GAP-03/09나 외부 제품 동등성의 완료 선언이 아니다.

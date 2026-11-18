@@ -1,5 +1,7 @@
 # 추가 전파 비용 추정·적용 기준 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/propagation-cost-2026-11-04)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 검증일: 2026-11-04. Windows Release / Qt6.8.3 / MinGW GCC13.1. 전체 CTest **94/94**, **348.82초**, 파서 **114 seeds**(schema1~14), clang-format18.1.8 **158파일**, 독립 reader/비교기 자체시험 **22/22** 통과. 전용 계약은 **9.09초**에 통과했다. 원시 근거는 `ctest.log`, `ctest-details.log`, `format-gate.json`, `independent-summary.json`, `verification-summary.json`이다.
 
 ## 비용 판단과 보존

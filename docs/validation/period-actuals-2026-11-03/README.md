@@ -1,12 +1,14 @@
 # 기간별 실제공수·실제원가 입력 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/period-actuals-2026-11-03)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-03 사용자 요청에 따른 GAP-04 입력/정정 증분이다. [사용 방법·원장·누계 대사 계약](../../period-actuals.md), [PRD](../../planning/01-product-prd.md), [로드맵](../../planning/06-roadmap.md)을 연결한다. 계획 기간별 배정 편집·자동 실제 추정·외부 제품 교환 확대는 이번 범위가 아니다.
 
 ## 구현과 검사
 
-**전체 CTest 71개 통과, 283.09초.** 새 `period_actual_contract`/`period_actual_ui`와 기존 일정·공수·추적·분류·원가·교환·파일/복구·보고서 회귀를 포함한다. Release 빌드, [독립 출력 검사](independent-export.json), [clang-format 18.1.8](format.json)도 통과했다. [전체 실행 로그](full-ctest.log)와 [검증 요약·소스/검사 파일 식별](verification.json)을 보존한다.
+**전체 CTest 71개 통과, 283.09초.** 새 `period_actual_contract`/`period_actual_ui`와 기존 일정·공수·추적·분류·원가·교환·파일/복구·보고서 회귀를 포함한다. Release 빌드, [독립 출력 검사](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/period-actuals-2026-11-03/independent-export.json), [clang-format 18.1.8](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/period-actuals-2026-11-03/format.json)도 통과했다. [전체 실행 로그](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/period-actuals-2026-11-03/full-ctest.log)와 [검증 요약·소스/검사 파일 식별](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/period-actuals-2026-11-03/verification.json)을 보존한다.
 
-schema 1~11의 정상/거절 입력을 포함한 [80개 parser seed 재생](parser-seed-replay.log)을 통과했다. 이는 coverage-guided fuzzing 실행과 구분한다.
+schema 1~11의 정상/거절 입력을 포함한 [80개 parser seed 재생](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/period-actuals-2026-11-03/parser-seed-replay.log)을 통과했다. 이는 coverage-guided fuzzing 실행과 구분한다.
 
 - `(작업 ID, 자원 ID, 실제 날짜)` 키의 불변 관측 원장을 추가했다. 작성자/사유·UTC·상태일·원본 문서/revision·이전 보고·원가 누계 보고 ID를 보존한다. 자원 종류는 입력 시 동결하고 정정에서 원래 단위를 유지한다.
 - 시간 또는 정수 `%·분` 접미사 `u`로 공수를 입력한다. 원가/공수의 미보고와 명시 0을 구분하고 전체 행을 한 원자적 worker 제출로 처리한다. 실패/취소/문서 교체는 부분 반영하지 않는다.
@@ -45,13 +47,13 @@ schema 1~11의 정상/거절 입력을 포함한 [80개 parser seed 재생](pars
 
 openpyxl은 최신 3행·전체 4행, 숫자형 0·미보고 문자열, 자원 단위별 공수, `80=25+55`, 작성자/사유·원본/이전/누계 ID, 수식·외부 링크·VBA 부재를 대조했다. pypdf는 8페이지의 한국어 명세·대사·이력·작성자·문서 ID와 제어문자 부재를 확인했다. PDF 텍스트 검사는 페이지 렌더링 시각 QA를 대신하지 않는다.
 
-기존 [Usage 출력](usage-export.json), [분류 출력](classification-export.json), [예측 여유 출력](forecast-export.json)과 [XLSX 5개/PDF 6개 보고 fixture](existing-report-exports.log)도 최종 빌드로 독립 재검사를 통과했다.
+기존 [Usage 출력](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/period-actuals-2026-11-03/usage-export.json), [분류 출력](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/period-actuals-2026-11-03/classification-export.json), [예측 여유 출력](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/period-actuals-2026-11-03/forecast-export.json)과 [XLSX 5개/PDF 6개 보고 fixture](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/period-actuals-2026-11-03/existing-report-exports.log)도 최종 빌드로 독립 재검사를 통과했다.
 
-![기간 실적 입력과 정정 원장](input.png)
+![기간 실적 입력과 정정 원장](https://raw.githubusercontent.com/jhoon-dev/ProjectPlanningManager/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/period-actuals-2026-11-03/input.png)
 
 입력 화면은 누계 80·배분 25·미배분 55와 원본/정정 이력을 표시한다. 760px offscreen 창에서도 제출/취소/닫기는 스크롤 밖에 남는다. 원장과 초안 영역은 필요한 경우 스크롤한다.
 
-![Usage의 보고 실제원가](usage.png)
+![Usage의 보고 실제원가](https://raw.githubusercontent.com/jhoon-dev/ProjectPlanningManager/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/period-actuals-2026-11-03/usage.png)
 
 Usage의 보고 배분 25와 누계 80을 나란히 표시한다. 배분/날짜가 없는 누계를 자원에 자동 배분하지 않는다. 해당 자원에 제출이 없으면 `미보고`이며 0 보고는 0이다. 툴팁에는 공수/원가 보고 건수와 전기간 미배분을 표시한다.
 

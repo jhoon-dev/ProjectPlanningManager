@@ -40,7 +40,7 @@ GUI는 보기 조건과 현재 표시 원본 행을 값으로 캡처한다. work
 
 최종 `a0de474`의 [CI 실행 40632368294](https://github.com/jhoon-dev/JOBS/actions/runs/40632368294)은 Windows/MSVC·macOS 각각 **41/41** 테스트와 projected/bulk/model/async/responsive 네이티브 검사, XLSX 5·PDF 6·Project XML·XER TSV/MPXJ 독립 판독을 통과했다. CTest는 Windows 103.46초, macOS 67.65초였다. 로컬 MinGW Release도 41/41(128.44초), projected 네이티브 및 16개 관측/독립 판독을 통과했다.
 
-[검증 JSON](validation/projected-views-2026-10-28/verification.json)에 동일 도구 전후 16개 보기 사례(OS별 128개 작업/undo), 전체 원시 JSON/log·회귀 시간·CI 정보·PNG·로컬 기록을 보존한다. 1천/1만 기본·공수 일정의 전체 결과 SHA-256은 두 OS 모두 기존 golden과 일치했다(8건).
+[검증 JSON](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/projected-views-2026-10-28/verification.json)에 동일 도구 전후 16개 보기 사례(OS별 128개 작업/undo), 전체 원시 JSON/log·회귀 시간·CI 정보·PNG·로컬 기록을 보존한다. 1천/1만 기본·공수 일정의 전체 결과 SHA-256은 두 OS 모두 기존 golden과 일치했다(8건).
 
 - Windows: reset 120→8회, layout 8회, GUI Task 값 비교/복사 방문 합계 0회.
 - macOS: reset 120→8회, layout 8회, GUI Task 값 비교/복사 방문 합계 0회.
@@ -60,4 +60,4 @@ GUI는 보기 조건과 현재 표시 원본 행을 값으로 캡처한다. work
 
 GUI의 큰 Task 비교/복사와 검색/정렬은 제거했지만 worker의 투영/ID diff와 Qt 이벤트/레이아웃 비용은 남는다. 일부 단일 완료 표본은 증가했으며 전후 JSON의 모든 작업/undo와 `slower_settled_observations`에 보존했다. 완료 시간의 보편적인 개선이나 벽시계/FPS 상한을 주장하지 않는다.
 
-네이티브 화면: [Windows](validation/projected-views-2026-10-28/Windows/projected-views-native.png), [macOS](validation/projected-views-2026-10-28/macOS/projected-views-native.png).
+네이티브 화면: [Windows](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/projected-views-2026-10-28/Windows/projected-views-native.png), [macOS](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/projected-views-2026-10-28/macOS/projected-views-native.png).

@@ -1,20 +1,22 @@
 # XML 계산식의 계산된 일정 참조 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-schedule-references-2026-11-11)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-11 · XMLS-01~05 · Windows / Qt6.8.3 MinGW13.1 Release.
 
 [지원 계약](../../xml-schedule-references.md), [C++ 계약/UI 검사](../../../tests/XmlScheduleTests.cpp), [독립 검사기](../../../scripts/verify-xml-schedule-references.py)를 따른다.
 
 ## 결과
 
-전체 **163/163 · 279.28초**: [CTest](ctest.txt), [JUnit](ctest.xml). 집중 **26/26 · 14.09초**, 미래 버전 거절 검사 **8/8 · 14.15초**를 통과했다. 파서 **724개** 결정적 시드(schema1~45), C++ 형식 **453파일** 차이0이다. [빌드](build.txt), [최종 테스트 빌드](schema-test-build.txt), [형식](quality.json).
+전체 **163/163 · 279.28초**: [CTest](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-schedule-references-2026-11-11/ctest.txt), [JUnit](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-schedule-references-2026-11-11/ctest.xml). 집중 **26/26 · 14.09초**, 미래 버전 거절 검사 **8/8 · 14.15초**를 통과했다. 파서 **724개** 결정적 시드(schema1~45), C++ 형식 **453파일** 차이0이다. [빌드](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-schedule-references-2026-11-11/build.txt), [최종 테스트 빌드](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-schedule-references-2026-11-11/schema-test-build.txt), [형식](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-schedule-references-2026-11-11/quality.json).
 
-첫 전체 실행은 155/163이었다. 기존 테스트8개가 새 지원 버전45를 미래 버전으로 간주하여 실패했으며 미래 버전 거절 대상을46으로 갱신했다. [첫 실행](initial-ctest.txt)과 최종 전체 재실행을 함께 보존한다. 구현의 추가 변경은 없다.
+첫 전체 실행은 155/163이었다. 기존 테스트8개가 새 지원 버전45를 미래 버전으로 간주하여 실패했으며 미래 버전 거절 대상을46으로 갱신했다. [첫 실행](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-schedule-references-2026-11-11/initial-ctest.txt)과 최종 전체 재실행을 함께 보존한다. 구현의 추가 변경은 없다.
 
-독립 대조는 일정4행·XML20칸/식 정의7개·XER16값, XLSX21시트의 실제 계산/요약 **22칸**, PDF13페이지를 확인했다. MPXJ strict reader는 오류0, 작업4행·배정2개를 읽었다. [보고서 대조](independent-reports.json), [리더 대조](independent-reader.json).
+독립 대조는 일정4행·XML20칸/식 정의7개·XER16값, XLSX21시트의 실제 계산/요약 **22칸**, PDF13페이지를 확인했다. MPXJ strict reader는 오류0, 작업4행·배정2개를 읽었다. [보고서 대조](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-schedule-references-2026-11-11/independent-reports.json), [리더 대조](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-schedule-references-2026-11-11/independent-reader.json).
 
-Windows800×650에서 미리보기와 표/객체 창 갱신을 통과했다. [실행](native-ui.txt), [화면](schedule-small.png). [XML 계획](plan.xml), [XER 계획](plan.xer), [예측 XLSX](forecast.xlsx), [PDF](forecast.pdf), [원본 파일](source.ppm), [계획/예측 일정](schedule.json)을 보존한다.
+Windows800×650에서 미리보기와 표/객체 창 갱신을 통과했다. [실행](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-schedule-references-2026-11-11/native-ui.txt), [화면](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-schedule-references-2026-11-11/schedule-small.png). [XML 계획](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-schedule-references-2026-11-11/plan.xml), [XER 계획](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-schedule-references-2026-11-11/plan.xer), [예측 XLSX](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-schedule-references-2026-11-11/forecast.xlsx), [PDF](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-schedule-references-2026-11-11/forecast.pdf), [원본 파일](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-schedule-references-2026-11-11/source.ppm), [계획/예측 일정](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-schedule-references-2026-11-11/schedule.json)을 보존한다.
 
-[verification-summary.json](verification-summary.json)에 자료와 관련 소스 SHA-256을 기록한다.
+[verification-summary.json](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-schedule-references-2026-11-11/verification-summary.json)에 자료와 관련 소스 SHA-256을 기록한다.
 
 ## 검사 범위
 

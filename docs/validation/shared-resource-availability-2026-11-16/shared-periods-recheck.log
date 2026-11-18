@@ -1,9 +1,0 @@
-Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
-    Start 71: shared_periods_ui
-    Start 70: shared_periods_contract
-1/2 Test #70: shared_periods_contract ..........   Passed    2.16 sec
-2/2 Test #71: shared_periods_ui ................   Passed    3.54 sec
-
-100% tests passed out of 2
-
-Total Test time (real) =   3.58 sec

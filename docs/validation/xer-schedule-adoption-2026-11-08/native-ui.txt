@@ -1,1 +1,0 @@
-PASS: schedule/WBS/calendar scoped adoption, explicit task creation/ID mapping, local tasks and native histories preserved, schema32/replay/recovery/copy, worker stale/cancel/read-only, XER export and Windows UI

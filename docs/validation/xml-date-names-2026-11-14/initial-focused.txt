@@ -1,9 +1,0 @@
-Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
-    Start 66: xml_date_names_contract
-1/2 Test #66: xml_date_names_contract ..........   Passed    3.64 sec
-    Start 67: xml_date_names_ui
-2/2 Test #67: xml_date_names_ui ................   Passed    1.46 sec
-
-100% tests passed out of 2
-
-Total Test time (real) =   5.17 sec

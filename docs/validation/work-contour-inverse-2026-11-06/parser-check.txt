@@ -1,7 +1,0 @@
-Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
-    Start 70: parser_seed_replay
-1/1 Test #70: parser_seed_replay ...............   Passed    0.98 sec
-
-100% tests passed out of 1
-
-Total Test time (real) =   1.01 sec

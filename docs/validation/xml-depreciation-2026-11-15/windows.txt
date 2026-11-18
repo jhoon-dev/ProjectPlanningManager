@@ -1,1 +1,0 @@
-PASS: Windows Microsoft.VisualBasic.Financial.SLN/SYD and 5 common domain errors

@@ -1,4 +1,0 @@
-[1/4] Building CXX object CMakeFiles/jobs_domain.dir/src/domain/LedgerIdentity.cpp.obj
-[2/4] Linking CXX static library libjobs_domain.a
-[3/4] Building CXX object CMakeFiles/jobs_ledger_identity_tests.dir/tests/LedgerIdentityTests.cpp.obj
-[4/4] Linking CXX executable jobs_ledger_identity_tests.exe

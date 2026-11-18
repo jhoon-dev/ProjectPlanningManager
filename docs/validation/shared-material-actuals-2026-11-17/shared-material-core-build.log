@@ -1,6 +1,0 @@
-[1/6] Building CXX object CMakeFiles/jobs_reporting.dir/src/reporting/IntegratedExport.cpp.obj
-[2/6] Building CXX object CMakeFiles/jobs_calculation.dir/src/calculation/IntegratedWorkspace.cpp.obj
-[3/6] Linking CXX static library libjobs_calculation.a
-[4/6] Linking CXX static library libjobs_reporting.a
-[5/6] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/IntegratedWorkspaceDialog.cpp.obj
-[6/6] Linking CXX static library libjobs_ui.a

@@ -1,1 +1,0 @@
-PASS roll-up UI: WBS/resource preview, retained snapshots, weighted means, save/undo/stale, 800x600

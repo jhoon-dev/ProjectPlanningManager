@@ -1,5 +1,7 @@
 # 공유 풀 부분·열린 가용기간 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/shared-resource-availability-2026-11-16)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-16 Windows/Qt6.8.3 MinGW Release · `build-numbered-summary`. [SPA-01~06 계약](../../shared-resource-availability.md).
 
 - 관련 회귀 **36/36,75.75초**. 새 기간·공유 잔여 조회·공유 부하/통합 평준화·작업공간 파일/UI·로컬 가용기간/잔여·Units/계산식·XML/XER batch·보고·자원 계획·운영/위험/자동화·평준화/재분배 여유·원가/Usage·undo/복구·파서의 영향 범위 부분집합이다. 전체 suite 실행을 의미하지 않는다. 새 계약/UI 집중2/2도 통과했다.

@@ -1,5 +1,7 @@
 # 공유 풀 잔여 가용량 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/shared-remaining-availability-2026-11-16)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-16 Windows/Qt6.8.3 MinGW Release · `build-numbered-summary`. [SRA-01~06 계약](../../shared-remaining-availability.md).
 
 - 영향 범위 회귀 **31/31,57.36초**. 공유 조회/로컬 잔여·가용기간·Units/외부 식·공유 부하·작업공간 파일/UI·자원 작업공간·통합 일정·XML/XER batch·보고·평준화/재분배 여유·원가/Usage·undo/복구·파서를 포함한 부분집합이다. 전체 suite 실행으로 확대하지 않는다. 초기 집중5/5도 통과했다.

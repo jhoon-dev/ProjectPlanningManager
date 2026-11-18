@@ -1,1 +1,0 @@
-PASS resource view UI: groups, typed filters, local draft, save/restore, stale, role/readonly, close, menu

@@ -1,2 +1,0 @@
-PASS dated remaining UI: inherited/zero, preview, edits invalidate certificate, atomic apply/clear, undo, stale, cancel, role, outdated/readonly, close/menu
-PASS dated effort UI: FixedWork/FixedUnits, future date input, inverse completion preview, invalid total, preservation/undo and readonly, native/screens at default/800x600

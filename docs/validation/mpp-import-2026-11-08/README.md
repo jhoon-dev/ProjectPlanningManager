@@ -1,6 +1,8 @@
 # MPP 읽기 검증 · 2026-11-08
 
-Windows x64 · Qt6.8.3 · MinGW13.1 · Release/Ninja. 전체 **139/139 통과, 219.71초**. 파서 **478개 시드**, 형식 **390개 파일**, 직접 객체 대조 **128개 검사**, 별도 패키징 **28개 검사**를 통과했다(macOS 플랫폼 조건2개 제외). [기능 계약](../../mpp-import.md) · [소스/검증 지문](verification-summary.json) · [전체 CTest](ctest.txt)·[JUnit](ctest.xml)·[개별 출력](all-test-output.txt) · [빌드](build.txt) · [형식 검사](format.txt).
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
+Windows x64 · Qt6.8.3 · MinGW13.1 · Release/Ninja. 전체 **139/139 통과, 219.71초**. 파서 **478개 시드**, 형식 **390개 파일**, 직접 객체 대조 **128개 검사**, 별도 패키징 **28개 검사**를 통과했다(macOS 플랫폼 조건2개 제외). [기능 계약](../../mpp-import.md) · [소스/검증 지문](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08/verification-summary.json) · [전체 CTest](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08/ctest.txt)·[JUnit](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08/ctest.xml)·[개별 출력](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08/all-test-output.txt) · [빌드](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08/build.txt) · [형식 검사](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08/format.txt).
 
 ## 실제 형식과 보존
 
@@ -10,17 +12,17 @@ Windows x64 · Qt6.8.3 · MinGW13.1 · Release/Ninja. 전체 **139/139 통과, 2
 
 ## 직접 객체 대조
 
-[대조 스크립트](../../../scripts/verify-project-mpp.py)는 원본을 직접 `MPPReader`로 읽고 bridge/MSPDIWriter를 거치지 않은 객체의 작업 이름·근무분, 선행 UID/종류·분 지연, 자원/가용량·배정을 C++ native 출력과 대조한다. [실행 결과](independent-projection.json)를 보존한다. 같은 binary decoder를 사용하는 투영 검산이며 제3의 MPP decoder나 Microsoft Project 실행 증거와 구분한다.
+[대조 스크립트](../../../scripts/verify-project-mpp.py)는 원본을 직접 `MPPReader`로 읽고 bridge/MSPDIWriter를 거치지 않은 객체의 작업 이름·근무분, 선행 UID/종류·분 지연, 자원/가용량·배정을 C++ native 출력과 대조한다. [실행 결과](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08/independent-projection.json)를 보존한다. 같은 binary decoder를 사용하는 투영 검산이며 제3의 MPP decoder나 Microsoft Project 실행 증거와 구분한다.
 
-원본 네 파일은 작업16개와 자원/배정10개를 포함하며128개 대조를 통과했다. 원본/사본 통화, 원본 지문과 native 관측값의 부재도 확인한다. JSON·reader XML·변환 보고는 [mpp-qa](mpp-qa/)에 남긴다.
+원본 네 파일은 작업16개와 자원/배정10개를 포함하며128개 대조를 통과했다. 원본/사본 통화, 원본 지문과 native 관측값의 부재도 확인한다. JSON·reader XML·변환 보고는 [mpp-qa](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08/mpp-qa)에 남긴다.
 
 ## Windows와 오프라인 배포
 
-[Windows native 실행](native-ui.txt)은 실제 메뉴와 파일 선택·통화 설정·읽기 진행·확인·게시·새 사본 열기를 조작한다. 미리보기/작업 중 취소, 편집으로 오래된 결과 무효화, worker 중 같은 파일 읽기 전용 재열기, 읽기 전용 원본에서 새 쓰기 가능한 사본 가져오기를 확인했다. [기본 미리보기](mpp-qa/preview.png)와 [800×600](mpp-qa/preview-small.png)에서 한국어·원본 통화/손실·스크롤·확인/게시 footer를 확인했다.
+[Windows native 실행](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08/native-ui.txt)은 실제 메뉴와 파일 선택·통화 설정·읽기 진행·확인·게시·새 사본 열기를 조작한다. 미리보기/작업 중 취소, 편집으로 오래된 결과 무효화, worker 중 같은 파일 읽기 전용 재열기, 읽기 전용 원본에서 새 쓰기 가능한 사본 가져오기를 확인했다. [기본 미리보기](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08/mpp-qa/preview.png)와 [800×600](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08/mpp-qa/preview-small.png)에서 한국어·원본 통화/손실·스크롤·확인/게시 footer를 확인했다.
 
-Windows 공통 payload를 실제 준비하고 [전체 파일/바이트 한도](standalone-payload.json)와 reader의216개 파일·대응 source archive를 검사했다. 개발 테스트 실행 파일만 QA 사본에 추가한 뒤 **Java·Python·Qt가 PATH에 없는 환경**에서 네 형식 판독·거부 계약을 다시 실행했다. [배포 로그](standalone-deploy.txt)·[독립 실행 결과](standalone-test.txt)를 보존한다. QA 실행 파일/QtTest는 배포 대상 payload의 파일/이름·크기 guard가 끝난 뒤에만 QA 사본에 추가했다.
+Windows 공통 payload를 실제 준비하고 [전체 파일/바이트 한도](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08/standalone-payload.json)와 reader의216개 파일·대응 source archive를 검사했다. 개발 테스트 실행 파일만 QA 사본에 추가한 뒤 **Java·Python·Qt가 PATH에 없는 환경**에서 네 형식 판독·거부 계약을 다시 실행했다. [배포 로그](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08/standalone-deploy.txt)·[독립 실행 결과](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08/standalone-test.txt)를 보존한다. QA 실행 파일/QtTest는 배포 대상 payload의 파일/이름·크기 guard가 끝난 뒤에만 QA 사본에 추가했다.
 
-별도 [MPP payload7개 검사](mpp-packaging.txt)는 source 누락, JAR/manifest 변조, 목록 밖 classpath, 프로토콜, create-only 복사와 Mac Mach-O 서명 지문 갱신을 검사했다. [MSIX](msix-packaging.txt)·[macOS 패키징](mac-packaging.txt)·[Apple 서명 준비](apple-signing.txt)의 기존21개 검사도 함께 실행한다. 실제 스토어 제출/서명 배포는 수행하지 않는다.
+별도 [MPP payload7개 검사](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08/mpp-packaging.txt)는 source 누락, JAR/manifest 변조, 목록 밖 classpath, 프로토콜, create-only 복사와 Mac Mach-O 서명 지문 갱신을 검사했다. [MSIX](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08/msix-packaging.txt)·[macOS 패키징](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08/mac-packaging.txt)·[Apple 서명 준비](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/mpp-import-2026-11-08/apple-signing.txt)의 기존21개 검사도 함께 실행한다. 실제 스토어 제출/서명 배포는 수행하지 않는다.
 
 실제 Microsoft Project 재계산/재저장, 다른 제작 버전/언어/필드 조합 전체, macOS/JVM/App Sandbox 실행과 새 MPP fuzzer 캠페인은 미실행이다. 기존 native/XML/XER 파서 시드 재생은 전체 회귀에 포함한다.
 

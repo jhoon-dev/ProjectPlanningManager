@@ -1,7 +1,0 @@
-...
-----------------------------------------------------------------------
-Ran 3 tests in 8.281s
-
-OK
-Combined distribution P12 and base64 file prepared in the restricted local folder.
-No private keys were imported into a persistent Windows certificate store or uploaded.

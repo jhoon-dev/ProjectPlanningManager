@@ -1,9 +1,0 @@
-{
-  "status": "PASS",
-  "partition_cases": 5332,
-  "scalar_cases": 21,
-  "error_cases": 5,
-  "engine": "Windows .NET Microsoft.VisualBasic.Interaction.Partition; invariant culture",
-  "scope": "Scalar arguments rounded independently with Python Decimal ROUND_HALF_EVEN; exact spaces compared",
-  "external_product_run": false
-}

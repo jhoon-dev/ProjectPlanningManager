@@ -1,5 +1,7 @@
 # XML 기존 문서 진척 병합 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-12 · [XPM-01~06 계약](../../xml-progress-merge.md).
 
 ## 범위
@@ -11,12 +13,12 @@
 
 ## 결과
 
-최종 전체 **179/179·271.78초**, 실패/건너뜀0이다. 로컬 HTTP/WebSocket 통합 검사를 포함한다. 파서 시드 **808개**와 C++ 형식 **482파일** 차이0을 통과했다. [빌드](build.txt), [CTest](ctest.txt), [JUnit](ctest.xml), [형식](quality.json), [독립 대조](independent-reports.json), [해시/결과](verification-summary.json).
+최종 전체 **179/179·271.78초**, 실패/건너뜀0이다. 로컬 HTTP/WebSocket 통합 검사를 포함한다. 파서 시드 **808개**와 C++ 형식 **482파일** 차이0을 통과했다. [빌드](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/build.txt), [CTest](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/ctest.txt), [JUnit](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/ctest.xml), [형식](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/quality.json), [독립 대조](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/independent-reports.json), [해시/결과](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/verification-summary.json).
 
-전체 회귀 후 검토 안내 문구를 정리하고 새 사본 채택/기존 문서 병합 기능·UI [집중 4/4](focused.txt)를 최종 실행 파일로 다시 확인했다.
+전체 회귀 후 검토 안내 문구를 정리하고 새 사본 채택/기존 문서 병합 기능·UI [집중 4/4](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/focused.txt)를 최종 실행 파일로 다시 확인했다.
 
-Windows 실행 패키지 **291파일**을 만들고 Qt/MinGW가 없는 PATH에서 CLI로 병합·정정된 schema48 native 원본을 읽어 종료0을 확인했다. 실행 파일/CLI 해시는 최종 빌드와 같다. [패키지](runtime.json), [배포](runtime-deploy.txt), [읽기](runtime-inspect.json).
+Windows 실행 패키지 **291파일**을 만들고 Qt/MinGW가 없는 PATH에서 CLI로 병합·정정된 schema48 native 원본을 읽어 종료0을 확인했다. 실행 파일/CLI 해시는 최종 빌드와 같다. [패키지](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/runtime.json), [배포](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/runtime-deploy.txt), [읽기](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/runtime-inspect.json).
 
-[원본 XML](original.xml), [병합 전](before.json), [첫 병합](merged.json), [후속 정정](corrected.json), [native 파일](source.ppm), [감사 XLSX](audit.xlsx), [감사 PDF](audit.pdf), [현재/수신 비교 화면](merge-conflict-small.png), [미선택 검토 화면](merge-small.png).
+[원본 XML](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/original.xml), [병합 전](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/before.json), [첫 병합](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/merged.json), [후속 정정](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/corrected.json), [native 파일](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/source.ppm), [감사 XLSX](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/audit.xlsx), [감사 PDF](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/audit.pdf), [현재/수신 비교 화면](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/merge-conflict-small.png), [미선택 검토 화면](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-progress-merge-2026-11-12/merge-small.png).
 
 `merge-small.png`는 800×650 크기 검토 화면이다. 원본 파일이 내장되는 기능이 아니며 원본 XML을 함께 보관해야 한다. 실제 MS Project/P6 실행·재계산·재저장과 배정/기간별 공수·원가 채택은 이번 검증에 포함하지 않는다.

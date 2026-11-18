@@ -46,7 +46,7 @@ CI의 `scripts/capture-task-editing-ui.py build`는 표 정렬·선택·계산�
 
 ## 대용량 회귀 · 2026-10-26
 
-깨끗한 구현 커밋 `75b7408` / Windows 11 26H2 x86_64 / 논리 CPU 16 / Qt 6.8.3 / MinGW GCC 13.1.0 / Release에서 기존 `jobs-perf-layered-v1`을 각 사례 별도 프로세스·3회로 실행했다. [원시 JSON](validation/task-editing-2026-10-26/)을 보존한다. 네 사례의 전체 TaskSchedule SHA-256은 직전 성능 증분의 참조와 일치했다. 계산·준비는 각각 3표본, 스크롤은 36표본의 관측값이며 제품 지연 보장이 아니다.
+깨끗한 구현 커밋 `75b7408` / Windows 11 26H2 x86_64 / 논리 CPU 16 / Qt 6.8.3 / MinGW GCC 13.1.0 / Release에서 기존 `jobs-perf-layered-v1`을 각 사례 별도 프로세스·3회로 실행했다. [원시 JSON](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/task-editing-2026-10-26)을 보존한다. 네 사례의 전체 TaskSchedule SHA-256은 직전 성능 증분의 참조와 일치했다. 계산·준비는 각각 3표본, 스크롤은 36표본의 관측값이며 제품 지연 보장이 아니다.
 
 | 사례 | 계산 median / 관측 P95 ms | 표·간트 준비 median / 관측 P95 ms | 스크롤 median / 관측 P95 ms | 최대 resident MiB | 최대 간트 객체 |
 |---|---:|---:|---:|---:|---:|

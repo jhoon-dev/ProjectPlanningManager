@@ -1,4 +1,0 @@
-xml-success tasks=10000 total_ms=229817 heartbeat_max_ms=54 heartbeat_count=45310 gui_checkpoints=0
-xer-cancel tasks=10000 total_ms=1053 heartbeat_max_ms=11 heartbeat_count=203 gui_checkpoints=0
-xer-success tasks=10000 total_ms=5137 heartbeat_max_ms=12 heartbeat_count=1002 gui_checkpoints=0
-PASS: asynchronous XML/XER, cancellation/cleanup, stale source/session, late commit, source preservation, 10k heartbeat and localized recovery diagnostics

@@ -10,11 +10,6 @@
 *.ps1 text eol=crlf
 # XER is a byte-preserved tabular interchange fixture; trailing empty cells are data.
 *.xer -text -whitespace
-# Generated validation evidence retains tool-emitted spacing and blank EOF lines.
-docs/validation/**/*.log text eol=lf -whitespace
-docs/validation/**/CMakeCache.txt text eol=lf -whitespace
-# MakeAppx emits CRCRLF; text normalization is not idempotent for these raw logs.
-docs/validation/**/makeappx*.log -text -whitespace
 # Compatibility golden bytes must be identical on every checkout platform.
 tests/fixtures/enum-compat/*.ppm -text
 tests/fixtures/mpp-public/*.mpp -text
@@ -22,15 +17,6 @@ tests/fixtures/mpp-public/LICENSE-MPXJ.txt -text -whitespace
 *.nsi text eol=lf
 # Preserve upstream license bytes and their recorded hashes.
 packaging/licenses/** -text -whitespace
-docs/validation/windows-installer-2026-10-28/*.jobs -text
-# Keep raw walkthrough evidence (including native CRLF) and hashes stable on checkout.
-docs/validation/weekly-update-ux-2026-11-17/** -text -whitespace
-docs/validation/status-date-dialog-2026-11-17/** -text -whitespace
-docs/validation/duration-units-2026-11-17/** -text -whitespace
-docs/validation/weekly-update-flow-2026-11-17/** -text -whitespace
-docs/validation/save-reforecast-flow-2026-11-17/** -text -whitespace
-docs/validation/outcome-summary-2026-11-17/** -text -whitespace
-docs/validation/meeting-print-2026-11-18/** -text -whitespace
-docs/validation/workspace-navigation-2026-11-18/** -text -whitespace
-docs/validation/weekly-update-integrated-2026-11-18/** -text -whitespace
-docs/validation/weekly-pm-pilot-2026-11-18/** -text -whitespace
+# Historical compatibility inputs keep the exact bytes of their source commit.
+tests/fixtures/native-history/**/*.ppm -text
+docs/validation/weekly-pm-pilot-2026-11-18/pilot-start.ppm -text

@@ -1,1 +1,0 @@
-PASS: external XER EV/PV menu, virtual explicit anchors, preview/native AC equality, confirmation/draft/cancel/session/read-only, submit/withdrawal and actual XLSX/PDF with responsive Windows UI

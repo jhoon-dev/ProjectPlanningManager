@@ -1,5 +1,7 @@
 # 편집·간트·입력 화면·P6 호환성 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-10-30. 제품 소스 `97045d1cd19883f647175745c93d4b703fd81051`. 구현 전에 PRD POLISH-01~09와 [개선 계약](../../editing-polish.md)을 보완했다. 아래 결과는 배포 전 preview의 검증 범위이며 파일 schema9와 일정 정책은 유지한다.
 
 ## 적용한 변경
@@ -15,7 +17,7 @@
 
 Windows 11 / Qt 6.8.3 / MinGW 13.1 Release / native windows / DPR1. 입력은 이전과 동일한 합성 10,000작업 XER이며 SHA-256은 `8f6236ad4f6c90b6e35f47179ac451f05ced3cc913f72c31f8ae235abc19ee6c`다. 실제 고객 자료가 아니다. 버전마다 별도 프로세스 3개를 순차 측정했다. OS 캐시를 비우거나 순서를 무작위화한 실험은 아니며 외부 UI 도구의 지연이나 FPS를 측정하지 않는다.
 
-[변경 전후 요약](performance-comparison.json), [변경 전 원시 표본](performance/before/1.json), [최종 원시 표본](performance/after/1.json)과 각 실행의 binary/input hash 및 dirty provenance를 보존한다. 변경 전 HEAD는 PRD-only 커밋 `7c0125f`지만 제품 실행 파일은 `ab251153`과 동일하다. 이후 기준 측정의 dirty 표시는 당시 편집 중이던 소스를 뜻하며 세 번 모두 동일한 기존 binary hash를 사용했다.
+[변경 전후 요약](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/performance-comparison.json), [변경 전 원시 표본](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/performance/before/1.json), [최종 원시 표본](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/performance/after/1.json)과 각 실행의 binary/input hash 및 dirty provenance를 보존한다. 변경 전 HEAD는 PRD-only 커밋 `7c0125f`지만 제품 실행 파일은 `ab251153`과 동일하다. 이후 기준 측정의 dirty 표시는 당시 편집 중이던 소스를 뜻하며 세 번 모두 동일한 기존 binary hash를 사용했다.
 
 | 항목 | 변경 전 | 최종 |
 |---|---:|---:|
@@ -25,26 +27,26 @@ Windows 11 / Qt 6.8.3 / MinGW 13.1 Release / native windows / DPR1. 입력은 �
 | 선택·이동·repaint 96표본 p50 / p95 / max | 36 / 52 / 54ms | 50 / 69 / 80ms |
 | 세로 스크롤·repaint 96표본 p50 / p95 / max | 31 / 41 / 64ms | 43 / 57 / 75ms |
 
-긴 GUI 정지는 줄었지만 반복 선택·스크롤은 일부 느려졌다. 날짜 자동 이동으로 선택 시 그리는 가로 범위가 달라졌고, NoIndex는 deferred scene index 비용과 반복 조회 비용 사이의 절충이다. 모든 수치가 개선됐거나 모든 PC에서 같은 지연을 보장한다고 해석하지 않는다. 중간 반응형 배치의 반복 무효화가 만든 [지연 회귀](intermediate-layout-regression/1.json)도 보존했으며 최종 모드 캐시로 이를 제거했다.
+긴 GUI 정지는 줄었지만 반복 선택·스크롤은 일부 느려졌다. 날짜 자동 이동으로 선택 시 그리는 가로 범위가 달라졌고, NoIndex는 deferred scene index 비용과 반복 조회 비용 사이의 절충이다. 모든 수치가 개선됐거나 모든 PC에서 같은 지연을 보장한다고 해석하지 않는다. 중간 반응형 배치의 반복 무효화가 만든 [지연 회귀](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/intermediate-layout-regression/1.json)도 보존했으며 최종 모드 캐시로 이를 제거했다.
 
-[1만 작업·기준선 0개](performance/cell-edits/10000-0.json)와 [3개](performance/cell-edits/10000-3.json)의 셀 편집은 UI commit/events 표본과 undo 100단계·32MiB 예산을 확인한다. [요청/worker/commit 분리 표본](performance/responsive-edits/10000-3.json)은 비동기 편집의 별도 계측이며 F9 숫자와 합산하지 않는다.
+[1만 작업·기준선 0개](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/performance/cell-edits/10000-0.json)와 [3개](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/performance/cell-edits/10000-3.json)의 셀 편집은 UI commit/events 표본과 undo 100단계·32MiB 예산을 확인한다. [요청/worker/commit 분리 표본](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/performance/responsive-edits/10000-3.json)은 비동기 편집의 별도 계측이며 F9 숫자와 합산하지 않는다.
 
 ## 화면 검증
 
-Windows/macOS 각각 100/125/150/200% × 세 창 크기를 검사했다. 검색 줄은 실제 y좌표가 정확히 같고, 헤더44·행28·표/간트 viewport 정렬과 최소 네 줄을 유지한다. macOS 200%의 실제 높이 약328에서도 압축 배치를 사용한다. Windows 설정은 변경하지 않았다. [Windows 치수](windows/workspace/results.json), [macOS 치수](macos/workspace/results.json), [macOS 작은 화면](macos/workspace/2/layout.png)을 보존한다.
+Windows/macOS 각각 100/125/150/200% × 세 창 크기를 검사했다. 검색 줄은 실제 y좌표가 정확히 같고, 헤더44·행28·표/간트 viewport 정렬과 최소 네 줄을 유지한다. macOS 200%의 실제 높이 약328에서도 압축 배치를 사용한다. Windows 설정은 변경하지 않았다. [Windows 치수](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/windows/workspace/results.json), [macOS 치수](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/macos/workspace/results.json), [macOS 작은 화면](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/macos/workspace/2/layout.png)을 보존한다.
 
 각 배율에서 주요 편집기 7개를 실제 밝은/어두운 앱 팔레트로 열어 높이·레이블·탭 이동·초안/오류 포커스/오류 가시성을 검사했다. 100/200% 대표 화면과 모든 배율 로그는 `windows/editors`, `macos/editors`에 있다. 나머지 캡처는 해당 CI artifact에 보존한다. 네이티브 검사는 다른 UI 계측과 직렬로 실행했다.
 
-실제 새 payload 앱에서 이전 XER 변환 사본을 별도 파일로 열고 F9 계산, 마지막 작업 이동, 전체 맞춤과 필터/WBS 탐색을 확인했다. 완료일은 **2027-08-09 17:00**이다. [실제 앱/파일 hash](live-app.json)를 보존한다. 사용자 문서에 입력 변경을 하지 않았고 기존 사용자 앱은 보존했다.
+실제 새 payload 앱에서 이전 XER 변환 사본을 별도 파일로 열고 F9 계산, 마지막 작업 이동, 전체 맞춤과 필터/WBS 탐색을 확인했다. 완료일은 **2027-08-09 17:00**이다. [실제 앱/파일 hash](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/live-app.json)를 보존한다. 사용자 문서에 입력 변경을 하지 않았고 기존 사용자 앱은 보존했다.
 
-[현재 열어 둔 주 단위 화면](live-final.jpg), [WBS/마일스톤 필터](live-filtered.jpg), [macOS 1만 작업 native 표본](macos/large-xer/result.json)도 보존한다.
+[현재 열어 둔 주 단위 화면](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/live-final.jpg), [WBS/마일스톤 필터](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/live-filtered.jpg), [macOS 1만 작업 native 표본](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/macos/large-xer/result.json)도 보존한다.
 
-![실제 마지막 작업 자동 이동](live-last-task.jpg)
-![실제 전체 일정 맞춤](live-fit.jpg)
+![실제 마지막 작업 자동 이동](https://raw.githubusercontent.com/jhoon-dev/ProjectPlanningManager/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/live-last-task.jpg)
+![실제 전체 일정 맞춤](https://raw.githubusercontent.com/jhoon-dev/ProjectPlanningManager/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/live-fit.jpg)
 
 ## 공개 P6 corpus
 
-[출처·라이선스·리비전·checksum](../../../tests/fixtures/p6-public/README.md), [7개 licensed 표본 행렬](p6-public/matrix.json), [2개 외부 표본 행렬](p6-external/matrix.json)을 보존한다. MPXJ 16.10.0 / JPype 1.6.0으로 원본을 독립 해석했다. 원본 작업 ID·관계 타입/지연·배정/자원 수를 대조하고, JOBS 수용 자료는 계획 기간·유효 주간 달력·독립 exported projection 및 JOBS 계산 날짜 왕복을 확인했다.
+[출처·라이선스·리비전·checksum](../../../tests/fixtures/p6-public/README.md), [7개 licensed 표본 행렬](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/p6-public/matrix.json), [2개 외부 표본 행렬](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/p6-external/matrix.json)을 보존한다. MPXJ 16.10.0 / JPype 1.6.0으로 원본을 독립 해석했다. 원본 작업 ID·관계 타입/지연·배정/자원 수를 대조하고, JOBS 수용 자료는 계획 기간·유효 주간 달력·독립 exported projection 및 JOBS 계산 날짜 왕복을 확인했다.
 
 5개는 가져오기·계산·지원 부분 왕복을 통과했다. 4개는 `ASSIGNMENT_INPUT_INVALID`(다중 단가/역할 배정), `FILE_PRIMAVERAXER_028`(달력), `CURRENCY_UNSUPPORTED`(2개)의 명시적 최초 사유로 거부됐다. 통화 거부 이후의 다른 투영 가능성을 검증했다고 주장하지 않는다. 독립 MPXJ는 9개 모두 읽었다. 실제/잔여 기간과 JOBS 계획 기간의 차이는 행렬에 남겼다. SF/SS/FF/FS·음수 지연·휴일/마일스톤의 기존 golden 독립 검사도 유지한다.
 
@@ -52,7 +54,7 @@ Windows/macOS 각각 100/125/150/200% × 세 창 크기를 검사했다. 검색 
 
 ## 회귀·배포
 
-[최종 CTest](local-ctest.log), [Release 빌드](local-build.log), [clang-format18.1.8 검사](format.json), [아이콘 리소스](native-icons.json)를 보존한다. [전체 76개 생산 TU의 정적 분석](static-analysis/tidy.json), [ASan/UBSan CTest 54개](parser-safety/ctest.log), [실제 파서 instrumentation](parser-safety/instrumentation.json), [퍼징 실행 기록](parser-safety/parser-fuzz/run.json)도 보존한다. native fit probe는 1만 작업의 전체 맞춤, viewport 범위와 revision/dirty 보존을 시간 측정 이후 별도로 검사하며 `.fit.png`도 남긴다.
+[최종 CTest](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/local-ctest.log), [Release 빌드](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/local-build.log), [clang-format18.1.8 검사](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/format.json), [아이콘 리소스](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/native-icons.json)를 보존한다. [전체 76개 생산 TU의 정적 분석](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/static-analysis/tidy.json), [ASan/UBSan CTest 54개](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/parser-safety/ctest.log), [실제 파서 instrumentation](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/parser-safety/instrumentation.json), [퍼징 실행 기록](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/editing-polish-2026-10-30/parser-safety/parser-fuzz/run.json)도 보존한다. native fit probe는 1만 작업의 전체 맞춤, viewport 범위와 revision/dirty 보존을 시간 측정 이후 별도로 검사하며 `.fit.png`도 남긴다.
 
 - [Desktop build and file lifecycle](https://github.com/jhoon-dev/JOBS/actions/runs/41022222221): completed / success
 - [C++ format and static analysis](https://github.com/jhoon-dev/JOBS/actions/runs/41022222229): completed / success

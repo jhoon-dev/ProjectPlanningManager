@@ -1,9 +1,0 @@
-Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-governance
-    Start 66: xml_logical_contract
-1/2 Test #66: xml_logical_contract .............   Passed    5.97 sec
-    Start 67: xml_logical_ui
-2/2 Test #67: xml_logical_ui ...................   Passed    2.61 sec
-
-100% tests passed out of 2
-
-Total Test time (real) =   8.62 sec

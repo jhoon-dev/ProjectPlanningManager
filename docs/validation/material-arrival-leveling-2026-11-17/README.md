@@ -1,5 +1,7 @@
 # 자재 입고 자동 대기 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/material-arrival-leveling-2026-11-17)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-17 Windows/Qt6.8.3 MinGW Release · `build-numbered-summary`. [MAD-01~07 계약](../../material-arrival-leveling.md).
 
 - 영향 범위의 **47개를 모두 통과**했다. 관련 회귀는 46/47, 92.25초였고, 미저장 변경에서만 스냅샷을 만드는 기존 조건에 맞춰 새 복구 테스트 순서를 수정한 뒤 해당 계약 1/1, 6.61초를 통과했다. 제품 코드는 회귀 후 바뀌지 않았다. 전체253개 실행을 의미하지 않는다. 앱 `PPM.exe`/`PPM-Automation.exe`를 갱신 빌드했다.

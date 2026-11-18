@@ -1,9 +1,0 @@
-Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-forecast
-    Start  3: leveling_float_ui
-1/2 Test  #3: leveling_float_ui ................   Passed    5.35 sec
-    Start 44: task_table_model_contract
-2/2 Test #44: task_table_model_contract ........   Passed    0.42 sec
-
-100% tests passed out of 2
-
-Total Test time (real) =   5.80 sec

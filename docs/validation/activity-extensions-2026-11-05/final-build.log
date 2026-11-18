@@ -1,9 +1,0 @@
-[1/9] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\dow\Development\ToolMoa\ProjectPlanningManager\build-decisions && C:\Users\dow\AppData\Roaming\Python\Python314\site-packages\cmake\data\bin\cmake.exe -DSOURCE_DIR=C:/Users/dow/Development/ToolMoa/ProjectPlanningManager -DOUTPUT=C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-decisions/BuildIdentity.h -P C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/scripts/WriteBuildIdentity.cmake"
-[2/9] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/ActivityDialog.cpp.obj
-[3/9] Linking CXX static library libjobs_ui.a
-[4/9] Building CXX object CMakeFiles/jobs_activity_extension_ui_tests.dir/tests/ActivityExtensionUiTests.cpp.obj
-[5/9] Linking CXX executable jobs_progress_policy_adoption_ui_tests.exe
-[6/9] Linking CXX executable PPM.exe
-[7/9] Linking CXX executable jobs_progress_policy_ui_tests.exe
-[8/9] Linking CXX executable jobs_dialog_layout_tests.exe
-[9/9] Linking CXX executable jobs_activity_extension_ui_tests.exe

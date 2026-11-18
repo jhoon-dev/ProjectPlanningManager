@@ -1,5 +1,7 @@
 # 실적 반영 예측의 여유·임계 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/forecast-float-2026-11-02)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-02. GAP-01 및 GAP-02의 native 정책 구체화 증분. [계산·표시 계약](../../forecast-float.md)을 따른다. 이 기록은 로컬 Windows 검증이며 MSP/P6 실행 동등성이나 전체 GAP 완료 기록이 아니다.
 
 ## 구현
@@ -24,16 +26,16 @@
 
 **최종 결과: 65개 CTest 항목 통과.** 첫 전체 실행은 64/65였고, 실패한 `dialog_layout`은 새 예측 임계 KPI 추가로 카드가 12개에서 13개가 된 데 따른 기존 기대값 차이였다. 기대값을 갱신한 뒤 해당 항목을 재빌드·재검사해 통과했다. 최초 전체 실행 224.68초와 재검사 5.62초를 별도 보존하며 전체를 다시 실행했다고 주장하지 않는다.
 
-- [검증 요약·소스 식별](verification.json), [최초 전체 CTest 로그](full-ctest.log), [레이아웃 재검사](layout-retest.log)
-- [clang-format 18.1.8 검사](format.json), [독립 XLSX/PDF 검사](independent-export.json)
+- [검증 요약·소스 식별](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/forecast-float-2026-11-02/verification.json), [최초 전체 CTest 로그](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/forecast-float-2026-11-02/full-ctest.log), [레이아웃 재검사](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/forecast-float-2026-11-02/layout-retest.log)
+- [clang-format 18.1.8 검사](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/forecast-float-2026-11-02/format.json), [독립 XLSX/PDF 검사](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/forecast-float-2026-11-02/independent-export.json)
 - 기존 출력 회귀의 XLSX 5개/PDF 6개도 `verify-report-fixtures.py`로 독립 재검증했다. 새 예측 출력은 숫자 0/8h와 완료 미정·상태를 대조했고 PDF 8페이지에서 레이블·제어문자 부재를 확인했다. PDF 시각 렌더링 검증을 대신하지 않는다.
-- [표·간트 캡처](forecast.png): 완료 A는 미래 여유 `—`, B/C는 `예측 임계`, D는 `8h / 예측 여유`이며 B→C만 미래 임계 driving 선으로 표시된다.
+- [표·간트 캡처](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/forecast-float-2026-11-02/forecast.png): 완료 A는 미래 여유 `—`, B/C는 `예측 임계`, D는 `8h / 예측 여유`이며 B→C만 미래 임계 driving 선으로 표시된다.
 
 제품 소스 SHA-256은 `71591ffd57333e3d6d90e5852284c2632f47f437196a202131d8fa415f9bedf9`다. `src`의 C++/헤더와 CMakeLists를 정렬한 manifest로 계산하며 `build-forecast/BuildIdentity.h`와 현재 파일이 일치함을 확인했다. Git 기준은 `6a1cd0a5115f3400d6cee4e5d5df795f351195ea + dirty`이며 새 커밋/CI 실행은 만들지 않았다.
 
 ## 전후 성능과 날짜 보존
 
-기준 Git revision의 `src`를 `build-forecast-before`에 별도로 추출해 같은 벤치마크 소스로 빌드했다. 원본 작업 디렉터리의 제품 소스를 되돌리거나 수정하지 않았다. Windows 11, MinGW GCC 13.1, Release `-O3 -DNDEBUG`, 논리 CPU 16개 환경에서 전/후 프로세스를 순차 실행했다. 각 프로세스에서 계획 계산을 측정 구간 밖에 한 번 수행하고 예측 계산을 3회 반복했다. [환경·소스 hash·모든 원시 표본](benchmark.json)을 보존한다.
+기준 Git revision의 `src`를 `build-forecast-before`에 별도로 추출해 같은 벤치마크 소스로 빌드했다. 원본 작업 디렉터리의 제품 소스를 되돌리거나 수정하지 않았다. Windows 11, MinGW GCC 13.1, Release `-O3 -DNDEBUG`, 논리 CPU 16개 환경에서 전/후 프로세스를 순차 실행했다. 각 프로세스에서 계획 계산을 측정 구간 밖에 한 번 수행하고 예측 계산을 3회 반복했다. [환경·소스 hash·모든 원시 표본](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/forecast-float-2026-11-02/benchmark.json)을 보존한다.
 
 | 작업 수 | 프로필 | 변경 전 중앙값(ms) | 변경 후 중앙값(ms) | 변경 후 관측 P95(ms) |
 |---|---|---|---|---|

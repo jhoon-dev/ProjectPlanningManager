@@ -1,7 +1,0 @@
-{
-  "status": "PASS",
-  "arithmetic_cases": 25,
-  "calendar_cases": 72,
-  "resource_minutes": 3146,
-  "unchanged": "all fields except reviewed plan periods/metadata and one revision"
-}

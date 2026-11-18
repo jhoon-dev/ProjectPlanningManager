@@ -1,5 +1,7 @@
 # 부분일·무기한 가용기간 검증
 
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/resource-availability-2026-11-16)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
 2026-11-16 Windows/Qt6.8.3 MinGW Release, `build-numbered-summary`. [기능 계약](../../resource-availability.md).
 
 - 관련 회귀 **44/44**,204.21초. 새 가용기간/편집기·Units·세 일정 엔진·기존 자원/재분배 여유·XML 기준선/병합/상세 시간분포·요약·통화/ID·XER 일정 채택·undo/복구·파일·원가/Usage·MPP 가져오기/수동 곡선을 확인했다. 전체 프로젝트 CTest의 영향 범위 부분집합이다.

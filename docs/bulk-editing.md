@@ -41,7 +41,7 @@ worker는 여전히 큰 Project 사본을 만들고 dirty와 InputDelta를 비�
 
 최종 제품 코드 `7cddc7a`와 측정/비교 도구 `19c5599`의 [CI 실행 40622311402](https://github.com/jhoon-dev/JOBS/actions/runs/40622311402)은 Windows/MSVC·macOS 각각 **40/40** 테스트와 네이티브 구조/모델/비동기/증분 보기 검사, XLSX 5·PDF 6·Project XML·XER TSV/MPXJ 독립 판독을 통과했다. CTest는 Windows 81.16초, macOS 66.25초였다. 로컬 MinGW 최종 제품도 40/40(133.52초), 네이티브 구조 검사와 독립 reader를 통과했다.
 
-[원시 증거](validation/bulk-editing-2026-10-28/verification.json)에는 CI 정보, OS별 전체 성능 JSON/log와 비교본, 네이티브 PNG, 로컬 관측/CTest/독립 reader 로그를 보존한다. 1천/1만 기본·공수 일정 네 사례의 전체 결과 SHA-256은 두 OS 모두 이전 golden과 일치했다(8건). 각 OS의 4개 기본 보기 사례에서 8개 명령/undo를 실행한 결과, 구조 변경/undo의 reset 합계는 **24→0회**였고, 붙여넣기/undo는 전후 모두 reset 0회였다. 불연속/정렬 보기의 의도한 reset은 별도 UI 테스트로 검사했다.
+[원시 증거](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/bulk-editing-2026-10-28/verification.json)에는 CI 정보, OS별 전체 성능 JSON/log와 비교본, 네이티브 PNG, 로컬 관측/CTest/독립 reader 로그를 보존한다. 1천/1만 기본·공수 일정 네 사례의 전체 결과 SHA-256은 두 OS 모두 이전 golden과 일치했다(8건). 각 OS의 4개 기본 보기 사례에서 8개 명령/undo를 실행한 결과, 구조 변경/undo의 reset 합계는 **24→0회**였고, 붙여넣기/undo는 전후 모두 reset 0회였다. 불연속/정렬 보기의 의도한 reset은 별도 UI 테스트로 검사했다.
 
 다음은 공수 역산이 없는 기본 FS 기간 계획에서 1만 작업·기준선 3개 중 1,000개 작업을 변경한 **단일 전후 표본(ms)**이다. 명령 반환과 완료까지의 시간을 구분한다. 초기 준비 및 OS 표시 완료/FPS를 포함하지 않는다.
 
@@ -65,7 +65,7 @@ worker는 여전히 큰 Project 사본을 만들고 dirty와 InputDelta를 비�
 
 명령 반환과 reset 비용이 줄어도 전체 완료 시간이 모든 경우 줄지는 않았다. 증가한 작업과 정도는 전후 표와 원시 JSON의 `settled_ms`를 함께 확인한다. worker의 사본/표시 자료 준비와 완료 이벤트·레이아웃 비용이 남는다. 원시 JSON의 모든 작업/undo 결과를 함께 보존하며, 일부 빠른 표본을 보편적인 응답 시간 보장으로 일반화하지 않는다.
 
-네이티브 구조 편집 화면: [Windows](validation/bulk-editing-2026-10-28/Windows/bulk-editing-native.png), [macOS](validation/bulk-editing-2026-10-28/macOS/bulk-editing-native.png).
+네이티브 구조 편집 화면: [Windows](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/bulk-editing-2026-10-28/Windows/bulk-editing-native.png), [macOS](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/bulk-editing-2026-10-28/macOS/bulk-editing-native.png).
 
 
 후속 VIEWBULK-01~04는 [필터·정렬·WBS 보기 투영](projected-task-views.md)으로 확장한다. 위 기록의 당시 fallback/시간은 보존하며, 해당 보기의 worker 준비·생존 ID 갱신·구간 예산과 최신 검증은 후속 문서를 따른다.

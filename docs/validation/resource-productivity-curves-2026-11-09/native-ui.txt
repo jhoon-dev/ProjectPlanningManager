@@ -1,1 +1,0 @@
-PASS resource planning UI: resource productivity definition, quantity/work preview, confirmation/invalidation, named/custom curves, cancel/stale/role/readonly, menu and default/800x600 screens

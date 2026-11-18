@@ -1,6 +1,6 @@
 # 실제 P6 왕복 실행과 준비 자료
 
-2026-11-15 외부 XML 기준선의 실제 MS Project/P6 왕복도 요청받아 실행 환경을 다시 조사했다. 두 제품을 찾지 못했고 사용자가 제품 실행 환경이 없음을 확인했다. 이번 기준선 왕복 역시 미실행이며 [실행 상태와 준비 XML](validation/xml-baseline-exchange-2026-11-15/product-execution-status.json)을 보존한다.
+2026-11-15 외부 XML 기준선의 실제 MS Project/P6 왕복도 요청받아 실행 환경을 다시 조사했다. 두 제품을 찾지 못했고 사용자가 제품 실행 환경이 없음을 확인했다. 이번 기준선 왕복 역시 미실행이며 [실행 상태와 준비 XML](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/xml-baseline-exchange-2026-11-15/product-execution-status.json)을 보존한다.
 
 2026-11-03 사용자가 실제 P6 왕복을 요청했고, 이어 P6가 설치되어 있지 않다고 확인했다. 표준 설치/등록·실행 앱 조사에서도 P6를 찾지 못했다. **실제 P6 실행·왕복은 미실행**이다. 아래 준비 파일·native 재열기·MPXJ·비교기 자체검사는 이를 대신하지 않는다.
 
@@ -30,4 +30,4 @@ Oracle [Schedule Options](https://docs.oracle.com/cd/G48902_01/client_help/en_US
 
 ## 이번 요청의 산출물
 
-[준비한 계획 XER](validation/progress-policy-2026-11-03/p6-kit/plan-input.xer), [기대값/해시](validation/progress-policy-2026-11-03/p6-kit/expected-plan.json), [native 실적 파일](validation/progress-policy-2026-11-03/p6-kit/progress-native.ppm), [native A/B 결과](validation/progress-policy-2026-11-03/p6-kit/expected-native-comparison.json)를 보존한다. [상태/검증 기록](validation/progress-policy-2026-11-03/README.md)에는 P6 실제 미실행과 MPXJ strict 읽기·비교기 자체시험 6개를 구분해 기록했다.
+[준비한 계획 XER](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-policy-2026-11-03/p6-kit/plan-input.xer), [기대값/해시](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-policy-2026-11-03/p6-kit/expected-plan.json), [native 실적 파일](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-policy-2026-11-03/p6-kit/progress-native.ppm), [native A/B 결과](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-policy-2026-11-03/p6-kit/expected-native-comparison.json)를 보존한다. [상태/검증 기록](validation/progress-policy-2026-11-03/README.md)에는 P6 실제 미실행과 MPXJ strict 읽기·비교기 자체시험 6개를 구분해 기록했다.

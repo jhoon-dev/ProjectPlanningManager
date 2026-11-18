@@ -1,12 +1,14 @@
 # 진척 정책+평준화 검증
 
-[기능·저장 계약](../../progress-policy-leveling.md)을 Windows / Qt 6.8.3 / MinGW GCC 13.1 Release에서 검증한다. 최종 src C++/헤더+CMake 200개 파일의 식별값은 `7a4646677ba514ead48c2a53b92ec0eb8f92cc91dc69385f9d956803091177cf`다. [전체 목록](source-manifest.txt)과 [테스트·스크립트/빌드 식별값](source-identity.json)을 보존한다.
+> 당시 원시 자료·화면·로그는 [고정 원본](https://github.com/jhoon-dev/ProjectPlanningManager/tree/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-leveling-2026-11-03)에 보존되어 있습니다. 새 실행 결과는 CI 산출물로 보관합니다.
+
+[기능·저장 계약](../../progress-policy-leveling.md)을 Windows / Qt 6.8.3 / MinGW GCC 13.1 Release에서 검증한다. 최종 src C++/헤더+CMake 200개 파일의 식별값은 `7a4646677ba514ead48c2a53b92ec0eb8f92cc91dc69385f9d956803091177cf`다. [전체 목록](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-leveling-2026-11-03/source-manifest.txt)과 [테스트·스크립트/빌드 식별값](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-leveling-2026-11-03/source-identity.json)을 보존한다.
 
 ## 최종 결과
 
-- [전체 CTest 85/85 통과](ctest-windows-release.log), 271.90초. [개별 시험 상세](ctest-details.log).
-- schema1..14의 파서 seed 114개 통과, [clang-format 18.1.8 검사](format-gate.json) 136개 파일 통과.
-- [새 조합 독립 판독](independent-reader.json)과 기존 native/XML/XER/XLSX/PDF 판독 기록을 보존한다. P6 자체시험은 실제 P6 실행과 구분한다.
+- [전체 CTest 85/85 통과](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-leveling-2026-11-03/ctest-windows-release.log), 271.90초. [개별 시험 상세](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-leveling-2026-11-03/ctest-details.log).
+- schema1..14의 파서 seed 114개 통과, [clang-format 18.1.8 검사](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-leveling-2026-11-03/format-gate.json) 136개 파일 통과.
+- [새 조합 독립 판독](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-leveling-2026-11-03/independent-reader.json)과 기존 native/XML/XER/XLSX/PDF 판독 기록을 보존한다. P6 자체시험은 실제 P6 실행과 구분한다.
 
 ## 검증 연결
 
@@ -33,8 +35,8 @@
 실제 P6 재계산 왕복은 미설치로 미실행이다. P6 비교기 자체시험과 MPXJ 계획 읽기는 실제 P6 실행의 증거가 아니다. 새 ASan/UBSan·coverage fuzz·패키징/설치/서명·원격 CI·macOS/Linux 실행은 이 기록의 범위에 포함하지 않는다. 이전 증분의 검증 폴더는 수정하지 않는다.
 
 
-[조합 native 원본](combined.ppm) · [일반 보고서 XLSX](schedule.xlsx)/[PDF](schedule.pdf) · [Usage XLSX](usage.xlsx)/[PDF](usage.pdf) · [일정 인쇄 PDF](print.pdf)
+[조합 native 원본](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-leveling-2026-11-03/combined.ppm) · [일반 보고서 XLSX](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-leveling-2026-11-03/schedule.xlsx)/[PDF](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-leveling-2026-11-03/schedule.pdf) · [Usage XLSX](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-leveling-2026-11-03/usage.xlsx)/[PDF](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-leveling-2026-11-03/usage.pdf) · [일정 인쇄 PDF](https://github.com/jhoon-dev/ProjectPlanningManager/blob/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-leveling-2026-11-03/print.pdf)
 
-![조합 평준화 비교](comparison.png)
+![조합 평준화 비교](https://raw.githubusercontent.com/jhoon-dev/ProjectPlanningManager/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-leveling-2026-11-03/comparison.png)
 
-![조합 표·간트](schedule.png)
+![조합 표·간트](https://raw.githubusercontent.com/jhoon-dev/ProjectPlanningManager/77bb5a1cead1cb2c47f36e57b00d478746f32434/docs/validation/progress-leveling-2026-11-03/schedule.png)

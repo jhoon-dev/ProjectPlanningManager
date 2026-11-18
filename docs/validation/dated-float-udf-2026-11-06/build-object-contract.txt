@@ -1,2 +1,0 @@
-[1/2] Building CXX object CMakeFiles/jobs_object_fields_tests.dir/tests/ObjectFieldsTests.cpp.obj
-[2/2] Linking CXX executable jobs_object_fields_tests.exe

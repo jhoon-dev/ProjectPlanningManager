@@ -1,7 +1,0 @@
-{
-  "status": "PASS",
-  "comparisons": 4111,
-  "rounding_cases": 15,
-  "scope": "OLE negative/carry/integer binding; whole-second clock extraction. Native microseconds and ISO date validation are independently checked in Python.",
-  "external_product_run": false
-}

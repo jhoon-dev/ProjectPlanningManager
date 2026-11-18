@@ -1,1 +1,0 @@
-PASS: XER aggregate correction audit/schema26, exact weighted days and residuals, immutable source/native corrections, no double counting, AC-only/withdrawal, cancellation/stale/read-only, save/copy/recovery, XER and native editor preview

@@ -46,7 +46,7 @@ jobs::SchedulePrintSource source(jobs::Document &doc) {
     return s;
 }
 void openFixture(jobs::Document &doc, const QTemporaryDir &folder) {
-    const auto input = QFINDTESTDATA("../docs/validation/outcome-summary-2026-11-17/review.ppm");
+    const auto input = QFINDTESTDATA("fixtures/native-history/outcome-summary-2026-11-17/review.ppm");
     QVERIFY(!input.isEmpty());
     QVERIFY(QFile::copy(input, folder.filePath("review.ppm")));
     doc.open(folder.filePath("review.ppm").toStdString());
