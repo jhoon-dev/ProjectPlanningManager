@@ -5,6 +5,7 @@
 #include "persistence/ProjectJson.h"
 #include "reporting/SchedulePrint.h"
 #include "reporting/NetworkPrint.h"
+#include "reporting/PrintFont.h"
 #include <QGuiApplication>
 #include <QDir>
 #include <QFile>
@@ -177,7 +178,7 @@ void run() {
     check(exportSchedulePdf(layout, out + "/schedule.pdf") == int(layout.pages.size()), "schedule export");
     QPicture picture;
     QPainter painter(&picture);
-    painter.setFont(QGuiApplication::font());
+    painter.setFont(printFont(QGuiApplication::font()));
     painter.fillRect(QRectF(0, 0, 300, 150), QColor("#d0efff"));
     painter.drawText(QRectF(10, 20, 280, 50), "기초 설계 · TA");
     painter.drawLine(300, 75, 2800, 75);

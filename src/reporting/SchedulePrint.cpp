@@ -1,12 +1,11 @@
 #include "reporting/SchedulePrint.h"
 #include "reporting/SchedulePrintExtras.h"
 #include "reporting/ExportFile.h"
+#include "reporting/PrintFont.h"
 #include "calculation/Effort.h"
 #include "calculation/WorkCalendar.h"
 #include "calculation/Tracking.h"
 #include "formatting/DiagnosticText.h"
-#include <QFontDatabase>
-#include <QFontInfo>
 #include <QFontMetricsF>
 #include <QPainter>
 #include <QPdfWriter>
@@ -117,25 +116,7 @@ SchedulePrintLayout buildSchedulePrint(const SchedulePrintSource &source, const 
     out.options = options;
     out.options.page.setMode(QPageLayout::StandardMode);
     out.content = out.options.page.paintRect(QPageLayout::Point);
-    out.font = options.font;
-#ifdef Q_OS_MACOS
-    const auto resolvedFamily = QFontInfo(out.font).family();
-    if (out.font.family().isEmpty() || out.font.family().startsWith('.') || resolvedFamily.startsWith('.') ||
-        QFontDatabase::isPrivateFamily(resolvedFamily) ||
-        out.font.family() == QFontDatabase::systemFont(QFontDatabase::GeneralFont).family()) {
-        const auto families = QFontDatabase::families();
-        bool found = false;
-        for (const auto &name : QStringList{"Apple SD Gothic Neo", "Arial", "Helvetica", "Noto Sans"})
-            if (families.contains(name)) {
-                out.font.setFamily(name);
-                out.font.setStyleName({});
-                found = true;
-                break;
-            }
-        if (!found)
-            fail("인쇄용 공개 글꼴을 찾지 못했습니다.");
-    }
-#endif
+    out.font = printFont(options.font);
     out.font.setPixelSize(options.fontPoints);
     out.lineHeight = std::ceil(QFontMetricsF(out.font).height()) + 2;
     out.bodyTop = out.content.top() + (options.meetingSummary ? 136 : 96);

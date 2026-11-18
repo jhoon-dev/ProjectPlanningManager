@@ -1,4 +1,5 @@
 #include "ui/NetworkDialog.h"
+#include "reporting/PrintFont.h"
 #include <QTimer>
 #include <QGraphicsSceneMouseEvent>
 #include "formatting/QtDiagnosticText.h"
@@ -149,7 +150,7 @@ public:
         p->setPen(QPen(border, isSelected() ? 3 : focus_ ? 2 : 1, placed_.inTable ? Qt::SolidLine : Qt::DashLine));
         p->setBrush(fill);
         p->drawRoundedRect(QRectF(0, 0, cardWidth, cardHeight), 6, 6);
-        auto font = QApplication::font();
+        auto font = printFont(QApplication::font());
         font.setPointSize(10);
         font.setBold(true);
         p->setFont(font);
@@ -488,6 +489,9 @@ NetworkDialog::NetworkDialog(Document &doc, std::string initialFocus, ScopeProvi
     refresh();
 }
 NetworkDialog::~NetworkDialog() {
+    // QWidget deletes scene items after our members have been destroyed;
+    // deleting a selected item can synchronously emit selectionChanged.
+    disconnect(scene_, nullptr, this, nullptr);
     if (control_)
         control_->cancel();
     document_.unsubscribe(listener_);
@@ -731,7 +735,7 @@ void NetworkDialog::render() {
         arrow->setToolTip(tooltip(tip));
         if (window_.edges.size() <= 120 || edge.driving == NetworkDriving::Yes ||
             graph_->nodes[edge.from].id == focus_ || graph_->nodes[edge.to].id == focus_) {
-            auto font = QApplication::font();
+            auto font = printFont(QApplication::font());
             font.setPointSize(8);
             auto *text = scene_->addSimpleText(lag(edge), font);
             text->setData(1, "networkEdgeLabel");

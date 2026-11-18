@@ -1,14 +1,13 @@
 #include "formatting/QtDiagnosticText.h"
 #include "reporting/ReportExport.h"
 #include "reporting/ExportFile.h"
+#include "reporting/PrintFont.h"
 #include <QPdfWriter>
 #include <QPainter>
 #include <QPageSize>
 #include <QTextLayout>
 #include <QTextOption>
 #include <QFontMetricsF>
-#include <QFontDatabase>
-#include <QFontInfo>
 #include <memory>
 #include <algorithm>
 #include <cmath>
@@ -223,28 +222,7 @@ int exportPdf(const ProjectReport &r, const QString &path, ReportFamily family, 
         QPainter painter(&writer);
         if (!painter.isActive())
             throw AppError(ErrorCode::PDFEXPORT_010, {});
-        auto font = options.font;
-#ifdef Q_OS_MACOS
-        // CoreText's private UI fonts can emit a broken PDF ToUnicode map
-        // (spaces/colons become controls). Resolve aliases as well as explicit
-        // private family names, and prefer a public face with Korean glyphs.
-        const auto resolvedFamily = QFontInfo(font).family();
-        if (font.family().isEmpty() || font.family().startsWith('.') || resolvedFamily.startsWith('.') ||
-            QFontDatabase::isPrivateFamily(resolvedFamily) ||
-            font.family() == QFontDatabase::systemFont(QFontDatabase::GeneralFont).family()) {
-            const auto families = QFontDatabase::families();
-            bool found = false;
-            for (const auto &family : QStringList{"Apple SD Gothic Neo", "Arial", "Helvetica", "Noto Sans"})
-                if (families.contains(family)) {
-                    font.setFamily(family);
-                    font.setStyleName({});
-                    found = true;
-                    break;
-                }
-            if (!found)
-                throw AppError(ErrorCode::PDFEXPORT_011, {});
-        }
-#endif
+        auto font = printFont(options.font);
         font.setPointSize(options.fontPoints);
         painter.setFont(font);
         Pages renderer(writer, painter, r, font);

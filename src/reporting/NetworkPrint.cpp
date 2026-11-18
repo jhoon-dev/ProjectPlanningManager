@@ -1,5 +1,6 @@
 #include "reporting/NetworkPrint.h"
 #include "reporting/ExportFile.h"
+#include "reporting/PrintFont.h"
 #include <QPainter>
 #include <QPdfWriter>
 #include <cmath>
@@ -33,7 +34,7 @@ NetworkPrintLayout buildNetworkPrint(QPicture picture, const QRectF &bounds, con
         const int maxLines = std::max(1, int(body.height() / 12));
         QStringList current;
         qsizetype chars = 0;
-        QFont font;
+        auto font = printFont(QFont{});
         font.setPixelSize(8);
         for (const auto &text : details) {
             chars += text.size();
@@ -74,7 +75,7 @@ void paintNetworkPage(QPainter &p, const NetworkPrintLayout &l, int page) {
     const auto content = l.page.paintRect(QPageLayout::Point), body = content.adjusted(0, 65, 0, -35);
     p.save();
     p.setPen(Qt::black);
-    QFont f = p.font();
+    auto f = printFont(p.font());
     f.setPixelSize(10);
     p.setFont(f);
     p.drawText(QRectF(content.left(), content.top(), content.width(), 18), l.title);
