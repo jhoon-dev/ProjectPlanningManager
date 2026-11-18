@@ -142,7 +142,11 @@ std::vector<const Node *> list(const Node &n, const QString &wrapper, const QStr
             c.used = true;
             out.push_back(&c);
         }
-    if (out.size() > 10000)
+    // The writer emits one UID=0 project summary in addition to the 10,000 native rows.
+    const bool projectSummary =
+        wrapper == "Tasks" && item == "Task" && out.size() == 10001 &&
+        std::count_if(out.begin(), out.end(), [](const auto *row) { return field(*row, "UID").trimmed() == "0"; }) == 1;
+    if (out.size() > 10000 && !projectSummary)
         throw AppError(ErrorCode::FILE_PROJECTXML_011, {diagnosticArgument(w->path)});
     return out;
 }

@@ -326,10 +326,11 @@ void ui() {
         if (!file->property("inventoryFileSelected").toBool()) {
             file->setOption(QFileDialog::DontConfirmOverwrite);
             file->setDirectory(dir);
-            file->selectFile("point." + pendingExtension);
             file->setProperty("inventoryFileSelected", true);
             return;
         }
+        // Filesystem model initialization can clear an early selection on macOS.
+        file->selectFile("point." + pendingExtension);
         QMetaObject::invokeMethod(file, "accept", Qt::DirectConnection);
     });
     fileTimer.start();

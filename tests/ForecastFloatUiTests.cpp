@@ -91,7 +91,8 @@ int main(int argc, char **argv) {
                 ++criticalLabels;
             if (item->data(1) == "dependency") {
                 auto *path = dynamic_cast<QGraphicsPathItem *>(item);
-                if (path && path->pen().color() == QColor("#e46c63"))
+                if (path && path->pen().color() ==
+                                jobs::ganttCriticalColor(gantt->palette().color(QPalette::Base).lightness() < 128))
                     ++driving;
             }
         }

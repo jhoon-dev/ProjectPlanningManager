@@ -225,15 +225,18 @@ void MainWindow::refreshClassificationGroups(const TaskViewProjection &projectio
     taskGroups_ = projection.groups;
     const QSignalBlocker blocker(wbsTree_);
     const bool wasGroup = wbsTree_->currentItem() && wbsTree_->currentItem()->data(0, Qt::UserRole + 3).toBool();
-    QTreeWidgetItem *old = nullptr, *anchor = nullptr;
+    QTreeWidgetItem *old = nullptr;
     for (QTreeWidgetItemIterator it(wbsTree_); *it; ++it) {
         if ((*it)->data(0, Qt::UserRole + 4).toBool())
             old = *it;
-        if (!(*it)->data(0, Qt::UserRole + 3).toBool() && str((*it)->data(0, Qt::UserRole).toString()) == selectedWbs_)
-            anchor = *it;
     }
     if (old)
         delete old;
+    // Resolve the anchor only after deleting the previous grouping subtree.
+    QTreeWidgetItem *anchor = nullptr;
+    for (QTreeWidgetItemIterator it(wbsTree_); *it; ++it)
+        if (!(*it)->data(0, Qt::UserRole + 3).toBool() && str((*it)->data(0, Qt::UserRole).toString()) == selectedWbs_)
+            anchor = *it;
     if (!anchor)
         anchor = wbsTree_->topLevelItem(0);
     if (!anchor)

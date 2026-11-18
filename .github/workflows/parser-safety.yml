@@ -21,6 +21,17 @@ jobs:
           version: '6.8.3'
           arch: linux_gcc_64
           cache: true
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21.0.11+10'
+      - name: Cache locked MPP reader inputs
+        uses: actions/cache@v4
+        with:
+          path: .cache/mpp-reader-inputs
+          key: mpp-reader-inputs-${{ hashFiles('packaging/mpp-reader/engine-lock.json') }}
+      - name: Prepare offline MPP reader before build and tests
+        run: python scripts/prepare-ci-mpp-reader.py --output build-sanitized/mpp-reader
       - name: Record toolchain
         run: |
           mkdir -p build-sanitized

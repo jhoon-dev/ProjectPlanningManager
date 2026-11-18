@@ -146,9 +146,9 @@ struct EditCommand : EditCommandValue {
         : EditCommandValue(type, std::forward<Args>(args)...) {}
     EditCommand();
     EditCommand(const EditCommand &);
-    EditCommand(EditCommand &&) noexcept;
+    EditCommand(EditCommand &&) noexcept(std::is_nothrow_move_constructible_v<EditCommandValue>);
     EditCommand &operator=(const EditCommand &);
-    EditCommand &operator=(EditCommand &&) noexcept;
+    EditCommand &operator=(EditCommand &&) noexcept(std::is_nothrow_move_assignable_v<EditCommandValue>);
     ~EditCommand();
 };
 enum class EditState { Ready, Applied, NoChange, Cancelled, Stale, Failed };

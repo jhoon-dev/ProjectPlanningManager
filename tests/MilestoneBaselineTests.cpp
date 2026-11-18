@@ -207,7 +207,7 @@ void deleted(jobs::JsonProjectStore &store, jobs::TaskType type, bool nominal) {
     for (int i = 0; i < table->rowCount(); ++i)
         if (table->item(i, 0)->text() == "Removed")
             table->setCurrentCell(i, 0);
-    check(dialog.findChild<QPlainTextEdit *>("comparisonDetails")->toPlainText().contains("16.00h"),
+    check(dialog.findChild<QPlainTextEdit *>("comparisonDetails")->toPlainText().contains("계획 기간: 2d → —"),
           "deleted effort UI shows nominal/unknown duration instead of sixteen hours");
     dialog.hide();
 }

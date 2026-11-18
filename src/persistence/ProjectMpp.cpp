@@ -42,14 +42,23 @@ struct Runtime {
 };
 Runtime runtime(const MppReaderOptions &options) {
     Runtime out;
-    out.root = QFileInfo(options.runtimeDirectory.isEmpty()
+    auto directory = options.runtimeDirectory;
+    if (directory.isEmpty()) {
+        const QDir app(QCoreApplication::applicationDirPath());
+        const QStringList candidates{
 #ifdef Q_OS_MACOS
-                             ? QDir(QCoreApplication::applicationDirPath()).filePath("../Resources/mpp-reader")
-#else
-                             ? QDir(QCoreApplication::applicationDirPath()).filePath("mpp-reader")
+            app.filePath("../Resources/mpp-reader"),
 #endif
-                             : options.runtimeDirectory)
-                   .canonicalFilePath();
+            app.filePath("mpp-reader"),
+            app.filePath("../mpp-reader"), // Multi-configuration development executables (e.g. build/Release).
+        };
+        for (const auto &candidate : candidates)
+            if (QFileInfo::exists(QDir(candidate).filePath("manifest.json"))) {
+                directory = candidate;
+                break;
+            }
+    }
+    out.root = directory.isEmpty() ? QString{} : QFileInfo(directory).canonicalFilePath();
     if (out.root.isEmpty())
         bad("MPP reader 구성 요소가 없습니다. mpp-reader가 포함된 앱 배포본을 사용하세요.");
     const auto bytes = read(QDir(out.root).filePath("manifest.json"), 1024 * 1024);

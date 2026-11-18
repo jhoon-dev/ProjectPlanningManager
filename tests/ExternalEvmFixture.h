@@ -18,7 +18,8 @@ inline Project make(JsonProjectStore &store, const std::string &path) {
     store.save(path, p, {});
     Document d(store);
     d.open(path);
-    for (auto r : d.project()->resources) {
+    const auto resources = d.project()->resources;
+    for (auto r : resources) {
         r.rates = {{"2026-01-01", 0}};
         d.putResource(r);
     }

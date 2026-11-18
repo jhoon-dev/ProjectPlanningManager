@@ -12,8 +12,6 @@ struct XmlResourceLoadValue {
 struct XmlScheduleValues {
     std::function<XmlResourceLoadValue(const std::string &, const std::string &, bool)> resourceLoad;
     std::string resourceLoadIssue;
-    bool resourceLoadMissing = true;
-    bool externalBaseline = false;
     std::map<std::string, XmlBaselineRow> externalBaselineRows;
     std::shared_ptr<const PlanInput> baselineDurationCalendar;
     std::optional<std::string> actualStatusAt;
@@ -24,7 +22,6 @@ struct XmlScheduleValues {
     std::optional<std::string> earlyStart, earlyFinish, lateStart, lateFinish;
     std::set<std::string> earlyLateCompleted;
     std::string earlyLateIssue, lateIssue;
-    bool lateMissing = true;
     std::map<std::string, std::pair<std::string, std::string>> baselineTasks;
     std::optional<std::string> baselineStart, baselineFinish;
     std::map<std::string, std::int64_t> baselineDurations, baselineTaskWork, baselineResourceWork;
@@ -36,7 +33,6 @@ struct XmlScheduleValues {
     std::optional<std::int64_t> baselineCost;
     std::string baselineCostIssue;
     std::string baselineCaption, baselineIssue;
-    bool baselineMissing = false;
     std::map<std::string, std::pair<std::string, std::string>> tasks;
     std::optional<std::string> start, finish;
     std::map<std::string, std::pair<std::optional<std::string>, std::optional<std::string>>> actualTasks;
@@ -46,13 +42,17 @@ struct XmlScheduleValues {
     std::optional<std::int64_t> actualWork;
     std::string actualWorkIssue;
     std::string actualCaption, actualIssue;
-    bool actualMissing = false;
     std::map<std::string, std::int64_t> remainingDurations, remainingTaskWork, remainingResourceWork;
     std::map<std::pair<std::string, std::string>, std::int64_t> remainingAssignmentWork;
     std::optional<std::int64_t> remainingWork;
     std::string remainingCaption, remainingIssue;
-    bool remainingMissing = false;
     std::string cacheKey, caption, issue;
+    bool resourceLoadMissing = true;
+    bool externalBaseline = false;
+    bool lateMissing = true;
+    bool baselineMissing = false;
+    bool actualMissing = false;
+    bool remainingMissing = false;
     bool missing = false;
 };
 class XmlScheduleScope {

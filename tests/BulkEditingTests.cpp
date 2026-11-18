@@ -255,9 +255,10 @@ int main(int argc, char **argv) {
         check(inserts == 2 && survivor.row() == 502, "structural redo reset");
         action("undoEdit");
         table->setCurrentCell(0, 0);
-        QApplication::clipboard()->setText("Pasted A\t2\t\nPasted B\t3\t");
+        QApplication::clipboard()->setText("Pasted A\t2h\t\nPasted B\t3h\t");
         action("pasteTaskCells");
-        check(resets == 0 && survivor.isValid() && cellText(table, 0, 0) == "Pasted A" && cellText(table, 1, 1) == "3",
+        check(resets == 0 && survivor.isValid() && cellText(table, 0, 0) == "Pasted A" &&
+                  cellText(table, 1, 1) == "0.375d",
               "same order paste reset/stale data");
         action("undoEdit");
         table->clearSelection();

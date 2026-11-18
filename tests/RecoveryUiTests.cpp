@@ -230,7 +230,7 @@ int main(int argc, char *argv[]) {
         QTest::qWait(20);
         editor = table->findChild<QLineEdit *>();
         check(editor, "duration editor missing");
-        editor->setText("16");
+        editor->setText("16h");
         bool calculated = false;
         for (auto *action : window.findChildren<QAction *>())
             if (action->shortcut() == QKeySequence(Qt::Key_F9)) {

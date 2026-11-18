@@ -10,6 +10,7 @@
 #include <QDir>
 #include <QElapsedTimer>
 #include <QFile>
+#include <QFileInfo>
 #include <QFileDialog>
 #include <QFontDatabase>
 #include <QFutureWatcher>
@@ -85,14 +86,25 @@ void workflow() {
     const auto buttonPath = QDir::current().absoluteFilePath("usage-qa/button-usage.xlsx");
     QFile::remove(buttonPath);
     bool choseFile = false;
-    QTimer::singleShot(30, [&] {
+    QTimer fileTimer;
+    fileTimer.setInterval(30);
+    QObject::connect(&fileTimer, &QTimer::timeout, [&] {
         if (auto *file = qobject_cast<QFileDialog *>(QApplication::activeModalWidget())) {
-            file->selectFile(buttonPath);
+            if (!file->isVisible())
+                return;
+            if (!file->property("usageTestDirectory").toBool()) {
+                file->setDirectory(QFileInfo(buttonPath).absolutePath());
+                file->setProperty("usageTestDirectory", true);
+                return;
+            }
+            file->selectFile(QFileInfo(buttonPath).fileName());
             choseFile = true;
             static_cast<QDialog *>(file)->accept();
         }
     });
+    fileTimer.start();
     dialog.findChild<QPushButton *>("exportUsageXlsx")->click();
+    fileTimer.stop();
     check(choseFile, "Usage export action did not open file selector");
     until([&] { return QFile::exists(buttonPath) && dialog.findChild<QPushButton *>("exportUsageXlsx")->isEnabled(); },
           "Usage export worker did not publish XLSX");

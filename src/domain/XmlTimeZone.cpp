@@ -88,7 +88,8 @@ struct Data {
     std::vector<Pattern> patterns;
     std::map<std::string, std::size_t> zones;
     Data() {
-        constexpr std::string_view lines[] = {
+        // Avoid evaluating strlen over the entire generated database at compile time.
+        static const std::string_view lines[] = {
 #include "../../resources/timezones/tzdb-2026f.inc"
         };
         for (const auto &line : lines) {

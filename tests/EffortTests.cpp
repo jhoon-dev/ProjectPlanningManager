@@ -339,10 +339,12 @@ int main(int argc, char **argv) {
         options.reportId = "effort";
         options.generatedAt = "2026-10-26T09:00:00Z";
         auto report = jobs::buildReport(*doc.project(), options);
-        bool found = false;
-        for (const auto &t : report.tables)
-            found = found || t.id == "executionWork";
-        check(found && report.tables.size() == 19, "work report missing new tables");
+        // Reports can gain additional tables without losing the effort contract.
+        for (const auto *id :
+             {"executionWork", "effort", "taskBreaks", "resourceCalendars", "schedule", "source", "diagnostics"})
+            check(std::any_of(report.tables.begin(), report.tables.end(),
+                              [id](const auto &table) { return table.id == id; }),
+                  "work report missing required table");
         jobs::Document drag(store);
         drag.create("공수 드래그", "2026-10-26", {"A"});
         const auto dragId = drag.project()->tasks[0].id;

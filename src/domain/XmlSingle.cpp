@@ -42,7 +42,10 @@ std::int64_t xmlSingleNumber(std::int64_t scaled) {
             invalid();
         result <<= bits;
     } else {
-        const auto divisor = 1ULL << (23 - exponent);
+        const auto bits = 23U - static_cast<unsigned>(exponent);
+        if (bits >= 64)
+            throw AppError(ErrorCode::FORMULA_INVALID, {"CSng의 단정밀도 지수가 native 수치 범위를 초과합니다."});
+        const auto divisor = 1ULL << bits;
         const auto fraction = result % divisor;
         result /= divisor;
         if (fraction >= divisor / 2)

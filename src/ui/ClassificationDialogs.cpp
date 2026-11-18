@@ -23,6 +23,7 @@
 #include <QSignalBlocker>
 #include <QStandardItemModel>
 #include <QSpinBox>
+#include <unordered_set>
 #include <QTableWidget>
 #include <QTreeWidget>
 #include <QVBoxLayout>
@@ -76,11 +77,13 @@ void fillValue(QComboBox &combo, const PlanInput &p, const std::string &key, con
         for (const auto &[id, name] : labels.at(key))
             values.push_back({id, name});
         std::sort(values.begin(), values.end(), [](const auto &a, const auto &b) { return a.second < b.second; });
+        std::unordered_set<std::string> parentIds;
+        if (field && field->xmlLookup && field->xmlLookup->leafOnly)
+            for (const auto &entry : field->xmlLookup->values)
+                parentIds.insert(entry.parentId);
         for (const auto &[id, name] : values) {
             combo.addItem(qs(name), qs(id));
-            if (field && field->xmlLookup && field->xmlLookup->leafOnly &&
-                std::any_of(field->xmlLookup->values.begin(), field->xmlLookup->values.end(),
-                            [&](const auto &v) { return v.parentId == id; }))
+            if (parentIds.contains(id))
                 qobject_cast<QStandardItemModel *>(combo.model())->item(combo.count() - 1)->setEnabled(false);
         }
         if (value) {

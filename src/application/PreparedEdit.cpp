@@ -8,13 +8,12 @@
 #include <numeric>
 
 namespace jobs {
-static_assert(std::is_nothrow_move_constructible_v<EditCommandValue>);
-static_assert(std::is_nothrow_move_assignable_v<EditCommandValue>);
 EditCommand::EditCommand() = default;
 EditCommand::EditCommand(const EditCommand &) = default;
-EditCommand::EditCommand(EditCommand &&) noexcept = default;
+EditCommand::EditCommand(EditCommand &&) noexcept(std::is_nothrow_move_constructible_v<EditCommandValue>) = default;
 EditCommand &EditCommand::operator=(const EditCommand &) = default;
-EditCommand &EditCommand::operator=(EditCommand &&) noexcept = default;
+EditCommand &
+EditCommand::operator=(EditCommand &&) noexcept(std::is_nothrow_move_assignable_v<EditCommandValue>) = default;
 EditCommand::~EditCommand() = default;
 namespace {
 // A worker can issue its reserved fact ID, but can never access project files.

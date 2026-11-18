@@ -70,7 +70,7 @@ int main(int argc, char **argv) {
         setCellText(table, 9999, 1, "0");
         check(summary->text().contains("9999h") && summary->text().contains("기간 미정 0개"),
               "zero duration was treated as unknown");
-        setCellText(table, 9999, 1, "1");
+        setCellText(table, 9999, 1, "1h");
         check(summary->text().contains("10000h"), "duration rollup was not restored");
         window.findChild<QAction *>("undoEdit")->trigger();
         check(model->lastTaskVisits() == 1 && summary->text().contains("9999h"),
