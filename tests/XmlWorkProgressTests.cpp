@@ -152,7 +152,7 @@ void contract() {
           "work plan snapshots use calculated duration, not nominal or source duration");
     const auto mainProjection = projection(merged);
     check(mainProjection["duration"] == 37 && mainProjection["finish"] == "2026-11-17 09:37" &&
-              mainProjection["duration"] != a->remainingMinutes,
+              mainProjection["duration"].toInteger() != a->remainingMinutes,
           "report duration preserved while forecast derives from work/calendars/curve");
     check(taskRow(calculate(merged), "NB").completedActual &&
               executionSpans(merged, pendingTask(merged, merged.tasks[1]), taskRow(calculate(merged), "NB")).empty(),

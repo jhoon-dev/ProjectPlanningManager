@@ -13,12 +13,15 @@ jobs:
       ASAN_OPTIONS: detect_leaks=1:halt_on_error=1
       UBSAN_OPTIONS: halt_on_error=1:print_stacktrace=1
       QT_QPA_PLATFORM: offscreen
+      CCACHE_DIR: ${{ github.workspace }}/.cache/ccache
+      CCACHE_MAXSIZE: 4GiB
+      CCACHE_COMPILERCHECK: content
     steps:
       - uses: actions/checkout@v4
       - name: Install runtime and Clang dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y clang llvm libclang-rt-dev libgl1-mesa-dev libxkbcommon-dev libegl1
+          sudo apt-get install -y ccache clang llvm libclang-rt-dev libgl1-mesa-dev libxkbcommon-dev libegl1
       - uses: jurplel/install-qt-action@v4
         with:
           version: '6.8.3'
@@ -44,10 +47,18 @@ jobs:
           cmake --version >> build-sanitized/toolchain.txt
           git rev-parse HEAD >> build-sanitized/toolchain.txt
       - name: Configure instrumented JOBS and parser targets
-        run: cmake -S . -B build-sanitized -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DJOBS_ENABLE_SANITIZERS=ON -DJOBS_BUILD_FUZZERS=ON
+        run: cmake -S . -B build-sanitized -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DJOBS_ENABLE_SANITIZERS=ON -DJOBS_BUILD_FUZZERS=ON
+      - name: Restore instrumented compiler cache
+        id: compiler_cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/ccache
+          key: parser-compiler-v1-${{ runner.os }}-qt6.8.3-${{ github.sha }}
+          restore-keys: parser-compiler-v1-${{ runner.os }}-qt6.8.3-
       - name: Verify instrumentation of real parser dependencies
         run: python3 scripts/verify-parser-instrumentation.py
       - name: Build with bounded parallelism
+        id: instrumented_build
         # Keep compiling independent targets to collect all platform errors;
         # make still returns failure if any target fails.
         run: cmake --build build-sanitized --parallel 2 -- -k
@@ -57,6 +68,15 @@ jobs:
           ctest --test-dir build-sanitized --output-on-failure 2>&1 | tee build-sanitized/ctest.log
       - name: Replay seeds and fuzz each real parser
         run: python3 scripts/run-parser-fuzz-smoke.py
+      - name: Record compiler cache statistics
+        if: always() && steps.instrumented_build.outcome != 'skipped'
+        run: ccache --show-stats
+      - name: Save compiler cache after success or failure
+        if: always() && steps.compiler_cache.outputs.cache-primary-key != '' && steps.compiler_cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: .cache/ccache
+          key: ${{ steps.compiler_cache.outputs.cache-primary-key }}
       - name: Preserve runtime and parser evidence
         if: always()
         uses: actions/upload-artifact@v4
