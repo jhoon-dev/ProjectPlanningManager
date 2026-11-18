@@ -35,11 +35,16 @@ void GanttView::mousePressEvent(QMouseEvent *e) {
     cancelDrag();
     auto *item = itemAt(e->pos());
     const auto kind = item ? item->data(1).toString() : QString{};
-    if (item && (kind == "task" || kind == "milestone" || kind == "label" || kind == "resizeHandle")) {
+    if (item &&
+        (kind == "task" || kind == "milestone" || kind == "label" || kind == "resizeHandle" || kind == "delayMarker")) {
         const auto id = item->data(0).toString().toStdString();
         if (taskSelected) {
             QScopedValueRollback<bool> guard(chartSelection_, true);
             taskSelected(id);
+        }
+        if (kind == "delayMarker") {
+            e->accept();
+            return;
         }
         const auto row = std::find_if(rows_.begin(), rows_.end(), [&](const auto &r) { return r.id == id; });
         if (e->button() == Qt::LeftButton && row != rows_.end() && editable_ && row->editable && taskEdited) {
@@ -166,6 +171,8 @@ void GanttView::keyPressEvent(QKeyEvent *e) {
     QGraphicsView::keyPressEvent(e);
 }
 bool GanttView::event(QEvent *e) {
+    if (e->type() == QEvent::PaletteChange && scene())
+        rebuild();
     if (e->type() == QEvent::WindowDeactivate || e->type() == QEvent::Hide)
         cancelDrag();
     return QGraphicsView::event(e);

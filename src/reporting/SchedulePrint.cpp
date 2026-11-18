@@ -96,21 +96,8 @@ void paginate(SchedulePrintLayout &out, std::size_t begin, std::size_t end, bool
                                      t + 1, provenance});
             }
 }
-QColor color(ScheduleBarKind kind) {
-    switch (kind) {
-    case ScheduleBarKind::Critical:
-        return QColor("#be3535");
-    case ScheduleBarKind::Actual:
-        return QColor("#178254");
-    case ScheduleBarKind::Remaining:
-        return QColor("#296cb3");
-    case ScheduleBarKind::Baseline:
-        return QColor("#777777");
-    case ScheduleBarKind::Summary:
-        return QColor("#30574b");
-    default:
-        return QColor("#387eb4");
-    }
+QColor referenceColor(ScheduleBarKind kind) {
+    return QColor(kind == ScheduleBarKind::Summary ? "#30574b" : "#777777");
 }
 } // namespace
 SchedulePrintLayout buildSchedulePrint(const SchedulePrintSource &source, const SchedulePrintOptions &options,
@@ -199,6 +186,7 @@ SchedulePrintLayout buildSchedulePrint(const SchedulePrintSource &source, const 
         for (const auto &s : plan.tasks)
             planned.emplace(s.taskId, &s);
     const Baseline *b = nullptr;
+    std::unordered_map<std::string, const Task *> baselineTasks;
     if (options.baseline && !source.baselineId.isEmpty()) {
         for (const auto &candidate : p.baselines)
             if (qs(candidate.id) == source.baselineId)
@@ -208,6 +196,8 @@ SchedulePrintLayout buildSchedulePrint(const SchedulePrintSource &source, const 
         verifyBaseline(*b);
         for (const auto &s : b->schedule)
             baseline.emplace(s.taskId, &s);
+        for (const auto &task : b->input.tasks)
+            baselineTasks.emplace(task.id, &task);
     }
     std::set<std::string> reported;
     if (p.statusAt)
@@ -294,6 +284,12 @@ SchedulePrintLayout buildSchedulePrint(const SchedulePrintSource &source, const 
                         : "미정";
         }
         if (s) {
+            row.progress =
+                ganttProgress(result.isForecast, s->completedActual, p.statusAt ? progressAsOf(p, t.id) : nullptr);
+            row.critical = s->critical && hasScheduleFloat(result, *s) && !s->completedActual;
+            if (b && baseline.contains(t.id) && baselineTasks.contains(t.id))
+                row.finishVariance =
+                    ganttFinishVariance(b->input, *baselineTasks.at(t.id), baseline.at(t.id)->finish, s->finish);
             extent(qs(s->start), qs(s->finish));
             auto kind = s->completedActual                            ? ScheduleBarKind::Actual
                         : s->critical && hasScheduleFloat(result, *s) ? ScheduleBarKind::Critical
@@ -389,8 +385,10 @@ SchedulePrintLayout buildSchedulePrint(const SchedulePrintSource &source, const 
         {"인쇄 ID", source.printId},
         {"출력 정책",
          "schedule-print-v1 · 원본 번호/작업명 반복 · 표시 열 가로 나눔 · 긴 행 이어짐 · PDF/인쇄 동일 배치"},
-        {"범례", "빨강=논리 임계, 파랑=계획/잔여, 초록=실제 날짜 경과 구간(관측 공수 아님), 회색=기준선, 점선=상태일, "
-                 "◆=마일스톤. 평준화 여유/임계의 구간 유지·재생성 기준과 미산정 여부는 출처·진단 참조."}};
+        {"범례", "파랑=계획/미착수 보고, 청록=진행 보고, 초록=완료/실제 날짜 경과 구간(관측 공수 아님), "
+                 "회색 빗금=미보고(착수 여부 미확인), 굵은 테두리=임계, 주황 표시=선택 기준선보다 완료가 늦음 "
+                 "(기준선 작업 달력 근무분), 회색 가는 막대=기준선, 점선=상태일, ◆=마일스톤. "
+                 "기준선 없음/비교 불가는 지연 미정. 평준화 여유/임계 계산 기준은 출처·진단 참조."}};
     if (options.wbs)
         facts.emplace_back("WBS 요약",
                            QString::number(out.summaryCount) + " · 표시/선택 작업만 집계 · 기간/여유 합산 안 함");
@@ -466,8 +464,8 @@ void paintSchedulePage(QPainter &painter, const SchedulePrintLayout &layout, int
     foot.setPixelSize(8);
     painter.setFont(foot);
     painter.drawText(QRectF(box.left(), box.bottom() - 11, box.width(), 12),
-                     QFontMetricsF(foot).elidedText("빨강 임계 · 파랑 계획/잔여 · 초록 실제 날짜 · 회색 기준선 · 점선 "
-                                                    "상태일 · 평준화 계산 기준·범례 전문: 출처",
+                     QFontMetricsF(foot).elidedText("파랑 계획/미착수 · 청록 진행 · 초록 완료/실제 날짜 · 빗금 미보고 "
+                                                    "· 굵은 테두리 임계 · 주황 기준선 지연 · 범례 전문: 출처",
                                                     Qt::ElideRight, box.width()));
     painter.setFont(layout.font);
     double x = box.left();
@@ -563,9 +561,14 @@ void paintSchedulePage(QPainter &painter, const SchedulePrintLayout &layout, int
             const double center = y + std::min(16.0, fragment.height / 2);
             for (const auto &bar : row.bars) {
                 double a = position(bar.start), z = position(bar.finish);
-                const auto c = color(bar.kind);
-                painter.setPen(QPen(c, 0.8));
-                painter.setBrush(c);
+                const bool reference = bar.kind == ScheduleBarKind::Baseline || bar.kind == ScheduleBarKind::Summary;
+                const auto c = reference                             ? referenceColor(bar.kind)
+                               : bar.kind == ScheduleBarKind::Actual ? ganttFill(GanttProgress::Completed)
+                                                                     : ganttFill(row.progress);
+                painter.setPen(QPen(!reference && row.critical ? ganttCriticalColor() : c,
+                                    !reference && row.critical ? 1.5 : 0.8));
+                painter.setBrush(QBrush(c, !reference && row.progress == GanttProgress::Unreported ? Qt::BDiagPattern
+                                                                                                   : Qt::SolidPattern));
                 if (bar.start == bar.finish) {
                     if (a >= chartLeft && a <= box.right())
                         painter.drawPolygon(QPolygonF{QPointF(a, center - 4), QPointF(a + 4, center),
@@ -576,6 +579,21 @@ void paintSchedulePage(QPainter &painter, const SchedulePrintLayout &layout, int
                     const bool base = bar.kind == ScheduleBarKind::Baseline;
                     painter.drawRect(QRectF(a, base ? std::min(center + 6, y + fragment.height - 3) : center - 4,
                                             std::max(0.3, z - a), base ? 2 : 8));
+                }
+            }
+            if (row.finishVariance && *row.finishVariance > 0) {
+                QString finish;
+                for (const auto &bar : row.bars)
+                    if (bar.kind != ScheduleBarKind::Baseline && bar.kind != ScheduleBarKind::Summary)
+                        finish = std::max(finish, bar.finish);
+                if (!finish.isEmpty()) {
+                    const auto end = position(finish);
+                    if (end >= chartLeft && end <= box.right()) {
+                        painter.setPen(QPen(ganttDelayColor(), 0.5));
+                        painter.setBrush(ganttDelayColor());
+                        painter.drawPolygon(QPolygonF{QPointF(end - 3, center - 8), QPointF(end + 3, center - 8),
+                                                      QPointF(end, center - 5)});
+                    }
                 }
             }
             painter.restore();

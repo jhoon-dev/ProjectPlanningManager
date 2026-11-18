@@ -20,8 +20,8 @@ namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s.data(), qsizetype(s.size()));
 }
-QColor criticalColor() {
-    return QColor("#e46c63");
+QColor criticalColor(bool dark) {
+    return ganttCriticalColor(dark);
 }
 QColor normalColor() {
     return QColor("#4997dd");
@@ -120,6 +120,7 @@ void GanttView::setPlan(const Project *p, const ScheduleResult *result, const st
             rows_.push_back({t.id, QString::number(index + 1) + ". " + qs(t.name), qs(s.start), qs(s.finish),
                              s.critical, t.predecessors, s.drivingPredecessors, s.remainingStart, s.completedActual});
             const auto *fact = p->statusAt ? progressAsOf(*p, t.id) : nullptr;
+            rows_.back().progress = ganttProgress(result->isForecast, s.completedActual, fact);
             rows_.back().policyIgnoredIncoming = result->isForecast && p->progressPolicy &&
                                                  p->progressPolicy->policy == overrideProgressPolicy && fact &&
                                                  fact->actualStart && !fact->actualFinish;
@@ -175,12 +176,31 @@ void GanttView::setPlan(const Project *p, const ScheduleResult *result, const st
 }
 void GanttView::setBaseline(const Baseline *baseline) {
     std::vector<BaselineDate> dates;
-    if (baseline)
-        for (const auto &row : baseline->schedule)
-            dates.push_back({row.taskId, qs(row.start), qs(row.finish)});
-    if (dates == baselineDates_)
+    std::optional<PlanInput> calendar;
+    if (baseline) {
+        calendar.emplace();
+        calendar->startDate = baseline->input.startDate;
+        calendar->calculationProfile = baseline->input.calculationProfile;
+        calendar->calendar = baseline->input.calendar;
+        calendar->holidays = baseline->input.holidays;
+        calendar->calendars = baseline->input.calendars;
+        std::unordered_map<std::string, const Task *> tasks;
+        for (const auto &task : baseline->input.tasks)
+            tasks.emplace(task.id, &task);
+        for (const auto &row : baseline->schedule) {
+            Task task;
+            if (const auto found = tasks.find(row.taskId); found != tasks.end()) {
+                task.id = row.taskId;
+                task.calendarId = found->second->calendarId;
+                task.breaks = found->second->breaks;
+            }
+            dates.push_back({row.taskId, qs(row.start), qs(row.finish), std::move(task)});
+        }
+    }
+    if (dates == baselineDates_ && calendar == baselineCalendar_)
         return;
     baselineDates_ = std::move(dates);
+    baselineCalendar_ = std::move(calendar);
     baselineIndex_.clear();
     for (std::size_t i = 0; i < baselineDates_.size(); ++i)
         baselineIndex_.emplace(baselineDates_[i].id, i);
@@ -209,14 +229,32 @@ void GanttView::setSelectedTask(const std::string &id) {
     }
     if (changed && !rebuilding_ && !chartSelection_)
         focusSelectedTask(false);
+    if (!selectionBand_ && hasSchedule()) {
+        selectionBand_ = scene()->addRect({}, Qt::NoPen);
+        selectionBand_->setData(1, "selectionHighlight");
+        selectionBand_->setAcceptedMouseButtons(Qt::NoButton);
+        selectionBand_->setZValue(0);
+    }
+    if (selectionBand_) {
+        const auto row = rowIndex_.find(id);
+        selectionBand_->setVisible(row != rowIndex_.end());
+        selectionBand_->setData(0, qs(id));
+        if (row != rowIndex_.end()) {
+            auto highlight = palette().color(QPalette::Highlight);
+            highlight.setAlpha(45);
+            selectionBand_->setBrush(highlight);
+            selectionBand_->setRect(0, HeaderHeight + int(row->second) * RowHeight, sceneRect().width(), RowHeight);
+        }
+    }
     for (auto *item : scene()->items()) {
-        const auto kind = item->data(1).toString();
-        if (kind != "task" && kind != "milestone")
+        if (item->data(1) != "label")
             continue;
-        const bool selected = item->data(0).toString() == qs(id);
-        auto *shape = dynamic_cast<QAbstractGraphicsShapeItem *>(item);
-        if (shape)
-            shape->setPen(QPen(selected ? palette().color(QPalette::Text) : QColor("#202833"), selected ? 3.0 : 1.0));
+        auto *label = dynamic_cast<QGraphicsSimpleTextItem *>(item);
+        if (label) {
+            auto font = label->font();
+            font.setBold(item->data(0).toString() == qs(id));
+            label->setFont(font);
+        }
     }
     for (auto *item : scene()->items())
         if (item->data(1) == "resizeHandle")
@@ -287,6 +325,7 @@ void GanttView::rebuild() {
     renderedFirst_ = renderedLast_ = -1;
     cancelDrag();
     scene()->clear();
+    selectionBand_ = nullptr;
     if (dayCount_ == 0) {
         auto *message =
             scene()->addText("일정 계산 후 간트가 표시됩니다.\n기간과 선행관계를 입력하고 F9로 계산하세요.");
@@ -384,7 +423,11 @@ void GanttView::rebuild() {
             connector->setZValue(1);
         } else
             bar = scene()->addRect(QRectF(start, y - 6, std::max(qreal(3), finish - start), 12));
-        bar->setBrush(row.completedActual ? QColor("#51b384") : row.critical ? criticalColor() : normalColor());
+        const bool critical = row.floatMinutes && row.critical && !row.completedActual;
+        const bool dark = palette().color(QPalette::Base).lightness() < 128;
+        bar->setBrush(QBrush(ganttFill(row.progress),
+                             row.progress == GanttProgress::Unreported ? Qt::BDiagPattern : Qt::SolidPattern));
+        bar->setPen(QPen(critical ? ganttCriticalColor(dark) : QColor("#334354"), critical ? 2.2 : 1.0));
         bar->setData(0, qs(row.id));
         bar->setData(1, milestone ? "milestone" : "task");
         bar->setZValue(2);
@@ -398,11 +441,36 @@ void GanttView::rebuild() {
             : milestone    ? "마일스톤"
             : row.critical ? "임계 작업"
                            : "여유 작업";
-        QString tooltip = row.name + "\n" + kind + "\n" + row.start + " → " + row.finish + "\nID: " + qs(row.id);
+        QString tooltip = row.name + "\n" + kind + " · " + ganttProgressText(row.progress) + "\n" + row.start + " → " +
+                          row.finish + "\nID: " + qs(row.id);
+        bool delayed = false;
+        if (baselineCalendar_ && baselineIndex_.contains(row.id)) {
+            const auto &old = baselineDates_[baselineIndex_.at(row.id)];
+            const auto variance = old.task.id.empty()
+                                      ? std::nullopt
+                                      : ganttFinishVariance(*baselineCalendar_, old.task, old.finish.toStdString(),
+                                                            row.finish.toStdString());
+            delayed = variance && *variance > 0;
+            tooltip += "\n선택 기준선 완료: " + old.finish + " · " +
+                       (!variance ? "비교 미정"
+                        : delayed ? "기준선보다 늦음 (기준선 작업 달력 근무분)"
+                                  : "기준선보다 늦지 않음");
+        } else
+            tooltip += "\n기준선 비교 없음 · 지연 여부 미정";
+        if (delayed) {
+            QPolygonF flag;
+            flag << QPointF(finish - 5, y - 12) << QPointF(finish + 5, y - 12) << QPointF(finish, y - 7);
+            auto *marker = scene()->addPolygon(flag, QPen(ganttDelayColor()), QBrush(ganttDelayColor()));
+            marker->setData(0, qs(row.id));
+            marker->setData(1, "delayMarker");
+            marker->setToolTip(tooltip);
+            marker->setZValue(4);
+        }
         if (row.floatMinutes)
-            tooltip += QString("\n총여유 %1h · 자유여유 %2h (작업 달력 · 자원 용량 평준화 전)")
+            tooltip += QString("\n총여유 %1h · 자유여유 %2h (작업 달력 · %3)")
                            .arg(double(row.floatMinutes->first) / 60, 0, 'g', 12)
-                           .arg(double(row.floatMinutes->second) / 60, 0, 'g', 12);
+                           .arg(double(row.floatMinutes->second) / 60, 0, 'g', 12)
+                           .arg(resourceLeveled_ ? "채택 자원 순서 기준" : "자원 용량 평준화 전");
         tooltip += "\n작업 달력: " + row.calendar +
                    "\n막대는 시작~완료 구간입니다. 비근무 시간은 기간/자원 공수에서 제외합니다.";
         tooltip += "\n제약: " + qs(constraintName(row.constraintType)) + " (" + qs(enumToken(row.constraintType)) +
@@ -441,13 +509,20 @@ void GanttView::rebuild() {
                 marker->setZValue(1);
             }
         }
-        auto *label = scene()->addSimpleText(
-            row.name + (row.completedActual ? " [실제]"
-                        : resourceLeveled_ ? (row.floatMinutes && row.critical ? " [평준화 임계]" : " [평준화]")
-                        : isForecast_      ? (row.floatMinutes && row.critical ? " [예측 임계]" : " [예측]")
-                        : milestone        ? " ◆"
-                        : row.critical     ? " [임계]"
-                                           : ""));
+        QStringList flags;
+        if (row.progress != GanttProgress::Plan)
+            flags << (row.progress == GanttProgress::Completed    ? "완료"
+                      : row.progress == GanttProgress::InProgress ? "진행"
+                      : row.progress == GanttProgress::NotStarted ? "미착수 보고"
+                                                                  : "미보고");
+        if (critical)
+            flags << "임계";
+        else if ((resourceLeveled_ || isForecast_) && !row.floatMinutes && !row.completedActual)
+            flags << "여유 미정";
+        if (delayed)
+            flags << "기준선 지연";
+        auto *label = scene()->addSimpleText(row.name + (milestone ? " ◆" : "") +
+                                             (flags.isEmpty() ? "" : " [" + flags.join(" · ") + "]"));
         label->setBrush(palette().color(QPalette::Text));
         label->setPos(finish + 9, y - 9);
         label->setZValue(3);
@@ -469,9 +544,10 @@ void GanttView::rebuild() {
             path.lineTo(x1 + 7, y - 8);
             path.lineTo(target, y - 8);
             path.lineTo(target, y);
-            auto *link = scene()->addPath(
-                path, QPen(resource.driving && row.critical && prev.critical ? criticalColor() : QColor("#8755a1"), 1.5,
-                           Qt::DashLine));
+            auto *link = scene()->addPath(path, QPen(resource.driving && critical && prev.critical && prev.floatMinutes
+                                                         ? criticalColor(dark)
+                                                         : QColor("#8755a1"),
+                                                     1.5, Qt::DashLine));
             link->setData(1, "resourceDependency");
             link->setData(0, qs(resource.predecessorId + "->" + row.id));
             link->setToolTip("자원 순서 " + qs(resource.resourceId) + " · " + QString::number(resource.units) + "% · " +
@@ -499,10 +575,10 @@ void GanttView::rebuild() {
             path.lineTo(target - 5, y - 10);
             path.lineTo(target - 5, y);
             path.lineTo(target, y);
-            const bool driving = !row.policyIgnoredIncoming && row.critical && prev.critical &&
+            const bool driving = !row.policyIgnoredIncoming && critical && prev.critical && prev.floatMinutes &&
                                  std::find(row.driving.begin(), row.driving.end(), predecessor) != row.driving.end();
             const auto color = row.policyIgnoredIncoming ? QColor("#7b8d9b")
-                               : driving                 ? criticalColor()
+                               : driving                 ? criticalColor(dark)
                                                          : palette().color(QPalette::Text);
             const bool historical = isForecast_ && row.completedActual;
             auto *link = scene()->addPath(

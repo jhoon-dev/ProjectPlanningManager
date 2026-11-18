@@ -1,5 +1,6 @@
 #pragma once
 #include "calculation/Scheduler.h"
+#include "reporting/GanttStyle.h"
 #include <QGraphicsView>
 #include <QDate>
 #include <QSet>
@@ -45,9 +46,11 @@ private:
     struct BaselineDate {
         std::string id;
         QString start, finish;
+        Task task;
         bool operator==(const BaselineDate &) const = default;
     };
     std::vector<BaselineDate> baselineDates_;
+    std::optional<PlanInput> baselineCalendar_;
     std::unordered_map<std::string, std::size_t> rowIndex_, baselineIndex_;
     bool isForecast_ = false;
     bool resourceLeveled_ = false;
@@ -76,6 +79,7 @@ private:
     std::optional<Drag> drag_;
     QGraphicsRectItem *ghost_ = nullptr;
     QGraphicsSimpleTextItem *ghostLabel_ = nullptr;
+    QGraphicsRectItem *selectionBand_ = nullptr;
     void cancelDrag();
     void updateDrag(const QPoint &);
     struct Row {
@@ -97,6 +101,7 @@ private:
         std::optional<Task> executionTask = {};
         std::optional<TaskSchedule> executionDates = {};
         std::optional<std::pair<std::int64_t, std::int64_t>> floatMinutes = {};
+        GanttProgress progress = GanttProgress::Plan;
     };
     std::vector<Row> rows_;
     QString displayedFinish_;

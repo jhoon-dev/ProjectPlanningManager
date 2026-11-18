@@ -1,5 +1,6 @@
 #pragma once
 #include "calculation/Scheduler.h"
+#include "reporting/GanttStyle.h"
 #include <QDate>
 #include <QFont>
 #include <QPageLayout>
@@ -50,6 +51,9 @@ struct SchedulePrintRow {
     std::vector<QStringList> lines;
     int maxLines = 1;
     std::vector<SchedulePrintBar> bars;
+    GanttProgress progress = GanttProgress::Plan;
+    bool critical = false;
+    std::optional<std::int64_t> finishVariance;
 };
 struct SchedulePrintFragment {
     std::size_t row = 0;

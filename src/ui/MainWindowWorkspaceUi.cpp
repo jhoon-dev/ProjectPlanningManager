@@ -19,6 +19,7 @@
 #include <QToolButton>
 #include <QTreeWidget>
 #include <QVBoxLayout>
+#include <QWidgetAction>
 
 namespace jobs {
 void MainWindow::setupWorkspaceUi(QToolBar *tools, QComboBox *zoom) {
@@ -104,6 +105,35 @@ void MainWindow::setupWorkspaceUi(QToolBar *tools, QComboBox *zoom) {
     view->addWidget(wbsSummary_, 1);
     view->addWidget(new QLabel("간트 배율", centralWidget()));
     view->addWidget(zoom);
+    auto *legend = new QMenu(this);
+    legend->setObjectName("ganttLegendMenu");
+    auto *legendText = new QLabel(legend);
+    legendText->setObjectName("ganttLegendText");
+    legendText->setMargin(12);
+    legendText->setTextFormat(Qt::RichText);
+    legendText->setText(
+        "<b>간트 범례</b><br><br>"
+        "<span style='background-color:#4997dd'>&nbsp;&nbsp;&nbsp;</span> 파랑 · 계획 / 미착수 보고<br>"
+        "<span style='background-color:#36a4ad'>&nbsp;&nbsp;&nbsp;</span> 청록 · 진행 보고<br>"
+        "<span style='background-color:#51b384'>&nbsp;&nbsp;&nbsp;</span> 초록 · 실제 완료<br>"
+        "<span style='background-color:#929ba6'>&nbsp;&nbsp;&nbsp;</span> 회색 빗금 · 미보고 (착수 여부 미확인)<br><br>"
+        "굵은 테두리 · 임계<br>"
+        "<span style='color:#d88416'>▼</span> 주황 표시 · 선택 기준선보다 완료가 늦음<br>"
+        "가는 회색 막대 · 선택 기준선<br>"
+        "행 배경 강조 · 선택 작업<br><br>"
+        "지연 비교는 기준선 작업 달력의 근무분 기준입니다.<br>"
+        "기준선 없음 / 비교 불가는 지연 미정입니다.<br>"
+        "채움은 보고 상태이며 완료율·관측 공수는 아닙니다.");
+    auto *legendContent = new QWidgetAction(legend);
+    legendContent->setDefaultWidget(legendText);
+    legend->addAction(legendContent);
+    auto *legendButton = new QToolButton(centralWidget());
+    legendButton->setObjectName("ganttLegendButton");
+    legendButton->setText("간트 범례");
+    legendButton->setPopupMode(QToolButton::InstantPopup);
+    legendButton->setMenu(legend);
+    alignEditorControl(*legendButton, controlHeight);
+    view->addWidget(legendButton);
     auto *navigation = menuBar()->addMenu("보기(&V)");
     const auto navigationButton = [&](const char *id, const QString &label, const QKeySequence &key, auto callback) {
         auto *action = navigation->addAction(label);
