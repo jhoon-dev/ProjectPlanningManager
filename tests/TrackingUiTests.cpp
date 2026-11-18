@@ -160,9 +160,9 @@ int main(int argc, char *argv[]) {
             if (stage == 0) {
                 callbackCheck(comparison->item(0, 1)->text() == "2026-10-27 18:00" &&
                                   comparison->item(0, 2)->text() == "2026-10-27 18:00" &&
-                                  comparison->item(0, 3)->text() == "0.00" &&
+                                  comparison->item(0, 3)->text() == "0d (0h)" &&
                                   comparison->item(0, 9)->text() == "2026-10-28 18:00" &&
-                                  comparison->item(0, 10)->text() == "+8.00" &&
+                                  comparison->item(0, 10)->text() == "+1d (+8h)" &&
                                   comparison->item(0, 8)->text() == "33.3" && comparison->item(1, 8)->text() == "미정",
                               "comparison UI confused baseline/plan/forecast/progress");
                 callbackCheck(dialog->findChild<QLabel *>("comparisonSummary")->text().contains("보고 범위 1/2"),

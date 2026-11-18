@@ -260,7 +260,7 @@ void MainWindow::refreshStatus() {
     refreshWorkflowUi();
     const auto &result = document_.calculation();
     const bool valid = result && result->status == CalculationStatus::Valid;
-    statusBar()->showMessage(
+    const auto details =
         QString(document_.readOnly() ? "읽기 전용 · "
                 : document_.dirty()  ? "미저장 변경 있음 · "
                                      : "명시 저장본과 같은 입력 · ") +
@@ -269,6 +269,13 @@ void MainWindow::refreshStatus() {
                                                  : "평준화 채택 · 배정 자원 검증 통과 · 여유/임계 미산정")
                   : result->isForecast    ? "실적·잔여 예측 · 자원 미검증"
                                           : "선행관계·작업 달력 일정 · 자원 미검증")
-               : "유효한 최신 일정 없음"));
+               : "유효한 최신 일정 없음");
+    statusBar()->setToolTip(details);
+    if (property("workspaceLayoutMode").toInt() == 1)
+        statusBar()->showMessage(details);
+    else if (valid)
+        statusBar()->showMessage(result->resourceLeveled ? "배정 자원 검증 통과" : "자원 미검증");
+    else
+        statusBar()->clearMessage();
 }
 } // namespace jobs

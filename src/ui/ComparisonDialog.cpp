@@ -4,6 +4,7 @@
 #include "ui/ResourceComparisonDialog.h"
 #include "ui/LevelingDecisionDialog.h"
 #include "ui/EditorUi.h"
+#include "ui/TaskInput.h"
 #include <QComboBox>
 #include <QDialogButtonBox>
 #include <QFutureWatcher>
@@ -18,6 +19,8 @@
 #include <QScrollArea>
 #include <QtConcurrent/QtConcurrentRun>
 #include <unordered_map>
+#include <algorithm>
+#include <cstdlib>
 namespace jobs {
 namespace {
 QString qs(const std::string &s) {
@@ -26,11 +29,15 @@ QString qs(const std::string &s) {
 QString stamp(const std::optional<std::string> &s) {
     return s ? qs(*s) : "—";
 }
-QString hours(const std::optional<std::int64_t> &n) {
-    return n ? QString::number(double(*n) / 60, 'f', 2) : "—";
+QString duration(const std::optional<std::int64_t> &n, int day) {
+    return n ? taskDurationText(*n, day) : "—";
 }
-QString variance(const std::optional<std::int64_t> &n) {
-    return n ? (*n > 0 ? "+" : "") + hours(n) : "—";
+QString variance(const std::optional<std::int64_t> &n, int day) {
+    if (!n)
+        return "—";
+    const auto sign = *n > 0 ? "+" : *n < 0 ? "−" : "";
+    return sign + taskDurationText(std::abs(*n), day) + " (" + sign +
+           QString::number(double(std::abs(*n)) / 60, 'g', 10) + "h)";
 }
 QString state(const ScheduleResult &r) {
     if (r.status == CalculationStatus::Cancelled)
@@ -96,10 +103,10 @@ ComparisonDialog::ComparisonDialog(Document &doc, const std::string &id, QWidget
     table_ = new QTableWidget(0, 18, this);
     table_->setObjectName("comparisonTable");
     table_->setAccessibleName("계획 대비 변경 비교 표");
-    table_->setHorizontalHeaderLabels({"작업", "기준선 완료", "현재 계획 완료", "계획 완료 편차(h)", "실제 시작",
-                                       "실제 완료", "실제 소요(h)", "잔여(h)", "기간 진척(%)", "예측 완료",
-                                       "예측 완료 편차(h)", "변경 항목", "기준선 시작", "현재 계획 시작", "예측 시작",
-                                       "잔여 총여유(h)", "잔여 자유여유(h)", "예측 임계/상태"});
+    table_->setHorizontalHeaderLabels({"작업", "기준선 완료", "현재 계획 완료", "계획 완료 편차", "실제 시작",
+                                       "실제 완료", "실제 소요", "잔여 기간", "기간 진척(%)", "예측 완료",
+                                       "예측 완료 편차", "변경 항목", "기준선 시작", "현재 계획 시작", "예측 시작",
+                                       "잔여 총여유", "잔여 자유여유", "예측 임계/상태"});
     table_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     table_->setSelectionBehavior(QAbstractItemView::SelectRows);
     table_->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -140,7 +147,8 @@ ComparisonDialog::ComparisonDialog(Document &doc, const std::string &id, QWidget
         LevelingDecisionDialog dialog(document_, this);
         dialog.exec();
     });
-    auto *note = new QLabel("편차 단위: 선택 기준선 달력의 근무시간(+지연 / −앞당김). —는 기준선·유효 결과 없음 또는 "
+    auto *note = new QLabel("기간 단위: 근무일(d) · 시간(h) · 분(m). 편차는 선택 기준선 달력(+지연 / −앞당김), "
+                            "실제·잔여·여유는 현재 작업 달력 기준입니다. —는 기준선·유효 결과 없음 또는 "
                             "비교 범위 밖입니다.\n기간 진척=실제 소요/(실제 소요+잔여), 완료 보고=100%. 미보고 작업은 "
                             "진척 미정이며 계획 기간을 잔여로 가정합니다.\n잔여 여유는 현재 작업 달력의 근무시간이며 "
                             "완료 실적은 적용 대상이 아닙니다. 아래 작업 예측 열은 현재 적용 결과이며 조정 전·후의 "
@@ -246,6 +254,10 @@ void ComparisonDialog::display(const ComparisonReport &r) {
         summary_->setText("비교 계산 중 문서가 변경되었습니다. 비교 창을 다시 열어 최신 내용을 확인하세요.");
         return;
     }
+    const auto &project = *document_.project();
+    const auto *baseline = outcomeBaseline(project, r.baselineId);
+    const auto projectDay =
+        taskDayMinutes(baseline ? baseline->input : static_cast<const PlanInput &>(project), Task{});
     QString metadata;
     for (const auto &b : document_.project()->baselines)
         if (b.id == r.baselineId)
@@ -257,21 +269,31 @@ void ComparisonDialog::display(const ComparisonReport &r) {
     QStringList context;
     for (const auto &c : r.contextChanges)
         context << qs(c);
-    summary_->setText(metadata + "\n현재 계획 계산 엔진 " + qs(r.plan.engineVersion) + " · 예측 계산 엔진 " +
-                      qs(r.forecast.engineVersion) + "\n현재 문서 revision " + QString::number(r.revision) +
-                      " · 상태일 " + stamp(document_.project()->statusAt) + " · 보고 범위 " +
-                      QString::number(r.reportedTasks) + "/" + QString::number(r.totalTasks) +
-                      "\n프로젝트 완료: 기준선 " + stamp(r.baselineFinish) + " | 현재 계획 " +
-                      stamp(r.plan.projectFinish) + " (" + variance(r.planFinishVariance) + "h) | 실적 반영 예측 " +
-                      stamp(r.forecast.projectFinish) + " (" + variance(r.forecastFinishVariance) + "h)" +
-                      (context.isEmpty() ? "" : "\n프로젝트 변경: " + context.join(" · ")));
+    summary_->setText(
+        metadata + "\n현재 계획 계산 엔진 " + qs(r.plan.engineVersion) + " · 예측 계산 엔진 " +
+        qs(r.forecast.engineVersion) + "\n현재 문서 revision " + QString::number(r.revision) + " · 상태일 " +
+        stamp(document_.project()->statusAt) + " · 보고 범위 " + QString::number(r.reportedTasks) + "/" +
+        QString::number(r.totalTasks) + "\n프로젝트 완료: 기준선 " + stamp(r.baselineFinish) + " | 현재 계획 " +
+        stamp(r.plan.projectFinish) + " (" + variance(r.planFinishVariance, projectDay) + ") | 실적 반영 예측 " +
+        stamp(r.forecast.projectFinish) + " (" + variance(r.forecastFinishVariance, projectDay) + ")" +
+        (context.isEmpty() ? "" : "\n프로젝트 변경: " + context.join(" · ")));
     table_->setRowCount(int(r.tasks.size()));
     std::unordered_map<std::string, const TaskSchedule *> forecasts;
     if (r.forecast.isForecast && r.forecast.status == CalculationStatus::Valid)
         for (const auto &row : r.forecast.tasks)
             forecasts.emplace(row.taskId, &row);
+    std::unordered_map<std::string, const Task *> currentTasks, baselineTasks;
+    for (const auto &task : project.tasks)
+        currentTasks.emplace(task.id, &task);
+    if (baseline)
+        for (const auto &task : baseline->input.tasks)
+            baselineTasks.emplace(task.id, &task);
     for (int i = 0; i < int(r.tasks.size()); ++i) {
         const auto &row = r.tasks[std::size_t(i)];
+        const auto *task = currentTasks.contains(row.taskId) ? currentTasks.at(row.taskId) : nullptr;
+        const auto *oldTask = baselineTasks.contains(row.taskId) ? baselineTasks.at(row.taskId) : nullptr;
+        const auto day = task ? taskDayMinutes(project, *task) : 0;
+        const auto oldDay = oldTask ? taskDayMinutes(baseline->input, *oldTask) : 0;
         QStringList changes;
         for (const auto &c : row.changes)
             changes << qs(c);
@@ -280,22 +302,22 @@ void ComparisonDialog::display(const ComparisonReport &r) {
         QStringList values{qs(row.name),
                            stamp(row.baselineFinish),
                            stamp(row.planFinish),
-                           variance(row.planFinishVariance),
+                           variance(row.planFinishVariance, oldDay),
                            stamp(row.actualStart),
                            stamp(row.actualFinish),
-                           hours(row.actualMinutes),
-                           hours(row.remainingMinutes),
+                           duration(row.actualMinutes, day),
+                           duration(row.remainingMinutes, day),
                            row.durationProgressPercent ? QString::number(*row.durationProgressPercent, 'f', 1) : "미정",
                            stamp(row.forecastFinish),
-                           variance(row.forecastFinishVariance),
+                           variance(row.forecastFinishVariance, oldDay),
                            changes.isEmpty() ? "계획 입력 동일" : changes.join(" · "),
                            stamp(row.baselineStart),
                            stamp(row.planStart),
                            stamp(row.forecastStart)};
         const auto *future = forecasts.contains(row.taskId) ? forecasts.at(row.taskId) : nullptr;
         const bool floatKnown = future && hasScheduleFloat(r.forecast, *future);
-        values << (floatKnown ? hours(future->totalFloatMinutes) : "—")
-               << (floatKnown ? hours(future->freeFloatMinutes) : "—")
+        values << (floatKnown ? duration(future->totalFloatMinutes, day) : "—")
+               << (floatKnown ? duration(future->freeFloatMinutes, day) : "—")
                << (!future                   ? "—"
                    : future->completedActual ? "실제 완료"
                    : floatKnown              ? (future->critical ? "예측 임계" : "예측 여유")
@@ -311,8 +333,8 @@ void ComparisonDialog::display(const ComparisonReport &r) {
             newResources << qs(a);
         const auto detail =
             "작업 ID: " + qs(row.taskId) + "\n이름: " + (row.baselineName.empty() ? "—" : qs(row.baselineName)) +
-            " → " + qs(row.name) + " | 계획 기간: " + hours(row.baselineDuration) + "h → " + hours(row.planDuration) +
-            "h" + "\nWBS: " + qs(row.baselineWbsPath) + " → " + qs(row.planWbsPath) +
+            " → " + qs(row.name) + " | 계획 기간: " + duration(row.baselineDuration, oldDay) + " → " +
+            duration(row.planDuration, day) + "\nWBS: " + qs(row.baselineWbsPath) + " → " + qs(row.planWbsPath) +
             "\n선행 ID·종류·지연: " + (oldPred.isEmpty() ? "없음/미설정" : oldPred.join(", ")) + " → " +
             (newPred.isEmpty() ? "없음/미설정" : newPred.join(", ")) +
             "\n자원 배정: " + (oldResources.isEmpty() ? "없음" : oldResources.join(", ")) + " → " +
@@ -321,7 +343,14 @@ void ComparisonDialog::display(const ComparisonReport &r) {
             auto *item = new QTableWidgetItem(values[col]);
             item->setData(Qt::UserRole, qs(row.taskId));
             item->setData(Qt::UserRole + 1, detail);
-            item->setToolTip("작업 ID: " + qs(row.taskId));
+            QString unitHelp;
+            if (col == 3 || col == 10)
+                unitHelp = oldTask ? "선택 기준선의 작업 달력 · " +
+                                         taskDurationHelp(baseline->input, *oldTask).section('\n', 0, 0)
+                                   : "선택 기준선에 작업 없음 · 편차 미정";
+            else if (task && (col == 6 || col == 7 || col == 15 || col == 16))
+                unitHelp = "현재 작업 달력 · " + taskDurationHelp(project, *task).section('\n', 0, 0);
+            item->setToolTip("작업 ID: " + qs(row.taskId) + (unitHelp.isEmpty() ? "" : "\n" + unitHelp));
             table_->setItem(i, col, item);
         }
     }

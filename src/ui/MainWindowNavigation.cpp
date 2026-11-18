@@ -72,13 +72,34 @@ void MainWindow::setupNavigationUi() {
     }
     auto *context = new QWidget(centralWidget());
     context->setObjectName("navigationContext");
-    auto *contextRow = new QHBoxLayout(context);
-    contextRow->setContentsMargins(4, 2, 4, 2);
+    auto *contextLayout = new QVBoxLayout(context);
+    contextLayout->setContentsMargins(4, 2, 4, 2);
+    auto *contextRow = new QHBoxLayout;
+    contextLayout->addLayout(contextRow);
     auto *label = new QLabel(context);
     label->setObjectName("navigationScope");
     label->setTextFormat(Qt::PlainText);
-    label->setWordWrap(true);
+    label->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Preferred);
     contextRow->addWidget(label, 1);
+    auto *toggle = new QToolButton(context);
+    toggle->setObjectName("navigationDetailsToggle");
+    toggle->setText("범위 상세");
+    toggle->setCheckable(true);
+    toggle->setArrowType(Qt::RightArrow);
+    toggle->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    alignEditorControl(*toggle, preset->height());
+    contextRow->addWidget(toggle);
+    auto *details = new QLabel(context);
+    details->setObjectName("navigationDetails");
+    details->setTextFormat(Qt::PlainText);
+    details->setWordWrap(true);
+    details->setTextInteractionFlags(Qt::TextSelectableByMouse);
+    details->hide();
+    contextLayout->addWidget(details);
+    connect(toggle, &QToolButton::toggled, details, [details, toggle](bool open) {
+        details->setVisible(open);
+        toggle->setArrowType(open ? Qt::DownArrow : Qt::RightArrow);
+    });
     auto *finish = new QAction("표시 완료일 보기", this);
     finish->setObjectName("focusGanttFinish");
     finish->setToolTip(
@@ -159,6 +180,10 @@ void MainWindow::refreshNavigationUi() {
         const auto &task = p->tasks[visibleRows_[std::size_t(row)]];
         selected = "선택: " + QString::fromStdString(task.name) + " (ID " + QString::fromStdString(task.id) + ")";
     }
+    const auto brief = QString("표시 %1/%2개 · 선택 %3개 · 계산 전체 %2개")
+                           .arg(visibleRows_.size())
+                           .arg(p->tasks.size())
+                           .arg(selectedTaskIds_.size());
     auto text =
         QString("표시 %1/%2개 · 선택 %3개 · ")
             .arg(visibleRows_.size())
@@ -175,8 +200,9 @@ void MainWindow::refreshNavigationUi() {
     else
         text += "\n유효한 간트 날짜 없음 · F9로 전체 일정을 계산하세요.";
     auto *label = findChild<QLabel *>("navigationScope");
-    label->setText(text);
+    label->setText(brief);
     label->setToolTip(text);
+    findChild<QLabel *>("navigationDetails")->setText(text);
     taskViewStatus_->setToolTip(text);
 }
 } // namespace jobs

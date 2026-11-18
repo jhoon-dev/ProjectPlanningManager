@@ -6,10 +6,17 @@
 #include "ui/MainWindow.h"
 #include "ui/GanttView.h"
 #include "ui/TaskTableModel.h"
+#include "ui/UiTranslations.h"
 #include "TaskTableTest.h"
 #include <QAction>
 #include <QApplication>
 #include <QComboBox>
+#include <QDialogButtonBox>
+#include <QDir>
+#include <QMessageBox>
+#include <QLocale>
+#include <QScopeGuard>
+#include <QSignalSpy>
 #include <QFile>
 #include <QLabel>
 #include <QLineEdit>
@@ -49,6 +56,85 @@ QByteArray bytes(const std::string &path) {
 class OutcomeSummaryUiTests : public QObject {
     Q_OBJECT
 private slots:
+    void initTestCase() {
+        jobs::installUiTranslations(*qApp);
+    }
+    void standardButtonsAreKoreanWithoutExternalTranslations() {
+        const auto locale = QLocale();
+        const auto restore = qScopeGuard([&] { QLocale::setDefault(locale); });
+        QLocale::setDefault(QLocale(QLocale::English, QLocale::UnitedStates));
+        jobs::installUiTranslations(*qApp);
+        QDialogButtonBox buttons(QDialogButtonBox::Close | QDialogButtonBox::Save | QDialogButtonBox::Cancel |
+                                 QDialogButtonBox::Ok | QDialogButtonBox::Apply);
+        QCOMPARE(buttons.button(QDialogButtonBox::Close)->text(), QString("닫기"));
+        QCOMPARE(buttons.button(QDialogButtonBox::Save)->text(), QString("저장"));
+        QCOMPARE(buttons.button(QDialogButtonBox::Cancel)->text(), QString("취소"));
+        QCOMPARE(buttons.button(QDialogButtonBox::Ok)->text(), QString("확인"));
+        QCOMPARE(buttons.button(QDialogButtonBox::Apply)->text(), QString("적용"));
+        QSignalSpy rejected(&buttons, &QDialogButtonBox::rejected);
+        buttons.button(QDialogButtonBox::Close)->click();
+        QCOMPARE(rejected.count(), 1);
+        QMessageBox message(QMessageBox::Question, "확인", "저장하시겠습니까?",
+                            QMessageBox::Yes | QMessageBox::No | QMessageBox::Discard);
+        QVERIFY(message.button(QMessageBox::Yes)->text().contains("예"));
+        QVERIFY(message.button(QMessageBox::No)->text().contains("아니요"));
+        QCOMPARE(message.button(QMessageBox::Discard)->text(), QString("저장 안 함"));
+        QCOMPARE(QCoreApplication::translate("QCocoaTheme", "Don't Save"), QString("저장 안 함"));
+        QCOMPARE(QCoreApplication::translate("OtherContext", "Close"), QString("Close"));
+    }
+    void comparisonUsesFrozenAndCurrentTaskCalendars() {
+        jobs::JsonProjectStore store;
+        jobs::Document doc(store);
+        doc.create("달력별 비교", "2026-11-09", {"설치", "분 단위", "미정"});
+        jobs::TaskCalendar calendar;
+        calendar.name = "현장 달력";
+        calendar.periods = {{540, 720}, {780, 1020}};
+        const auto id = doc.putCalendar(calendar);
+        doc.setTaskCalendar(0, id);
+        doc.setDuration(0, 840);
+        doc.setDuration(1, 1);
+        doc.setDuration(2, 0);
+        const auto baseline = doc.captureBaseline("7시간 승인", "PM", "승인", "2026-11-17T00:00:00Z");
+        calendar = doc.project()->calendars[0];
+        calendar.periods = {{540, 720}, {780, 960}};
+        doc.putCalendar(calendar);
+        doc.setDuration(0, 1080);
+        doc.setStatusAt("2026-11-09 16:00");
+        jobs::ProgressEntry entry;
+        entry.taskId = doc.project()->tasks[0].id;
+        entry.actualStart = "2026-11-09 09:00";
+        entry.actualDurationMinutes = 360;
+        entry.remainingMinutes = 720;
+        entry.reporter = "PM";
+        entry.reason = "현장 확인";
+        entry.recordedAt = "2026-11-17T00:00:00Z";
+        doc.recordProgress(entry);
+        jobs::ComparisonDialog dialog(doc, baseline);
+        dialog.show();
+        auto *table = dialog.findChild<QTableWidget *>("comparisonTable");
+        QTRY_COMPARE(table->rowCount(), 3);
+        QCOMPARE(cell(table, 0, 3), QString("+6h (+6h)"));
+        QCOMPARE(cell(table, 0, 6), QString("1d"));
+        QCOMPARE(cell(table, 0, 7), QString("2d"));
+        QCOMPARE(cell(table, 1, 7), QString("1m"));
+        QCOMPARE(cell(table, 1, 6), QString("—"));
+        QVERIFY(table->item(0, 3)->toolTip().contains("1d=7h"));
+        QVERIFY(table->item(0, 6)->toolTip().contains("1d=6h"));
+        table->setCurrentCell(0, 0);
+        QVERIFY(dialog.findChild<QPlainTextEdit *>("comparisonDetails")->toPlainText().contains("2d → 3d"));
+        if (const auto folder = qEnvironmentVariable("JOBS_OUTCOME_AUDIT_DIR"); !folder.isEmpty()) {
+            QVERIFY(QDir().mkpath(folder));
+            QTest::qWait(80);
+            QVERIFY(dialog.grab().save(QDir(folder).filePath("comparison-calendars.png")));
+        }
+        doc.setDuration(0, 360);
+        dialog.findChild<QPushButton *>("refreshComparison")->click();
+        QTRY_COMPARE(table->rowCount(), 3);
+        QCOMPARE(cell(table, 0, 3), QString("−8h (−8h)"));
+        dialog.findChild<QComboBox *>("comparisonBaseline")->setCurrentIndex(0);
+        QTRY_VERIFY(table->rowCount() == 3 && cell(table, 0, 3) == "—");
+        QCOMPARE(cell(table, 0, 6), QString("1d"));
+    }
     void nestedAdoptionAndReleaseRefreshMainViews() {
         QTemporaryDir folder;
         jobs::JsonProjectStore store;
@@ -116,7 +202,7 @@ private slots:
             QCOMPARE(QString::fromStdString(*doc.calculation()->projectFinish), expected);
             QCOMPARE(model->data(model->index(0, model->columnForKey("finish"))).toString(), expected);
             QCOMPARE(gantt->displayedFinish(), expected);
-            const auto context = window.findChild<QLabel *>("navigationScope")->text();
+            const auto context = window.findChild<QLabel *>("navigationScope")->toolTip();
             QVERIFY(context.contains("표시 1/2개") && context.contains("선택 1개"));
             QVERIFY(context.contains("전체 완료 " + expected) && context.contains("간트 표시 완료 " + expected));
             QCOMPARE(window.findChild<QLineEdit *>("taskSearch")->text(), QString("설치"));

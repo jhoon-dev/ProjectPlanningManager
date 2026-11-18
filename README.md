@@ -1,5 +1,140 @@
 # Project Planning Manager (PPM)
 
+설비·자동화 구축 프로젝트의 PM 겸 공정 담당자를 위한 일정 관리 데스크톱 앱입니다.
+여러 담당자의 이번 주 실적과 남은 일을 반영하고, 완료일 변화와 인력 중복 배정을 확인해
+다음 주 조정안과 회의 자료를 준비하는 흐름에 집중하고 있습니다.
+
+Windows/macOS · C++20 / Qt 6.8 · 개발 중. 기본 작업은 계정·서버 없이 프로젝트별 `.ppm` 파일로 수행합니다.
+
+## 주간 갱신 흐름
+
+1. 작업·기간·선후관계·근무달력·자원을 입력하고 최초 계획과 기준선을 확정합니다.
+2. **주간 갱신**에서 상태일과 실제·잔여 기간을 보고합니다. 미보고는 착수 여부 미확인으로 구분합니다.
+3. **결과 비교**에서 기준선·현재 계획·실적 반영 예측의 완료일과 지연 근거를 확인합니다.
+4. 인력 과부하와 자원 조정 후보를 비교하고, 선택한 조정안을 사유와 함께 적용합니다.
+5. 회의용 PDF를 출력하고 프로젝트를 저장해 다음 주에 이어 씁니다. 파일 저장과 일정 계산은 각각 실행합니다.
+
+[주간 갱신 사용법](docs/weekly-update.md) · [첫 사용자와 과업 범위](docs/planning/20-first-user-weekly-update.md) ·
+[빌드·실행 안내](docs/development.md)
+
+현재는 합성 사례의 자동 검사와 전문가 화면 점검을 마쳤으며, **실제 PM 사용자 시험은 아직 진행하지 않았습니다.**
+준비된 [30개 작업 사례와 시험 계획](docs/planning/22-weekly-pm-pilot.md)은 주간 갱신부터 저장·재개까지를 대상으로 합니다.
+최초 계획 작성·기준선 생성의 실제 사용자 사용성과 Microsoft Project/Primavera 대체 가능성은 별도 검증이 필요합니다.
+
+개발자 **jhoon-dev** · 브랜드 **Toolmoa** · App ID **`app.toolmoa.ppm`** · 표시 이름 **Project Planning Manager**. 앱의 **설정 → Project Planning Manager 정보…**에서 개발자와 브랜드를 확인할 수 있다. 제품군 공통 기준은 `app.toolmoa.{product-id}`이며, 스토어가 별도로 발급한 패키지 ID·Publisher·제품 번호와 구분한다.
+
+## 목표와 현재 상태
+프로젝트별 독립 PPM 파일로 새로 만들기·열기·저장·다른 이름 저장과 Windows/macOS 이동 열기를 제공하며, 기본 작업은 계정·서버 없이 수행한다.
+사용자 확정 목표는 Microsoft Project와 Oracle Primavera를 대체할 수준의 전문 PM 도구다. 양 제품의 전체 기능을 후보로 유지한다. 개발 단계는 제외 목록이 아니라 개발 순서다.
+PPM은 빈 폴더에서 기획을 시작했다. 2026-10-26 요청으로 C++20/Qt Widgets 앱과 파일 관리, 기본 CPM, WBS·표·간트를 구현했다. 기준선 버전 저장, 상태일별 실적 보고 이력, 잔여 예측 및 기준선 대비 변경 비교, 인력·장비 등록/배정·일별 과부하 및 별도 평준화 시나리오 A/B 비교를 추가했다. 유효일 단가·작업 비용·누적 실제원가와 기준선 EVM 분석, 프로젝트 대시보드·일정/자원/원가 보고서와 XLSX/PDF 내보내기도 구현했다. 호환성 및 제품 동등성은 아직 검증되지 않았다.
+별도 체크포인트 자동 저장, 비정상 종료 후 세대 선택/사본 복구, 일반 입력의 실행 취소·다시 실행을 추가했다. 승인·제출 이력은 보존하며 복구본이 명시 저장을 대신하지 않는다.
+파일명의 대소문자를 보존하고 같은 파일 판정을 별도로 수행한다. 실행 취소는 변경분을 보존하며 일반 이름 변경의 복사 비용을 줄였다. [편집 성능 계약·측정](docs/editing-performance.md)에 1천/1만 작업의 셀 편집·undo/redo 측정과 범위를 기록한다.
+상태일 이후 잔여 예측에서도 총/자유여유·임계와 driving 관계를 계산한다. 실제 날짜·기준선을 보존하고 표/간트·기준선 비교·보고서/XLSX/PDF에 같은 의미로 표시한다. [예측 여유·임계 계약](docs/forecast-float.md)에 완료 실적 제외·작업 달력·날짜 제약·마감과 평준화의 구분을 기록한다.
+프로젝트 메뉴에서 작업용 텍스트·숫자·날짜·목록 필드와 계층형 작업 코드 사전을 관리한다. 보기 메뉴에서 최대 3단계 그룹·분류 필터/정렬·열 배치를 설정하고 이름 있는 보기로 보존한다. WBS 아래 분류 노드를 선택하면 같은 작업이 표·간트에 표시되며 계산 그래프와 원본 선행 번호는 유지한다. [분류·보기 사용법과 파일 계약](docs/task-classification.md)을 따른다. 진척 정책과 평준화 조합 또는 정책을 동결한 시나리오가 있으면 schema14, 단독 진척 정책 선택이 있으면 schema 13, 현재 또는 동결 입력에 평준화 채택 설정이 있으면 schema 12, 없으면 기간 실적 원장 11 / 분류·보기 10 / 일반 9로 저장한다.
+작업 표는 QAbstractTableModel/QTableView를 사용하며 공수 미리보기·역산, 실적 입력과 자원 배정의 계산은 비동기로 수행한다. 툴바 또는 대화상자의 계산 취소를 사용하고, 취소한 대화상자의 초안을 수정해 다시 적용할 수 있다. [모델 전환·비동기 편집 계약과 검증](docs/model-async-editing.md)을 따른다.
+대규모 편집에서는 worker 요청의 입력 소유권을 공유하고 dirty와 모델/WBS를 변경 작업 기준으로 갱신한다. [준비·반영 단계 측정과 남은 비용](docs/responsive-editing.md)을 기록하며 복합 변경·최초 계산 실효화의 전체 갱신은 보존한다.
+
+FS·SS·FF·SF 선행관계와 지연/선행 시간, 작업별 근무 달력을 지원한다. 표에서 `1SS+2h,3FF-30m`처럼 입력하고 프로젝트 메뉴에서 달력을 등록·배정한다. [계산·입력·파일 계약](docs/pdm-calendars.md)을 따른다.
+선행관계·작업 제약·작업 유형은 내부에서 enum class를 사용한다. 기존 `.ppm` schema1~9의 문자열 표현과 XML/XER 코드 매핑은 유지하며, 이전 writer 파일 13개로 호환성을 검사한다. [타입·변환표·호환 회귀 계약](docs/plan-enums.md)을 따른다.
+오류는 안정된 코드·매개값·관련 대상·원인 트리로 전달하고 표시 계층에서 문구와 수정 안내를 만든다. [구조화 진단 계약](docs/structured-diagnostics.md)에 한국어/영문 진단 기반과 관련 작업 선택 범위를 기록한다.
+파일 메뉴의 **다중 프로젝트·공유 자원…**에서 여러 문서를 독립 창으로 열고 공유 인력·장비를 명시적으로 연결한다. 계획/현재 예측의 실제 중첩 구간으로 통합 부하를 계산하고, 별도 `.ppmworkspace` 파일에 목록·용량·달력·연결을 저장한다. [작업공간 사용법과 계산 범위](docs/multi-project-workspace.md)를 따른다.
+해당 구현의 [검증 기록](docs/validation/workspace-2026-10-28/README.md)에 플랫폼별 48개 회귀·67개 제품 파일 정적 분석·파서 2만 회 퍼징·기존 파일/일정 hash·새 설치 파일 검증과 한계를 보존한다.
+
+프로젝트 메뉴에서 8종 작업 제약·마감일과 일정 충돌을 관리한다. 간트 막대 이동/오른쪽 끝 resize, 자동 재계산과 실행 취소를 지원한다. [제약·마감·간트 편집 사용법](docs/constraints-gantt.md)을 따른다.
+공수 기반 일정, 고정 기간·고정 공수·고정 단위, 자원별 달력 교집합과 수동 분할 중단을 지원한다. 프로젝트 메뉴의 공수·유형·분할과 자원 등록의 달력에서 설정한다. [공수·자원 달력·분할 계약](docs/effort-calendars-splits.md)을 따른다.
+PRD PERF-01~04에 따라 일정 계산의 단계/진행 표시·취소와 화면 주변 행만 그리는 간트를 추가했다. [통합 검증·성능·계산 취소](docs/performance-integration.md)에 1천/1만 작업 측정·검증 범위와 재현 방법을 기록한다. 앞으로도 PRD에 없는 요구사항은 먼저 반영한 뒤 구현한다.
+1만 작업 XER의 실제 가져오기·계산·간트·스크롤/선택 계측과 앱/설치기 아이콘, 컨트롤 높이·배율 검사는 [최신 검증 기록](docs/validation/large-xer-ui-2026-10-30/README.md)을 참고한다. 첫 실행의 긴 지연을 포함한 원시 표본과 한계를 함께 보존한다.
+편집 메뉴에서 여러 작업의 삽입·삭제·복제와 원자적 TSV 붙여넣기를 지원한다. 표 위에서 이름/ID 검색·필터·정렬을 조합하며 선행 번호는 항상 프로젝트 원본 행 번호다. [작업 편집 사용법·보호 규칙](docs/task-editing.md)을 따른다.
+PM Canvas는 별도 개인용 프로토타입이다. 그 코드·아키텍처·결정을 PPM에 가져오지 않는다.
+
+## 문서 읽는 순서
+중심 문서는 제품 PRD다. 기능 추적표·계산 규칙·데이터모델·화면·로드맵은 PRD의 요구사항과 완료조건을 구체화하는 보조 문서다. 서로 충돌하면 임의로 구현하지 않고 PRD와 결정기록에 차이를 반영한다.
+
+1. [제품기획과 PRD](docs/planning/01-product-prd.md)
+2. [기능범위와 추적표](docs/planning/02-scope-traceability.md)
+3. [개념 데이터모델](docs/planning/03-domain-model.md)
+4. [핵심 계산 규칙 초안](docs/planning/04-calculation-contract.md)
+5. [화면과 사용자 흐름](docs/planning/05-experience.md)
+6. [단계별 로드맵](docs/planning/06-roadmap.md)
+7. [결정기록과 질문](docs/planning/07-decisions.md)
+8. [자료와 검증 기록](docs/planning/08-evidence-validation.md)
+9. [원본 337행과 추적 데이터](docs/planning/09-source-traceability.json)
+10. [세부 요구사항 337개 초안](docs/planning/10-detailed-requirements.md)
+11. [원본 확인과제 39개](docs/planning/11-open-source-questions.md)
+12. [기능군별 상세 계약](docs/planning/12-capability-contracts.md)
+13. [데스크톱 기술 대안과 결정 게이트](docs/planning/13-desktop-options.md)
+14. [C++ + Qt 기본 아키텍처와 계약](docs/planning/14-cpp-qt-architecture.md)
+15. [프로젝트 파일과 전달·복구 계약](docs/planning/15-project-file-contract.md)
+16. [제품 기능 보완과 검증 우선순위](docs/planning/16-product-gap-priorities.md)
+
+## 문서 운영
+사용자 확정 사항은 CONFIRMED, 설계 제안은 PROPOSED, 미확인 근거는 UNVERIFIED로 구분한다. 이 문서 묶음의 상세 설계는 전부 PROPOSED이며 구현 승인이 아니다.
+기능 상태는 후보→요구사항 확정→설계→구현→검증→호환성 검증으로 관리한다. 문서 존재만으로 기능 완료를 표시하지 않는다.
+플랫폼은 Windows/macOS 설치형 데스크톱으로 사용자 확정됐다. 최종 목표는 기존 상용 PM 도구를 능가하는 도구이며, Parity와 Superiority를 별도로 검증한다. 사용자 결정 위임에 따라 C++ + Qt, UI 독립 계산 코어, 로컬 저장·자동 복구를 기본 방향으로 선택했다. Qt 세부 모듈/버전·DB·라이선스·사업모델은 미결정이다.
+
+## 개발 시작
+
+Windows 배포는 **Microsoft Store의 MSIX만** 사용한다. EXE/NSIS 설치기와 GitHub Release 설치 파일 배포는 폐기했다. [MSIX·Store 배포 절차](docs/msix-store.md)를 따르며, 개발용 unsigned MSIX는 `build/msix-development`의 CI 검증 전용이다. 최종 업로드 전 패키지는 `build/msix-store-upload`에 만들고, 사용자는 Microsoft Store가 서명·제공하는 패키지를 설치한다.
+
+Microsoft Store용 MSIX는 [제출 준비 절차](docs/store/submission-checklist.md)와 [패키지 계약](docs/msix-store.md)을 따른다. 앱 이름 예약 전에는 내부 CI용 unsigned 개발 패키지만 만들며, 실제 Partner Center ID를 넣은 Store 모드 생성기와 한국어 소개·아이콘·개인정보 처리방침을 준비한다. MSIX판 설정·복구는 패키지 LocalState에 저장하고 일반 제거 시 함께 제거한다. [검증 기록과 실제 화면](docs/validation/msix-2026-10-29/README.md)에 패키지 identity의 설치·업데이트·복구·제거 및 파일 해시를 보관한다. Store 등록·WACK·제출/승인은 아직 완료되지 않았다.
+
+초기 개발 기준은 C++20, CMake 3.24+, Qt 6.8.3 Core/Widgets/Concurrent다. 서버·계정 없이 WBS·기간·FS 선행·휴일을 입력하고 F9로 일정 계산한다. 추적 메뉴에서 기준선을 저장하고 상태일·실적을 보고한 뒤 계획 대비 비교를 연다. 자원 메뉴에서 가용량·배정을 입력하고 부하와 평준화 시나리오를 비교한다. `.ppm` 단일 파일에 계획·자원·기준선·실적·시나리오 입력을 저장한다. 원가 메뉴에서 유효일 단가·고정비·누적 실제원가·물리 진척을 입력하고 기준선 EVM을 분석한다. 보고서 메뉴에서 대시보드/XLSX/PDF, 자동 저장·복구 메뉴에서 체크포인트/사본 복구, 편집 메뉴에서 실행 취소/다시 실행을 사용한다. 고급 평준화·회계/환율 연계는 후속 구현이다.
+
+[빌드·실행·파일 형식·검증 범위](docs/development.md)를 참고한다. GitHub 저장소는 [jhoon-dev/JOBS](https://github.com/jhoon-dev/JOBS)다.
+[기준선·실적·비교 사용 예제](docs/baseline-progress.md)에서 첫 추적 흐름을 재현할 수 있다.
+
+[자원·배정·부하·평준화 사용법과 계산 계약](docs/resources-leveling.md)에서 F05와 우선순위 대안을 재현할 수 있다.
+
+[단가·작업 비용·실제원가·EVM 사용법](docs/costs-evm.md)에서 F10·EAC 가정과 집계 범위를 확인할 수 있다.
+
+[대시보드·보고서·엑셀/PDF 내보내기](docs/reports-export.md)에서 필터·집계·출처와 출력 방법을 확인할 수 있다. 보고서 메뉴에서 열며 Excel·Python 설치 없이 출력한다.
+
+[자동 저장·복구·실행 취소 사용법](docs/recovery-undo.md)에서 저장 간격·복구본 선택·사본 저장과 편집 이력의 범위를 확인할 수 있다.
+
+[Project XML 가져오기·내보내기](docs/project-xml.md)는 파일 메뉴에서 실행한다. 작업/WBS·관계·달력·자원/배정의 기간 기반 계획을 변환하고 새 교환 폴더에 원본/현재 PPM 사본과 손실 진단을 함께 보관한다. [MPP 읽기](docs/mpp-import.md)는 별도 메뉴에서 지원하며, 실제 Microsoft Project 재계산/재저장 호환은 별도 검증 범위다.
+
+[Primavera XER 가져오기·내보내기](docs/primavera-xer.md)도 파일 메뉴에서 실행한다. 단일 프로젝트의 기간 기반 작업/WBS·네 관계/지연·지원 제약·달력/휴일·자원/정률 배정을 변환한다. UTF-8/명시 선택 Windows-1252를 지원하며 새 교환 폴더에 원본 또는 현재 PPM 사본과 진단을 보존한다. 실제 P6 계산/재저장 동등성·다중 프로젝트·실적/원가/공수의 완전 교환은 후속 범위다.
+
+[구조·대량 편집 응답성](docs/bulk-editing.md): 작업 추가·삽입·삭제·복제·표 붙여넣기와 해당 undo/redo를 비동기로 준비하고 도구 모음에서 취소할 수 있다. 기본 보기의 연속 구조 변경은 행 단위로 반영한다.
+
+[필터·정렬·WBS 대량 편집](docs/projected-task-views.md)에서도 표시 자료를 비동기로 준비하고 생존 작업 ID를 유지하며 갱신한다. 많이 흩어진 변경은 준비된 자료로 한 번 reset하고, 준비 중 보기/입력이 바뀌면 안전한 경합 처리를 사용한다.
+
+[외부 파일 파서 검증](docs/parser-safety.md): `.ppm`·Project XML·Primavera XER seed 재생과 선택적 Clang/libFuzzer·ASan/UBSan 검사를 제공한다. 기본 앱 실행에는 퍼징 도구가 필요 없다.
+
+[C++ 품질 검사](docs/cpp-quality.md): 고정 clang-format·점진적 포맷 적용과 실제 Qt 컴파일 설정을 사용하는 clang-tidy CI를 제공한다. 편집 권한 가드는 공통화하며 상태일·간트·저장/복구·읽기 전용 사본의 기존 정책을 유지한다.
+
+설정 → 업데이트에서 Microsoft Store의 새 버전을 확인하고 스토어를 열어 업데이트한다. 새 버전은 비차단 배너로 알린다. 개발 실행본과 개발 MSIX는 업데이트 미지원으로 표시하며, Mac App Store판은 App Store로 연결한다. 앱 자체의 EXE 다운로드·설치기 실행·GitHub Release 조회는 제공하지 않는다. [업데이트 동작·배포 운영](docs/application-updates.md)을 따른다.
+
+[편집·간트·입력 화면 개선과 검증](docs/validation/editing-polish-2026-10-30/README.md): 작업 선택의 날짜 자동 이동, 선택 보기(Ctrl+Shift+J)·전체 일정 맞춤(Ctrl+Shift+F), 작은 화면 배치와 주요 편집기 공통 높이·인라인 오류 안내를 제공한다. 1만 작업의 변경 전후 계측과 공개 P6 XER 9개 비교 행렬을 보존하며, 전체 P6 재계산 호환성은 별도로 구분한다.
+
+평준화 후 총/자유여유·임계경로는 자원 슬롯 순서를 고정해 다시 계산한다. 자원 연결은 간트/네트워크에서 원본 관계와 구분하고 계산 불가 사유는 진단에 표시한다. [계산 기준·호환 계약](docs/leveling-float.md).
+
+교차 분할 작업도 실행 창별 자원 인계 순서로 여유·임계를 계산한다. 구간별 작업량은 기존 실행 모델로 다시 배분하고, 간트·네트워크·보고서는 실제 인계 시각을 표시한다. [기준·한도](docs/leveling-float.md).
+
+현재 엔진1.8은 실행 구간 소멸·재생성과 이동 가능 작업128개를 넘는 묶음을 지원한다. 후보 결합을 보존한 독립 탐색 단위에 생성 전 자원 상한·분기 후보 제외/복원·중복 인증 절감을 적용한다. 전체 작업·후보·판정 예산을 넘으면 사유와 함께 미산정으로 표시한다. 총여유는 가능한 작업별 재배치, 자유여유는 다른 날짜 고정 기준이며 기존1.0~1.7 기준선을 보존한다. [계산·한도](docs/leveling-float.md), [효율화·측정](docs/candidate-propagation.md), [비단조 수요 전파](docs/nonmonotone-propagation.md), [추가 비용 판단](docs/propagation-cost.md).
+
+평준화 비교 창의 **A/B 총여유 근거**에서 현재 날짜와 검증된 재배치 날짜를 나란히 확인한다. 함께 이동한 작업·고정 실적·총여유와 자유여유의 차이를 보여 준다. [사용법과 범위](docs/leveling-witness.md).
+
+자원 → **평준화 결정 이력**에서 채택·해제·자동 무효화와 실행 취소/다시 실행의 변경 전후 설정·사유·출처를 확인한다. 결정은 설정을 되돌려도 남으며 저장·사본·복구로 보존한다. [결정 원장](docs/leveling-decisions.md), [미개발 점검과 개발 순서](docs/planning/17-remaining-development.md).
+
+프로젝트/자원 메뉴의 **사용자 필드 정의… / 사용자 필드 값…**에서 텍스트·숫자·날짜·목록을 관리한다. 자원 값은 여러 자원에 한 번에 적용하고 미설정·빈 텍스트·0을 구분한다. [범위·저장·보고 계약](docs/object-custom-fields.md).
+
+자원 → **기간별 계획 배정·자원 곡선…**에서 일·주·월 구간별 배정률과 앞쪽/뒤쪽/중앙 집중 곡선을 편집합니다. 계획/잔여 공수·Usage·부하·원가·평준화가 같은 곡선을 사용합니다. [계약과 지원 범위](docs/assignment-periods.md).
+
+인쇄 창에서 페이지 설정을 문서에 저장하고 표시 범위의 WBS 요약·관계선을 출력한다. 네트워크 창에서는 원본 관계 편집·카드 배치 저장/초기화와 벡터 미리보기/PDF/인쇄를 지원한다. [설정·편집·출력 계약](docs/print-network-extension.md).
+
+2026-11-05: [자재·비용·역할과 통합 일정](docs/resource-plan-integrated-workspace.md)의 schema20/작업공간 schema2 native 확장과 지원 범위를 추가했다.
+
+조직·포트폴리오·협업·위험 분석과 JSON 자동화는 작업공간의 전용 창에서 사용합니다. 로컬 역할 프로필·seed 기반 계획 CPM 분석·PPM-Automation CLI의 [사용법과 지원 범위](docs/organization-risk-automation.md)를 확인하세요.
+
+서버 계정 인증·실시간 협업·HTTP API·주기 실행은 선택 서버와 작업공간의 **서버 인증·실시간 협업** 화면에서 사용합니다. [서버 실행·API·복구 안내](server/README.md)를 따릅니다. 로컬 파일 사용에는 서버를 요구하지 않습니다.
+
+후속 XER 원본의 통화·인력/장비 단위는 [명시적 전환](docs/xer-source-conversion.md)과 전후 미리보기·기존 재무 병합 검토로 연결한다. 원본·현재 계획·관측 원장을 보존하고 환산비/근거를 schema31 감사 이력에 저장한다.
+
+새 XER 버전의 [일정·WBS·달력 채택](docs/xer-schedule-adoption.md)은 명시 작업 연결·신규 추가, 범위별 전후 검토와 schema32 이력을 제공한다. 현재 로컬 작업·자원/배정·실적/원가·기준선·기간 마감은 보존한다.
+
+## 기능 추가 기록
+
 2026-11-17 후속: [자재 제약 총여유·자유여유·임계](docs/material-float.md)를 지원한다. 계획/잔여·공유 통합에서 입고/재고/소모를 후보와 최대 여유 배치에 검산하고, 통합 표·JSON/XLSX/PDF와 승인 기준선 재현/조건부 schema84로 연결한다.
 
 2026-11-17 후속: [공유 통합 예측의 실제 자재 원장](docs/shared-material-actuals.md)을 지원한다. 프로젝트별 확인 재고·잔여 소모·미입고 잔량을 공유 가용량/교차 관계와 함께 배치하고 통합 잔여 시작·재고 근거·JSON/XLSX/PDF로 연결한다.
@@ -157,116 +292,3 @@ XER 가져오기/내보내기는 상태일·실제 날짜·물리 진척, 누계
 기간별 실제공수·실제원가를 날짜/자원별로 제출·정정하고 누적 실제원가와 배분/미배분을 대사한다. [입력 방법과 원장 계약](docs/period-actuals.md)을 따른다.
 
 작업·자원 시간축 Usage에서 계획·승인 기준선·잔여 공수/원가를 일·주·월로 조회하고 XLSX/PDF로 내보낸다. 실제원가는 기간 미배분 작업 누계로 표시한다. [사용법과 계산 범위](docs/timephased-usage.md)를 따른다.
-전문 프로젝트 관리 데스크톱 앱 · C++20 / Qt 6.8 · 개발 중
-
-개발자 **jhoon-dev** · 브랜드 **Toolmoa** · App ID **`app.toolmoa.ppm`** · 표시 이름 **Project Planning Manager**. 앱의 **설정 → Project Planning Manager 정보…**에서 개발자와 브랜드를 확인할 수 있다. 제품군 공통 기준은 `app.toolmoa.{product-id}`이며, 스토어가 별도로 발급한 패키지 ID·Publisher·제품 번호와 구분한다.
-
-## 목표와 현재 상태
-프로젝트별 독립 PPM 파일로 새로 만들기·열기·저장·다른 이름 저장과 Windows/macOS 이동 열기를 제공하며, 기본 작업은 계정·서버 없이 수행한다.
-사용자 확정 목표는 Microsoft Project와 Oracle Primavera를 대체할 수준의 전문 PM 도구다. 양 제품의 전체 기능을 후보로 유지한다. 개발 단계는 제외 목록이 아니라 개발 순서다.
-PPM은 빈 폴더에서 기획을 시작했다. 2026-10-26 요청으로 C++20/Qt Widgets 앱과 파일 관리, 기본 CPM, WBS·표·간트를 구현했다. 기준선 버전 저장, 상태일별 실적 보고 이력, 잔여 예측 및 기준선 대비 변경 비교, 인력·장비 등록/배정·일별 과부하 및 별도 평준화 시나리오 A/B 비교를 추가했다. 유효일 단가·작업 비용·누적 실제원가와 기준선 EVM 분석, 프로젝트 대시보드·일정/자원/원가 보고서와 XLSX/PDF 내보내기도 구현했다. 호환성 및 제품 동등성은 아직 검증되지 않았다.
-별도 체크포인트 자동 저장, 비정상 종료 후 세대 선택/사본 복구, 일반 입력의 실행 취소·다시 실행을 추가했다. 승인·제출 이력은 보존하며 복구본이 명시 저장을 대신하지 않는다.
-파일명의 대소문자를 보존하고 같은 파일 판정을 별도로 수행한다. 실행 취소는 변경분을 보존하며 일반 이름 변경의 복사 비용을 줄였다. [편집 성능 계약·측정](docs/editing-performance.md)에 1천/1만 작업의 셀 편집·undo/redo 측정과 범위를 기록한다.
-상태일 이후 잔여 예측에서도 총/자유여유·임계와 driving 관계를 계산한다. 실제 날짜·기준선을 보존하고 표/간트·기준선 비교·보고서/XLSX/PDF에 같은 의미로 표시한다. [예측 여유·임계 계약](docs/forecast-float.md)에 완료 실적 제외·작업 달력·날짜 제약·마감과 평준화의 구분을 기록한다.
-프로젝트 메뉴에서 작업용 텍스트·숫자·날짜·목록 필드와 계층형 작업 코드 사전을 관리한다. 보기 메뉴에서 최대 3단계 그룹·분류 필터/정렬·열 배치를 설정하고 이름 있는 보기로 보존한다. WBS 아래 분류 노드를 선택하면 같은 작업이 표·간트에 표시되며 계산 그래프와 원본 선행 번호는 유지한다. [분류·보기 사용법과 파일 계약](docs/task-classification.md)을 따른다. 진척 정책과 평준화 조합 또는 정책을 동결한 시나리오가 있으면 schema14, 단독 진척 정책 선택이 있으면 schema 13, 현재 또는 동결 입력에 평준화 채택 설정이 있으면 schema 12, 없으면 기간 실적 원장 11 / 분류·보기 10 / 일반 9로 저장한다.
-작업 표는 QAbstractTableModel/QTableView를 사용하며 공수 미리보기·역산, 실적 입력과 자원 배정의 계산은 비동기로 수행한다. 툴바 또는 대화상자의 계산 취소를 사용하고, 취소한 대화상자의 초안을 수정해 다시 적용할 수 있다. [모델 전환·비동기 편집 계약과 검증](docs/model-async-editing.md)을 따른다.
-대규모 편집에서는 worker 요청의 입력 소유권을 공유하고 dirty와 모델/WBS를 변경 작업 기준으로 갱신한다. [준비·반영 단계 측정과 남은 비용](docs/responsive-editing.md)을 기록하며 복합 변경·최초 계산 실효화의 전체 갱신은 보존한다.
-
-FS·SS·FF·SF 선행관계와 지연/선행 시간, 작업별 근무 달력을 지원한다. 표에서 `1SS+2h,3FF-30m`처럼 입력하고 프로젝트 메뉴에서 달력을 등록·배정한다. [계산·입력·파일 계약](docs/pdm-calendars.md)을 따른다.
-선행관계·작업 제약·작업 유형은 내부에서 enum class를 사용한다. 기존 `.ppm` schema1~9의 문자열 표현과 XML/XER 코드 매핑은 유지하며, 이전 writer 파일 13개로 호환성을 검사한다. [타입·변환표·호환 회귀 계약](docs/plan-enums.md)을 따른다.
-오류는 안정된 코드·매개값·관련 대상·원인 트리로 전달하고 표시 계층에서 문구와 수정 안내를 만든다. [구조화 진단 계약](docs/structured-diagnostics.md)에 한국어/영문 진단 기반과 관련 작업 선택 범위를 기록한다.
-파일 메뉴의 **다중 프로젝트·공유 자원…**에서 여러 문서를 독립 창으로 열고 공유 인력·장비를 명시적으로 연결한다. 계획/현재 예측의 실제 중첩 구간으로 통합 부하를 계산하고, 별도 `.ppmworkspace` 파일에 목록·용량·달력·연결을 저장한다. [작업공간 사용법과 계산 범위](docs/multi-project-workspace.md)를 따른다.
-해당 구현의 [검증 기록](docs/validation/workspace-2026-10-28/README.md)에 플랫폼별 48개 회귀·67개 제품 파일 정적 분석·파서 2만 회 퍼징·기존 파일/일정 hash·새 설치 파일 검증과 한계를 보존한다.
-
-프로젝트 메뉴에서 8종 작업 제약·마감일과 일정 충돌을 관리한다. 간트 막대 이동/오른쪽 끝 resize, 자동 재계산과 실행 취소를 지원한다. [제약·마감·간트 편집 사용법](docs/constraints-gantt.md)을 따른다.
-공수 기반 일정, 고정 기간·고정 공수·고정 단위, 자원별 달력 교집합과 수동 분할 중단을 지원한다. 프로젝트 메뉴의 공수·유형·분할과 자원 등록의 달력에서 설정한다. [공수·자원 달력·분할 계약](docs/effort-calendars-splits.md)을 따른다.
-PRD PERF-01~04에 따라 일정 계산의 단계/진행 표시·취소와 화면 주변 행만 그리는 간트를 추가했다. [통합 검증·성능·계산 취소](docs/performance-integration.md)에 1천/1만 작업 측정·검증 범위와 재현 방법을 기록한다. 앞으로도 PRD에 없는 요구사항은 먼저 반영한 뒤 구현한다.
-1만 작업 XER의 실제 가져오기·계산·간트·스크롤/선택 계측과 앱/설치기 아이콘, 컨트롤 높이·배율 검사는 [최신 검증 기록](docs/validation/large-xer-ui-2026-10-30/README.md)을 참고한다. 첫 실행의 긴 지연을 포함한 원시 표본과 한계를 함께 보존한다.
-편집 메뉴에서 여러 작업의 삽입·삭제·복제와 원자적 TSV 붙여넣기를 지원한다. 표 위에서 이름/ID 검색·필터·정렬을 조합하며 선행 번호는 항상 프로젝트 원본 행 번호다. [작업 편집 사용법·보호 규칙](docs/task-editing.md)을 따른다.
-PM Canvas는 별도 개인용 프로토타입이다. 그 코드·아키텍처·결정을 PPM에 가져오지 않는다.
-
-## 문서 읽는 순서
-중심 문서는 제품 PRD다. 기능 추적표·계산 규칙·데이터모델·화면·로드맵은 PRD의 요구사항과 완료조건을 구체화하는 보조 문서다. 서로 충돌하면 임의로 구현하지 않고 PRD와 결정기록에 차이를 반영한다.
-
-1. [제품기획과 PRD](docs/planning/01-product-prd.md)
-2. [기능범위와 추적표](docs/planning/02-scope-traceability.md)
-3. [개념 데이터모델](docs/planning/03-domain-model.md)
-4. [핵심 계산 규칙 초안](docs/planning/04-calculation-contract.md)
-5. [화면과 사용자 흐름](docs/planning/05-experience.md)
-6. [단계별 로드맵](docs/planning/06-roadmap.md)
-7. [결정기록과 질문](docs/planning/07-decisions.md)
-8. [자료와 검증 기록](docs/planning/08-evidence-validation.md)
-9. [원본 337행과 추적 데이터](docs/planning/09-source-traceability.json)
-10. [세부 요구사항 337개 초안](docs/planning/10-detailed-requirements.md)
-11. [원본 확인과제 39개](docs/planning/11-open-source-questions.md)
-12. [기능군별 상세 계약](docs/planning/12-capability-contracts.md)
-13. [데스크톱 기술 대안과 결정 게이트](docs/planning/13-desktop-options.md)
-14. [C++ + Qt 기본 아키텍처와 계약](docs/planning/14-cpp-qt-architecture.md)
-15. [프로젝트 파일과 전달·복구 계약](docs/planning/15-project-file-contract.md)
-16. [제품 기능 보완과 검증 우선순위](docs/planning/16-product-gap-priorities.md)
-
-## 문서 운영
-사용자 확정 사항은 CONFIRMED, 설계 제안은 PROPOSED, 미확인 근거는 UNVERIFIED로 구분한다. 이 문서 묶음의 상세 설계는 전부 PROPOSED이며 구현 승인이 아니다.
-기능 상태는 후보→요구사항 확정→설계→구현→검증→호환성 검증으로 관리한다. 문서 존재만으로 기능 완료를 표시하지 않는다.
-플랫폼은 Windows/macOS 설치형 데스크톱으로 사용자 확정됐다. 최종 목표는 기존 상용 PM 도구를 능가하는 도구이며, Parity와 Superiority를 별도로 검증한다. 사용자 결정 위임에 따라 C++ + Qt, UI 독립 계산 코어, 로컬 저장·자동 복구를 기본 방향으로 선택했다. Qt 세부 모듈/버전·DB·라이선스·사업모델은 미결정이다.
-
-## 개발 시작
-
-Windows 배포는 **Microsoft Store의 MSIX만** 사용한다. EXE/NSIS 설치기와 GitHub Release 설치 파일 배포는 폐기했다. [MSIX·Store 배포 절차](docs/msix-store.md)를 따르며, 개발용 unsigned MSIX는 `build/msix-development`의 CI 검증 전용이다. 최종 업로드 전 패키지는 `build/msix-store-upload`에 만들고, 사용자는 Microsoft Store가 서명·제공하는 패키지를 설치한다.
-
-Microsoft Store용 MSIX는 [제출 준비 절차](docs/store/submission-checklist.md)와 [패키지 계약](docs/msix-store.md)을 따른다. 앱 이름 예약 전에는 내부 CI용 unsigned 개발 패키지만 만들며, 실제 Partner Center ID를 넣은 Store 모드 생성기와 한국어 소개·아이콘·개인정보 처리방침을 준비한다. MSIX판 설정·복구는 패키지 LocalState에 저장하고 일반 제거 시 함께 제거한다. [검증 기록과 실제 화면](docs/validation/msix-2026-10-29/README.md)에 패키지 identity의 설치·업데이트·복구·제거 및 파일 해시를 보관한다. Store 등록·WACK·제출/승인은 아직 완료되지 않았다.
-
-초기 개발 기준은 C++20, CMake 3.24+, Qt 6.8.3 Core/Widgets/Concurrent다. 서버·계정 없이 WBS·기간·FS 선행·휴일을 입력하고 F9로 일정 계산한다. 추적 메뉴에서 기준선을 저장하고 상태일·실적을 보고한 뒤 계획 대비 비교를 연다. 자원 메뉴에서 가용량·배정을 입력하고 부하와 평준화 시나리오를 비교한다. `.ppm` 단일 파일에 계획·자원·기준선·실적·시나리오 입력을 저장한다. 원가 메뉴에서 유효일 단가·고정비·누적 실제원가·물리 진척을 입력하고 기준선 EVM을 분석한다. 보고서 메뉴에서 대시보드/XLSX/PDF, 자동 저장·복구 메뉴에서 체크포인트/사본 복구, 편집 메뉴에서 실행 취소/다시 실행을 사용한다. 고급 평준화·회계/환율 연계는 후속 구현이다.
-
-[빌드·실행·파일 형식·검증 범위](docs/development.md)를 참고한다. GitHub 저장소는 [jhoon-dev/JOBS](https://github.com/jhoon-dev/JOBS)다.
-[기준선·실적·비교 사용 예제](docs/baseline-progress.md)에서 첫 추적 흐름을 재현할 수 있다.
-
-[자원·배정·부하·평준화 사용법과 계산 계약](docs/resources-leveling.md)에서 F05와 우선순위 대안을 재현할 수 있다.
-
-[단가·작업 비용·실제원가·EVM 사용법](docs/costs-evm.md)에서 F10·EAC 가정과 집계 범위를 확인할 수 있다.
-
-[대시보드·보고서·엑셀/PDF 내보내기](docs/reports-export.md)에서 필터·집계·출처와 출력 방법을 확인할 수 있다. 보고서 메뉴에서 열며 Excel·Python 설치 없이 출력한다.
-
-[자동 저장·복구·실행 취소 사용법](docs/recovery-undo.md)에서 저장 간격·복구본 선택·사본 저장과 편집 이력의 범위를 확인할 수 있다.
-
-[Project XML 가져오기·내보내기](docs/project-xml.md)는 파일 메뉴에서 실행한다. 작업/WBS·관계·달력·자원/배정의 기간 기반 계획을 변환하고 새 교환 폴더에 원본/현재 PPM 사본과 손실 진단을 함께 보관한다. [MPP 읽기](docs/mpp-import.md)는 별도 메뉴에서 지원하며, 실제 Microsoft Project 재계산/재저장 호환은 별도 검증 범위다.
-
-[Primavera XER 가져오기·내보내기](docs/primavera-xer.md)도 파일 메뉴에서 실행한다. 단일 프로젝트의 기간 기반 작업/WBS·네 관계/지연·지원 제약·달력/휴일·자원/정률 배정을 변환한다. UTF-8/명시 선택 Windows-1252를 지원하며 새 교환 폴더에 원본 또는 현재 PPM 사본과 진단을 보존한다. 실제 P6 계산/재저장 동등성·다중 프로젝트·실적/원가/공수의 완전 교환은 후속 범위다.
-
-[구조·대량 편집 응답성](docs/bulk-editing.md): 작업 추가·삽입·삭제·복제·표 붙여넣기와 해당 undo/redo를 비동기로 준비하고 도구 모음에서 취소할 수 있다. 기본 보기의 연속 구조 변경은 행 단위로 반영한다.
-
-[필터·정렬·WBS 대량 편집](docs/projected-task-views.md)에서도 표시 자료를 비동기로 준비하고 생존 작업 ID를 유지하며 갱신한다. 많이 흩어진 변경은 준비된 자료로 한 번 reset하고, 준비 중 보기/입력이 바뀌면 안전한 경합 처리를 사용한다.
-
-[외부 파일 파서 검증](docs/parser-safety.md): `.ppm`·Project XML·Primavera XER seed 재생과 선택적 Clang/libFuzzer·ASan/UBSan 검사를 제공한다. 기본 앱 실행에는 퍼징 도구가 필요 없다.
-
-[C++ 품질 검사](docs/cpp-quality.md): 고정 clang-format·점진적 포맷 적용과 실제 Qt 컴파일 설정을 사용하는 clang-tidy CI를 제공한다. 편집 권한 가드는 공통화하며 상태일·간트·저장/복구·읽기 전용 사본의 기존 정책을 유지한다.
-
-설정 → 업데이트에서 Microsoft Store의 새 버전을 확인하고 스토어를 열어 업데이트한다. 새 버전은 비차단 배너로 알린다. 개발 실행본과 개발 MSIX는 업데이트 미지원으로 표시하며, Mac App Store판은 App Store로 연결한다. 앱 자체의 EXE 다운로드·설치기 실행·GitHub Release 조회는 제공하지 않는다. [업데이트 동작·배포 운영](docs/application-updates.md)을 따른다.
-
-[편집·간트·입력 화면 개선과 검증](docs/validation/editing-polish-2026-10-30/README.md): 작업 선택의 날짜 자동 이동, 선택 보기(Ctrl+Shift+J)·전체 일정 맞춤(Ctrl+Shift+F), 작은 화면 배치와 주요 편집기 공통 높이·인라인 오류 안내를 제공한다. 1만 작업의 변경 전후 계측과 공개 P6 XER 9개 비교 행렬을 보존하며, 전체 P6 재계산 호환성은 별도로 구분한다.
-
-평준화 후 총/자유여유·임계경로는 자원 슬롯 순서를 고정해 다시 계산한다. 자원 연결은 간트/네트워크에서 원본 관계와 구분하고 계산 불가 사유는 진단에 표시한다. [계산 기준·호환 계약](docs/leveling-float.md).
-
-교차 분할 작업도 실행 창별 자원 인계 순서로 여유·임계를 계산한다. 구간별 작업량은 기존 실행 모델로 다시 배분하고, 간트·네트워크·보고서는 실제 인계 시각을 표시한다. [기준·한도](docs/leveling-float.md).
-
-현재 엔진1.8은 실행 구간 소멸·재생성과 이동 가능 작업128개를 넘는 묶음을 지원한다. 후보 결합을 보존한 독립 탐색 단위에 생성 전 자원 상한·분기 후보 제외/복원·중복 인증 절감을 적용한다. 전체 작업·후보·판정 예산을 넘으면 사유와 함께 미산정으로 표시한다. 총여유는 가능한 작업별 재배치, 자유여유는 다른 날짜 고정 기준이며 기존1.0~1.7 기준선을 보존한다. [계산·한도](docs/leveling-float.md), [효율화·측정](docs/candidate-propagation.md), [비단조 수요 전파](docs/nonmonotone-propagation.md), [추가 비용 판단](docs/propagation-cost.md).
-
-평준화 비교 창의 **A/B 총여유 근거**에서 현재 날짜와 검증된 재배치 날짜를 나란히 확인한다. 함께 이동한 작업·고정 실적·총여유와 자유여유의 차이를 보여 준다. [사용법과 범위](docs/leveling-witness.md).
-
-자원 → **평준화 결정 이력**에서 채택·해제·자동 무효화와 실행 취소/다시 실행의 변경 전후 설정·사유·출처를 확인한다. 결정은 설정을 되돌려도 남으며 저장·사본·복구로 보존한다. [결정 원장](docs/leveling-decisions.md), [미개발 점검과 개발 순서](docs/planning/17-remaining-development.md).
-
-프로젝트/자원 메뉴의 **사용자 필드 정의… / 사용자 필드 값…**에서 텍스트·숫자·날짜·목록을 관리한다. 자원 값은 여러 자원에 한 번에 적용하고 미설정·빈 텍스트·0을 구분한다. [범위·저장·보고 계약](docs/object-custom-fields.md).
-
-자원 → **기간별 계획 배정·자원 곡선…**에서 일·주·월 구간별 배정률과 앞쪽/뒤쪽/중앙 집중 곡선을 편집합니다. 계획/잔여 공수·Usage·부하·원가·평준화가 같은 곡선을 사용합니다. [계약과 지원 범위](docs/assignment-periods.md).
-
-인쇄 창에서 페이지 설정을 문서에 저장하고 표시 범위의 WBS 요약·관계선을 출력한다. 네트워크 창에서는 원본 관계 편집·카드 배치 저장/초기화와 벡터 미리보기/PDF/인쇄를 지원한다. [설정·편집·출력 계약](docs/print-network-extension.md).
-
-2026-11-05: [자재·비용·역할과 통합 일정](docs/resource-plan-integrated-workspace.md)의 schema20/작업공간 schema2 native 확장과 지원 범위를 추가했다.
-
-조직·포트폴리오·협업·위험 분석과 JSON 자동화는 작업공간의 전용 창에서 사용합니다. 로컬 역할 프로필·seed 기반 계획 CPM 분석·PPM-Automation CLI의 [사용법과 지원 범위](docs/organization-risk-automation.md)를 확인하세요.
-
-서버 계정 인증·실시간 협업·HTTP API·주기 실행은 선택 서버와 작업공간의 **서버 인증·실시간 협업** 화면에서 사용합니다. [서버 실행·API·복구 안내](server/README.md)를 따릅니다. 로컬 파일 사용에는 서버를 요구하지 않습니다.
-
-후속 XER 원본의 통화·인력/장비 단위는 [명시적 전환](docs/xer-source-conversion.md)과 전후 미리보기·기존 재무 병합 검토로 연결한다. 원본·현재 계획·관측 원장을 보존하고 환산비/근거를 schema31 감사 이력에 저장한다.
-
-새 XER 버전의 [일정·WBS·달력 채택](docs/xer-schedule-adoption.md)은 명시 작업 연결·신규 추가, 범위별 전후 검토와 schema32 이력을 제공한다. 현재 로컬 작업·자원/배정·실적/원가·기준선·기간 마감은 보존한다.

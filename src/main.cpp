@@ -2,6 +2,7 @@
 #include "persistence/JsonProjectStore.h"
 #include "ui/MainWindow.h"
 #include "ui/ApplicationIcon.h"
+#include "ui/UiTranslations.h"
 #include "ui/DesktopWorkspace.h"
 #include "persistence/JsonRecoveryStore.h"
 #include "updates/UpdateController.h"
@@ -10,6 +11,7 @@
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
+    jobs::installUiTranslations(app);
     QCoreApplication::setApplicationName(jobs::productShortName);
     QGuiApplication::setApplicationDisplayName(jobs::productDisplayName);
     QCoreApplication::setApplicationVersion(jobs::appVersion());

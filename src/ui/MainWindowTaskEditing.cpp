@@ -173,7 +173,10 @@ void MainWindow::updateCompactLayout() {
     if (property("workspaceLayoutMode").toInt() == mode)
         return;
     setProperty("workspaceLayoutMode", mode);
-    refreshWorkflowUi();
+    if (document_.project())
+        refreshStatus();
+    else
+        refreshWorkflowUi();
     refreshNavigationUi();
     editingHelp_->hide();
     diagnostics_->setMaximumHeight(compact ? 80 : 140);

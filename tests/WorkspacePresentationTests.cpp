@@ -26,6 +26,7 @@
 #include <QPaintEvent>
 #include <QScrollBar>
 #include <QScreen>
+#include <QStatusBar>
 
 namespace {
 int paneContentHeight(const QAbstractScrollArea *area) {
@@ -168,6 +169,7 @@ private slots:
     void shortWindowPreservesFourRowsAndCommands() {
         jobs::JsonProjectStore store;
         jobs::Document document(store);
+        document.create("작은 화면 상태", "2026-11-09", {"작업"});
         jobs::MainWindow window(document);
         window.resize(1280, 340);
         window.show();
@@ -177,9 +179,11 @@ private slots:
         QVERIFY(window.findChild<QLineEdit *>("taskSearch")->isVisible());
         QVERIFY(window.findChild<QComboBox *>("ganttZoom")->isVisible());
         QVERIFY(taskTable(window)->viewport()->height() >= jobs::GanttView::RowHeight * 4);
+        QVERIFY(window.statusBar()->currentMessage().contains("미저장"));
         window.resize(1280, 720);
         QTest::qWait(30);
         QCOMPARE(window.findChild<QLabel *>("projectTitle")->isVisible(), window.height() >= 520);
+        QVERIFY(!window.statusBar()->currentMessage().contains("미저장"));
     }
     void compactWindowKeepsCommandsAndRows() {
         jobs::JsonProjectStore store;
@@ -267,7 +271,8 @@ private slots:
         auto *details = window.findChild<QPlainTextEdit *>("calculationDiagnostics");
         auto *toggle = window.findChild<QToolButton *>("toggleDiagnostics");
         QVERIFY(details->isVisible() && toggle->isChecked());
-        QVERIFY(window.findChild<QLabel *>("calculationStatus")->text().contains("불완전"));
+        QVERIFY(window.findChild<QLabel *>("scheduleFreshnessState")->text().contains("불완전"));
+        QVERIFY(window.findChild<QLabel *>("calculationStatus")->text().contains("진단"));
         QTest::mouseClick(toggle, Qt::LeftButton);
         QVERIFY(!details->isVisible());
         window.findChild<QComboBox *>("taskSort")->setCurrentIndex(1);

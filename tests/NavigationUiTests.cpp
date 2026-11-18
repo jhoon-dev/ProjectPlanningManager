@@ -77,17 +77,25 @@ private slots:
         window.findChild<QLineEdit *>("taskSearch")->setText("시운전");
         QTRY_COMPARE(model->rowCount(), 1);
         auto *scope = window.findChild<QLabel *>("navigationScope");
+        QVERIFY(!scope->text().contains('\n'));
+        auto *details = window.findChild<QLabel *>("navigationDetails");
+        auto *toggle = window.findChild<QToolButton *>("navigationDetailsToggle");
+        QVERIFY(!details->isVisible());
+        toggle->click();
+        QVERIFY(details->isVisible() && details->text() == scope->toolTip());
+        toggle->click();
+        QVERIFY(!details->isVisible());
         QTRY_VERIFY(scope->text().contains("표시 1/5개") && scope->text().contains("전체 5개") &&
-                    scope->text().contains("시운전"));
+                    scope->toolTip().contains("시운전"));
         QCOMPARE(gantt->displayedFinish(), QString("2026-11-24 18:00"));
         gantt->setDayWidth(64);
         gantt->horizontalScrollBar()->setValue(0);
         QTRY_VERIFY(!gantt->finishVisible());
-        QVERIFY(scope->text().contains("화면 밖"));
+        QVERIFY(scope->toolTip().contains("화면 밖"));
         capture(window, "02-filtered-finish-outside");
         window.findChild<QAction *>("focusGanttFinish")->trigger();
         QTRY_VERIFY(gantt->finishVisible());
-        QVERIFY(scope->text().contains("화면 안"));
+        QVERIFY(scope->toolTip().contains("화면 안"));
         capture(window, "03-finish-visible");
         window.findChild<QAction *>("fitGanttSchedule")->trigger();
         QTRY_VERIFY(gantt->finishVisible());
@@ -96,8 +104,8 @@ private slots:
         QTRY_COMPARE(model->rowCount(), 1);
         table->selectRow(0);
         QTRY_COMPARE(gantt->displayedFinish(), QString("2026-11-19 18:00"));
-        QTRY_VERIFY(scope->text().contains("전체 완료 2026-11-24 18:00") &&
-                    scope->text().contains("간트 표시 완료 2026-11-19 18:00"));
+        QTRY_VERIFY(scope->toolTip().contains("전체 완료 2026-11-24 18:00") &&
+                    scope->toolTip().contains("간트 표시 완료 2026-11-19 18:00"));
         capture(window, "03b-different-displayed-and-project-finish");
         const auto captured =
             jobs::captureSchedulePrint(doc, *table, "표시 1개", QString::fromStdString(before.baselines[0].id));
