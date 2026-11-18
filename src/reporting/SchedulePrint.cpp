@@ -273,7 +273,8 @@ SchedulePrintLayout buildSchedulePrint(const SchedulePrintSource &source, const 
         }
         if (s) {
             row.progress =
-                ganttProgress(result.isForecast, s->completedActual, p.statusAt ? progressAsOf(p, t.id) : nullptr);
+                ganttProgress(result.isForecast, s->completedActual, p.statusAt ? progressAsOf(p, t.id) : nullptr,
+                              p.statusAt, planned.contains(t.id) ? planned.at(t.id) : nullptr);
             row.critical = s->critical && hasScheduleFloat(result, *s) && !s->completedActual;
             if (b && baseline.contains(t.id) && baselineTasks.contains(t.id))
                 row.finishVariance =

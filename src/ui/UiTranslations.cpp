@@ -37,9 +37,10 @@ void installUiTranslations(QCoreApplication &app) {
     translator->setObjectName(name);
     // A compatible replacement catalog next to the executable takes precedence.
     const auto directory = QDir(QCoreApplication::applicationDirPath()).filePath("translations");
-    if (!translator->load("qtbase_ko", directory) && !translator->load(":/jobs/i18n/qtbase_ko.qm"))
-        qFatal("Cannot load the bundled Korean Qt translation catalog");
-    app.installTranslator(translator);
+    if (translator->load("qtbase_ko", directory) || translator->load(":/jobs/i18n/qtbase_ko.qm"))
+        app.installTranslator(translator);
+    else
+        qWarning("Cannot load the Korean Qt translation catalog; continuing with Qt's default language");
     app.installTranslator(new SaveDecisionTranslation(&app));
 }
 } // namespace jobs

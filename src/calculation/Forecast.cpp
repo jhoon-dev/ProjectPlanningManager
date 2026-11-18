@@ -35,9 +35,12 @@ static ScheduleResult calculateForecastCore(const Project &p) {
             forecast.plannedTasks = std::move(plan.tasks);
         return forecast;
     }
+    // Retain the already computed plan for presentation; the GUI must not
+    // recalculate it or infer reporting obligations from shifted forecast dates.
+    plan.plannedTasks = plan.tasks;
     if (isPdm(p))
         return calculatePdmForecast(p, std::move(plan));
-    ScheduleResult result = plan;
+    ScheduleResult result = std::move(plan);
     result.tasks.clear();
     result.projectFinish.reset();
     result.diagnostics.clear();

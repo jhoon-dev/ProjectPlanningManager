@@ -4,7 +4,8 @@
 #include <QString>
 namespace jobs {
 enum class GanttProgress { Plan, NotStarted, InProgress, Completed, Unreported };
-GanttProgress ganttProgress(bool forecast, bool completed, const ProgressEntry *);
+GanttProgress ganttProgress(bool forecast, bool completed, const ProgressEntry *,
+                            const std::optional<std::string> &statusAt, const TaskSchedule *planned);
 QColor ganttFill(GanttProgress);
 QString ganttProgressText(GanttProgress);
 QColor ganttCriticalColor(bool dark = false);

@@ -43,7 +43,7 @@ struct ScheduleResult {
     std::shared_ptr<const LevelingFloatWitnesses> levelingWitnesses;
     std::optional<std::string> statusAt;
     std::string calculationPolicy = "plan-asap-v1";
-    // Non-persistent source plan for effort forecast display/rollups. Produced
+    // Non-persistent source plan for forecast display/rollups. Produced
     // once by the calculation worker, never recomputed by the GUI.
     std::vector<TaskSchedule> plannedTasks;
     bool logicalFloatCalculated = true;

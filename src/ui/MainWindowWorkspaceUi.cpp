@@ -112,18 +112,24 @@ void MainWindow::setupWorkspaceUi(QToolBar *tools, QComboBox *zoom) {
     legendText->setMargin(12);
     legendText->setTextFormat(Qt::RichText);
     legendText->setText(
-        "<b>간트 범례</b><br><br>"
-        "<span style='background-color:#4997dd'>&nbsp;&nbsp;&nbsp;</span> 파랑 · 계획 / 미착수 보고<br>"
-        "<span style='background-color:#36a4ad'>&nbsp;&nbsp;&nbsp;</span> 청록 · 진행 보고<br>"
-        "<span style='background-color:#51b384'>&nbsp;&nbsp;&nbsp;</span> 초록 · 실제 완료<br>"
-        "<span style='background-color:#929ba6'>&nbsp;&nbsp;&nbsp;</span> 회색 빗금 · 미보고 (착수 여부 미확인)<br><br>"
-        "굵은 테두리 · 임계<br>"
-        "<span style='color:#d88416'>▼</span> 주황 표시 · 선택 기준선보다 완료가 늦음<br>"
-        "가는 회색 막대 · 선택 기준선<br>"
-        "행 배경 강조 · 선택 작업<br><br>"
-        "지연 비교는 기준선 작업 달력의 근무분 기준입니다.<br>"
-        "기준선 없음 / 비교 불가는 지연 미정입니다.<br>"
-        "채움은 보고 상태이며 완료율·관측 공수는 아닙니다.");
+        QString(
+            "<b>간트 범례</b><br><br>"
+            "<span style='background-color:%1'>&nbsp;&nbsp;&nbsp;</span> 파랑 · 계획 / 미착수 보고<br>"
+            "<span style='background-color:%2'>&nbsp;&nbsp;&nbsp;</span> 청록 · 진행 보고<br>"
+            "<span style='background-color:%3'>&nbsp;&nbsp;&nbsp;</span> 초록 · 실제 완료<br>"
+            "<span style='background-color:%4'>&nbsp;&nbsp;&nbsp;</span> 회색 빗금 · 미보고 (착수 여부 미확인)<br><br>"
+            "굵은 테두리 · 임계<br>"
+            "<span style='color:%5'>▼</span> 주황 표시 · 선택 기준선보다 완료가 늦음<br>"
+            "가는 회색 막대 · 선택 기준선<br>"
+            "행 배경 강조 · 선택 작업<br><br>"
+            "지연 비교는 기준선 작업 달력의 근무분 기준입니다.<br>"
+            "기준선 없음 / 비교 불가는 지연 미정입니다.<br>"
+            "미보고는 현재 계획 시작이 상태일 이내인 작업입니다.<br>"
+            "이후 시작 예정 작업은 계획 색으로 표시합니다.<br>"
+            "채움은 보고 상태이며 완료율·관측 공수는 아닙니다.")
+            .arg(ganttFill(GanttProgress::Plan).name(), ganttFill(GanttProgress::InProgress).name(),
+                 ganttFill(GanttProgress::Completed).name(), ganttFill(GanttProgress::Unreported).name(),
+                 ganttDelayColor().name()));
     auto *legendContent = new QWidgetAction(legend);
     legendContent->setDefaultWidget(legendText);
     legend->addAction(legendContent);

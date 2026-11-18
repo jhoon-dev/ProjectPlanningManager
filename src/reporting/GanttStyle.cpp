@@ -1,13 +1,14 @@
 #include "reporting/GanttStyle.h"
 #include "calculation/WorkCalendar.h"
 namespace jobs {
-GanttProgress ganttProgress(bool forecast, bool completed, const ProgressEntry *fact) {
+GanttProgress ganttProgress(bool forecast, bool completed, const ProgressEntry *fact,
+                            const std::optional<std::string> &statusAt, const TaskSchedule *planned) {
     if (!forecast)
         return GanttProgress::Plan;
     if (completed)
         return GanttProgress::Completed;
     if (!fact)
-        return GanttProgress::Unreported;
+        return statusAt && planned && planned->start > *statusAt ? GanttProgress::Plan : GanttProgress::Unreported;
     return fact->actualStart ? GanttProgress::InProgress : GanttProgress::NotStarted;
 }
 QColor ganttFill(GanttProgress progress) {

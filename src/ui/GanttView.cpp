@@ -101,6 +101,9 @@ void GanttView::setPlan(const Project *p, const ScheduleResult *result, const st
         std::unordered_map<std::string, const TaskSchedule *> dates;
         for (const auto &row : result->tasks)
             dates.emplace(row.taskId, &row);
+        std::unordered_map<std::string, const TaskSchedule *> planned;
+        for (const auto &row : result->plannedTasks)
+            planned.emplace(row.taskId, &row);
         std::unordered_set<std::string> started;
         for (const auto &entry : p->progress)
             if (entry.actualStart)
@@ -120,7 +123,8 @@ void GanttView::setPlan(const Project *p, const ScheduleResult *result, const st
             rows_.push_back({t.id, QString::number(index + 1) + ". " + qs(t.name), qs(s.start), qs(s.finish),
                              s.critical, t.predecessors, s.drivingPredecessors, s.remainingStart, s.completedActual});
             const auto *fact = p->statusAt ? progressAsOf(*p, t.id) : nullptr;
-            rows_.back().progress = ganttProgress(result->isForecast, s.completedActual, fact);
+            rows_.back().progress = ganttProgress(result->isForecast, s.completedActual, fact, p->statusAt,
+                                                  planned.contains(t.id) ? planned.at(t.id) : nullptr);
             rows_.back().policyIgnoredIncoming = result->isForecast && p->progressPolicy &&
                                                  p->progressPolicy->policy == overrideProgressPolicy && fact &&
                                                  fact->actualStart && !fact->actualFinish;
@@ -431,18 +435,21 @@ void GanttView::rebuild() {
         bar->setData(0, qs(row.id));
         bar->setData(1, milestone ? "milestone" : "task");
         bar->setZValue(2);
-        const auto kind =
-            row.completedActual ? "실제 완료"
-            : resourceLeveled_
-                ? (row.floatMinutes
-                       ? (row.critical ? "평준화 임계 · 계산 기준은 진단 참조" : "평준화 여유 · 계산 기준은 진단 참조")
-                       : "평준화 채택 · 여유/임계 미산정")
-            : isForecast_ ? (row.floatMinutes ? (row.critical ? "예측 임계 작업" : "예측 여유 작업") : "실적 반영 예측")
-            : milestone    ? "마일스톤"
-            : row.critical ? "임계 작업"
-                           : "여유 작업";
-        QString tooltip = row.name + "\n" + kind + " · " + ganttProgressText(row.progress) + "\n" + row.start + " → " +
-                          row.finish + "\nID: " + qs(row.id);
+        const auto kind = row.completedActual ? "실제 완료"
+                          : resourceLeveled_ ? (row.floatMinutes ? (critical ? "평준화 임계 · 계산 기준은 진단 참조"
+                                                                             : "평준화 여유 · 계산 기준은 진단 참조")
+                                                                 : "평준화 채택 · 여유/임계 미산정")
+                          : isForecast_
+                              ? (row.floatMinutes ? (critical ? "예측 임계 작업" : "예측 여유 작업") : "실적 반영 예측")
+                          : !row.floatMinutes ? "여유/임계 미산정"
+                          : critical          ? (milestone ? "임계 마일스톤" : "임계 작업")
+                          : milestone         ? "마일스톤"
+                                              : "여유 작업";
+        const auto progressText = isForecast_ && row.progress == GanttProgress::Plan
+                                      ? QString("시작 예정 · 현재 계획 시작이 상태일 이후")
+                                      : ganttProgressText(row.progress);
+        QString tooltip = row.name + "\n" + kind + " · " + progressText + "\n" + row.start + " → " + row.finish +
+                          "\nID: " + qs(row.id);
         bool delayed = false;
         if (baselineCalendar_ && baselineIndex_.contains(row.id)) {
             const auto &old = baselineDates_[baselineIndex_.at(row.id)];
