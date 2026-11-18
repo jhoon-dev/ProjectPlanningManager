@@ -178,12 +178,24 @@ private slots:
         QVERIFY(window.findChild<QToolButton *>("toggleDiagnostics")->isVisible());
         QVERIFY(window.findChild<QLineEdit *>("taskSearch")->isVisible());
         QVERIFY(window.findChild<QComboBox *>("ganttZoom")->isVisible());
+        qInfo() << "short window" << window.size() << "table viewport" << taskTable(window)->viewport()->size();
+        if (const auto folder = qEnvironmentVariable("JOBS_LAYOUT_OUTPUT_DIR"); !folder.isEmpty())
+            QVERIFY(window.grab().save(QDir(folder).filePath("short-window-340.png")));
         QVERIFY(taskTable(window)->viewport()->height() >= jobs::GanttView::RowHeight * 4);
         QVERIFY(window.statusBar()->currentMessage().contains("미저장"));
+        // A scaled Cocoa desktop can constrain a requested 650px window to
+        // about 525px. Keep the task rows and commands usable there as well.
+        window.resize(1280, 525);
+        QTest::qWait(30);
+        QVERIFY(!window.findChild<QLabel *>("projectTitle")->isVisible());
+        QVERIFY(window.findChild<QToolButton *>("toggleDiagnostics")->isVisible());
+        QVERIFY(window.findChild<QComboBox *>("ganttZoom")->isVisible());
+        QVERIFY(taskTable(window)->viewport()->height() >= jobs::GanttView::RowHeight * 4);
         window.resize(1280, 720);
         QTest::qWait(30);
-        QCOMPARE(window.findChild<QLabel *>("projectTitle")->isVisible(), window.height() >= 520);
-        QVERIFY(!window.statusBar()->currentMessage().contains("미저장"));
+        const bool roomy = std::min(window.height(), window.screen()->availableGeometry().height()) >= 600;
+        QCOMPARE(window.findChild<QLabel *>("projectTitle")->isVisible(), roomy);
+        QCOMPARE(window.statusBar()->currentMessage().contains("미저장"), !roomy);
     }
     void compactWindowKeepsCommandsAndRows() {
         jobs::JsonProjectStore store;

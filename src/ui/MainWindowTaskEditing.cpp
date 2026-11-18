@@ -167,7 +167,7 @@ void MainWindow::updateCompactLayout() {
     // Cocoa can constrain a top-level native frame after the QWidget resize
     // callback. Include the screen budget rather than only the requested height.
     const int visibleHeight = screen() ? std::min(height(), screen()->availableGeometry().height()) : height();
-    const bool shortWindow = visibleHeight < 520;
+    const bool shortWindow = visibleHeight < 600;
     const bool compact = visibleHeight < 760;
     const int mode = shortWindow ? 1 : compact ? 2 : 3;
     if (property("workspaceLayoutMode").toInt() == mode)
@@ -182,10 +182,12 @@ void MainWindow::updateCompactLayout() {
     diagnostics_->setMaximumHeight(compact ? 80 : 140);
     projectTitle_->setVisible(!shortWindow);
     summary_->setVisible(!shortWindow);
+    if (auto *hint = findChild<QLabel *>("durationInputHint"))
+        hint->setVisible(!shortWindow);
     if (auto *layout = qobject_cast<QVBoxLayout *>(centralWidget()->layout())) {
-        layout->setContentsMargins(shortWindow ? 8 : 16, shortWindow ? 4 : 12, shortWindow ? 8 : 16,
-                                   shortWindow ? 4 : 8);
-        layout->setSpacing(shortWindow ? 4 : 8);
+        layout->setContentsMargins(shortWindow ? 8 : 16, shortWindow ? 2 : 12, shortWindow ? 8 : 16,
+                                   shortWindow ? 2 : 8);
+        layout->setSpacing(shortWindow ? 2 : 8);
     }
     auto *view = findChild<QHBoxLayout *>("workspaceViewRow");
     auto *diagnostic = findChild<QHBoxLayout *>("workspaceDiagnosticRow");
