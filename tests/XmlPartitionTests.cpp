@@ -138,7 +138,7 @@ void vectors() {
     };
     for (std::int64_t first : {0LL, 1LL, 9LL, 20LL, 100LL, 2147483646LL, 8999999999998LL})
         for (std::int64_t span : {1LL, 2LL, 9LL, 99LL, 1010LL}) {
-            const auto last = std::min(9000000000000LL, first + span);
+            const auto last = std::min<std::int64_t>(9000000000000LL, first + span);
             for (std::int64_t step : {1LL, 2LL, 5LL, 20LL, 2147483647LL, 9000000000000LL})
                 for (auto n : {first - 1, first, first + 1, last - 1, last, last + 1})
                     if (n <= 9000000000000LL)

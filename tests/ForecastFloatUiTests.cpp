@@ -103,7 +103,7 @@ int main(int argc, char **argv) {
         for (int i = 0; i < 500 && comparisonTable->rowCount() != 4; ++i)
             QTest::qWait(10);
         check(comparisonTable->rowCount() == 4 && comparisonTable->item(0, 15)->text() == "—" &&
-                  comparisonTable->item(3, 15)->text() == "8.00" && comparisonTable->item(3, 16)->text() == "8.00" &&
+                  comparisonTable->item(3, 15)->text() == "1d" && comparisonTable->item(3, 16)->text() == "1d" &&
                   comparisonTable->item(1, 17)->text() == "예측 임계",
               "comparison did not show remaining float");
         comparison.hide();

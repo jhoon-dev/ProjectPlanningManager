@@ -3,7 +3,10 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
   sanitized:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    # The instrumented full build reached 29% after 12 minutes on a hosted
+    # runner. Allow the build, every regression and fuzzing to finish; each
+    # regression retains its existing individual timeout.
+    timeout-minutes: 90
     env:
       CC: clang
       CXX: clang++

@@ -108,7 +108,7 @@ PlannedWorkResult exact(const Project &p, const std::vector<PlannedWorkAmount> &
 void run() {
     for (std::int64_t i = 0; i < 20000; ++i)
         check(parsePlannedWorkHours(plannedWorkHours(i)) == i, "decimal roundtrip");
-    for (auto i : {maxWork, maxWork - 1, 480000000000LL})
+    for (auto i : {maxWork, maxWork - 1, std::int64_t{480000000000LL}})
         check(parsePlannedWorkHours(plannedWorkHours(i)) == i, "large decimal roundtrip");
     for (const auto *s : {"", ".", "1.", ".1", "-1", "+1", "1e2", "NaN", "inf", "1,5", "1.00001", "1..0",
                           "99999999999999999999999", "83333333.3335"})

@@ -10,7 +10,6 @@
 #include <QDir>
 #include <QElapsedTimer>
 #include <QFile>
-#include <QFileInfo>
 #include <QFileDialog>
 #include <QFontDatabase>
 #include <QFutureWatcher>
@@ -18,6 +17,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QLabel>
+#include <QLineEdit>
 #include <QPushButton>
 #include <QTemporaryDir>
 #include <QTest>
@@ -92,14 +92,11 @@ void workflow() {
         if (auto *file = qobject_cast<QFileDialog *>(QApplication::activeModalWidget())) {
             if (!file->isVisible())
                 return;
-            if (!file->property("usageTestDirectory").toBool()) {
-                file->setDirectory(QFileInfo(buttonPath).absolutePath());
-                file->setProperty("usageTestDirectory", true);
-                return;
-            }
-            file->selectFile(QFileInfo(buttonPath).fileName());
+            auto *name = file->findChild<QLineEdit *>("fileNameEdit");
+            check(name, "Usage export filename input missing");
+            name->setText(buttonPath);
             choseFile = true;
-            static_cast<QDialog *>(file)->accept();
+            QMetaObject::invokeMethod(file, "accept");
         }
     });
     fileTimer.start();

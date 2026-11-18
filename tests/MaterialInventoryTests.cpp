@@ -323,15 +323,13 @@ void ui() {
         auto *file = qobject_cast<QFileDialog *>(QApplication::activeModalWidget());
         if (!file)
             return;
-        if (!file->property("inventoryFileSelected").toBool()) {
-            file->setOption(QFileDialog::DontConfirmOverwrite);
-            file->setDirectory(dir);
-            file->setProperty("inventoryFileSelected", true);
-            return;
-        }
-        // Filesystem model initialization can clear an early selection on macOS.
-        file->selectFile("point." + pendingExtension);
-        QMetaObject::invokeMethod(file, "accept", Qt::DirectConnection);
+        file->setOption(QFileDialog::DontConfirmOverwrite);
+        auto *name = file->findChild<QLineEdit *>("fileNameEdit");
+        check(name, "inventory export filename input missing");
+        // Enter an absolute filename, as a user would, without depending on
+        // the asynchronously populated filesystem view's selection.
+        name->setText(dir + "/point." + pendingExtension);
+        QMetaObject::invokeMethod(file, "accept");
     });
     fileTimer.start();
     const auto chooseFile = [&](QString extension) { pendingExtension = extension; };
