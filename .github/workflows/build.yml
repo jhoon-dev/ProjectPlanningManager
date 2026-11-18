@@ -24,10 +24,10 @@ jobs:
           version: '6.8.3'
           arch: ${{ matrix.arch }}
           cache: true
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: '21.0.11+10'
+          java-version: '21.0.11+10.0.LTS'
       - name: Cache locked MPP reader inputs
         uses: actions/cache@v4
         with:
@@ -161,7 +161,7 @@ jobs:
           name: bulk-editing-${{ runner.os }}
           path: build/bulk-editing-native.png
           if-no-files-found: warn
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '21'
