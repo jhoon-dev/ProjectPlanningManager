@@ -160,13 +160,15 @@ void MainWindow::applyColumnPreset() {
 void MainWindow::refreshNavigationUi() {
     auto *context = findChild<QWidget *>("navigationContext");
     auto *preset = findChild<QComboBox *>("taskColumnPreset");
-    if (!context || !preset)
+    auto *label = findChild<QLabel *>("navigationScope");
+    auto *details = findChild<QLabel *>("navigationDetails");
+    auto *finish = findChild<QAction *>("focusGanttFinish");
+    if (!context || !preset || !label || !details || !finish)
         return;
     const auto &p = document_.project();
     context->setVisible(p.has_value() && property("workspaceLayoutMode").toInt() != 1);
     preset->setEnabled(p.has_value());
     taskModel_->setWeeklyColumns(preset->currentIndex() == 2, selectedBaseline_);
-    auto *finish = findChild<QAction *>("focusGanttFinish");
     const auto &calculation = document_.calculation();
     const bool current = p && calculation && calculation->status == CalculationStatus::Valid &&
                          calculation->inputRevision == p->revision;
@@ -199,10 +201,9 @@ void MainWindow::refreshNavigationUi() {
                 (gantt_->finishVisible() ? " · 화면 안" : " · 화면 밖 → 표시 완료일 보기 또는 전체 맞춤");
     else
         text += "\n유효한 간트 날짜 없음 · F9로 전체 일정을 계산하세요.";
-    auto *label = findChild<QLabel *>("navigationScope");
     label->setText(brief);
     label->setToolTip(text);
-    findChild<QLabel *>("navigationDetails")->setText(text);
+    details->setText(text);
     taskViewStatus_->setToolTip(text);
 }
 } // namespace jobs

@@ -7,6 +7,10 @@ modifications to these libraries. Qt copyright notices, license texts and the
 upstream SPDX inventory are in licenses/qtbase. Qt's inventory can also describe
 components not used by this application.
 
+The application also embeds the unmodified Korean QtTranslations 6.8.3 catalog
+under the LGPL v3 option. Its fixed source revision, hashes and replacement
+instructions are supplied in licenses/qttranslations.
+
 Qt source, build instructions and license information:
 https://download.qt.io/archive/qt/6.8/6.8.3/submodules/
 https://github.com/qt/qtbase/tree/v6.8.3

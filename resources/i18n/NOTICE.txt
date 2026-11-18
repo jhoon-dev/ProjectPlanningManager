@@ -1,0 +1,12 @@
+Qt Korean translation catalog (QtTranslations 6.8.3)
+Copyright (C) The Qt Company Ltd. and contributors.
+
+qtbase_ko.qm is compiled without translation edits from translations/qtbase_ko.ts
+at revision abe01d7de31d311db8bc485d4e7e8d0c30493425:
+https://github.com/qt/qttranslations/tree/abe01d7de31d311db8bc485d4e7e8d0c30493425
+
+Distributed under the LGPL-3.0-only option specified by that revision's
+licenseRule.json. The LGPL v3 and GPL v3 texts are supplied alongside the Qt
+library notices in licenses/qtbase. Source and output hashes are in manifest.json.
+The catalog may be replaced with a compatible translations/qtbase_ko.qm next to
+the executable; the embedded copy is used when no valid replacement is present.

@@ -18,8 +18,10 @@
 #include <QScopeGuard>
 #include <QSignalSpy>
 #include <QFile>
+#include <QFileDialog>
 #include <QLabel>
 #include <QLineEdit>
+#include <QMenu>
 #include <QPlainTextEdit>
 #include <QPushButton>
 #include <QTableWidget>
@@ -27,6 +29,7 @@
 #include <QTemporaryDir>
 #include <QTest>
 #include <QTimer>
+#include <memory>
 
 namespace {
 std::string fixture(jobs::Document &doc) {
@@ -81,6 +84,61 @@ private slots:
         QCOMPARE(message.button(QMessageBox::Discard)->text(), QString("저장 안 함"));
         QCOMPARE(QCoreApplication::translate("QCocoaTheme", "Don't Save"), QString("저장 안 함"));
         QCOMPARE(QCoreApplication::translate("OtherContext", "Close"), QString("Close"));
+    }
+    void inputMenusFileDialogAndMessageDetailsAreKorean() {
+        const auto locale = QLocale();
+        const auto restore = qScopeGuard([&] { QLocale::setDefault(locale); });
+        QLocale::setDefault(QLocale(QLocale::English, QLocale::UnitedStates));
+        const auto menuText = [](const QMenu &menu) {
+            QStringList labels;
+            for (const auto *action : menu.actions())
+                labels << action->text().remove('&').section('\t', 0, 0);
+            return labels.join('\n');
+        };
+        QLineEdit input("설비 설치");
+        input.selectAll();
+        const std::unique_ptr<QMenu> inputMenu(input.createStandardContextMenu());
+        QPlainTextEdit memo("주간 확인");
+        memo.selectAll();
+        const std::unique_ptr<QMenu> memoMenu(memo.createStandardContextMenu());
+        for (const auto *menu : {inputMenu.get(), memoMenu.get()}) {
+            const auto labels = menuText(*menu);
+            for (const auto *label : {"실행 취소", "잘라내기", "복사", "붙여넣기", "모두 선택"})
+                QVERIFY2(labels.contains(QString::fromUtf8(label)), qPrintable(labels));
+        }
+        QTemporaryDir folder;
+        QFileDialog files(nullptr, "프로젝트 열기", folder.path(), "PPM (*.ppm)");
+        files.setOption(QFileDialog::DontUseNativeDialog);
+        files.show();
+        QVERIFY(files.labelText(QFileDialog::FileName).contains("파일 이름"));
+        QVERIFY(files.labelText(QFileDialog::FileType).contains("파일 형식"));
+        QVERIFY(files.labelText(QFileDialog::Accept).contains("열기"));
+        const auto capture = [](QWidget &widget, const char *name) {
+            if (const auto path = qEnvironmentVariable("JOBS_OUTCOME_AUDIT_DIR"); !path.isEmpty()) {
+                QVERIFY(QDir().mkpath(path));
+                QTest::qWait(80);
+                QVERIFY(widget.grab().save(QDir(path).filePath(QString::fromLatin1(name) + ".png")));
+            }
+        };
+        capture(files, "korean-file-dialog");
+        files.close();
+        QMessageBox message(QMessageBox::Warning, "검토 필요", "일정 진단을 확인하세요.", QMessageBox::Close);
+        message.setDetailedText("자원 과부하 진단 내용");
+        message.show();
+        QAbstractButton *details = nullptr;
+        for (auto *button : message.findChildren<QAbstractButton *>())
+            if (button->text() == "자세한 정보 표시...")
+                details = button;
+        QVERIFY(details);
+        details->click();
+        QCOMPARE(details->text(), QString("자세한 정보 숨기기..."));
+        capture(message, "korean-message-details");
+        message.close();
+        input.resize(320, 40);
+        input.show();
+        inputMenu->popup(input.mapToGlobal(input.rect().bottomLeft()));
+        capture(*inputMenu, "korean-input-menu");
+        inputMenu->close();
     }
     void comparisonUsesFrozenAndCurrentTaskCalendars() {
         jobs::JsonProjectStore store;

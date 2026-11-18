@@ -31,6 +31,8 @@ def deploy(root, stage, executable, qt, compiler, environment, log):
     (stage / 'qt.conf').write_text('[Paths]\nPrefix=.\nPlugins=.\n', encoding='utf-8')
     shutil.copyfile(root / 'packaging/NOTICE.txt', stage / 'NOTICE.txt')
     shutil.copytree(root / 'packaging/licenses/qtbase', stage / 'licenses/qtbase')
+    shutil.copytree(root / 'resources/i18n', stage / 'licenses/qttranslations',
+                    ignore=shutil.ignore_patterns('*.qm', 'README.md'))
     shutil.copytree(root / 'resources/timezones', stage / 'licenses/timezones', ignore=shutil.ignore_patterns('*.inc', '*.zip'))
     shutil.copytree(root / 'resources/text', stage / 'licenses/unicode', ignore=shutil.ignore_patterns('*.inc', '*.zip'))
     shutil.copyfile(qt / 'sbom/qtbase-6.8.3.spdx.json', stage / 'licenses/qtbase/qtbase-6.8.3.spdx.json')
