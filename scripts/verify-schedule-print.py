@@ -63,7 +63,9 @@ def verify(build):
 
     for page in readers["schedule"].pages:
         page.extract_text(visitor_operand_before=visit)
-    for rgb in ((23, 130, 84), (190, 53, 53), (119, 119, 119)):
+    # Completion fill, critical outline, delay marker and baseline line use
+    # the shared Gantt palette in both screen and print output.
+    for rgb in ((81, 179, 132), (158, 63, 57), (216, 132, 22), (119, 119, 119)):
         assert any(all(abs(a - b / 255) < .01 for a, b in zip(color, rgb)) for color in colors), rgb
     return {"status": "success", "pdf_files": 6,
             "pages": {key: len(value.pages) for key, value in readers.items()},

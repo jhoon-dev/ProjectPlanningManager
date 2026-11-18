@@ -8,6 +8,7 @@
 #include <QTextOption>
 #include <QFontMetricsF>
 #include <QFontDatabase>
+#include <QFontInfo>
 #include <memory>
 #include <algorithm>
 #include <cmath>
@@ -225,14 +226,18 @@ int exportPdf(const ProjectReport &r, const QString &path, ReportFamily family, 
         auto font = options.font;
 #ifdef Q_OS_MACOS
         // CoreText's private UI fonts can emit a broken PDF ToUnicode map
-        // (the time colon becomes U+0013). Use an installed public print face;
-        // Qt still supplies the native Korean fallback for missing glyphs.
-        if (font.family().isEmpty() || font.family().startsWith('.')) {
+        // (spaces/colons become controls). Resolve aliases as well as explicit
+        // private family names, and prefer a public face with Korean glyphs.
+        const auto resolvedFamily = QFontInfo(font).family();
+        if (font.family().isEmpty() || font.family().startsWith('.') || resolvedFamily.startsWith('.') ||
+            QFontDatabase::isPrivateFamily(resolvedFamily) ||
+            font.family() == QFontDatabase::systemFont(QFontDatabase::GeneralFont).family()) {
             const auto families = QFontDatabase::families();
             bool found = false;
-            for (const auto &family : QStringList{"Arial", "Helvetica", "Noto Sans"})
+            for (const auto &family : QStringList{"Apple SD Gothic Neo", "Arial", "Helvetica", "Noto Sans"})
                 if (families.contains(family)) {
                     font.setFamily(family);
+                    font.setStyleName({});
                     found = true;
                     break;
                 }

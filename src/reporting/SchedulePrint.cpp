@@ -6,6 +6,7 @@
 #include "calculation/Tracking.h"
 #include "formatting/DiagnosticText.h"
 #include <QFontDatabase>
+#include <QFontInfo>
 #include <QFontMetricsF>
 #include <QPainter>
 #include <QPdfWriter>
@@ -118,14 +119,20 @@ SchedulePrintLayout buildSchedulePrint(const SchedulePrintSource &source, const 
     out.content = out.options.page.paintRect(QPageLayout::Point);
     out.font = options.font;
 #ifdef Q_OS_MACOS
-    if (out.font.family().startsWith('.')) {
+    const auto resolvedFamily = QFontInfo(out.font).family();
+    if (out.font.family().isEmpty() || out.font.family().startsWith('.') || resolvedFamily.startsWith('.') ||
+        QFontDatabase::isPrivateFamily(resolvedFamily) ||
+        out.font.family() == QFontDatabase::systemFont(QFontDatabase::GeneralFont).family()) {
         const auto families = QFontDatabase::families();
-        for (const auto &name : QStringList{"Arial", "Helvetica", "Noto Sans"})
+        bool found = false;
+        for (const auto &name : QStringList{"Apple SD Gothic Neo", "Arial", "Helvetica", "Noto Sans"})
             if (families.contains(name)) {
                 out.font.setFamily(name);
+                out.font.setStyleName({});
+                found = true;
                 break;
             }
-        if (out.font.family().startsWith('.'))
+        if (!found)
             fail("인쇄용 공개 글꼴을 찾지 못했습니다.");
     }
 #endif
