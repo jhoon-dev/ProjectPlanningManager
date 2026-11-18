@@ -115,6 +115,22 @@ SchedulePrintDialog::SchedulePrintDialog(Document &doc, SchedulePrintSource sour
     setWindowTitle("일정표·간트 · 페이지 설정 / 인쇄 미리보기");
     resize(1180, 850);
     auto *body = new QVBoxLayout(this);
+    auto *presets = new QHBoxLayout;
+    body->addLayout(presets);
+    presets->addWidget(new QLabel("출력 구성", this));
+    preset_ = new QComboBox(this);
+    preset_->setObjectName("printPreset");
+    preset_->addItems({"회의용 · 전체 일정", "회의용 · 다음 주 시간축", "상세 · 화면 표시 열 / 저장된 페이지 설정"});
+    preset_->setToolTip("회의용은 전체 프로젝트·핵심 열·A4 가로를 적용합니다. 다음 주는 상태일(없으면 프로젝트 "
+                        "시작일)의 다음 월~일입니다. 프리셋 선택은 문서를 변경하지 않습니다.");
+    preset_->setCurrentIndex(source_.project->printPreferences ? 2 : 0);
+    presets->addWidget(preset_);
+    presets->addStretch();
+    context_ = new QLabel(this);
+    context_->setObjectName("printContext");
+    context_->setTextFormat(Qt::PlainText);
+    context_->setWordWrap(true);
+    body->addWidget(context_);
     auto *settings = new QHBoxLayout;
     body->addLayout(settings);
     auto add = [&](QHBoxLayout *row, const QString &label, QWidget *widget) {
@@ -124,6 +140,8 @@ SchedulePrintDialog::SchedulePrintDialog(Document &doc, SchedulePrintSource sour
     scope_ = new QComboBox(this);
     scope_->setObjectName("printScope");
     scope_->addItems({"현재 표시 작업", "표시 작업 중 선택"});
+    if (preset_->currentIndex() != 2)
+        scope_->addItem("전체 프로젝트 (화면 필터 제외)");
     add(settings, "범위", scope_);
     paper_ = new QComboBox(this);
     paper_->setObjectName("printPaper");
@@ -209,9 +227,11 @@ SchedulePrintDialog::SchedulePrintDialog(Document &doc, SchedulePrintSource sour
     print_->setObjectName("printSchedule");
     cancel_ = new QPushButton("준비 / 출력 취소", this);
     cancel_->setObjectName("cancelSchedulePrint");
-    saveSettings_ = new QPushButton("설정 문서에 저장", this);
+    saveSettings_ = new QPushButton("페이지 설정만 문서에 저장", this);
     saveSettings_->setObjectName("savePrintPreferences");
     saveSettings_->setEnabled(!document_.readOnly());
+    saveSettings_->setToolTip(
+        "기존 용지·범위·기간·표시 옵션만 저장합니다. 회의용 프리셋과 열 구성은 이 창에서 선택합니다.");
     actions->addWidget(saveSettings_);
     auto *close = new QPushButton("닫기", this);
     for (auto *b : {prepare_, pdf_, print_, cancel_, close})
@@ -238,6 +258,11 @@ SchedulePrintDialog::SchedulePrintDialog(Document &doc, SchedulePrintSource sour
         to_->setEnabled(!s.automaticDates);
         relations_->setChecked(s.relations);
         wbs_->setChecked(s.wbs);
+    }
+    if (preset_->currentIndex() != 2) {
+        scope_->setCurrentIndex(2);
+        tablePercent_->setValue(65);
+        nameWidth_->setValue(110);
     }
     connect(saveSettings_, &QPushButton::clicked, this, [this] {
         try {
@@ -279,6 +304,7 @@ SchedulePrintDialog::SchedulePrintDialog(Document &doc, SchedulePrintSource sour
     connect(wbs_, &QCheckBox::toggled, this, [this] { invalidate(); });
     connect(page_, &QSpinBox::valueChanged, this, [this] { showPage(); });
     connect(zoom_, &QSpinBox::valueChanged, this, [this] { showPage(); });
+    connect(preset_, &QComboBox::currentIndexChanged, this, [this] { applyPreset(); });
     prepare();
 }
 SchedulePrintDialog::~SchedulePrintDialog() {
@@ -304,8 +330,8 @@ void SchedulePrintDialog::ready(bool working) {
     print_->setEnabled(!working && layout_ && current() && !QPrinterInfo::availablePrinters().isEmpty());
     if (QPrinterInfo::availablePrinters().isEmpty())
         print_->setToolTip("등록된 프린터가 없습니다. PDF 저장은 사용할 수 있습니다.");
-    for (auto *widget : std::vector<QWidget *>{scope_, paper_, orientation_, margin_, font_, tablePercent_, nameWidth_,
-                                               automatic_, fit_, baseline_})
+    for (auto *widget : std::vector<QWidget *>{preset_, scope_, paper_, orientation_, margin_, font_, tablePercent_,
+                                               nameWidth_, automatic_, fit_, baseline_, relations_, wbs_})
         widget->setEnabled(!working);
     baseline_->setEnabled(!working && !source_.baselineId.isEmpty());
     days_->setEnabled(!working && !fit_->isChecked());
@@ -320,6 +346,65 @@ void SchedulePrintDialog::invalidate() {
     delete preview_->takeWidget();
     ready(false);
     message_->setText("설정이 변경되었습니다. 미리보기를 다시 준비하세요.");
+    updateContext();
+}
+void SchedulePrintDialog::updateContext() {
+    const auto &p = *source_.project;
+    QString base = "없음/미표시";
+    if (baseline_->isChecked())
+        for (const auto &b : p.baselines)
+            if (QString::fromStdString(b.id) == source_.baselineId)
+                base = "v" + QString::number(b.version) + " · " + QString::fromStdString(b.name);
+    context_->setText("범위: " +
+                      (scope_->currentIndex() == 2 ? QString("전체 프로젝트 · 화면 필터 제외")
+                                                   : source_.scope + " · " + scope_->currentText()) +
+                      "\n상태일: " + (p.statusAt ? QString::fromStdString(*p.statusAt) : "미설정") +
+                      " · 기준선: " + base + " · 일정: " +
+                      (p.remainingLeveling ? QString("잔여 예측 · 자원 조정 채택")
+                       : p.planLeveling    ? QString("계획 · 자원 조정 채택")
+                       : p.statusAt        ? QString("잔여 예측 · 자원 조정 전")
+                                           : QString("현재 계획")) +
+                      "\n시간축: " +
+                      (automatic_->isChecked()
+                           ? QString("전체 출력 작업·기준선 범위")
+                           : from_->date().toString(Qt::ISODate) + " ~ " + to_->date().toString(Qt::ISODate)) +
+                      " · 기간을 제한해도 작업 행은 제외하지 않습니다. 전체 프로젝트에서 계산합니다.");
+}
+void SchedulePrintDialog::applyPreset() {
+    const bool meeting = preset_->currentIndex() != 2;
+    if (meeting && scope_->count() == 2)
+        scope_->addItem("전체 프로젝트 (화면 필터 제외)");
+    if (!meeting && scope_->count() == 3) {
+        scope_->setCurrentIndex(0);
+        scope_->removeItem(2);
+    }
+    const auto saved = source_.project->printPreferences.value_or(PrintPreferences{});
+    scope_->setCurrentIndex(meeting ? 2 : saved.selectedOnly ? 1 : 0);
+    paper_->setCurrentIndex(meeting ? 0 : saved.paper);
+    orientation_->setCurrentIndex(meeting ? 0 : saved.orientation);
+    margin_->setValue(meeting ? 10 : saved.margin);
+    font_->setValue(meeting ? 9 : saved.fontPoints);
+    tablePercent_->setValue(meeting ? 65 : saved.tablePercent);
+    nameWidth_->setValue(meeting ? 110 : saved.nameWidth);
+    days_->setValue(saved.daysPerPage);
+    fit_->setChecked(meeting || saved.fitTime);
+    relations_->setChecked(!meeting && saved.relations);
+    wbs_->setChecked(!meeting && saved.wbs);
+    baseline_->setChecked((meeting || saved.baseline) && !source_.baselineId.isEmpty());
+    automatic_->setChecked(meeting || saved.automaticDates);
+    if (preset_->currentIndex() == 1) {
+        const auto &p = *source_.project;
+        const auto anchor = QDate::fromString(
+            QString::fromStdString(p.statusAt ? p.statusAt->substr(0, 10) : p.startDate), Qt::ISODate);
+        const auto nextMonday = anchor.addDays(8 - anchor.dayOfWeek());
+        automatic_->setChecked(false);
+        from_->setDate(nextMonday);
+        to_->setDate(nextMonday.addDays(6));
+    } else if (!meeting && !saved.automaticDates) {
+        from_->setDate(QDate::fromString(QString::fromStdString(saved.from), Qt::ISODate));
+        to_->setDate(QDate::fromString(QString::fromStdString(saved.to), Qt::ISODate));
+    }
+    prepare();
 }
 PrintPreferences SchedulePrintDialog::preferences() const {
     auto s = source_.project->printPreferences.value_or(PrintPreferences{});
@@ -363,6 +448,7 @@ void SchedulePrintDialog::prepare() {
     options.baseline = baseline_->isChecked();
     options.relations = relations_->isChecked();
     options.wbs = wbs_->isChecked();
+    options.meetingSummary = preset_->currentIndex() != 2;
     if (!automatic_->isChecked()) {
         options.from = from_->date();
         options.to = to_->date();
@@ -401,7 +487,19 @@ void SchedulePrintDialog::prepare() {
                 .arg(layout_->pages.size())
                 .arg(layout_->mode));
     });
-    watcher->setFuture(QtConcurrent::run([source = source_, options, control = control_] {
+    auto outputSource = source_;
+    if (scope_->currentIndex() == 2) {
+        outputSource.scope = "전체 프로젝트 · 화면 필터 제외 · 원본 작업 순서";
+        outputSource.rows.clear();
+        int number = 0;
+        for (const auto &task : outputSource.project->tasks) {
+            QStringList cells;
+            for (std::size_t i = 0; i < outputSource.columns.size(); ++i)
+                cells << QString{};
+            outputSource.rows.push_back({task.id, ++number, std::move(cells)});
+        }
+    }
+    watcher->setFuture(QtConcurrent::run([source = std::move(outputSource), options, control = control_] {
         Prepared r;
         try {
             r.layout = std::make_shared<const SchedulePrintLayout>(buildSchedulePrint(source, options, control));

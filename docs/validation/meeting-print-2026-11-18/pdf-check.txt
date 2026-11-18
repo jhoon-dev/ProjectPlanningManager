@@ -1,0 +1,6 @@
+PASS: project saved bytes unchanged by presets, preview and both PDF exports
+PASS: meeting-full.pdf: 3 A4 landscape pages; 5 tasks on one data page; repeated facts and full provenance
+SHA-256: 7799cc52a9204d7b6d17a9224f3c20bac4d743cc4ea22354e8f6d0dde8f2ed30
+PASS: meeting-next-week.pdf: 3 A4 landscape pages; 5 tasks on one data page; repeated facts and full provenance
+SHA-256: bb4f17e2fd9c8e61d8b08744cf348ebd7232b90621e3f9a9b7905547b2147895
+PASS: next-week time axis keeps all 5 task rows; no source data mutation

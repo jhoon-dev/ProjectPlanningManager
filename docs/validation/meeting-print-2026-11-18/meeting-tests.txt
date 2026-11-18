@@ -1,0 +1,12 @@
+********* Start testing of MeetingPrintTests *********
+Config: Using QtTest library 6.8.3, Qt 6.8.3 (x86_64-little_endian-llp64 shared (dynamic) release build; by GCC 13.1.0), windows 11
+PASS   : MeetingPrintTests::initTestCase()
+QWARN  : MeetingPrintTests::compactFullAndNextWeekKeepFactsAndPageCount() QFontDatabase: Cannot find font directory C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/lib/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+PASS   : MeetingPrintTests::compactFullAndNextWeekKeepFactsAndPageCount()
+PASS   : MeetingPrintTests::missingBaselineInvalidScheduleAndHolidayVariance()
+QWARN  : MeetingPrintTests::presetsExplicitScopeAndDocumentStayIndependent() This plugin does not support propagateSizeHints()
+PASS   : MeetingPrintTests::presetsExplicitScopeAndDocumentStayIndependent()
+PASS   : MeetingPrintTests::cleanupTestCase()
+Totals: 5 passed, 0 failed, 0 skipped, 0 blacklisted, 7142ms
+********* Finished testing of MeetingPrintTests *********

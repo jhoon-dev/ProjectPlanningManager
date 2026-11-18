@@ -21,13 +21,13 @@ public:
 private:
     Document &document_;
     SchedulePrintSource source_;
-    QComboBox *scope_, *paper_, *orientation_;
+    QComboBox *preset_, *scope_, *paper_, *orientation_;
     QSpinBox *margin_, *font_, *tablePercent_, *nameWidth_, *days_, *page_, *zoom_;
     QDateEdit *from_, *to_;
     QCheckBox *automatic_, *fit_, *baseline_, *relations_, *wbs_;
     QPushButton *saveSettings_;
     PrintPreferences preferences() const;
-    QLabel *message_;
+    QLabel *message_, *context_;
     QPushButton *prepare_, *pdf_, *print_, *cancel_;
     QScrollArea *preview_;
     std::shared_ptr<const SchedulePrintLayout> layout_;
@@ -40,5 +40,7 @@ private:
     void showPage();
     void output(bool pdf);
     void ready(bool working);
+    void applyPreset();
+    void updateContext();
 };
 } // namespace jobs

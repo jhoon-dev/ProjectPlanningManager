@@ -1,0 +1,17 @@
+Test project C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+    Start 180: meeting_print_ui
+    Start 178: schedule_print_contract
+1/6 Test #180: meeting_print_ui .................   Passed   10.13 sec
+    Start 179: schedule_print_ui
+2/6 Test #179: schedule_print_ui ................   Passed   14.03 sec
+    Start 191: dialog_layout
+3/6 Test #178: schedule_print_contract ..........   Passed   27.55 sec
+    Start  16: presentation_contract
+4/6 Test #191: dialog_layout ....................   Passed   14.12 sec
+    Start  17: presentation_ui
+5/6 Test  #16: presentation_contract ............   Passed   13.53 sec
+6/6 Test  #17: presentation_ui ..................   Passed    4.98 sec
+
+100% tests passed out of 6
+
+Total Test time (real) =  43.60 sec

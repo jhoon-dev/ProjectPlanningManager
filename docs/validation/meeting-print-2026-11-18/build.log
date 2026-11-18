@@ -1,0 +1,21 @@
+[0/1] Re-running CMake...
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
+-- Configuring done (9.0s)
+-- Generating done (4.5s)
+-- Build files have been written to: C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary
+[1/19] Automatic MOC for target jobs_updates
+[2/17] Building CXX object CMakeFiles/jobs_reporting.dir/src/reporting/SchedulePrintExtras.cpp.obj
+[3/17] Building CXX object CMakeFiles/jobs_reporting.dir/src/reporting/SchedulePrint.cpp.obj
+[4/17] Linking CXX static library libjobs_reporting.a
+[5/17] Building CXX object CMakeFiles/jobs_schedule_print_tests.dir/tests/SchedulePrintTests.cpp.obj
+[6/17] Linking CXX executable jobs_schedule_print_tests.exe
+[7/17] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/SchedulePrintDialog.cpp.obj
+[8/17] Building CXX object CMakeFiles/jobs_schedule_print_ui_tests.dir/tests/SchedulePrintUiTests.cpp.obj
+[9/17] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindow.cpp.obj
+[10/17] Linking CXX static library libjobs_ui.a
+[11/17] Automatic MOC for target jobs_meeting_print_tests
+[12/17] Building CXX object CMakeFiles/jobs_meeting_print_tests.dir/jobs_meeting_print_tests_autogen/mocs_compilation.cpp.obj
+[13/17] Linking CXX executable PPM.exe
+[14/17] Linking CXX executable jobs_schedule_print_ui_tests.exe
+[15/17] Building CXX object CMakeFiles/jobs_meeting_print_tests.dir/tests/MeetingPrintTests.cpp.obj
+[16/17] Linking CXX executable jobs_meeting_print_tests.exe

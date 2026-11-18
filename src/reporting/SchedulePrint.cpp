@@ -21,6 +21,22 @@ namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s);
 }
+QString meetingVariance(const PlanInput *calendar, const std::optional<std::string> &before,
+                        const std::optional<std::string> &after) {
+    if (!calendar || !before || !after)
+        return "—";
+    std::int64_t minutes = 0;
+    try {
+        WorkCalendar clock(*calendar, Task{});
+        minutes = clock.offset(*after) - clock.offset(*before);
+    } catch (const std::exception &) {
+        return "—";
+    }
+    const auto sign = minutes > 0 ? "+" : minutes < 0 ? "−" : "";
+    const auto amount = std::abs(minutes);
+    const auto hours = sign + QString::number(double(amount) / 60, 'g', 12) + "h";
+    return amount % 480 == 0 ? sign + QString::number(amount / 480) + "d (" + hours + ")" : hours;
+}
 QStringList wrap(const QString &text, const QFont &font, double width) {
     QStringList result;
     for (const auto &paragraph : text.split('\n')) {
@@ -128,22 +144,28 @@ SchedulePrintLayout buildSchedulePrint(const SchedulePrintSource &source, const 
 #endif
     out.font.setPixelSize(options.fontPoints);
     out.lineHeight = std::ceil(QFontMetricsF(out.font).height()) + 2;
-    out.bodyTop = out.content.top() + 96;
-    out.bodyHeight = out.content.height() - 132;
+    out.bodyTop = out.content.top() + (options.meetingSummary ? 136 : 96);
+    out.bodyHeight = out.content.height() - (options.meetingSummary ? 172 : 132);
     out.tableWidth = std::floor(out.content.width() * options.tablePercent / 100);
     if (out.bodyHeight < out.lineHeight + 6 || out.content.width() - out.tableWidth < 100 || out.tableWidth < 150)
         fail("용지의 출력 영역이 너무 작습니다. 여백·글자·표 비율을 조정하세요.");
-    out.columns = source.columns;
-    out.widths.resize(source.columns.size());
+    out.columns = options.meetingSummary ? std::vector<SchedulePrintColumn>{{"number", "번호", 36},
+                                                                            {"name", "작업", 110},
+                                                                            {"finish", "현재 완료", 84},
+                                                                            {"baselineFinish", "기준선 완료", 84},
+                                                                            {"finishVariance", "완료 편차", 68},
+                                                                            {"reportState", "상태일 보고", 64}}
+                                         : source.columns;
+    out.widths.resize(out.columns.size());
     out.widths[0] = 36;
     out.widths[1] = std::min(double(options.nameWidth), out.tableWidth - 76);
     const auto detailWidth = out.tableWidth - out.widths[0] - out.widths[1];
     std::vector<std::vector<int>> columnTiles{{0, 1}};
     double occupied = 0;
-    for (int c = 2; c < int(source.columns.size()); ++c) {
-        if (!std::isfinite(source.columns[c].width))
+    for (int c = 2; c < int(out.columns.size()); ++c) {
+        if (!std::isfinite(out.columns[c].width))
             fail("열 너비가 올바르지 않습니다.");
-        out.widths[c] = std::clamp(source.columns[c].width, 40.0, detailWidth);
+        out.widths[c] = std::clamp(out.columns[c].width, 40.0, detailWidth);
         if (occupied + out.widths[c] > detailWidth + 0.01 && columnTiles.back().size() > 2) {
             columnTiles.push_back({0, 1});
             occupied = 0;
@@ -187,6 +209,24 @@ SchedulePrintLayout buildSchedulePrint(const SchedulePrintSource &source, const 
         for (const auto &s : b->schedule)
             baseline.emplace(s.taskId, &s);
     }
+    std::set<std::string> reported;
+    if (p.statusAt)
+        for (const auto &entry : p.progress)
+            if (entry.statusAt <= *p.statusAt)
+                reported.insert(entry.taskId);
+    out.meetingContext = "상태일 " + (p.statusAt ? qs(*p.statusAt) : "미설정") + " · 기준선 " +
+                         (b ? "v" + QString::number(b->version) + " " + qs(b->name) : "없음/미표시") +
+                         QString(" · 전체 보고 %1/%2 · 미보고는 진척 미정").arg(reported.size()).arg(p.tasks.size());
+    out.meetingResult =
+        QString(p.remainingLeveling ? "잔여 예측 · 자원 조정 채택"
+                : p.planLeveling    ? "계획 · 자원 조정 채택"
+                : result.isForecast ? "잔여 예측 · 조정 전"
+                                    : "현재 계획") +
+        " · 전체 완료 " +
+        (result.status == CalculationStatus::Valid && result.projectFinish ? qs(*result.projectFinish) : "미정") +
+        " · 기준선 대비 " +
+        meetingVariance(b ? &b->input : nullptr, b ? std::optional<std::string>{b->projectFinish} : std::nullopt,
+                        result.status == CalculationStatus::Valid ? result.projectFinish : std::nullopt);
     QDate first, last;
     std::set<std::string> seen;
     qsizetype characters = 0;
@@ -202,7 +242,7 @@ SchedulePrintLayout buildSchedulePrint(const SchedulePrintSource &source, const 
     for (const auto &input : source.rows) {
         calculationCheckpoint();
         if (!tasks.contains(input.taskId) || !seen.insert(input.taskId).second ||
-            input.cells.size() != qsizetype(out.columns.size()))
+            input.cells.size() != qsizetype(source.columns.size()))
             fail("인쇄 작업/열 스냅샷이 올바르지 않습니다.");
         if (options.selectedOnly && !source.selected.contains(input.taskId))
             continue;
@@ -210,7 +250,9 @@ SchedulePrintLayout buildSchedulePrint(const SchedulePrintSource &source, const 
         const auto *s = active.contains(t.id) ? active.at(t.id) : nullptr;
         SchedulePrintRow row;
         row.taskId = t.id;
-        row.cells = input.cells;
+        row.cells = options.meetingSummary
+                        ? QStringList{QString{}, QString{}, QString{}, QString{}, QString{}, QString{}}
+                        : input.cells;
         row.cells[0] = QString::number(input.number);
         row.cells[1] = qs(t.name);
         for (int c = 2; c < row.cells.size(); ++c) {
@@ -219,6 +261,20 @@ SchedulePrintLayout buildSchedulePrint(const SchedulePrintSource &source, const 
                 row.cells[c] = s ? qs(s->start) : "미정";
             if (key == "finish")
                 row.cells[c] = s ? qs(s->finish) : "미정";
+            if (key == "baselineFinish")
+                row.cells[c] = baseline.contains(t.id) ? qs(baseline.at(t.id)->finish) : "—";
+            if (key == "finishVariance")
+                row.cells[c] = meetingVariance(
+                    b ? &b->input : nullptr,
+                    baseline.contains(t.id) ? std::optional<std::string>{baseline.at(t.id)->finish} : std::nullopt,
+                    s ? std::optional<std::string>{s->finish} : std::nullopt);
+            if (key == "reportState") {
+                const auto *entry = progressAsOf(p, t.id);
+                row.cells[c] = !p.statusAt           ? "상태일 없음"
+                               : !entry              ? "미보고 · 미정"
+                               : entry->actualFinish ? "완료 보고"
+                                                     : "보고 있음";
+            }
             if (key == "totalFloat")
                 row.cells[c] = s && hasScheduleFloat(result, *s)
                                    ? QString::number(double(s->totalFloatMinutes) / 60, 'g', 12)
@@ -316,6 +372,9 @@ SchedulePrintLayout buildSchedulePrint(const SchedulePrintSource &source, const 
         {"revision", QString::number(p.revision)},
         {"저장 상태", source.unsaved ? "미저장 메모리 revision" : "저장된 원본"},
         {"범위", source.scope},
+        {"출력 구성", options.meetingSummary
+                          ? "회의용 핵심 열 · 완료 편차는 기준선 기본 달력 근무시간 (1d=8h, +지연/−앞당김)"
+                          : "화면 표시 상세 열"},
         {"작업 수",
          QString::number(out.taskCount) + (options.selectedOnly ? " · 표시 작업 중 선택" : " · 표시 작업 전체")},
         {"일정", out.mode + " / " + qs(result.engineVersion) + " / " + qs(result.calculationPolicy)},
@@ -345,6 +404,10 @@ SchedulePrintLayout buildSchedulePrint(const SchedulePrintSource &source, const 
         const auto &s = p.planLeveling ? *p.planLeveling : *p.remainingLeveling;
         facts.emplace_back("평준화 채택",
                            qs(s.policy) + " / " + qs(s.priority) + " / " + qs(s.reason) + " / " + qs(s.adoptedAt));
+    }
+    if (options.meetingSummary) {
+        facts.emplace_back("회의용 상태", out.meetingContext);
+        facts.emplace_back("전체 결과", out.meetingResult);
     }
     for (std::size_t c = 0; c < out.columns.size(); ++c)
         facts.emplace_back("출력 열", out.columns[c].key + " / " + out.columns[c].title + " / " +
@@ -388,6 +451,12 @@ void paintSchedulePage(QPainter &painter, const SchedulePrintLayout &layout, int
     painter.drawText(QRectF(box.left(), box.top() + 37, box.width(), 16),
                      "생성 UTC " + layout.source.generatedAt + " · " + QString::number(index + 1) + " / " +
                          QString::number(layout.pages.size()) + " 페이지");
+    if (layout.options.meetingSummary) {
+        painter.drawText(QRectF(box.left(), box.top() + 55, box.width(), 16),
+                         QFontMetricsF(caption).elidedText(layout.meetingContext, Qt::ElideRight, box.width()));
+        painter.drawText(QRectF(box.left(), box.top() + 74, box.width(), 16),
+                         QFontMetricsF(caption).elidedText(layout.meetingResult, Qt::ElideRight, box.width()));
+    }
     const auto footer = QString("행 %1 · 열 %2 · 기간 %3").arg(page.rowPage).arg(page.columnPage).arg(page.timePage);
     painter.drawText(QRectF(box.left(), box.bottom() - 24, box.width(), 12),
                      QFontMetricsF(layout.font)
@@ -402,7 +471,7 @@ void paintSchedulePage(QPainter &painter, const SchedulePrintLayout &layout, int
                                                     Qt::ElideRight, box.width()));
     painter.setFont(layout.font);
     double x = box.left();
-    const auto top = box.top() + 56;
+    const auto top = box.top() + (layout.options.meetingSummary ? 96 : 56);
     std::vector<double> widths;
     for (const auto c : page.columns)
         widths.push_back(page.provenance ? (c == 0 ? 90 : box.width() - 90) : layout.widths[c]);

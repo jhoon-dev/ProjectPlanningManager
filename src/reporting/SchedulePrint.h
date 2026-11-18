@@ -35,6 +35,7 @@ struct SchedulePrintOptions {
     int fontPoints = 9, tablePercent = 52, nameWidth = 140, daysPerPage = 14;
     bool selectedOnly = false, fitTime = true, baseline = true;
     bool relations = false, wbs = false;
+    bool meetingSummary = false;
     QDate from, to; // Invalid pair means automatic visible schedule/baseline extent.
 };
 enum class ScheduleBarKind { Plan, Critical, Actual, Remaining, Baseline, Summary };
@@ -83,6 +84,7 @@ struct SchedulePrintLayout {
     std::vector<SchedulePrintPage> pages;
     CalculationStatus status = CalculationStatus::Incomplete;
     QString mode;
+    QString meetingContext, meetingResult;
     std::size_t taskCount = 0;
 };
 SchedulePrintLayout buildSchedulePrint(const SchedulePrintSource &, const SchedulePrintOptions &,

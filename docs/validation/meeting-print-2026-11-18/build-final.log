@@ -1,0 +1,14 @@
+[1/16] Building CXX object CMakeFiles/jobs_reporting.dir/src/reporting/SchedulePrint.cpp.obj
+[2/16] Linking CXX static library libjobs_reporting.a
+[3/16] Automatic MOC for target jobs_dialog_layout_tests
+[4/15] Automatic MOC for target jobs_meeting_print_tests
+[5/14] Building CXX object CMakeFiles/jobs_presentation_tests.dir/tests/PresentationTests.cpp.obj
+[6/14] Linking CXX executable PPM.exe
+[7/14] Linking CXX executable jobs_presentation_tests.exe
+[8/14] Linking CXX executable jobs_schedule_print_tests.exe
+[9/14] Building CXX object CMakeFiles/jobs_presentation_ui_tests.dir/tests/PresentationUiTests.cpp.obj
+[10/14] Linking CXX executable jobs_schedule_print_ui_tests.exe
+[11/14] Building CXX object CMakeFiles/jobs_meeting_print_tests.dir/tests/MeetingPrintTests.cpp.obj
+[12/14] Linking CXX executable jobs_presentation_ui_tests.exe
+[13/14] Linking CXX executable jobs_dialog_layout_tests.exe
+[14/14] Linking CXX executable jobs_meeting_print_tests.exe
