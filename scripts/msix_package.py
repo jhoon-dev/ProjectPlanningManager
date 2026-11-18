@@ -106,11 +106,16 @@ def validate_assets(folder):
             raise ValueError('Asset differs from vector-generated inventory: ' + name)
 
 
+MAX_PAYLOAD_BYTES = 300 * 1024 * 1024
+MAX_PROBE_BYTES = 32 * 1024 * 1024
+
+
 def validate_payload(stage, mode, probe=False):
     if mode == 'store' and probe:
         raise ValueError('Test probe is not a Store payload')
     names = set()
     total = 0
+    probe_total = 0
     for file in stage.rglob('*'):
         if file.is_symlink():
             raise ValueError('Payload links are not allowed')
@@ -127,7 +132,11 @@ def validate_payload(stage, mode, probe=False):
         if mode == 'store' and ('probe' in file.name.lower() or file.name.lower().startswith('jobs_') or file.name.lower() == 'qt6test.dll'):
             raise ValueError('Test artifact in Store payload')
         total += file.stat().st_size
-        if len(names) > 2000 or total > 300 * 1024 * 1024:
+        if probe and relative.casefold() in {'jobs_msix_probe.exe', 'qt6test.dll'}:
+            probe_total += file.stat().st_size
+        # The explicit development probe has its own bounded budget; the app
+        # and its offline reader retain the production package limit.
+        if len(names) > 2000 or total - probe_total > MAX_PAYLOAD_BYTES or probe_total > MAX_PROBE_BYTES:
             raise ValueError('MSIX payload size/count limit exceeded')
     if 'ppm.exe' not in names or 'appxmanifest.xml' not in names:
         raise ValueError('Required app or manifest missing')

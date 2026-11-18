@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 import xml.etree.ElementTree as ET
 import zipfile
 
@@ -121,6 +122,26 @@ class PackagingContract(unittest.TestCase):
                     else:
                         with self.assertRaises(ValueError):
                             verify_archive(package, files, xml)
+
+    def test_development_probe_budget_keeps_production_limit(self):
+        with tempfile.TemporaryDirectory() as temporary, \
+                patch('msix_package.MAX_PAYLOAD_BYTES', 20), patch('msix_package.MAX_PROBE_BYTES', 10):
+            folder = Path(temporary)
+            (folder / 'PPM.exe').write_bytes(b'executable')
+            (folder / 'AppxManifest.xml').write_bytes(b'manifest')
+            (folder / 'jobs_msix_probe.exe').write_bytes(b'probe')
+            (folder / 'Qt6Test.dll').write_bytes(b'test')
+            self.assertEqual(validate_payload(folder, 'development', probe=True), 27)
+            with self.assertRaisesRegex(ValueError, 'size/count limit'):
+                validate_payload(folder, 'development')
+            extra = folder / 'extra.dat'
+            extra.write_bytes(b'123')
+            with self.assertRaisesRegex(ValueError, 'size/count limit'):
+                validate_payload(folder, 'development', probe=True)
+            extra.unlink()
+            (folder / 'jobs_msix_probe.exe').write_bytes(b'too big')
+            with self.assertRaisesRegex(ValueError, 'size/count limit'):
+                validate_payload(folder, 'development', probe=True)
 
 
 if __name__ == '__main__':
