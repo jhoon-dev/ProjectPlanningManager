@@ -19,13 +19,20 @@ def verify(root: Path):
             assert archive.testzip() is None, "ZIP checksum failure"
             assert not any("externalLink" in p or "vbaProject" in p for p in archive.namelist())
         book = load_workbook(root / name, data_only=False)
-        assert "출처와 설정" in book.sheetnames
+        required = {"대시보드", "자원 배정", "기간별 자원 수요", "자원 과부하와 미정", "자원 등록과 가용량",
+                    "현재 부하와 잔여 가용량", "진단", "출처와 설정"}
+        if name != "reports-resources.xlsx":
+            required |= {"계획 일정", "실적과 예측", "실행 선행관계", "작업별 원가", "획득가치 분석", "원가 집계", "기간별 원가"}
+        if name in ("reports-constraints.xlsx", "reports-effort.xlsx"):
+            required.add("작업 제약과 마감")
+        if name == "reports-effort.xlsx":
+            required |= {"공수와 작업 유형", "분할 작업 중단", "자원별 근무 달력", "실행 배정 구간"}
+        assert required <= set(book.sheetnames), f"Missing report sheets: {sorted(required - set(book.sheetnames))}"
         for sheet in book:
             assert sheet.freeze_panes == "A7"
             assert sheet.auto_filter.ref.startswith("A6:")
             assert not any(cell.data_type == "f" for row in sheet for cell in row)
         if name == "reports-smoke.xlsx":
-            assert len(book.sheetnames) == 14
             costs = book["작업별 원가"]
             assert costs["G7"].value == 6 and costs["G7"].data_type == "n"
             assert costs["G8"].value == 0 and costs["G8"].data_type == "n"
@@ -38,7 +45,6 @@ def verify(root: Path):
             assert metadata["보고서 ID"] == "report-contract-fixture"
             assert metadata["원본 상태"] == "미저장 메모리 revision"
         elif name == "reports-effort.xlsx":
-            assert len(book.sheetnames) == 19
             work = book["공수와 작업 유형"]
             assert work["C7"].value == "고정 공수" and work["D7"].value == "공수"
             assert work["E7"].value == work["F7"].value == 8
@@ -53,14 +59,12 @@ def verify(root: Path):
             assert not any("2026-10-27" in str(row[2]) for row in spans)
             assert book["작업별 원가"]["C7"].value == 48000
         elif name == "reports-constraints.xlsx":
-            assert len(book.sheetnames) == 15
             timing = book["작업 제약과 마감"]
             assert timing["C7"].value == "SNET · 시작 이후"
             assert timing["D7"].value == "2026-10-27 09:00" and timing["E7"].value == "2026-10-27 17:00"
             assert timing["G7"].value == -9 and timing["G7"].data_type == "n"
             assert timing["H7"].value == "마감 초과"
         elif name == "reports-pdm.xlsx":
-            assert len(book.sheetnames) == 14
             links = book["실행 선행관계"]
             assert links["E7"].value == "SS" and links["F7"].value == -60
             assert links["F7"].data_type == "n" and links["G7"].value == "PDM Afternoon"

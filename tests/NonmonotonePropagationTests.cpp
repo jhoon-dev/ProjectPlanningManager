@@ -131,7 +131,9 @@ void primitive() {
         int expected[3][3][16] = {};
         for (int c = 0; c < 3; ++c)
             for (int s = 0; s < 10; ++s) {
-                const auto r = random() % 3, start = random() % 15, end = start + 1 + random() % (16 - start);
+                const auto r = random() % 3;
+                const auto start = std::int64_t(random() % 15);
+                const auto end = start + 1 + std::int64_t(random() % (16 - start));
                 const int units = 1 + random() % 100;
                 alternatives[c].push_back({r, start, end, units});
                 for (auto at = start; at < end; ++at)

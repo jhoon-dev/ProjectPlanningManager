@@ -48,7 +48,9 @@ jobs:
       - name: Verify instrumentation of real parser dependencies
         run: python3 scripts/verify-parser-instrumentation.py
       - name: Build with bounded parallelism
-        run: cmake --build build-sanitized --parallel 2
+        # Keep compiling independent targets to collect all platform errors;
+        # make still returns failure if any target fails.
+        run: cmake --build build-sanitized --parallel 2 -- -k
       - name: Run all regression contracts under ASan and UBSan
         run: |
           set -o pipefail

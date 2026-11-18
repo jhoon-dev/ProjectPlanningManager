@@ -3,6 +3,7 @@
 #include "reporting/ReportExport.h"
 #include <QApplication>
 #include <QFile>
+#include <QFontDatabase>
 #include <QDir>
 #include <QTemporaryDir>
 #include <QXmlStreamReader>
@@ -75,6 +76,13 @@ QByteArray sheetXml(const QByteArray &bytes, const QByteArray &wanted) {
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
     try {
+#ifdef Q_OS_WIN
+        // The Windows offscreen plugin does not discover installed fonts.
+        const auto font =
+            QFontDatabase::addApplicationFont(QDir(qEnvironmentVariable("WINDIR")).filePath("Fonts/malgun.ttf"));
+        check(font >= 0, "Windows report fixture font missing");
+        QApplication::setFont(QFont(QFontDatabase::applicationFontFamilies(font).first(), 9));
+#endif
         QTemporaryDir temporary;
         jobs::JsonProjectStore store;
         jobs::Document doc(store);
