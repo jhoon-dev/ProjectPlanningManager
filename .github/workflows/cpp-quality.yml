@@ -3,7 +3,8 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
   quality:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    # Hosted-runner analysis reached 234/279 units before the old 30-minute limit.
+    timeout-minutes: 45
     env:
       CC: clang-18
       CXX: clang++-18

@@ -111,6 +111,8 @@ void transitions(const QString &out) {
     std::map<int, std::string> representatives;
     std::vector<std::string> names;
     for (auto line : source.readAll().split('\n')) {
+        if (line.endsWith('\r'))
+            line.chop(1);
         if (!line.startsWith("R\"PPMTZ("))
             continue;
         line = line.mid(8);

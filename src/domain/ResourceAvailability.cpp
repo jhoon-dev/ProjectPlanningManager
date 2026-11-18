@@ -8,14 +8,16 @@ namespace jobs {
 namespace {
 std::string shift(const std::string &s, int count) {
     using namespace std::chrono;
+    // MSVC's standard minutes use a 32-bit rep, too small for year 9999.
+    using Minutes = duration<std::int64_t, minutes::period>;
     auto value = sys_days{year{std::stoi(s.substr(0, 4))} / unsigned(std::stoi(s.substr(5, 2))) /
                           unsigned(std::stoi(s.substr(8, 2)))} +
-                 hours{std::stoi(s.substr(11, 2))} + minutes{std::stoi(s.substr(14, 2))} + minutes{count};
+                 Minutes{std::stoi(s.substr(11, 2)) * 60 + std::stoi(s.substr(14, 2)) + count};
     const auto day = floor<days>(value);
     const year_month_day ymd{day};
     if (int(ymd.year()) > 9999 || int(ymd.year()) < 1)
         return {};
-    const auto time = duration_cast<minutes>(value - day).count();
+    const auto time = duration_cast<Minutes>(value - day).count();
     char out[32];
     std::snprintf(out, sizeof(out), "%04d-%02u-%02u %02d:%02d", int(ymd.year()), unsigned(ymd.month()),
                   unsigned(ymd.day()), int(time / 60), int(time % 60));
