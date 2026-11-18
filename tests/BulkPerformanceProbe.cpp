@@ -125,10 +125,11 @@ int main(int argc, char **argv) {
         table->setCurrentCell(0, 0);
         QStringList rows;
         for (int i = 0; i < count; ++i)
-            rows << "Pasted " + QString::number(i) + "\t2\t";
+            rows << "Pasted " + QString::number(i) + "\t120m\t";
         QApplication::clipboard()->setText(rows.join('\n'));
         measure("paste", "pasteTaskCells");
-        check(doc.project()->tasks[0].name == "Pasted 0", "paste failed");
+        check(doc.project()->tasks[0].name == "Pasted 0" && doc.project()->tasks[0].durationMinutes == 120,
+              "paste failed");
         measure("undo_paste", "undoEdit");
         table->clearSelection();
         table->setCurrentCell(0, 0);

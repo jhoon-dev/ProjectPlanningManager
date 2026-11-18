@@ -122,7 +122,9 @@ int main(int argc, char **argv) {
                 measure("ui_redo_events", [&] { redo->trigger(); }, true);
                 undo->trigger();
                 app.processEvents();
-                measure("ui_duration_commit_events", [&] { setCellText(table, 0, 1, QString::number(2 + i)); }, true);
+                measure(
+                    "ui_duration_commit_events", [&] { setCellText(table, 0, 1, QString::number((2 + i) * 60) + "m"); },
+                    true);
                 check(document.project()->tasks[0].durationMinutes == (2 + i) * 60, "UI duration edit lost");
                 measure("ui_duration_undo_events", [&] { undo->trigger(); }, true);
                 measure("ui_duration_redo_events", [&] { redo->trigger(); }, true);
