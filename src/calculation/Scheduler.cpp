@@ -15,21 +15,31 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <stdexcept>
+#include <string_view>
 
 namespace jobs {
+namespace {
+struct EngineReplayPolicy {
+    std::string_view engine;
+    int levelingFloatVersion;
+};
+constexpr EngineReplayPolicy engineReplayPolicies[]{
+    {"jobs-adopted-leveling-1.0", 0}, {"jobs-adopted-leveling-1.1", 1}, {"jobs-adopted-leveling-1.2", 2},
+    {"jobs-adopted-leveling-1.3", 3}, {"jobs-adopted-leveling-1.4", 4}, {"jobs-adopted-leveling-1.5", 5},
+    {"jobs-adopted-leveling-1.6", 6}, {"jobs-adopted-leveling-1.7", 7}, {"jobs-adopted-leveling-1.8", 8},
+    {materialFloatEngine, 9},
+};
+int replayLevelingFloatVersion(std::string_view engine) {
+    const auto found = std::find_if(std::begin(engineReplayPolicies), std::end(engineReplayPolicies),
+                                    [engine](const auto &entry) { return entry.engine == engine; });
+    // Other supported engines (including assignment-period engines) historically use v8.
+    return found == std::end(engineReplayPolicies) ? 8 : found->levelingFloatVersion;
+}
+} // namespace
 ScheduleResult calculatePlan(const Project &p, const std::string &engine) {
     if (!supportsEngine(p, engine))
         throw AppError(ErrorCode::BASELINE_RESULT_MISMATCH, {});
-    LevelingFloatScope leveling(engine == materialFloatEngine           ? 9
-                                : engine == "jobs-adopted-leveling-1.0" ? 0
-                                : engine == "jobs-adopted-leveling-1.1" ? 1
-                                : engine == "jobs-adopted-leveling-1.2" ? 2
-                                : engine == "jobs-adopted-leveling-1.3" ? 3
-                                : engine == "jobs-adopted-leveling-1.4" ? 4
-                                : engine == "jobs-adopted-leveling-1.5" ? 5
-                                : engine == "jobs-adopted-leveling-1.6" ? 6
-                                : engine == "jobs-adopted-leveling-1.7" ? 7
-                                                                        : 8);
+    LevelingFloatScope leveling(replayLevelingFloatVersion(engine));
     EnginePolicyScope policy(isPdm(p) && !p.planLeveling && engine == legacyEngineFor(p));
     return calculatePlan(p);
 }
