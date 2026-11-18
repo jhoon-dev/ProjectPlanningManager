@@ -176,7 +176,7 @@ jobs:
           python scripts/verify-xer-allocation.py build > build/xer-allocation-qa/independent-reader.json
           python scripts/verify-xer-merge.py build > build/xer-merge-qa/independent-reader.json
           python scripts/verify-xer-relink.py build > build/xer-relink-qa/independent-reader.json
-          ./build/jobs_xer_batch_tests build/xer-batch-qa/package
+          python scripts/create-xer-batch-fixture.py build
           python scripts/verify-xer-batch.py build/xer-batch-qa/package > build/xer-batch-qa/independent-reader.json
           python scripts/verify-xer-project-selection.py build > build/xer-selection-qa/independent-reader.json
           python scripts/verify-p6-roundtrip.py --kit build/progress-policy-qa/p6-kit --self-test --mpxj-reopen > build/progress-policy-qa/comparator-selftest.json
