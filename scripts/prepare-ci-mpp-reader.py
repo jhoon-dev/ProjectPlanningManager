@@ -6,6 +6,8 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import time
+import urllib.error
 import urllib.request
 import zipfile
 
@@ -21,9 +23,20 @@ def download(url, path, expected):
     if path.is_file() and digest(path) == expected:
         return
     temporary = path.with_suffix(path.suffix + '.download')
-    with urllib.request.urlopen(url, timeout=90) as response, temporary.open('wb') as output:
-        while chunk := response.read(1024 * 1024):
-            output.write(chunk)
+    request = urllib.request.Request(url, headers={'User-Agent': 'ProjectPlanningManager-CI'})
+    for attempt in range(5):
+        try:
+            with urllib.request.urlopen(request, timeout=90) as response, temporary.open('wb') as output:
+                while chunk := response.read(1024 * 1024):
+                    output.write(chunk)
+            break
+        except (urllib.error.URLError, TimeoutError, ConnectionError) as error:
+            if isinstance(error, urllib.error.HTTPError) and error.code not in (408, 429, 500, 502, 503, 504):
+                raise
+            if attempt == 4:
+                raise
+            print('Retrying MPP source download: ' + path.name, flush=True)
+            time.sleep(2 ** attempt)
     if digest(temporary) != expected:
         temporary.unlink()
         raise ValueError('MPP source checksum mismatch: ' + path.name)

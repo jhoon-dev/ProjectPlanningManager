@@ -34,7 +34,9 @@ jobs:
           path: .cache/mpp-reader-inputs
           key: mpp-reader-inputs-${{ hashFiles('packaging/mpp-reader/engine-lock.json') }}
       - name: Prepare offline MPP reader before build and tests
-        run: python scripts/prepare-ci-mpp-reader.py --output build/mpp-reader
+        run: |
+          python -m unittest discover -s tests -p test_prepare_ci_mpp_reader.py -v
+          python scripts/prepare-ci-mpp-reader.py --output build/mpp-reader
       - name: Install optional server test runtime
         run: python -m pip install -r server/requirements-lock.txt
       - run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DJOBS_SERVER_TEST_PYTHON=python

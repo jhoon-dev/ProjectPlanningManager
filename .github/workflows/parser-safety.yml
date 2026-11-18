@@ -31,7 +31,9 @@ jobs:
           path: .cache/mpp-reader-inputs
           key: mpp-reader-inputs-${{ hashFiles('packaging/mpp-reader/engine-lock.json') }}
       - name: Prepare offline MPP reader before build and tests
-        run: python scripts/prepare-ci-mpp-reader.py --output build-sanitized/mpp-reader
+        run: |
+          python -m unittest discover -s tests -p test_prepare_ci_mpp_reader.py -v
+          python scripts/prepare-ci-mpp-reader.py --output build-sanitized/mpp-reader
       - name: Record toolchain
         run: |
           mkdir -p build-sanitized
