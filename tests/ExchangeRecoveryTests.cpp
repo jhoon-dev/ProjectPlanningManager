@@ -211,6 +211,7 @@ void exportUi(const QTemporaryDir &directory, jobs::JsonProjectStore &store, job
     bool preview = false, progress = false, cancelled = false;
     int beats = 0;
     qint64 maxBeat = 0;
+    qint64 previewMs = -1;
     QElapsedTimer gap, elapsed;
     QObject::connect(&driver, &QTimer::timeout, [&] {
         auto *modal = QApplication::activeModalWidget();
@@ -221,6 +222,7 @@ void exportUi(const QTemporaryDir &directory, jobs::JsonProjectStore &store, job
             std::_Exit(2);
         }
         if (modal->objectName() == (xer ? "primaveraXerPreview" : "projectXmlPreview") && !preview) {
+            previewMs = elapsed.elapsed();
             preview = true;
             modal->findChild<QLineEdit *>(xer ? "xerDestination" : "xmlDestination")->setText(destination);
             modal->findChild<QDialogButtonBox *>()->button(QDialogButtonBox::Ok)->click();
@@ -256,6 +258,7 @@ void exportUi(const QTemporaryDir &directory, jobs::JsonProjectStore &store, job
         check(store.load(QDir(destination).filePath("source.ppm").toStdString()).project == before,
               "published source lost baseline input");
     std::cout << name.toStdString() << " tasks=" << project.tasks.size() << " total_ms=" << operationMs
+              << " prepare_ms=" << previewMs << " publish_ms=" << operationMs - previewMs
               << " heartbeat_max_ms=" << maxBeat << " heartbeat_count=" << beats << " gui_checkpoints=0\n";
 }
 } // namespace

@@ -1412,12 +1412,13 @@ ProjectXmlExchange importProjectXml(const QByteArray &bytes, const QString &sour
             optionLabels(native);
             return option;
         };
+        // Every scalar XML child reaches this probe; reuse compilation per thread.
+        thread_local const QRegularExpression hexFieldId("^[bcf][0-9a-f]{6}$");
         for (const auto &entry : owner.children) {
             std::string id;
             const bool extended = entry.name == "ExtendedAttribute", outline = entry.name == "OutlineCode",
                        enterprise = entry.name == "EnterpriseExtendedAttribute";
-            const bool hex = !extended && !outline && !enterprise &&
-                             QRegularExpression("^[bcf][0-9a-f]{6}$").match(entry.name).hasMatch();
+            const bool hex = !extended && !outline && !enterprise && hexFieldId.match(entry.name).hasMatch();
             if (enterprise) {
                 if (++enterpriseEntries > 450)
                     throw AppError(ErrorCode::CLASSIFICATION_INVALID, {"객체별 기업 참조 요소는 450개까지입니다."});

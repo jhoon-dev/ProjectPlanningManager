@@ -29,10 +29,12 @@ bool known(const QString &s) {
     return !s.trimmed().isEmpty() && s.trimmed() != "NA";
 }
 int number(const QString &s, int maximum) {
+    // Cache the fixed pattern per thread; values and bounds remain per call.
+    thread_local const QRegularExpression integer("^[+-]?[0-9]+$");
     bool ok = false;
     const auto token = s.trimmed();
     auto n = token.toLongLong(&ok);
-    if (!ok || n < 0 || n > maximum || !QRegularExpression("^[+-]?[0-9]+$").match(token).hasMatch())
+    if (!ok || n < 0 || n > maximum || !integer.match(token).hasMatch())
         invalid("번호/UID 형식을 확인하세요.");
     return int(n);
 }

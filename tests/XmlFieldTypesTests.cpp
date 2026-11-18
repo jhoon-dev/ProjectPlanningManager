@@ -28,6 +28,7 @@
 #include <QTimer>
 #include <iostream>
 #include <algorithm>
+#include <future>
 namespace {
 using namespace jobs;
 void check(bool ok, const char *message) {
@@ -175,6 +176,29 @@ void contract() {
     const auto xml = exportProjectXml(original);
     const auto imported = importProjectXml(xml.xml, "types.xml").project;
     verify(imported);
+    // Reused XML recognizers must keep independent matches in concurrent imports,
+    // including enterprise hex fields and valid/invalid baseline slot numbers.
+    auto baselineXml = xml.xml;
+    const auto endTask = baselineXml.indexOf("</Task>");
+    check(endTask >= 0, "baseline owner missing");
+    baselineXml.insert(endTask, "<Baseline><Number>+0</Number></Baseline>");
+    auto invalidSlot = baselineXml;
+    invalidSlot.replace("<Number>+0</Number>", "<Number>+11</Number>");
+    auto parse = [&] {
+        for (int iteration = 0; iteration < 3; ++iteration)
+            for (const auto *bytes : {&baselineXml, &invalidSlot}) {
+                auto result = importProjectXml(*bytes, "concurrent.xml");
+                result.project.documentId = imported.documentId;
+                check(result.project == imported, "concurrent import changed typed values");
+                check(result.baselineCandidates.size() == 1 &&
+                          result.baselineCandidates.front().issue.empty() == (bytes == &baselineXml),
+                      "concurrent baseline slot validation changed");
+            }
+    };
+    auto first = std::async(std::launch::async, parse);
+    auto second = std::async(std::launch::async, parse);
+    first.get();
+    second.get();
     auto costTable = original;
     auto &lookup = *costTable.customFields[6].xmlLookup;
     lookup.tableGuid = guid(600);
