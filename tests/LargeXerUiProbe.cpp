@@ -144,14 +144,18 @@ int main(int argc, char **argv) {
             require(table->verticalScrollBar()->value() == gantt->verticalScrollBar()->value(),
                     "selection scroll mismatch");
             const auto id = QString::fromStdString(document.project()->tasks[std::size_t(row)].id);
-            bool highlighted = false;
+            bool taskPresent = false, highlighted = false;
             auto items = gantt->scene()->items();
             maximumItems = std::max(maximumItems, int(items.size()));
-            for (auto *item : items)
-                if (item->data(0).toString() == id && (item->data(1) == "task" || item->data(1) == "milestone"))
+            for (auto *item : items) {
+                if (item->data(0).toString() != id || !item->isVisible())
+                    continue;
+                taskPresent |= item->data(1) == "task" || item->data(1) == "milestone";
+                if (item->data(1) == "selectionHighlight")
                     if (auto *shape = dynamic_cast<QAbstractGraphicsShapeItem *>(item))
-                        highlighted = highlighted || shape->pen().widthF() >= 3;
-            require(highlighted, "selected ID missing or not highlighted in Gantt");
+                        highlighted |= shape->brush().style() != Qt::NoBrush && shape->brush().color().alpha() > 0;
+            }
+            require(taskPresent && highlighted, "selected ID missing or not highlighted in Gantt");
             const int maximum = table->verticalScrollBar()->maximum();
             const int target = sample == 31 ? maximum : int((qint64(sample) * 7919) % std::max(1, maximum));
             clock.restart();
