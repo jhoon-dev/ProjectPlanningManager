@@ -1,0 +1,9 @@
+********* Start testing of NavigationUiTests *********
+Config: Using QtTest library 6.8.3, Qt 6.8.3 (x86_64-little_endian-llp64 shared (dynamic) release build; by GCC 13.1.0), windows 11
+PASS   : NavigationUiTests::initTestCase()
+PASS   : NavigationUiTests::weeklyReadOnlyColumnsScopeFinishAndRestoration()
+PASS   : NavigationUiTests::resourceGroupsKeepEveryActionAndExistingShortcuts()
+PASS   : NavigationUiTests::baselineMissingAndStaleResultsDoNotInventVariance()
+PASS   : NavigationUiTests::cleanupTestCase()
+Totals: 5 passed, 0 failed, 0 skipped, 0 blacklisted, 5285ms
+********* Finished testing of NavigationUiTests *********

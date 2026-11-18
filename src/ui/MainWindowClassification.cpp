@@ -111,6 +111,8 @@ TaskViewSettings MainWindow::currentTaskViewSettings() const {
     auto *header = table_->horizontalHeader();
     for (int visual = 0; visual < header->count(); ++visual) {
         const int column = header->logicalIndex(visual);
+        if (taskModel_->isPresentationColumn(column))
+            continue;
         auto width = table_->columnWidth(column);
         if (width == 0)
             width = std::max(40, header->sectionSizeHint(column));
@@ -138,6 +140,13 @@ void applyTaskColumns(QTableView &table, const TaskTableModel &model, const std:
 }
 void MainWindow::applyTaskViewSettings(const TaskViewSettings &s) {
     validateTaskView(*document_.project(), s);
+    if (auto *preset = findChild<QComboBox *>("taskColumnPreset")) {
+        const QSignalBlocker block(preset);
+        preset->setCurrentIndex(0);
+        preset->setProperty("previousPreset", 0);
+        preset->setProperty("previousColumns", QVariant{});
+        taskModel_->setWeeklyColumns(false, selectedBaseline_);
+    }
     classificationView_ = s;
     classificationView_.columns.clear();
     selectedWbs_ = s.wbsId;
@@ -154,7 +163,9 @@ void MainWindow::configureTaskView() {
     const auto snapshot = document_.snapshot();
     std::vector<std::pair<std::string, QString>> columns;
     for (int column = 0; column < taskModel_->columnCount(); ++column)
-        columns.push_back({taskModel_->columnKey(column), taskModel_->headerData(column, Qt::Horizontal).toString()});
+        if (!taskModel_->isPresentationColumn(column))
+            columns.push_back(
+                {taskModel_->columnKey(column), taskModel_->headerData(column, Qt::Horizontal).toString()});
     auto settings = editTaskViewSettings(*snapshot, currentTaskViewSettings(), columns, this);
     if (!settings)
         return;

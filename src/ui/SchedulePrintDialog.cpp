@@ -79,7 +79,7 @@ SchedulePrintSource captureSchedulePrint(Document &doc, TaskTableView &table, co
     std::vector<int> columns;
     for (int v = 0; v < model->columnCount(); ++v) {
         int c = table.horizontalHeader()->logicalIndex(v);
-        if (c >= 0 && !table.isColumnHidden(c) && model->columnKey(c) != "name") {
+        if (c >= 0 && !table.isColumnHidden(c) && model->columnKey(c) != "name" && !model->isPresentationColumn(c)) {
             columns.push_back(c);
             source.columns.push_back({QString::fromStdString(model->columnKey(c)),
                                       model->headerData(c, Qt::Horizontal).toString(), table.columnWidth(c) * 0.75});

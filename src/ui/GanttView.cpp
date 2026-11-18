@@ -41,6 +41,10 @@ GanttView::GanttView(QWidget *parent) : QGraphicsView(parent) {
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     connect(verticalScrollBar(), &QScrollBar::valueChanged, this, [this] { ensureVisibleRows(); });
+    connect(horizontalScrollBar(), &QScrollBar::valueChanged, this, [this] {
+        if (navigationChanged)
+            navigationChanged();
+    });
     rebuild();
 }
 qreal GanttView::position(const QString &stamp) const {
@@ -73,6 +77,7 @@ void GanttView::setPlan(const Project *p, const ScheduleResult *result, const st
     editable_ = false;
     const auto x = horizontalScrollBar()->value(), y = verticalScrollBar()->value();
     rows_.clear();
+    displayedFinish_.clear();
     rowIndex_.clear();
     dayCount_ = 0;
     holidays_.clear();
@@ -161,6 +166,8 @@ void GanttView::setPlan(const Project *p, const ScheduleResult *result, const st
     }
     for (std::size_t i = 0; i < rows_.size(); ++i)
         rowIndex_.emplace(rows_[i].id, i);
+    for (const auto &row : rows_)
+        displayedFinish_ = std::max(displayedFinish_, row.finish);
     rebuild();
     horizontalScrollBar()->setValue(x);
     verticalScrollBar()->setValue(y);
@@ -237,6 +244,23 @@ void GanttView::fitSchedule() {
     fitted_ = true;
     rebuild();
     horizontalScrollBar()->setValue(0);
+    if (navigationChanged)
+        navigationChanged();
+}
+QString GanttView::displayedFinish() const {
+    return displayedFinish_;
+}
+bool GanttView::finishVisible() const {
+    if (!hasSchedule() || displayedFinish_.isEmpty())
+        return false;
+    const auto at = position(displayedFinish_);
+    return at >= horizontalScrollBar()->value() && at <= horizontalScrollBar()->value() + viewport()->width() - 8;
+}
+void GanttView::focusFinish() {
+    if (hasSchedule() && !displayedFinish_.isEmpty())
+        horizontalScrollBar()->setValue(int(position(displayedFinish_) - viewport()->width() * .75));
+    if (navigationChanged)
+        navigationChanged();
 }
 void GanttView::ensureVisibleRows() {
     if (rebuilding_ || rows_.size() <= 200 || !dayCount_)
@@ -252,6 +276,8 @@ void GanttView::resizeEvent(QResizeEvent *event) {
         rebuild();
     else
         ensureVisibleRows();
+    if (navigationChanged)
+        navigationChanged();
 }
 void GanttView::rebuild() {
     if (rebuilding_)

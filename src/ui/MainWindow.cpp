@@ -639,6 +639,7 @@ MainWindow::MainWindow(Document &document, JsonRecoveryStore *recoveryStore, Des
     setupRecovery(recoveryStore);
     setupWorkspaceUi(tools, zoom);
     setupClassification();
+    setupNavigationUi();
     auto *printSchedule = menu->addAction("일정표·간트 페이지 설정 / 인쇄…");
     printSchedule->setObjectName("schedulePrintPreview");
     menu->insertAction(quit, printSchedule);
@@ -698,6 +699,7 @@ MainWindow::MainWindow(Document &document, JsonRecoveryStore *recoveryStore, Des
     updateCompactLayout();
 }
 MainWindow::~MainWindow() {
+    gantt_->navigationChanged = {};
     if (editController_) {
         delete editController_;
         editController_ = nullptr;
@@ -838,7 +840,8 @@ void MainWindow::refresh(bool rebuildTree) {
         auto expected = attributeKeys(*p);
         std::vector<std::string> current;
         for (int column = 14; column < taskModel_->columnCount(); ++column)
-            current.push_back(taskModel_->columnKey(column));
+            if (!taskModel_->isPresentationColumn(column))
+                current.push_back(taskModel_->columnKey(column));
         if (current != expected)
             preservedColumns = currentTaskViewSettings().columns;
     }

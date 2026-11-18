@@ -257,6 +257,7 @@ void MainWindow::setupWorkspaceUi(QToolBar *tools, QComboBox *zoom) {
 }
 void MainWindow::refreshWorkspaceUi() {
     refreshWorkflowUi();
+    refreshNavigationUi();
     const auto &project = document_.project();
     if (auto *fit = findChild<QAction *>("fitGanttSchedule"))
         fit->setEnabled(gantt_->hasSchedule());

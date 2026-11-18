@@ -21,6 +21,10 @@ public:
     bool hasSchedule() const;
     void focusSelectedTask(bool center = true);
     void fitSchedule();
+    QString displayedFinish() const;
+    bool finishVisible() const;
+    void focusFinish();
+    std::function<void()> navigationChanged;
     std::function<void(const std::string &)> taskSelected;
     std::function<void(const std::string &, std::uint64_t, const std::string &, bool, const std::string &)> taskEdited;
     std::function<void(const QString &)> editHint;
@@ -95,6 +99,7 @@ private:
         std::optional<std::pair<std::int64_t, std::int64_t>> floatMinutes = {};
     };
     std::vector<Row> rows_;
+    QString displayedFinish_;
     bool rebuilding_ = false;
     int renderedFirst_ = -1, renderedLast_ = -1;
     void rebuild();

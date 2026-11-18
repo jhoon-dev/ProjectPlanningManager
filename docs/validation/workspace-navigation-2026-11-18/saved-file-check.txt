@@ -1,0 +1,4 @@
+PASS: review.ppm is byte-identical to the UX-W06 source after native navigation
+PASS: entire payload, schema, 5 tasks, 6 report entries, baseline, status and 3 decisions preserved
+PASS: current adoption and reason preserved; transient presentation columns not persisted
+Saved SHA-256: 667b44e0831ecd92a0cf6b98f486d694b7b1123b0cf9c48d817e29480d60865c

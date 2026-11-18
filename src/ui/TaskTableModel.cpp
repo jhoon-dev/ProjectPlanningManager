@@ -3,6 +3,8 @@
 #include "formatting/PlanTokens.h"
 #include "ui/TaskTableModel.h"
 #include "ui/TaskInput.h"
+#include "ui/OutcomeSummary.h"
+#include "calculation/Tracking.h"
 #include "domain/FormulaFields.h"
 #include "calculation/WorkCalendar.h"
 #include <QBrush>
@@ -39,11 +41,37 @@ int TaskTableModel::rowCount(const QModelIndex &parent) const {
     return parent.isValid() ? 0 : int(rows_.size());
 }
 int TaskTableModel::columnCount(const QModelIndex &parent) const {
-    return parent.isValid() ? 0 : int(14 + plan_.customFields.size() + plan_.codeTypes.size());
+    return parent.isValid() ? 0
+                            : int(14 + plan_.customFields.size() + plan_.codeTypes.size() + (weeklyColumns_ ? 3 : 0));
+}
+bool TaskTableModel::isPresentationColumn(int column) const {
+    return weeklyColumns_ && column >= int(14 + plan_.customFields.size() + plan_.codeTypes.size()) &&
+           column < columnCount();
+}
+void TaskTableModel::setWeeklyColumns(bool enabled, const std::string &baselineId) {
+    const bool changed = baselineId_ != baselineId;
+    baselineId_ = baselineId;
+    if (enabled != weeklyColumns_) {
+        const int first = int(14 + plan_.customFields.size() + plan_.codeTypes.size());
+        if (enabled)
+            beginInsertColumns({}, first, first + 2);
+        else
+            beginRemoveColumns({}, first, first + 2);
+        weeklyColumns_ = enabled;
+        if (enabled)
+            endInsertColumns();
+        else
+            endRemoveColumns();
+    } else if (changed && enabled && rowCount())
+        emit dataChanged(index(0, columnCount() - 3), index(rowCount() - 1, columnCount() - 1));
 }
 std::string TaskTableModel::columnKey(int column) const {
     if (column < 0 || column >= columnCount())
         return {};
+    if (isPresentationColumn(column)) {
+        static const std::string keys[]{"$baselineFinish", "$finishVariance", "$reportState"};
+        return keys[column - (columnCount() - 3)];
+    }
     if (column < 14)
         return std::string(builtinTaskColumns[std::size_t(column)]);
     const auto index = std::size_t(column - 14);
@@ -62,6 +90,11 @@ QVariant TaskTableModel::headerData(int section, Qt::Orientation orientation, in
     if (role != Qt::DisplayRole || section < 0)
         return {};
     if (orientation == Qt::Horizontal)
+        if (isPresentationColumn(section)) {
+            const QStringList names{"기준선 완료", "완료 편차", "상태일 보고"};
+            return names[section - (columnCount() - 3)];
+        }
+    if (orientation == Qt::Horizontal)
         return section < headers.size()  ? QVariant(headers[section])
                : section < columnCount() ? QVariant(qs(attributeName(plan_, columnKey(section))))
                                          : QVariant{};
@@ -71,6 +104,8 @@ Qt::ItemFlags TaskTableModel::flags(const QModelIndex &index) const {
     if (!index.isValid() || index.model() != this || index.row() >= rowCount() || index.column() >= columnCount())
         return Qt::NoItemFlags;
     auto flags = Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+    if (isPresentationColumn(index.column()))
+        return flags;
     const auto *field = index.column() >= 14 ? customField(plan_, columnKey(index.column())) : nullptr;
     if (!readOnly_ && (!field || !calculatedField(*field)) && (index.column() < 3 || index.column() >= 14))
         flags |= Qt::ItemIsEditable;
@@ -92,6 +127,37 @@ const TaskSchedule *TaskTableModel::schedule(const Task &task) const {
     return found == schedules_.end() ? nullptr : &found->second;
 }
 QString TaskTableModel::text(const Task &task, int column) const {
+    if (isPresentationColumn(column)) {
+        const auto &project = document_.project();
+        if (!project || project->documentId != documentId_ || project->revision != revision_ ||
+            document_.sessionGeneration() != session_)
+            return "—";
+        const auto key = columnKey(column);
+        if (key == "$reportState") {
+            if (!project->statusAt)
+                return "상태일 없음";
+            const auto *report = progressAsOf(*project, task.id);
+            return !report                ? "미보고 · 미정"
+                   : report->actualFinish ? "완료 보고"
+                   : report->actualStart  ? "보고 있음"
+                                          : "미착수 보고";
+        }
+        const auto *baseline = outcomeBaseline(*project, baselineId_);
+        if (baseline)
+            for (const auto &row : baseline->schedule)
+                if (row.taskId == task.id) {
+                    if (key == "$baselineFinish")
+                        return qs(row.finish);
+                    const auto *current = schedule(task);
+                    const auto &calculation = document_.calculation();
+                    return outcomeDelta(&baseline->input, row.finish,
+                                        current && calculation && calculation->status == CalculationStatus::Valid &&
+                                                calculation->inputRevision == project->revision
+                                            ? std::optional<std::string>{current->finish}
+                                            : std::nullopt);
+                }
+        return "—";
+    }
     if (column >= 14) {
         EvaluationScope scope({}, renderCache_);
         const auto key = columnKey(column), unit = attributeUnit(plan_, key);
@@ -177,7 +243,7 @@ QVariant TaskTableModel::data(const QModelIndex &index, int role) const {
         return {};
     const auto &task = plan_.tasks.at(rows_[std::size_t(index.row())]);
     const int column = index.column();
-    if (role == Qt::EditRole && column >= 14) {
+    if (role == Qt::EditRole && column >= 14 && !isPresentationColumn(column)) {
         EvaluationScope scope({}, renderCache_);
         const auto key = columnKey(column);
         const auto value = resolvedAttributeValue(plan_, task, key);
@@ -199,6 +265,10 @@ QVariant TaskTableModel::data(const QModelIndex &index, int role) const {
     if (role == Qt::ForegroundRole)
         return conflict ? QVariant(QBrush(QColor("#662015"))) : late ? QVariant(QBrush(QColor("#653b00"))) : QVariant{};
     if (role == Qt::ToolTipRole) {
+        if (isPresentationColumn(column))
+            return "작업 ID: " + qs(task.id) + "\n" + text(task, column) +
+                   "\n현재 선택 기준선과 상태일 기준 · 편차는 기준선 달력 근무시간 (+지연 / −앞당김). 미보고는0%가 "
+                   "아닙니다.\n조회 전용 열이며 저장된 열 배치·상세 인쇄에는 포함하지 않습니다.";
         if (column == 1)
             return taskDurationHelp(plan_, task) + (text(task, 1).isEmpty() ? QString{} : "\n계획: " + text(task, 1));
         if (column >= 14) {

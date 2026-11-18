@@ -1,0 +1,16 @@
+[1/17] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowRecovery.cpp.obj
+[2/17] Linking CXX static library libjobs_ui.a
+[3/17] Linking CXX executable jobs_meeting_print_tests.exe
+[4/17] Automatic MOC for target jobs_navigation_ui_tests
+[5/16] Linking CXX executable PPM.exe
+[6/16] Linking CXX executable jobs_schedule_print_ui_tests.exe
+[7/16] Linking CXX executable jobs_classification_ui_tests.exe
+[8/16] Linking CXX executable jobs_task_table_model_tests.exe
+[9/16] Linking CXX executable jobs_dialog_layout_tests.exe
+[10/16] Linking CXX executable jobs_workspace_presentation_tests.exe
+[11/16] Building CXX object CMakeFiles/jobs_navigation_ui_tests.dir/tests/NavigationUiTests.cpp.obj
+[12/16] Linking CXX executable jobs_resource_ui_tests.exe
+[13/16] Linking CXX executable jobs_wbs_gantt_ui_tests.exe
+[14/16] Linking CXX executable jobs_navigation_ui_tests.exe
+[15/16] Linking CXX executable jobs_tracking_ui_tests.exe
+[16/16] Linking CXX executable jobs_workflow_ui_tests.exe

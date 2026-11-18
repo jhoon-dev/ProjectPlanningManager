@@ -54,6 +54,9 @@ private:
     void setupWorkspaceUi(QToolBar *, QComboBox *);
     void refreshWorkspaceUi();
     void refreshWorkflowUi();
+    void setupNavigationUi();
+    void applyColumnPreset();
+    void refreshNavigationUi();
     QWidget *workflow_ = nullptr;
     QLabel *fileState_ = nullptr, *scheduleState_ = nullptr, *workflowHint_ = nullptr;
     QToolButton *workflowSave_ = nullptr, *workflowCalculate_ = nullptr;
