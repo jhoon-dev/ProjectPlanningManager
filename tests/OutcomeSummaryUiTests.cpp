@@ -3,6 +3,12 @@
 #include "ui/ResourceComparisonDialog.h"
 #include "ui/OutcomeSummary.h"
 #include "ui/EditorUi.h"
+#include "ui/MainWindow.h"
+#include "ui/GanttView.h"
+#include "ui/TaskTableModel.h"
+#include "TaskTableTest.h"
+#include <QAction>
+#include <QApplication>
 #include <QComboBox>
 #include <QFile>
 #include <QLabel>
@@ -13,6 +19,7 @@
 #include <QTabWidget>
 #include <QTemporaryDir>
 #include <QTest>
+#include <QTimer>
 
 namespace {
 std::string fixture(jobs::Document &doc) {
@@ -42,6 +49,88 @@ QByteArray bytes(const std::string &path) {
 class OutcomeSummaryUiTests : public QObject {
     Q_OBJECT
 private slots:
+    void nestedAdoptionAndReleaseRefreshMainViews() {
+        QTemporaryDir folder;
+        jobs::JsonProjectStore store;
+        jobs::Document doc(store);
+        fixture(doc);
+        doc.applyCalculation(jobs::calculate(*doc.project()));
+        const auto path = folder.filePath("nested.ppm").toStdString();
+        doc.saveAs(path);
+        const auto disk = bytes(path);
+        const auto original = *doc.project();
+        jobs::MainWindow window(doc);
+        window.show();
+        auto *table = taskTable(window);
+        auto *model = dynamic_cast<jobs::TaskTableModel *>(table->model());
+        auto *gantt = dynamic_cast<jobs::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
+        window.findChild<QLineEdit *>("taskSearch")->setText("설치");
+        QTRY_COMPARE(model->rowCount(), 1);
+        table->selectRow(0);
+        window.findChild<QComboBox *>("taskColumnPreset")->setCurrentIndex(2);
+        QAction *open = nullptr;
+        for (auto *action : window.findChildren<QAction *>())
+            if (action->text() == "계획 대비 비교")
+                open = action;
+        QVERIFY(open);
+        for (const bool release : {false, true}) {
+            int step = 0;
+            QTimer tick;
+            tick.setInterval(30);
+            QTimer watchdog;
+            watchdog.setSingleShot(true);
+            connect(&watchdog, &QTimer::timeout, [] { qFatal("nested comparison workflow timeout"); });
+            connect(&tick, &QTimer::timeout, &window, [&] {
+                auto *modal = qobject_cast<QDialog *>(QApplication::activeModalWidget());
+                if (!modal)
+                    return;
+                if (modal->objectName() == "comparisonDialog") {
+                    auto *outcomes = modal->findChild<QTableWidget *>("comparisonOutcomes");
+                    if (step == 0 && outcomes->rowCount() == 4) {
+                        step = 1;
+                        QTimer::singleShot(
+                            0, modal, [modal] { modal->findChild<QPushButton *>("comparisonResources")->click(); });
+                    } else if (step == 3 && outcomes->rowCount() == 4) {
+                        step = 4;
+                        modal->reject();
+                    }
+                } else if (auto *resources = dynamic_cast<jobs::ResourceComparisonDialog *>(modal)) {
+                    auto *adopt = resources->findChild<QPushButton *>("adoptLeveling");
+                    if (step == 1 && adopt->isEnabled()) {
+                        resources->findChild<QLineEdit *>("levelingReason")->setText("통합 경로 확인");
+                        step = 2;
+                        resources->findChild<QPushButton *>(release ? "clearLeveling" : "adoptLeveling")->click();
+                    } else if (step == 2 && adopt->isEnabled() && bool(doc.project()->remainingLeveling) != release) {
+                        step = 3;
+                        resources->reject();
+                    }
+                }
+            });
+            watchdog.start(15000);
+            tick.start();
+            open->trigger();
+            tick.stop();
+            watchdog.stop();
+            QCOMPARE(step, 4);
+            const auto expected = release ? QString("2026-11-02 18:00") : QString("2026-11-03 18:00");
+            QCOMPARE(QString::fromStdString(*doc.calculation()->projectFinish), expected);
+            QCOMPARE(model->data(model->index(0, model->columnForKey("finish"))).toString(), expected);
+            QCOMPARE(gantt->displayedFinish(), expected);
+            const auto context = window.findChild<QLabel *>("navigationScope")->text();
+            QVERIFY(context.contains("표시 1/2개") && context.contains("선택 1개"));
+            QVERIFY(context.contains("전체 완료 " + expected) && context.contains("간트 표시 완료 " + expected));
+            QCOMPARE(window.findChild<QLineEdit *>("taskSearch")->text(), QString("설치"));
+            QCOMPARE(window.findChild<QComboBox *>("taskColumnPreset")->currentIndex(), 2);
+            QCOMPARE(model->data(model->index(0, model->columnForKey("$finishVariance"))).toString(),
+                     release ? QString("0d (0h)") : QString("+1d (+8h)"));
+        }
+        QVERIFY(doc.project()->tasks == original.tasks && doc.project()->baselines == original.baselines);
+        QVERIFY(doc.dirty() && bytes(path) == disk);
+        doc.save();
+        const auto saved = *doc.project();
+        doc.open(path);
+        QVERIFY(*doc.project() == saved && !doc.dirty() && !doc.calculation());
+    }
     void candidateAdoptionAndReleaseStayDistinct() {
         QTemporaryDir folder;
         jobs::JsonProjectStore store;

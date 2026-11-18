@@ -1,0 +1,925 @@
+********* Start testing of WeeklyJourneyUiTests *********
+Config: Using QtTest library 6.8.3, Qt 6.8.3 (x86_64-little_endian-llp64 shared (dynamic) release build; by GCC 13.1.0), windows 11
+PASS   : WeeklyJourneyUiTests::initTestCase()
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) 'bytes(pdfPath).startsWith("%PDF")' returned FALSE. ()
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/WeeklyJourneyUiTests.cpp(268) : failure location
+QFATAL : WeeklyJourneyUiTests::weeklyJourney(five) weekly integrated UI workflow timeout
+FAIL!  : WeeklyJourneyUiTests::weeklyJourney(five) Received a fatal error.
+Totals: 1 passed, 1 failed, 0 skipped, 0 blacklisted, 31701ms
+********* Finished testing of WeeklyJourneyUiTests *********

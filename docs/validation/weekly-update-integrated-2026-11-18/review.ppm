@@ -1,0 +1,449 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+            {
+                "resourceId": "technician",
+                "taskId": "C",
+                "units": 100
+            },
+            {
+                "resourceId": "technician",
+                "taskId": "D",
+                "units": 100
+            }
+        ],
+        "baselines": [
+            {
+                "approvedBy": "검증 PM",
+                "createdAt": "2026-11-17T06:30:46Z",
+                "engineVersion": "jobs-cpm-0.2",
+                "id": "7619e85c-af1c-4277-a9ef-81b23de543e5",
+                "input": {
+                    "assignments": [
+                        {
+                            "resourceId": "technician",
+                            "taskId": "C",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "technician",
+                            "taskId": "D",
+                            "units": 100
+                        }
+                    ],
+                    "calculationProfile": "native-fs0-workminutes-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "KRW",
+                    "holidays": [
+                    ],
+                    "name": "설비 구축 주간 점검",
+                    "resources": [
+                        {
+                            "exceptions": [
+                            ],
+                            "id": "technician",
+                            "maxUnits": 100,
+                            "name": "설치 기술자",
+                            "rates": [
+                            ],
+                            "type": "labor"
+                        }
+                    ],
+                    "startDate": "2026-11-09",
+                    "taskCosts": [
+                    ],
+                    "tasks": [
+                        {
+                            "durationMinutes": 960,
+                            "id": "A",
+                            "name": "설계 검토",
+                            "predecessors": [
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "B",
+                            "name": "부품 준비",
+                            "predecessors": [
+                                "A"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C",
+                            "name": "조립",
+                            "predecessors": [
+                                "B"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "D",
+                            "name": "현장 설치 준비",
+                            "predecessors": [
+                                "B"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 480,
+                            "id": "E",
+                            "name": "시운전",
+                            "predecessors": [
+                                "C",
+                                "D"
+                            ],
+                            "wbsId": ""
+                        }
+                    ],
+                    "wbsNodes": [
+                    ]
+                },
+                "inputRevision": 1,
+                "name": "최초 계획",
+                "projectFinish": "2026-11-17 18:00",
+                "reason": "주간 갱신 UX 합성 사례 기준 계획",
+                "schedule": [
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 960,
+                        "earlyStartMinutes": 0,
+                        "finish": "2026-11-10 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 960,
+                        "lateStartMinutes": 0,
+                        "remainingStart": null,
+                        "start": "2026-11-09 09:00",
+                        "taskId": "A",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "A"
+                        ],
+                        "earlyFinishMinutes": 1920,
+                        "earlyStartMinutes": 960,
+                        "finish": "2026-11-12 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 1920,
+                        "lateStartMinutes": 960,
+                        "remainingStart": null,
+                        "start": "2026-11-11 09:00",
+                        "taskId": "B",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "B"
+                        ],
+                        "earlyFinishMinutes": 2880,
+                        "earlyStartMinutes": 1920,
+                        "finish": "2026-11-16 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 2880,
+                        "lateStartMinutes": 1920,
+                        "remainingStart": null,
+                        "start": "2026-11-13 09:00",
+                        "taskId": "C",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "B"
+                        ],
+                        "earlyFinishMinutes": 2880,
+                        "earlyStartMinutes": 1920,
+                        "finish": "2026-11-16 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 2880,
+                        "lateStartMinutes": 1920,
+                        "remainingStart": null,
+                        "start": "2026-11-13 09:00",
+                        "taskId": "D",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C",
+                            "D"
+                        ],
+                        "earlyFinishMinutes": 3360,
+                        "earlyStartMinutes": 2880,
+                        "finish": "2026-11-17 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 3360,
+                        "lateStartMinutes": 2880,
+                        "remainingStart": null,
+                        "start": "2026-11-17 09:00",
+                        "taskId": "E",
+                        "totalFloatMinutes": 0
+                    }
+                ],
+                "sourceDocumentId": "weekly-ux-fixture-20261117",
+                "version": 1
+            }
+        ],
+        "calculationProfile": "native-fs0-workminutes-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "costEntries": [
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "KRW",
+        "derivedFrom": "7a951497-7faa-481f-8da5-b84b2532d418",
+        "documentId": "weekly-ux-continuation-20261117",
+        "holidays": [
+        ],
+        "levelingDecisions": [
+            {
+                "action": "adopt",
+                "afterPlan": null,
+                "afterRemaining": {
+                    "adoptedAt": "2026-11-17T06:42:02Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "task-order",
+                    "reason": "주간 점검: 기술자 중복 배정 해소안 선택",
+                    "sourceDocumentId": "weekly-ux-continuation-20261117",
+                    "sourceRevision": 5
+                },
+                "afterStatusAt": "2026-11-13 09:00",
+                "beforePlan": null,
+                "beforeRemaining": null,
+                "beforeStatusAt": "2026-11-13 09:00",
+                "id": "weekly-ux-continuation-20261117:leveling:6",
+                "previousEntryId": "",
+                "reason": "주간 점검: 기술자 중복 배정 해소안 선택",
+                "recordedAt": "2026-11-17T06:42:02Z",
+                "recordedRevision": 6,
+                "sourceDocumentId": "weekly-ux-continuation-20261117",
+                "sourceRevision": 5
+            },
+            {
+                "action": "invalidate",
+                "afterPlan": null,
+                "afterRemaining": null,
+                "afterStatusAt": "2026-11-16 09:00",
+                "beforePlan": null,
+                "beforeRemaining": {
+                    "adoptedAt": "2026-11-17T06:42:02Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "task-order",
+                    "reason": "주간 점검: 기술자 중복 배정 해소안 선택",
+                    "sourceDocumentId": "weekly-ux-continuation-20261117",
+                    "sourceRevision": 5
+                },
+                "beforeStatusAt": "2026-11-13 09:00",
+                "id": "weekly-ux-continuation-20261117:leveling:7",
+                "previousEntryId": "weekly-ux-continuation-20261117:leveling:6",
+                "reason": "상태일 변경",
+                "recordedAt": "2026-11-18T01:40:10Z",
+                "recordedRevision": 7,
+                "sourceDocumentId": "weekly-ux-continuation-20261117",
+                "sourceRevision": 6
+            },
+            {
+                "action": "adopt",
+                "afterPlan": null,
+                "afterRemaining": {
+                    "adoptedAt": "2026-11-18T01:45:02Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "task-order",
+                    "reason": "통합 점검: 설치 기술자 중복 해소안 채택",
+                    "sourceDocumentId": "weekly-ux-continuation-20261117",
+                    "sourceRevision": 9
+                },
+                "afterStatusAt": "2026-11-16 09:00",
+                "beforePlan": null,
+                "beforeRemaining": null,
+                "beforeStatusAt": "2026-11-16 09:00",
+                "id": "weekly-ux-continuation-20261117:leveling:10",
+                "previousEntryId": "weekly-ux-continuation-20261117:leveling:7",
+                "reason": "통합 점검: 설치 기술자 중복 해소안 채택",
+                "recordedAt": "2026-11-18T01:45:02Z",
+                "recordedRevision": 10,
+                "sourceDocumentId": "weekly-ux-continuation-20261117",
+                "sourceRevision": 9
+            }
+        ],
+        "name": "설비 구축 주간 점검",
+        "progress": [
+            {
+                "actualDurationMinutes": 960,
+                "actualFinish": "2026-11-10 18:00",
+                "actualStart": "2026-11-09 09:00",
+                "id": "weekly-design-finished",
+                "planDurationMinutes": 960,
+                "previousEntryId": "",
+                "reason": "합성 사례: 설계 완료",
+                "recordedAt": "2026-11-17T06:00:00Z",
+                "recordedRevision": 4,
+                "remainingMinutes": 0,
+                "reporter": "검증 PM",
+                "sourceDocumentId": "weekly-ux-continuation-20261117",
+                "statusAt": "2026-11-13 09:00",
+                "taskId": "A"
+            },
+            {
+                "actualDurationMinutes": 960,
+                "actualFinish": null,
+                "actualStart": "2026-11-11 09:00",
+                "id": "weekly-parts-delayed",
+                "planDurationMinutes": 960,
+                "previousEntryId": "",
+                "reason": "합성 사례: 부품 준비 잔여 2근무일",
+                "recordedAt": "2026-11-17T06:00:00Z",
+                "recordedRevision": 4,
+                "remainingMinutes": 960,
+                "reporter": "검증 PM",
+                "sourceDocumentId": "weekly-ux-continuation-20261117",
+                "statusAt": "2026-11-13 09:00",
+                "taskId": "B"
+            },
+            {
+                "actualDurationMinutes": 960,
+                "actualFinish": null,
+                "actualStart": "2026-11-11 09:00",
+                "id": "d9398ff5-36ce-42cb-a426-e731aaaeb1ba",
+                "planDurationMinutes": 960,
+                "previousEntryId": "weekly-parts-delayed",
+                "reason": "주간 점검: 실제 16시간과 잔여 16시간 재확인",
+                "recordedAt": "2026-11-17T06:39:51Z",
+                "recordedRevision": 5,
+                "remainingMinutes": 960,
+                "reporter": "검증 PM",
+                "sourceDocumentId": "weekly-ux-continuation-20261117",
+                "statusAt": "2026-11-13 09:00",
+                "taskId": "B"
+            },
+            {
+                "actualDurationMinutes": 960,
+                "actualFinish": null,
+                "actualStart": "2026-11-11 09:00",
+                "id": "9ca496d0-5cdc-45a8-94e4-97b067e832e1",
+                "planDurationMinutes": 960,
+                "previousEntryId": "d9398ff5-36ce-42cb-a426-e731aaaeb1ba",
+                "reason": "통합 점검: 부품 준비 실제 2d 잔여 2d 확인",
+                "recordedAt": "2026-11-18T01:41:53Z",
+                "recordedRevision": 8,
+                "remainingMinutes": 960,
+                "reporter": "검증 PM",
+                "sourceDocumentId": "weekly-ux-continuation-20261117",
+                "statusAt": "2026-11-16 09:00",
+                "taskId": "B"
+            },
+            {
+                "actualDurationMinutes": 0,
+                "actualFinish": null,
+                "actualStart": null,
+                "id": "21551aaa-0bff-4707-9012-2acaaff9ad14",
+                "planDurationMinutes": 960,
+                "previousEntryId": "",
+                "reason": "통합 점검: 조립 미착수 확인 잔여 2d",
+                "recordedAt": "2026-11-18T01:42:44Z",
+                "recordedRevision": 9,
+                "remainingMinutes": 960,
+                "reporter": "검증 PM",
+                "sourceDocumentId": "weekly-ux-continuation-20261117",
+                "statusAt": "2026-11-16 09:00",
+                "taskId": "C"
+            }
+        ],
+        "remainingLeveling": {
+            "adoptedAt": "2026-11-18T01:45:02Z",
+            "horizonWorkDays": 260,
+            "policy": "serial-no-split-v1",
+            "priority": "task-order",
+            "reason": "통합 점검: 설치 기술자 중복 해소안 채택",
+            "sourceDocumentId": "weekly-ux-continuation-20261117",
+            "sourceRevision": 9
+        },
+        "resources": [
+            {
+                "exceptions": [
+                ],
+                "id": "technician",
+                "maxUnits": 100,
+                "name": "설치 기술자",
+                "rates": [
+                ],
+                "type": "labor"
+            }
+        ],
+        "revision": 10,
+        "scenarios": [
+        ],
+        "startDate": "2026-11-09",
+        "statusAt": "2026-11-16 09:00",
+        "taskCosts": [
+        ],
+        "tasks": [
+            {
+                "durationMinutes": 960,
+                "id": "A",
+                "name": "설계 검토",
+                "predecessors": [
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "B",
+                "name": "부품 준비",
+                "predecessors": [
+                    "A"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C",
+                "name": "조립",
+                "predecessors": [
+                    "B"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "D",
+                "name": "현장 설치 준비",
+                "predecessors": [
+                    "B"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 480,
+                "id": "E",
+                "name": "시운전",
+                "predecessors": [
+                    "C",
+                    "D"
+                ],
+                "wbsId": ""
+            }
+        ],
+        "wbsNodes": [
+        ]
+    },
+    "schemaVersion": 15,
+    "sha256": "eabf7b823de7a213325df8476df17ac0abe75ea724947832393e1622ffde1b2f"
+}

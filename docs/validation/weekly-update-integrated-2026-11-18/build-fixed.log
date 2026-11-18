@@ -1,0 +1,13 @@
+[1/15] Building CXX object CMakeFiles/jobs_ui.dir/src/ui/MainWindowTracking.cpp.obj
+[2/15] Linking CXX static library libjobs_ui.a
+[3/15] Linking CXX executable jobs_meeting_print_tests.exe
+[4/15] Automatic MOC for target jobs_weekly_update_ui_tests
+[5/14] Automatic MOC for target jobs_outcome_summary_ui_tests
+[6/13] Linking CXX executable PPM.exe
+[7/13] Linking CXX executable jobs_task_table_model_tests.exe
+[8/13] Linking CXX executable jobs_navigation_ui_tests.exe
+[9/13] Building CXX object CMakeFiles/jobs_weekly_update_ui_tests.dir/tests/WeeklyUpdateUiTests.cpp.obj
+[10/13] Linking CXX executable jobs_workflow_ui_tests.exe
+[11/13] Building CXX object CMakeFiles/jobs_outcome_summary_ui_tests.dir/tests/OutcomeSummaryUiTests.cpp.obj
+[12/13] Linking CXX executable jobs_weekly_update_ui_tests.exe
+[13/13] Linking CXX executable jobs_outcome_summary_ui_tests.exe

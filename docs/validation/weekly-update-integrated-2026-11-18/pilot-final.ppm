@@ -1,0 +1,1620 @@
+{
+    "format": "JOBS",
+    "payload": {
+        "assignments": [
+            {
+                "resourceId": "technician-1",
+                "taskId": "C01-C",
+                "units": 100
+            },
+            {
+                "resourceId": "technician-1",
+                "taskId": "C01-D",
+                "units": 100
+            },
+            {
+                "resourceId": "technician-2",
+                "taskId": "C02-C",
+                "units": 100
+            },
+            {
+                "resourceId": "technician-2",
+                "taskId": "C02-D",
+                "units": 100
+            },
+            {
+                "resourceId": "technician-3",
+                "taskId": "C03-C",
+                "units": 100
+            },
+            {
+                "resourceId": "technician-3",
+                "taskId": "C03-D",
+                "units": 100
+            },
+            {
+                "resourceId": "technician-4",
+                "taskId": "C04-C",
+                "units": 100
+            },
+            {
+                "resourceId": "technician-4",
+                "taskId": "C04-D",
+                "units": 100
+            },
+            {
+                "resourceId": "technician-5",
+                "taskId": "C05-C",
+                "units": 100
+            },
+            {
+                "resourceId": "technician-5",
+                "taskId": "C05-D",
+                "units": 100
+            },
+            {
+                "resourceId": "technician-6",
+                "taskId": "C06-C",
+                "units": 100
+            },
+            {
+                "resourceId": "technician-6",
+                "taskId": "C06-D",
+                "units": 100
+            }
+        ],
+        "baselines": [
+            {
+                "approvedBy": "합성 PM",
+                "createdAt": "2026-11-09T00:00:00Z",
+                "engineVersion": "jobs-cpm-0.2",
+                "id": "pilot-baseline-v1",
+                "input": {
+                    "assignments": [
+                        {
+                            "resourceId": "technician-1",
+                            "taskId": "C01-C",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "technician-1",
+                            "taskId": "C01-D",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "technician-2",
+                            "taskId": "C02-C",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "technician-2",
+                            "taskId": "C02-D",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "technician-3",
+                            "taskId": "C03-C",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "technician-3",
+                            "taskId": "C03-D",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "technician-4",
+                            "taskId": "C04-C",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "technician-4",
+                            "taskId": "C04-D",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "technician-5",
+                            "taskId": "C05-C",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "technician-5",
+                            "taskId": "C05-D",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "technician-6",
+                            "taskId": "C06-C",
+                            "units": 100
+                        },
+                        {
+                            "resourceId": "technician-6",
+                            "taskId": "C06-D",
+                            "units": 100
+                        }
+                    ],
+                    "calculationProfile": "native-fs0-workminutes-v1",
+                    "calendar": "standard-mon-fri-8h-v1",
+                    "costProfile": "cost-day-minor-half-up-v1",
+                    "currency": "KRW",
+                    "holidays": [
+                    ],
+                    "name": "자동화 설비 6개 셀 구축 · 사용자 시험 합성 사례",
+                    "resources": [
+                        {
+                            "exceptions": [
+                            ],
+                            "id": "technician-1",
+                            "maxUnits": 100,
+                            "name": "설치 기술자 1",
+                            "rates": [
+                            ],
+                            "type": "labor"
+                        },
+                        {
+                            "exceptions": [
+                            ],
+                            "id": "technician-2",
+                            "maxUnits": 100,
+                            "name": "설치 기술자 2",
+                            "rates": [
+                            ],
+                            "type": "labor"
+                        },
+                        {
+                            "exceptions": [
+                            ],
+                            "id": "technician-3",
+                            "maxUnits": 100,
+                            "name": "설치 기술자 3",
+                            "rates": [
+                            ],
+                            "type": "labor"
+                        },
+                        {
+                            "exceptions": [
+                            ],
+                            "id": "technician-4",
+                            "maxUnits": 100,
+                            "name": "설치 기술자 4",
+                            "rates": [
+                            ],
+                            "type": "labor"
+                        },
+                        {
+                            "exceptions": [
+                            ],
+                            "id": "technician-5",
+                            "maxUnits": 100,
+                            "name": "설치 기술자 5",
+                            "rates": [
+                            ],
+                            "type": "labor"
+                        },
+                        {
+                            "exceptions": [
+                            ],
+                            "id": "technician-6",
+                            "maxUnits": 100,
+                            "name": "설치 기술자 6",
+                            "rates": [
+                            ],
+                            "type": "labor"
+                        }
+                    ],
+                    "startDate": "2026-11-09",
+                    "taskCosts": [
+                    ],
+                    "tasks": [
+                        {
+                            "durationMinutes": 960,
+                            "id": "C01-A",
+                            "name": "01 반입 컨베이어 · 설계 검토",
+                            "predecessors": [
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C01-B",
+                            "name": "01 반입 컨베이어 · 부품 준비",
+                            "predecessors": [
+                                "C01-A"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C01-C",
+                            "name": "01 반입 컨베이어 · 조립",
+                            "predecessors": [
+                                "C01-B"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C01-D",
+                            "name": "01 반입 컨베이어 · 현장 설치 준비",
+                            "predecessors": [
+                                "C01-B"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 480,
+                            "id": "C01-E",
+                            "name": "01 반입 컨베이어 · 시운전",
+                            "predecessors": [
+                                "C01-C",
+                                "C01-D"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C02-A",
+                            "name": "02 로봇 조립 · 설계 검토",
+                            "predecessors": [
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C02-B",
+                            "name": "02 로봇 조립 · 부품 준비",
+                            "predecessors": [
+                                "C02-A"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C02-C",
+                            "name": "02 로봇 조립 · 조립",
+                            "predecessors": [
+                                "C02-B"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C02-D",
+                            "name": "02 로봇 조립 · 현장 설치 준비",
+                            "predecessors": [
+                                "C02-B"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 480,
+                            "id": "C02-E",
+                            "name": "02 로봇 조립 · 시운전",
+                            "predecessors": [
+                                "C02-C",
+                                "C02-D"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C03-A",
+                            "name": "03 비전 검사 · 설계 검토",
+                            "predecessors": [
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C03-B",
+                            "name": "03 비전 검사 · 부품 준비",
+                            "predecessors": [
+                                "C03-A"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C03-C",
+                            "name": "03 비전 검사 · 조립",
+                            "predecessors": [
+                                "C03-B"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C03-D",
+                            "name": "03 비전 검사 · 현장 설치 준비",
+                            "predecessors": [
+                                "C03-B"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 480,
+                            "id": "C03-E",
+                            "name": "03 비전 검사 · 시운전",
+                            "predecessors": [
+                                "C03-C",
+                                "C03-D"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C04-A",
+                            "name": "04 전기 검사 · 설계 검토",
+                            "predecessors": [
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C04-B",
+                            "name": "04 전기 검사 · 부품 준비",
+                            "predecessors": [
+                                "C04-A"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C04-C",
+                            "name": "04 전기 검사 · 조립",
+                            "predecessors": [
+                                "C04-B"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C04-D",
+                            "name": "04 전기 검사 · 현장 설치 준비",
+                            "predecessors": [
+                                "C04-B"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 480,
+                            "id": "C04-E",
+                            "name": "04 전기 검사 · 시운전",
+                            "predecessors": [
+                                "C04-C",
+                                "C04-D"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C05-A",
+                            "name": "05 포장 · 설계 검토",
+                            "predecessors": [
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C05-B",
+                            "name": "05 포장 · 부품 준비",
+                            "predecessors": [
+                                "C05-A"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C05-C",
+                            "name": "05 포장 · 조립",
+                            "predecessors": [
+                                "C05-B"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C05-D",
+                            "name": "05 포장 · 현장 설치 준비",
+                            "predecessors": [
+                                "C05-B"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 480,
+                            "id": "C05-E",
+                            "name": "05 포장 · 시운전",
+                            "predecessors": [
+                                "C05-C",
+                                "C05-D"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C06-A",
+                            "name": "06 출하 컨베이어 · 설계 검토",
+                            "predecessors": [
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C06-B",
+                            "name": "06 출하 컨베이어 · 부품 준비",
+                            "predecessors": [
+                                "C06-A"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C06-C",
+                            "name": "06 출하 컨베이어 · 조립",
+                            "predecessors": [
+                                "C06-B"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 960,
+                            "id": "C06-D",
+                            "name": "06 출하 컨베이어 · 현장 설치 준비",
+                            "predecessors": [
+                                "C06-B"
+                            ],
+                            "wbsId": ""
+                        },
+                        {
+                            "durationMinutes": 480,
+                            "id": "C06-E",
+                            "name": "06 출하 컨베이어 · 시운전",
+                            "predecessors": [
+                                "C06-C",
+                                "C06-D"
+                            ],
+                            "wbsId": ""
+                        }
+                    ],
+                    "wbsNodes": [
+                    ]
+                },
+                "inputRevision": 1,
+                "name": "최초 계획",
+                "projectFinish": "2026-11-17 18:00",
+                "reason": "사용자 시험용 최초 계획 · 실제 승인 아님",
+                "schedule": [
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 960,
+                        "earlyStartMinutes": 0,
+                        "finish": "2026-11-10 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 960,
+                        "lateStartMinutes": 0,
+                        "remainingStart": null,
+                        "start": "2026-11-09 09:00",
+                        "taskId": "C01-A",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C01-A"
+                        ],
+                        "earlyFinishMinutes": 1920,
+                        "earlyStartMinutes": 960,
+                        "finish": "2026-11-12 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 1920,
+                        "lateStartMinutes": 960,
+                        "remainingStart": null,
+                        "start": "2026-11-11 09:00",
+                        "taskId": "C01-B",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C01-B"
+                        ],
+                        "earlyFinishMinutes": 2880,
+                        "earlyStartMinutes": 1920,
+                        "finish": "2026-11-16 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 2880,
+                        "lateStartMinutes": 1920,
+                        "remainingStart": null,
+                        "start": "2026-11-13 09:00",
+                        "taskId": "C01-C",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C01-B"
+                        ],
+                        "earlyFinishMinutes": 2880,
+                        "earlyStartMinutes": 1920,
+                        "finish": "2026-11-16 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 2880,
+                        "lateStartMinutes": 1920,
+                        "remainingStart": null,
+                        "start": "2026-11-13 09:00",
+                        "taskId": "C01-D",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C01-C",
+                            "C01-D"
+                        ],
+                        "earlyFinishMinutes": 3360,
+                        "earlyStartMinutes": 2880,
+                        "finish": "2026-11-17 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 3360,
+                        "lateStartMinutes": 2880,
+                        "remainingStart": null,
+                        "start": "2026-11-17 09:00",
+                        "taskId": "C01-E",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 960,
+                        "earlyStartMinutes": 0,
+                        "finish": "2026-11-10 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 960,
+                        "lateStartMinutes": 0,
+                        "remainingStart": null,
+                        "start": "2026-11-09 09:00",
+                        "taskId": "C02-A",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C02-A"
+                        ],
+                        "earlyFinishMinutes": 1920,
+                        "earlyStartMinutes": 960,
+                        "finish": "2026-11-12 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 1920,
+                        "lateStartMinutes": 960,
+                        "remainingStart": null,
+                        "start": "2026-11-11 09:00",
+                        "taskId": "C02-B",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C02-B"
+                        ],
+                        "earlyFinishMinutes": 2880,
+                        "earlyStartMinutes": 1920,
+                        "finish": "2026-11-16 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 2880,
+                        "lateStartMinutes": 1920,
+                        "remainingStart": null,
+                        "start": "2026-11-13 09:00",
+                        "taskId": "C02-C",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C02-B"
+                        ],
+                        "earlyFinishMinutes": 2880,
+                        "earlyStartMinutes": 1920,
+                        "finish": "2026-11-16 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 2880,
+                        "lateStartMinutes": 1920,
+                        "remainingStart": null,
+                        "start": "2026-11-13 09:00",
+                        "taskId": "C02-D",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C02-C",
+                            "C02-D"
+                        ],
+                        "earlyFinishMinutes": 3360,
+                        "earlyStartMinutes": 2880,
+                        "finish": "2026-11-17 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 3360,
+                        "lateStartMinutes": 2880,
+                        "remainingStart": null,
+                        "start": "2026-11-17 09:00",
+                        "taskId": "C02-E",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 960,
+                        "earlyStartMinutes": 0,
+                        "finish": "2026-11-10 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 960,
+                        "lateStartMinutes": 0,
+                        "remainingStart": null,
+                        "start": "2026-11-09 09:00",
+                        "taskId": "C03-A",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C03-A"
+                        ],
+                        "earlyFinishMinutes": 1920,
+                        "earlyStartMinutes": 960,
+                        "finish": "2026-11-12 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 1920,
+                        "lateStartMinutes": 960,
+                        "remainingStart": null,
+                        "start": "2026-11-11 09:00",
+                        "taskId": "C03-B",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C03-B"
+                        ],
+                        "earlyFinishMinutes": 2880,
+                        "earlyStartMinutes": 1920,
+                        "finish": "2026-11-16 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 2880,
+                        "lateStartMinutes": 1920,
+                        "remainingStart": null,
+                        "start": "2026-11-13 09:00",
+                        "taskId": "C03-C",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C03-B"
+                        ],
+                        "earlyFinishMinutes": 2880,
+                        "earlyStartMinutes": 1920,
+                        "finish": "2026-11-16 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 2880,
+                        "lateStartMinutes": 1920,
+                        "remainingStart": null,
+                        "start": "2026-11-13 09:00",
+                        "taskId": "C03-D",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C03-C",
+                            "C03-D"
+                        ],
+                        "earlyFinishMinutes": 3360,
+                        "earlyStartMinutes": 2880,
+                        "finish": "2026-11-17 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 3360,
+                        "lateStartMinutes": 2880,
+                        "remainingStart": null,
+                        "start": "2026-11-17 09:00",
+                        "taskId": "C03-E",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 960,
+                        "earlyStartMinutes": 0,
+                        "finish": "2026-11-10 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 960,
+                        "lateStartMinutes": 0,
+                        "remainingStart": null,
+                        "start": "2026-11-09 09:00",
+                        "taskId": "C04-A",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C04-A"
+                        ],
+                        "earlyFinishMinutes": 1920,
+                        "earlyStartMinutes": 960,
+                        "finish": "2026-11-12 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 1920,
+                        "lateStartMinutes": 960,
+                        "remainingStart": null,
+                        "start": "2026-11-11 09:00",
+                        "taskId": "C04-B",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C04-B"
+                        ],
+                        "earlyFinishMinutes": 2880,
+                        "earlyStartMinutes": 1920,
+                        "finish": "2026-11-16 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 2880,
+                        "lateStartMinutes": 1920,
+                        "remainingStart": null,
+                        "start": "2026-11-13 09:00",
+                        "taskId": "C04-C",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C04-B"
+                        ],
+                        "earlyFinishMinutes": 2880,
+                        "earlyStartMinutes": 1920,
+                        "finish": "2026-11-16 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 2880,
+                        "lateStartMinutes": 1920,
+                        "remainingStart": null,
+                        "start": "2026-11-13 09:00",
+                        "taskId": "C04-D",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C04-C",
+                            "C04-D"
+                        ],
+                        "earlyFinishMinutes": 3360,
+                        "earlyStartMinutes": 2880,
+                        "finish": "2026-11-17 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 3360,
+                        "lateStartMinutes": 2880,
+                        "remainingStart": null,
+                        "start": "2026-11-17 09:00",
+                        "taskId": "C04-E",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 960,
+                        "earlyStartMinutes": 0,
+                        "finish": "2026-11-10 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 960,
+                        "lateStartMinutes": 0,
+                        "remainingStart": null,
+                        "start": "2026-11-09 09:00",
+                        "taskId": "C05-A",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C05-A"
+                        ],
+                        "earlyFinishMinutes": 1920,
+                        "earlyStartMinutes": 960,
+                        "finish": "2026-11-12 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 1920,
+                        "lateStartMinutes": 960,
+                        "remainingStart": null,
+                        "start": "2026-11-11 09:00",
+                        "taskId": "C05-B",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C05-B"
+                        ],
+                        "earlyFinishMinutes": 2880,
+                        "earlyStartMinutes": 1920,
+                        "finish": "2026-11-16 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 2880,
+                        "lateStartMinutes": 1920,
+                        "remainingStart": null,
+                        "start": "2026-11-13 09:00",
+                        "taskId": "C05-C",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C05-B"
+                        ],
+                        "earlyFinishMinutes": 2880,
+                        "earlyStartMinutes": 1920,
+                        "finish": "2026-11-16 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 2880,
+                        "lateStartMinutes": 1920,
+                        "remainingStart": null,
+                        "start": "2026-11-13 09:00",
+                        "taskId": "C05-D",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C05-C",
+                            "C05-D"
+                        ],
+                        "earlyFinishMinutes": 3360,
+                        "earlyStartMinutes": 2880,
+                        "finish": "2026-11-17 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 3360,
+                        "lateStartMinutes": 2880,
+                        "remainingStart": null,
+                        "start": "2026-11-17 09:00",
+                        "taskId": "C05-E",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                        ],
+                        "earlyFinishMinutes": 960,
+                        "earlyStartMinutes": 0,
+                        "finish": "2026-11-10 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 960,
+                        "lateStartMinutes": 0,
+                        "remainingStart": null,
+                        "start": "2026-11-09 09:00",
+                        "taskId": "C06-A",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C06-A"
+                        ],
+                        "earlyFinishMinutes": 1920,
+                        "earlyStartMinutes": 960,
+                        "finish": "2026-11-12 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 1920,
+                        "lateStartMinutes": 960,
+                        "remainingStart": null,
+                        "start": "2026-11-11 09:00",
+                        "taskId": "C06-B",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C06-B"
+                        ],
+                        "earlyFinishMinutes": 2880,
+                        "earlyStartMinutes": 1920,
+                        "finish": "2026-11-16 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 2880,
+                        "lateStartMinutes": 1920,
+                        "remainingStart": null,
+                        "start": "2026-11-13 09:00",
+                        "taskId": "C06-C",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C06-B"
+                        ],
+                        "earlyFinishMinutes": 2880,
+                        "earlyStartMinutes": 1920,
+                        "finish": "2026-11-16 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 2880,
+                        "lateStartMinutes": 1920,
+                        "remainingStart": null,
+                        "start": "2026-11-13 09:00",
+                        "taskId": "C06-D",
+                        "totalFloatMinutes": 0
+                    },
+                    {
+                        "completedActual": false,
+                        "critical": true,
+                        "drivingPredecessors": [
+                            "C06-C",
+                            "C06-D"
+                        ],
+                        "earlyFinishMinutes": 3360,
+                        "earlyStartMinutes": 2880,
+                        "finish": "2026-11-17 18:00",
+                        "freeFloatMinutes": 0,
+                        "lateFinishMinutes": 3360,
+                        "lateStartMinutes": 2880,
+                        "remainingStart": null,
+                        "start": "2026-11-17 09:00",
+                        "taskId": "C06-E",
+                        "totalFloatMinutes": 0
+                    }
+                ],
+                "sourceDocumentId": "weekly-pm-pilot-30-20261118",
+                "version": 1
+            }
+        ],
+        "calculationProfile": "native-fs0-workminutes-v1",
+        "calendar": "standard-mon-fri-8h-v1",
+        "costEntries": [
+        ],
+        "costProfile": "cost-day-minor-half-up-v1",
+        "currency": "KRW",
+        "derivedFrom": "weekly-ux-continuation-20261117",
+        "documentId": "weekly-pm-pilot-30-20261118",
+        "holidays": [
+        ],
+        "levelingDecisions": [
+            {
+                "action": "adopt",
+                "afterPlan": null,
+                "afterRemaining": {
+                    "adoptedAt": "2026-11-18T02:12:39Z",
+                    "horizonWorkDays": 260,
+                    "policy": "serial-no-split-v1",
+                    "priority": "task-order",
+                    "reason": "통합 자동 검사: 중복 배정 해소안 채택",
+                    "sourceDocumentId": "weekly-pm-pilot-30-20261118",
+                    "sourceRevision": 5
+                },
+                "afterStatusAt": "2026-11-16 09:00",
+                "beforePlan": null,
+                "beforeRemaining": null,
+                "beforeStatusAt": "2026-11-16 09:00",
+                "id": "weekly-pm-pilot-30-20261118:leveling:6",
+                "previousEntryId": "",
+                "reason": "통합 자동 검사: 중복 배정 해소안 채택",
+                "recordedAt": "2026-11-18T02:12:39Z",
+                "recordedRevision": 6,
+                "sourceDocumentId": "weekly-pm-pilot-30-20261118",
+                "sourceRevision": 5
+            }
+        ],
+        "name": "자동화 설비 6개 셀 구축 · 사용자 시험 합성 사례",
+        "progress": [
+            {
+                "actualDurationMinutes": 960,
+                "actualFinish": "2026-11-10 18:00",
+                "actualStart": "2026-11-09 09:00",
+                "id": "C01-weekly-design-finished",
+                "planDurationMinutes": 960,
+                "previousEntryId": "",
+                "reason": "합성 사례: 설계 완료",
+                "recordedAt": "2026-11-13T00:00:00Z",
+                "recordedRevision": 2,
+                "remainingMinutes": 0,
+                "reporter": "합성 담당자 1",
+                "sourceDocumentId": "weekly-pm-pilot-30-20261118",
+                "statusAt": "2026-11-13 09:00",
+                "taskId": "C01-A"
+            },
+            {
+                "actualDurationMinutes": 960,
+                "actualFinish": null,
+                "actualStart": "2026-11-11 09:00",
+                "id": "C01-weekly-parts-delayed",
+                "planDurationMinutes": 960,
+                "previousEntryId": "",
+                "reason": "합성 사례: 부품 준비 잔여 2근무일",
+                "recordedAt": "2026-11-13T00:00:00Z",
+                "recordedRevision": 2,
+                "remainingMinutes": 960,
+                "reporter": "합성 담당자 1",
+                "sourceDocumentId": "weekly-pm-pilot-30-20261118",
+                "statusAt": "2026-11-13 09:00",
+                "taskId": "C01-B"
+            },
+            {
+                "actualDurationMinutes": 960,
+                "actualFinish": "2026-11-10 18:00",
+                "actualStart": "2026-11-09 09:00",
+                "id": "C02-weekly-design-finished",
+                "planDurationMinutes": 960,
+                "previousEntryId": "",
+                "reason": "합성 사례: 설계 완료",
+                "recordedAt": "2026-11-13T00:00:00Z",
+                "recordedRevision": 2,
+                "remainingMinutes": 0,
+                "reporter": "합성 담당자 2",
+                "sourceDocumentId": "weekly-pm-pilot-30-20261118",
+                "statusAt": "2026-11-13 09:00",
+                "taskId": "C02-A"
+            },
+            {
+                "actualDurationMinutes": 960,
+                "actualFinish": null,
+                "actualStart": "2026-11-11 09:00",
+                "id": "C02-weekly-parts-delayed",
+                "planDurationMinutes": 960,
+                "previousEntryId": "",
+                "reason": "합성 사례: 부품 준비 잔여 2근무일",
+                "recordedAt": "2026-11-13T00:00:00Z",
+                "recordedRevision": 2,
+                "remainingMinutes": 960,
+                "reporter": "합성 담당자 2",
+                "sourceDocumentId": "weekly-pm-pilot-30-20261118",
+                "statusAt": "2026-11-13 09:00",
+                "taskId": "C02-B"
+            },
+            {
+                "actualDurationMinutes": 960,
+                "actualFinish": "2026-11-10 18:00",
+                "actualStart": "2026-11-09 09:00",
+                "id": "C03-weekly-design-finished",
+                "planDurationMinutes": 960,
+                "previousEntryId": "",
+                "reason": "합성 사례: 설계 완료",
+                "recordedAt": "2026-11-13T00:00:00Z",
+                "recordedRevision": 2,
+                "remainingMinutes": 0,
+                "reporter": "합성 담당자 3",
+                "sourceDocumentId": "weekly-pm-pilot-30-20261118",
+                "statusAt": "2026-11-13 09:00",
+                "taskId": "C03-A"
+            },
+            {
+                "actualDurationMinutes": 960,
+                "actualFinish": null,
+                "actualStart": "2026-11-11 09:00",
+                "id": "C03-weekly-parts-delayed",
+                "planDurationMinutes": 960,
+                "previousEntryId": "",
+                "reason": "합성 사례: 부품 준비 잔여 2근무일",
+                "recordedAt": "2026-11-13T00:00:00Z",
+                "recordedRevision": 2,
+                "remainingMinutes": 960,
+                "reporter": "합성 담당자 3",
+                "sourceDocumentId": "weekly-pm-pilot-30-20261118",
+                "statusAt": "2026-11-13 09:00",
+                "taskId": "C03-B"
+            },
+            {
+                "actualDurationMinutes": 960,
+                "actualFinish": "2026-11-10 18:00",
+                "actualStart": "2026-11-09 09:00",
+                "id": "C04-weekly-design-finished",
+                "planDurationMinutes": 960,
+                "previousEntryId": "",
+                "reason": "합성 사례: 설계 완료",
+                "recordedAt": "2026-11-13T00:00:00Z",
+                "recordedRevision": 2,
+                "remainingMinutes": 0,
+                "reporter": "합성 담당자 4",
+                "sourceDocumentId": "weekly-pm-pilot-30-20261118",
+                "statusAt": "2026-11-13 09:00",
+                "taskId": "C04-A"
+            },
+            {
+                "actualDurationMinutes": 960,
+                "actualFinish": null,
+                "actualStart": "2026-11-11 09:00",
+                "id": "C04-weekly-parts-delayed",
+                "planDurationMinutes": 960,
+                "previousEntryId": "",
+                "reason": "합성 사례: 부품 준비 잔여 2근무일",
+                "recordedAt": "2026-11-13T00:00:00Z",
+                "recordedRevision": 2,
+                "remainingMinutes": 960,
+                "reporter": "합성 담당자 4",
+                "sourceDocumentId": "weekly-pm-pilot-30-20261118",
+                "statusAt": "2026-11-13 09:00",
+                "taskId": "C04-B"
+            },
+            {
+                "actualDurationMinutes": 960,
+                "actualFinish": "2026-11-10 18:00",
+                "actualStart": "2026-11-09 09:00",
+                "id": "C05-weekly-design-finished",
+                "planDurationMinutes": 960,
+                "previousEntryId": "",
+                "reason": "합성 사례: 설계 완료",
+                "recordedAt": "2026-11-13T00:00:00Z",
+                "recordedRevision": 2,
+                "remainingMinutes": 0,
+                "reporter": "합성 담당자 5",
+                "sourceDocumentId": "weekly-pm-pilot-30-20261118",
+                "statusAt": "2026-11-13 09:00",
+                "taskId": "C05-A"
+            },
+            {
+                "actualDurationMinutes": 960,
+                "actualFinish": null,
+                "actualStart": "2026-11-11 09:00",
+                "id": "C05-weekly-parts-delayed",
+                "planDurationMinutes": 960,
+                "previousEntryId": "",
+                "reason": "합성 사례: 부품 준비 잔여 2근무일",
+                "recordedAt": "2026-11-13T00:00:00Z",
+                "recordedRevision": 2,
+                "remainingMinutes": 960,
+                "reporter": "합성 담당자 5",
+                "sourceDocumentId": "weekly-pm-pilot-30-20261118",
+                "statusAt": "2026-11-13 09:00",
+                "taskId": "C05-B"
+            },
+            {
+                "actualDurationMinutes": 960,
+                "actualFinish": "2026-11-10 18:00",
+                "actualStart": "2026-11-09 09:00",
+                "id": "C06-weekly-design-finished",
+                "planDurationMinutes": 960,
+                "previousEntryId": "",
+                "reason": "합성 사례: 설계 완료",
+                "recordedAt": "2026-11-13T00:00:00Z",
+                "recordedRevision": 2,
+                "remainingMinutes": 0,
+                "reporter": "합성 담당자 6",
+                "sourceDocumentId": "weekly-pm-pilot-30-20261118",
+                "statusAt": "2026-11-13 09:00",
+                "taskId": "C06-A"
+            },
+            {
+                "actualDurationMinutes": 960,
+                "actualFinish": null,
+                "actualStart": "2026-11-11 09:00",
+                "id": "C06-weekly-parts-delayed",
+                "planDurationMinutes": 960,
+                "previousEntryId": "",
+                "reason": "합성 사례: 부품 준비 잔여 2근무일",
+                "recordedAt": "2026-11-13T00:00:00Z",
+                "recordedRevision": 2,
+                "remainingMinutes": 960,
+                "reporter": "합성 담당자 6",
+                "sourceDocumentId": "weekly-pm-pilot-30-20261118",
+                "statusAt": "2026-11-13 09:00",
+                "taskId": "C06-B"
+            },
+            {
+                "actualDurationMinutes": 960,
+                "actualFinish": null,
+                "actualStart": "2026-11-11 09:00",
+                "id": "678f142e-aff3-45f0-96b7-0471c16c73b2",
+                "planDurationMinutes": 960,
+                "previousEntryId": "C01-weekly-parts-delayed",
+                "reason": "통합 자동 검사: 실제2d 잔여2d 확인",
+                "recordedAt": "2026-11-18T02:12:36Z",
+                "recordedRevision": 4,
+                "remainingMinutes": 960,
+                "reporter": "통합 검증 PM",
+                "sourceDocumentId": "weekly-pm-pilot-30-20261118",
+                "statusAt": "2026-11-16 09:00",
+                "taskId": "C01-B"
+            },
+            {
+                "actualDurationMinutes": 0,
+                "actualFinish": null,
+                "actualStart": null,
+                "id": "6af5548a-3f70-40c2-b4fe-af8057030315",
+                "planDurationMinutes": 960,
+                "previousEntryId": "",
+                "reason": "통합 자동 검사: 미착수 확인",
+                "recordedAt": "2026-11-18T02:12:37Z",
+                "recordedRevision": 5,
+                "remainingMinutes": 960,
+                "reporter": "통합 검증 PM",
+                "sourceDocumentId": "weekly-pm-pilot-30-20261118",
+                "statusAt": "2026-11-16 09:00",
+                "taskId": "C01-C"
+            }
+        ],
+        "remainingLeveling": {
+            "adoptedAt": "2026-11-18T02:12:39Z",
+            "horizonWorkDays": 260,
+            "policy": "serial-no-split-v1",
+            "priority": "task-order",
+            "reason": "통합 자동 검사: 중복 배정 해소안 채택",
+            "sourceDocumentId": "weekly-pm-pilot-30-20261118",
+            "sourceRevision": 5
+        },
+        "resources": [
+            {
+                "exceptions": [
+                ],
+                "id": "technician-1",
+                "maxUnits": 100,
+                "name": "설치 기술자 1",
+                "rates": [
+                ],
+                "type": "labor"
+            },
+            {
+                "exceptions": [
+                ],
+                "id": "technician-2",
+                "maxUnits": 100,
+                "name": "설치 기술자 2",
+                "rates": [
+                ],
+                "type": "labor"
+            },
+            {
+                "exceptions": [
+                ],
+                "id": "technician-3",
+                "maxUnits": 100,
+                "name": "설치 기술자 3",
+                "rates": [
+                ],
+                "type": "labor"
+            },
+            {
+                "exceptions": [
+                ],
+                "id": "technician-4",
+                "maxUnits": 100,
+                "name": "설치 기술자 4",
+                "rates": [
+                ],
+                "type": "labor"
+            },
+            {
+                "exceptions": [
+                ],
+                "id": "technician-5",
+                "maxUnits": 100,
+                "name": "설치 기술자 5",
+                "rates": [
+                ],
+                "type": "labor"
+            },
+            {
+                "exceptions": [
+                ],
+                "id": "technician-6",
+                "maxUnits": 100,
+                "name": "설치 기술자 6",
+                "rates": [
+                ],
+                "type": "labor"
+            }
+        ],
+        "revision": 6,
+        "scenarios": [
+        ],
+        "startDate": "2026-11-09",
+        "statusAt": "2026-11-16 09:00",
+        "taskCosts": [
+        ],
+        "tasks": [
+            {
+                "durationMinutes": 960,
+                "id": "C01-A",
+                "name": "01 반입 컨베이어 · 설계 검토",
+                "predecessors": [
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C01-B",
+                "name": "01 반입 컨베이어 · 부품 준비",
+                "predecessors": [
+                    "C01-A"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C01-C",
+                "name": "01 반입 컨베이어 · 조립",
+                "predecessors": [
+                    "C01-B"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C01-D",
+                "name": "01 반입 컨베이어 · 현장 설치 준비",
+                "predecessors": [
+                    "C01-B"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 480,
+                "id": "C01-E",
+                "name": "01 반입 컨베이어 · 시운전",
+                "predecessors": [
+                    "C01-C",
+                    "C01-D"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C02-A",
+                "name": "02 로봇 조립 · 설계 검토",
+                "predecessors": [
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C02-B",
+                "name": "02 로봇 조립 · 부품 준비",
+                "predecessors": [
+                    "C02-A"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C02-C",
+                "name": "02 로봇 조립 · 조립",
+                "predecessors": [
+                    "C02-B"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C02-D",
+                "name": "02 로봇 조립 · 현장 설치 준비",
+                "predecessors": [
+                    "C02-B"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 480,
+                "id": "C02-E",
+                "name": "02 로봇 조립 · 시운전",
+                "predecessors": [
+                    "C02-C",
+                    "C02-D"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C03-A",
+                "name": "03 비전 검사 · 설계 검토",
+                "predecessors": [
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C03-B",
+                "name": "03 비전 검사 · 부품 준비",
+                "predecessors": [
+                    "C03-A"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C03-C",
+                "name": "03 비전 검사 · 조립",
+                "predecessors": [
+                    "C03-B"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C03-D",
+                "name": "03 비전 검사 · 현장 설치 준비",
+                "predecessors": [
+                    "C03-B"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 480,
+                "id": "C03-E",
+                "name": "03 비전 검사 · 시운전",
+                "predecessors": [
+                    "C03-C",
+                    "C03-D"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C04-A",
+                "name": "04 전기 검사 · 설계 검토",
+                "predecessors": [
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C04-B",
+                "name": "04 전기 검사 · 부품 준비",
+                "predecessors": [
+                    "C04-A"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C04-C",
+                "name": "04 전기 검사 · 조립",
+                "predecessors": [
+                    "C04-B"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C04-D",
+                "name": "04 전기 검사 · 현장 설치 준비",
+                "predecessors": [
+                    "C04-B"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 480,
+                "id": "C04-E",
+                "name": "04 전기 검사 · 시운전",
+                "predecessors": [
+                    "C04-C",
+                    "C04-D"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C05-A",
+                "name": "05 포장 · 설계 검토",
+                "predecessors": [
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C05-B",
+                "name": "05 포장 · 부품 준비",
+                "predecessors": [
+                    "C05-A"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C05-C",
+                "name": "05 포장 · 조립",
+                "predecessors": [
+                    "C05-B"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C05-D",
+                "name": "05 포장 · 현장 설치 준비",
+                "predecessors": [
+                    "C05-B"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 480,
+                "id": "C05-E",
+                "name": "05 포장 · 시운전",
+                "predecessors": [
+                    "C05-C",
+                    "C05-D"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C06-A",
+                "name": "06 출하 컨베이어 · 설계 검토",
+                "predecessors": [
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C06-B",
+                "name": "06 출하 컨베이어 · 부품 준비",
+                "predecessors": [
+                    "C06-A"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C06-C",
+                "name": "06 출하 컨베이어 · 조립",
+                "predecessors": [
+                    "C06-B"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 960,
+                "id": "C06-D",
+                "name": "06 출하 컨베이어 · 현장 설치 준비",
+                "predecessors": [
+                    "C06-B"
+                ],
+                "wbsId": ""
+            },
+            {
+                "durationMinutes": 480,
+                "id": "C06-E",
+                "name": "06 출하 컨베이어 · 시운전",
+                "predecessors": [
+                    "C06-C",
+                    "C06-D"
+                ],
+                "wbsId": ""
+            }
+        ],
+        "wbsNodes": [
+        ]
+    },
+    "schemaVersion": 15,
+    "sha256": "d682b6515afa1093bc13bd15451b532d685d6ce11a5b623bb2486b2c9e237381"
+}

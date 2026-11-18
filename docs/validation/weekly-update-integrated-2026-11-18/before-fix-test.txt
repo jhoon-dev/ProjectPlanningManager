@@ -1,0 +1,15 @@
+********* Start testing of OutcomeSummaryUiTests *********
+Config: Using QtTest library 6.8.3, Qt 6.8.3 (x86_64-little_endian-llp64 shared (dynamic) release build; by GCC 13.1.0), windows 11
+PASS   : OutcomeSummaryUiTests::initTestCase()
+QWARN  : OutcomeSummaryUiTests::nestedAdoptionAndReleaseRefreshMainViews() QFontDatabase: Cannot find font directory C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/build-numbered-summary/lib/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QWARN  : OutcomeSummaryUiTests::nestedAdoptionAndReleaseRefreshMainViews() This plugin does not support propagateSizeHints()
+QWARN  : OutcomeSummaryUiTests::nestedAdoptionAndReleaseRefreshMainViews() This plugin does not support propagateSizeHints()
+QWARN  : OutcomeSummaryUiTests::nestedAdoptionAndReleaseRefreshMainViews() This plugin does not support propagateSizeHints()
+FAIL!  : OutcomeSummaryUiTests::nestedAdoptionAndReleaseRefreshMainViews() Compared values are not the same
+   Actual   (model->data(model->index(0, model->columnForKey("finish"))).toString()): "2026-11-02 18:00"
+   Expected (expected)                                                              : "2026-11-03 18:00"
+C:/Users/dow/Development/ToolMoa/ProjectPlanningManager/tests/OutcomeSummaryUiTests.cpp(119) : failure location
+PASS   : OutcomeSummaryUiTests::cleanupTestCase()
+Totals: 2 passed, 1 failed, 0 skipped, 0 blacklisted, 1547ms
+********* Finished testing of OutcomeSummaryUiTests *********

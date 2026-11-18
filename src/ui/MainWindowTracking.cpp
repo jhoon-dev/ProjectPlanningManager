@@ -361,5 +361,6 @@ void MainWindow::showComparison() {
     ComparisonDialog dialog(document_, selectedBaseline_, this);
     prepareEditorDialog(dialog);
     dialog.exec();
+    refresh();
 }
 } // namespace jobs
