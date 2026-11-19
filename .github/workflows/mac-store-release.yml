@@ -30,8 +30,8 @@ jobs:
     runs-on: macos-15
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
       - name: Verify signing admission payload permissions and keychain cleanup contracts
@@ -62,7 +62,7 @@ jobs:
           if data['head_sha'] != os.environ['GITHUB_SHA'] or data['conclusion'] != 'success' or data['path'] != '.github/workflows/mac-store-preparation.yml':
               raise SystemExit('Preparation must be successful and match this exact source commit and workflow')
           PY
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: mac-store-preparation
           path: build/mac-store-preparation-input
@@ -91,8 +91,9 @@ jobs:
           PY
       - name: Preserve signed deliverables and redacted validation results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: PPM-mac-store-signed
           path: dist/mac-app-store/
           if-no-files-found: warn

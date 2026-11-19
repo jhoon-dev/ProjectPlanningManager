@@ -6,8 +6,8 @@ jobs:
   msix:
     runs-on: windows-2025
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
       - uses: jurplel/install-qt-action@v4
@@ -22,7 +22,7 @@ jobs:
           distribution: temurin
           java-version: '21.0.11+10.0.LTS'
       - name: Cache locked MPP reader inputs
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: .cache/mpp-reader-inputs
           key: mpp-reader-inputs-${{ hashFiles('packaging/mpp-reader/engine-lock.json') }}
@@ -59,8 +59,9 @@ jobs:
           ctest --test-dir build -R "^application_updates$" --output-on-failure
       - name: Preserve package validation logs and actual UI evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: msix-validation-windows-x64
           path: |
             build/msix-acceptance/**/*.json

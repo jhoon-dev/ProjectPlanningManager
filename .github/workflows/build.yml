@@ -1,5 +1,8 @@
 name: Desktop build and file lifecycle
 on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+  actions: read
 jobs:
   build:
     strategy:
@@ -12,10 +15,34 @@ jobs:
             arch: clang_64
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
+      - name: Prepare the action artifact contract fixture
+        run: |
+          python -m unittest discover -s tests -p test_ci_action_artifacts.py -v
+          python -m unittest discover -s tests -p test_mac_store_packaging.py -v
+          python scripts/check-ci-action-artifacts.py prepare build/ci-action-artifacts/input
+      - name: Upload the ZIP artifact contract fixture
+        id: action_artifact
+        uses: actions/upload-artifact@v7
+        with:
+          archive: true
+          name: action-runtime-contract-${{ runner.os }}
+          path: build/ci-action-artifacts/input/
+          if-no-files-found: error
+      - name: Download with the release workflow token and run-id contract
+        uses: actions/download-artifact@v8
+        with:
+          name: action-runtime-contract-${{ runner.os }}
+          path: build/ci-action-artifacts/restored
+          github-token: ${{ github.token }}
+          run-id: ${{ github.run_id }}
+      - name: Verify downloaded bytes and the REST ZIP archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/check-ci-action-artifacts.py verify build/ci-action-artifacts/input build/ci-action-artifacts/restored --artifact-id "${{ steps.action_artifact.outputs.artifact-id }}"
       - name: Select Qt 6.8 compatible macOS SDK
         if: runner.os == 'macOS'
         run: sudo xcode-select --switch /Applications/Xcode_16.4.app
@@ -29,7 +56,7 @@ jobs:
           distribution: temurin
           java-version: '21.0.11+10.0.LTS'
       - name: Cache locked MPP reader inputs
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: .cache/mpp-reader-inputs
           key: mpp-reader-inputs-${{ hashFiles('packaging/mpp-reader/engine-lock.json') }}
@@ -49,8 +76,9 @@ jobs:
           python scripts/verify-report-fixtures.py build
       - name: Preserve macOS PDF font samples
         if: always() && runner.os == 'macOS'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: pdf-font-smoke-macOS
           path: |
             build/reports-*.pdf
@@ -61,8 +89,9 @@ jobs:
       - run: ctest --test-dir build -C Release --output-on-failure
       - name: Preserve authenticated server integration evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: server-auth-sync-scheduler-${{ runner.os }}
           path: |
             build/server-qa/
@@ -72,8 +101,9 @@ jobs:
         run: python scripts/capture-workspace-ui.py build --store
       - name: Preserve task and Gantt workspace screens
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: workspace-presentation-${{ runner.os }}
           path: build/workspace-ui/
           if-no-files-found: error
@@ -87,8 +117,9 @@ jobs:
           python scripts/run-large-xer-ui-probe.py --build-dir build --input build/large-xer-fixture/industrial-campus-10000.xer --output build/large-xer-performance/result.json
       - name: Preserve scaling and 10k XER samples
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: large-xer-scaling-${{ runner.os }}
           path: |
             build/workspace-scaling/
@@ -98,8 +129,9 @@ jobs:
           if-no-files-found: warn
       - name: Preserve workspace screen and acceptance log
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: workspace-${{ runner.os }}
           path: |
             build/workspace-ui.png
@@ -137,7 +169,7 @@ jobs:
       - name: Measure request worker and GUI commit phases
         run: python scripts/run-responsive-performance-probes.py --repeats 3
       - name: Check out pre-optimization editing reference
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: ae8d9edaa360388012fdb98cd79b633192919971
           path: build/editing-reference-source
@@ -165,8 +197,9 @@ jobs:
         run: python scripts/check-projected-views-native.py build
       - name: Preserve projected view evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: projected-views-${{ runner.os }}
           path: build/projected-views-native.png
           if-no-files-found: warn
@@ -174,8 +207,9 @@ jobs:
         run: python scripts/check-bulk-native-ui.py build
       - name: Preserve native structural editing evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: bulk-editing-${{ runner.os }}
           path: build/bulk-editing-native.png
           if-no-files-found: warn
@@ -201,8 +235,9 @@ jobs:
           python scripts/verify-p6-corpus.py --build-dir build --corpus build/p6-external --output build/p6-external-comparison
       - name: Preserve material and integrated workspace evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: resource-integrated-workspace-${{ runner.os }}
           path: |
             build/resource-plan-qa/
@@ -211,8 +246,9 @@ jobs:
           if-no-files-found: warn
       - name: Preserve activity extension evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: activity-extensions-${{ runner.os }}
           path: |
             build/activity-extension-qa/
@@ -220,141 +256,161 @@ jobs:
           if-no-files-found: warn
       - name: Preserve print and network extension evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: print-network-${{ runner.os }}
           path: build/print-network-qa/
           if-no-files-found: warn
       - name: Preserve assignment period evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: assignment-periods-${{ runner.os }}
           path: build/assignment-periods-qa/
           if-no-files-found: warn
       - name: Preserve object custom field evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: object-fields-${{ runner.os }}
           path: build/object-fields-qa/
           if-no-files-found: warn
       - name: Preserve leveling decision history evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: leveling-decisions-${{ runner.os }}
           path: build/leveling-decision-qa/
           if-no-files-found: warn
       - name: Preserve post-leveling float and critical path evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: leveling-float-${{ runner.os }}
           path: build/leveling-float-qa/
           if-no-files-found: warn
       - name: Preserve repartition float evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: repartition-float-${{ runner.os }}
           path: build/repartition-float-qa/
           if-no-files-found: warn
       - name: Preserve scaled repartition float evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: scaled-repartition-float-${{ runner.os }}
           path: build/scaled-repartition-float-qa/
           if-no-files-found: warn
       - name: Preserve leveling witness UI evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: leveling-witness-${{ runner.os }}
           path: build/leveling-witness-qa/
           if-no-files-found: warn
       - name: Preserve expanded repartition evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: expanded-repartition-${{ runner.os }}
           path: build/expanded-repartition-float-qa/
           if-no-files-found: warn
       - name: Preserve candidate propagation evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: candidate-propagation-${{ runner.os }}
           path: build/candidate-propagation-qa/
           if-no-files-found: warn
       - name: Preserve propagation cost decision evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: propagation-cost-${{ runner.os }}
           path: build/propagation-cost-qa/
           if-no-files-found: warn
       - name: Preserve nonmonotone demand propagation evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: nonmonotone-propagation-${{ runner.os }}
           path: build/nonmonotone-propagation-qa/
           if-no-files-found: warn
       - name: Preserve cross-split leveling float evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: segment-leveling-float-${{ runner.os }}
           path: build/segment-leveling-float-qa/
           if-no-files-found: warn
       - name: Preserve combined progress policy and leveling evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: progress-leveling-${{ runner.os }}
           path: build/progress-leveling-qa/
           if-no-files-found: warn
       - name: Preserve adopted progress policy screens and independent exports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: progress-policy-adoption-${{ runner.os }}
           path: build/progress-policy-adoption-qa/
           if-no-files-found: warn
       - name: Preserve native progress comparison and unexecuted P6 kit
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: progress-policy-${{ runner.os }}
           path: build/progress-policy-qa/
           if-no-files-found: warn
       - name: Preserve batch XER diagnostics and screens
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: xer-batch-${{ runner.os }}
           path: build/xer-batch-qa/
           if-no-files-found: warn
       - name: Preserve selected-project XER diagnostics and screens
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: xer-project-selection-${{ runner.os }}
           path: build/xer-selection-qa/
           if-no-files-found: warn
       - name: Preserve local organization risk automation evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: organization-risk-automation-${{ runner.os }}
           path: build/governance-qa/
           if-no-files-found: warn
       - name: Preserve independent public P6 comparison matrices
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: p6-public-comparison-${{ runner.os }}
           path: |
             build/p6-public-comparison/matrix.json
@@ -372,8 +428,9 @@ jobs:
         run: python scripts/check-responsive-native-ui.py build
       - name: Preserve model and async editing evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: model-async-editing-${{ runner.os }}
           path: |
             build/async-editing-ui.png
@@ -385,8 +442,9 @@ jobs:
         run: python scripts/capture-primavera-xer-ui.py build
       - name: Preserve Primavera XER evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: primavera-xer-${{ runner.os }}
           path: |
             build/xer-actual-cost-qa/
@@ -409,8 +467,9 @@ jobs:
           if-no-files-found: warn
       - name: Preserve Project XML evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: project-xml-${{ runner.os }}
           path: |
             build/project-xml-export.xml
@@ -421,15 +480,17 @@ jobs:
           if-no-files-found: warn
       - name: Preserve native UI evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: task-editing-ui-${{ runner.os }}
           path: build/task-editing-native-smoke.png
           if-no-files-found: warn
       - name: Preserve performance evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: performance-${{ runner.os }}
           path: build/performance/
           if-no-files-found: warn

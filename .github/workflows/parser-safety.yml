@@ -17,7 +17,7 @@ jobs:
       CCACHE_MAXSIZE: 4GiB
       CCACHE_COMPILERCHECK: content
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install runtime and Clang dependencies
         run: |
           sudo apt-get update
@@ -32,7 +32,7 @@ jobs:
           distribution: temurin
           java-version: '21.0.11+10.0.LTS'
       - name: Cache locked MPP reader inputs
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: .cache/mpp-reader-inputs
           key: mpp-reader-inputs-${{ hashFiles('packaging/mpp-reader/engine-lock.json') }}
@@ -50,7 +50,7 @@ jobs:
         run: cmake -S . -B build-sanitized -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DJOBS_ENABLE_SANITIZERS=ON -DJOBS_BUILD_FUZZERS=ON
       - name: Restore instrumented compiler cache
         id: compiler_cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: .cache/ccache
           key: parser-compiler-v1-${{ runner.os }}-qt6.8.3-${{ github.sha }}
@@ -73,14 +73,15 @@ jobs:
         run: ccache --show-stats
       - name: Save compiler cache after success or failure
         if: always() && steps.compiler_cache.outputs.cache-primary-key != '' && steps.compiler_cache.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: .cache/ccache
           key: ${{ steps.compiler_cache.outputs.cache-primary-key }}
       - name: Preserve runtime and parser evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          archive: true
           name: parser-safety-Linux
           path: |
             build-sanitized/toolchain.txt
