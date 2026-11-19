@@ -2,7 +2,7 @@
 #include "domain/Classification.h"
 #include "domain/CalculationControl.h"
 #include <cmath>
-namespace jobs {
+namespace ppm {
 namespace {
 constexpr std::int64_t scale = 1000000, limit = 9000000000000000000LL;
 [[noreturn]] void invalid(const std::string &message) {
@@ -52,4 +52,4 @@ std::int64_t xmlMathNumber(const std::string &function, std::int64_t scaled) {
     calculationCheckpoint();
     return static_cast<std::int64_t>(rounded);
 }
-} // namespace jobs
+} // namespace ppm

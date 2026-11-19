@@ -1,7 +1,7 @@
 #pragma once
 #include <algorithm>
 #include <cstdint>
-namespace jobs {
+namespace ppm {
 // Deterministic work estimates, not elapsed-time predictions. Decisions affect
 // optional pruning only; the exact search and native certificate remain required.
 struct PropagationCost {
@@ -73,4 +73,4 @@ public:
         return false;
     }
 };
-} // namespace jobs
+} // namespace ppm

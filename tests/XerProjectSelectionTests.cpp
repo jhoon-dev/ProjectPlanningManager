@@ -14,7 +14,7 @@
 #include <future>
 #include <thread>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool value, const char *message) {
     if (!value)
@@ -310,7 +310,7 @@ void contracts(const QByteArray &source) {
 int main(int argc, char **argv) {
     QCoreApplication app(argc, argv);
     try {
-        const auto source = read(QString::fromUtf8(JOBS_XER_MULTI_FIXTURE));
+        const auto source = read(QString::fromUtf8(PPM_XER_MULTI_FIXTURE));
         contracts(source);
         benchmark(source);
         std::cout << "XER selection: scope/ownership/closure/external links/identity/publication/cancel passed\n";

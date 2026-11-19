@@ -13,13 +13,13 @@ parser.add_argument('--input', type=Path, required=True)
 parser.add_argument('--output', type=Path, required=True)
 args = parser.parse_args()
 build, source, output = args.build_dir.resolve(), args.input.resolve(), args.output.resolve()
-name = 'jobs_large_xer_ui_probe' + ('.exe' if sys.platform == 'win32' else '')
+name = 'ppm_large_xer_ui_probe' + ('.exe' if sys.platform == 'win32' else '')
 binary = next((path for path in (build/name, build/'Release'/name) if path.is_file()), None)
 if binary is None or output.exists():
     raise SystemExit('Probe missing or output already exists')
 output.parent.mkdir(parents=True, exist_ok=True)
 environment = os.environ.copy()
-environment['JOBS_GANTT_FIT_CAPTURE'] = str(output.with_suffix('.fit.png'))
+environment['PPM_GANTT_FIT_CAPTURE'] = str(output.with_suffix('.fit.png'))
 with output.with_suffix('.log').open('wb') as log:
     try:
         result = subprocess.run([str(binary), str(source), str(output)], cwd=build,

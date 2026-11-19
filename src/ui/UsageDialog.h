@@ -9,7 +9,7 @@ class QLabel;
 class QPushButton;
 class QTreeView;
 class QCloseEvent;
-namespace jobs {
+namespace ppm {
 class UsageModel final : public QAbstractItemModel {
 public:
     explicit UsageModel(QObject *parent = nullptr);
@@ -56,4 +56,4 @@ private:
     bool current() const;
     void exportFile(bool pdf);
 };
-} // namespace jobs
+} // namespace ppm

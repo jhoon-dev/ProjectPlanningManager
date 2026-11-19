@@ -3,7 +3,7 @@
 #include "domain/ProjectCurrency.h"
 #include <algorithm>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 using Pair = std::pair<std::string, std::string>;
 [[noreturn]] void bad(const char *s) {
@@ -324,4 +324,4 @@ XerRelinkCandidate validateXerRelinkRevision(const Project &p, const XerFinancia
         bad("relink/replay mismatch");
     return candidate;
 }
-} // namespace jobs
+} // namespace ppm

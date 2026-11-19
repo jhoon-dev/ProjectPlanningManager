@@ -18,7 +18,7 @@
 #include <iostream>
 
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool good, const char *message) {
     if (!good)
         throw std::runtime_error(message);

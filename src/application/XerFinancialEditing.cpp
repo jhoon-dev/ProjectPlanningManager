@@ -3,7 +3,7 @@
 #include "domain/XerFinancialAllocation.h"
 #include <map>
 #include <set>
-namespace jobs {
+namespace ppm {
 void Document::recordXerFinancials(XerFinancialSubmission s, std::string (*hash)(const Project &)) {
     requireEditable();
     if (!hash || !xerFinancialsMatch(*project_, hash(*project_)))
@@ -84,4 +84,4 @@ void Document::recordXerFinancials(XerFinancialSubmission s, std::string (*hash)
     p.xerFinancialRevisions.push_back(std::move(revision));
     edit(std::move(p), "XER 집계 정정·날짜별 배분 제출");
 }
-} // namespace jobs
+} // namespace ppm

@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <set>
 #include <unordered_set>
-namespace jobs {
+namespace ppm {
 bool hasDatedEffort(const Project &p) {
     std::unordered_set<std::string> ids;
     for (const auto &t : p.tasks)
@@ -15,9 +15,9 @@ bool hasDatedEffort(const Project &p) {
                        [&](const auto &v) { return ids.contains(v.taskId); });
 }
 std::string datedRemainingEngine(const Project &p) {
-    return hasDatedEffort(p)             ? "jobs-dated-effort-1.0"
-           : hasWorkAssignmentPeriods(p) ? "jobs-dated-work-periods-1.0"
-                                         : "jobs-dated-remaining-1.0";
+    return hasDatedEffort(p)             ? "ppm-dated-effort-1.0"
+           : hasWorkAssignmentPeriods(p) ? "ppm-dated-work-periods-1.0"
+                                         : "ppm-dated-remaining-1.0";
 }
 void validateRemainingWork(const Project &p) {
     if (p.remainingWork.size() > 10000)
@@ -74,4 +74,4 @@ bool supportsLevelingPolicy(const Project &p, const std::string &policy) {
         return policy == (hasDatedEffort(p) ? datedEffortPolicy : datedRemainingPolicy);
     return supportsLevelingPolicy(static_cast<const PlanInput &>(p), policy);
 }
-} // namespace jobs
+} // namespace ppm

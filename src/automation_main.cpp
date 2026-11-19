@@ -23,34 +23,34 @@ int main(int argc, char **argv) {
             (parser.isSet("actor") != parser.isSet("workspace")))
             throw std::runtime_error(
                 "--project required; --apply requires --request; --workspace and --actor are paired");
-        jobs::JsonProjectStore files;
-        jobs::Document document(files);
+        ppm::JsonProjectStore files;
+        ppm::Document document(files);
         document.open(parser.value("project").toStdString(), !parser.isSet("request"));
-        std::optional<jobs::Workspace> policy;
+        std::optional<ppm::Workspace> policy;
         if (parser.isSet("workspace")) {
-            policy = jobs::JsonWorkspaceStore(files).load(parser.value("workspace").toStdString()).workspace;
+            policy = ppm::JsonWorkspaceStore(files).load(parser.value("workspace").toStdString()).workspace;
             const auto actor = parser.value("actor").toStdString();
             const auto id = document.project()->documentId;
             bool listed = false;
             for (const auto &ref : policy->projects)
                 listed |= ref.documentId == id && files.sameFile(ref.path, document.path());
             if (!listed ||
-                !jobs::permits(*policy, actor, id,
-                               parser.isSet("request") ? jobs::WorkspaceAction::Edit : jobs::WorkspaceAction::View))
+                !ppm::permits(*policy, actor, id,
+                              parser.isSet("request") ? ppm::WorkspaceAction::Edit : ppm::WorkspaceAction::View))
                 throw std::runtime_error("local workspace role denied");
         }
         QJsonObject result;
         if (!parser.isSet("request"))
-            result = jobs::describeAutomationProject(*document.project());
+            result = ppm::describeAutomationProject(*document.project());
         else {
             QFile request(parser.value("request"));
             if (!request.open(QIODevice::ReadOnly) || request.size() > 1024 * 1024)
                 throw std::runtime_error("request unreadable or exceeds 1 MiB");
             const auto bytes = request.read(1024 * 1024 + 1);
-            auto preview = jobs::previewAutomation(document, bytes);
+            auto preview = ppm::previewAutomation(document, bytes);
             result = preview.receipt;
             if (parser.isSet("apply")) {
-                result = jobs::applyAutomation(document, preview);
+                result = ppm::applyAutomation(document, preview);
                 document.save();
                 result["saved"] = true;
             }

@@ -1,7 +1,7 @@
 #pragma once
 #include "application/Document.h"
 #include <QDialog>
-namespace jobs {
+namespace ppm {
 class XerFinancialMergeDialog final : public QDialog {
 public:
     explicit XerFinancialMergeDialog(Document &, QWidget *parent = nullptr, std::optional<XerRelinkAudit> relink = {});
@@ -12,4 +12,4 @@ private:
     struct Impl;
     std::unique_ptr<Impl> impl_;
 };
-} // namespace jobs
+} // namespace ppm

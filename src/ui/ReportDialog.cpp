@@ -32,7 +32,7 @@
 #include <QRegularExpression>
 #include <QResizeEvent>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 class ReportModel final : public QAbstractTableModel {
     std::shared_ptr<const ProjectReport> report_;
@@ -596,4 +596,4 @@ void ReportDialog::reject() {
         QDialog::reject();
     }
 }
-} // namespace jobs
+} // namespace ppm

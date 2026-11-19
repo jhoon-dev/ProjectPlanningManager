@@ -4,7 +4,7 @@
 #include "domain/Workspace.h"
 #include <set>
 
-namespace jobs {
+namespace ppm {
 namespace {
 bool text(const std::string &value, std::size_t maximum, bool empty = false) {
     return (empty || !value.empty()) && value.size() <= maximum &&
@@ -108,4 +108,4 @@ void validateWorkspace(const Workspace &workspace, bool requirePaths) {
             throw AppError(ErrorCode::WORKSPACE_BINDING_INVALID, {binding.projectId + "/" + binding.resourceId});
     }
 }
-} // namespace jobs
+} // namespace ppm

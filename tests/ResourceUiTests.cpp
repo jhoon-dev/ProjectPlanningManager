@@ -48,12 +48,12 @@ int main(int argc, char *argv[]) {
     watchdog.start(30000);
     try {
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("자원 평준화 검증", "2026-10-26", {"설계", "개발"});
         doc.setDuration(0, 480);
         doc.setDuration(1, 480);
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.show();
         QTest::qWait(60);
         auto *tasks = taskTable(window);
@@ -93,7 +93,7 @@ int main(int argc, char *argv[]) {
         }
         callbackCheck(doc.project()->assignments.size() == 2 && cellText(tasks, 0, 7).contains("100%"),
                       "assignment cell missing");
-        const auto original = static_cast<const jobs::PlanInput &>(*doc.project());
+        const auto original = static_cast<const ppm::PlanInput &>(*doc.project());
         QTimer poll;
         poll.setInterval(20);
         int stage = 0;
@@ -162,7 +162,7 @@ int main(int argc, char *argv[]) {
         poll.start();
         trigger(window, "resourceComparison");
         check(stage == 8 && doc.project()->scenarios.size() == 2, "scenario UI did not complete");
-        check(static_cast<const jobs::PlanInput &>(*doc.project()) == original,
+        check(static_cast<const ppm::PlanInput &>(*doc.project()) == original,
               "scenario comparison overwrote original input");
         const auto frozen = doc.project()->scenarios;
         auto changed = doc.project()->resources[0];
@@ -203,14 +203,14 @@ int main(int argc, char *argv[]) {
         for (auto *action : window.findChildren<QAction *>())
             if (action->text() == "일정 계산(&C)")
                 action->trigger();
-        for (int i = 0; i < 300 && (!doc.calculation() || doc.calculation()->status != jobs::CalculationStatus::Valid);
+        for (int i = 0; i < 300 && (!doc.calculation() || doc.calculation()->status != ppm::CalculationStatus::Valid);
              ++i)
             QTest::qWait(10);
-        check(doc.calculation() && doc.calculation()->status == jobs::CalculationStatus::Valid,
+        check(doc.calculation() && doc.calculation()->status == ppm::CalculationStatus::Valid,
               "main plan calculation unavailable after scenario review");
-        jobs::Document readOnly(store);
+        ppm::Document readOnly(store);
         readOnly.open(path, true);
-        jobs::MainWindow viewer(readOnly);
+        ppm::MainWindow viewer(readOnly);
         viewer.show();
         QTest::qWait(30);
         check(!viewer.findChild<QAction *>("assignResources")->isEnabled() &&

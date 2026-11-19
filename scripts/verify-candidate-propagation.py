@@ -73,7 +73,7 @@ def tiny_oracle():
 def verify(build):
     root = build / "candidate-propagation-qa"
     data = json.loads((root / "metrics.json").read_text(encoding="utf-8"))
-    assert data["engine"] == "jobs-adopted-leveling-1.6"
+    assert data["engine"] == "ppm-adopted-leveling-1.6"
     observations = []
     proof_count = date_count = 0
     for case, name, count, separate in zip(data["cases"], ["resource-60", "coupled-256", "separate-1000", "resource-750"], [60, 256, 1000, 750], [False, False, True, False]):
@@ -122,12 +122,12 @@ def verify(build):
     canonical = json.dumps(native["payload"], sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()
     assert native["sha256"] == hashlib.sha256(canonical).hexdigest() and native["schemaVersion"] == 12
     baselines = native["payload"]["baselines"]
-    assert [b["engineVersion"] for b in baselines] == ["jobs-adopted-leveling-1.5", "jobs-adopted-leveling-1.6"]
+    assert [b["engineVersion"] for b in baselines] == ["ppm-adopted-leveling-1.5", "ppm-adopted-leveling-1.6"]
     assert baselines[0]["schedule"] == baselines[1]["schedule"]
     assert [r["totalFloatMinutes"] for r in baselines[1]["schedule"]] == [2] * 60 + [0]
     book = load_workbook(root / "report.xlsx", data_only=False)
     source = {r[0]: r[1] for r in book["출처와 설정"].iter_rows(min_row=7, values_only=True)}
-    assert source["계산 엔진"] == "jobs-adopted-leveling-1.6"
+    assert source["계산 엔진"] == "ppm-adopted-leveling-1.6"
     rows = list(book["계획 일정"].iter_rows(min_row=7, values_only=True))
     assert [round(r[6] * 60) for r in rows] == totals + [0]
     assert [round(r[9] * 60) for r in rows] == free + [0]

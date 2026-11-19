@@ -1,7 +1,7 @@
 #include "application/Document.h"
 #include "domain/LedgerIdentity.h"
 #include "domain/ProjectCurrency.h"
-namespace jobs {
+namespace ppm {
 void Document::migrateLedgerIds(LedgerIdSubmission s) {
     requireEditable();
     auto before = *project_;
@@ -22,4 +22,4 @@ void Document::migrateLedgerIds(LedgerIdSubmission s) {
     --after.revision;
     edit(std::move(after), "관측 원장 ID 이관");
 }
-} // namespace jobs
+} // namespace ppm

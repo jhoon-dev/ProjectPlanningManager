@@ -1,7 +1,7 @@
 #include "calculation/EarlyLateFormulaValues.h"
 #include "calculation/WorkCalendar.h"
 #include "domain/Classification.h"
-namespace jobs {
+namespace ppm {
 void addEarlyLateFormulaValues(const Project &p, const ScheduleResult &result, XmlScheduleValues &out) {
     if (!hasXmlEarlyLateReferences(p, true))
         return;
@@ -81,4 +81,4 @@ void addEarlyLateFormulaValues(const Project &p, const ScheduleResult &result, X
         out.lateMissing = false;
     }
 }
-} // namespace jobs
+} // namespace ppm

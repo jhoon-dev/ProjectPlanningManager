@@ -18,7 +18,7 @@
 #include <QTreeWidget>
 #include <iostream>
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool x, const char *s) {
     if (!x)
         throw std::runtime_error(s);
@@ -157,7 +157,7 @@ int main(int argc, char **argv) {
 #endif
     try {
         run();
-    } catch (const jobs::AppError &e) {
+    } catch (const ppm::AppError &e) {
         std::cerr << e.code();
         for (const auto &a : e.diagnostic().arguments)
             std::cerr << " " << a;

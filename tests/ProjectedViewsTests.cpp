@@ -41,7 +41,7 @@ template <class F> void wait(F f) {
         QTest::qWait(2);
     check(f(), "wait timeout");
 }
-void wbs(jobs::MainWindow &window, const QString &id) {
+void wbs(ppm::MainWindow &window, const QString &id) {
     auto *tree = window.findChild<QTreeWidget *>("wbsTree");
     for (QTreeWidgetItemIterator it(tree); *it; ++it)
         if ((*it)->data(0, Qt::UserRole).toString() == id) {
@@ -50,25 +50,25 @@ void wbs(jobs::MainWindow &window, const QString &id) {
         }
     throw std::runtime_error("WBS item missing");
 }
-jobs::AsyncEditController *controller(jobs::MainWindow &window) {
+ppm::AsyncEditController *controller(ppm::MainWindow &window) {
     for (auto *child : window.children())
-        if (auto *c = dynamic_cast<jobs::AsyncEditController *>(child))
+        if (auto *c = dynamic_cast<ppm::AsyncEditController *>(child))
             return c;
     throw std::runtime_error("controller missing");
 }
-void action(jobs::MainWindow &window, const char *name) {
+void action(ppm::MainWindow &window, const char *name) {
     auto *a = window.findChild<QAction *>(name);
     check(a, "action missing");
     wait([&] { return a->isEnabled(); });
     a->trigger();
     wait([&] { return !controller(window)->busy(); });
 }
-void oracle(jobs::MainWindow &window, jobs::Document &doc, const jobs::TaskViewSpec &spec) {
+void oracle(ppm::MainWindow &window, ppm::Document &doc, const ppm::TaskViewSpec &spec) {
     auto *table = taskTable(window);
     const auto &result = doc.calculation();
-    const auto expected = jobs::projectTaskView(*doc.project(), result ? &*result : nullptr, spec);
+    const auto expected = ppm::projectTaskView(*doc.project(), result ? &*result : nullptr, spec);
     check(table->rowCount() == int(expected.rows.size()), "projection row count differs from full oracle");
-    jobs::TaskTableModel full(doc);
+    ppm::TaskTableModel full(doc);
     full.synchronize(expected.rows);
     for (int r = 0; r < table->rowCount(); ++r) {
         check(table->model()->headerData(r, Qt::Vertical) == full.headerData(r, Qt::Vertical),
@@ -77,7 +77,7 @@ void oracle(jobs::MainWindow &window, jobs::Document &doc, const jobs::TaskViewS
             check(cellText(table, r, c) == full.index(r, c).data().toString(),
                   "projected cell differs from full oracle");
     }
-    const auto rollup = jobs::summarizeWbs(*doc.project(), result ? &*result : nullptr, spec.wbs);
+    const auto rollup = ppm::summarizeWbs(*doc.project(), result ? &*result : nullptr, spec.wbs);
     const auto summary = window.findChild<QLabel *>("wbsSummary")->text();
     check(summary.contains(QString("작업 %1개").arg(rollup.taskCount)) &&
               summary.contains(QString("기간 미정 %1개").arg(rollup.missingDurations)),
@@ -91,7 +91,7 @@ int main(int argc, char **argv) {
     QApplication app(argc, argv);
     try {
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
+        ppm::JsonProjectStore store;
         auto fixture = performanceFixture(1000, false);
         fixture.wbsNodes = {{"A", "Scope A", {}}, {"A1", "Child", "A"}, {"B", "Other", {}}};
         fixture.resources = {{"R", "Crew", "labor", 100, {}}};
@@ -105,18 +105,18 @@ int main(int argc, char **argv) {
         }
         const auto path = dir.filePath("Views.ppm").toStdString();
         store.save(path, fixture, {});
-        jobs::Document doc(store);
+        ppm::Document doc(store);
         doc.open(path);
         doc.captureBaseline("Approved", "PM", "view tests", "2026-10-28T00:00:00Z");
         doc.save();
         const auto original = *doc.project();
         for (int mode = 0; mode < 7; ++mode) {
             doc.open(path);
-            jobs::MainWindow window(doc);
+            ppm::MainWindow window(doc);
             window.show();
             QTest::qWait(10);
             auto *table = taskTable(window);
-            jobs::TaskViewSpec spec;
+            ppm::TaskViewSpec spec;
             if (mode == 0 || mode == 4)
                 spec.query = "tAsK";
             if (mode == 1 || mode == 4)
@@ -183,8 +183,8 @@ int main(int argc, char **argv) {
             check(resets == 0, "insert reset projected model");
             action(window, "undoEdit");
             oracle(window, doc, spec);
-            check(static_cast<const jobs::PlanInput &>(*doc.project()) ==
-                          static_cast<const jobs::PlanInput &>(original) &&
+            check(static_cast<const ppm::PlanInput &>(*doc.project()) ==
+                          static_cast<const ppm::PlanInput &>(original) &&
                       !doc.dirty(),
                   "view editing changed wrong input");
             if (app.arguments().contains("--native") && mode == 4)
@@ -193,7 +193,7 @@ int main(int argc, char **argv) {
         }
         {
             doc.open(path);
-            jobs::MainWindow window(doc);
+            ppm::MainWindow window(doc);
             window.show();
             QTest::qWait(10);
             auto *table = taskTable(window);
@@ -215,7 +215,7 @@ int main(int argc, char **argv) {
         }
         {
             doc.open(path);
-            jobs::MainWindow window(doc);
+            ppm::MainWindow window(doc);
             window.show();
             QTest::qWait(10);
             auto *table = taskTable(window);
@@ -245,7 +245,7 @@ int main(int argc, char **argv) {
         }
         {
             doc.open(path);
-            jobs::MainWindow window(doc);
+            ppm::MainWindow window(doc);
             window.show();
             QTest::qWait(10);
             window.findChild<QComboBox *>("taskSort")->setCurrentIndex(1);
@@ -256,14 +256,14 @@ int main(int argc, char **argv) {
             auto release = std::make_shared<std::promise<void>>();
             auto released = release->get_future().share();
             controller(window)->submit(
-                jobs::DeferredTaskEdit{[entered, released](const jobs::Project &) -> jobs::BulkTaskCommand {
+                ppm::DeferredTaskEdit{[entered, released](const ppm::Project &) -> ppm::BulkTaskCommand {
                     entered->set_value();
                     while (released.wait_for(std::chrono::milliseconds(1)) != std::future_status::ready)
-                        jobs::calculationCheckpoint();
-                    jobs::TaskEdit edit;
+                        ppm::calculationCheckpoint();
+                    ppm::TaskEdit edit;
                     edit.taskId = "T0";
                     edit.name = "Older worker value";
-                    return jobs::BatchTaskEdit{{edit}};
+                    return ppm::BatchTaskEdit{{edit}};
                 }},
                 "draft publication test", {});
             check(started.wait_for(std::chrono::seconds(5)) == std::future_status::ready, "draft worker did not start");
@@ -288,14 +288,14 @@ int main(int argc, char **argv) {
         }
         {
             doc.open(path);
-            jobs::MainWindow window(doc);
+            ppm::MainWindow window(doc);
             window.show();
             for (auto *a : window.findChildren<QAction *>())
                 if (a->shortcut() == QKeySequence(Qt::Key_F9)) {
                     a->trigger();
                     break;
                 }
-            wait([&] { return doc.calculation() && doc.calculation()->status == jobs::CalculationStatus::Valid; });
+            wait([&] { return doc.calculation() && doc.calculation()->status == ppm::CalculationStatus::Valid; });
             window.findChild<QComboBox *>("taskFilter")->setCurrentIndex(1);
             auto *table = taskTable(window);
             check(table->rowCount() > 0, "critical fixture empty");

@@ -17,7 +17,7 @@
 #include <QVBoxLayout>
 #include <map>
 #include <memory>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -256,4 +256,4 @@ void showXerFinancials(QWidget *parent, const Project &p) {
     prepareEditorDialog(dialog);
     dialog.exec();
 }
-} // namespace jobs
+} // namespace ppm

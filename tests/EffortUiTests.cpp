@@ -44,7 +44,7 @@ void action(QWidget &w, const char *id) {
     check(a && a->isEnabled(), "action unavailable");
     a->trigger();
 }
-void calculate(jobs::MainWindow &w, jobs::Document &doc) {
+void calculate(ppm::MainWindow &w, ppm::Document &doc) {
     for (auto *a : w.findChildren<QAction *>())
         if (a->shortcut() == QKeySequence(Qt::Key_F9)) {
             a->trigger();
@@ -52,7 +52,7 @@ void calculate(jobs::MainWindow &w, jobs::Document &doc) {
         }
     check(wait([&] {
               return doc.calculation() && doc.calculation()->inputRevision == doc.project()->revision &&
-                     doc.calculation()->status == jobs::CalculationStatus::Valid;
+                     doc.calculation()->status == ppm::CalculationStatus::Valid;
           }),
           "calculation not valid");
 }
@@ -72,18 +72,18 @@ int main(int argc, char **argv) {
     watchdog.start(45000);
     try {
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("공수·달력·분할 일정", "2026-10-26", {"기본 설계", "설계 검토"});
         doc.setDuration(0, 480);
         doc.setDuration(1, 120);
         const auto id = doc.project()->tasks[0].id;
         doc.setPredecessors(1, {id});
-        jobs::Resource resource;
+        ppm::Resource resource;
         resource.name = "설계자";
         const auto rid = doc.putResource(resource);
         doc.setAssignments(id, {{id, rid, 100}});
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.show();
         auto *table = taskTable(window);
         table->selectRow(0);
@@ -107,14 +107,14 @@ int main(int argc, char **argv) {
         action(window, "taskEffort");
         check(wait([&] {
                   return doc.calculation() && doc.calculation()->inputRevision == doc.project()->revision &&
-                         doc.calculation()->status == jobs::CalculationStatus::Valid;
+                         doc.calculation()->status == ppm::CalculationStatus::Valid;
               }),
               "effort apply did not recalculate");
         check(doc.project()->revision == revision + 1 && doc.calculation()->tasks[0].finish == "2026-10-27 18:00" &&
                   doc.calculation()->tasks[1].start == "2026-10-28 09:00",
               "split/FS propagation wrong");
         check(cellText(table, 0, 12).contains("고정 공수") && cellText(table, 0, 13) == "1", "effort table missing");
-        auto *view = dynamic_cast<jobs::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
+        auto *view = dynamic_cast<ppm::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
         check(view, "gantt missing");
         bool splitPath = false;
         for (auto *item : view->scene()->items())
@@ -127,7 +127,7 @@ int main(int argc, char **argv) {
         check(splitPath, "gantt filled pause with work bar");
         window.grab().save("effort-gantt-smoke.png");
         action(window, "undoEdit");
-        check(doc.project()->tasks[0].taskType == jobs::TaskType::FixedDuration &&
+        check(doc.project()->tasks[0].taskType == ppm::TaskType::FixedDuration &&
                   doc.project()->tasks[0].breaks.empty(),
               "effort not one undo");
         action(window, "redoEdit");
@@ -183,9 +183,9 @@ int main(int argc, char **argv) {
         // A read-only document exposes definitions without an enabled apply button.
         auto file = dir.filePath("effort.ppm");
         doc.saveAs(file.toStdString());
-        jobs::Document readonly(store);
+        ppm::Document readonly(store);
         readonly.open(file.toStdString(), true);
-        jobs::MainWindow reader(readonly);
+        ppm::MainWindow reader(readonly);
         reader.show();
         taskTable(reader)->selectRow(0);
         const auto before = *readonly.project();
@@ -199,14 +199,14 @@ int main(int argc, char **argv) {
         reader.hide();
         window.hide();
         {
-            jobs::Document pending(store);
+            ppm::Document pending(store);
             pending.create("착수 전 공수 보고", "2026-10-26", {"미착수"});
             const auto pid = pending.project()->tasks[0].id;
             const auto resource = pending.putResource({{}, "R", "labor", 100, {}});
             pending.setAssignments(pid, {{pid, resource, 100}});
-            pending.setTaskEffort(0, jobs::TaskType::FixedWork, true, 480, 48000, {});
+            pending.setTaskEffort(0, ppm::TaskType::FixedWork, true, 480, 48000, {});
             pending.setStatusAt("2026-10-27 09:00");
-            jobs::MainWindow reporter(pending);
+            ppm::MainWindow reporter(pending);
             reporter.show();
             calculate(reporter, pending);
             taskTable(reporter)->selectRow(0);

@@ -10,7 +10,7 @@ class QTableWidget;
 class QPlainTextEdit;
 class QLineEdit;
 class QPushButton;
-namespace jobs {
+namespace ppm {
 class LevelingWitnessDialog;
 class ResourceComparisonDialog final : public QDialog {
 public:
@@ -52,4 +52,4 @@ private:
     void closeWitnesses();
     void openWitness(bool other);
 };
-} // namespace jobs
+} // namespace ppm

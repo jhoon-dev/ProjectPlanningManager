@@ -37,7 +37,7 @@ QJsonObject samples(std::vector<double> values) {
 }
 QString git(const QStringList &args) {
     QProcess process;
-    process.setWorkingDirectory(JOBS_SOURCE_DIR);
+    process.setWorkingDirectory(PPM_SOURCE_DIR);
     process.start("git", args);
     if (!process.waitForFinished(5000) || process.exitCode())
         return "unavailable";
@@ -66,11 +66,11 @@ int main(int argc, char **argv) {
         check(okay && repeats >= 1 && repeats <= 100, "repeats must be 1..100");
         QTemporaryDir directory;
         check(directory.isValid(), "temporary directory unavailable");
-        jobs::JsonProjectStore store;
+        ppm::JsonProjectStore store;
         auto fixture = performanceFixture(count, false);
         const auto path = directory.filePath("EditPlan.ppm").toUtf8().toStdString();
         store.save(path, fixture, {});
-        jobs::Document document(store);
+        ppm::Document document(store);
         document.open(path);
         for (int i = 0; i < baselines; ++i)
             document.captureBaseline("Baseline " + std::to_string(i), "PM", "benchmark", "2026-10-27T00:00:00Z");
@@ -98,12 +98,11 @@ int main(int argc, char **argv) {
             measure("document_duration_redo", [&] { document.redo(); });
             document.undo();
         }
-        check(static_cast<const jobs::PlanInput &>(*document.project()) ==
-                  static_cast<const jobs::PlanInput &>(initial),
+        check(static_cast<const ppm::PlanInput &>(*document.project()) == static_cast<const ppm::PlanInput &>(initial),
               "document undo failed to restore plan");
-        document.applyCalculation(jobs::calculate(*document.project()));
+        document.applyCalculation(ppm::calculate(*document.project()));
         {
-            jobs::MainWindow window(document);
+            ppm::MainWindow window(document);
             window.show();
             app.processEvents();
             auto *table = taskTable(window);
@@ -145,8 +144,8 @@ int main(int argc, char **argv) {
         if (parser.isSet("require-100"))
             check(retained == 100, "100 edits did not fit the history budget");
         if (retained == 100)
-            check(static_cast<const jobs::PlanInput &>(*document.project()) ==
-                      static_cast<const jobs::PlanInput &>(initial),
+            check(static_cast<const ppm::PlanInput &>(*document.project()) ==
+                      static_cast<const ppm::PlanInput &>(initial),
                   "100 undos did not restore the complete plan");
         check(document.project()->baselines == initial.baselines && document.project()->progress == initial.progress &&
                   document.project()->costEntries == initial.costEntries,
@@ -159,17 +158,17 @@ int main(int argc, char **argv) {
         if (!runtimeDirty.isEmpty())
             runtimeRevision += "+dirty";
         QJsonObject out{{"status", "success"},
-                        {"fixture", "jobs-perf-editing-v1"},
+                        {"fixture", "ppm-perf-editing-v1"},
                         {"task_count", count},
                         {"baseline_count", baselines},
                         {"repeats", repeats},
                         {"measurements", measurements},
                         {"retained_undo_after_100_edits", retained},
                         {"estimated_history_bytes", double(historyBytes)},
-                        {"build_source_revision", JOBS_PERF_REVISION},
+                        {"build_source_revision", PPM_PERF_REVISION},
                         {"runtime_source_revision", runtimeRevision},
-                        {"built_product_source_sha256", JOBS_SOURCE_SHA256},
-                        {"build_configuration", JOBS_PERF_CONFIG},
+                        {"built_product_source_sha256", PPM_SOURCE_SHA256},
+                        {"build_configuration", PPM_PERF_CONFIG},
                         {"os", QSysInfo::prettyProductName()},
                         {"qt", qVersion()},
                         {"platform", QApplication::platformName()},

@@ -20,7 +20,7 @@
 #include <QTableWidget>
 #include <QVBoxLayout>
 #include <QtConcurrent>
-namespace jobs {
+namespace ppm {
 void NetworkDialog::saveLayout() {
     if (!current() || !windowReady_ || document_.readOnly())
         return;
@@ -205,4 +205,4 @@ void NetworkDialog::editRelations() {
     prepareEditorDialog(dialog);
     dialog.exec();
 }
-} // namespace jobs
+} // namespace ppm

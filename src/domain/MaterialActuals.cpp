@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <set>
 #include <tuple>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &why) {
     throw AppError(Diagnostic{"MATERIAL_ACTUAL_INVALID", {why}, {}, "MATERIAL_ACTUAL_INVALID"});
@@ -249,4 +249,4 @@ Project remainingMaterialInventoryInput(const Project &p) {
     out.resourcePlan.autoDelayForReceipts = true;
     return out;
 }
-} // namespace jobs
+} // namespace ppm

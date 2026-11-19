@@ -15,7 +15,7 @@
 #include <chrono>
 #include <algorithm>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool v, const char *m) {
     if (!v)
@@ -170,7 +170,7 @@ void kit() {
         QString code;
         for (const auto &m : map) {
             const auto o = m.toObject();
-            if (o["kind"] == "task" && o["jobsId"] == QString::fromStdString(t.taskId))
+            if (o["kind"] == "task" && o["ppmId"] == QString::fromStdString(t.taskId))
                 code = o["activityCode"].toString();
         }
         check(!code.isEmpty(), "export activity mapping missing");

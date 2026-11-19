@@ -6,7 +6,7 @@
 #include <map>
 #include <set>
 
-namespace jobs {
+namespace ppm {
 namespace {
 using Minute = std::int64_t;
 using namespace std::chrono;
@@ -240,4 +240,4 @@ SharedResourceResult calculateSharedResources(const Workspace &workspace,
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

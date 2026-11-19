@@ -17,7 +17,7 @@
 #include <QJsonObject>
 #include <iostream>
 #include <functional>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool ok, const char *m) {
     if (!ok)

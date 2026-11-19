@@ -10,7 +10,7 @@
 #include <QTemporaryDir>
 #include <QTest>
 
-using namespace jobs;
+using namespace ppm;
 namespace {
 class Store final : public StoreUpdateClient {
 public:
@@ -46,7 +46,7 @@ class UpdatesTests final : public QObject {
 private slots:
     void unpackagedBuildDoesNotUseReleaseUpdates() {
         const auto options = updateConfig();
-#ifdef JOBS_MAC_APP_STORE
+#ifdef PPM_MAC_APP_STORE
         QCOMPARE(options.channel, UpdateChannel::MacAppStore);
 #else
         QCOMPARE(options.channel, UpdateChannel::Unpackaged);

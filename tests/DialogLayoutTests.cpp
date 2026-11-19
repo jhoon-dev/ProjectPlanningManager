@@ -50,10 +50,10 @@ private slots:
         auto font = originalFont;
         font.setPointSizeF(font.pointSizeF() * fontScale);
         QApplication::setFont(font);
-        jobs::JsonProjectStore store;
-        jobs::Document document(store);
+        ppm::JsonProjectStore store;
+        ppm::Document document(store);
         document.create("주간 갱신", "2026-11-09", {"설계 검토"});
-        jobs::MainWindow window(document);
+        ppm::MainWindow window(document);
         window.show();
         QAction *action = nullptr;
         for (auto *candidate : window.findChildren<QAction *>())
@@ -115,7 +115,7 @@ private slots:
         choice->addItem(name);
         form->addRow("기준선", choice);
         form->addRow(new QPushButton("닫기"));
-        jobs::prepareEditorDialog(dialog);
+        ppm::prepareEditorDialog(dialog);
         dialog.resize(640, 480);
         dialog.show();
         QTest::qWait(20);
@@ -153,52 +153,52 @@ private slots:
             palette.setColor(role, dark ? Qt::white : Qt::black);
         QApplication::setPalette(palette);
         QTemporaryDir directory;
-        auto store = std::make_shared<jobs::JsonProjectStore>();
-        jobs::Document document(*store);
+        auto store = std::make_shared<ppm::JsonProjectStore>();
+        ppm::Document document(*store);
         document.create("화면 배치 점검", "2026-11-02", {"설계 검토", "현장 시공"});
         document.setDuration(0, 480);
         document.setDuration(1, 960);
         const auto baseline = document.captureBaseline(QString("긴 승인 기준선 이름 ").repeated(20).toStdString(), "PM",
                                                        "검증", "2026-11-02T00:00:00Z");
         document.setStatusAt("2026-11-02 18:00");
-        jobs::DesktopWorkspace workspace(store, std::make_shared<jobs::JsonRecoveryStore>(directory.path()));
-        auto updateOptions = jobs::updateConfig();
-        updateOptions.channel = jobs::UpdateChannel::Unpackaged;
+        ppm::DesktopWorkspace workspace(store, std::make_shared<ppm::JsonRecoveryStore>(directory.path()));
+        auto updateOptions = ppm::updateConfig();
+        updateOptions.channel = ppm::UpdateChannel::Unpackaged;
         updateOptions.stateDirectory = directory.filePath("updates");
         updateOptions.settingsFile = directory.filePath("settings.ini");
-        jobs::UpdateController updates(updateOptions);
+        ppm::UpdateController updates(updateOptions);
         QMainWindow updateWindow;
         std::unique_ptr<QDialog> dialog;
         if (kind == "report")
-            dialog = std::make_unique<jobs::ReportDialog>(document, "", baseline);
+            dialog = std::make_unique<ppm::ReportDialog>(document, "", baseline);
         else if (kind == "comparison")
-            dialog = std::make_unique<jobs::ComparisonDialog>(document, baseline);
+            dialog = std::make_unique<ppm::ComparisonDialog>(document, baseline);
         else if (kind == "cost")
-            dialog = std::make_unique<jobs::CostAnalysisDialog>(document, baseline);
+            dialog = std::make_unique<ppm::CostAnalysisDialog>(document, baseline);
         else if (kind == "resource")
-            dialog = std::make_unique<jobs::ResourceComparisonDialog>(document);
+            dialog = std::make_unique<ppm::ResourceComparisonDialog>(document);
         else if (kind == "recovery")
-            dialog = std::make_unique<jobs::RecoveryDialog>(jobs::JsonRecoveryStore(directory.path()), nullptr,
-                                                            jobs::RecoveryScan{});
+            dialog = std::make_unique<ppm::RecoveryDialog>(ppm::JsonRecoveryStore(directory.path()), nullptr,
+                                                           ppm::RecoveryScan{});
         else if (kind == "weekly")
-            dialog = std::make_unique<jobs::WeeklyUpdateDialog>(document);
+            dialog = std::make_unique<ppm::WeeklyUpdateDialog>(document);
         else if (kind == "workspace")
-            dialog = std::make_unique<jobs::WorkspaceDialog>(workspace);
+            dialog = std::make_unique<ppm::WorkspaceDialog>(workspace);
         else {
-            jobs::attachUpdateUi(updateWindow, updates, {[](const QUrl &) { return false; }});
+            ppm::attachUpdateUi(updateWindow, updates, {[](const QUrl &) { return false; }});
             updateWindow.findChild<QAction *>("applicationUpdates")->trigger();
             dialog.reset(updateWindow.findChild<QDialog *>("applicationUpdateDialog"));
         }
         // These analysis screens are prepared by their MainWindow entry points.
         if (kind == "comparison" || kind == "cost" || kind == "resource")
-            jobs::prepareEditorDialog(*dialog);
+            ppm::prepareEditorDialog(*dialog);
         dialog->resize(size);
         dialog->show();
         QTest::qWait(80);
         auto *dashboard = dialog->findChild<QScrollArea *>("reportDashboardScroll");
         if (kind == "report")
             QTRY_VERIFY((dashboard = dialog->findChild<QScrollArea *>("reportDashboardScroll")));
-        const auto capture = qEnvironmentVariable("JOBS_LAYOUT_AUDIT_DIR");
+        const auto capture = qEnvironmentVariable("PPM_LAYOUT_AUDIT_DIR");
         if (!capture.isEmpty()) {
             QVERIFY(QDir().mkpath(capture));
             QVERIFY(dialog->grab().save(QDir(capture).filePath(QString::fromLatin1(QTest::currentDataTag()) + ".png")));

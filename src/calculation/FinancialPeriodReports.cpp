@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <map>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 using M = std::optional<std::int64_t>;
 M add(M a, M b) {
@@ -313,4 +313,4 @@ ProjectReport buildFinancialPeriodReport(const Project &p, ReportOptions options
     appendFinancialPeriodHistory(r, p);
     return r;
 }
-} // namespace jobs
+} // namespace ppm

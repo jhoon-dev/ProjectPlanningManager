@@ -37,8 +37,8 @@ def identity(mode, config=None):
     if mode == 'development':
         if config is not None:
             raise ValueError('Development identity is fixed; do not supply Store credentials')
-        return {'IdentityName': 'ToolMoa.JOBS.MsixDevelopment',
-                'Publisher': 'CN=JOBS MSIX Development, ' + DEV_OID,
+        return {'IdentityName': 'ToolMoa.PPM.MsixDevelopment',
+                'Publisher': 'CN=PPM MSIX Development, ' + DEV_OID,
                 'PublisherDisplayName': 'PPM Development', 'DisplayName': 'Project Planning Manager Development'}
     if mode != 'store' or not isinstance(config, dict) or set(config) != FIELDS:
         raise ValueError('Store mode requires exactly the Partner Center identity fields')
@@ -81,7 +81,9 @@ def manifest(config, package_version, probe=False):
     resources = element(root, 'Resources')
     element(resources, 'Resource', {'Language': 'ko-KR'})
     applications = element(root, 'Applications')
-    for app_id, executable, hidden in [('JOBS', 'PPM.exe', False)] + ([('PackageProbe', 'jobs_msix_probe.exe', True)] if probe else []):
+    # Store packages have one application; the test probe is development-only.
+    entries = [('PPM', 'PPM.exe', False)]
+    for app_id, executable, hidden in entries + ([('PackageProbe', 'ppm_msix_probe.exe', True)] if probe else []):
         app = element(applications, 'Application', {'Id': app_id, 'Executable': executable,
                       'EntryPoint': 'Windows.FullTrustApplication', '{' + UAP10 + '}RuntimeBehavior': 'packagedClassicApp',
                       '{' + UAP10 + '}TrustLevel': 'mediumIL'})
@@ -129,10 +131,10 @@ def validate_payload(stage, mode, probe=False):
             raise ValueError('Development or executable helper file in payload: ' + relative)
         if 'uninstall' in file.name.lower() or file.name.lower().endswith('setup.exe'):
             raise ValueError('MSIX must not embed an installer/uninstaller')
-        if mode == 'store' and ('probe' in file.name.lower() or file.name.lower().startswith('jobs_') or file.name.lower() == 'qt6test.dll'):
+        if mode == 'store' and ('probe' in file.name.lower() or file.name.lower().startswith(('ppm_', 'jobs_')) or file.name.lower() == 'qt6test.dll'):
             raise ValueError('Test artifact in Store payload')
         total += file.stat().st_size
-        if probe and relative.casefold() in {'jobs_msix_probe.exe', 'qt6test.dll'}:
+        if probe and relative.casefold() in {'ppm_msix_probe.exe', 'qt6test.dll'}:
             probe_total += file.stat().st_size
         # The explicit development probe has its own bounded budget; the app
         # and its offline reader retain the production package limit.

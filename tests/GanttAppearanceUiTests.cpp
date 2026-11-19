@@ -18,29 +18,29 @@
 #include <numeric>
 
 namespace {
-QGraphicsItem *item(jobs::GanttView &view, const std::string &id, const char *kind = "task") {
+QGraphicsItem *item(ppm::GanttView &view, const std::string &id, const char *kind = "task") {
     for (auto *candidate : view.scene()->items())
         if (candidate->data(0).toString().toStdString() == id && candidate->data(1) == kind)
             return candidate;
     return nullptr;
 }
-QAbstractGraphicsShapeItem *bar(jobs::GanttView &view, const std::string &id) {
+QAbstractGraphicsShapeItem *bar(ppm::GanttView &view, const std::string &id) {
     return dynamic_cast<QAbstractGraphicsShapeItem *>(item(view, id));
 }
-std::vector<std::size_t> indices(const jobs::Project &p) {
+std::vector<std::size_t> indices(const ppm::Project &p) {
     std::vector<std::size_t> rows(p.tasks.size());
     std::iota(rows.begin(), rows.end(), 0);
     return rows;
 }
 void capture(QWidget &widget, const QString &name) {
-    const auto folder = qEnvironmentVariable("JOBS_GANTT_AUDIT_DIR");
+    const auto folder = qEnvironmentVariable("PPM_GANTT_AUDIT_DIR");
     if (folder.isEmpty())
         return;
     QVERIFY(QDir().mkpath(folder));
     QTest::qWait(80);
     QVERIFY(widget.grab().save(QDir(folder).filePath(name + ".png")));
 }
-std::string fixture(jobs::Document &doc) {
+std::string fixture(ppm::Document &doc) {
     doc.create("간트 상태", "2026-11-09", {"완료", "진행", "미착수 보고", "미보고", "여유 경로", "마일스톤"});
     for (int i = 0; i < 6; ++i)
         doc.setDuration(i, i == 1 ? 960 : i == 4 ? 60 : i == 5 ? 0 : 480);
@@ -48,7 +48,7 @@ std::string fixture(jobs::Document &doc) {
         doc.setPredecessors(i, {doc.project()->tasks[i - 1].id});
     const auto baseline = doc.captureBaseline("승인", "PM", "검토", "2026-11-18T00:00:00Z");
     const auto record = [&](int row, bool started, bool completed, int remaining) {
-        jobs::ProgressEntry e;
+        ppm::ProgressEntry e;
         e.taskId = doc.project()->tasks[row].id;
         if (started)
             e.actualStart = row == 0 ? "2026-11-09 09:00" : row == 4 ? "2026-11-20 09:00" : "2026-11-10 09:00";
@@ -74,13 +74,13 @@ class GanttAppearanceUiTests : public QObject {
     Q_OBJECT
 private slots:
     void reportingStatesSelectionAndBaselineStayIndependent() {
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         fixture(doc);
         const auto original = *doc.project();
-        auto result = jobs::calculate(original);
-        QCOMPARE(result.status, jobs::CalculationStatus::Valid);
-        jobs::GanttView view;
+        auto result = ppm::calculate(original);
+        QCOMPARE(result.status, ppm::CalculationStatus::Valid);
+        ppm::GanttView view;
         view.resize(1200, 500);
         view.setPlan(&original, &result, indices(original));
         view.setBaseline(&original.baselines[0]);
@@ -89,11 +89,11 @@ private slots:
         const auto &tasks = original.tasks;
         for (int i = 0; i < 5; ++i)
             QVERIFY(bar(view, tasks[i].id));
-        QCOMPARE(bar(view, tasks[0].id)->brush().color(), jobs::ganttFill(jobs::GanttProgress::Completed));
-        QCOMPARE(bar(view, tasks[1].id)->brush().color(), jobs::ganttFill(jobs::GanttProgress::InProgress));
-        QCOMPARE(bar(view, tasks[2].id)->brush().color(), jobs::ganttFill(jobs::GanttProgress::NotStarted));
+        QCOMPARE(bar(view, tasks[0].id)->brush().color(), ppm::ganttFill(ppm::GanttProgress::Completed));
+        QCOMPARE(bar(view, tasks[1].id)->brush().color(), ppm::ganttFill(ppm::GanttProgress::InProgress));
+        QCOMPARE(bar(view, tasks[2].id)->brush().color(), ppm::ganttFill(ppm::GanttProgress::NotStarted));
         QCOMPARE(bar(view, tasks[3].id)->brush().style(), Qt::SolidPattern);
-        QVERIFY(!bar(view, tasks[3].id)->toolTip().contains(jobs::ganttProgressText(jobs::GanttProgress::Unreported)));
+        QVERIFY(!bar(view, tasks[3].id)->toolTip().contains(ppm::ganttProgressText(ppm::GanttProgress::Unreported)));
         QCOMPARE(bar(view, tasks[4].id)->brush().style(), Qt::BDiagPattern);
         QVERIFY(bar(view, tasks[4].id)->toolTip().contains("미보고 · 착수 여부 미확인"));
         QVERIFY(item(view, tasks[5].id, "milestone"));
@@ -120,7 +120,7 @@ private slots:
         view.setPlan(&original, &unknownFloat, indices(original));
         QCOMPARE(bar(view, tasks[1].id)->pen().widthF(), 1.0);
         QVERIFY(bar(view, tasks[1].id)->toolTip().contains("여유/임계 미산정"));
-        auto plan = jobs::calculatePlan(original);
+        auto plan = ppm::calculatePlan(original);
         auto unknownLogicalFloat = plan;
         unknownLogicalFloat.logicalFloatCalculated = false;
         view.setPlan(&original, &unknownLogicalFloat, indices(original));
@@ -130,7 +130,7 @@ private slots:
         view.setPlan(&original, &plan, indices(original));
         QCOMPARE(bar(view, tasks[4].id)->brush().style(), Qt::SolidPattern);
         QVERIFY(bar(view, tasks[4].id)->toolTip().contains("실적 상태 미반영"));
-        result.status = jobs::CalculationStatus::Stale;
+        result.status = ppm::CalculationStatus::Stale;
         view.setPlan(&original, &result, indices(original));
         QVERIFY(!view.hasSchedule() && !bar(view, tasks[1].id));
         QVERIFY(*doc.project() == original);
@@ -138,13 +138,13 @@ private slots:
     void futureReportingUsesCurrentPlan_data() {
         QTest::addColumn<QString>("profile");
         QTest::newRow("fs0") << QString("native-fs0-workminutes-v1");
-        QTest::newRow("pdm") << QString(jobs::pdmProfile);
-        QTest::newRow("constraints") << QString(jobs::constraintProfile);
-        QTest::newRow("effort") << QString(jobs::effortProfile);
+        QTest::newRow("pdm") << QString(ppm::pdmProfile);
+        QTest::newRow("constraints") << QString(ppm::constraintProfile);
+        QTest::newRow("effort") << QString(ppm::effortProfile);
     }
     void futureReportingUsesCurrentPlan() {
         QFETCH(QString, profile);
-        jobs::Project p;
+        ppm::Project p;
         p.documentId = "gantt-reporting-due";
         p.name = "보고 대상";
         p.startDate = "2026-11-09";
@@ -155,7 +155,7 @@ private slots:
                    {"C", "미래 작업", 480, {"B"}},
                    {"D", "미래 미착수 보고", 480, {"B"}},
                    {"M", "미래 마일스톤", 0, {"C"}}};
-        jobs::ProgressEntry fact;
+        ppm::ProgressEntry fact;
         fact.id = "report-D";
         fact.taskId = "D";
         fact.statusAt = *p.statusAt;
@@ -172,13 +172,13 @@ private slots:
         fact.statusAt = "2026-11-12 09:00";
         p.progress.push_back(fact);
         const auto before = p;
-        const auto plan = jobs::calculatePlan(p), result = jobs::calculate(p);
-        QCOMPARE(plan.status, jobs::CalculationStatus::Valid);
-        QCOMPARE(result.status, jobs::CalculationStatus::Valid);
+        const auto plan = ppm::calculatePlan(p), result = ppm::calculate(p);
+        QCOMPARE(plan.status, ppm::CalculationStatus::Valid);
+        QCOMPARE(result.status, ppm::CalculationStatus::Valid);
         QCOMPARE(result.plannedTasks, plan.tasks);
         QCOMPARE(plan.tasks[1].start, *p.statusAt);
         QVERIFY(result.tasks[1].start > *p.statusAt);
-        jobs::GanttView view;
+        ppm::GanttView view;
         view.resize(1200, 500);
         view.setPlan(&p, &result, indices(p));
         for (const auto *id : {"A", "B"}) {
@@ -190,26 +190,26 @@ private slots:
                 item(view, id, id == std::string("M") ? "milestone" : "task"));
             QVERIFY(shape);
             QCOMPARE(shape->brush().style(), Qt::SolidPattern);
-            QCOMPARE(shape->brush().color(), jobs::ganttFill(jobs::GanttProgress::Plan));
+            QCOMPARE(shape->brush().color(), ppm::ganttFill(ppm::GanttProgress::Plan));
             QVERIFY(!shape->toolTip().contains("미보고"));
             QVERIFY(shape->toolTip().contains("시작 예정"));
             QVERIFY(!shape->toolTip().contains("실적 상태 미반영"));
         }
         QVERIFY(bar(view, "D")->toolTip().contains("미착수 보고"));
-        jobs::SchedulePrintSource source;
-        source.project = std::make_shared<const jobs::Project>(p);
+        ppm::SchedulePrintSource source;
+        source.project = std::make_shared<const ppm::Project>(p);
         source.columns = {{"number", "번호", 36}, {"name", "작업", 120}};
         source.generatedAt = "2026-11-18T00:00:00Z";
         source.printId = "gantt-reporting-due";
         for (int i = 0; i < int(p.tasks.size()); ++i)
             source.rows.push_back(
                 {p.tasks[i].id, i + 1, {QString::number(i + 1), QString::fromStdString(p.tasks[i].name)}});
-        const auto layout = jobs::buildSchedulePrint(source, {});
-        QCOMPARE(layout.rows[0].progress, jobs::GanttProgress::Unreported);
-        QCOMPARE(layout.rows[1].progress, jobs::GanttProgress::Unreported);
-        QCOMPARE(layout.rows[2].progress, jobs::GanttProgress::Plan);
-        QCOMPARE(layout.rows[3].progress, jobs::GanttProgress::NotStarted);
-        QCOMPARE(layout.rows[4].progress, jobs::GanttProgress::Plan);
+        const auto layout = ppm::buildSchedulePrint(source, {});
+        QCOMPARE(layout.rows[0].progress, ppm::GanttProgress::Unreported);
+        QCOMPARE(layout.rows[1].progress, ppm::GanttProgress::Unreported);
+        QCOMPARE(layout.rows[2].progress, ppm::GanttProgress::Plan);
+        QCOMPARE(layout.rows[3].progress, ppm::GanttProgress::NotStarted);
+        QCOMPARE(layout.rows[4].progress, ppm::GanttProgress::Plan);
         view.setPlan(&p, &plan, indices(p));
         auto *milestone = dynamic_cast<QAbstractGraphicsShapeItem *>(item(view, "M", "milestone"));
         QVERIFY(milestone && milestone->pen().widthF() > 1);
@@ -217,32 +217,32 @@ private slots:
         QVERIFY(p == before);
     }
     void frozenCalendarWorkingMinutesDoNotFlagNonworkingGaps() {
-        jobs::PlanInput input;
+        ppm::PlanInput input;
         input.startDate = "2026-11-09";
-        jobs::TaskCalendar calendar;
+        ppm::TaskCalendar calendar;
         calendar.id = "site";
         calendar.periods = {{540, 720}, {780, 1020}};
         calendar.holidays = {"2026-11-11"};
         input.calendars.push_back(calendar);
-        jobs::Task task;
+        ppm::Task task;
         task.calendarId = "site";
-        QCOMPARE(jobs::ganttFinishVariance(input, task, "2026-11-10 17:00", "2026-11-12 09:00"),
+        QCOMPARE(ppm::ganttFinishVariance(input, task, "2026-11-10 17:00", "2026-11-12 09:00"),
                  std::optional<std::int64_t>{0});
-        QCOMPARE(jobs::ganttFinishVariance(input, task, "2026-11-10 17:00", "2026-11-12 10:00"),
+        QCOMPARE(ppm::ganttFinishVariance(input, task, "2026-11-10 17:00", "2026-11-12 10:00"),
                  std::optional<std::int64_t>{60});
         task.calendarId = "missing";
-        QVERIFY(!jobs::ganttFinishVariance(input, task, "2026-11-10 17:00", "2026-11-12 10:00"));
+        QVERIFY(!ppm::ganttFinishVariance(input, task, "2026-11-10 17:00", "2026-11-12 10:00"));
     }
     void virtualizedRowsKeepSelectionAndProgressStyle() {
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("가상화 상태", "2026-11-09", std::vector<std::string>(240, "설치"));
         for (int i = 0; i < 240; ++i)
             doc.setDuration(i, 480);
         doc.setStatusAt("2026-11-09 09:00");
         const auto p = *doc.project();
-        const auto result = jobs::calculate(p);
-        jobs::GanttView view;
+        const auto result = ppm::calculate(p);
+        ppm::GanttView view;
         view.resize(1000, 300);
         view.setPlan(&p, &result, indices(p));
         view.show();
@@ -259,14 +259,14 @@ private slots:
         auto dark = view.palette();
         dark.setColor(QPalette::Base, QColor("#202020"));
         view.setPalette(dark);
-        QCOMPARE(bar(view, id)->pen().color(), jobs::ganttCriticalColor(true));
+        QCOMPARE(bar(view, id)->pen().color(), ppm::ganttCriticalColor(true));
         QVERIFY(item(view, id, "selectionHighlight")->isVisible());
     }
     void printedRowsUseTheSameStatesAndDelayBasis() {
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         const auto baseline = fixture(doc);
-        jobs::SchedulePrintSource source;
+        ppm::SchedulePrintSource source;
         source.project = doc.snapshot();
         source.unsaved = doc.dirty();
         source.scope = "전체 6개 작업 · 간트 상태 검증";
@@ -278,22 +278,22 @@ private slots:
             source.rows.push_back({doc.project()->tasks[i].id,
                                    i + 1,
                                    {QString::number(i + 1), QString::fromStdString(doc.project()->tasks[i].name)}});
-        auto layout = jobs::buildSchedulePrint(source, {});
-        QCOMPARE(layout.status, jobs::CalculationStatus::Valid);
-        QCOMPARE(layout.rows[0].progress, jobs::GanttProgress::Completed);
-        QCOMPARE(layout.rows[1].progress, jobs::GanttProgress::InProgress);
-        QCOMPARE(layout.rows[2].progress, jobs::GanttProgress::NotStarted);
-        QCOMPARE(layout.rows[3].progress, jobs::GanttProgress::Plan);
-        QCOMPARE(layout.rows[4].progress, jobs::GanttProgress::Unreported);
+        auto layout = ppm::buildSchedulePrint(source, {});
+        QCOMPARE(layout.status, ppm::CalculationStatus::Valid);
+        QCOMPARE(layout.rows[0].progress, ppm::GanttProgress::Completed);
+        QCOMPARE(layout.rows[1].progress, ppm::GanttProgress::InProgress);
+        QCOMPARE(layout.rows[2].progress, ppm::GanttProgress::NotStarted);
+        QCOMPARE(layout.rows[3].progress, ppm::GanttProgress::Plan);
+        QCOMPARE(layout.rows[4].progress, ppm::GanttProgress::Unreported);
         QVERIFY(layout.rows[1].critical && !layout.rows[4].critical);
         QVERIFY(layout.rows[3].finishVariance && *layout.rows[3].finishVariance > 0);
-        if (const auto folder = qEnvironmentVariable("JOBS_GANTT_AUDIT_DIR"); !folder.isEmpty()) {
+        if (const auto folder = qEnvironmentVariable("PPM_GANTT_AUDIT_DIR"); !folder.isEmpty()) {
             QVERIFY(QDir().mkpath(folder));
             const auto name = "gantt-states-" + QString::fromStdString(source.project->documentId) + ".pdf";
-            QVERIFY(jobs::exportSchedulePdf(layout, QDir(folder).filePath(name)) > 0);
+            QVERIFY(ppm::exportSchedulePdf(layout, QDir(folder).filePath(name)) > 0);
         }
         layout.options.baseline = false;
-        const auto withoutBaseline = jobs::buildSchedulePrint(source, layout.options);
+        const auto withoutBaseline = ppm::buildSchedulePrint(source, layout.options);
         QVERIFY(!withoutBaseline.rows[3].finishVariance);
     }
     void pilotThirtyTasks_data() {
@@ -315,22 +315,22 @@ private slots:
         colors.setColor(QPalette::AlternateBase, QColor(dark ? "#292929" : "#f4f6f8"));
         colors.setColor(QPalette::Midlight, QColor(dark ? "#3c3c3c" : "#d9dfe5"));
         QApplication::setPalette(colors);
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         const auto path = QFINDTESTDATA("../docs/validation/weekly-pm-pilot-2026-11-18/pilot-start.ppm");
         QVERIFY(!path.isEmpty());
         doc.open(path.toStdString());
-        doc.applyCalculation(jobs::calculate(*doc.project()));
-        jobs::MainWindow window(doc);
+        doc.applyCalculation(ppm::calculate(*doc.project()));
+        ppm::MainWindow window(doc);
         window.resize(1562, 932);
         window.show();
-        auto *view = dynamic_cast<jobs::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
+        auto *view = dynamic_cast<ppm::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
         QVERIFY(view && view->hasSchedule());
         view->fitSchedule();
         int critical = 0, unreported = 0;
         for (const auto &task : doc.project()->tasks)
             if (auto *shape = bar(*view, task.id)) {
-                QVERIFY(shape->brush().color() != jobs::ganttCriticalColor(dark));
+                QVERIFY(shape->brush().color() != ppm::ganttCriticalColor(dark));
                 critical += shape->pen().widthF() > 1;
                 unreported += shape->brush().style() == Qt::BDiagPattern;
             }
@@ -342,11 +342,11 @@ private slots:
         QVERIFY(legend && button);
         QVERIFY(window.findChild<QLabel *>("ganttLegendText")->text().contains("착수 여부 미확인"));
         const auto text = window.findChild<QLabel *>("ganttLegendText")->text();
-        for (const auto progress : {jobs::GanttProgress::Plan, jobs::GanttProgress::InProgress,
-                                    jobs::GanttProgress::Completed, jobs::GanttProgress::Unreported})
-            QVERIFY(text.contains(jobs::ganttFill(progress).name()));
-        QVERIFY(text.contains(jobs::ganttDelayColor().name()));
-        if (!qEnvironmentVariable("JOBS_GANTT_AUDIT_DIR").isEmpty()) {
+        for (const auto progress : {ppm::GanttProgress::Plan, ppm::GanttProgress::InProgress,
+                                    ppm::GanttProgress::Completed, ppm::GanttProgress::Unreported})
+            QVERIFY(text.contains(ppm::ganttFill(progress).name()));
+        QVERIFY(text.contains(ppm::ganttDelayColor().name()));
+        if (!qEnvironmentVariable("PPM_GANTT_AUDIT_DIR").isEmpty()) {
             legend->popup(button->mapToGlobal(QPoint(0, button->height())));
             capture(*legend, QString(tag) + "-legend");
             legend->hide();

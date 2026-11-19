@@ -78,7 +78,7 @@
 #include <cmath>
 #include <unordered_map>
 
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s.data(), qsizetype(s.size()));
@@ -1007,7 +1007,7 @@ void MainWindow::calculateSchedule() {
     watcher->setFuture(QtConcurrent::run([snapshot, control, workerNanos] {
         QElapsedTimer clock;
         clock.start();
-        auto result = jobs::calculate(*snapshot, control);
+        auto result = ppm::calculate(*snapshot, control);
         workerNanos->store(clock.nsecsElapsed());
         return result;
     }));
@@ -1345,4 +1345,4 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     } else
         event->ignore();
 }
-} // namespace jobs
+} // namespace ppm

@@ -23,7 +23,7 @@
 #include <QStatusBar>
 #include <QVBoxLayout>
 #include <stdexcept>
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s.data(), qsizetype(s.size()));
@@ -182,7 +182,7 @@ void MainWindow::exportXer() {
             return;
         auto exchange = std::move(*prepared);
         auto parent = document_.path().empty() ? QDir::homePath() : QFileInfo(qs(document_.path())).absolutePath();
-        auto destination = preview(this, exchange, QDir(parent).filePath("jobs-xer-export"));
+        auto destination = preview(this, exchange, QDir(parent).filePath("ppm-xer-export"));
         if (destination.isEmpty())
             return;
         if (document_.sessionGeneration() != generation || !document_.project() ||
@@ -287,17 +287,17 @@ void MainWindow::batchXer(bool importing) {
             }
         }
         auto prepared = prepareExchange<XerBatchExchange>(this, document_, "XER 일괄 변환·참조 검증 중…", [&] {
-            return importing ? jobs::importXerBatch(inputs) : jobs::exportXerBatch(outputs, configuration);
+            return importing ? ppm::importXerBatch(inputs) : ppm::exportXerBatch(outputs, configuration);
         });
         if (!prepared)
             return;
         inputs.clear();
         outputs.clear();
         snapshots.clear();
-        const auto destination = exchangePreview(
-            this, importing, xerBatchPreview(*prepared),
-            QDir(parent).filePath(importing ? "jobs-xer-workspace-import" : "jobs-xer-workspace-export"),
-            "xerBatchPreview");
+        const auto destination =
+            exchangePreview(this, importing, xerBatchPreview(*prepared),
+                            QDir(parent).filePath(importing ? "ppm-xer-workspace-import" : "ppm-xer-workspace-export"),
+                            "xerBatchPreview");
         if (destination.isEmpty())
             return;
         auto current = [&] {
@@ -333,4 +333,4 @@ void MainWindow::batchXer(bool importing) {
         report(error);
     }
 }
-} // namespace jobs
+} // namespace ppm

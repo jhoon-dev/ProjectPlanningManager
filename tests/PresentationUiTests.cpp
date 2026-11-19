@@ -19,7 +19,7 @@
 #include <QTimer>
 #include <iostream>
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool ok, const char *s) {
     if (!ok)
         throw std::runtime_error(s);

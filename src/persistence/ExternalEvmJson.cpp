@@ -2,7 +2,7 @@
 #include "domain/Project.h"
 #include <QJsonObject>
 #include <cmath>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid() {
     throw AppError(ErrorCode::EXTERNAL_EVM_INVALID, {"native 채택 필드/형식/한도"});
@@ -144,4 +144,4 @@ std::vector<ExternalEvmAdoption> decodeExternalEvmAdoptions(const QJsonValue &v)
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

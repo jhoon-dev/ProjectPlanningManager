@@ -18,7 +18,7 @@
 #include <QVBoxLayout>
 #include <QMessageBox>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 QString work(std::optional<std::int64_t> n) {
     return n ? QString::number(*n) + "u" : "미보고";
@@ -211,4 +211,4 @@ bool reviewXmlPeriodActuals(QWidget *parent, Document &doc, const ProjectXmlExch
     prepareEditorDialog(dialog);
     return dialog.exec() == QDialog::Accepted;
 }
-} // namespace jobs
+} // namespace ppm

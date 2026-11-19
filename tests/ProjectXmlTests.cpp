@@ -37,13 +37,13 @@ QByteArray changed(QByteArray source, const QByteArray &before, const QByteArray
     check(source.contains(before), "mutation target missing");
     return source.replace(before, after);
 }
-bool hasDiagnostic(const jobs::ProjectXmlExchange &e, const QString &fragment) {
+bool hasDiagnostic(const ppm::ProjectXmlExchange &e, const QString &fragment) {
     for (const auto &d : e.report["diagnostics"].toArray())
         if (d.toObject()["path"].toString().contains(fragment))
             return true;
     return false;
 }
-const jobs::TaskSchedule &scheduled(const jobs::ScheduleResult &r, const std::string &id) {
+const ppm::TaskSchedule &scheduled(const ppm::ScheduleResult &r, const std::string &id) {
     for (const auto &t : r.tasks)
         if (t.taskId == id)
             return t;
@@ -53,8 +53,8 @@ const jobs::TaskSchedule &scheduled(const jobs::ScheduleResult &r, const std::st
 int main(int argc, char **argv) {
     QCoreApplication app(argc, argv);
     try {
-        const auto fixture = read(QString::fromUtf8(JOBS_XML_FIXTURE));
-        auto imported = jobs::importProjectXml(fixture, "원본.xml");
+        const auto fixture = read(QString::fromUtf8(PPM_XML_FIXTURE));
+        auto imported = ppm::importProjectXml(fixture, "원본.xml");
         const auto &p = imported.project;
         check(p.name == "한글 계획 & 교환" && p.startDate == "2026-10-26" && p.tasks.size() == 6 &&
                   p.wbsNodes.size() == 1,
@@ -67,15 +67,15 @@ int main(int argc, char **argv) {
         check(p.resources[0].maxUnits == 150 && p.resources[0].calendarId == "xml-cal-2" &&
                   p.assignments[0].units == 50 && p.assignments[1].units == 125,
               "resource mapping");
-        check(p.tasks[1].constraintType == jobs::ConstraintType::SNET &&
-                  p.tasks[1].constraintAt == "2026-10-28 10:00" && p.tasks[1].deadlineAt == "2026-10-29 18:00",
+        check(p.tasks[1].constraintType == ppm::ConstraintType::SNET && p.tasks[1].constraintAt == "2026-10-28 10:00" &&
+                  p.tasks[1].deadlineAt == "2026-10-29 18:00",
               "constraint mapping");
         check(p.tasks[5].durationMinutes == 0 && p.progress.empty() && p.costEntries.empty() && p.taskCosts.empty(),
               "no invented actual/cost");
         for (std::size_t i = 1; i < 5; ++i) {
-            const auto d = jobs::dependencies(p.tasks[i]);
-            const jobs::DependencyType types[]{jobs::DependencyType::FS, jobs::DependencyType::SS,
-                                               jobs::DependencyType::FF, jobs::DependencyType::SF};
+            const auto d = ppm::dependencies(p.tasks[i]);
+            const ppm::DependencyType types[]{ppm::DependencyType::FS, ppm::DependencyType::SS, ppm::DependencyType::FF,
+                                              ppm::DependencyType::SF};
             check(d.size() == 1 && d[0].type == types[i - 1] && d[0].lagMinutes == ((i == 2 || i == 3) ? -60 : 60),
                   "four links and tenths lag");
         }
@@ -85,20 +85,20 @@ int main(int argc, char **argv) {
         auto estimated = changed(fixture, "<Duration>PT8H0M0S</Duration>",
                                  "<Duration>PT8H0M0S</Duration><DurationFormat>35</DurationFormat>");
         estimated.replace("<LagFormat>3</LagFormat>", "<LagFormat>35</LagFormat>");
-        auto estimatedImport = jobs::importProjectXml(estimated, "estimated.xml");
+        auto estimatedImport = ppm::importProjectXml(estimated, "estimated.xml");
         check(estimatedImport.project.tasks[0].durationMinutes == 480 &&
                   hasDiagnostic(estimatedImport, "DurationFormat") && hasDiagnostic(estimatedImport, "LagFormat"),
               "estimated display loss not reported");
         check(imported.report["targetPolicy"].toObject()["lagCalendar"] == "successor-working-calendar",
               "target policy provenance");
         auto placeholder = changed(fixture, "<Resources>", "<Resources><Resource><UID>0</UID><Name/></Resource>");
-        check(jobs::importProjectXml(placeholder, "placeholder.xml").project.resources.size() == 1,
+        check(ppm::importProjectXml(placeholder, "placeholder.xml").project.resources.size() == 1,
               "unassigned resource placeholder");
         auto placeholderReference =
             changed(placeholder, "<ResourceUID>99</ResourceUID>", "<ResourceUID>0</ResourceUID>");
-        rejects([&] { jobs::importProjectXml(placeholderReference, "placeholder-reference.xml"); });
-        auto schedule = jobs::calculate(p);
-        check(schedule.status == jobs::CalculationStatus::Valid, "import scheduling");
+        rejects([&] { ppm::importProjectXml(placeholderReference, "placeholder-reference.xml"); });
+        auto schedule = ppm::calculate(p);
+        check(schedule.status == ppm::CalculationStatus::Valid, "import scheduling");
         check(scheduled(schedule, "xml-task-20").start == "2026-10-26 09:00" &&
                   scheduled(schedule, "xml-task-20").finish == "2026-10-26 18:00",
               "independent A dates");
@@ -110,32 +110,32 @@ int main(int argc, char **argv) {
               "independent FF negative lag");
         QTemporaryDir temporary;
         check(temporary.isValid(), "temporary directory");
-        auto folder = jobs::publishProjectXml(imported, temporary.filePath("import"));
+        auto folder = ppm::publishProjectXml(imported, temporary.filePath("import"));
         check(read(QDir(folder).filePath("original.xml")) == fixture, "exact source bytes");
         auto report = QJsonDocument::fromJson(read(QDir(folder).filePath("conversion.json"))).object();
         check(report["source"].toObject()["sha256"].toString().toLatin1() ==
                   QCryptographicHash::hash(fixture, QCryptographicHash::Sha256).toHex(),
               "source hash");
         auto compatibility = report["compatibility"].toObject();
-        check(compatibility["jobsRecomputation"] == "unverified" && compatibility["externalRoundTrip"] == "unverified",
+        check(compatibility["ppmRecomputation"] == "unverified" && compatibility["externalRoundTrip"] == "unverified",
               "independent compatibility verdicts");
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.open(QDir(folder).filePath("project.ppm").toUtf8().toStdString());
         check(*doc.project() == p && !doc.dirty(), "native reopen");
         const auto saved = read(QDir(folder).filePath("project.ppm"));
-        rejects([&] { jobs::publishProjectXml(imported, folder); });
+        rejects([&] { ppm::publishProjectXml(imported, folder); });
         check(read(QDir(folder).filePath("project.ppm")) == saved, "existing destination preserved");
-        rejects([&] { jobs::publishProjectXml(imported, temporary.filePath("missing/child")); });
+        rejects([&] { ppm::publishProjectXml(imported, temporary.filePath("missing/child")); });
         const auto before = *doc.project();
         const auto generation = doc.sessionGeneration();
-        auto exported = jobs::exportProjectXml(p);
-        auto back = jobs::importProjectXml(exported.xml, "roundtrip.xml");
+        auto exported = ppm::exportProjectXml(p);
+        auto back = ppm::importProjectXml(exported.xml, "roundtrip.xml");
         check(back.project.tasks.size() == p.tasks.size() && back.project.wbsNodes.size() == 1 &&
                   back.project.assignments.size() == 2,
               "supported subset roundtrip counts");
-        const auto again = jobs::calculate(back.project);
-        check(again.status == jobs::CalculationStatus::Valid, "roundtrip schedule valid");
+        const auto again = ppm::calculate(back.project);
+        check(again.status == ppm::CalculationStatus::Valid, "roundtrip schedule valid");
         for (std::size_t i = 0; i < p.tasks.size(); ++i) {
             const auto &a = p.tasks[i];
             const auto &b = back.project.tasks[i];
@@ -149,38 +149,38 @@ int main(int argc, char **argv) {
         }
         check(*doc.project() == before && doc.sessionGeneration() == generation && !doc.dirty() && !doc.canUndo(),
               "export does not edit document");
-        auto output = jobs::publishProjectXml(exported, temporary.filePath("export"));
+        auto output = ppm::publishProjectXml(exported, temporary.filePath("export"));
         check(store.load(QDir(output).filePath("source.ppm").toStdString()).project == p, "export source snapshot");
         auto unknown = p;
         unknown.tasks[0].durationMinutes.reset();
         unknown.resources[0].maxUnits.reset();
-        auto un = jobs::exportProjectXml(unknown);
-        auto unBack = jobs::importProjectXml(un.xml, "unknown.xml");
+        auto un = ppm::exportProjectXml(unknown);
+        auto unBack = ppm::importProjectXml(un.xml, "unknown.xml");
         check(!unBack.project.tasks[0].durationMinutes && !unBack.project.resources[0].maxUnits &&
                   hasDiagnostic(un, "Duration") && hasDiagnostic(un, "MaxUnits"),
               "unknown not zero");
         auto work = p;
-        work.tasks[0].taskType = jobs::TaskType::FixedWork;
+        work.tasks[0].taskType = ppm::TaskType::FixedWork;
         work.tasks[0].workDriven = true;
         work.tasks[0].workUnitMinutes = 24000;
         work.tasks[0].breaks = {{"2026-10-26 10:00", "2026-10-26 11:00"}};
-        auto projection = jobs::exportProjectXml(work);
+        auto projection = ppm::exportProjectXml(work);
         check(hasDiagnostic(projection, "xml-task-20") &&
-                  jobs::importProjectXml(projection.xml, "work.xml").project.tasks[0].taskType ==
-                      jobs::TaskType::FixedDuration,
+                  ppm::importProjectXml(projection.xml, "work.xml").project.tasks[0].taskType ==
+                      ppm::TaskType::FixedDuration,
               "effort loss explicit");
         // Native export has no WBS: canonical order, a default calendar, and unknown duration survive.
-        jobs::Project plain;
+        ppm::Project plain;
         plain.documentId = "plain";
         plain.name = "기본";
         plain.startDate = "2026-10-26";
         plain.tasks = {{"first", "설계", 60, {}}, {"second", "미정", std::nullopt, {"first"}}};
-        auto plainBack = jobs::importProjectXml(jobs::exportProjectXml(plain).xml, "plain.xml");
+        auto plainBack = ppm::importProjectXml(ppm::exportProjectXml(plain).xml, "plain.xml");
         check(plainBack.project.tasks.size() == 2 && !plainBack.project.tasks[1].durationMinutes,
               "legacy default calendar export");
         auto rejectChange = [&](const QByteArray &from, const QByteArray &to) {
             auto b = changed(fixture, from, to);
-            rejects([&] { jobs::importProjectXml(b, "bad.xml"); });
+            rejects([&] { ppm::importProjectXml(b, "bad.xml"); });
         };
         rejectChange("<UID>30</UID>", "<UID>20</UID>");
         rejectChange("<UID>2</UID>", "<UID>1</UID>");
@@ -218,11 +218,11 @@ int main(int argc, char **argv) {
                      "<UID>20</UID><PredecessorLink><PredecessorUID>30</PredecessorUID></PredecessorLink>");
         rejectChange("<UID>99</UID>", "<UID>99</UID><Type>0</Type>");
         auto dtd = changed(fixture, "<Project xmlns=", "<!DOCTYPE Project [<!ENTITY a 'expanded'>]><Project xmlns=");
-        rejects([&] { jobs::importProjectXml(dtd, "entity.xml"); });
+        rejects([&] { ppm::importProjectXml(dtd, "entity.xml"); });
         auto foreign = changed(fixture, "<CustomFields>", "<CustomFields xmlns='urn:foreign'>");
-        rejects([&] { jobs::importProjectXml(foreign, "foreign.xml"); });
-        rejects([&] { jobs::importProjectXml(fixture.left(fixture.size() - 15), "truncated.xml"); });
-        rejects([&] { jobs::importProjectXml(QByteArray(16 * 1024 * 1024 + 1, ' '), "large.xml"); });
+        rejects([&] { ppm::importProjectXml(foreign, "foreign.xml"); });
+        rejects([&] { ppm::importProjectXml(fixture.left(fixture.size() - 15), "truncated.xml"); });
+        rejects([&] { ppm::importProjectXml(QByteArray(16 * 1024 * 1024 + 1, ' '), "large.xml"); });
         auto deep = fixture;
         QByteArray open, close;
         for (int i = 0; i < 33; ++i) {
@@ -230,19 +230,19 @@ int main(int argc, char **argv) {
             close += "</X>";
         }
         deep.replace("<CustomFields>", "<CustomFields>" + open).replace("</CustomFields>", close + "</CustomFields>");
-        rejects([&] { jobs::importProjectXml(deep, "depth.xml"); });
+        rejects([&] { ppm::importProjectXml(deep, "depth.xml"); });
         auto many = fixture;
         QByteArray rows;
         for (int i = 0; i < 10001; ++i)
             rows += "<Task><UID>" + QByteArray::number(1000 + i) + "</UID></Task>";
         many.replace("</Tasks>", rows + "</Tasks>");
-        rejects([&] { jobs::importProjectXml(many, "rows.xml"); });
+        rejects([&] { ppm::importProjectXml(many, "rows.xml"); });
         auto elements = fixture;
         elements.replace("</CustomFields>", QByteArray("<X/>").repeated(300001) + "</CustomFields>");
-        rejects([&] { jobs::importProjectXml(elements, "elements.xml"); });
+        rejects([&] { ppm::importProjectXml(elements, "elements.xml"); });
         const auto longName = QByteArray(129, 'N');
         auto names = changed(fixture, "<CustomFields>", "<CustomFields><" + longName + "/>");
-        rejects([&] { jobs::importProjectXml(names, "names.xml"); });
+        rejects([&] { ppm::importProjectXml(names, "names.xml"); });
         QByteArray prefix, suffix;
         const auto component = QByteArray(120, 'N');
         for (int i = 0; i < 20; ++i) {
@@ -251,7 +251,7 @@ int main(int argc, char **argv) {
         }
         auto paths = fixture;
         paths.replace("</CustomFields>", prefix + QByteArray("<X/>").repeated(8000) + suffix + "</CustomFields>");
-        rejects([&] { jobs::importProjectXml(paths, "path-budget.xml"); });
+        rejects([&] { ppm::importProjectXml(paths, "path-budget.xml"); });
         auto expanded = fixture;
         expanded.replace("2026-10-27T00:00:00", "2000-01-01T00:00:00");
         expanded.replace("2026-10-27T23:59:00", "2024-01-01T23:59:00");
@@ -260,15 +260,15 @@ int main(int argc, char **argv) {
             inherited += "<Calendar><UID>" + QByteArray::number(i) +
                          "</UID><IsBaseCalendar>0</IsBaseCalendar><BaseCalendarUID>1</BaseCalendarUID></Calendar>";
         expanded.replace("</Calendars>", inherited + "</Calendars>");
-        rejects([&] { jobs::importProjectXml(expanded, "expanded.xml"); });
+        rejects([&] { ppm::importProjectXml(expanded, "expanded.xml"); });
         check(*doc.project() == before, "rejection never mutates current document");
-        jobs::Document tracked(store);
+        ppm::Document tracked(store);
         tracked.create("승인·실적 원본", "2026-10-26", {"보고 작업"});
         tracked.setDuration(0, 60);
         tracked.saveAs(temporary.filePath("tracked.ppm").toStdString());
         tracked.captureBaseline("승인 기준선", "검증자", "XML 원본 보존", "2026-10-26T00:00:00Z");
         tracked.setStatusAt("2026-10-26 09:30");
-        jobs::ProgressEntry progress;
+        ppm::ProgressEntry progress;
         progress.taskId = tracked.project()->tasks[0].id;
         progress.actualStart = "2026-10-26 09:00";
         progress.actualDurationMinutes = 30;
@@ -277,7 +277,7 @@ int main(int argc, char **argv) {
         progress.reason = "계측";
         progress.recordedAt = "2026-10-26T00:30:00Z";
         tracked.recordProgress(progress);
-        jobs::CostEntry cost;
+        ppm::CostEntry cost;
         cost.taskId = progress.taskId;
         cost.actualMinor = 1234;
         cost.physicalBasisPoints = 5000;
@@ -286,8 +286,8 @@ int main(int argc, char **argv) {
         cost.recordedAt = "2026-10-26T00:30:00Z";
         tracked.recordCost(cost);
         auto historySnapshot = *tracked.project();
-        auto historyExport = jobs::exportProjectXml(historySnapshot);
-        auto historyFolder = jobs::publishProjectXml(historyExport, temporary.filePath("history-export"));
+        auto historyExport = ppm::exportProjectXml(historySnapshot);
+        auto historyFolder = ppm::publishProjectXml(historyExport, temporary.filePath("history-export"));
         check(hasDiagnostic(historyExport, "history-costs") &&
                   store.load(QDir(historyFolder).filePath("source.ppm").toStdString()).project == historySnapshot &&
                   *tracked.project() == historySnapshot,

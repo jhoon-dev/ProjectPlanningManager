@@ -4,7 +4,7 @@
 #include <QRectF>
 #include <QStringList>
 class QWidget;
-namespace jobs {
+namespace ppm {
 void showNetworkPrint(Document &, QPicture, const QRectF &, const QString &, QWidget *,
                       const QStringList &details = {});
 }

@@ -1,7 +1,7 @@
 #include "domain/XmlUnicode.h"
 #include "domain/Classification.h"
 #include "domain/CalculationControl.h"
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &s) {
     throw AppError(ErrorCode::FORMULA_INVALID, {"XML Unicode 문자 코드: " + s});
@@ -60,4 +60,4 @@ std::string xmlChrWide(std::int64_t code) {
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

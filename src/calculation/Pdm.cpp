@@ -7,7 +7,7 @@
 #include <map>
 #include <deque>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 std::int64_t pdmRequiredStart(const WorkCalendar &cal, const Dependency &edge, const TaskSchedule &predecessor,
                               std::int64_t duration) {
     const auto source = dependencyFromFinish(edge.type) ? predecessor.finish : predecessor.start;
@@ -270,4 +270,4 @@ ScheduleResult calculatePdmForecast(const Project &p, ScheduleResult out) {
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

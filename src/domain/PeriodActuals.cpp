@@ -6,7 +6,7 @@
 #include <charconv>
 #include <set>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 namespace {
 bool label(const std::string &s, std::size_t max = 4096) {
     return !s.empty() && s.size() <= max &&
@@ -167,4 +167,4 @@ std::int64_t parseActualHours(const std::string &text) {
         invalid();
     return units;
 }
-} // namespace jobs
+} // namespace ppm

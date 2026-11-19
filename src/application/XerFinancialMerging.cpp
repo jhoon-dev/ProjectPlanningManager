@@ -1,5 +1,5 @@
 #include "application/Document.h"
-namespace jobs {
+namespace ppm {
 void Document::recordXerFinancialMerge(XerFinancialMergeSubmission submission, std::string (*hash)(const Project &)) {
     requireEditable();
     if (!hash || !activeXerFinancials(*project_))
@@ -25,4 +25,4 @@ void Document::recordXerFinancialMerge(XerFinancialMergeSubmission submission, s
     p.xerFinancialRevisions.push_back(std::move(revision));
     edit(std::move(p), "XER 원본·현재 원장 자동 병합");
 }
-} // namespace jobs
+} // namespace ppm

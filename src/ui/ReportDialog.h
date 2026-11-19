@@ -10,7 +10,7 @@ class QPushButton;
 class QLabel;
 class QTabWidget;
 class QCloseEvent;
-namespace jobs {
+namespace ppm {
 class ReportDialog final : public QDialog {
 public:
     ReportDialog(Document &, const std::string &wbs, const std::string &baseline, QWidget *parent = nullptr,
@@ -43,4 +43,4 @@ private:
     void exportFile(bool pdf);
     void exportEnabled();
 };
-} // namespace jobs
+} // namespace ppm

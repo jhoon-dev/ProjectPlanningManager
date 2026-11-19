@@ -25,7 +25,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <memory>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -413,4 +413,4 @@ IntegratedWorkspaceDialog::IntegratedWorkspaceDialog(DesktopWorkspace &workspace
     layout->addWidget(close);
     prepareEditorDialog(*this);
 }
-} // namespace jobs
+} // namespace ppm

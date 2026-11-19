@@ -2,7 +2,7 @@
 #include "domain/Classification.h"
 #include "domain/CalculationControl.h"
 #include <array>
-namespace jobs {
+namespace ppm {
 namespace {
 constexpr std::int64_t scale = 1000000, limit = 9000000000000000000LL;
 [[noreturn]] void invalid(const std::string &message) {
@@ -80,4 +80,4 @@ std::int64_t xmlDepreciation(const std::string &function, std::int64_t cost, std
     calculationCheckpoint();
     return negative ? -std::int64_t(low) : std::int64_t(low);
 }
-} // namespace jobs
+} // namespace ppm

@@ -5,7 +5,7 @@
 #include <memory>
 #include <optional>
 
-namespace jobs {
+namespace ppm {
 class UpdateController final : public QObject {
     Q_OBJECT
 public:
@@ -48,4 +48,4 @@ private:
     void fail(QString);
     void recordCheck();
 };
-} // namespace jobs
+} // namespace ppm

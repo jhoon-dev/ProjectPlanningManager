@@ -1,5 +1,5 @@
 #include "application/Document.h"
-namespace jobs {
+namespace ppm {
 void Document::adoptProgressPolicy(ProgressPolicySelection selection) {
     requireEditable();
     if (selection.sourceDocumentId != project_->documentId || selection.sourceRevision != project_->revision)
@@ -38,4 +38,4 @@ void Document::clearProgressPolicy() {
     edit(std::move(p), "진척 정책 채택 해제");
     applyCalculation(std::move(computed));
 }
-} // namespace jobs
+} // namespace ppm

@@ -1,6 +1,6 @@
 #pragma once
 #include "calculation/Scheduler.h"
-namespace jobs {
+namespace ppm {
 using Money = std::optional<std::int64_t>;
 struct Evm {
     Money bac, pv, ev, ac, cv, sv, eac, etc;
@@ -49,4 +49,4 @@ std::vector<PlannedCostDay> plannedCostDays(const PlanInput &, const ScheduleRes
                                             const std::string &to, bool includeFixed = true);
 std::vector<PlannedCostDay> plannedCostDays(const Project &, const ScheduleResult &, const std::string &from,
                                             const std::string &to, bool includeFixed = true);
-} // namespace jobs
+} // namespace ppm

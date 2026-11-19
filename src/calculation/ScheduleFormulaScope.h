@@ -1,7 +1,7 @@
 #pragma once
 #include "domain/XmlSchedule.h"
 #include "calculation/Scheduler.h"
-namespace jobs {
+namespace ppm {
 enum class ScheduleFormulaMode { Inherit, Active, Plan };
 std::shared_ptr<const XmlScheduleValues> makeScheduleFormulaValues(const Project &, const ScheduleResult *,
                                                                    const ScheduleResult *remaining = nullptr);
@@ -18,4 +18,4 @@ public:
         return values_;
     }
 };
-} // namespace jobs
+} // namespace ppm

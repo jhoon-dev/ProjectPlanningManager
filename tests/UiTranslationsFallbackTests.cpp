@@ -9,7 +9,7 @@
 
 // Deliberately link the production installer without its resource bundle to
 // exercise a missing/corrupt catalog without a production-only test switch.
-int qInitResources_jobs_brand() {
+int qInitResources_ppm_brand() {
     return 1;
 }
 
@@ -19,14 +19,14 @@ private slots:
     void missingCatalogKeepsApplicationUsable() {
         QTest::ignoreMessage(QtWarningMsg,
                              "Cannot load the Korean Qt translation catalog; continuing with Qt's default language");
-        jobs::installUiTranslations(*qApp);
+        ppm::installUiTranslations(*qApp);
         QDialogButtonBox buttons(QDialogButtonBox::Close | QDialogButtonBox::Cancel);
         QCOMPARE(buttons.button(QDialogButtonBox::Close)->text(), QString("Close"));
         QSignalSpy rejected(&buttons, &QDialogButtonBox::rejected);
         buttons.button(QDialogButtonBox::Close)->click();
         QCOMPARE(rejected.count(), 1);
         QCOMPARE(QCoreApplication::translate("QPlatformTheme", "Discard"), QString("저장 안 함"));
-        jobs::installUiTranslations(*qApp);
+        ppm::installUiTranslations(*qApp);
         QCOMPARE(qApp->findChildren<QTranslator *>().size(), 2);
     }
 };

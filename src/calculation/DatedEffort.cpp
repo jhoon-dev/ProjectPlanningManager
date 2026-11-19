@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <map>
 #include <tuple>
-namespace jobs {
+namespace ppm {
 namespace {
 using Minute = std::int64_t;
 [[noreturn]] void invalid(const std::string &reason) {
@@ -139,4 +139,4 @@ TaskExecution::DatedResult TaskExecution::datedExecution(Minute local) const {
     datedCache_ = std::make_pair(local, result);
     return result;
 }
-} // namespace jobs
+} // namespace ppm

@@ -40,7 +40,7 @@
 #include <iostream>
 #include <cstdio>
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool value, const char *why) {
     if (!value)
         throw std::runtime_error(why);

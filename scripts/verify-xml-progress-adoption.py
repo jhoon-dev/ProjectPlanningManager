@@ -36,7 +36,7 @@ def duration(raw):
     assert sec%60==0
     return h*60+minute+sec//60
 tasks={text(t,'UID'):t for t in original.findall('p:Tasks/p:Task',ns)}
-mapping={m['xmlUid']:m['jobsId'] for m in conversion['mapping'] if m['kind']=='task'}
+mapping={m['xmlUid']:m['ppmId'] for m in conversion['mapping'] if m['kind']=='task'}
 selected=adoption['selected']
 assert len(selected)==len(native['progress'])==4
 assert len({e['id'] for e in native['progress']})==4
@@ -68,7 +68,7 @@ assert any('ActualCost' in d['path'] for d in conversion['diagnostics'])
 export=json.loads((args.root/'export-mapping.json').read_text(encoding='utf-8'))
 udf={m['externalId']:m for m in export['mapping'] if m['kind']=='udf'}
 field_names={f['id']:f['name'] for f in native['customFields']}
-ids={m['xmlUid']:m['jobsId'] for m in export['mapping'] if m['kind']=='task'}
+ids={m['xmlUid']:m['ppmId'] for m in export['mapping'] if m['kind']=='task'}
 result_xml=ET.parse(args.root/'fields.xml').getroot()
 xml_cells=missing=0
 for t in result_xml.findall('p:Tasks/p:Task',ns):
@@ -77,7 +77,7 @@ for t in result_xml.findall('p:Tasks/p:Task',ns):
     values={text(v,'FieldID'):text(v,'Value') for v in t.findall('p:ExtendedAttribute',ns)}
     for fid,m in udf.items():
         if m['scope']!='TASK':continue
-        name=field_names[m['jobsId']]
+        name=field_names[m['ppmId']]
         raw_value=values.get(fid)
         value=Decimal(raw_value) if raw_value is not None and name in ('AD','AW') else raw_value
         want=expected[ids[uid]][name]

@@ -1,6 +1,6 @@
 #pragma once
 #include "calculation/Reports.h"
-namespace jobs {
+namespace ppm {
 struct EvmBoundary {
     std::string stamp;
     bool inclusive = false, observed = true;
@@ -19,4 +19,4 @@ std::vector<PeriodEvmCurve> nativeEvmCurves(const Project &, const std::string &
                                             const std::vector<EvmBoundary> &,
                                             const std::optional<std::vector<std::string>> &scope = {});
 ProjectReport buildPeriodEvmReport(const Project &, const ReportOptions &, const std::string &bucket = "month");
-} // namespace jobs
+} // namespace ppm

@@ -25,7 +25,7 @@
 #include <algorithm>
 #include <unordered_map>
 #include <unordered_set>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -554,4 +554,4 @@ void ResourceViewDialog::exportView(bool pdf) {
         showEditorError(*message_, e);
     }
 }
-} // namespace jobs
+} // namespace ppm

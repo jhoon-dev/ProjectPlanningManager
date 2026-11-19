@@ -21,7 +21,7 @@ void check(bool value, const char *reason) {
 template <class F> void rejects(F call, const char *code) {
     try {
         call();
-    } catch (const jobs::AppError &error) {
+    } catch (const ppm::AppError &error) {
         check(error.code() == code, "unexpected workspace rejection code");
         return;
     }
@@ -49,9 +49,9 @@ int main(int argc, char **argv) {
     try {
         QTemporaryDir dir;
         check(dir.isValid(), "temporary directory");
-        jobs::JsonProjectStore files;
-        jobs::JsonWorkspaceStore store(files);
-        jobs::Workspace w;
+        ppm::JsonProjectStore files;
+        ppm::JsonWorkspaceStore store(files);
+        ppm::Workspace w;
         w.id = "workspace";
         const auto path = dir.filePath("MixedCase.ppmworkspace").toStdString();
         w.projects = {{"P", dir.filePath("Project.ppm").toStdString(), "Project"}};
@@ -73,11 +73,23 @@ int main(int argc, char **argv) {
         }
         check(loaded.workspace == w && loaded.fingerprint == fingerprint && loaded.path == files.normalizePath(path),
               "roundtrip changed workspace");
+        {
+            auto legacy = QJsonDocument::fromJson(read(path)).object();
+            legacy["format"] = "JOBS-WORKSPACE";
+            const auto oldPath = dir.filePath("legacy.ppmworkspace").toStdString();
+            const auto oldBytes = QJsonDocument(legacy).toJson();
+            write(oldPath, oldBytes);
+            check(store.load(oldPath).workspace == w && read(oldPath) == oldBytes,
+                  "legacy workspace migration changed data or old file");
+            check(QJsonDocument::fromJson(read(path)).object()["format"] == "PPM-WORKSPACE",
+                  "new workspace did not use PPM format");
+            check(QFile::remove(QString::fromStdString(oldPath)), "cleanup owned legacy workspace fixture");
+        }
         const auto bytes = read(path);
         const auto root = QJsonDocument::fromJson(bytes).object();
         check(root["payload"].toObject()["projects"].toArray()[0].toObject()["path"] == "Project.ppm",
               "path not relative");
-        check(jobs::decodeWorkspaceFile(bytes, dir.path()) == w, "memory/store decoder mismatch");
+        check(ppm::decodeWorkspaceFile(bytes, dir.path()) == w, "memory/store decoder mismatch");
         check(QDir(dir.path()).entryList({"*.ppmworkspace"}, QDir::Files) == QStringList{"MixedCase.ppmworkspace"},
               "workspace filename lowercased");
         rejects([&] { (void)store.save(path, w, {}); }, "WORKSPACE_FILE_EXISTS");
@@ -89,33 +101,33 @@ int main(int argc, char **argv) {
         rejects([&] { (void)store.save(path, w, fingerprint); }, "WORKSPACE_EXTERNAL_CHANGE");
         auto modified = root;
         modified["schemaVersion"] = 5;
-        rejects([&] { (void)jobs::decodeWorkspaceFile(QJsonDocument(modified).toJson(), dir.path()); },
+        rejects([&] { (void)ppm::decodeWorkspaceFile(QJsonDocument(modified).toJson(), dir.path()); },
                 "FILE_VERSION_UNSUPPORTED");
         modified = root;
         modified["sha256"] = "bad";
-        rejects([&] { (void)jobs::decodeWorkspaceFile(QJsonDocument(modified).toJson(), dir.path()); },
+        rejects([&] { (void)ppm::decodeWorkspaceFile(QJsonDocument(modified).toJson(), dir.path()); },
                 "FILE_INTEGRITY_FAILED");
         auto payload = root["payload"].toObject();
         payload["unknown"] = 1;
-        rejects([&] { (void)jobs::decodeWorkspaceFile(sign(root, payload), dir.path()); }, "WORKSPACE_INVALID");
+        rejects([&] { (void)ppm::decodeWorkspaceFile(sign(root, payload), dir.path()); }, "WORKSPACE_INVALID");
         payload = root["payload"].toObject();
         auto resources = payload["resources"].toArray();
         auto resource = resources[0].toObject();
         resource["maxUnits"] = 1.5;
         resources[0] = resource;
         payload["resources"] = resources;
-        rejects([&] { (void)jobs::decodeWorkspaceFile(sign(root, payload), dir.path()); }, "WORKSPACE_INVALID");
+        rejects([&] { (void)ppm::decodeWorkspaceFile(sign(root, payload), dir.path()); }, "WORKSPACE_INVALID");
         auto invalid = w;
         invalid.bindings.push_back(w.bindings[0]);
-        rejects([&] { jobs::validateWorkspace(invalid); }, "WORKSPACE_BINDING_INVALID");
+        rejects([&] { ppm::validateWorkspace(invalid); }, "WORKSPACE_BINDING_INVALID");
         invalid = w;
         invalid.projects.push_back(w.projects[0]);
-        rejects([&] { jobs::validateWorkspace(invalid); }, "WORKSPACE_DUPLICATE_PROJECT");
+        rejects([&] { ppm::validateWorkspace(invalid); }, "WORKSPACE_DUPLICATE_PROJECT");
         invalid = w;
         invalid.projects[0].path.clear();
         rejects([&] { (void)store.save(dir.filePath("Empty.ppmworkspace").toStdString(), invalid, {}); },
                 "WORKSPACE_INVALID");
-        rejects([&] { (void)jobs::decodeWorkspaceFile(QByteArray(8 * 1024 * 1024 + 1, ' '), dir.path()); },
+        rejects([&] { (void)ppm::decodeWorkspaceFile(QByteArray(8 * 1024 * 1024 + 1, ' '), dir.path()); },
                 "WORKSPACE_LIMIT");
         const auto boundaryPath = dir.filePath("Boundaries.ppmworkspace").toStdString();
         auto boundary = w;
@@ -124,14 +136,14 @@ int main(int argc, char **argv) {
         auto boundaryFingerprint = store.save(boundaryPath, boundary, {});
         check(store.load(boundaryPath).workspace == boundary, "long Unicode project/shared names failed to reopen");
         for (const auto capacity : {std::optional<int>{}, std::optional<int>{0}, std::optional<int>{100001},
-                                    std::optional<int>{jobs::maxSharedResourceUnits}}) {
+                                    std::optional<int>{ppm::maxSharedResourceUnits}}) {
             boundary.resources[0].maxUnits = capacity;
             boundary.resources[0].exceptions = {{"2026-10-26", capacity}};
             boundaryFingerprint = store.save(boundaryPath, boundary, boundaryFingerprint);
             check(store.load(boundaryPath).workspace == boundary, "shared capacity boundary failed to reopen");
         }
         const auto boundaryBytes = read(boundaryPath);
-        for (const auto capacity : {-1, jobs::maxSharedResourceUnits + 1}) {
+        for (const auto capacity : {-1, ppm::maxSharedResourceUnits + 1}) {
             invalid = boundary;
             invalid.resources[0].maxUnits = capacity;
             rejects([&] { (void)store.save(boundaryPath, invalid, boundaryFingerprint); }, "RESOURCE_INPUT_INVALID");
@@ -157,7 +169,7 @@ int main(int argc, char **argv) {
         for (int i = 0; i < 10000; ++i) {
             const auto date = QDate(2026, 1, 1).addDays(i).toString(Qt::ISODate).toStdString();
             invalid.resources[0].calendar.holidays.push_back(date);
-            invalid.resources[0].exceptions.push_back({date, jobs::maxSharedResourceUnits});
+            invalid.resources[0].exceptions.push_back({date, ppm::maxSharedResourceUnits});
         }
         const auto arrayPath = dir.filePath("ArrayLimits.ppmworkspace").toStdString();
         (void)store.save(arrayPath, invalid, {});
@@ -181,7 +193,7 @@ int main(int argc, char **argv) {
         std::cout << "PASS: workspace roundtrip, relative paths, checksum, version/field/size/reference validation, "
                      "lock and external-change protection\n";
     } catch (const std::exception &error) {
-        std::cerr << "FAIL: " << jobs::errorText(error) << '\n';
+        std::cerr << "FAIL: " << ppm::errorText(error) << '\n';
         return 1;
     }
 }

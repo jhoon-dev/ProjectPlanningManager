@@ -56,7 +56,7 @@ Windows 11 이상 관리자 PowerShell에서만 다음 경로를 사용한다. �
 ```powershell
 Add-AppxPackage -Path "C:\path\PPM-development-1.0.2.0-x64-REV.msix" -AllowUnsigned
 # 시작 메뉴: Project Planning Manager Development
-Get-AppxPackage -Name ToolMoa.JOBS.MsixDevelopment | Remove-AppxPackage
+Get-AppxPackage -Name ToolMoa.PPM.MsixDevelopment | Remove-AppxPackage
 ```
 
 CI의 `check-msix-lifecycle.ps1`은 probe 포함 개발 패키지 두 버전만 허용하며, 기존 개발 패키지가 설치되어 있으면 중단한다. 실제 package identity에서 생성/저장/열기/일정/undo/작업 영역/복구를 검사하고 버전 업데이트 후 상태를 다시 읽고 제거한다. 외부 문서 및 EXE판 상태의 보존도 검사한다. 실제 앱 UI 캡처와 결과 JSON은 CI artifact로 남긴다. 이 검사는 Store 승인을 뜻하지 않는다.

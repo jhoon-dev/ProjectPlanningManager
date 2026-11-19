@@ -1,7 +1,7 @@
 #pragma once
 #include "XmlPeriodActualFixture.h"
 #include "persistence/XmlPeriodAllocation.h"
-namespace jobs::test {
+namespace ppm::test {
 inline QByteArray xmlProportionalFixture() {
     Project p;
     p.documentId = "xml-proportional-source";
@@ -137,4 +137,4 @@ inline std::vector<XmlPeriodMapping> xmlProportionalMappings() {
             {"2/record-1", "NB", "NR2"},
             {"2/record-2", "NB", "NR2"}};
 }
-} // namespace jobs::test
+} // namespace ppm::test

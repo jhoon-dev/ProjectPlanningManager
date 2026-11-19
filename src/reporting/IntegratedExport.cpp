@@ -6,7 +6,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <sstream>
-namespace jobs {
+namespace ppm {
 namespace {
 ReportCell text(const std::string &s) {
     return {s, CellFormat::Text};
@@ -195,7 +195,7 @@ QByteArray integratedWorkspaceJson(const Workspace &w, const IntegratedResult &r
                                           : l.type == DependencyType::FF ? "FF"
                                                                          : "SF"},
                                  {"lagMinutes", qint64(l.lagMinutes)}});
-    QJsonObject output{{"contract", "jobs-integrated-workspace-v1"},
+    QJsonObject output{{"contract", "ppm-integrated-workspace-v1"},
                        {"workspaceId", q(w.id)},
                        {"generation", qint64(generation)},
                        {"policy", q(result.policy)},
@@ -232,4 +232,4 @@ QByteArray integratedWorkspaceJson(const Workspace &w, const IntegratedResult &r
     }
     return QJsonDocument(output).toJson();
 }
-} // namespace jobs
+} // namespace ppm

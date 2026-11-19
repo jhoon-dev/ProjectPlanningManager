@@ -1,7 +1,7 @@
 #include "application/Document.h"
 #include "calculation/ResourcePlanning.h"
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 void Document::resourcePlanning(ResourcePlanningSubmission s) {
     requireEditable();
     auto p = *project_;
@@ -99,4 +99,4 @@ void Document::resourcePlanning(ResourcePlanningSubmission s) {
     }
     edit(std::move(p), "자원 생산성·고유 곡선 변경");
 }
-} // namespace jobs
+} // namespace ppm

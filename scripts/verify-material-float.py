@@ -149,7 +149,7 @@ for name, schema in (("baseline84.ppm", 84), ("historical82.ppm", 82)):
     assert native["schemaVersion"] == schema
     digest = hashlib.sha256(json.dumps(native["payload"], ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
     assert digest == native["sha256"]
-    expected = "jobs-adopted-material-leveling-1.0" if schema == 84 else "jobs-adopted-leveling-1.8"
+    expected = "ppm-adopted-material-leveling-1.0" if schema == 84 else "ppm-adopted-leveling-1.8"
     assert native["payload"]["baselines"][0]["engineVersion"] == expected
 shared = json.loads((root / "shared.json").read_text(encoding="utf-8"))
 assert shared["floatPolicy"].endswith("/resource-material-float-v1")

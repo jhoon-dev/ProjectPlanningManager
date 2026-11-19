@@ -22,8 +22,8 @@ QByteArray bytes(const QString &path) {
         return {};
     return f.readAll();
 }
-jobs::SchedulePrintSource source(jobs::Document &doc) {
-    jobs::SchedulePrintSource s;
+ppm::SchedulePrintSource source(ppm::Document &doc) {
+    ppm::SchedulePrintSource s;
     s.project = doc.snapshot();
     s.session = doc.sessionGeneration();
     s.unsaved = !doc.revisionSaved();
@@ -45,14 +45,14 @@ jobs::SchedulePrintSource source(jobs::Document &doc) {
     s.selected.insert(s.rows[2].taskId);
     return s;
 }
-void openFixture(jobs::Document &doc, const QTemporaryDir &folder) {
+void openFixture(ppm::Document &doc, const QTemporaryDir &folder) {
     const auto input = QFINDTESTDATA("fixtures/native-history/outcome-summary-2026-11-17/review.ppm");
     QVERIFY(!input.isEmpty());
     QVERIFY(QFile::copy(input, folder.filePath("review.ppm")));
     doc.open(folder.filePath("review.ppm").toStdString());
 }
-jobs::SchedulePrintOptions meeting() {
-    jobs::SchedulePrintOptions o;
+ppm::SchedulePrintOptions meeting() {
+    ppm::SchedulePrintOptions o;
     o.font = QApplication::font();
     o.meetingSummary = true;
     o.tablePercent = 65;
@@ -73,13 +73,13 @@ private slots:
     }
     void compactFullAndNextWeekKeepFactsAndPageCount() {
         QTemporaryDir folder;
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         openFixture(doc, folder);
         const auto before = *doc.project();
         auto s = source(doc);
         auto o = meeting();
-        const auto layout = jobs::buildSchedulePrint(s, o);
+        const auto layout = ppm::buildSchedulePrint(s, o);
         QCOMPARE(layout.taskCount, std::size_t(5));
         QVERIFY(layout.pages.size() >= 2 && layout.pages.size() <= 3);
         QCOMPARE(layout.pages[0].columns.size(), std::size_t(6));
@@ -92,11 +92,11 @@ private slots:
         QCOMPARE(layout.rows[4].cells[4], QString("+5d (+40h)"));
         QVERIFY(layout.rows[0].cells[2] != "STALE");
         const auto full = folder.filePath("full.pdf");
-        QCOMPARE(jobs::exportSchedulePdf(layout, full), int(layout.pages.size()));
+        QCOMPARE(ppm::exportSchedulePdf(layout, full), int(layout.pages.size()));
         QVERIFY(bytes(full).startsWith("%PDF"));
         o.from = QDate(2026, 11, 23);
         o.to = QDate(2026, 11, 29);
-        const auto week = jobs::buildSchedulePrint(s, o);
+        const auto week = ppm::buildSchedulePrint(s, o);
         QCOMPARE(week.taskCount, std::size_t(5));
         QCOMPARE(week.pages.size(), layout.pages.size());
         QCOMPARE(week.pages[0].from, o.from);
@@ -104,16 +104,16 @@ private slots:
         QVERIFY(*doc.project() == before && !doc.dirty());
     }
     void missingBaselineInvalidScheduleAndHolidayVariance() {
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("미정", "2026-11-02", {"기간 미정"});
-        jobs::SchedulePrintSource s;
+        ppm::SchedulePrintSource s;
         s.project = doc.snapshot();
         s.generatedAt = "2026-11-18T00:00:00Z";
         s.printId = "missing";
         s.columns = {{"number", "번호", 36}, {"name", "작업", 110}};
         s.rows = {{doc.project()->tasks[0].id, 1, {"1", "기간 미정"}}};
-        const auto missing = jobs::buildSchedulePrint(s, meeting());
+        const auto missing = ppm::buildSchedulePrint(s, meeting());
         QCOMPARE(missing.rows[0].cells[2], QString("미정"));
         QCOMPARE(missing.rows[0].cells[3], QString("—"));
         QCOMPARE(missing.rows[0].cells[4], QString("—"));
@@ -126,23 +126,23 @@ private slots:
         p.tasks[0].durationMinutes = 960;
         // Use the same holiday calendar in the frozen baseline and current project.
         p.baselines[0].input.holidays = p.holidays;
-        s.project = std::make_shared<const jobs::Project>(p);
+        s.project = std::make_shared<const ppm::Project>(p);
         s.baselineId = QString::fromStdString(id);
-        const auto holiday = jobs::buildSchedulePrint(s, meeting());
+        const auto holiday = ppm::buildSchedulePrint(s, meeting());
         QCOMPARE(holiday.rows[0].cells[2], QString("2026-11-04 18:00"));
         QCOMPARE(holiday.rows[0].cells[4], QString("+1d (+8h)"));
     }
     void presetsExplicitScopeAndDocumentStayIndependent() {
         QTemporaryDir folder;
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         openFixture(doc, folder);
         const auto before = *doc.project();
         const auto disk = bytes(folder.filePath("review.ppm"));
         auto s = source(doc);
         s.rows = {s.rows[2]};
-        jobs::SchedulePrintDialog d(doc, s);
-        jobs::prepareEditorDialog(d);
+        ppm::SchedulePrintDialog d(doc, s);
+        ppm::prepareEditorDialog(d);
         d.show();
         auto *pdf = d.findChild<QPushButton *>("exportSchedulePdf");
         auto *preset = d.findChild<QComboBox *>("printPreset");

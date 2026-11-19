@@ -1,7 +1,7 @@
 #pragma once
 #include "domain/Diagnostics.h"
 
-namespace jobs {
+namespace ppm {
 enum class DependencyType { FS, SS, FF, SF };
 enum class ConstraintType { ASAP, ALAP, SNET, SNLT, FNET, FNLT, MSO, MFO };
 enum class TaskType { FixedDuration, FixedWork, FixedUnits };
@@ -49,4 +49,4 @@ constexpr bool dependencyToFinish(DependencyType value) {
         throw AppError(ErrorCode::DEPENDENCY_RULE_INVALID);
     return value == DependencyType::FF || value == DependencyType::SF;
 }
-} // namespace jobs
+} // namespace ppm

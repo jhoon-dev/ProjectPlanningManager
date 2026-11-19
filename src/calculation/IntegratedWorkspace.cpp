@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <map>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 using Key = std::pair<std::string, std::string>;
 [[noreturn]] void invalid(const std::string &reason) {
@@ -609,4 +609,4 @@ IntegratedResult calculateIntegratedWorkspace(const Workspace &w,
         return out;
     }
 }
-} // namespace jobs
+} // namespace ppm

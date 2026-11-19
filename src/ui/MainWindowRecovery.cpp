@@ -15,7 +15,7 @@
 #include <QFutureWatcher>
 #include <QtConcurrent>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 void MainWindow::updateHistoryActions() {
     const bool pending = editController_ && editController_->busy();
     undo_->setEnabled(pending || document_.canUndo());
@@ -149,4 +149,4 @@ void MainWindow::showRecovery(bool startup) {
         report(e);
     }
 }
-} // namespace jobs
+} // namespace ppm

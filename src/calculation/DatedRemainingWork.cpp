@@ -3,7 +3,7 @@
 #include <chrono>
 #include <cstdio>
 #include <map>
-namespace jobs {
+namespace ppm {
 namespace {
 using Minute = std::int64_t;
 [[noreturn]] void invalid(const std::string &message) {
@@ -203,4 +203,4 @@ RemainingWorkDescription describeRemainingWork(const Project &source, const std:
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

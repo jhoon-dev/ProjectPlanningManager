@@ -1,9 +1,9 @@
 #pragma once
 #include "application/Document.h"
 #include <QDialog>
-namespace jobs {
+namespace ppm {
 class ResourcePlanDialog final : public QDialog {
 public:
     explicit ResourcePlanDialog(Document &, QWidget *parent = nullptr);
 };
-} // namespace jobs
+} // namespace ppm

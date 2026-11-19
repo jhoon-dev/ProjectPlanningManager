@@ -11,18 +11,20 @@
 #include <QFileInfo>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 #include <QLockFile>
 #include <QRegularExpression>
 #include <QSaveFile>
 #include <QStandardPaths>
 #include <QUuid>
+#include <QTemporaryDir>
 #include <atomic>
 #include <mutex>
 #include <map>
 #include <algorithm>
 #include <cmath>
 #include <stdexcept>
-namespace jobs {
+namespace ppm {
 namespace {
 
 class Busy : public std::runtime_error {
@@ -39,10 +41,10 @@ bool uuid(const QString &s) {
     return !QUuid(s).isNull() && QUuid(s).toString(QUuid::WithoutBraces) == s;
 }
 QString name(std::uint64_t seq) {
-    return QString("checkpoint-%1.jobrecovery").arg(seq, 9, 10, QChar('0'));
+    return QString("checkpoint-%1.ppmrecovery").arg(seq, 9, 10, QChar('0'));
 }
 std::optional<std::uint64_t> sequence(const QString &n) {
-    const auto match = QRegularExpression("^checkpoint-([0-9]{9})\\.jobrecovery$").match(n);
+    const auto match = QRegularExpression("^checkpoint-([0-9]{9})\\.(?:ppmrecovery|jobrecovery)$").match(n);
     if (!match.hasMatch())
         return {};
     auto value = match.captured(1).toULongLong();
@@ -93,6 +95,13 @@ QString safeDirectory(const QString &root, const QString &id, bool create) {
 }
 QByteArray read(const QString &dir, std::uint64_t seq) {
     QFileInfo info(QDir(dir).filePath(name(seq)));
+    const QFileInfo legacy(QDir(dir).filePath(QString("checkpoint-%1.jobrecovery").arg(seq, 9, 10, QChar('0'))));
+    if (link(info) || link(legacy))
+        throw AppError(ErrorCode::FILE_JSONRECOVERYSTORE_012, {});
+    if (info.exists() && legacy.exists())
+        throw AppError(ErrorCode::FILE_JSONRECOVERYSTORE_012, {});
+    if (!info.exists())
+        info = legacy;
     if (link(info) || !info.isFile() || info.dir().canonicalPath() != dir)
         throw AppError(ErrorCode::FILE_JSONRECOVERYSTORE_012, {});
     QFile f(info.absoluteFilePath());
@@ -115,8 +124,8 @@ Record decode(const QByteArray &bytes, const QString &expectedSession, std::uint
         throw AppError(ErrorCode::FILE_JSONRECOVERYSTORE_015, {});
     auto root = json.object();
     keys(root, {"format", "schemaVersion", "complete", "payload", "sha256"});
-    if (root["format"] != "JOBS-RECOVERY" || root["schemaVersion"] != QJsonValue(1) ||
-        root["complete"] != QJsonValue(true) || !root["payload"].isObject())
+    if ((root["format"] != "PPM-RECOVERY" && root["format"] != "JOBS-RECOVERY") ||
+        root["schemaVersion"] != QJsonValue(1) || root["complete"] != QJsonValue(true) || !root["payload"].isObject())
         throw AppError(ErrorCode::FILE_JSONRECOVERYSTORE_016, {});
     auto p = root["payload"].toObject();
     if (root["sha256"] != QJsonValue(hash(QJsonDocument(p).toJson(QJsonDocument::Compact))))
@@ -158,7 +167,7 @@ QByteArray encode(const RecoverySnapshot &s, const QString &session, std::uint64
                   {"lastSavedRevision", s.lastSavedRevision ? QJsonValue(qint64(*s.lastSavedRevision)) : QJsonValue()},
                   {"projectSchema", nativeSchemaFor(s.project)},
                   {"project", json::encodeProject(s.project)}};
-    auto bytes = QJsonDocument(QJsonObject{{"format", "JOBS-RECOVERY"},
+    auto bytes = QJsonDocument(QJsonObject{{"format", "PPM-RECOVERY"},
                                            {"schemaVersion", 1},
                                            {"complete", true},
                                            {"payload", p},
@@ -374,6 +383,100 @@ JsonRecoveryStore::JsonRecoveryStore(QString root, std::function<void()> hook)
 QString JsonRecoveryStore::defaultDirectory() {
     return applicationStorage().recoveryDirectory;
 }
+void JsonRecoveryStore::migrateTo(const QString &destination) const {
+    if (!QFileInfo::exists(root_))
+        return;
+    if (link(QFileInfo(root_)) || !QFileInfo(root_).isDir() || link(QFileInfo(destination)) ||
+        QDir::cleanPath(QFileInfo(destination).absoluteFilePath()) == root_ || !QDir().mkpath(destination))
+        throw AppError(ErrorCode::FILE_OPERATION_FAILED, {"recovery migration directory"});
+    const QDir target(QFileInfo(destination).canonicalFilePath());
+    QLockFile migrationLock(target.filePath("brand-migration.lock"));
+    migrationLock.setStaleLockTime(0);
+    if (!migrationLock.tryLock(0))
+        throw AppError(ErrorCode::FILE_OPERATION_FAILED, {"recovery migration already running"});
+    const auto markerPath = target.filePath("brand-migration.json");
+    if (link(QFileInfo(markerPath)))
+        throw AppError(ErrorCode::FILE_OPERATION_FAILED, {"recovery migration marker"});
+    QJsonArray imported;
+    if (QFileInfo::exists(markerPath)) {
+        QFile marker(markerPath);
+        if (!marker.open(QIODevice::ReadOnly) || marker.size() > 1024 * 1024)
+            throw AppError(ErrorCode::FILE_OPERATION_FAILED, {"recovery migration marker read"});
+        QJsonParseError error;
+        const auto json = QJsonDocument::fromJson(marker.readAll(), &error);
+        if (error.error != QJsonParseError::NoError || !json.isArray())
+            throw AppError(ErrorCode::FILE_OPERATION_FAILED, {"recovery migration marker invalid"});
+        imported = json.array();
+    }
+    const auto directories = QDir(root_).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot | QDir::System);
+    if (directories.size() > 1000)
+        throw AppError(ErrorCode::FILE_OPERATION_FAILED, {"recovery migration session limit"});
+    for (const auto &directory : directories) {
+        if (!uuid(directory.fileName()) || imported.contains(directory.fileName()))
+            continue;
+        try {
+            // Keep the old session lease for the entire read, validate and publish operation.
+            auto lease = std::shared_ptr<RecoverySession>(new RecoverySession(root_, directory.fileName(), false));
+            const auto published = target.filePath(directory.fileName());
+            if (link(QFileInfo(published)) || (QFileInfo::exists(published) && !QFileInfo(published).isDir()))
+                throw AppError(ErrorCode::FILE_OPERATION_FAILED, {"recovery migration target link"});
+            if (!QFileInfo::exists(published)) {
+                QTemporaryDir stage(target.filePath(".brand-migration-XXXXXX"));
+                if (!stage.isValid())
+                    throw AppError(ErrorCode::FILE_OPERATION_FAILED, {"recovery migration stage"});
+                const auto files = QDir(directory.absoluteFilePath()).entryInfoList(QDir::Files | QDir::System);
+                if (files.size() > 1000)
+                    throw AppError(ErrorCode::FILE_OPERATION_FAILED, {"recovery migration generation limit"});
+                for (const auto &file : files) {
+                    const auto seq = sequence(file.fileName());
+                    if (!seq)
+                        continue;
+                    auto bytes = read(directory.canonicalFilePath(), *seq);
+                    try {
+                        const auto record = decode(bytes, directory.fileName(), *seq);
+                        bytes = encode(record.snapshot, record.session, record.sequence);
+                    } catch (const std::exception &) {
+                        // Keep corrupt generations visible as corrupt; never silently discard them.
+                    }
+                    QSaveFile output(QDir(stage.path()).filePath(name(*seq)));
+                    output.setDirectWriteFallback(false);
+                    if (!output.open(QIODevice::WriteOnly) || output.write(bytes) != bytes.size() || !output.commit())
+                        throw AppError(ErrorCode::FILE_OPERATION_FAILED, {"recovery migration write"});
+                }
+                if (!QDir().rename(stage.path(), published))
+                    throw AppError(ErrorCode::FILE_OPERATION_FAILED, {"recovery migration publish"});
+                stage.setAutoRemove(false);
+            } else {
+                auto targetLease =
+                    std::shared_ptr<RecoverySession>(new RecoverySession(target.path(), directory.fileName(), false));
+                const auto files = QDir(directory.absoluteFilePath()).entryInfoList(QDir::Files | QDir::System);
+                if (files.size() > 1000)
+                    throw AppError(ErrorCode::FILE_OPERATION_FAILED, {"recovery migration generation limit"});
+                for (const auto &file : files) {
+                    const auto seq = sequence(file.fileName());
+                    if (!seq)
+                        continue;
+                    auto expected = read(directory.canonicalFilePath(), *seq);
+                    try {
+                        const auto record = decode(expected, directory.fileName(), *seq);
+                        expected = encode(record.snapshot, record.session, record.sequence);
+                    } catch (const std::exception &) {
+                    }
+                    if (read(QFileInfo(published).canonicalFilePath(), *seq) != expected)
+                        throw AppError(ErrorCode::FILE_OPERATION_FAILED, {"recovery migration target conflict"});
+                }
+            }
+            imported.append(directory.fileName());
+            QSaveFile marker(markerPath);
+            marker.setDirectWriteFallback(false);
+            const auto bytes = QJsonDocument(imported).toJson(QJsonDocument::Compact);
+            if (!marker.open(QIODevice::WriteOnly) || marker.write(bytes) != bytes.size() || !marker.commit())
+                throw AppError(ErrorCode::FILE_OPERATION_FAILED, {"recovery migration marker write"});
+        } catch (const Busy &) {
+            qWarning("An active legacy recovery session will be migrated on a later launch");
+        }
+    }
+}
 std::shared_ptr<RecoverySession> JsonRecoveryStore::newSession() const {
     return std::shared_ptr<RecoverySession>(
         new RecoverySession(root_, QUuid::createUuid().toString(QUuid::WithoutBraces), true, beforePublish_));
@@ -468,4 +571,4 @@ void JsonRecoveryStore::discardSession(const QString &id) const {
     session->retire();
     session->cleanup();
 }
-} // namespace jobs
+} // namespace ppm

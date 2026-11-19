@@ -1,16 +1,16 @@
 #include "ui/ApplicationIcon.h"
 #include <QResource>
 
-static void initializeJobsBrand() {
-    Q_INIT_RESOURCE(jobs_brand);
+static void initializePpmBrand() {
+    Q_INIT_RESOURCE(ppm_brand);
 }
-namespace jobs {
+namespace ppm {
 QIcon applicationIcon() {
     static const bool initialized = [] {
-        initializeJobsBrand();
+        initializePpmBrand();
         return true;
     }();
     Q_UNUSED(initialized);
-    return QIcon(":/jobs/app.ico");
+    return QIcon(":/ppm/app.ico");
 }
-} // namespace jobs
+} // namespace ppm

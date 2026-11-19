@@ -10,7 +10,7 @@
 #include <QVBoxLayout>
 #include <QtConcurrent/QtConcurrentRun>
 
-namespace jobs {
+namespace ppm {
 namespace {
 class Progress final : public QDialog {
 public:
@@ -115,4 +115,4 @@ bool runExchangeOperation(QWidget *parent, Document &document, const QString &la
         throw AppError(ErrorCode::EXCHANGE_SOURCE_CHANGED);
     return !result.cancelled && (publishing || !control->cancelRequested.load());
 }
-} // namespace jobs
+} // namespace ppm

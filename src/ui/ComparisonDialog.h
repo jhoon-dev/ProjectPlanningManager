@@ -5,7 +5,7 @@ class QComboBox;
 class QLabel;
 class QTableWidget;
 class QPlainTextEdit;
-namespace jobs {
+namespace ppm {
 class ComparisonDialog final : public QDialog {
 public:
     ComparisonDialog(Document &document, const std::string &baselineId, QWidget *parent = nullptr);
@@ -25,4 +25,4 @@ private:
     void recalculate();
     void display(const ComparisonReport &report);
 };
-} // namespace jobs
+} // namespace ppm

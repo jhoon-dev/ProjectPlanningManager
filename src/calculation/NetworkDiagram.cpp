@@ -4,7 +4,7 @@
 #include <deque>
 #include <limits>
 #include <stdexcept>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void fail(const char *text) {
     throw std::runtime_error(text);
@@ -313,4 +313,4 @@ NetworkWindow networkWindow(const NetworkGraph &g, const NetworkQuery &q,
         }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

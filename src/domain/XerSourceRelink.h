@@ -1,6 +1,6 @@
 #pragma once
 #include "domain/XerFinancialMerge.h"
-namespace jobs {
+namespace ppm {
 struct XerRelinkCandidate {
     XerFinancialSnapshot financials;
     std::vector<XerFinancialAllocation> allocations;
@@ -18,4 +18,4 @@ XerRelinkCandidate buildXerRelinkCandidate(const XerFinancialSnapshot &previous,
 Project projectForXerRelink(const Project &, const XerRelinkAudit &);
 XerRelinkCandidate validateXerRelinkRevision(const Project &, const XerFinancialSnapshot &,
                                              const std::vector<XerFinancialAllocation> &, const XerFinancialRevision &);
-} // namespace jobs
+} // namespace ppm

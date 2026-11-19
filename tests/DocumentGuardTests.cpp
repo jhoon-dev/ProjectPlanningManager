@@ -13,7 +13,7 @@ void check(bool condition, const std::string &message) {
     if (!condition)
         throw std::runtime_error(message);
 }
-class CountingStore final : public jobs::ProjectStore {
+class CountingStore final : public ppm::ProjectStore {
 public:
     mutable std::array<unsigned, 6> calls{};
     std::string newId() const override {
@@ -28,40 +28,40 @@ public:
         ++calls[5];
         return store_.sameFile(left, right);
     }
-    std::unique_ptr<jobs::WriteLease> lock(const std::string &path) override {
+    std::unique_ptr<ppm::WriteLease> lock(const std::string &path) override {
         ++calls[1];
         return store_.lock(path);
     }
-    jobs::StoredProject load(const std::string &path) const override {
+    ppm::StoredProject load(const std::string &path) const override {
         ++calls[2];
         return store_.load(path);
     }
-    std::string save(const std::string &path, const jobs::Project &project, const std::string &fingerprint) override {
+    std::string save(const std::string &path, const ppm::Project &project, const std::string &fingerprint) override {
         ++calls[3];
         return store_.save(path, project, fingerprint);
     }
 
 private:
-    jobs::JsonProjectStore store_;
+    ppm::JsonProjectStore store_;
 };
 struct Case {
     const char *name;
-    std::function<void(jobs::Document &)> call;
-    jobs::ErrorCode code = jobs::ErrorCode::DOCUMENT_NOT_EDITABLE;
+    std::function<void(ppm::Document &)> call;
+    ppm::ErrorCode code = ppm::ErrorCode::DOCUMENT_NOT_EDITABLE;
 };
-template <class F> void unchanged(jobs::Document &doc, CountingStore &store, F call) {
+template <class F> void unchanged(ppm::Document &doc, CountingStore &store, F call) {
     const auto root = doc.snapshot();
     const auto value = root ? std::optional{*root} : std::nullopt;
     const auto state =
         std::tuple{doc.dirty(),        doc.readOnly(), doc.sessionGeneration(), doc.calculationGeneration(),
                    doc.historyBytes(), doc.canUndo(),  doc.canRedo(),           doc.undoLabel(),
                    doc.redoLabel(),    doc.path(),     doc.historyNotice()};
-    const auto tasks = doc.calculation() ? doc.calculation()->tasks : std::vector<jobs::TaskSchedule>{};
+    const auto tasks = doc.calculation() ? doc.calculation()->tasks : std::vector<ppm::TaskSchedule>{};
     const bool hasCalculation = doc.calculation().has_value();
-    const auto status = hasCalculation ? doc.calculation()->status : jobs::CalculationStatus::Stale;
+    const auto status = hasCalculation ? doc.calculation()->status : ppm::CalculationStatus::Stale;
     const auto calls = store.calls;
     unsigned events = 0;
-    const auto token = doc.subscribe([&](jobs::Document::Event) { ++events; });
+    const auto token = doc.subscribe([&](ppm::Document::Event) { ++events; });
     call();
     doc.unsubscribe(token);
     check(events == 0, "rejected edit emitted an event");
@@ -72,19 +72,19 @@ template <class F> void unchanged(jobs::Document &doc, CountingStore &store, F c
                               doc.historyBytes(), doc.canUndo(), doc.canRedo(), doc.undoLabel(), doc.redoLabel(),
                               doc.path(), doc.historyNotice()},
           "rejected edit changed document state/history");
-    check((doc.calculation() ? doc.calculation()->tasks : std::vector<jobs::TaskSchedule>{}) == tasks &&
+    check((doc.calculation() ? doc.calculation()->tasks : std::vector<ppm::TaskSchedule>{}) == tasks &&
               doc.calculation().has_value() == hasCalculation &&
               (!hasCalculation || doc.calculation()->status == status),
           "rejected edit changed calculation");
 }
-void rejected(jobs::Document &doc, CountingStore &store, const Case &test) {
+void rejected(ppm::Document &doc, CountingStore &store, const Case &test) {
     unchanged(doc, store, [&] {
         bool failed = false;
         try {
             test.call(doc);
-        } catch (const jobs::AppError &error) {
+        } catch (const ppm::AppError &error) {
             failed = true;
-            check(error.code() == jobs::errorCodeToken(test.code),
+            check(error.code() == ppm::errorCodeToken(test.code),
                   std::string(test.name) + ": wrong rejection priority/code");
         }
         check(failed, std::string(test.name) + ": edit was accepted");
@@ -99,14 +99,14 @@ int main(int argc, char **argv) {
         CountingStore store;
         const auto path = directory.filePath("Guard.ppm").toStdString();
         {
-            jobs::Document source(store);
+            ppm::Document source(store);
             source.create("Guard fixture", "2026-10-26", {"Task"});
             source.setDuration(0, 60);
             source.saveAs(path);
         }
-        jobs::Document closed(store), readOnly(store);
+        ppm::Document closed(store), readOnly(store);
         readOnly.open(path, true);
-        readOnly.applyCalculation(jobs::calculate(*readOnly.project()));
+        readOnly.applyCalculation(ppm::calculate(*readOnly.project()));
         const std::vector<Case> cases{
             {"renameTask", [](auto &d) { d.renameTask(9999, ""); }},
             {"addTask", [](auto &d) { d.addTask(""); }},
@@ -116,15 +116,14 @@ int main(int argc, char **argv) {
             {"removeWbs", [](auto &d) { d.removeWbs("missing"); }},
             {"assignWbs", [](auto &d) { d.assignWbs(9999, "missing"); }},
             {"setDuration", [](auto &d) { d.setDuration(9999, -1); }},
-            {"setTaskEffort",
-             [](auto &d) { d.setTaskEffort(9999, static_cast<jobs::TaskType>(-1), true, {}, {}, {}); }},
+            {"setTaskEffort", [](auto &d) { d.setTaskEffort(9999, static_cast<ppm::TaskType>(-1), true, {}, {}, {}); }},
             {"setPredecessors", [](auto &d) { d.setPredecessors(9999, {"missing"}); }},
             {"setDependencies",
-             [](auto &d) { d.setDependencies(9999, {{"missing", static_cast<jobs::DependencyType>(-1), 0}}); }},
+             [](auto &d) { d.setDependencies(9999, {{"missing", static_cast<ppm::DependencyType>(-1), 0}}); }},
             {"putCalendar", [](auto &d) { (void)d.putCalendar({}); }},
             {"removeCalendar", [](auto &d) { d.removeCalendar("missing"); }},
             {"setTaskCalendar", [](auto &d) { d.setTaskCalendar(9999, "missing"); }},
-            {"setTaskTiming", [](auto &d) { d.setTaskTiming(9999, static_cast<jobs::ConstraintType>(-1), {}, {}); }},
+            {"setTaskTiming", [](auto &d) { d.setTaskTiming(9999, static_cast<ppm::ConstraintType>(-1), {}, {}); }},
             {"setHolidays", [](auto &d) { d.setHolidays({"invalid"}); }},
             {"setStatusAt", [](auto &d) { d.setStatusAt("invalid"); }},
             {"appendBaseline", [](auto &d) { (void)d.appendBaseline({}); }},
@@ -139,26 +138,26 @@ int main(int argc, char **argv) {
             {"removeTasks", [](auto &d) { d.removeTasks({}); }},
             {"duplicateTasks", [](auto &d) { (void)d.duplicateTasks({}); }},
             {"editTasks", [](auto &d) { d.editTasks({}); }},
-            {"makeEditRequest", [](auto &d) { (void)d.makeEditRequest(jobs::DurationEdit{"missing", -1}); }},
-            {"recordProgress", [](auto &d) { d.recordProgress({}); }, jobs::ErrorCode::STATUS_DATE_REQUIRED},
-            {"recordCost", [](auto &d) { d.recordCost({}); }, jobs::ErrorCode::COST_STATUS_DATE_REQUIRED},
+            {"makeEditRequest", [](auto &d) { (void)d.makeEditRequest(ppm::DurationEdit{"missing", -1}); }},
+            {"recordProgress", [](auto &d) { d.recordProgress({}); }, ppm::ErrorCode::STATUS_DATE_REQUIRED},
+            {"recordCost", [](auto &d) { d.recordCost({}); }, ppm::ErrorCode::COST_STATUS_DATE_REQUIRED},
             {"editGantt", [](auto &d) { d.editGantt("", 0, "", false, "invalid"); },
-             jobs::ErrorCode::GANTT_REQUIRES_CURRENT_PLAN},
-            {"save", [](auto &d) { d.save(); }, jobs::ErrorCode::LEGACY_REQUIRES_SAVE_AS},
+             ppm::ErrorCode::GANTT_REQUIRES_CURRENT_PLAN},
+            {"save", [](auto &d) { d.save(); }, ppm::ErrorCode::LEGACY_REQUIRES_SAVE_AS},
             {"recoverySnapshotRequest", [](auto &d) { (void)d.recoverySnapshotRequest("invalid"); },
-             jobs::ErrorCode::RECOVERY_SNAPSHOT_INVALID}};
+             ppm::ErrorCode::RECOVERY_SNAPSHOT_INVALID}};
         for (const auto &test : cases) {
             rejected(closed, store, test);
             rejected(readOnly, store, test);
         }
-        jobs::Document writable(store);
+        ppm::Document writable(store);
         writable.open(path);
-        auto prepared = jobs::Document::prepareEdit(
-            writable.makeEditRequest(jobs::DurationEdit{writable.project()->tasks[0].id, 120}),
-            std::make_shared<jobs::CalculationControl>());
+        auto prepared = ppm::Document::prepareEdit(
+            writable.makeEditRequest(ppm::DurationEdit{writable.project()->tasks[0].id, 120}),
+            std::make_shared<ppm::CalculationControl>());
         for (auto *target : {&closed, &readOnly})
             unchanged(*target, store, [&] {
-                check(target->applyPreparedEdit(*prepared) == jobs::EditState::Stale,
+                check(target->applyPreparedEdit(*prepared) == ppm::EditState::Stale,
                       "prepared edit bypassed authorization");
             });
         writable.renameTask(0, "Writable");

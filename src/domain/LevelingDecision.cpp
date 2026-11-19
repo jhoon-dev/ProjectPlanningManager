@@ -8,7 +8,7 @@
 #include <cstdio>
 #include <set>
 
-namespace jobs {
+namespace ppm {
 namespace {
 void invalid() {
     throw AppError(ErrorCode::LEVEL_DECISION_INVALID);
@@ -113,4 +113,4 @@ void validateLevelingDecisions(const Project &p) {
     if (previous && (p.planLeveling != previous->afterPlan || p.remainingLeveling != previous->afterRemaining))
         invalid();
 }
-} // namespace jobs
+} // namespace ppm

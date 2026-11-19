@@ -2,7 +2,7 @@
 #include "calculation/Resources.h"
 #include "calculation/LevelingFloat.h"
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 LevelingResult levelProgressPolicy(const Project &p, const std::string &priority, int horizon) {
     EvaluationScope evaluation;
     LevelingResult out;
@@ -49,4 +49,4 @@ LevelingResult levelProgressPolicy(const Project &p, const std::string &priority
     out.after = resourceLoad(p, out.leveled);
     return out;
 }
-} // namespace jobs
+} // namespace ppm

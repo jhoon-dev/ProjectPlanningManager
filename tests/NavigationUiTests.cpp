@@ -27,19 +27,19 @@ QByteArray bytes(const QString &path) {
     return f.readAll();
 }
 void capture(QWidget &widget, const char *name) {
-    const auto folder = qEnvironmentVariable("JOBS_NAV_AUDIT_DIR");
+    const auto folder = qEnvironmentVariable("PPM_NAV_AUDIT_DIR");
     if (folder.isEmpty())
         return;
     QVERIFY(QDir().mkpath(folder));
     QTest::qWait(60);
     QVERIFY(widget.grab().save(QDir(folder).filePath(QString::fromLatin1(name) + ".png")));
 }
-void fixture(jobs::Document &doc, const QTemporaryDir &folder) {
+void fixture(ppm::Document &doc, const QTemporaryDir &folder) {
     const auto input = QFINDTESTDATA("fixtures/native-history/outcome-summary-2026-11-17/review.ppm");
     QVERIFY(!input.isEmpty());
     QVERIFY(QFile::copy(input, folder.filePath("review.ppm")));
     doc.open(folder.filePath("review.ppm").toStdString());
-    doc.applyCalculation(jobs::calculate(*doc.project()));
+    doc.applyCalculation(ppm::calculate(*doc.project()));
 }
 } // namespace
 class NavigationUiTests : public QObject {
@@ -47,19 +47,19 @@ class NavigationUiTests : public QObject {
 private slots:
     void weeklyReadOnlyColumnsScopeFinishAndRestoration() {
         QTemporaryDir folder;
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         fixture(doc, folder);
         const auto before = *doc.project();
         const auto disk = bytes(folder.filePath("review.ppm"));
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.resize(1562, 932);
         window.show();
         auto *table = taskTable(window);
-        auto *model = dynamic_cast<jobs::TaskTableModel *>(table->model());
+        auto *model = dynamic_cast<ppm::TaskTableModel *>(table->model());
         QAbstractItemModelTester modelContract(model, QAbstractItemModelTester::FailureReportingMode::QtTest);
         auto *preset = window.findChild<QComboBox *>("taskColumnPreset");
-        auto *gantt = dynamic_cast<jobs::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
+        auto *gantt = dynamic_cast<ppm::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
         QTRY_COMPARE(model->rowCount(), 5);
         const auto originalColumns = table->horizontalHeader()->saveState();
         preset->setCurrentIndex(2);
@@ -108,7 +108,7 @@ private slots:
                     scope->toolTip().contains("간트 표시 완료 2026-11-19 18:00"));
         capture(window, "03b-different-displayed-and-project-finish");
         const auto captured =
-            jobs::captureSchedulePrint(doc, *table, "표시 1개", QString::fromStdString(before.baselines[0].id));
+            ppm::captureSchedulePrint(doc, *table, "표시 1개", QString::fromStdString(before.baselines[0].id));
         for (const auto &column : captured.columns)
             QVERIFY(!column.key.startsWith('$'));
         preset->setCurrentIndex(3);
@@ -122,10 +122,10 @@ private slots:
         QVERIFY(*doc.project() == before && !doc.dirty() && bytes(folder.filePath("review.ppm")) == disk);
     }
     void resourceGroupsKeepEveryActionAndExistingShortcuts() {
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("메뉴 확인", "2026-11-02", {"작업"});
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         auto *menu = window.findChild<QMenu *>("resourceMenu");
         QVERIFY(menu);
         std::set<std::string> names;
@@ -145,7 +145,7 @@ private slots:
         }
         QCOMPARE(actions, 17);
         QCOMPARE(names.size(), std::size_t(17));
-        if (!qEnvironmentVariable("JOBS_NAV_AUDIT_DIR").isEmpty()) {
+        if (!qEnvironmentVariable("PPM_NAV_AUDIT_DIR").isEmpty()) {
             window.show();
             menu->popup(window.mapToGlobal(QPoint(20, 40)));
             capture(*menu, "07-resource-menu");
@@ -163,12 +163,12 @@ private slots:
     }
     void baselineMissingAndStaleResultsDoNotInventVariance() {
         QTemporaryDir folder;
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         fixture(doc, folder);
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.show();
-        auto *model = dynamic_cast<jobs::TaskTableModel *>(taskTable(window)->model());
+        auto *model = dynamic_cast<ppm::TaskTableModel *>(taskTable(window)->model());
         window.findChild<QComboBox *>("taskColumnPreset")->setCurrentIndex(2);
         const auto delta = model->columnForKey("$finishVariance"), base = model->columnForKey("$baselineFinish");
         auto *choice = window.findChild<QComboBox *>("baselineChoice");

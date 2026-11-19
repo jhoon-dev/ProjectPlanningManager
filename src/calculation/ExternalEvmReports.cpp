@@ -2,7 +2,7 @@
 #include "domain/ExternalEvm.h"
 #include <algorithm>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 ReportCell text(const std::string &s) {
     return {s, CellFormat::Text};
@@ -113,4 +113,4 @@ void appendExternalEvmTables(ProjectReport &report, const Project &p,
             throw AppError(ErrorCode::REPORT_CELL_LIMIT);
     }
 }
-} // namespace jobs
+} // namespace ppm

@@ -162,7 +162,7 @@ XMLR 최종 [검증](validation/xml-remaining-references-2026-11-12/README.md): 
 
 2026-11-03 기간별 실제 입력: `period_actual_contract` / `period_actual_ui`는 누계 포함 배분·불변 정정·과거/미래 대사·정밀도·schema 11/복구·원자적 worker 제출·취소/session 교체를 검증한다. native writer는 원장 있으면 11, 분류만 있으면 10, 둘 다 없으면 9다. 독립 출력 검사는 `scripts/verify-period-actual-exports.py`다.
 
-2026-11-03 [시간축 Usage](timephased-usage.md) 조회 증분은 `jobs_usage_tests`/`timephased_usage_contract`, `jobs_usage_ui_tests`/`timephased_usage_ui`로 검증한다. `scripts/verify-usage-exports.py`는 openpyxl/pypdf로 직접 생성한 일별 명세와 실제 UI 버튼이 생성한 주별 XLSX를 대조한다. 파생 조회만 추가하므로 새 저장 schema나 영속 실적 모델은 추가하지 않는다.
+2026-11-03 [시간축 Usage](timephased-usage.md) 조회 증분은 `ppm_usage_tests`/`timephased_usage_contract`, `ppm_usage_ui_tests`/`timephased_usage_ui`로 검증한다. `scripts/verify-usage-exports.py`는 openpyxl/pypdf로 직접 생성한 일별 명세와 실제 UI 버튼이 생성한 주별 XLSX를 대조한다. 파생 조회만 추가하므로 새 저장 schema나 영속 실적 모델은 추가하지 않는다.
 
 2026-10-26 사용자 요청에 따른 구현 착수. PRD-01(초안 입력 일부), PRD-02(WBS·표·간트 일부), PRD-03(기본 FS CPM), PRD-04/05(기준선·실적·편차 일부), PRD-08,
 DESK-01/03/04/05 및 FILE-01/02/03/05/06/07/09의 초기 수직 흐름이다.
@@ -170,13 +170,13 @@ DESK-01/03/04/05 및 FILE-01/02/03/05/06/07/09의 초기 수직 흐름이다.
 
 ## 구성
 
-- `jobs_domain`: 표준 C++20 프로젝트·작업·WBS·기준선·실적 원장·자원/배정·불변 시나리오·날짜·revision 검증 및 계층 탐색. Qt 의존 없음.
-- `jobs_calculation`: 표준 C++20 FS0 CPM, 달력, retained remaining 예측, 기준선 준비/검증, 계획/예측 비교, 자원 수요/가용량 및 비분할 직렬 평준화. Qt 의존 없음.
-- `jobs_application`: 문서 세션, 생성/열기/편집/저장/사본, 추상 저장 포트.
-- `jobs_persistence`: Qt Core JSON, checksum, 잠금, 외부 변경 감지, 원자적 교체.
+- `ppm_domain`: 표준 C++20 프로젝트·작업·WBS·기준선·실적 원장·자원/배정·불변 시나리오·날짜·revision 검증 및 계층 탐색. Qt 의존 없음.
+- `ppm_calculation`: 표준 C++20 FS0 CPM, 달력, retained remaining 예측, 기준선 준비/검증, 계획/예측 비교, 자원 수요/가용량 및 비분할 직렬 평준화. Qt 의존 없음.
+- `ppm_application`: 문서 세션, 생성/열기/편집/저장/사본, 추상 저장 포트.
+- `ppm_persistence`: Qt Core JSON, checksum, 잠금, 외부 변경 감지, 원자적 교체.
 - `JsonRecoveryStore`: 사용자 로컬 복구 세션/세대, 완료·해시 검증, 프로세스 잠금, 원본 상태/변경 미리보기. `AutoSaveController`가 입력 스냅샷을 백그라운드에서 기록한다.
-- `jobs_reporting`: Qt Gui 기반 숫자/텍스트 표시·공통 추이, 공개 OOXML XLSX와 페이지를 나누는 PDF 출력. 외부 런타임/Office 라이브러리 없음.
-- `jobs_ui`: Qt Widgets WBS·표·간트, 기준선/상태일/실적 대화상자, 자원 등록/배정·비동기 부하/시나리오 A/B 비교, 변경 상세, 미저장 변경 확인.
+- `ppm_reporting`: Qt Gui 기반 숫자/텍스트 표시·공통 추이, 공개 OOXML XLSX와 페이지를 나누는 PDF 출력. 외부 런타임/Office 라이브러리 없음.
+- `ppm_ui`: Qt Widgets WBS·표·간트, 기준선/상태일/실적 대화상자, 자원 등록/배정·비동기 부하/시나리오 A/B 비교, 변경 상세, 미저장 변경 확인.
 
 기간 미정(null)과 마일스톤(0분)을 구분한다. 기간·FS 선행·휴일을 입력하면 F9로
 기간 중심 논리 일정을 계산한다. F9는 기본적으로 논리 일정을 계산하며 명시적 평준화 채택이 있으면 기록된 정책으로 재생한다. 자원 메뉴에서 별도로 배정·일별 부하와 평준화 시나리오를 비교한다.
@@ -257,7 +257,7 @@ schema 1~8 원본 덮어쓰기는 거절한다. 편집 후 저장하면 다른 �
 
 ## 검증 범위
 
-`jobs_file_tests`는 실제 임시 파일로 생성/편집/revision/재열기, Unicode 경로·데이터,
+`ppm_file_tests`는 실제 임시 파일로 생성/편집/revision/재열기, Unicode 경로·데이터,
 사본의 ID/계보·원본 bytes 보존, 중복 writer 잠금, 읽기 전용 사본, 외부 변경 거절,
 JSON 손상/checksum/신버전/알 수 없는 필드/중복 ID, 열기·저장 실패 시 세션 보존,
 단일 파일 복사, 계산 입력 왕복, revision/문서 ID가 다른 결과의 STALE 처리,
@@ -267,20 +267,20 @@ GUI 수동 점검: 새로 만들기→작업 목록 입력→저장→작업명 
 저장·버리기·취소→다른 이름 저장→원본 재열기. 두 앱으로 같은 파일 열기와 읽기 전용 사본도 확인한다.
 실제 OS 간 전달, 강제종료·디스크 부족·장치 제거, 접근성/IME/대용량 성능 시험은 미완료다.
 
-`jobs_ui_tests`는 offscreen Qt Widgets 환경에서 새 프로젝트 대화상자·작업 목록 입력·표 편집·
+`ppm_ui_tests`는 offscreen Qt Widgets 환경에서 새 프로젝트 대화상자·작업 목록 입력·표 편집·
 저장 대화상자·종료 취소·종료 시 저장, 기간·선행·휴일 입력, 비동기 계산·계산 중 편집,
 누락/순환/오래된 계산의 날짜 숨김과 재계산을 자동 검사한다. 네이티브 파일 대화상자와 실제 데스크톱
 화면의 수동 검증을 대신하지 않는다.
 
-`jobs_wbs_tests`는 F11 합계 변경·ID/그래프/날짜 보존, 중첩 그룹·이동·빈 삭제,
+`ppm_wbs_tests`는 F11 합계 변경·ID/그래프/날짜 보존, 중첩 그룹·이동·빈 삭제,
 미정 기간·오래된 집계·부모 순환/누락·원자적 편집 거절·읽기 전용·깊이 2천 계층을 검사한다.
-`jobs_wbs_gantt_ui_tests`는 필터와 프로젝트 행 번호, 필터된 편집, 작업/하위 WBS 이동,
+`ppm_wbs_gantt_ui_tests`는 필터와 프로젝트 행 번호, 필터된 편집, 작업/하위 WBS 이동,
 추가/이름 변경/삭제, 간트 막대·마일스톤·FS 링크·상호 선택·배율·스크롤·오래된 막대 숨김을 검사한다.
 
-`jobs_tracking_tests`는 F09의 +8h·기준선 불변/버전·계획/예측 분리, F08 잔여 논리, 완료 실제 고정,
+`ppm_tracking_tests`는 F09의 +8h·기준선 불변/버전·계획/예측 분리, F08 잔여 논리, 완료 실제 고정,
 상태일 조회·과거일 정정·잘못된 보고 거절·미보고/미정·읽기 전용을 검사한다.
-`jobs_tracking_file_tests`는 기준선/실적 원장 왕복·사본의 원본 계보·달력 불변·기준선 재계산 무결성·잘못된 원장·schema 3→5 사본 저장을 검사한다.
-`jobs_tracking_ui_tests`는 기준선/상태일/실적/비교 대화상자, +8h 표시·미보고 coverage·회색 기준선 선택,
+`ppm_tracking_file_tests`는 기준선/실적 원장 왕복·사본의 원본 계보·달력 불변·기준선 재계산 무결성·잘못된 원장·schema 3→5 사본 저장을 검사한다.
+`ppm_tracking_ui_tests`는 기준선/상태일/실적/비교 대화상자, +8h 표시·미보고 coverage·회색 기준선 선택,
 모순 보고 오류·정정 이력·새 기준선 버전·저장/재열기를 검사한다.
 
 ## 구현 이력과 당시 실행 증거 · 2026-10-26 이후
@@ -314,7 +314,7 @@ macOS 및 MSVC 검증은 GitHub Actions에서 별도 추적한다.
 원가/EVM 증분의 로컬 Release 전체 12/12와 Windows 네이티브 원가 화면 테스트를 통과했다.
 단가·F10 EVM 표·PV/EV/AC 추이의 한글/금액 표시와 기존 자원 화면의 단가 보존을 확인했다.
 
-보고서 증분은 `reports_export`, `reports_ui`를 더해 CTest 14개로 확장했다. `jobs_calculation`의 표준 C++ 보고서 스냅샷을 대시보드/표·두 출력기가 공유하며 설정은 `.ppm` 입력을 바꾸지 않는다. Qt Gui는 Widgets 의존 모듈이므로 별도 Qt 패키지 설치가 필요하지 않다.
+보고서 증분은 `reports_export`, `reports_ui`를 더해 CTest 14개로 확장했다. `ppm_calculation`의 표준 C++ 보고서 스냅샷을 대시보드/표·두 출력기가 공유하며 설정은 `.ppm` 입력을 바꾸지 않는다. Qt Gui는 Widgets 의존 모듈이므로 별도 Qt 패키지 설치가 필요하지 않다.
 [대시보드·보고서·출력 계약](reports-export.md)에 필터와 집계 범위·용지/글자 크기·한도·후속 범위를 기록한다.
 
 로컬 Release 전체 14/14, Windows 네이티브 보고서 UI와 출력 시험을 통과했다. openpyxl/pypdf로 ZIP/숫자/미정/출처, PDF 크기·본문·긴 행 700구간과 마지막 표식을 독립 대조했다. 엑셀 14개 시트와 PDF 페이지를 렌더링해 한글/줄바꿈/정렬을 확인했다. 독립 재열기 검사 스크립트는 `scripts/verify-report-fixtures.py build`이며 Python 의존성은 개발/CI에만 사용한다. Windows/macOS CI에서도 CTest 뒤 같은 파일 검증을 실행한다.
@@ -358,7 +358,7 @@ Primavera XER 증분은 PRD XER-01~04를 먼저 정의하고 `persistence/Primav
 
 ## 일정표·간트 인쇄 (2026-11-03)
 
-`jobs_reporting/SchedulePrint`는 새 전체 계산→표/막대/출처→가로 열/기간·세로 행 조각 페이지를 준비하며 72pt 좌표와 고정 줄바꿈을 모든 장치에 공용한다. `jobs_ui/SchedulePrintDialog`는 Qt PrintSupport의 네이티브 프린터 선택과 worker 출력, 단일 페이지 화면 렌더링을 연결한다. CMake는 Qt6 PrintSupport를 추가하며 Qt 자체 모듈 외 런타임은 요구하지 않는다. Windows payload 확인에 Qt6PrintSupport.dll을 포함하고 windeployqt/macdeployqt의 링크 의존성 추적을 사용한다.
+`ppm_reporting/SchedulePrint`는 새 전체 계산→표/막대/출처→가로 열/기간·세로 행 조각 페이지를 준비하며 72pt 좌표와 고정 줄바꿈을 모든 장치에 공용한다. `ppm_ui/SchedulePrintDialog`는 Qt PrintSupport의 네이티브 프린터 선택과 worker 출력, 단일 페이지 화면 렌더링을 연결한다. CMake는 Qt6 PrintSupport를 추가하며 Qt 자체 모듈 외 런타임은 요구하지 않는다. Windows payload 확인에 Qt6PrintSupport.dll을 포함하고 windeployqt/macdeployqt의 링크 의존성 추적을 사용한다.
 
 `schedule_print_contract` / `schedule_print_ui`와 `scripts/verify-schedule-print.py build-forecast`가 다수 행/열·긴 한글 셀·기준선/실제·평준화·캡처된 필터/선택·페이지·300dpi 가상 프린터·범위/역순/복사·원본 불변·취소/session/파일 선택 변경을 검사한다. [계약](schedule-printing.md)과 [로컬 검증](validation/schedule-printing-2026-11-03/README.md)을 따른다.
 
@@ -422,4 +422,4 @@ Primavera XER 증분은 PRD XER-01~04를 먼저 정의하고 `persistence/Primav
 
 GAP-13/14 로컬 증분은 `governance_risk_automation_contract`, `governance_ui`를 추가하고 `PPM-Automation` CLI를 함께 빌드/설치합니다. [계약](organization-risk-automation.md)의 schema3/역할/확률 기대값/원자 batch와 `python scripts/verify-governance-risk.py build`를 검증합니다. 프로젝트 파일 schema는 유지합니다.
 
-서버 후속 증분은 `jobs_collaboration`(Qt Network 인증/HTTP/재연결 feed), `ServerDialog`, 선택 Python/aiohttp/SQLite 서비스를 추가한다. [서버 계약](../server/README.md)과 `JOBS_SERVER_TEST_PYTHON` 설정을 따르며, 설정 시 `server_native_realtime_ui` 및 `server_http_auth_sync_scheduler`를 전체 CTest에 추가한다. 기존 프로젝트/작업공간 schema는 바꾸지 않는다. Windows 패키지는 Qt6Network와 Schannel TLS backend를 포함하고 macOS outgoing network entitlement와 LAN 목적 문자열을 추가했다. 실제 Mac/Store 배포 검증은 별도다.
+서버 후속 증분은 `ppm_collaboration`(Qt Network 인증/HTTP/재연결 feed), `ServerDialog`, 선택 Python/aiohttp/SQLite 서비스를 추가한다. [서버 계약](../server/README.md)과 `PPM_SERVER_TEST_PYTHON` 설정을 따르며, 설정 시 `server_native_realtime_ui` 및 `server_http_auth_sync_scheduler`를 전체 CTest에 추가한다. 기존 프로젝트/작업공간 schema는 바꾸지 않는다. Windows 패키지는 Qt6Network와 Schannel TLS backend를 포함하고 macOS outgoing network entitlement와 LAN 목적 문자열을 추가했다. 실제 Mac/Store 배포 검증은 별도다.

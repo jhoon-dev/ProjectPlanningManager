@@ -1,7 +1,7 @@
 #pragma once
 #include "domain/Project.h"
 #include <map>
-namespace jobs {
+namespace ppm {
 struct RollUpCell {
     std::optional<std::string> value;
     std::string issue, origin;
@@ -33,4 +33,4 @@ private:
     std::map<std::string, std::map<std::string, RollUpCell>> cells_;
     void build(std::vector<RollUpGroup>, bool snapshots);
 };
-} // namespace jobs
+} // namespace ppm

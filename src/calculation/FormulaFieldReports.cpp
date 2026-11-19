@@ -2,7 +2,7 @@
 #include "domain/XmlFormula.h"
 #include "calculation/FormulaFieldReports.h"
 #include "domain/FormulaFields.h"
-namespace jobs {
+namespace ppm {
 std::vector<ReportTable> formulaFieldTables(const Project &p, const std::set<std::string> &tasks,
                                             const std::optional<std::set<std::string>> &resources,
                                             bool includeProject) {
@@ -64,4 +64,4 @@ std::vector<ReportTable> formulaFieldTables(const Project &p, const std::set<std
                    &a);
     return {std::move(definitions), std::move(issues)};
 }
-} // namespace jobs
+} // namespace ppm

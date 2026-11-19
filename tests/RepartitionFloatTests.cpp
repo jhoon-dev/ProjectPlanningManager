@@ -15,7 +15,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool v, const char *message) {
     if (!v)
@@ -120,14 +120,14 @@ void contracts() {
     selection.sourceRevision = d.project()->revision;
     d.adoptLeveling(selection);
     d.captureBaseline("새 기준선", "PM", "검토", "2026-11-03T00:00:00Z");
-    check(d.project()->baselines[0].engineVersion == "jobs-adopted-leveling-1.4", "new baseline version");
+    check(d.project()->baselines[0].engineVersion == "ppm-adopted-leveling-1.4", "new baseline version");
     auto archive = *d.project();
     auto &baseline = archive.baselines[0];
     Project input;
     static_cast<PlanInput &>(input) = baseline.input;
     input.documentId = baseline.sourceDocumentId;
     input.revision = baseline.inputRevision;
-    const auto old = calculatePlan(input, "jobs-adopted-leveling-1.2");
+    const auto old = calculatePlan(input, "ppm-adopted-leveling-1.2");
     check(old.tasks[0].totalFloatMinutes == 179 && old.tasks[1].totalFloatMinutes == 60,
           "1.2 baseline silently upgraded");
     baseline.engineVersion = old.engineVersion;

@@ -6,9 +6,9 @@
 #include "calculation/PeriodEvm.h"
 #include <QFile>
 namespace external_evm_fixture {
-using namespace jobs;
+using namespace ppm;
 inline QByteArray bytes() {
-    auto out = readPrimaveraXer(QString::fromUtf8(JOBS_EXTERNAL_EVM_FIXTURE));
+    auto out = readPrimaveraXer(QString::fromUtf8(PPM_EXTERNAL_EVM_FIXTURE));
     out.replace("9999.00\t8888.00", "12.00\t10.00");
     out.replace("\t2\t30.34\t0\t0\t3.00\t12.00\t10.00", "\t2\t30.34\t0\t0\t3.00\t8.00\t15.00");
     return out;

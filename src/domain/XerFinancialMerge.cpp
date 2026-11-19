@@ -2,7 +2,7 @@
 #include "domain/CalculationControl.h"
 #include <algorithm>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 using Pair = std::pair<std::string, std::string>;
 bool reported(const PeriodActualEntry &e) {
@@ -244,4 +244,4 @@ XerFinancialMergeResult mergeXerFinancials(const Project &p, const XerFinancialM
         }
     return result;
 }
-} // namespace jobs
+} // namespace ppm

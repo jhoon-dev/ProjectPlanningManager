@@ -11,15 +11,15 @@ parser.add_argument('build', nargs='?', default='build')
 parser.add_argument('--store', action='store_true', help='Require an Apple-supported native screenshot size')
 args = parser.parse_args()
 build = Path(args.build).resolve()
-name = 'jobs_workspace_presentation_tests' + ('.exe' if sys.platform == 'win32' else '')
+name = 'ppm_workspace_presentation_tests' + ('.exe' if sys.platform == 'win32' else '')
 binary = next((path for path in (build / name, build / 'Release' / name) if path.is_file()), None)
 if binary is None:
     raise SystemExit('Build the workspace presentation fixture first')
 output = build / 'workspace-ui'
 environment = os.environ.copy()
-environment['JOBS_UI_SCREENSHOT_DIR'] = str(output)
+environment['PPM_UI_SCREENSHOT_DIR'] = str(output)
 if args.store:
-    environment['JOBS_STORE_SCREENSHOT'] = '1'
+    environment['PPM_STORE_SCREENSHOT'] = '1'
 subprocess.run([str(binary), 'calculatedWorkspaceAndNativeCapture', '-o', '-,txt'],
                cwd=build, env=environment, timeout=60, check=True)
 for name in ('workspace-1440.png', 'workspace-1024.png'):

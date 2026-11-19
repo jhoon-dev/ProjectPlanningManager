@@ -2,7 +2,7 @@
 #include "domain/Classification.h"
 #include "domain/CalculationControl.h"
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 std::string xmlPartition(std::int64_t number, std::int64_t start, std::int64_t stop, std::int64_t interval) {
     calculationCheckpoint();
     constexpr std::int64_t bound = 9000000000000LL;
@@ -21,4 +21,4 @@ std::string xmlPartition(std::int64_t number, std::int64_t start, std::int64_t s
     const auto upper = std::min(stop, lower + interval - 1);
     return pad(std::to_string(lower)) + ':' + pad(std::to_string(upper));
 }
-} // namespace jobs
+} // namespace ppm

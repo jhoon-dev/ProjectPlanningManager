@@ -15,7 +15,7 @@
 #include <QJsonArray>
 #include <QTemporaryDir>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool ok, const char *s) {
     if (!ok)
@@ -31,7 +31,7 @@ void run() {
     JsonProjectStore store;
     for (const auto &name : QStringList{"timephased-multi-rate.mpp"}) {
         std::cout << "READ " << name.toStdString() << std::endl;
-        const auto source = readProjectMpp(QString(JOBS_MPP_FIXTURES) + "/" + name);
+        const auto source = readProjectMpp(QString(PPM_MPP_FIXTURES) + "/" + name);
         auto e = importProjectMpp(source, name);
         check(e.project.tasks.size() == 12 && e.project.assignments.size() == 12, "real MPP shape");
         check(e.project.progress.empty() && e.project.periodActuals.empty() && e.project.costEntries.empty() &&
@@ -102,7 +102,7 @@ void run() {
         }
     }
     for (const auto &name : QStringList{"timephased-actual-work-resource.mpp", "timephased-actual-overtime-work.mpp"}) {
-        auto e = importProjectMpp(readProjectMpp(QString(JOBS_MPP_FIXTURES) + "/" + name), name);
+        auto e = importProjectMpp(readProjectMpp(QString(PPM_MPP_FIXTURES) + "/" + name), name);
         check(e.project.progress.empty() && e.project.periodActuals.empty() && e.project.costEntries.empty() &&
                   e.project.baselines.empty() && !e.project.statusAt,
               "observed/OT data inferred");
@@ -116,7 +116,7 @@ void run() {
          QStringList{"mpp9timephasedsegments.mpp", "mpp12timephasedsegments.mpp", "mpp14timephasedsegments.mpp"}) {
         bool rejected = false;
         try {
-            importProjectMpp(readProjectMpp(QString(JOBS_MPP_FIXTURES) + "/" + name), name);
+            importProjectMpp(readProjectMpp(QString(PPM_MPP_FIXTURES) + "/" + name), name);
         } catch (const AppError &e) {
             rejected = e.code() == "FILE_PROJECTXML_021";
         }

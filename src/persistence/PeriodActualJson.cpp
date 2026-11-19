@@ -3,7 +3,7 @@
 #include "domain/CalculationControl.h"
 #include <QJsonObject>
 #include <cmath>
-namespace jobs::json {
+namespace ppm::json {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s);
@@ -87,4 +87,4 @@ std::vector<PeriodActualEntry> decodePeriodActuals(const QJsonValue &value) {
     }
     return out;
 }
-} // namespace jobs::json
+} // namespace ppm::json

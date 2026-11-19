@@ -1,8 +1,8 @@
 #pragma once
 #include "calculation/Tracking.h"
 namespace usage_fixture {
-inline jobs::Project project() {
-    jobs::Project p;
+inline ppm::Project project() {
+    ppm::Project p;
     p.documentId = "usage-fixture";
     p.name = "시간축 Usage 검증";
     p.startDate = "2026-11-02";
@@ -13,15 +13,15 @@ inline jobs::Project project() {
     p.resources[1].rates = {{"2026-11-02", 7}};
     p.assignments = {{"A", "R", 50}, {"A", "E", 25}, {"B", "R", 100}};
     p.taskCosts = {{"A", 101, "uniform", "physical"}, {"B", 0, "start", "physical"}, {"C", 11, "finish", "physical"}};
-    p.baselines.push_back(jobs::prepareBaseline(p, "승인 계획", "PM", "검증", "2026-11-02T00:00:00Z"));
+    p.baselines.push_back(ppm::prepareBaseline(p, "승인 계획", "PM", "검증", "2026-11-02T00:00:00Z"));
     p.baselines.back().id = "approved-plan";
     p.baselines.back().version = 1;
     ++p.revision;
     return p;
 }
-inline void progress(jobs::Project &p) {
+inline void progress(ppm::Project &p) {
     p.statusAt = "2026-11-02 18:00";
-    jobs::ProgressEntry e;
+    ppm::ProgressEntry e;
     e.id = "progress-A";
     e.taskId = "A";
     e.statusAt = *p.statusAt;
@@ -36,7 +36,7 @@ inline void progress(jobs::Project &p) {
     e.remainingMinutes = 480;
     p.progress.push_back(e);
     for (const auto &id : {"A", "B", "C"}) {
-        jobs::CostEntry c;
+        ppm::CostEntry c;
         c.id = "cost-" + std::string(id);
         c.taskId = id;
         c.statusAt = *p.statusAt;

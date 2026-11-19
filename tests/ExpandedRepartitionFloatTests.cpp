@@ -25,7 +25,7 @@
 #include <iostream>
 #include <map>
 #include <tuple>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool v, const std::string &message) {
     if (!v)
@@ -203,7 +203,7 @@ void lifecycleAndOutput() {
     next.version = 2;
     p.baselines.push_back(next);
     ++p.revision;
-    check(previous.engineVersion == "jobs-adopted-leveling-1.4" && next.engineVersion == "jobs-adopted-leveling-1.5",
+    check(previous.engineVersion == "ppm-adopted-leveling-1.4" && next.engineVersion == "ppm-adopted-leveling-1.5",
           "baseline engine identity");
     verifyBaseline(previous);
     verifyBaseline(next);
@@ -252,7 +252,7 @@ int main(int argc, char **argv) {
         lifecycleAndOutput();
         QFile file("expanded-repartition-float-qa/metrics.json");
         check(file.open(QIODevice::WriteOnly), "metrics write");
-        file.write(QJsonDocument(QJsonObject{{"engine", "jobs-adopted-leveling-1.5"}, {"cases", cases}}).toJson());
+        file.write(QJsonDocument(QJsonObject{{"engine", "ppm-adopted-leveling-1.5"}, {"cases", cases}}).toJson());
         std::cout << "Expanded repartition, resource coupling, limits, legacy baselines, UI and reports passed\n";
     } catch (const std::exception &e) {
         std::cerr << "FAIL: " << e.what() << '\n';

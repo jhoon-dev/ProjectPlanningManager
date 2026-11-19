@@ -2,7 +2,7 @@
 #include "domain/CalculationControl.h"
 #include <algorithm>
 #include <map>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const char *message) {
     throw AppError(ErrorCode::FILE_PRIMAVERAXER_080, {message});
@@ -144,4 +144,4 @@ XerFinancialSnapshot convertXerSource(const XerFinancialSnapshot &source, const 
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

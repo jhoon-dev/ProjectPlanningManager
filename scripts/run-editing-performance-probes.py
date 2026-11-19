@@ -15,10 +15,10 @@ parser.add_argument("--platform")
 parser.add_argument("--allow-short-history", action="store_true", help="Pre-optimization reference only")
 args = parser.parse_args()
 build = pathlib.Path(args.build_dir).resolve()
-name = "jobs_editing_performance_probe" + (".exe" if sys.platform == "win32" else "")
+name = "ppm_editing_performance_probe" + (".exe" if sys.platform == "win32" else "")
 binary = next((p for p in (build / name, build / "Release" / name) if p.is_file()), None)
 if binary is None:
-    raise SystemExit("Build jobs_editing_performance_probe first")
+    raise SystemExit("Build ppm_editing_performance_probe first")
 output = pathlib.Path(args.output_dir).resolve() if args.output_dir else build / "performance" / "editing"
 output.mkdir(parents=True, exist_ok=True)
 failed = False

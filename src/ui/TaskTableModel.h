@@ -6,7 +6,7 @@
 #include <QStringList>
 #include <unordered_map>
 
-namespace jobs {
+namespace ppm {
 struct XmlScheduleValues;
 class TaskTableModel final : public QAbstractTableModel {
 public:
@@ -64,4 +64,4 @@ private:
     QString text(const Task &, int column) const;
     const TaskSchedule *schedule(const Task &) const;
 };
-} // namespace jobs
+} // namespace ppm

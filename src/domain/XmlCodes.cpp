@@ -5,7 +5,7 @@
 #include <map>
 #include <set>
 #include <functional>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &s) {
     throw AppError(ErrorCode::CLASSIFICATION_INVALID, {s});
@@ -375,4 +375,4 @@ void synchronizeXmlWbsCodes(PlanInput &p, const PlanInput *before, bool fillMiss
     visit("", 0);
     validateXmlWbsCodes(p);
 }
-} // namespace jobs
+} // namespace ppm

@@ -11,7 +11,7 @@
 #import <AppKit/AppKit.h>
 #import <Security/SecTask.h>
 
-namespace jobs {
+namespace ppm {
 namespace {
 NSString *native(const QString &text) {
     return [[NSString alloc] initWithCharacters:reinterpret_cast<const unichar *>(text.utf16())
@@ -170,4 +170,4 @@ bool authorizeSandboxFile(QWidget *parent, const QString &path) {
     QMetaObject::invokeMethod(app, [&] { allowed = authorize(nullptr, path); }, Qt::BlockingQueuedConnection);
     return allowed;
 }
-} // namespace jobs
+} // namespace ppm

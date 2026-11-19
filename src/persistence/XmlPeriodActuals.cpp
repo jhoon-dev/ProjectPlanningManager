@@ -5,7 +5,7 @@
 #include <map>
 #include <set>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &s) {
     throw AppError(ErrorCode::XML_PROGRESS_INVALID, {s});
@@ -125,4 +125,4 @@ std::vector<PeriodActualSubmission> prepareXmlPeriodMerge(const Project &p, cons
     }
     return result;
 }
-} // namespace jobs
+} // namespace ppm

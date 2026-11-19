@@ -1,6 +1,6 @@
 #include "reporting/GanttStyle.h"
 #include "calculation/WorkCalendar.h"
-namespace jobs {
+namespace ppm {
 GanttProgress ganttProgress(bool forecast, bool completed, const ProgressEntry *fact,
                             const std::optional<std::string> &statusAt, const TaskSchedule *planned) {
     if (!forecast)
@@ -52,4 +52,4 @@ std::optional<std::int64_t> ganttFinishVariance(const PlanInput &input, const Ta
         return {};
     }
 }
-} // namespace jobs
+} // namespace ppm

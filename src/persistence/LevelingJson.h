@@ -1,7 +1,7 @@
 #pragma once
 #include "domain/LevelingSelection.h"
 #include <QJsonObject>
-namespace jobs::json {
+namespace ppm::json {
 QJsonObject encodeLeveling(const LevelingSelection &);
 LevelingSelection decodeLeveling(const QJsonValue &);
-} // namespace jobs::json
+} // namespace ppm::json

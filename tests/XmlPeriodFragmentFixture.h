@@ -1,6 +1,6 @@
 #pragma once
 #include "XmlPeriodActualFixture.h"
-namespace jobs::test {
+namespace ppm::test {
 inline QByteArray xmlPeriodFragment(int type, const QByteArray &date, const QByteArray &from, const QByteArray &to,
                                     const QByteArray &value) {
     auto data = xmlPeriodData(1, type, date, value, 2, date + "T" + to + ":00");
@@ -23,4 +23,4 @@ inline QByteArray xmlPeriodFragmentFixture(bool reversed = false) {
     }
     return bytes;
 }
-} // namespace jobs::test
+} // namespace ppm::test

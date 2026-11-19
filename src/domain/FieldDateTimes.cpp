@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <chrono>
 #include <unordered_set>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &s) {
     throw AppError(ErrorCode::CLASSIFICATION_INVALID, {s});
@@ -120,4 +120,4 @@ XmlLookup sharedXmlLookup(XmlLookup l) {
     }
     return l;
 }
-} // namespace jobs
+} // namespace ppm

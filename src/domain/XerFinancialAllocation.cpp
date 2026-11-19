@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <numeric>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const char *where) {
     throw AppError(ErrorCode::FILE_PRIMAVERAXER_080, {where});
@@ -89,4 +89,4 @@ std::vector<XerFinancialAllocation> initialXerFinancialAllocations(const XerFina
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

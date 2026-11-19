@@ -12,7 +12,7 @@
 #include <memory>
 #include <stdexcept>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 using Minute = std::int64_t;
 std::string edgeBound(const TaskExecution &model, const Dependency &d, const TaskSchedule &from) {
@@ -410,4 +410,4 @@ LevelingResult levelEffort(const Project &p, const std::string &priority, int ho
     out.after = resourceLoad(p, out.leveled);
     return out;
 }
-} // namespace jobs
+} // namespace ppm

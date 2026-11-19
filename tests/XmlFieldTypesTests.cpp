@@ -30,7 +30,7 @@
 #include <algorithm>
 #include <future>
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool ok, const char *message) {
     if (!ok)
         throw std::runtime_error(message);

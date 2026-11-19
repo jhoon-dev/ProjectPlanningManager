@@ -21,7 +21,7 @@
 #include <QScopeGuard>
 #include <QTableWidget>
 #include <QVBoxLayout>
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromStdString(s);
@@ -321,4 +321,4 @@ bool reviewXmlActualAllocation(QWidget *parent, Document &doc, const ProjectXmlE
     prepareEditorDialog(dialog);
     return dialog.exec() == QDialog::Accepted;
 }
-} // namespace jobs
+} // namespace ppm

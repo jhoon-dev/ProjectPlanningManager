@@ -3,7 +3,7 @@
 #include "domain/CalculationControl.h"
 #include <QJsonArray>
 #include <cmath>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid() {
     throw AppError(Diagnostic{"RESOURCE_PLAN_INVALID", {"JSON 형식·필드·정수 범위"}, {}});
@@ -160,4 +160,4 @@ ResourcePlan decodeResourcePlan(const QJsonValue &v, int schema) {
         }
     return p;
 }
-} // namespace jobs
+} // namespace ppm

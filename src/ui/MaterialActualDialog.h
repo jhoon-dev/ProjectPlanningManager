@@ -1,7 +1,7 @@
 #pragma once
 #include <QDialog>
 #include <memory>
-namespace jobs {
+namespace ppm {
 class Document;
 class MaterialActualDialog final : public QDialog {
     struct Impl;
@@ -11,4 +11,4 @@ public:
     explicit MaterialActualDialog(Document &, QWidget *parent = nullptr);
     ~MaterialActualDialog() override;
 };
-} // namespace jobs
+} // namespace ppm

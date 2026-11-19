@@ -5,7 +5,7 @@
 #include "domain/CalculationControl.h"
 #include <QJsonObject>
 #include <cmath>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -100,4 +100,4 @@ std::vector<LedgerIdMigration> decodeLedgerIdMigrations(const QJsonValue &v) {
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

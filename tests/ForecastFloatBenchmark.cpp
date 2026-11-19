@@ -5,31 +5,31 @@
 #include <stdexcept>
 
 namespace {
-jobs::Project fixture(int count, const std::string &profile) {
-    jobs::Project p;
+ppm::Project fixture(int count, const std::string &profile) {
+    ppm::Project p;
     p.documentId = "forecast-benchmark";
     p.name = "Layered remaining network";
     p.startDate = "2026-11-02";
     p.statusAt = "2026-11-02 18:00";
     p.calculationProfile = profile == "legacy" ? "native-fs0-workminutes-v1"
-                           : profile == "pdm"  ? jobs::constraintProfile
-                                               : jobs::effortProfile;
+                           : profile == "pdm"  ? ppm::constraintProfile
+                                               : ppm::effortProfile;
     if (profile == "effort") {
         p.calendars = {{"pm", "Afternoon", {1, 2, 3, 4, 5}, {{780, 1080}}, {}}};
         for (int i = 0; i < 8; ++i) {
-            jobs::Resource r{"R" + std::to_string(i), "Resource", "labor", 100, {}};
+            ppm::Resource r{"R" + std::to_string(i), "Resource", "labor", 100, {}};
             if (i % 2)
                 r.calendarId = "pm";
             p.resources.push_back(r);
         }
     }
     for (int i = 0; i < count; ++i) {
-        jobs::Task t{"T" + std::to_string(i), "Task", 60 + i % 3 * 15, {}};
+        ppm::Task t{"T" + std::to_string(i), "Task", 60 + i % 3 * 15, {}};
         if (i >= 100)
             t.predecessors.push_back("T" + std::to_string(i - 100));
         if (profile == "effort") {
             if (i % 3 == 0) {
-                t.taskType = jobs::TaskType::FixedWork;
+                t.taskType = ppm::TaskType::FixedWork;
                 t.workDriven = true;
                 t.workUnitMinutes = 6000;
             }
@@ -41,7 +41,7 @@ jobs::Project fixture(int count, const std::string &profile) {
     }
     return p;
 }
-std::uint64_t datesHash(const jobs::ScheduleResult &r, bool allPlanFields) {
+std::uint64_t datesHash(const ppm::ScheduleResult &r, bool allPlanFields) {
     std::uint64_t hash = 14695981039346656037ULL;
     auto add = [&](const std::string &s) {
         for (const unsigned char c : s) {
@@ -78,8 +78,8 @@ int main(int argc, char **argv) {
             (profile != "legacy" && profile != "pdm" && profile != "effort"))
             throw std::runtime_error("invalid benchmark arguments");
         const auto p = fixture(count, profile);
-        const auto plan = jobs::calculatePlan(p);
-        if (plan.status != jobs::CalculationStatus::Valid)
+        const auto plan = ppm::calculatePlan(p);
+        if (plan.status != ppm::CalculationStatus::Valid)
             throw std::runtime_error("benchmark plan failed");
         std::uint64_t hash = 0;
 #ifdef _MSC_VER
@@ -92,10 +92,10 @@ int main(int argc, char **argv) {
                   << "\",\"milliseconds\":[";
         for (int i = 0; i < repeats; ++i) {
             const auto begin = std::chrono::steady_clock::now();
-            const auto r = jobs::calculate(p);
+            const auto r = ppm::calculate(p);
             const auto elapsed =
                 std::chrono::duration<double, std::milli>(std::chrono::steady_clock::now() - begin).count();
-            if (r.status != jobs::CalculationStatus::Valid || (i && datesHash(r, false) != hash))
+            if (r.status != ppm::CalculationStatus::Valid || (i && datesHash(r, false) != hash))
                 throw std::runtime_error("benchmark forecast failed or changed dates");
             hash = datesHash(r, false);
             std::cout << (i ? "," : "") << elapsed;

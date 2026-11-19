@@ -18,7 +18,7 @@
 #include <QSpinBox>
 #include <QVBoxLayout>
 #include <QtConcurrent>
-namespace jobs {
+namespace ppm {
 namespace {
 class Canvas final : public QWidget {
     std::shared_ptr<const NetworkPrintLayout> layout_;
@@ -266,4 +266,4 @@ void showNetworkPrint(Document &doc, QPicture picture, const QRectF &bounds, con
     Dialog dialog(doc, std::move(picture), bounds, provenance, parent, details);
     dialog.exec();
 }
-} // namespace jobs
+} // namespace ppm

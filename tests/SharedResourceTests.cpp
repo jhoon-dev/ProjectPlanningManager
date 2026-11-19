@@ -4,7 +4,7 @@
 #include <iostream>
 
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool value, const char *reason) {
     if (!value)
         throw std::logic_error(reason);
@@ -68,7 +68,7 @@ int main() {
         check(largeLoad.status == CalculationStatus::Conflict && largeLoad.days[0].peakUnits == 200000 &&
                   largeLoad.days[0].overloadMinutes == 30 && largeLoad.days[0].excessUnitMinutes == 2999970,
               "shared capacity above local ceiling was not applied to overlapping demand");
-        largePool.resources[0].maxUnits = jobs::maxSharedResourceUnits;
+        largePool.resources[0].maxUnits = ppm::maxSharedResourceUnits;
         check(run(largePool, largeA, largeB).status == CalculationStatus::Valid, "maximum shared capacity rejected");
         largePool.resources[0].exceptions = {{"2026-10-26", 100001}};
         check(run(largePool, largeA, largeB).days[0].overloadMinutes == 30, "large shared daily override ignored");

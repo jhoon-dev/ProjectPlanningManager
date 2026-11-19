@@ -1,7 +1,7 @@
 #include "domain/Diagnostics.h"
 #include <algorithm>
 
-namespace jobs {
+namespace ppm {
 AppError::AppError(ErrorCode code, std::vector<std::string> arguments, ErrorContext context, std::string textKey)
     : AppError(Diagnostic{std::string(errorCodeToken(code)),
                           std::move(arguments),
@@ -32,4 +32,4 @@ Diagnostic diagnosticFromException(const std::exception &error, std::string wrap
     result.causes.push_back(std::move(cause));
     return result;
 }
-} // namespace jobs
+} // namespace ppm

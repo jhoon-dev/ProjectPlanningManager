@@ -2,7 +2,7 @@
 #include "persistence/LevelingJson.h"
 #include "domain/Diagnostics.h"
 #include <cmath>
-namespace jobs::json {
+namespace ppm::json {
 QJsonArray encodeLevelingDecisions(const std::vector<LevelingDecision> &entries) {
     QJsonArray out;
     const auto q = [](const std::string &v) { return QString::fromUtf8(v); };
@@ -80,4 +80,4 @@ std::vector<LevelingDecision> decodeLevelingDecisions(const QJsonValue &v) {
     }
     return out;
 }
-} // namespace jobs::json
+} // namespace ppm::json

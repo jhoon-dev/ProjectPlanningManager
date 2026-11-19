@@ -19,7 +19,7 @@
 #include <QUuid>
 #include <algorithm>
 #include <cmath>
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s);
@@ -405,4 +405,4 @@ ActivityDialog::ActivityDialog(Document &document, const std::string &initial, Q
     });
     prepareEditorDialog(*this);
 }
-} // namespace jobs
+} // namespace ppm

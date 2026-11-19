@@ -15,7 +15,7 @@
 #include <QTemporaryDir>
 #include <iostream>
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool good, const char *message) {
     if (!good)
         throw std::runtime_error(message);
@@ -68,7 +68,7 @@ void write(const QString &name, const QByteArray &bytes) {
 int main(int argc, char **argv) {
     QCoreApplication app(argc, argv);
     try {
-        const auto source = readPrimaveraXer(QString::fromUtf8(JOBS_XER_ACTUAL_FIXTURE));
+        const auto source = readPrimaveraXer(QString::fromUtf8(PPM_XER_ACTUAL_FIXTURE));
         const auto imported = importPrimaveraXer(source, "observed.xer");
         const auto &p = imported.project;
         check(p.statusAt == "2026-10-28 18:00" && p.progress.size() == 2, "status/progress snapshot");

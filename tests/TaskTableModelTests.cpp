@@ -19,15 +19,15 @@ void check(bool value, const char *message) {
 int main(int argc, char **argv) {
     QApplication app(argc, argv);
     try {
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("model", "2026-10-26", {"Alpha", "Beta", "Gamma"});
         doc.setDuration(0, 480);
         doc.setDuration(1, 240);
         doc.setDuration(2, 0);
         const auto firstId = doc.project()->tasks[0].id;
         doc.setPredecessors(1, {firstId});
-        jobs::TaskTableModel model(doc);
+        ppm::TaskTableModel model(doc);
         QAbstractItemModelTester tester(&model, QAbstractItemModelTester::FailureReportingMode::Fatal);
         std::vector<std::size_t> rows{0, 1, 2};
         model.synchronize(rows);
@@ -48,9 +48,9 @@ int main(int argc, char **argv) {
             if (column == 0)
                 doc.renameTask(row, value.toStdString());
             else if (column == 1)
-                doc.setDuration(row, jobs::taskDurationInput(value));
+                doc.setDuration(row, ppm::taskDurationInput(value));
             else
-                doc.setDependencies(row, jobs::taskDependencyInput(value, *doc.project(), id));
+                doc.setDependencies(row, ppm::taskDependencyInput(value, *doc.project(), id));
             model.synchronize(rows);
             return true;
         };
@@ -64,7 +64,7 @@ int main(int argc, char **argv) {
         QStandardItemModel foreign(1, 1);
         check(!model.setData(foreign.index(0, 0), "foreign") && !model.data(foreign.index(0, 0)).isValid(),
               "foreign index accepted");
-        doc.applyCalculation(jobs::calculate(*doc.project()));
+        doc.applyCalculation(ppm::calculate(*doc.project()));
         model.synchronize(rows);
         check(model.data(model.index(0, 3)).toString() == "2026-10-26 09:00" &&
                   model.data(model.index(1, 4)).toString() == "2026-10-27 14:00",
@@ -72,11 +72,11 @@ int main(int argc, char **argv) {
         doc.setDuration(0, 240);
         model.synchronize(rows);
         check(model.data(model.index(0, 3)).toString() == "미계산", "stale schedule remained visible");
-        jobs::ScheduleResult conflict;
+        ppm::ScheduleResult conflict;
         conflict.documentId = doc.project()->documentId;
         conflict.inputRevision = doc.project()->revision;
         conflict.profile = doc.project()->calculationProfile;
-        conflict.status = jobs::CalculationStatus::Conflict;
+        conflict.status = ppm::CalculationStatus::Conflict;
         conflict.diagnostics = {{"TEST", {"<unsafe & text>"}, {firstId}}};
         doc.applyCalculation(conflict);
         model.synchronize(rows);

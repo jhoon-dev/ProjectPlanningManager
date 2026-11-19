@@ -20,7 +20,7 @@
 #include <QVBoxLayout>
 #include <algorithm>
 
-namespace jobs {
+namespace ppm {
 void alignEditorControl(QWidget &control, int height) {
     control.setAttribute(Qt::WA_LayoutUsesWidgetRect);
     control.setFixedHeight(height);
@@ -142,4 +142,4 @@ void showEditorError(QLabel &label, const std::exception &error, QWidget *field)
             break;
         }
 }
-} // namespace jobs
+} // namespace ppm

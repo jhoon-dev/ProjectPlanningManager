@@ -34,7 +34,7 @@
 #include <map>
 #include <set>
 #include <variant>
-namespace jobs {
+namespace ppm {
 namespace {
 using N = std::int64_t;
 constexpr N scale = 1000000, limit = 9000000000000000000LL;
@@ -2506,4 +2506,4 @@ std::string rewriteXmlFormula(const XmlFormula &formula,
     }
     return out + formula.source.substr(at);
 }
-} // namespace jobs
+} // namespace ppm

@@ -8,7 +8,7 @@
 #include <QRegularExpression>
 #include <algorithm>
 #include <tuple>
-namespace jobs {
+namespace ppm {
 namespace {
 std::string s(const QString &v) {
     return v.toUtf8().toStdString();
@@ -130,7 +130,7 @@ QJsonObject summary(const Project &p) {
                             {"allocatedMinor", QString::number(a.allocated)},
                             {"unallocatedMinor", a.unallocated ? QString::number(*a.unallocated) : QString{}}});
         }
-    return {{"contract", "jobs-xer-actual-cost-v1"},
+    return {{"contract", "ppm-xer-actual-cost-v1"},
             {"statusAt", p.statusAt ? q(*p.statusAt) : QString{}},
             {"progressReports", int(progress.size())},
             {"costReports", int(costs.size())},
@@ -944,4 +944,4 @@ QJsonObject exportXerActualCosts(const Project &p, XerTables &tables, QJsonArray
         p.xerFinancials ? (xerFinancialsCurrent(p) ? "reexported" : "stale-source-only") : "absent";
     return result;
 }
-} // namespace jobs
+} // namespace ppm

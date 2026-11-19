@@ -14,7 +14,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 using namespace nonmonotone_fixture;
 namespace {
 void check(bool value, const std::string &message) {
@@ -188,7 +188,7 @@ void archive() {
     b.version = 2;
     p.baselines.push_back(b);
     ++p.revision;
-    check(a.engineVersion == "jobs-adopted-leveling-1.7" && b.engineVersion == "jobs-adopted-leveling-1.8" &&
+    check(a.engineVersion == "ppm-adopted-leveling-1.7" && b.engineVersion == "ppm-adopted-leveling-1.8" &&
               a.schedule == b.schedule,
           "baseline replay changed");
     verifyBaseline(a);
@@ -236,7 +236,7 @@ int main(int argc, char **argv) {
         archive();
         QFile file("propagation-cost-qa/metrics.json");
         check(file.open(QIODevice::WriteOnly), "metrics write");
-        file.write(QJsonDocument(QJsonObject{{"engine", "jobs-adopted-leveling-1.8"}, {"cases", cases}})
+        file.write(QJsonDocument(QJsonObject{{"engine", "ppm-adopted-leveling-1.8"}, {"cases", cases}})
                        .toJson(QJsonDocument::Compact));
         std::cout << "Cost estimates, observed activation, backoff, exact witnesses and archive passed\n";
     } catch (const std::exception &e) {

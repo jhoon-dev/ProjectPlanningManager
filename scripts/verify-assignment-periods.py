@@ -23,7 +23,7 @@ def verify(build):
                 {"fromMinute": 960, "toMinute": 1440, "units": 50}]
     assert p["assignments"][0]["periods"] == expected
     assert p["baselines"][0]["input"]["assignments"][0]["periods"] == expected
-    assert p["baselines"][0]["engineVersion"] == "jobs-effort-periods-1.0"
+    assert p["baselines"][0]["engineVersion"] == "ppm-effort-periods-1.0"
     assert p["scenarios"][0]["input"]["assignments"][0]["periods"] == expected
     books = {}
     for name in ("periods", "usage"):

@@ -26,7 +26,7 @@
 #include <algorithm>
 #include <set>
 
-namespace jobs {
+namespace ppm {
 struct DesktopWorkspace::Session {
     std::uint64_t serial = 0, listener = 0;
     std::unique_ptr<Document> document;
@@ -438,4 +438,4 @@ void DesktopWorkspace::showWorkspace(QWidget *parent) {
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->show();
 }
-} // namespace jobs
+} // namespace ppm

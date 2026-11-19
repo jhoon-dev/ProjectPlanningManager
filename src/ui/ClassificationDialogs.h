@@ -3,7 +3,7 @@
 #include <QString>
 class QWidget;
 class QTableView;
-namespace jobs {
+namespace ppm {
 class TaskTableModel;
 void applyTaskColumns(QTableView &, const TaskTableModel &, const std::vector<ViewColumn> &);
 void manageCustomFields(Document &, QWidget *parent, FieldScope = FieldScope::Task);
@@ -13,4 +13,4 @@ void editTaskAttributes(Document &, const std::vector<std::string> &ids, QWidget
 std::optional<TaskViewSettings> editTaskViewSettings(const Project &, const TaskViewSettings &,
                                                      const std::vector<std::pair<std::string, QString>> &columns,
                                                      QWidget *parent);
-} // namespace jobs
+} // namespace ppm

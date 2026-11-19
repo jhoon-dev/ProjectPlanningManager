@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <chrono>
 #include <cstdio>
-namespace jobs {
+namespace ppm {
 namespace {
 using Minute = std::int64_t;
 Project inventoryInput(const Project &p, bool forecast, const std::shared_ptr<CalculationControl> &control) {
@@ -264,4 +264,4 @@ std::vector<Diagnostic> materialInventoryDiagnostics(const Project &p, const Sch
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

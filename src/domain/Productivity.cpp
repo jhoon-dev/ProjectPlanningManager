@@ -1,7 +1,7 @@
 #include "domain/Productivity.h"
 #include "domain/CalculationControl.h"
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &s) {
     throw AppError(Diagnostic{"RESOURCE_PLANNING_INVALID", {s}, {}, "RESOURCE_PLANNING_INVALID"});
@@ -79,4 +79,4 @@ void validateResourcePlanning(const PlanInput &p) {
             invalid("외부 곡선의 보존 투영은 합계100,000구간까지입니다.");
     }
 }
-} // namespace jobs
+} // namespace ppm

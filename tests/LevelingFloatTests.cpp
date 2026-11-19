@@ -17,7 +17,7 @@
 #include <QTemporaryDir>
 #include <algorithm>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool v, const char *m) {
     if (!v)
@@ -207,7 +207,7 @@ void contracts() {
         static_cast<PlanInput &>(input) = baseline.input;
         input.documentId = baseline.sourceDocumentId;
         input.revision = baseline.inputRevision;
-        const auto v11 = calculatePlan(input, "jobs-adopted-leveling-1.1");
+        const auto v11 = calculatePlan(input, "ppm-adopted-leveling-1.1");
         check(!v11.levelingFloatCalculated && v11.tasks[0].finish == "2026-11-03 15:00",
               "historical cross-split baseline replay");
         baseline.engineVersion = v11.engineVersion;
@@ -238,15 +238,15 @@ void contracts() {
     check(d.calculation()->levelingFloatCalculated, "selected schedule discarded float");
     const auto id = d.captureBaseline("새 평준화 기준선", "PM", "검토", "2026-11-03T00:00:00Z");
     (void)id;
-    check(d.project()->baselines.back().engineVersion == "jobs-adopted-leveling-1.2", "new baseline engine identity");
+    check(d.project()->baselines.back().engineVersion == "ppm-adopted-leveling-1.2", "new baseline engine identity");
     auto old = *d.project();
     auto &b = old.baselines[0];
     Project bp;
     static_cast<PlanInput &>(bp) = b.input;
     bp.documentId = b.sourceDocumentId;
     bp.revision = b.inputRevision;
-    const auto legacy = calculatePlan(bp, "jobs-adopted-leveling-1.0");
-    check(!legacy.levelingFloatCalculated && legacy.engineVersion == "jobs-adopted-leveling-1.0",
+    const auto legacy = calculatePlan(bp, "ppm-adopted-leveling-1.0");
+    check(!legacy.levelingFloatCalculated && legacy.engineVersion == "ppm-adopted-leveling-1.0",
           "old baseline replay capability");
     b.engineVersion = legacy.engineVersion;
     b.schedule = legacy.tasks;

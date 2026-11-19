@@ -2,7 +2,7 @@
 #include "persistence/XerFinancialJson.h"
 #include <QCryptographicHash>
 #include <QDateTime>
-namespace jobs {
+namespace ppm {
 XerRelinkAudit importXerRelinkSource(const QByteArray &bytes, const QString &name, XerEncoding encoding,
                                      const QString &projectId, const std::string &status) {
     auto imported = importPrimaveraXer(bytes, name, encoding, projectId);
@@ -31,4 +31,4 @@ XerRelinkAudit importXerRelinkSource(const QByteArray &bytes, const QString &nam
     validateXerFinancials(out.incoming);
     return out;
 }
-} // namespace jobs
+} // namespace ppm

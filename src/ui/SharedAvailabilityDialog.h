@@ -1,6 +1,6 @@
 #pragma once
 class QWidget;
-namespace jobs {
+namespace ppm {
 class DesktopWorkspace;
 void showSharedAvailability(DesktopWorkspace &, QWidget *);
-} // namespace jobs
+} // namespace ppm

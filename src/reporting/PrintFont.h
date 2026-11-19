@@ -4,7 +4,7 @@
 #include <QFontDatabase>
 #include <QFontInfo>
 
-namespace jobs {
+namespace ppm {
 inline QFont printFont(QFont font) {
 #ifdef Q_OS_MACOS
     // CoreText's private UI fonts and Apple SD Gothic Neo can map PDF spaces
@@ -26,4 +26,4 @@ inline QFont printFont(QFont font) {
 #endif
     return font;
 }
-} // namespace jobs
+} // namespace ppm

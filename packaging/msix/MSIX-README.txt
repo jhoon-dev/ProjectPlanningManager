@@ -8,4 +8,4 @@ External project files and the standalone EXE edition's data are preserved.
 
 Development packages are marked MSIX Development and are not Store submissions.
 Store submission requires the exact identity assigned in Microsoft Partner Center.
-Support and source: https://github.com/jhoon-dev/JOBS
+Support and source: https://github.com/jhoon-dev/ProjectPlanningManager

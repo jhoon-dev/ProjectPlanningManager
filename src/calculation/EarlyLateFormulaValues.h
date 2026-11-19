@@ -1,6 +1,6 @@
 #pragma once
 #include "calculation/Scheduler.h"
 #include "domain/XmlSchedule.h"
-namespace jobs {
+namespace ppm {
 void addEarlyLateFormulaValues(const Project &, const ScheduleResult &, XmlScheduleValues &);
-} // namespace jobs
+} // namespace ppm

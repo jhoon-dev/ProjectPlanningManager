@@ -11,7 +11,7 @@ parser.add_argument("--output-dir")
 parser.add_argument("--repeats", type=int, default=3)
 args = parser.parse_args()
 build = pathlib.Path(args.build_dir).resolve()
-name = "jobs_responsive_performance_probe" + (".exe" if sys.platform == "win32" else "")
+name = "ppm_responsive_performance_probe" + (".exe" if sys.platform == "win32" else "")
 binary = next(p for p in (build / name, build / "Release" / name) if p.is_file())
 output = pathlib.Path(args.output_dir).resolve() if args.output_dir else build / "performance" / "responsive"
 output.mkdir(parents=True, exist_ok=True)

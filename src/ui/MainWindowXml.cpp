@@ -22,7 +22,7 @@
 #include <algorithm>
 #include <stdexcept>
 
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s.data(), qsizetype(s.size()));
@@ -111,7 +111,7 @@ void MainWindow::importXml() {
             return;
         auto exchange = std::move(*prepared);
         auto proposed =
-            QDir(QFileInfo(path).absolutePath()).filePath(QFileInfo(path).completeBaseName() + "-jobs-import");
+            QDir(QFileInfo(path).absolutePath()).filePath(QFileInfo(path).completeBaseName() + "-ppm-import");
         bool includeProgress = false, includeBaselines = false;
         auto destination = preview(this, exchange, proposed, &includeProgress, &includeBaselines);
         if (destination.isEmpty())
@@ -230,8 +230,8 @@ void MainWindow::exportXml(bool includeActuals) {
             return;
         auto exchange = std::move(*prepared);
         auto parent = document_.path().empty() ? QDir::homePath() : QFileInfo(qs(document_.path())).absolutePath();
-        auto destination = preview(
-            this, exchange, QDir(parent).filePath(includeActuals ? "jobs-xml-actuals-export" : "jobs-xml-export"));
+        auto destination = preview(this, exchange,
+                                   QDir(parent).filePath(includeActuals ? "ppm-xml-actuals-export" : "ppm-xml-export"));
         if (destination.isEmpty())
             return;
         if (document_.sessionGeneration() != generation || !document_.project() ||
@@ -249,4 +249,4 @@ void MainWindow::exportXml(bool includeActuals) {
         report(e);
     }
 }
-} // namespace jobs
+} // namespace ppm

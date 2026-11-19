@@ -8,7 +8,7 @@
 
 class QWidget;
 class QJsonObject;
-namespace jobs {
+namespace ppm {
 class MainWindow;
 class JsonRecoveryStore;
 class UpdateController;
@@ -73,4 +73,4 @@ private:
     MainWindow *adopt(std::unique_ptr<Document>);
     void synchronize(Session &);
 };
-} // namespace jobs
+} // namespace ppm

@@ -16,7 +16,7 @@
 #include <QVBoxLayout>
 #include <unordered_map>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -328,4 +328,4 @@ void WeeklyUpdateDialog::editSelected() {
                              "입력 마치고 재예측으로 현재 일정을 계산하세요. 파일 저장은 별도입니다.")
                          .arg(saved));
 }
-} // namespace jobs
+} // namespace ppm

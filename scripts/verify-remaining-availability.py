@@ -58,7 +58,7 @@ assert len(points) == 1440
 ns = {"p": "http://schemas.microsoft.com/project"}
 xml = ET.parse(args.root / "project.xml").getroot()
 mapping = json.loads((args.root / "mapping.json").read_text(encoding="utf-8"))["mapping"]
-fields = {(r["scope"], r["externalId"]): r["jobsId"] for r in mapping if r["kind"] == "udf"}
+fields = {(r["scope"], r["externalId"]): r["ppmId"] for r in mapping if r["kind"] == "udf"}
 expected = {"R": dict(load=Decimal("1.25"), remaining=Decimal("-.75"), native=Decimal(-75), chain=Decimal(-74)),
             "S": dict(load=Decimal(".25"), remaining=None, native=None, chain=None),
             "I": dict(load=Decimal(0), remaining=Decimal(2), native=Decimal(200), chain=Decimal(201))}

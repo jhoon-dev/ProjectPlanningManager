@@ -21,7 +21,7 @@
 #include <QVBoxLayout>
 #include <algorithm>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -412,4 +412,4 @@ MaterialActualDialog::MaterialActualDialog(Document &d, QWidget *parent) : QDial
     prepareEditorDialog(*this);
 }
 MaterialActualDialog::~MaterialActualDialog() = default;
-} // namespace jobs
+} // namespace ppm

@@ -38,7 +38,7 @@ void write(const QString &p, const QByteArray &bytes) {
     check(f.write(bytes) == bytes.size(), "short write");
 }
 QString checkpoint(const QString &root, const QString &id, int seq) {
-    return QDir(root).filePath(id + QString("/checkpoint-%1.jobrecovery").arg(seq, 9, 10, QChar('0')));
+    return QDir(root).filePath(id + QString("/checkpoint-%1.ppmrecovery").arg(seq, 9, 10, QChar('0')));
 }
 QByteArray sign(QJsonObject root) {
     auto body = root["payload"].toObject();
@@ -47,7 +47,7 @@ QByteArray sign(QJsonObject root) {
             .toHex());
     return QJsonDocument(root).toJson();
 }
-jobs::RecoveryCandidate candidate(const jobs::RecoveryScan &scan, int seq) {
+ppm::RecoveryCandidate candidate(const ppm::RecoveryScan &scan, int seq) {
     for (const auto &c : scan.candidates)
         if (c.valid && c.sequence == std::uint64_t(seq))
             return c;
@@ -73,12 +73,12 @@ void kill(QProcess &child) {
     check(child.exitStatus() == QProcess::CrashExit, "helper did not terminate abnormally");
 }
 int child(const QStringList &args) {
-    jobs::JsonProjectStore store;
-    jobs::Document doc(store);
+    ppm::JsonProjectStore store;
+    ppm::Document doc(store);
     const bool pending = args[1] == "--pending";
     bool armed = false;
     QString sessionId;
-    jobs::JsonRecoveryStore recovery(args[2], [&] {
+    ppm::JsonRecoveryStore recovery(args[2], [&] {
         if (armed) {
             std::cout << "READY:" << sessionId.toStdString() << '\n' << std::flush;
             for (;;)
@@ -117,10 +117,10 @@ int main(int argc, char *argv[]) {
         QTemporaryDir dir;
         check(dir.isValid(), "temp directory");
         const auto source = dir.filePath("원본 α.ppm"), root = dir.filePath("복구 세대");
-        jobs::JsonProjectStore store;
-        jobs::Project saved;
+        ppm::JsonProjectStore store;
+        ppm::Project saved;
         {
-            jobs::Document seed(store);
+            ppm::Document seed(store);
             seed.create("시공 복구 검증", "2026-10-26", {"설계"});
             seed.setCurrency("USD");
             seed.setDuration(0, 960);
@@ -132,7 +132,7 @@ int main(int argc, char *argv[]) {
             seed.setTaskCost({id, 200, "uniform", "physical"});
             seed.captureBaseline("최초 승인", "PM", "승인", "2026-10-26T00:00:00Z");
             seed.setStatusAt("2026-10-26 18:00");
-            jobs::ProgressEntry p;
+            ppm::ProgressEntry p;
             p.taskId = id;
             p.actualStart = "2026-10-26 09:00";
             p.actualDurationMinutes = 480;
@@ -141,7 +141,7 @@ int main(int argc, char *argv[]) {
             p.reason = "measured";
             p.recordedAt = "2026-10-26T09:00:00Z";
             seed.recordProgress(p);
-            jobs::CostEntry c;
+            ppm::CostEntry c;
             c.taskId = id;
             c.actualMinor = 600;
             c.physicalBasisPoints = 4000;
@@ -155,7 +155,7 @@ int main(int argc, char *argv[]) {
             saved = *seed.project();
         }
         const auto sourceBytes = read(source);
-        jobs::JsonRecoveryStore recovery(root);
+        ppm::JsonRecoveryStore recovery(root);
         QProcess process;
         process.start(app.applicationFilePath(), {"--live", root, source});
         check(process.waitForStarted(10000), "start helper");
@@ -182,7 +182,7 @@ int main(int argc, char *argv[]) {
         rejects([&] { recovery.claim(newest); });
         rejects([&] { recovery.discardSession(id); });
         auto originalLease = store.lock(store.normalizePath(source.toStdString()));
-        jobs::Document restored(store);
+        ppm::Document restored(store);
         restored.recover(claimed->snapshot);
         check(restored.dirty() && restored.path().empty() && restored.requiresSaveAs() && !restored.readOnly() &&
                   !restored.canUndo() && restored.project()->documentId != saved.documentId &&
@@ -232,7 +232,7 @@ int main(int argc, char *argv[]) {
         write(latestPath, QJsonDocument(object).toJson());
         check(!recovery.scan().candidates.back().valid, "future recovery schema accepted");
         write(latestPath, latestBytes);
-        write(QDir(root).filePath(id + "/checkpoint-000000005.jobrecovery.part"), latestBytes);
+        write(QDir(root).filePath(id + "/checkpoint-000000005.ppmrecovery.part"), latestBytes);
         check(recovery.scan().candidates.size() == 3, "partial temporary file treated as completed generation");
         write(source, sourceBytes + "\n");
         check(candidate(recovery.scan(), 4).sourceState.contains("원본 변경"), "external original change not shown");
@@ -248,7 +248,7 @@ int main(int argc, char *argv[]) {
         check(pending.waitForStarted(10000), "pending start");
         awaitReady(pending);
         kill(pending);
-        jobs::JsonRecoveryStore interrupted(pendingRoot);
+        ppm::JsonRecoveryStore interrupted(pendingRoot);
         auto interruptedScan = interrupted.scan();
         check(interruptedScan.candidates.size() == 3 && candidate(interruptedScan, 4).valid,
               "kill before commit lost previous generations");
@@ -261,7 +261,7 @@ int main(int argc, char *argv[]) {
         check(untitled.waitForStarted(10000), "untitled start");
         awaitReady(untitled);
         kill(untitled);
-        jobs::JsonRecoveryStore unsaved(untitledRoot);
+        ppm::JsonRecoveryStore unsaved(untitledRoot);
         auto u = unsaved.claim(candidate(unsaved.scan(), 4));
         check(u->snapshot.sourcePath.empty() && !u->snapshot.lastSavedRevision,
               "never-saved recovery required original file");
@@ -269,12 +269,12 @@ int main(int argc, char *argv[]) {
         // Failed writes and path attacks cannot replace a completed generation or remove unrelated files.
         const auto failureRoot = dir.filePath("write-failure");
         bool failPublish = false;
-        jobs::JsonRecoveryStore failures(failureRoot, [&] {
+        ppm::JsonRecoveryStore failures(failureRoot, [&] {
             if (failPublish)
                 throw std::runtime_error("injected disk failure");
         });
         auto writer = failures.newSession();
-        jobs::RecoverySnapshot snapshot{
+        ppm::RecoverySnapshot snapshot{
             saved, source.toStdString(), store.load(source.toStdString()).fingerprint, "2026-10-26T09:00:00Z", false,
             false, saved.revision};
         writer->checkpoint(snapshot);
@@ -292,11 +292,11 @@ int main(int argc, char *argv[]) {
               "explicit discard affected original or left completed records");
         auto denied = dir.filePath("not-a-directory");
         write(denied, "KEEP");
-        jobs::JsonRecoveryStore inaccessible(denied);
+        ppm::JsonRecoveryStore inaccessible(denied);
         rejects([&] { inaccessible.newSession(); });
         check(read(denied) == "KEEP", "failed recovery folder creation destroyed file");
         // An unverifiable lock is diagnosed, never silently hidden as a live app.
-        jobs::JsonRecoveryStore uncertain(dir.filePath("uncertain-lock"));
+        ppm::JsonRecoveryStore uncertain(dir.filePath("uncertain-lock"));
         auto uncertainWriter = uncertain.newSession();
         auto uncertainId = uncertainWriter->id();
         uncertainWriter->checkpoint(snapshot);
@@ -312,7 +312,7 @@ int main(int argc, char *argv[]) {
         // Legacy project inputs are checkpointed in the current format without rewriting source.
         const auto legacyPath = dir.filePath("legacy.ppm");
         {
-            jobs::Document seed(store);
+            ppm::Document seed(store);
             seed.create("legacy", "2026-10-26", {"task"});
             seed.setDuration(0, 480);
             seed.saveAs(legacyPath.toStdString());
@@ -325,10 +325,10 @@ int main(int argc, char *argv[]) {
         legacyRoot["payload"] = legacyPayload;
         write(legacyPath, sign(legacyRoot));
         const auto legacyBytes = read(legacyPath);
-        jobs::Document legacy(store);
+        ppm::Document legacy(store);
         legacy.open(legacyPath.toStdString());
         legacy.setDuration(0, 960);
-        jobs::JsonRecoveryStore legacyRecovery(dir.filePath("legacy-recovery"));
+        ppm::JsonRecoveryStore legacyRecovery(dir.filePath("legacy-recovery"));
         auto legacySession = legacyRecovery.newSession();
         legacySession->checkpoint(legacy.recoverySnapshot("2026-10-26T09:00:00Z"));
         legacySession.reset();

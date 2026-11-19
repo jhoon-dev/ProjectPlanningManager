@@ -1,6 +1,6 @@
 #pragma once
 #include "XmlActualFixture.h"
-namespace jobs::test {
+namespace ppm::test {
 inline Project xmlEarlyLateFixture(bool forecast = true) {
     Project p;
     p.documentId = "xml-early-late";
@@ -44,4 +44,4 @@ inline Project xmlEarlyLateFixture(bool forecast = true) {
     }
     return p;
 }
-} // namespace jobs::test
+} // namespace ppm::test

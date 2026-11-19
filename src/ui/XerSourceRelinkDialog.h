@@ -2,7 +2,7 @@
 #include "application/Document.h"
 #include "persistence/PrimaveraXer.h"
 #include <QDialog>
-namespace jobs {
+namespace ppm {
 class XerSourceRelinkDialog final : public QDialog {
 public:
     explicit XerSourceRelinkDialog(Document &, QWidget *parent = nullptr);
@@ -14,4 +14,4 @@ private:
     struct Impl;
     std::unique_ptr<Impl> impl_;
 };
-} // namespace jobs
+} // namespace ppm

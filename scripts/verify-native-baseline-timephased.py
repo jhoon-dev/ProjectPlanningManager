@@ -19,7 +19,7 @@ load = lambda name: json.loads((args.root / name).read_text(encoding="utf-8"))
 native, mapping, adopted = load("native.json"), load("mapping.json"), load("adopted.json")
 ns = {"p": "http://schemas.microsoft.com/project"}
 text = lambda node, name: node.findtext("p:" + name, None, ns)
-ids = {(r["kind"], r["xmlUid"]): r["jobsId"] for r in mapping["mapping"] if "kind" in r and "xmlUid" in r}
+ids = {(r["kind"], r["xmlUid"]): r["ppmId"] for r in mapping["mapping"] if "kind" in r and "xmlUid" in r}
 parents = {w["id"]: w["parentId"] for w in native["wbsNodes"]}
 groups = {}
 for task in native["tasks"]:
@@ -147,7 +147,7 @@ if args.reader:
     project = reader.read(str((args.root / "project.xml").resolve()))
     assert not list(project.getIgnoredErrors())
     minute_unit = jpype.JClass("org.mpxj.TimeUnit").MINUTES
-    assignment_uids = {r["jobsId"]: int(r["xmlUid"]) for r in mapping["mapping"] if r.get("kind") == "assignment"}
+    assignment_uids = {r["ppmId"]: int(r["xmlUid"]) for r in mapping["mapping"] if r.get("kind") == "assignment"}
     checked = 0
     for assignment in project.getResourceAssignments():
         uid = int(assignment.getUniqueID())

@@ -5,18 +5,22 @@ class QTableWidget;
 class QLabel;
 class QPushButton;
 class QCloseEvent;
-namespace jobs {
+namespace ppm {
 class RecoveryDialog final : public QDialog {
 public:
-    RecoveryDialog(JsonRecoveryStore, QWidget* parent = nullptr, std::optional<RecoveryScan> initial = {});
-    std::shared_ptr<RecoveryClaim> takeClaim() { return std::move(claim_); }
+    RecoveryDialog(JsonRecoveryStore, QWidget *parent = nullptr, std::optional<RecoveryScan> initial = {});
+    std::shared_ptr<RecoveryClaim> takeClaim() {
+        return std::move(claim_);
+    }
     void reject() override;
+
 protected:
-    void closeEvent(QCloseEvent*) override;
+    void closeEvent(QCloseEvent *) override;
+
 private:
     JsonRecoveryStore store_;
     RecoveryScan scan_;
-    QTableWidget* table_;
+    QTableWidget *table_;
     QLabel *message_, *details_;
     QPushButton *restore_, *discard_, *reload_;
     std::shared_ptr<RecoveryClaim> claim_;
@@ -29,4 +33,4 @@ private:
     void discard();
     void setBusy(bool);
 };
-}
+} // namespace ppm

@@ -13,7 +13,7 @@ parser.add_argument("--tasks", nargs="+", type=int, default=[1000, 10000])
 parser.add_argument("--platform", default=None)
 args = parser.parse_args()
 build = pathlib.Path(args.build_dir).resolve()
-name = "jobs_performance_probe" + (".exe" if sys.platform == "win32" else "")
+name = "ppm_performance_probe" + (".exe" if sys.platform == "win32" else "")
 binary = next((p for p in [build / name, build / "Release" / name] if p.is_file()), None)
 if binary is None:
     raise SystemExit("Performance probe executable is missing")

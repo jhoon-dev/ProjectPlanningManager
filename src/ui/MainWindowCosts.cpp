@@ -16,7 +16,7 @@
 #include <QTableWidget>
 #include <QHeaderView>
 #include <QDateTime>
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s.data(), qsizetype(s.size()));
@@ -299,4 +299,4 @@ void MainWindow::showCosts() {
     dialog.exec();
     refresh();
 }
-} // namespace jobs
+} // namespace ppm

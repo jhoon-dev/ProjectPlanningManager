@@ -38,8 +38,8 @@
 #include <iostream>
 #include <cstdio>
 namespace {
-using namespace jobs;
-using namespace jobs::test;
+using namespace ppm;
+using namespace ppm::test;
 void check(bool b, const char *s) {
     if (!b)
         throw std::runtime_error(s);

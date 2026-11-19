@@ -28,7 +28,7 @@ def date(raw):
     return datetime.fromisoformat(raw).isoformat() if raw and raw != "NA" else None
 
 def records(filename, mapping):
-    ids = {(r["kind"], r["xmlUid"]): r["jobsId"] for r in mapping["mapping"] if "kind" in r and "xmlUid" in r}
+    ids = {(r["kind"], r["xmlUid"]): r["ppmId"] for r in mapping["mapping"] if "kind" in r and "xmlUid" in r}
     root = ET.parse(args.root / filename).getroot()
     result = {}
     for wrapper, tag in [("Tasks", "Task"), ("Resources", "Resource"), ("Assignments", "Assignment")]:
@@ -152,7 +152,7 @@ if args.reader:
         assert not list(project.getIgnoredErrors())
         report = load("native-projection-mapping.json") if filename == "native-baselines.xml" else mapping
         owner = "A" if filename == "native-baselines.xml" else native["tasks"][0]["id"]
-        uid = next(row["xmlUid"] for row in report["mapping"] if row.get("kind") == "task" and row["jobsId"] == owner)
+        uid = next(row["xmlUid"] for row in report["mapping"] if row.get("kind") == "task" and row["ppmId"] == owner)
         task = next(task for task in project.getTasks() if str(task.getUniqueID()) == uid)
         actual = Decimal(str(task.getBaselineWork(1).convertUnits(Minutes, project.getProjectProperties()).getDuration()))
         assert abs(actual - work) < Decimal("0.000000001"), (filename, actual, work)

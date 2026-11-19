@@ -2,7 +2,7 @@
 #include "domain/Project.h"
 #include <QJsonObject>
 #include <cmath>
-namespace jobs::json {
+namespace ppm::json {
 namespace {
 [[noreturn]] void invalid() {
     throw AppError(ErrorCode::REMAINING_WORK_INVALID, {"파일 객체·문자열·정수·필드·한도를 확인하세요."});
@@ -63,4 +63,4 @@ std::vector<RemainingWorkPlan> decodeRemainingWork(const QJsonValue &value) {
     }
     return plans;
 }
-} // namespace jobs::json
+} // namespace ppm::json

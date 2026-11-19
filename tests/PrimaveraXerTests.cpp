@@ -78,13 +78,13 @@ QByteArray modify(const QByteArray &source, const QString &table, const QString 
     }
     throw std::runtime_error("test table row missing");
 }
-bool diagnostic(const jobs::PrimaveraXerExchange &e, const QString &part) {
+bool diagnostic(const ppm::PrimaveraXerExchange &e, const QString &part) {
     for (const auto &d : e.report["diagnostics"].toArray())
         if (d.toObject()["path"].toString().contains(part))
             return true;
     return false;
 }
-const jobs::TaskSchedule &scheduled(const jobs::ScheduleResult &r, const std::string &id) {
+const ppm::TaskSchedule &scheduled(const ppm::ScheduleResult &r, const std::string &id) {
     for (const auto &t : r.tasks)
         if (t.taskId == id)
             return t;
@@ -94,8 +94,8 @@ const jobs::TaskSchedule &scheduled(const jobs::ScheduleResult &r, const std::st
 int main(int argc, char **argv) {
     QCoreApplication app(argc, argv);
     try {
-        auto source = read(QString::fromUtf8(JOBS_XER_FIXTURE));
-        auto imported = jobs::importPrimaveraXer(source, "골든.xer");
+        auto source = read(QString::fromUtf8(PPM_XER_FIXTURE));
+        auto imported = ppm::importPrimaveraXer(source, "골든.xer");
         const auto &p = imported.project;
         {
             auto many = p;
@@ -119,7 +119,7 @@ int main(int argc, char **argv) {
                     many.assignments.push_back({task.id, p.resources[1].id, 50});
                 many.tasks.push_back(std::move(task));
             }
-            auto large = jobs::importPrimaveraXer(jobs::exportPrimaveraXer(many).xer, "10000-tasks.xer");
+            auto large = ppm::importPrimaveraXer(ppm::exportPrimaveraXer(many).xer, "10000-tasks.xer");
             std::size_t actualRelationships = 0;
             for (const auto &task : large.project.tasks)
                 actualRelationships += task.predecessors.size();
@@ -129,15 +129,15 @@ int main(int argc, char **argv) {
             auto extra = many.tasks.back();
             extra.id = "over-activity-limit";
             many.tasks.push_back(extra);
-            rejects([&] { jobs::exportPrimaveraXer(many); });
+            rejects([&] { ppm::exportPrimaveraXer(many); });
             for (const auto *name : {"TASK", "TASKPRED", "TASKRSRC", "NOTEBOOK"}) {
                 const int count = std::string(name) == "TASK"       ? 10001
                                   : std::string(name) == "NOTEBOOK" ? 300002
                                                                     : 100001;
                 bool rejectedByLimit = false;
                 try {
-                    jobs::importPrimaveraXer(repeatTableRows(source, name, count), "over-limit.xer");
-                } catch (const jobs::AppError &error) {
+                    ppm::importPrimaveraXer(repeatTableRows(source, name, count), "over-limit.xer");
+                } catch (const ppm::AppError &error) {
                     rejectedByLimit = error.code() == (std::string(name) == "NOTEBOOK" ? "FILE_PRIMAVERAXER_010"
                                                                                        : "FILE_PRIMAVERAXER_024");
                 }
@@ -156,13 +156,13 @@ int main(int argc, char **argv) {
         check(p.resources[0].maxUnits == 150 && p.resources[1].maxUnits == 0 && p.resources[1].type == "equipment" &&
                   p.assignments[0].units == 50 && p.assignments[1].units == 125,
               "units/capacity zero/equipment");
-        check(p.tasks[1].constraintType == jobs::ConstraintType::SNET &&
-                  p.tasks[1].constraintAt == "2026-10-28 10:00" && p.tasks[5].durationMinutes == 0,
+        check(p.tasks[1].constraintType == ppm::ConstraintType::SNET && p.tasks[1].constraintAt == "2026-10-28 10:00" &&
+                  p.tasks[5].durationMinutes == 0,
               "constraint/milestone");
         for (std::size_t i = 1; i < 5; ++i) {
-            auto edges = jobs::dependencies(p.tasks[i]);
-            const jobs::DependencyType types[]{jobs::DependencyType::FS, jobs::DependencyType::SS,
-                                               jobs::DependencyType::FF, jobs::DependencyType::SF};
+            auto edges = ppm::dependencies(p.tasks[i]);
+            const ppm::DependencyType types[]{ppm::DependencyType::FS, ppm::DependencyType::SS, ppm::DependencyType::FF,
+                                              ppm::DependencyType::SF};
             check(edges.size() == 1 && edges[0].type == types[i - 1] &&
                       edges[0].lagMinutes == ((i == 2 || i == 3) ? -60 : 60),
                   "four links/negative hours lag");
@@ -171,8 +171,8 @@ int main(int argc, char **argv) {
                   diagnostic(imported, "act_start_date") && p.resources[0].rates[0].hourlyMinor == 10000 &&
                   diagnostic(imported, "NOTEBOOK"),
               "facts not invented/loss report");
-        auto schedule = jobs::calculatePlan(p);
-        check(schedule.status == jobs::CalculationStatus::Valid, "schedule valid");
+        auto schedule = ppm::calculatePlan(p);
+        check(schedule.status == ppm::CalculationStatus::Valid, "schedule valid");
         check(scheduled(schedule, "xer-task-20").start == "2026-10-26 09:00" &&
                   scheduled(schedule, "xer-task-20").finish == "2026-10-26 18:00",
               "independent original duration dates");
@@ -183,7 +183,7 @@ int main(int argc, char **argv) {
               "independent lag/holiday/FF dates");
         QTemporaryDir dir;
         check(dir.isValid(), "temp directory");
-        auto folder = jobs::publishPrimaveraXer(imported, dir.filePath("import"));
+        auto folder = ppm::publishPrimaveraXer(imported, dir.filePath("import"));
         check(read(QDir(folder).filePath("original.xer")) == source, "original bytes preserved");
         auto report = QJsonDocument::fromJson(read(QDir(folder).filePath("conversion.json"))).object();
         check(report["source"].toObject()["sha256"].toString().toLatin1() ==
@@ -192,23 +192,23 @@ int main(int argc, char **argv) {
         check(report["source"].toObject()["projectCode"] == "SITE-01" &&
                   report["source"].toObject()["encoding"] == "UTF-8" && report["mapping"].toArray().size() == 15,
               "source code/encoding/mapping");
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.open(QDir(folder).filePath("project.ppm").toStdString());
         check(*doc.project() == p && !doc.dirty(), "native reopen");
         auto native = read(QDir(folder).filePath("project.ppm"));
-        rejects([&] { jobs::publishPrimaveraXer(imported, folder); });
+        rejects([&] { ppm::publishPrimaveraXer(imported, folder); });
         check(read(QDir(folder).filePath("project.ppm")) == native, "existing target preserved");
-        rejects([&] { jobs::publishPrimaveraXer(imported, dir.filePath("missing/folder")); });
+        rejects([&] { ppm::publishPrimaveraXer(imported, dir.filePath("missing/folder")); });
         auto snapshot = *doc.project();
         auto generation = doc.sessionGeneration();
-        auto exported = jobs::exportPrimaveraXer(p);
-        auto back = jobs::importPrimaveraXer(exported.xer, "roundtrip.xer");
+        auto exported = ppm::exportPrimaveraXer(p);
+        auto back = ppm::importPrimaveraXer(exported.xer, "roundtrip.xer");
         check(back.project.tasks.size() == 6 && back.project.wbsNodes.size() == 2 &&
                   back.project.resources.size() == 2 && back.project.assignments.size() == 2,
               "roundtrip counts");
-        auto again = jobs::calculatePlan(back.project);
-        check(again.status == jobs::CalculationStatus::Valid, "roundtrip schedule");
+        auto again = ppm::calculatePlan(back.project);
+        check(again.status == ppm::CalculationStatus::Valid, "roundtrip schedule");
         for (std::size_t i = 0; i < p.tasks.size(); ++i) {
             const auto &a = p.tasks[i];
             const auto &b = back.project.tasks[i];
@@ -220,69 +220,69 @@ int main(int argc, char **argv) {
             check(x.start == y.start && x.finish == y.finish && x.totalFloatMinutes == y.totalFloatMinutes,
                   "roundtrip schedule semantics");
         }
-        auto output = jobs::publishPrimaveraXer(exported, dir.filePath("export"));
+        auto output = ppm::publishPrimaveraXer(exported, dir.filePath("export"));
         check(store.load(QDir(output).filePath("source.ppm").toStdString()).project == p &&
                   *doc.project() == snapshot && doc.sessionGeneration() == generation && !doc.dirty() && !doc.canUndo(),
               "export source snapshot/document isolation");
         auto un = p;
         un.tasks[0].durationMinutes.reset();
         un.resources[0].maxUnits.reset();
-        auto unExport = jobs::exportPrimaveraXer(un);
-        auto unBack = jobs::importPrimaveraXer(unExport.xer, "unknown.xer");
+        auto unExport = ppm::exportPrimaveraXer(un);
+        auto unBack = ppm::importPrimaveraXer(unExport.xer, "unknown.xer");
         check(!unBack.project.tasks[0].durationMinutes && !unBack.project.resources[0].maxUnits &&
                   diagnostic(unExport, "capacity"),
               "unknown not zero");
         auto one = p;
         one.tasks[0].durationMinutes = 1;
         one.tasks[2].dependencyRules[0].lagMinutes = -1;
-        auto oneExport = jobs::exportPrimaveraXer(one);
-        auto oneBack = jobs::importPrimaveraXer(oneExport.xer, "one-minute.xer");
+        auto oneExport = ppm::exportPrimaveraXer(one);
+        auto oneBack = ppm::importPrimaveraXer(oneExport.xer, "one-minute.xer");
         check(oneBack.project.tasks[0].durationMinutes == 1 &&
                   oneBack.project.tasks[2].dependencyRules[0].lagMinutes == -1 &&
                   diagnostic(oneBack, "target_drtn_hr_cnt"),
               "one minute decimal quantization");
-        jobs::Project around;
+        ppm::Project around;
         around.documentId = "around-clock";
         around.name = "24-hour";
         around.startDate = "2026-10-26";
-        around.calculationProfile = jobs::effortProfile;
+        around.calculationProfile = ppm::effortProfile;
         around.calendars = {{"around", "24-hour", {1, 2, 3, 4, 5, 6, 7}, {{0, 1440}}, {}}};
         around.tasks = {{"a", "24-hour task", 60, {}}};
         around.tasks[0].calendarId = "around";
-        auto aroundExport = jobs::exportPrimaveraXer(around);
+        auto aroundExport = ppm::exportPrimaveraXer(around);
         auto midnight = aroundExport.xer;
         midnight.replace("f|24:00", "f|00:00");
-        auto aroundBack = jobs::importPrimaveraXer(midnight, "midnight.xer");
-        check(aroundBack.project.calendars.back().periods == std::vector<jobs::WorkPeriod>{{0, 1440}},
+        auto aroundBack = ppm::importPrimaveraXer(midnight, "midnight.xer");
+        check(aroundBack.project.calendars.back().periods == std::vector<ppm::WorkPeriod>{{0, 1440}},
               "midnight endpoint/24-hour calendar");
         auto work = p;
-        work.tasks[0].taskType = jobs::TaskType::FixedWork;
+        work.tasks[0].taskType = ppm::TaskType::FixedWork;
         work.tasks[0].workDriven = true;
         work.tasks[0].workUnitMinutes = 24000;
         work.tasks[0].breaks = {{"2026-10-26 10:00", "2026-10-26 11:00"}};
         work.tasks[0].deadlineAt = "2026-10-28 18:00";
-        auto projected = jobs::exportPrimaveraXer(work);
+        auto projected = ppm::exportPrimaveraXer(work);
         check(diagnostic(projected, "deadline") && diagnostic(projected, "xer-task-20") &&
-                  jobs::importPrimaveraXer(projected.xer, "work.xer").project.tasks[0].taskType ==
-                      jobs::TaskType::FixedDuration,
+                  ppm::importPrimaveraXer(projected.xer, "work.xer").project.tasks[0].taskType ==
+                      ppm::TaskType::FixedDuration,
               "work/split/deadline explicit loss");
-        jobs::Project latin;
+        ppm::Project latin;
         latin.documentId = "latin";
         latin.name = "Latin";
         latin.startDate = "2026-10-26";
         latin.tasks = {{"a", "Café €", 1, {}}};
-        auto utf8 = jobs::exportPrimaveraXer(latin).xer;
+        auto utf8 = ppm::exportPrimaveraXer(latin).xer;
         auto latinText = QString::fromUtf8(utf8);
         if (latinText.startsWith(QChar(0xfeff)))
             latinText.remove(0, 1);
         latinText.replace(QChar(0x20ac), QChar(0x80));
         auto cp = latinText.toLatin1();
-        check(jobs::importPrimaveraXer(cp, "cp.xer", jobs::XerEncoding::Windows1252).project.tasks[0].name == "Café €",
+        check(ppm::importPrimaveraXer(cp, "cp.xer", ppm::XerEncoding::Windows1252).project.tasks[0].name == "Café €",
               "Windows-1252 explicit decode");
-        rejects([&] { jobs::importPrimaveraXer(cp, "bad-encoding.xer"); });
-        rejects([&] { jobs::importPrimaveraXer(utf8, "bom.xer", jobs::XerEncoding::Windows1252); });
+        rejects([&] { ppm::importPrimaveraXer(cp, "bad-encoding.xer"); });
+        rejects([&] { ppm::importPrimaveraXer(utf8, "bom.xer", ppm::XerEncoding::Windows1252); });
         auto bad = [&](const QString &t, const QString &f, int r, const QString &v) {
-            rejects([&] { jobs::importPrimaveraXer(modify(source, t, f, r, v), "bad.xer"); });
+            rejects([&] { ppm::importPrimaveraXer(modify(source, t, f, r, v), "bad.xer"); });
         };
         bad("TASK", "task_id", 1, "20");
         bad("PROJWBS", "wbs_id", 1, "10");
@@ -301,7 +301,7 @@ int main(int argc, char **argv) {
         bad("TASKPRED", "pred_task_id", 0, "30");
         bad("TASKPRED", "task_id", 0, "20");
         auto cyclic = modify(modify(source, "TASKPRED", "task_id", 1, "20"), "TASKPRED", "pred_task_id", 1, "30");
-        rejects([&] { jobs::importPrimaveraXer(cyclic, "cycle.xer"); });
+        rejects([&] { ppm::importPrimaveraXer(cyclic, "cycle.xer"); });
         bad("TASKRSRC", "rsrc_id", 0, "999");
         bad("TASKRSRC", "curv_id", 0, "1");
         bad("TASKRSRC", "target_qty_per_hr", 0, "0.505");
@@ -320,26 +320,26 @@ int main(int argc, char **argv) {
         auto marker = "(0||0(d|" + holiday + ")())";
         check(workingException.contains(marker), "holiday mutation target");
         workingException.replace(marker, "(0||0(d|" + holiday + ")((0||0(s|09:00|f|10:00)()))))");
-        rejects([&] { jobs::importPrimaveraXer(workingException, "work-exception.xer"); });
+        rejects([&] { ppm::importPrimaveraXer(workingException, "work-exception.xer"); });
         auto schema = source;
         schema.replace("task_id\tproj_id\twbs_id", "task_id\ttask_id\twbs_id");
-        rejects([&] { jobs::importPrimaveraXer(schema, "duplicate-fields.xer"); });
+        rejects([&] { ppm::importPrimaveraXer(schema, "duplicate-fields.xer"); });
         auto shortTail = source;
         shortTail.replace("%R\t1\t원본에만 보존", "%R\t1");
-        auto restored = jobs::importPrimaveraXer(shortTail, "short-tail.xer");
+        auto restored = ppm::importPrimaveraXer(shortTail, "short-tail.xer");
         check(restored.project.tasks == p.tasks && diagnostic(restored, "NOTEBOOK/line-"),
               "trailing null projection lost");
         auto mixedCase = source;
         mixedCase.replace("note_id\ttext", "note_id\tLevelPriorityList");
-        check(jobs::importPrimaveraXer(mixedCase, "mixed-field.xer").project.tasks == p.tasks,
+        check(ppm::importPrimaveraXer(mixedCase, "mixed-field.xer").project.tasks == p.tasks,
               "native mixed-case field rejected");
         auto delNotes = source;
         delNotes.replace("원본에만 보존", QByteArray("line one") + char(0x7f) + "line two");
-        auto preserved = jobs::importPrimaveraXer(delNotes, "memo-newlines.xer");
+        auto preserved = ppm::importPrimaveraXer(delNotes, "memo-newlines.xer");
         check(preserved.xer == delNotes && diagnostic(preserved, "NOTEBOOK/line-"), "memo original/normalization lost");
         auto extraCells = source;
         extraCells.replace("%R\t1\t원본에만 보존", "%R\t1\t원본에만 보존\textra");
-        rejects([&] { jobs::importPrimaveraXer(extraCells, "extra-cells.xer"); });
+        rejects([&] { ppm::importPrimaveraXer(extraCells, "extra-cells.xer"); });
         bad("TASK", "task_id", 0, "");
         bad("TASK", "task_name", 0, QString("bad") + QChar(0x7f) + "name");
         bad("NOTEBOOK", "text", 0, QString("bad") + QChar(0x01) + "text");
@@ -353,17 +353,17 @@ int main(int argc, char **argv) {
         paddedBudget += "%E\n";
         bool budgetRejected = false;
         try {
-            jobs::importPrimaveraXer(paddedBudget, "padded-budget.xer");
-        } catch (const jobs::AppError &error) {
+            ppm::importPrimaveraXer(paddedBudget, "padded-budget.xer");
+        } catch (const ppm::AppError &error) {
             budgetRejected = error.code() == "FILE_PRIMAVERAXER_014";
         }
         check(budgetRejected, "restored cells escaped global allocation budget");
         auto noEnd = source.left(source.lastIndexOf("%E"));
-        rejects([&] { jobs::importPrimaveraXer(noEnd, "no-end.xer"); });
-        rejects([&] { jobs::importPrimaveraXer(source + "junk", "tail.xer"); });
+        rejects([&] { ppm::importPrimaveraXer(noEnd, "no-end.xer"); });
+        rejects([&] { ppm::importPrimaveraXer(source + "junk", "tail.xer"); });
         auto badMarker = source;
         badMarker.replace("%T\tNOTEBOOK", "%X\tNOTEBOOK");
-        rejects([&] { jobs::importPrimaveraXer(badMarker, "marker.xer"); });
+        rejects([&] { ppm::importPrimaveraXer(badMarker, "marker.xer"); });
         auto lines = QString::fromUtf8(source).split('\n');
         for (qsizetype i = 0; i < lines.size(); ++i)
             if (lines[i].startsWith("%T\tPROJECT")) {
@@ -371,44 +371,44 @@ int main(int argc, char **argv) {
                 lines.insert(i + 3, row);
                 break;
             }
-        rejects([&] { jobs::importPrimaveraXer(lines.join('\n').toUtf8(), "multi-project.xer"); });
-        rejects([&] { jobs::importPrimaveraXer(QByteArray(16 * 1024 * 1024 + 1, ' '), "large.xer"); });
+        rejects([&] { ppm::importPrimaveraXer(lines.join('\n').toUtf8(), "multi-project.xer"); });
+        rejects([&] { ppm::importPrimaveraXer(QByteArray(16 * 1024 * 1024 + 1, ' '), "large.xer"); });
         auto newline = p;
         newline.tasks[0].name = "bad\nname";
-        rejects([&] { jobs::exportPrimaveraXer(newline); });
+        rejects([&] { ppm::exportPrimaveraXer(newline); });
         newline.tasks[0].name = "bad\xe2\x80\xa8name";
-        rejects([&] { jobs::exportPrimaveraXer(newline); });
+        rejects([&] { ppm::exportPrimaveraXer(newline); });
         bad("TASK", "task_name", 0, QString("bad") + QChar(0x2028) + "name");
         check(*doc.project() == snapshot, "failed import changed document");
         auto wide = source;
         wide.replace("%T\tNOTEBOOK", QByteArray("\t").repeated(257) + "\r\n%T\tNOTEBOOK");
-        rejects([&] { jobs::importPrimaveraXer(wide, "wide.xer"); });
-        rejects([&] { jobs::importPrimaveraXer(QByteArray("\n").repeated(300002), "line-limit.xer"); });
+        rejects([&] { ppm::importPrimaveraXer(wide, "wide.xer"); });
+        rejects([&] { ppm::importPrimaveraXer(QByteArray("\n").repeated(300002), "line-limit.xer"); });
         auto cells = source;
         cells.replace("%R\t1\t원본에만 보존", "%R\t1\t" + QByteArray(1024 * 1024 + 1, 'X'));
-        rejects([&] { jobs::importPrimaveraXer(cells, "cell-limit.xer"); });
+        rejects([&] { ppm::importPrimaveraXer(cells, "cell-limit.xer"); });
         auto budget = source;
         budget.replace("%T\tNOTEBOOK", "%T\tCELL_BUDGET\r\n%F\ta\tb\tc\r\n" +
                                            QByteArray("%R\t\t\t\r\n").repeated(250001) + "%T\tNOTEBOOK");
-        rejects([&] { jobs::importPrimaveraXer(budget, "cell-budget.xer"); });
+        rejects([&] { ppm::importPrimaveraXer(budget, "cell-budget.xer"); });
         QString nested = "(0||CalendarData()())";
         for (int i = 0; i < 33; ++i)
             nested = "(0||X()(" + nested + "))";
         bad("CALENDAR", "clndr_data", 0, nested);
         auto future = modify(source, "RSRCRATE", "start_date", 0, "2027-10-01 00:00");
-        auto futureImport = jobs::importPrimaveraXer(future, "future.xer");
+        auto futureImport = ppm::importPrimaveraXer(future, "future.xer");
         check(!futureImport.project.resources[0].maxUnits, "future capacity not treated as current");
-        auto changedPolicy = jobs::importPrimaveraXer(
+        auto changedPolicy = ppm::importPrimaveraXer(
             modify(source, "SCHEDOPTIONS", "sched_calendar_on_relationship_lag", 0, "rcal_Predecessor"), "policy.xer");
         check(diagnostic(changedPolicy, "sched_calendar_on_relationship_lag"),
               "lag calendar policy difference not reported");
-        jobs::Document tracked(store);
+        ppm::Document tracked(store);
         tracked.create("승인·실적 보존", "2026-10-26", {"보고"});
         tracked.setDuration(0, 60);
         tracked.saveAs(dir.filePath("tracked.ppm").toStdString());
         tracked.captureBaseline("승인", "검증", "원본 보존", "2026-10-26T00:00:00Z");
         tracked.setStatusAt("2026-10-26 09:30");
-        jobs::ProgressEntry progress;
+        ppm::ProgressEntry progress;
         progress.taskId = tracked.project()->tasks[0].id;
         progress.actualStart = "2026-10-26 09:00";
         progress.actualDurationMinutes = 30;
@@ -417,7 +417,7 @@ int main(int argc, char **argv) {
         progress.reason = "계측";
         progress.recordedAt = "2026-10-26T00:30:00Z";
         tracked.recordProgress(progress);
-        jobs::CostEntry cost;
+        ppm::CostEntry cost;
         cost.taskId = progress.taskId;
         cost.actualMinor = 1234;
         cost.physicalBasisPoints = 5000;
@@ -426,8 +426,8 @@ int main(int argc, char **argv) {
         cost.recordedAt = "2026-10-26T00:30:00Z";
         tracked.recordCost(cost);
         auto history = *tracked.project();
-        auto historyExport = jobs::exportPrimaveraXer(history);
-        auto historyFolder = jobs::publishPrimaveraXer(historyExport, dir.filePath("history"));
+        auto historyExport = ppm::exportPrimaveraXer(history);
+        auto historyFolder = ppm::publishPrimaveraXer(historyExport, dir.filePath("history"));
         check(diagnostic(historyExport, "history-costs") &&
                   store.load(QDir(historyFolder).filePath("source.ppm").toStdString()).project == history &&
                   *tracked.project() == history,

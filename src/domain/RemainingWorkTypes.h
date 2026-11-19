@@ -2,7 +2,7 @@
 #include <cstdint>
 #include <string>
 #include <vector>
-namespace jobs {
+namespace ppm {
 struct DatedWorkValue {
     std::string date;
     std::int64_t workUnitMinutes = 0;
@@ -13,4 +13,4 @@ struct RemainingWorkPlan {
     std::vector<DatedWorkValue> days;
     bool operator==(const RemainingWorkPlan &) const = default;
 };
-} // namespace jobs
+} // namespace ppm

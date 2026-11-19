@@ -86,9 +86,9 @@ int main(int argc, char **argv) {
                       << " profile=" << profile.toStdString() << std::endl;
             QElapsedTimer timer;
             timer.start();
-            auto result = jobs::calculate(p);
+            auto result = ppm::calculate(p);
             calculation.push_back(double(timer.nsecsElapsed()) / 1000000);
-            if (result.status != jobs::CalculationStatus::Valid || result.tasks.size() != p.tasks.size() ||
+            if (result.status != ppm::CalculationStatus::Valid || result.tasks.size() != p.tasks.size() ||
                 !result.projectFinish)
                 throw std::runtime_error("fixture did not produce a complete valid schedule");
             if (sample && finish != *result.projectFinish)
@@ -106,18 +106,18 @@ int main(int argc, char **argv) {
                     throw std::runtime_error("complete schedule differs from pre-optimization 9a40185 reference");
             }
             if (!parser.isSet("no-ui")) {
-                jobs::JsonProjectStore store;
+                ppm::JsonProjectStore store;
                 const auto path = directory.filePath(QString::number(sample) + ".ppm").toStdString();
                 store.save(path, p, {});
-                jobs::Document doc(store);
+                ppm::Document doc(store);
                 doc.open(path);
                 doc.applyCalculation(result);
                 timer.restart();
-                jobs::MainWindow window(doc);
+                ppm::MainWindow window(doc);
                 window.show();
                 app.processEvents();
                 preparation.push_back(double(timer.nsecsElapsed()) / 1000000);
-                auto *view = dynamic_cast<jobs::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
+                auto *view = dynamic_cast<ppm::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
                 if (!view)
                     throw std::runtime_error("gantt missing");
                 for (int step = 0; step < 12; ++step) {
@@ -132,7 +132,7 @@ int main(int argc, char **argv) {
             }
         }
         QJsonObject out{
-            {"fixture", "jobs-perf-layered-v1"},
+            {"fixture", "ppm-perf-layered-v1"},
             {"schedule_sha256", fingerprint},
             {"status", "success"},
             {"task_count", count},
@@ -150,14 +150,14 @@ int main(int argc, char **argv) {
             {"cpu_architecture", QSysInfo::currentCpuArchitecture()},
             {"logical_cpu_count", QThread::idealThreadCount()},
             {"qt", qVersion()},
-            {"source_revision", JOBS_PERF_REVISION},
-            {"build_configuration", JOBS_PERF_CONFIG}};
+            {"source_revision", PPM_PERF_REVISION},
+            {"build_configuration", PPM_PERF_CONFIG}};
 #ifdef _MSC_VER
         out["compiler"] = QString("MSVC %1").arg(_MSC_VER);
 #else
         out["compiler"] = __VERSION__;
 #endif
-        out["built_product_source_sha256"] = JOBS_SOURCE_SHA256;
+        out["built_product_source_sha256"] = PPM_SOURCE_SHA256;
         if (!preparation.empty()) {
             out["ui_preparation"] = samples(preparation);
             out["scroll"] = samples(scroll);

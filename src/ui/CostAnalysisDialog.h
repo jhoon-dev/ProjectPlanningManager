@@ -6,20 +6,21 @@ class QComboBox;
 class QLabel;
 class QPlainTextEdit;
 class QTableWidget;
-namespace jobs {
+namespace ppm {
 class CostChart;
 class CostAnalysisDialog final : public QDialog {
 public:
-    CostAnalysisDialog(Document&, const std::string& baselineId, QWidget* parent = nullptr);
+    CostAnalysisDialog(Document &, const std::string &baselineId, QWidget *parent = nullptr);
+
 private:
-    Document& document_;
+    Document &document_;
     QComboBox *baseline_, *formula_;
-    QLabel* summary_;
+    QLabel *summary_;
     QTableWidget *tasks_, *groups_, *days_;
-    QPlainTextEdit* diagnostics_;
-    CostChart* chart_;
+    QPlainTextEdit *diagnostics_;
+    CostChart *chart_;
     std::uint64_t generation_ = 0;
     void recalculate();
-    void display(const CostAnalysis&);
+    void display(const CostAnalysis &);
 };
-}
+} // namespace ppm

@@ -21,7 +21,7 @@
 #include <QVBoxLayout>
 #include <QWidgetAction>
 
-namespace jobs {
+namespace ppm {
 void MainWindow::setupWorkspaceUi(QToolBar *tools, QComboBox *zoom) {
     const int controlHeight = std::max(32, fontMetrics().height() + 16);
     tools->setObjectName("primaryTools");
@@ -373,4 +373,4 @@ void MainWindow::refreshWorkflowUi() {
     workflowHint_->setToolTip(hint);
     scheduleState_->setToolTip(hint);
 }
-} // namespace jobs
+} // namespace ppm

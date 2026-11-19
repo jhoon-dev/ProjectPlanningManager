@@ -3,7 +3,7 @@
 #include <optional>
 #include <string>
 #include <vector>
-namespace jobs {
+namespace ppm {
 struct FinancialPeriodValue {
     std::string taskId;
     std::optional<std::int64_t> budget, earned;
@@ -40,4 +40,4 @@ struct FinancialPeriodEvent : FinancialPeriodSubmission {
     std::vector<FinancialPeriodTask> tasks; // Only close events freeze native boundaries and dated AC.
     bool operator==(const FinancialPeriodEvent &) const = default;
 };
-} // namespace jobs
+} // namespace ppm

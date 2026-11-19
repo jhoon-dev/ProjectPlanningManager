@@ -2,7 +2,7 @@
 #include "domain/Wbs.h"
 #include <unordered_map>
 #include <stdexcept>
-namespace jobs {
+namespace ppm {
 std::unordered_set<std::string> wbsSubtree(const PlanInput &p, const std::string &id) {
     std::unordered_map<std::string, std::vector<std::string>> children;
     bool found = id.empty();
@@ -34,4 +34,4 @@ std::vector<std::size_t> wbsTaskRows(const PlanInput &p, const std::string &id) 
             rows.push_back(i);
     return rows;
 }
-} // namespace jobs
+} // namespace ppm

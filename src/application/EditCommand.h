@@ -7,7 +7,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace jobs {
+namespace ppm {
 struct TaskEdit {
     std::string taskId;
     std::optional<std::string> name;
@@ -152,4 +152,4 @@ struct EditCommand : EditCommandValue {
     ~EditCommand();
 };
 enum class EditState { Ready, Applied, NoChange, Cancelled, Stale, Failed };
-} // namespace jobs
+} // namespace ppm

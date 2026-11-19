@@ -11,7 +11,7 @@
 #include <limits>
 #include <set>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &s) {
     throw AppError(ErrorCode::CLASSIFICATION_INVALID, {s});
@@ -570,4 +570,4 @@ std::string RollUpValues::describe(const std::string &id) const {
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

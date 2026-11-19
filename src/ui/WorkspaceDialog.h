@@ -7,7 +7,7 @@ class QLabel;
 class QPushButton;
 class QComboBox;
 class QPlainTextEdit;
-namespace jobs {
+namespace ppm {
 class DesktopWorkspace;
 class SharedLoadModel;
 class WorkspaceDialog final : public QDialog {
@@ -42,4 +42,4 @@ private:
     void bindResource();
     void taskChoices();
 };
-} // namespace jobs
+} // namespace ppm

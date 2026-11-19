@@ -17,7 +17,7 @@
 #include <QToolBar>
 #include <algorithm>
 
-namespace jobs {
+namespace ppm {
 void MainWindow::setupAsyncEditing(QToolBar *tools) {
     editController_ = new AsyncEditController(document_, this);
     taskModel_->unchangedEditRequested = [this](std::string id, int column) {
@@ -242,4 +242,4 @@ void MainWindow::undoEdit(bool redo) {
         report(error);
     }
 }
-} // namespace jobs
+} // namespace ppm

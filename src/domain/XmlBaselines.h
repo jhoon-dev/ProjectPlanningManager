@@ -1,7 +1,7 @@
 #pragma once
 #include "domain/Project.h"
 #include <map>
-namespace jobs {
+namespace ppm {
 std::optional<int> xmlBaselineTimeNumber(int type, const std::string &kind);
 const XmlBaselineOrigin &xmlBaselineOrigin(const XmlBaselineSet &, int number);
 std::vector<XmlBaselineLink> xmlBaselineLinks(const XmlBaselineSet &);
@@ -15,4 +15,4 @@ std::int64_t xmlBaselineMinutes(const std::string &, std::int64_t maximum);
 std::int64_t xmlBaselineMoney(const std::string &wire, const std::string &currency);
 std::string xmlBaselineMoneyText(std::int64_t minor, const std::string &currency);
 void validateXmlBaselines(const PlanInput &);
-} // namespace jobs
+} // namespace ppm

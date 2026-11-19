@@ -2,7 +2,7 @@
 #include "domain/Diagnostics.h"
 #include <unordered_set>
 #include <chrono>
-namespace jobs {
+namespace ppm {
 void validatePresentation(const Project &p) {
     auto fail = [] { throw AppError(Diagnostic{"PRESENTATION_INVALID", {}, {}}); };
     if (p.printPreferences) {
@@ -34,4 +34,4 @@ void validatePresentation(const Project &p) {
             v.y < -1000000 || v.y > 1000000)
             fail();
 }
-} // namespace jobs
+} // namespace ppm

@@ -1,6 +1,6 @@
 #include "calculation/SharedAvailabilityQuery.h"
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 SharedAvailabilityQuery::SharedAvailabilityQuery(const Workspace &workspace,
                                                  const std::vector<std::shared_ptr<const Project>> &snapshots,
                                                  bool forecast, const std::shared_ptr<CalculationControl> &control,
@@ -158,4 +158,4 @@ SharedAvailabilityResult SharedAvailabilityQuery::allAt(const std::string &stamp
         out.status = CalculationStatus::Incomplete;
     return out;
 }
-} // namespace jobs
+} // namespace ppm

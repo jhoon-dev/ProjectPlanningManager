@@ -4,7 +4,7 @@
 #include <optional>
 #include <string>
 #include <vector>
-namespace jobs {
+namespace ppm {
 struct XmlBaselineTime {
     int type = 0;
     std::string uid;
@@ -56,4 +56,4 @@ struct XmlBaselineMerge : XmlBaselineMergeSubmission {
     XmlBaselineSet after;
     bool operator==(const XmlBaselineMerge &) const = default;
 };
-} // namespace jobs
+} // namespace ppm

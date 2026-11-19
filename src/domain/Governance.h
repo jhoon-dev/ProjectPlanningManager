@@ -2,7 +2,7 @@
 #include <cstdint>
 #include <string>
 #include <vector>
-namespace jobs {
+namespace ppm {
 struct Workspace;
 struct OrganizationNode {
     std::string id, name, parentId, kind = "OBS";
@@ -53,4 +53,4 @@ bool permits(const Workspace &, const std::string &actorId, const std::string &p
 void validateGovernance(const Workspace &);
 // Append-only collaboration records; revision is an observed source revision, never an approval of later edits.
 void appendCollaboration(Workspace &, CollaborationEvent);
-} // namespace jobs
+} // namespace ppm

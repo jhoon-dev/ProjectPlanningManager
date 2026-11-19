@@ -25,7 +25,7 @@
 #include <QVBoxLayout>
 #include <QtConcurrent/QtConcurrentRun>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s);
@@ -558,4 +558,4 @@ void ProgressPolicyDialog::save() {
         QMessageBox::warning(this, "비교 내보내기", qErrorText(e));
     }
 }
-} // namespace jobs
+} // namespace ppm

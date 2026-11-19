@@ -19,7 +19,7 @@ class QDialog;
 class QDialogButtonBox;
 class QToolButton;
 class QSplitter;
-namespace jobs {
+namespace ppm {
 class GanttView;
 class JsonRecoveryStore;
 class AutoSaveController;
@@ -199,4 +199,4 @@ private:
     void refreshTracking();
     void report(const std::exception &error);
 };
-} // namespace jobs
+} // namespace ppm

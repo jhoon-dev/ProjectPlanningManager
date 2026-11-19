@@ -27,7 +27,7 @@
 #include <QTest>
 #include <QTimer>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool b, const char *m) {
     if (!b)
@@ -49,7 +49,7 @@ void write(const QString &p, const QByteArray &b) {
 QByteArray envelope(const Project &p, int schema) {
     auto body = json::encodeProject(p);
     return QJsonDocument(
-               QJsonObject{{"format", "JOBS"},
+               QJsonObject{{"format", "PPM"},
                            {"schemaVersion", schema},
                            {"payload", body},
                            {"sha256", QString::fromLatin1(
@@ -186,7 +186,7 @@ int main(int argc, char **argv) {
     guard.start(150000);
     try {
         QDir().mkpath("xer-relink-qa");
-        auto bytes = readPrimaveraXer(QString::fromUtf8(JOBS_XER_FINANCIAL_FIXTURE));
+        auto bytes = readPrimaveraXer(QString::fromUtf8(PPM_XER_FINANCIAL_FIXTURE));
         auto next = version(bytes);
         auto p = importPrimaveraXer(bytes, "original.xer").project;
         QTemporaryDir temp;

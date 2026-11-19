@@ -7,7 +7,7 @@
 #include <stdexcept>
 #include <unordered_map>
 #include <unordered_set>
-namespace jobs {
+namespace ppm {
 namespace {
 std::unordered_set<std::string> selected(const Project &p, const std::vector<std::string> &ids) {
     if (ids.empty() || ids.size() > 10000)
@@ -308,4 +308,4 @@ void Document::editPlan(Project p, std::string label, bool validated) {
     notify(Event::Edited);
 }
 
-} // namespace jobs
+} // namespace ppm

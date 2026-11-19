@@ -6,7 +6,7 @@
 #include <cstdio>
 #include <stdexcept>
 #include <unordered_set>
-namespace jobs {
+namespace ppm {
 namespace {
 using namespace std::chrono;
 sys_days date(const std::string &s) {
@@ -233,4 +233,4 @@ std::vector<std::pair<std::string, std::string>> WorkCalendar::segments(const st
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

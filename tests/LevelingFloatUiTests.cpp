@@ -20,7 +20,7 @@
 #include <QTest>
 #include <QTableWidget>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool v, const char *m) {
     if (!v)

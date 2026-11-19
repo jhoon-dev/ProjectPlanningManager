@@ -14,7 +14,7 @@ args = parser.parse_args()
 facilities = args.tasks // 1000
 output = args.output.resolve()
 output.mkdir(exist_ok=False)
-lines = ['ERMHDR\t20.12\t2026-10-30\tProject\tJOBS synthetic fixture\tJOBS\tdbxDatabaseNoName\tProject Management\tKRW']
+lines = ['ERMHDR\t20.12\t2026-10-30\tProject\tPPM synthetic fixture\tPPM\tdbxDatabaseNoName\tProject Management\tKRW']
 
 def table(name, columns, rows):
     lines.append('%T\t' + name)
@@ -109,7 +109,7 @@ payload = ('\n'.join(lines)+'\n').encode('utf-8')
 path = output / f'industrial-campus-{args.tasks}.xer'
 path.write_bytes(payload)
 assert len(tasks) == args.tasks and all(int(row[2]) < int(row[1]) for row in links)
-summary = {'synthetic': True, 'source': 'deterministic JOBS demo generator; no customer data',
+summary = {'synthetic': True, 'source': 'deterministic PPM demo generator; no customer data',
            'tasks': len(tasks), 'wbs_nodes_excluding_project_root': len(wbs)-1,
            'milestones': sum(row[6] == 'TT_FinMile' for row in tasks),
            'relationships': len(links), 'relationship_types': dict(Counter(row[5] for row in links)),

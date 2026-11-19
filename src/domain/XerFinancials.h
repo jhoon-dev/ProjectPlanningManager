@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include "domain/CurrencyTypes.h"
-namespace jobs {
+namespace ppm {
 struct XerFinancialTask {
     std::string id, name;
     std::optional<std::int64_t> actualMinor;
@@ -96,4 +96,4 @@ const XerFinancialSnapshot *activeXerFinancials(const Project &);
 bool xerFinancialsMatch(const Project &, const std::string &projectionHash);
 void validateXerFinancialRevisions(const Project &);
 bool xerFinancialsNeedSchema27(const Project &);
-} // namespace jobs
+} // namespace ppm

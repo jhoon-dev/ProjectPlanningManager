@@ -2,7 +2,7 @@
 #include "domain/Project.h"
 #include <map>
 #include <tuple>
-namespace jobs {
+namespace ppm {
 using PeriodActualKey = std::tuple<std::string, std::string, std::string>; // Task, resource (empty = task cost), day.
 PeriodActualKey periodActualKey(const PeriodActualEntry &);
 std::map<PeriodActualKey, const PeriodActualEntry *> periodActualsAsOf(const Project &, const std::string &statusAt);
@@ -15,4 +15,4 @@ std::map<std::string, ActualCostAllocation> actualCostAllocations(const Project 
 void validatePeriodActuals(const Project &);
 // At most six decimal hours, or exact integer %·minutes with a 'u' suffix.
 std::int64_t parseActualHours(const std::string &);
-} // namespace jobs
+} // namespace ppm

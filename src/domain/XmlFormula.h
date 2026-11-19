@@ -1,7 +1,7 @@
 #pragma once
 #include "domain/Project.h"
 #include <functional>
-namespace jobs {
+namespace ppm {
 class XmlFormulaFrame {
 public:
     XmlFormulaFrame();
@@ -73,4 +73,4 @@ XmlFormulaResult xmlFormulaValue(const PlanInput &, FieldScope, const std::strin
                                  const Resource * = nullptr, const Assignment * = nullptr,
                                  const XmlSummaryResolver & = {});
 std::string rewriteXmlFormula(const XmlFormula &, const std::function<std::string(const XmlFormulaReference &)> &);
-} // namespace jobs
+} // namespace ppm

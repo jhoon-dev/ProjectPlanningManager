@@ -15,7 +15,7 @@
 #include <QTimer>
 #include <QVBoxLayout>
 #include <QtConcurrent/QtConcurrentRun>
-namespace jobs {
+namespace ppm {
 void showResourceAvailability(Document &doc, QWidget *parent) {
     if (!doc.project())
         return;
@@ -186,4 +186,4 @@ void showResourceAvailability(Document &doc, QWidget *parent) {
         control->cancel();
     doc.unsubscribe(listener);
 }
-} // namespace jobs
+} // namespace ppm

@@ -2,7 +2,7 @@
 #include "domain/PeriodActualTypes.h"
 #include <string_view>
 #include <map>
-namespace jobs {
+namespace ppm {
 struct Project;
 inline constexpr std::string_view xmlProrataPrefix = "[XML-PRORATA sha256=";
 inline bool proportionalActual(const PeriodActualEntry &e) {
@@ -25,4 +25,4 @@ struct ActualDerivation {
 // Unchanged amounts retain their allocation origin through later corrections.
 // Prior observations are selected as of each entry's status, skipping future facts.
 std::map<std::string, ActualDerivation> actualDerivations(const Project &);
-} // namespace jobs
+} // namespace ppm

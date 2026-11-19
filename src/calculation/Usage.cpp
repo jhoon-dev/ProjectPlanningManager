@@ -11,7 +11,7 @@
 #include <set>
 #include <unordered_map>
 
-namespace jobs {
+namespace ppm {
 namespace {
 using namespace std::chrono;
 sys_days day(const std::string &s) {
@@ -485,4 +485,4 @@ ProjectReport usageReport(const UsageResult &r, UsageHierarchy hierarchy, const 
     (void)hierarchy; // Both on-screen hierarchies export the same unique leaf grain.
     return report;
 }
-} // namespace jobs
+} // namespace ppm

@@ -1,6 +1,6 @@
 #pragma once
 class QWidget;
-namespace jobs {
+namespace ppm {
 class Document;
 void showMaterialInventory(Document &, QWidget *);
-} // namespace jobs
+} // namespace ppm

@@ -16,7 +16,7 @@
 #include <QTableView>
 #include <QVBoxLayout>
 #include <map>
-namespace jobs {
+namespace ppm {
 namespace {
 class BaselinePreview final : public QAbstractTableModel {
     const ProjectXmlExchange &input_;
@@ -197,4 +197,4 @@ std::optional<ProjectXmlExchange> reviewXmlBaselines(QWidget *parent, Document &
         return {};
     return result;
 }
-} // namespace jobs
+} // namespace ppm

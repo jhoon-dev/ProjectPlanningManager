@@ -12,7 +12,7 @@
 #include <QVBoxLayout>
 #include <QtConcurrent>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 struct Outcome {
     std::optional<PlannedWorkResult> value;
@@ -216,4 +216,4 @@ void PlannedWorkDialog::run(bool convert) {
             return out;
         }));
 }
-} // namespace jobs
+} // namespace ppm

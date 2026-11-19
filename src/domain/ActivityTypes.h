@@ -2,7 +2,7 @@
 #include <cstdint>
 #include <string>
 #include <vector>
-namespace jobs {
+namespace ppm {
 struct ActivityStep {
     std::string id, name;
     int weight = 1;
@@ -26,4 +26,4 @@ struct StepReport {
     std::vector<StepObservation> steps;
     bool operator==(const StepReport &) const = default;
 };
-} // namespace jobs
+} // namespace ppm

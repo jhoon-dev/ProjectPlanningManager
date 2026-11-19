@@ -18,7 +18,7 @@
 #include <QTemporaryDir>
 #include <iostream>
 #include <random>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool v, const char *s) {
     if (!v)
@@ -294,7 +294,7 @@ void run() {
         check(d.applyPreparedEdit(*ready) == EditState::Applied, "dated effort apply");
         const auto after = *d.project();
         const auto result = calculate(after);
-        check(result.status == CalculationStatus::Valid && result.engineVersion == "jobs-dated-effort-1.0",
+        check(result.status == CalculationStatus::Valid && result.engineVersion == "ppm-dated-effort-1.0",
               "dated effort forecast engine");
         check(result.tasks[0].finish == "2026-11-05 16:00" && result.tasks[0].start == *progress.actualStart,
               "fixed work completion / actual start");

@@ -3,7 +3,7 @@
 #include "domain/CalculationControl.h"
 #include <tuple>
 #include <iterator>
-namespace jobs {
+namespace ppm {
 std::map<std::string, ActualDerivation> actualDerivations(const Project &p) {
     using Key = std::tuple<std::string, std::string, std::string>;
     std::map<Key, std::map<std::string, const PeriodActualEntry *>> timelines;
@@ -27,4 +27,4 @@ std::map<std::string, ActualDerivation> actualDerivations(const Project &p) {
     }
     return result;
 }
-} // namespace jobs
+} // namespace ppm

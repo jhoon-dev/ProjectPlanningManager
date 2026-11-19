@@ -13,7 +13,7 @@
 #include <algorithm>
 #include <cmath>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void fail(const char *message) {
     throw std::runtime_error(message);
@@ -664,4 +664,4 @@ int exportSchedulePdf(const SchedulePrintLayout &layout, const QString &path,
     output.commit();
     return pages;
 }
-} // namespace jobs
+} // namespace ppm

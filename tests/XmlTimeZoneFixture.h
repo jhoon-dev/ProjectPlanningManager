@@ -2,7 +2,7 @@
 #include "domain/XmlFormula.h"
 #include "domain/Classification.h"
 #include <algorithm>
-namespace jobs::test {
+namespace ppm::test {
 inline Project xmlTimeZoneFixture() {
     Project p;
     p.documentId = "xml-timezone-functions";
@@ -66,4 +66,4 @@ inline Project xmlTimeZoneFixture() {
     p.tasks[0].attributes.push_back({"field:error", "2000-01-01T00:00:00"});
     return p;
 }
-} // namespace jobs::test
+} // namespace ppm::test

@@ -50,10 +50,10 @@ int main(int argc, char **argv) {
     watchdog.start(90000);
     try {
         QTemporaryDir dir;
-        auto files = std::make_shared<jobs::JsonProjectStore>();
+        auto files = std::make_shared<ppm::JsonProjectStore>();
         std::vector<std::string> paths, ids;
         for (int i = 0; i < 2; ++i) {
-            jobs::Document doc(*files);
+            ppm::Document doc(*files);
             const auto name = i == 0 ? QString(700, QChar(0xAC00)).toStdString() : "Project " + std::to_string(i);
             doc.create(name, "2026-10-26", {"Task"});
             doc.setDuration(0, 60);
@@ -66,7 +66,7 @@ int main(int argc, char **argv) {
         }
         const auto group = dir.filePath("Workspace.ppmworkspace");
         {
-            jobs::DesktopWorkspace workspace(files, {});
+            ppm::DesktopWorkspace workspace(files, {});
             auto *first = workspace.openProject(paths[0]);
             auto *second = workspace.openProject(paths[1]);
             check(first != second && workspace.snapshots().size() == 2, "projects did not get independent windows");
@@ -77,7 +77,7 @@ int main(int argc, char **argv) {
             bool rejected = false;
             try {
                 workspace.openProject(duplicate.toStdString(), true);
-            } catch (const jobs::AppError &error) {
+            } catch (const ppm::AppError &error) {
                 rejected = error.code() == "WORKSPACE_DUPLICATE_PROJECT";
             }
             check(rejected, "duplicate document ID accepted");
@@ -103,7 +103,7 @@ int main(int argc, char **argv) {
                 }
             });
             check(workspace.saveWorkspace(first) && !workspace.dirty(), "workspace save UI failed");
-            jobs::WorkspaceDialog dialog(workspace);
+            ppm::WorkspaceDialog dialog(workspace);
             dialog.show();
             auto *analyze = dialog.findChild<QPushButton *>("workspaceAnalyze");
             auto *cancel = dialog.findChild<QPushButton *>("workspaceCancel");
@@ -138,7 +138,7 @@ int main(int argc, char **argv) {
             check(!dialog.findChild<QPushButton *>("workspaceNavigate")->isEnabled(),
                   "mode change preserved active old navigation");
             dialog.hide();
-            QPointer<jobs::MainWindow> closed = second;
+            QPointer<ppm::MainWindow> closed = second;
             check(second->close(), "clean secondary window did not close");
             flush();
             check(!closed && workspace.snapshots().size() == 1 && workspace.configuration().projects.size() == 2,
@@ -151,7 +151,7 @@ int main(int argc, char **argv) {
             check(first->close(), "primary close");
             flush();
         }
-        jobs::DesktopWorkspace restored(files, {});
+        ppm::DesktopWorkspace restored(files, {});
         restored.openWorkspace(group.toStdString());
         check(restored.snapshots().size() == 2 && restored.configuration().bindings.size() == 2 && !restored.dirty(),
               "transactional workspace reopen failed");
@@ -163,7 +163,7 @@ int main(int argc, char **argv) {
         auto broken = frozen;
         broken.projects[0].path = dir.filePath("Missing.ppm").toStdString();
         const auto badPath = dir.filePath("Broken.ppmworkspace").toStdString();
-        jobs::JsonWorkspaceStore(*files).save(badPath, broken, {});
+        ppm::JsonWorkspaceStore(*files).save(badPath, broken, {});
         QTimer dismiss;
         QObject::connect(&dismiss, &QTimer::timeout, [] {
             if (auto *box = qobject_cast<QMessageBox *>(QApplication::activeModalWidget()))
@@ -177,7 +177,7 @@ int main(int argc, char **argv) {
         std::cout << "PASS: independent windows, leases/duplicate IDs, dirty/undo, workspace save/reopen/rollback, "
                      "cancellation and stale-result UI\n";
     } catch (const std::exception &error) {
-        std::cerr << "FAIL: " << jobs::errorText(error) << '\n';
+        std::cerr << "FAIL: " << ppm::errorText(error) << '\n';
         return 1;
     }
 }

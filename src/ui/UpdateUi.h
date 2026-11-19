@@ -2,10 +2,10 @@
 #include <QUrl>
 #include <functional>
 class QMainWindow;
-namespace jobs {
+namespace ppm {
 class UpdateController;
 struct UpdateUiHooks {
     std::function<bool(const QUrl &)> openUrl;
 };
 void attachUpdateUi(QMainWindow &, UpdateController &, UpdateUiHooks = {});
-} // namespace jobs
+} // namespace ppm

@@ -81,8 +81,8 @@ int main(int argc, char *argv[]) {
         QSettings::setDefaultFormat(QSettings::IniFormat);
         QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, dir.filePath("settings"));
         QSettings().setValue("recovery/enabled", true);
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("백그라운드 복구", "2026-10-26", {"task"});
         doc.setDuration(0, 480);
         auto source = dir.filePath("source.ppm");
@@ -91,13 +91,13 @@ int main(int argc, char *argv[]) {
         // Deterministically pause a flushed checkpoint while save/new edits retire it.
         auto gate = std::make_shared<Gate>();
         Release release{gate};
-        jobs::JsonRecoveryStore raceStore(dir.filePath("race"), [gate] {
+        ppm::JsonRecoveryStore raceStore(dir.filePath("race"), [gate] {
             if (gate->armed.exchange(false)) {
                 gate->entered.release();
                 gate->proceed.acquire();
             }
         });
-        auto controller = std::make_unique<jobs::AutoSaveController>(doc, raceStore, nullptr, 100, 10);
+        auto controller = std::make_unique<ppm::AutoSaveController>(doc, raceStore, nullptr, 100, 10);
         doc.renameTask(0, "old checkpoint");
         controller->checkpointNow();
         check(wait([&] { return gate->entered.available() > 0; }), "checkpoint did not reach flush gate");
@@ -122,9 +122,9 @@ int main(int argc, char *argv[]) {
         raced.reset();
         // No writes when paused/readonly; continuous edits are checkpointed by deadline.
         std::atomic<int> writes{0};
-        jobs::JsonRecoveryStore deadlineStore(dir.filePath("deadline"), [&] { ++writes; });
+        ppm::JsonRecoveryStore deadlineStore(dir.filePath("deadline"), [&] { ++writes; });
         {
-            jobs::AutoSaveController periodic(doc, deadlineStore, nullptr, 40, 200);
+            ppm::AutoSaveController periodic(doc, deadlineStore, nullptr, 40, 200);
             periodic.setEnabled(false);
             QTest::qWait(60);
             check(writes == 0, "paused autosave wrote data");
@@ -142,23 +142,23 @@ int main(int argc, char *argv[]) {
                   return s.candidates.empty() && s.activeSessions == 0;
               }),
               "normal finish failed to clear checkpoint");
-        jobs::Document readonly(store);
+        ppm::Document readonly(store);
         readonly.open(source.toStdString(), true);
-        jobs::JsonRecoveryStore readonlyStore(dir.filePath("readonly"));
+        ppm::JsonRecoveryStore readonlyStore(dir.filePath("readonly"));
         {
-            jobs::AutoSaveController view(readonly, readonlyStore, nullptr, 10, 5);
+            ppm::AutoSaveController view(readonly, readonlyStore, nullptr, 10, 5);
             view.checkpointNow();
             QTest::qWait(30);
             check(view.status().contains("읽기 전용") && !QFile::exists(readonlyStore.directory()),
                   "readonly generated checkpoint");
         }
         bool fault = false;
-        jobs::JsonRecoveryStore failureStore(dir.filePath("failure"), [&] {
+        ppm::JsonRecoveryStore failureStore(dir.filePath("failure"), [&] {
             if (fault)
                 throw std::runtime_error("write failure");
         });
         {
-            jobs::AutoSaveController failing(doc, failureStore, nullptr, 1000, 5);
+            ppm::AutoSaveController failing(doc, failureStore, nullptr, 1000, 5);
             failing.checkpointNow();
             check(wait([&] { return !failing.busy() && failing.status().contains("저장됨"); }),
                   "initial checkpoint failed");
@@ -175,14 +175,14 @@ int main(int argc, char *argv[]) {
         check(failureStore.scan().candidates.size() == 1, "failed write destroyed completed checkpoint");
         // Startup selection restores an editable detached copy and preserves source bytes.
         auto uiRoot = dir.filePath("ui");
-        jobs::JsonRecoveryStore recovery(uiRoot);
+        ppm::JsonRecoveryStore recovery(uiRoot);
         auto seed = recovery.newSession();
         seed->checkpoint(doc.recoverySnapshot("2026-10-26T09:00:00Z"));
         seed.reset();
         const auto originalBytes = read(source);
         const auto recoveredName = doc.project()->tasks[0].name;
-        jobs::Document restored(store);
-        jobs::MainWindow window(restored, &recovery);
+        ppm::Document restored(store);
+        ppm::MainWindow window(restored, &recovery);
         window.show();
         QTimer startupPoll;
         startupPoll.setInterval(10);
@@ -239,7 +239,7 @@ int main(int argc, char *argv[]) {
                 break;
             }
         check(calculated && wait([&] {
-                  return restored.calculation() && restored.calculation()->status == jobs::CalculationStatus::Valid;
+                  return restored.calculation() && restored.calculation()->status == ppm::CalculationStatus::Valid;
               }) &&
                   restored.project()->tasks[0].durationMinutes == 960,
               "F9 lost pending cell input");
@@ -273,7 +273,7 @@ int main(int argc, char *argv[]) {
         restored.renameTask(0, "temporary edit");
         trigger(window, "undoEdit");
         check(!restored.dirty() && !restored.revisionSaved(), "undo clean inputs incorrectly claimed saved revision");
-        jobs::ReportDialog report(restored, {}, {});
+        ppm::ReportDialog report(restored, {}, {});
         report.show();
         check(wait([&] { return report.findChild<QPushButton *>("exportXlsx")->isEnabled(); }) &&
                   report.findChild<QLabel *>("reportMessage")->text().contains("미저장 메모리"),
@@ -296,7 +296,7 @@ int main(int argc, char *argv[]) {
         check(!closed && restored.dirty() && restored.project()->tasks[0].name == "pending close",
               "close lost pending editor text or cancel state");
         trigger(window, "autosaveNow");
-        auto *autosave = dynamic_cast<jobs::AutoSaveController *>(window.findChild<QObject *>("autoSaveController"));
+        auto *autosave = dynamic_cast<ppm::AutoSaveController *>(window.findChild<QObject *>("autoSaveController"));
         check(autosave && wait([&] { return !autosave->busy() && autosave->status().contains("저장됨"); }),
               "manual recovery checkpoint unavailable");
         QTest::qWait(20);
@@ -318,11 +318,11 @@ int main(int argc, char *argv[]) {
         session->checkpoint(doc.recoverySnapshot("2026-10-26T09:00:00Z"));
         session.reset();
         auto candidates = recovery.scan();
-        jobs::RecoveryDialog later(recovery, nullptr, candidates);
+        ppm::RecoveryDialog later(recovery, nullptr, candidates);
         later.show();
         later.reject();
         check(recovery.scan().candidates.size() == 1, "later deleted recoverable data");
-        jobs::RecoveryDialog manage(recovery, nullptr, candidates);
+        ppm::RecoveryDialog manage(recovery, nullptr, candidates);
         manage.show();
         QTimer::singleShot(20, [] {
             auto *box = qobject_cast<QMessageBox *>(QApplication::activeModalWidget());

@@ -9,7 +9,7 @@ class QDateEdit;
 class QLabel;
 class QPushButton;
 class QScrollArea;
-namespace jobs {
+namespace ppm {
 class TaskTableView;
 SchedulePrintSource captureSchedulePrint(Document &, TaskTableView &, const QString &scope, const QString &baseline);
 class SchedulePrintDialog final : public QDialog {
@@ -43,4 +43,4 @@ private:
     void applyPreset();
     void updateContext();
 };
-} // namespace jobs
+} // namespace ppm

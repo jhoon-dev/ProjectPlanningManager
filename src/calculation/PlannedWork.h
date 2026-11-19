@@ -1,6 +1,6 @@
 #pragma once
 #include "calculation/Scheduler.h"
-namespace jobs {
+namespace ppm {
 enum class PlannedWorkPeriod { Day, Week, Month };
 struct PlannedWorkAmount {
     std::int64_t fromMinute = 0, toMinute = 0, workUnitMinutes = 0;
@@ -28,4 +28,4 @@ PlannedWorkResult convertPlannedWork(const Project &, const std::string &taskId,
 // Four decimal hours round-trip every integer hundredth-resource-minute through half-up quantization.
 std::string plannedWorkHours(std::int64_t);
 std::int64_t parsePlannedWorkHours(const std::string &);
-} // namespace jobs
+} // namespace ppm

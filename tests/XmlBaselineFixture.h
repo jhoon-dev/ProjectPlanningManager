@@ -1,7 +1,7 @@
 #pragma once
 #include "XmlActualFixture.h"
 #include "calculation/Tracking.h"
-namespace jobs::test {
+namespace ppm::test {
 inline Project xmlBaselineFixture() {
     Project p;
     p.documentId = "xml-baseline";
@@ -78,4 +78,4 @@ inline Project xmlBaselineFixture() {
     p.assignments.push_back({"X", "NEW", 100});
     return p;
 }
-} // namespace jobs::test
+} // namespace ppm::test

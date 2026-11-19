@@ -3,7 +3,7 @@
 #include <map>
 #include <set>
 #include <functional>
-namespace jobs {
+namespace ppm {
 struct XmlResourceLoadValue {
     std::optional<std::int64_t> units;
     std::string issue;
@@ -94,4 +94,4 @@ bool hasXmlComputedReferences(const PlanInput &, bool activeOnly = false);
 bool hasXmlScheduleReferences(const PlanInput &, bool activeOnly = false);
 std::string xmlScheduleCacheKey(const PlanInput &);
 std::string xmlScheduleCaption(const PlanInput &);
-} // namespace jobs
+} // namespace ppm

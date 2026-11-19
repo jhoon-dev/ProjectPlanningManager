@@ -14,7 +14,7 @@
 #include <cmath>
 #include <algorithm>
 
-namespace jobs {
+namespace ppm {
 namespace {
 constexpr qint64 limit = 8 * 1024 * 1024;
 QString qs(const std::string &value) {
@@ -170,7 +170,7 @@ Workspace decodeWorkspaceFile(const QByteArray &bytes, const QString &baseDirect
         invalid("JSON");
     const auto root = document.object();
     keys(root, {"format", "schemaVersion", "payload", "sha256"});
-    if (root.value("format") != "JOBS-WORKSPACE")
+    if (root.value("format") != "PPM-WORKSPACE" && root.value("format") != "JOBS-WORKSPACE")
         invalid("format");
     if (root.value("schemaVersion") != QJsonValue(1) && root.value("schemaVersion") != QJsonValue(2) &&
         root.value("schemaVersion") != QJsonValue(3) && root.value("schemaVersion") != QJsonValue(4))
@@ -310,7 +310,7 @@ std::string JsonWorkspaceStore::save(const std::string &inputPath, const Workspa
     check();
     const auto payload = encode(workspace, QFileInfo(qs(path)).dir());
     const auto bytes =
-        QJsonDocument(QJsonObject{{"format", "JOBS-WORKSPACE"},
+        QJsonDocument(QJsonObject{{"format", "PPM-WORKSPACE"},
                                   {"schemaVersion", schema(workspace)},
                                   {"payload", payload},
                                   {"sha256", QString::fromStdString(
@@ -329,4 +329,4 @@ std::string JsonWorkspaceStore::save(const std::string &inputPath, const Workspa
         throw AppError(ErrorCode::FILE_OPERATION_FAILED, {str(file.errorString())}, ErrorContext{.path = path});
     return fingerprint(bytes);
 }
-} // namespace jobs
+} // namespace ppm

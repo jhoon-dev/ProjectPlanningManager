@@ -15,7 +15,7 @@ class QGraphicsView;
 class QGraphicsScene;
 class QTableView;
 class QPlainTextEdit;
-namespace jobs {
+namespace ppm {
 void syncNetworkSelection(QWidget *, const std::string &);
 class NetworkRelationsModel;
 class NetworkDialog final : public QDialog {
@@ -62,4 +62,4 @@ private:
     void find();
     void summary();
 };
-} // namespace jobs
+} // namespace ppm

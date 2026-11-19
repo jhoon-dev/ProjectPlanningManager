@@ -2,7 +2,7 @@
 #include "calculation/PlannedWork.h"
 #include "calculation/Effort.h"
 #include "domain/Productivity.h"
-namespace jobs {
+namespace ppm {
 NativeCurve mspWorkContour(int code);
 Project materializeResourceWork(const Project &, const std::string &taskId, const std::string &resourceId,
                                 const std::vector<PlannedWorkAmount> &);
@@ -22,4 +22,4 @@ struct CurveTimephase {
     int units = 0;
 };
 std::vector<CurveTimephase> curveTimephases(const Project &, const Assignment &, const CurveExport &);
-} // namespace jobs
+} // namespace ppm

@@ -3,7 +3,7 @@
 #include "calculation/WorkCalendar.h"
 #include <functional>
 
-namespace jobs {
+namespace ppm {
 // Adapters reuse the forward engine's pending execution models and calendars.
 struct RemainingExecution {
     const WorkCalendar *calendar;
@@ -13,4 +13,4 @@ struct RemainingExecution {
 };
 void calculateRemainingFloat(const Project &, ScheduleResult &, const std::vector<std::size_t> &order,
                              const std::vector<RemainingExecution> &);
-} // namespace jobs
+} // namespace ppm

@@ -2,7 +2,7 @@
 #include "domain/CalculationControl.h"
 #include "domain/ResourceAvailability.h"
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 bool xmlUnitReference(const std::string &key) {
     return key == "builtin:units" || key == "builtin:maxunits";
 }
@@ -43,4 +43,4 @@ std::optional<int> resourceUnitsOn(const Resource &r, const std::string &date) {
         throw AppError(ErrorCode::RESOURCE_INPUT_INVALID);
     return units;
 }
-} // namespace jobs
+} // namespace ppm

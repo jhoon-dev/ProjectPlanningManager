@@ -36,14 +36,14 @@ int main(int argc, char **argv) {
     modalGuard.start(50);
     try {
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
+        ppm::JsonProjectStore store;
         const auto path = dir.filePath("EditingUi.ppm").toUtf8().toStdString();
         const auto fixture = performanceFixture(1000, false);
         store.save(path, fixture, {});
-        jobs::Document document(store);
+        ppm::Document document(store);
         document.open(path);
-        document.applyCalculation(jobs::calculate(fixture));
-        jobs::MainWindow window(document);
+        document.applyCalculation(ppm::calculate(fixture));
+        ppm::MainWindow window(document);
         window.show();
         app.processEvents();
         std::cout << "stage: initial" << std::endl;
@@ -57,7 +57,7 @@ int main(int argc, char **argv) {
         table->setCurrentCell(0, 0);
         setCellText(table, 0, 0, "First edit");
         app.processEvents();
-        check(document.calculation()->status == jobs::CalculationStatus::Stale, "edit left a valid calculation");
+        check(document.calculation()->status == ppm::CalculationStatus::Stale, "edit left a valid calculation");
         for (int row = 0; row < table->rowCount(); ++row)
             check(cellText(table, row, 3) == "미계산", "cached table left stale dates");
         QSet<int> changedRows;
@@ -121,7 +121,7 @@ int main(int argc, char **argv) {
         QTest::qWait(220);
         app.processEvents();
         document.save();
-        jobs::Document reopened(store);
+        ppm::Document reopened(store);
         reopened.open(path, true);
         check(*reopened.project() == *document.project(), "optimized editing did not persist unchanged input/facts");
         check(!unexpectedModal, "editing opened an unexpected failure dialog");

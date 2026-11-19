@@ -24,7 +24,7 @@
 #include <QVBoxLayout>
 #include <QtConcurrent>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -559,4 +559,4 @@ void ExternalEvmDialog::reject() {
     ++impl_->generation;
     QDialog::reject();
 }
-} // namespace jobs
+} // namespace ppm

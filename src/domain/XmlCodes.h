@@ -1,6 +1,6 @@
 #pragma once
 #include "domain/Project.h"
-namespace jobs {
+namespace ppm {
 void validateXmlMasks(const std::vector<XmlCodeMask> &);
 void validateXmlLookupMask(const XmlLookup &);
 void validateXmlCodeSelection(const XmlLookup &, const std::string &);
@@ -16,4 +16,4 @@ std::string appendXmlLookupCode(PlanInput &, FieldScope, const std::string &key,
                                 const std::string &newGuid);
 void synchronizeXmlWbsCodes(PlanInput &, const PlanInput *before = nullptr, bool fillMissing = false);
 std::optional<std::string> xmlWbsCode(const PlanInput &, const std::string &kind, const std::string &id);
-} // namespace jobs
+} // namespace ppm

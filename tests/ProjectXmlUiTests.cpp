@@ -112,21 +112,21 @@ int main(int argc, char **argv) {
     try {
         QTemporaryDir dir;
         check(dir.isValid(), "temporary folder");
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
-        jobs::MainWindow window(doc);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
+        ppm::MainWindow window(doc);
         window.show();
         QTest::qWait(30);
         check(!window.findChild<QAction *>("exportProjectXml")->isEnabled(), "empty export enabled");
         doc.create("기존 프로젝트", "2026-10-26", {"보존 작업"});
         // Refresh through an ordinary public action; a separate preexisting document is what import will replace.
-        jobs::MainWindow current(doc);
+        ppm::MainWindow current(doc);
         current.show();
         QTest::qWait(30);
         const auto original = *doc.project();
         const auto generation = doc.sessionGeneration();
         {
-            Drive drive(QString::fromUtf8(JOBS_XML_FIXTURE), dir.filePath("cancel"));
+            Drive drive(QString::fromUtf8(PPM_XML_FIXTURE), dir.filePath("cancel"));
             drive.accept = false;
             action(current, "importProjectXml");
             check(drive.seenPreview && *doc.project() == original && doc.sessionGeneration() == generation &&
@@ -134,7 +134,7 @@ int main(int argc, char **argv) {
                   "preview cancel changed document/files");
         }
         {
-            Drive drive(QString::fromUtf8(JOBS_XML_FIXTURE), dir.filePath("unsaved-cancel"));
+            Drive drive(QString::fromUtf8(PPM_XML_FIXTURE), dir.filePath("unsaved-cancel"));
             drive.unsaved = QMessageBox::Cancel;
             action(current, "importProjectXml");
             check(drive.seenPreview && *doc.project() == original && !QFileInfo::exists(drive.destination),
@@ -142,7 +142,7 @@ int main(int argc, char **argv) {
         }
         const auto destination = dir.filePath("accepted");
         {
-            Drive drive(QString::fromUtf8(JOBS_XML_FIXTURE), destination);
+            Drive drive(QString::fromUtf8(PPM_XML_FIXTURE), destination);
             action(current, "importProjectXml");
             check(drive.seenPreview && drive.captured && doc.project()->tasks.size() == 6 && !doc.dirty() &&
                       doc.sessionGeneration() > generation,
@@ -152,7 +152,7 @@ int main(int argc, char **argv) {
                   QFileInfo::exists(QDir(destination).filePath("conversion.json")),
               "import missing source report");
         auto udfProject = *doc.project();
-        udfProject.customFields = {{"udf", "외부 점수", jobs::CustomFieldType::Number, "", {}}};
+        udfProject.customFields = {{"udf", "외부 점수", ppm::CustomFieldType::Number, "", {}}};
         udfProject.tasks[0].attributes = {{"field:udf", "-2.123456"}};
         const auto udfPath = dir.filePath("udf-source.ppm").toStdString();
         store.save(udfPath, udfProject, {});
@@ -174,7 +174,7 @@ int main(int argc, char **argv) {
                       doc.path() == importPath && QFileInfo::exists(QDir(drive.destination).filePath("source.ppm")),
                   "export changed document or lacked source");
             const auto mapped =
-                jobs::importProjectXml(jobs::readProjectXml(QDir(drive.destination).filePath("project.xml")), "UI.xml")
+                ppm::importProjectXml(ppm::readProjectXml(QDir(drive.destination).filePath("project.xml")), "UI.xml")
                     .project;
             check(mapped.customFields.size() == 1 && mapped.tasks[0].attributes[0].value == "-2.123456",
                   "UI UDF export");
@@ -202,9 +202,9 @@ int main(int argc, char **argv) {
             action(current, "importProjectXml");
             check(drive.seenError && !drive.seenPreview && *doc.project() == beforeBad, "invalid import changed state");
         }
-        jobs::Document readonly(store);
+        ppm::Document readonly(store);
         readonly.open(importPath, true);
-        jobs::MainWindow reader(readonly);
+        ppm::MainWindow reader(readonly);
         reader.show();
         QTest::qWait(20);
         const auto readSnapshot = *readonly.project();
@@ -216,12 +216,12 @@ int main(int argc, char **argv) {
                   "readonly export failed");
         }
         // Use a clean project snapshot to check support for empty native projects too.
-        jobs::Project empty;
+        ppm::Project empty;
         empty.documentId = "empty";
         empty.name = "빈 프로젝트";
         empty.startDate = "2026-10-26";
-        auto emptyXml = jobs::exportProjectXml(empty);
-        check(jobs::importProjectXml(emptyXml.xml, "empty.xml").project.tasks.empty(), "empty project exchange");
+        auto emptyXml = ppm::exportProjectXml(empty);
+        check(ppm::importProjectXml(emptyXml.xml, "empty.xml").project.tasks.empty(), "empty project exchange");
         std::cout << "Project XML UI preview/cancel/import/export/stale/readonly tests passed\n";
     } catch (const std::exception &e) {
         std::cerr << e.what() << '\n';

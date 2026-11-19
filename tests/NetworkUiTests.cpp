@@ -26,7 +26,7 @@
 #include <algorithm>
 #include <iostream>
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool value, const char *message) {
     if (!value)
         throw std::runtime_error(message);

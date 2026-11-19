@@ -2,7 +2,7 @@
 #include "persistence/ProjectXml.h"
 #include <QJsonArray>
 class QXmlStreamWriter;
-namespace jobs {
+namespace ppm {
 std::vector<XmlBaselineCandidate> readXmlBaselines(const QByteArray &, const Project &, const QJsonArray &mapping);
 std::vector<XmlBaselineRow> projectXmlBaselines(const Project &, QJsonArray &diagnostics);
 using XmlBaselineIndex = std::map<std::string, std::vector<const XmlBaselineRow *>>;
@@ -14,4 +14,4 @@ void writeXmlBaselineTimes(QXmlStreamWriter &, const XmlBaselineIndex &, const s
 void verifyXmlBaselineImport(const ProjectXmlExchange &);
 std::int64_t xmlBaselineMinutes(const std::string &, std::int64_t maximum);
 std::string xmlBaselineDurationText(std::int64_t fixedMinutes);
-} // namespace jobs
+} // namespace ppm

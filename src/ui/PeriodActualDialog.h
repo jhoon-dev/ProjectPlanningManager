@@ -8,7 +8,7 @@ class QStandardItemModel;
 class QLineEdit;
 class QLabel;
 class QPushButton;
-namespace jobs {
+namespace ppm {
 class PeriodActualDialog final : public QDialog {
 public:
     PeriodActualDialog(Document &, const std::string &taskId = {}, QWidget *parent = nullptr);
@@ -34,4 +34,4 @@ private:
     void submit();
     void controls();
 };
-} // namespace jobs
+} // namespace ppm

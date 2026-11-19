@@ -26,7 +26,7 @@ def minute(stamp):
 def verify(build):
     root = build / "expanded-repartition-float-qa"
     data = json.loads((root / "metrics.json").read_text(encoding="utf-8"))
-    assert data["engine"] == "jobs-adopted-leveling-1.5"
+    assert data["engine"] == "ppm-adopted-leveling-1.5"
     # Primitive exhaustive oracle for four unit tasks: a dense resource chain and
     # independent three-minute windows on the same 100% resource.
     for separate in (False, True):
@@ -89,7 +89,7 @@ def verify(build):
     canonical = json.dumps(native["payload"], sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()
     assert native["sha256"] == hashlib.sha256(canonical).hexdigest() and native["schemaVersion"] == 12
     baselines = native["payload"]["baselines"]
-    assert [b["engineVersion"] for b in baselines] == ["jobs-adopted-leveling-1.4", "jobs-adopted-leveling-1.5"]
+    assert [b["engineVersion"] for b in baselines] == ["ppm-adopted-leveling-1.4", "ppm-adopted-leveling-1.5"]
     assert all(r["totalFloatMinutes"] == 0 and not r["critical"] for r in baselines[0]["schedule"])
     assert [r["totalFloatMinutes"] for r in baselines[1]["schedule"]] == [2] * 129 + [0]
     assert "levelingWitnesses" not in json.dumps(native)
@@ -102,13 +102,13 @@ def verify(build):
     assert [round(r[6] * 60) for r in plan] == [2] * 129 + [0]
     assert [round(r[9] * 60) for r in plan] == [0] * 128 + [2, 0]
     provenance = {r[0]: r[1] for r in book["출처와 설정"].iter_rows(min_row=7, values_only=True)}
-    assert provenance["계산 엔진"] == "jobs-adopted-leveling-1.5"
+    assert provenance["계산 엔진"] == "ppm-adopted-leveling-1.5"
     diagnostics = "\n".join(str(c.value) for row in book["진단"] for c in row if c.value is not None)
     assert "LEVELING_REPARTITION_COMPONENT_POLICY" in diagnostics and "LEVELING_REPARTITION_WITNESS_PREVIEW" in diagnostics
     assert "109개 날짜 생략" in diagnostics and "총여유 근거 창" in diagnostics
     pdf = PdfReader(root / "report.pdf", strict=True)
     text = re.sub(r"\s+", "", "\n".join(page.extract_text() or "" for page in pdf.pages))
-    assert "jobs-adopted-leveling-1.5" in text and "109개날짜생략" in text
+    assert "ppm-adopted-leveling-1.5" in text and "109개날짜생략" in text
     assert "LEVELING_FLOAT_UNAVAILABLE" not in text
     assert (root / "witness-129.png").read_bytes().startswith(b"\x89PNG\r\n\x1a\n")
     return {"status": "success", "engine": data["engine"], "small_exhaustive_oracle": True,

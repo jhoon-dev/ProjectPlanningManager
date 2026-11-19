@@ -1,7 +1,7 @@
 #pragma once
 #include "XmlActualFixture.h"
 #include "persistence/ProjectXml.h"
-namespace jobs::test {
+namespace ppm::test {
 inline QByteArray xmlProgressFixture(bool fields = true) {
     Project p;
     p.documentId = "xml-progress-source";
@@ -66,4 +66,4 @@ inline XmlProgressOptions xmlProgressOptions(const ProjectXmlExchange &e) {
         o.taskIds.push_back(e.progressCandidates.at(i).taskId);
     return o;
 }
-} // namespace jobs::test
+} // namespace ppm::test

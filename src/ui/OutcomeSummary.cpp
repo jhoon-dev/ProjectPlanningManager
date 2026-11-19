@@ -4,7 +4,7 @@
 #include <QHeaderView>
 #include <QTableWidget>
 #include <set>
-namespace jobs {
+namespace ppm {
 QTableWidget *outcomeTable(QWidget *parent, const char *name) {
     auto *table = new QTableWidget(0, 6, parent);
     table->setObjectName(name);
@@ -95,4 +95,4 @@ void outcomeRow(QTableWidget *table, const QString &name, const std::optional<st
         table->setItem(row, column, item);
     }
 }
-} // namespace jobs
+} // namespace ppm

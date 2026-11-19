@@ -1,5 +1,5 @@
 #include "application/Document.h"
-namespace jobs {
+namespace ppm {
 void Document::adoptLeveling(LevelingSelection selection) {
     requireEditable();
     if (selection.sourceDocumentId != project_->documentId || selection.sourceRevision != project_->revision)
@@ -37,4 +37,4 @@ void Document::clearLeveling() {
     edit(std::move(p), "평준화 채택 해제");
     applyCalculation(std::move(computed));
 }
-} // namespace jobs
+} // namespace ppm

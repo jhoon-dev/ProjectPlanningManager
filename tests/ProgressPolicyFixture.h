@@ -1,10 +1,10 @@
 #pragma once
 #include "domain/Project.h"
 namespace progress_fixture {
-inline jobs::ProgressEntry entry(const jobs::Project &p, const std::string &task, std::int64_t planned,
-                                 std::int64_t actual, std::int64_t remaining, const std::string &start,
-                                 std::optional<std::string> finish = {}) {
-    jobs::ProgressEntry e;
+inline ppm::ProgressEntry entry(const ppm::Project &p, const std::string &task, std::int64_t planned,
+                                std::int64_t actual, std::int64_t remaining, const std::string &start,
+                                std::optional<std::string> finish = {}) {
+    ppm::ProgressEntry e;
     e.id = "fact-" + task;
     e.taskId = task;
     e.statusAt = *p.statusAt;
@@ -20,8 +20,8 @@ inline jobs::ProgressEntry entry(const jobs::Project &p, const std::string &task
     e.actualFinish = finish;
     return e;
 }
-inline jobs::Project small(const std::string &profile = "native-fs0-workminutes-v1") {
-    jobs::Project p;
+inline ppm::Project small(const std::string &profile = "native-fs0-workminutes-v1") {
+    ppm::Project p;
     p.documentId = "progress-policy-fixture";
     p.name = "진척 정책 A/B";
     p.startDate = "2026-11-02";
@@ -36,7 +36,7 @@ inline jobs::Project small(const std::string &profile = "native-fs0-workminutes-
                   entry(p, "E", 480, 480, 0, "2026-11-02 09:00", "2026-11-02 18:00")};
     return p;
 }
-inline jobs::Project large(int count) {
+inline ppm::Project large(int count) {
     auto p = small();
     p.documentId = "progress-policy-large-" + std::to_string(count);
     p.statusAt = "2026-11-02 10:00";

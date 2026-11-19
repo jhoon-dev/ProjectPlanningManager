@@ -19,8 +19,8 @@
 #include <QToolBar>
 
 namespace {
-void record(jobs::Document &doc, int row, int remaining, bool complete = false) {
-    jobs::ProgressEntry e;
+void record(ppm::Document &doc, int row, int remaining, bool complete = false) {
+    ppm::ProgressEntry e;
     e.taskId = doc.project()->tasks[row].id;
     e.actualStart = "2026-11-02 09:00";
     if (complete)
@@ -49,8 +49,8 @@ class WeeklyUpdateUiTests : public QObject {
 private slots:
     void classificationAndGuards() {
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("Weekly", "2026-11-02",
                    {"이전 완료", "이전 보고", "이번 주 보고", "현재 정정", "미보고", "미래 보고"});
         for (int i = 0; i < 6; ++i)
@@ -71,7 +71,7 @@ private slots:
         doc.saveAs(path);
         const auto original = *doc.project();
         const auto disk = bytes(path);
-        jobs::WeeklyUpdateDialog dialog(doc);
+        ppm::WeeklyUpdateDialog dialog(doc);
         dialog.show();
         auto *table = dialog.findChild<QTableWidget *>("weeklyTasks");
         auto *filter = dialog.findChild<QComboBox *>("weeklyFilter");
@@ -107,22 +107,22 @@ private slots:
         QVERIFY(summary->text().contains("상태일을 선택한 뒤"));
         doc.open(path, true);
         QTRY_VERIFY(!dialog.isVisible());
-        jobs::WeeklyUpdateDialog readonly(doc);
+        ppm::WeeklyUpdateDialog readonly(doc);
         readonly.show();
         QVERIFY(!readonly.findChild<QPushButton *>("weeklyEditProgress")->isEnabled());
         QVERIFY(!readonly.findChild<QPushButton *>("weeklySetStatus")->isEnabled());
     }
     void realEditorContinuesAndCancels() {
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("Weekly entry", "2026-11-09", {"첫 작업", "둘째 작업", "셋째 작업"});
         for (int i = 0; i < 3; ++i)
             doc.setDuration(i, 480);
         doc.captureBaseline("승인", "PM", "검토", "2026-11-09T00:00:00Z");
         doc.setStatusAt("2026-11-13 18:00");
         const auto original = *doc.project();
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.show();
         // Main view excludes the second task; the weekly queue must still address its stable ID.
         window.findChild<QLineEdit *>("taskSearch")->setText("첫 작업");

@@ -8,7 +8,7 @@ import sys
 def verify(build_dir):
     path = Path(build_dir) / "leveling-decision-qa" / "source.ppm"
     envelope = json.loads(path.read_text(encoding="utf-8"))
-    assert envelope["format"] == "JOBS" and envelope["schemaVersion"] == 15
+    assert envelope["format"] == "PPM" and envelope["schemaVersion"] == 15
     payload = envelope["payload"]
     compact = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
     assert hashlib.sha256(compact).hexdigest() == envelope["sha256"], "payload checksum"

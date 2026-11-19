@@ -22,7 +22,7 @@
 #include <QTimer>
 #include <QVBoxLayout>
 #include <QtConcurrent/QtConcurrentRun>
-namespace jobs {
+namespace ppm {
 void showMaterialInventory(Document &document, QWidget *parent) {
     if (!document.project())
         return;
@@ -279,4 +279,4 @@ void showMaterialInventory(Document &document, QWidget *parent) {
         control->cancel();
     document.unsubscribe(listener);
 }
-} // namespace jobs
+} // namespace ppm

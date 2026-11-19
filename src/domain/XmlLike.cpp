@@ -3,7 +3,7 @@
 #include "domain/CalculationControl.h"
 #include <algorithm>
 #include <vector>
-namespace jobs {
+namespace ppm {
 namespace {
 using Code = std::uint32_t;
 [[noreturn]] void invalid(const std::string &message) {
@@ -183,4 +183,4 @@ bool xmlLikeMatch(const std::string &text, const std::string &pattern) {
     }
     return previous.back();
 }
-} // namespace jobs
+} // namespace ppm

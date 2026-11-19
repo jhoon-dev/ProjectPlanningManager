@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <set>
 #include <regex>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &text) {
     throw AppError(ErrorCode::FORMULA_INVALID, {"XML 기준선: " + text});
@@ -318,4 +318,4 @@ void validateXmlBaselineMerges(const Project &p) {
         p.xmlBaselines != std::optional{p.xmlBaselineMerges.back().after})
         invalid("현재 기준선과 마지막 병합 결과가 다릅니다.");
 }
-} // namespace jobs
+} // namespace ppm

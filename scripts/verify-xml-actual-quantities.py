@@ -98,7 +98,7 @@ def minutes(raw):
 
 udf = {m['externalId']: dict(m, scope={'RSRC': 'RESOURCE', 'ASSIGN': 'ASSIGNMENT'}.get(m['scope'], m['scope']))
        for m in mapping['mapping'] if m['kind'] == 'udf'}
-ids = {kind: {m['xmlUid']: m['jobsId'] for m in mapping['mapping'] if m['kind'] == kind}
+ids = {kind: {m['xmlUid']: m['ppmId'] for m in mapping['mapping'] if m['kind'] == kind}
        for kind in ['task', 'resource', 'assignment', 'wbs']}
 root = ET.parse(args.root/'quantities.xml').getroot()
 definitions = {text(d, 'FieldID'): d for d in root.findall('p:ExtendedAttributes/p:ExtendedAttribute', ns)}
@@ -106,7 +106,7 @@ xml_cells = 0
 formulae = 0
 missing = 0
 for fid, d in definitions.items():
-    if udf[fid]['jobsId'] in {'AD', 'DN', 'AW', 'hours', 'TD', 'TW', 'RW', 'PW'}:
+    if udf[fid]['ppmId'] in {'AD', 'DN', 'AW', 'hours', 'TD', 'TW', 'RW', 'PW'}:
         assert 'Actual' in text(d, 'Formula') and '[field:' not in text(d, 'Formula')
         formulae += 1
 
@@ -120,7 +120,7 @@ def check_xml(row, scope, owner):
         if value is not None:
             raw[fid] = value
     for key, want in expected[scope, owner].items():
-        fid = next(fid for fid, d in udf.items() if d['scope'] == lookup_scope and d['jobsId'] == key)
+        fid = next(fid for fid, d in udf.items() if d['scope'] == lookup_scope and d['ppmId'] == key)
         actual = raw.get(fid)
         if actual is not None:
             actual = minutes(actual) if text(definitions[fid], 'CFType') == '2' else Decimal(actual)

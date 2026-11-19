@@ -120,7 +120,7 @@ def text(node,key,default=''): return node.findtext('p:'+key,default,ns)
 def stamp(raw): return datetime.fromisoformat(raw).isoformat(timespec='seconds')
 udf = {m['externalId']:dict(m,scope={'RSRC':'RESOURCE','ASSIGN':'ASSIGNMENT'}.get(m['scope'],m['scope']))
        for m in mapping['mapping'] if m['kind']=='udf'}
-ids = {kind:{m['xmlUid']:m['jobsId'] for m in mapping['mapping'] if m['kind']==kind}
+ids = {kind:{m['xmlUid']:m['ppmId'] for m in mapping['mapping'] if m['kind']==kind}
        for kind in ('task','resource','assignment','wbs')}
 root = ET.parse(args.root/'timing.xml').getroot()
 definitions = {text(d,'FieldID'):d for d in root.findall('p:ExtendedAttributes/p:ExtendedAttribute',ns)}
@@ -134,7 +134,7 @@ def check_xml(row,scope,owner):
         value = row.findtext('p:'+format(int(fid),'x'),None,ns)
         if value is not None: raw[fid] = value
     for key,want in planned[scope,owner].items():
-        fid = next(fid for fid,d in udf.items() if d['scope']==('TASK' if scope=='SUMMARY' else scope) and d['jobsId']==key)
+        fid = next(fid for fid,d in udf.items() if d['scope']==('TASK' if scope=='SUMMARY' else scope) and d['ppmId']==key)
         value = raw.get(fid)
         if value is not None: value = Decimal(value) if key=='delay' else stamp(value)
         assert value == want,(scope,owner,key,value,want)

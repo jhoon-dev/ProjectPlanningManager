@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 #include <string>
-namespace jobs {
+namespace ppm {
 struct CurrencyRate {
     // Major units: one source unit = numerator / denominator target units.
     std::string fromCurrency, targetCurrency, effectiveDate, reference;
@@ -9,4 +9,4 @@ struct CurrencyRate {
     std::int64_t numerator = 1, denominator = 1;
     bool operator==(const CurrencyRate &) const = default;
 };
-} // namespace jobs
+} // namespace ppm

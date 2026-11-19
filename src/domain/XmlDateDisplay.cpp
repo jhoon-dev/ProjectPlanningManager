@@ -3,7 +3,7 @@
 #include "domain/Classification.h"
 #include "domain/CalculationControl.h"
 #include <array>
-namespace jobs {
+namespace ppm {
 std::string xmlFormatDateTime(const std::string &raw, int namedFormat) {
     calculationCheckpoint();
     if (namedFormat < 0 || namedFormat > 4)
@@ -20,4 +20,4 @@ std::string xmlFormatDateTime(const std::string &raw, int namedFormat) {
     const bool timeOnly = namedFormat == 0 && input.text.substr(0, 10) == "1899-12-30";
     return *xmlFormat(input, timeOnly ? "Long Time" : masks[std::size_t(namedFormat)], 1033);
 }
-} // namespace jobs
+} // namespace ppm

@@ -6,7 +6,7 @@
 #include <string_view>
 #include <vector>
 
-namespace jobs {
+namespace ppm {
 struct ErrorContext {
     std::vector<std::string> taskIds = {}, resourceIds = {}, calendarIds = {}, wbsIds = {};
     std::string projectId = {}, path = {};
@@ -51,4 +51,4 @@ template <class T>
 std::string diagnosticArgument(const T &value) {
     return std::to_string(value);
 }
-} // namespace jobs
+} // namespace ppm

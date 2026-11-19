@@ -2,7 +2,7 @@
 #include "domain/Project.h"
 #include <QJsonObject>
 #include <cmath>
-namespace jobs::json {
+namespace ppm::json {
 namespace {
 [[noreturn]] void invalid() {
     throw AppError(ErrorCode::FINANCIAL_PERIOD_INVALID, {"native 필드/형식/한도"});
@@ -144,4 +144,4 @@ std::vector<FinancialPeriodEvent> decodeFinancialPeriodEvents(const QJsonValue &
     }
     return out;
 }
-} // namespace jobs::json
+} // namespace ppm::json

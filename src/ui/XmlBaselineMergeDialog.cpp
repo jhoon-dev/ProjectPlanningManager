@@ -19,7 +19,7 @@
 #include <QTableWidget>
 #include <QVBoxLayout>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -326,4 +326,4 @@ bool reviewXmlBaselineMerge(QWidget *parent, Document &doc, const ProjectXmlExch
     prepareEditorDialog(dialog);
     return dialog.exec() == QDialog::Accepted;
 }
-} // namespace jobs
+} // namespace ppm

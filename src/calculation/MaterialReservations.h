@@ -1,6 +1,6 @@
 #pragma once
 #include "calculation/MaterialInventory.h"
-namespace jobs {
+namespace ppm {
 std::vector<Diagnostic> materialAutoReadiness(const Project &);
 // Serial reservations protect all previously accepted consumption, including future consumption.
 class MaterialReservations {
@@ -24,4 +24,4 @@ public:
     void commit(const TaskSchedule &);
     std::optional<Diagnostic> delay(const TaskSchedule &) const;
 };
-} // namespace jobs
+} // namespace ppm

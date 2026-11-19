@@ -26,7 +26,7 @@
 #include <unordered_map>
 #include <algorithm>
 
-namespace jobs {
+namespace ppm {
 // Keep the complete aggregate comparisons in one translation unit. Inlining them
 // into every editor duplicates the expanding archive/custom-field model at -O3.
 bool PlanInput::operator==(const PlanInput &) const = default;
@@ -59,31 +59,31 @@ std::string engineFor(const PlanInput &p) {
     if (p.planLeveling && hasMaterialInventory(p))
         return materialFloatEngine;
     if (hasWorkAssignmentPeriods(p))
-        return p.planLeveling ? "jobs-adopted-work-periods-1.0" : "jobs-effort-work-periods-1.0";
+        return p.planLeveling ? "ppm-adopted-work-periods-1.0" : "ppm-effort-work-periods-1.0";
     if (hasAssignmentPeriods(p))
-        return p.planLeveling ? "jobs-adopted-periods-1.0" : "jobs-effort-periods-1.0";
+        return p.planLeveling ? "ppm-adopted-periods-1.0" : "ppm-effort-periods-1.0";
     if (p.planLeveling)
-        return "jobs-adopted-leveling-1.8";
-    return isEffort(p) ? "jobs-effort-1.1" : isPdm(p) ? "jobs-pdm-1.2" : "jobs-cpm-0.2";
+        return "ppm-adopted-leveling-1.8";
+    return isEffort(p) ? "ppm-effort-1.1" : isPdm(p) ? "ppm-pdm-1.2" : "ppm-cpm-0.2";
 }
 std::string legacyEngineFor(const PlanInput &p) {
     if (p.planLeveling)
-        return "jobs-adopted-leveling-1.0";
-    return isEffort(p)         ? "jobs-effort-1.0"
-           : hasConstraints(p) ? "jobs-pdm-1.1"
-           : isPdm(p)          ? "jobs-pdm-1.0"
-                               : "jobs-cpm-0.2";
+        return "ppm-adopted-leveling-1.0";
+    return isEffort(p)         ? "ppm-effort-1.0"
+           : hasConstraints(p) ? "ppm-pdm-1.1"
+           : isPdm(p)          ? "ppm-pdm-1.0"
+                               : "ppm-cpm-0.2";
 }
 bool supportsEngine(const PlanInput &p, const std::string &engine) {
     if (hasAssignmentPeriods(p))
         return engine == engineFor(p) ||
                (p.planLeveling && hasMaterialInventory(p) &&
-                engine == (hasWorkAssignmentPeriods(p) ? "jobs-adopted-work-periods-1.0" : "jobs-adopted-periods-1.0"));
+                engine == (hasWorkAssignmentPeriods(p) ? "ppm-adopted-work-periods-1.0" : "ppm-adopted-periods-1.0"));
     return engine == engineFor(p) || engine == legacyEngineFor(p) ||
-           (p.planLeveling && (engine == "jobs-adopted-leveling-1.1" || engine == "jobs-adopted-leveling-1.2" ||
-                               engine == "jobs-adopted-leveling-1.3" || engine == "jobs-adopted-leveling-1.4" ||
-                               engine == "jobs-adopted-leveling-1.5" || engine == "jobs-adopted-leveling-1.6" ||
-                               engine == "jobs-adopted-leveling-1.7" || engine == "jobs-adopted-leveling-1.8"));
+           (p.planLeveling && (engine == "ppm-adopted-leveling-1.1" || engine == "ppm-adopted-leveling-1.2" ||
+                               engine == "ppm-adopted-leveling-1.3" || engine == "ppm-adopted-leveling-1.4" ||
+                               engine == "ppm-adopted-leveling-1.5" || engine == "ppm-adopted-leveling-1.6" ||
+                               engine == "ppm-adopted-leveling-1.7" || engine == "ppm-adopted-leveling-1.8"));
 }
 std::string levelingPolicyFor(const PlanInput &p) {
     if (p.resourcePlan.autoDelayForReceipts)
@@ -549,4 +549,4 @@ const CostEntry *costAsOf(const Project &p, const std::string &taskId, const std
             result = &e;
     return result;
 }
-} // namespace jobs
+} // namespace ppm

@@ -3,7 +3,7 @@
 #include "domain/CalculationControl.h"
 #include <algorithm>
 #include <charconv>
-namespace jobs {
+namespace ppm {
 namespace {
 using N = std::int64_t;
 constexpr N scale = 1000000, limit = 9000000000000000000LL;
@@ -191,4 +191,4 @@ N xmlValNumber(const std::string &raw) {
     }
     return result;
 }
-} // namespace jobs
+} // namespace ppm

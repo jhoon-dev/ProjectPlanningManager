@@ -3,23 +3,33 @@
 #include "persistence/JsonRecoveryStore.h"
 #include <QObject>
 #include <QTimer>
-namespace jobs {
+namespace ppm {
 class AutoSaveController final : public QObject {
 public:
-    AutoSaveController(Document&, JsonRecoveryStore, QObject* parent = nullptr, int intervalMs = 30000, int idleMs = 2000);
+    AutoSaveController(Document &, JsonRecoveryStore, QObject *parent = nullptr, int intervalMs = 30000,
+                       int idleMs = 2000);
     ~AutoSaveController() override;
-    QString status() const { return status_ + (cleanupError_.isEmpty() ? QString{} : " · 복구본 정리 실패: " + cleanupError_); }
-    bool busy() const { return busy_; }
-    bool enabled() const { return enabled_; }
-    int intervalMs() const { return intervalMs_; }
+    QString status() const {
+        return status_ + (cleanupError_.isEmpty() ? QString{} : " · 복구본 정리 실패: " + cleanupError_);
+    }
+    bool busy() const {
+        return busy_;
+    }
+    bool enabled() const {
+        return enabled_;
+    }
+    int intervalMs() const {
+        return intervalMs_;
+    }
     void setEnabled(bool);
     void setIntervalMs(int);
     void checkpointNow();
     void finishDocument();
     void adoptRecovered(std::shared_ptr<RecoveryClaim>);
     std::function<void()> statusChanged;
+
 private:
-    Document& document_;
+    Document &document_;
     JsonRecoveryStore store_;
     std::shared_ptr<RecoverySession> session_, recoveredSession_;
     QTimer idle_, deadline_;
@@ -32,4 +42,4 @@ private:
     void retire(std::shared_ptr<RecoverySession>);
     void setStatus(QString);
 };
-}
+} // namespace ppm

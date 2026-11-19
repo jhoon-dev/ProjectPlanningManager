@@ -28,7 +28,7 @@
 #include <algorithm>
 #include <map>
 
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &value) {
     return QString::fromStdString(value);
@@ -733,4 +733,4 @@ void WorkspaceDialog::startAnalysis() {
         return outcome;
     }));
 }
-} // namespace jobs
+} // namespace ppm

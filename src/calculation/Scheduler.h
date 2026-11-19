@@ -2,7 +2,7 @@
 #include "domain/Project.h"
 #include "domain/CalculationControl.h"
 
-namespace jobs {
+namespace ppm {
 enum class CalculationStatus { Valid, Incomplete, Conflict, Stale, Cancelled };
 struct ResourceOrderLink {
     std::string predecessorId, taskId, resourceId;
@@ -26,7 +26,7 @@ struct LevelingFloatWitnesses {
 struct ScheduleResult {
     std::string documentId;
     std::uint64_t inputRevision = 0;
-    std::string engineVersion = "jobs-cpm-0.2";
+    std::string engineVersion = "ppm-cpm-0.2";
     std::string profile = "native-fs0-workminutes-v1";
     CalculationStatus status = CalculationStatus::Incomplete;
     std::optional<std::string> projectFinish;
@@ -66,4 +66,4 @@ struct WbsSummary {
     std::optional<std::string> start, finish;
 };
 WbsSummary summarizeWbs(const Project &project, const ScheduleResult *result, const std::string &wbsId);
-} // namespace jobs
+} // namespace ppm

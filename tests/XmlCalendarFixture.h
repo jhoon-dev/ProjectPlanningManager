@@ -1,7 +1,7 @@
 #pragma once
 #include "domain/Classification.h"
 #include "domain/XmlFormula.h"
-namespace jobs::test {
+namespace ppm::test {
 inline void calendarField(Project &p, FieldScope scope, const std::string &id, CustomFieldType type,
                           const std::string &source) {
     CustomField f{id, id, type, "", {}};
@@ -70,4 +70,4 @@ inline Project xmlCalendarFixture() {
     p.tasks[0].attributes = {{"field:work", "999"}};
     return p;
 }
-} // namespace jobs::test
+} // namespace ppm::test

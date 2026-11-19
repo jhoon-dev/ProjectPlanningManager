@@ -41,7 +41,7 @@
 #include <set>
 #include <stdexcept>
 
-namespace jobs {
+namespace ppm {
 namespace {
 constexpr auto ns = "http://schemas.microsoft.com/project";
 constexpr qsizetype byteLimit = 16 * 1024 * 1024;
@@ -286,7 +286,7 @@ void holiday(const Node &n, CalendarValue &c) {
 }
 QJsonObject baseReport(const Project &p, bool importing) {
     return {
-        {"contract", "jobs-mspdi-plan-v1"},
+        {"contract", "ppm-mspdi-plan-v1"},
         {"direction", importing ? "import" : "export"},
         {"format", "Microsoft Project XML"},
         {"namespace", ns},
@@ -299,7 +299,7 @@ QJsonObject baseReport(const Project &p, bool importing) {
         {"compatibility",
          QJsonObject{{"import", importing ? "mapped-subset" : "not-applicable"},
                      {"originalPreservation", importing ? "exact-xml-bytes" : "exact-native-input-snapshot"},
-                     {"jobsRecomputation", "unverified"},
+                     {"ppmRecomputation", "unverified"},
                      {"externalRoundTrip", "unverified"}}},
         {"companionPolicy", "원본과 진단은 이 폴더의 동반 파일입니다. .ppm 사본 저장/이동 시 자동 복제되지 않습니다."}};
 }
@@ -572,7 +572,7 @@ ProjectXmlExchange importProjectXml(const QByteArray &bytes, const QString &sour
         throw AppError(ErrorCode::FILE_PROJECTXML_035, {});
     number(saveVersion, "/Project/SaveVersion", 1, 999);
     auto map = [&](const QString &kind, const QString &id, const std::string &target) {
-        mapping.append(QJsonObject{{"kind", kind}, {"xmlUid", id}, {"jobsId", qs(target)}});
+        mapping.append(QJsonObject{{"kind", kind}, {"xmlUid", id}, {"ppmId", qs(target)}});
     };
 
     std::map<QString, CalendarInput> inputs;
@@ -2092,7 +2092,7 @@ static ProjectXmlExchange exportProjectXmlImpl(const Project &p, bool includeAct
             diagnostics, "/Project/ExternalEvmAdoptions",
             "외부 XER EV/PV의 native 채택/철회 정책은 XML에 매핑하지 않습니다. source.ppm에 전체 이력을 보존합니다.");
     auto map = [&](const QString &kind, int id, const std::string &target) {
-        mapping.append(QJsonObject{{"kind", kind}, {"xmlUid", QString::number(id)}, {"jobsId", qs(target)}});
+        mapping.append(QJsonObject{{"kind", kind}, {"xmlUid", QString::number(id)}, {"ppmId", qs(target)}});
     };
     const auto udf = exportUdfFields(p, true, diagnostics, mapping);
     const bool externalFormulas = hasXmlFormulas(p);
@@ -2326,7 +2326,7 @@ static ProjectXmlExchange exportProjectXmlImpl(const Project &p, bool includeAct
                          : item["scope"] == "RSRC"       ? FieldScope::Resource
                          : item["scope"] == "ASSIGNMENT" ? FieldScope::Assignment
                                                          : FieldScope::Project;
-            const auto key = "field:" + str(item["jobsId"].toString());
+            const auto key = "field:" + str(item["ppmId"].toString());
             if (formulaFieldNames.contains(nameKey(scope, key)))
                 item["xmlFieldName"] = qs(formulaFieldNames.at(nameKey(scope, key)));
             mapping[i] = item;
@@ -3048,7 +3048,7 @@ static ProjectXmlExchange exportProjectXmlImpl(const Project &p, bool includeAct
     }
     if (actuals) {
         result.exportingActuals = true;
-        result.report["contract"] = "jobs-mspdi-observed-v1";
+        result.report["contract"] = "ppm-mspdi-observed-v1";
         result.report["exportMode"] = "observed-actuals-v1";
         result.report["actualExport"] = actuals->report;
     }
@@ -3195,4 +3195,4 @@ QString projectXmlPreview(const ProjectXmlExchange &e) {
     }
     return text;
 }
-} // namespace jobs
+} // namespace ppm

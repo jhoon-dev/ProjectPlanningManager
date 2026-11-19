@@ -34,7 +34,7 @@
 #include <iostream>
 #include <sstream>
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool v, const char *s) {
     if (!v)
         throw std::runtime_error(s);
@@ -318,7 +318,7 @@ void contract() {
     }
     save(output() + "/dates.json", QJsonDocument(dates).toJson());
     QJsonArray unicodeVectors;
-    QFile table(QString::fromUtf8(JOBS_UNICODE_DATA) + "/unicode-16.0.0.inc");
+    QFile table(QString::fromUtf8(PPM_UNICODE_DATA) + "/unicode-16.0.0.inc");
     check(table.open(QIODevice::ReadOnly), "Unicode input scalars");
     std::set<std::uint32_t> points;
     for (std::uint32_t cp = 0x3040; cp <= 0x30ff; ++cp)

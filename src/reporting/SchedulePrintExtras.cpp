@@ -5,7 +5,7 @@
 #include <QPainterPath>
 #include <map>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -196,4 +196,4 @@ void paintScheduleRelations(QPainter &p, const SchedulePrintLayout &l, const Sch
     }
     p.restore();
 }
-} // namespace jobs
+} // namespace ppm

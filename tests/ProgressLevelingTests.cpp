@@ -13,7 +13,7 @@
 #include <algorithm>
 #include <future>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool ok, const char *m) {
     if (!ok)

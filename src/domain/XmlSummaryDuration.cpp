@@ -5,7 +5,7 @@
 #include "domain/Classification.h"
 #include "domain/XmlBaselines.h"
 #include <set>
-namespace jobs {
+namespace ppm {
 bool xmlDurationReference(const std::string &key) {
     return key == "builtin:actualduration" || key == "builtin:remainingduration" ||
            xmlBaselineBaseKey(key) == "builtin:baselineduration";
@@ -119,4 +119,4 @@ XmlFormulaResult xmlSummaryDuration(const PlanInput &p, const std::string &key, 
         return {{}, e.diagnostic().arguments.empty() ? e.code() : e.diagnostic().arguments.front(), false};
     }
 }
-} // namespace jobs
+} // namespace ppm

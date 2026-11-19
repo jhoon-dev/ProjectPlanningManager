@@ -2,7 +2,7 @@
 #include "domain/ResourcePlan.h"
 #include "domain/MaterialActuals.h"
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 Diagnostic stock(const std::string &message) {
     return {"MATERIAL_STOCK", {message}, {}, "MATERIAL_STOCK"};
@@ -133,4 +133,4 @@ std::optional<Diagnostic> MaterialReservations::delay(const TaskSchedule &row) c
         return {};
     return Diagnostic{"MATERIAL_DELAY", {row.remainingStart.value_or(row.start)}, {row.taskId}, "MATERIAL_DELAY"};
 }
-} // namespace jobs
+} // namespace ppm

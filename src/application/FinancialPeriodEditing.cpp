@@ -1,7 +1,7 @@
 #include "application/Document.h"
 #include "domain/FinancialPeriods.h"
 #include "calculation/FinancialPeriodReports.h"
-namespace jobs {
+namespace ppm {
 std::string Document::recordFinancialPeriod(FinancialPeriodSubmission submission) {
     requireEditable();
     FinancialPeriodEvent e;
@@ -35,4 +35,4 @@ std::string Document::recordFinancialPeriod(FinancialPeriodSubmission submission
                                               : "사용자 기간 정의");
     return e.period.id;
 }
-} // namespace jobs
+} // namespace ppm

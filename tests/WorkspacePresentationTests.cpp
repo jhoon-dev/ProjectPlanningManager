@@ -55,14 +55,14 @@ class WorkspacePresentationTests : public QObject {
     Q_OBJECT
 private slots:
     void frozenGanttHeaderIsRepaintedAfterMixedScroll() {
-        jobs::JsonProjectStore store;
-        jobs::Document document(store);
+        ppm::JsonProjectStore store;
+        ppm::Document document(store);
         document.create("고정 헤더", "2026-11-02", std::vector<std::string>(240, "작업"));
         for (std::size_t row = 0; row < 240; ++row)
             document.setDuration(row, 480);
         document.setDuration(0, 48000);
-        document.applyCalculation(jobs::calculate(*document.project()));
-        jobs::MainWindow window(document);
+        document.applyCalculation(ppm::calculate(*document.project()));
+        ppm::MainWindow window(document);
         window.resize(1024, 650);
         window.show();
         QTest::qWait(30);
@@ -74,18 +74,18 @@ private slots:
         gantt->viewport()->installEventFilter(&coverage);
         table->verticalScrollBar()->setValue(2028);
         QTest::qWait(30);
-        QVERIFY(coverage.painted.contains(QRect(0, 0, gantt->viewport()->width(), jobs::GanttView::HeaderHeight)));
+        QVERIFY(coverage.painted.contains(QRect(0, 0, gantt->viewport()->width(), ppm::GanttView::HeaderHeight)));
         coverage.painted = {};
         QVERIFY(gantt->horizontalScrollBar()->maximum() > 100);
         gantt->horizontalScrollBar()->setValue(100);
         QTest::qWait(30);
         // A scene bit-blit can otherwise leave overscan task labels in the frozen date header.
-        QVERIFY(coverage.painted.contains(QRect(0, 0, gantt->viewport()->width(), jobs::GanttView::HeaderHeight)));
+        QVERIFY(coverage.painted.contains(QRect(0, 0, gantt->viewport()->width(), ppm::GanttView::HeaderHeight)));
         QCOMPARE(table->verticalScrollBar()->value(), gantt->verticalScrollBar()->value());
         auto colors = gantt->palette();
         colors.setColor(QPalette::AlternateBase, QColor(255, 255, 255, 12));
         gantt->setPalette(colors);
-        const QRect header(0, 0, gantt->viewport()->width(), jobs::GanttView::HeaderHeight);
+        const QRect header(0, 0, gantt->viewport()->width(), ppm::GanttView::HeaderHeight);
         const auto before = gantt->viewport()->grab(header).toImage();
         auto *underlay = gantt->scene()->addRect(gantt->mapToScene(header).boundingRect(), Qt::NoPen, Qt::magenta);
         underlay->setZValue(10000);
@@ -93,30 +93,30 @@ private slots:
         QCOMPARE(after, before);
     }
     void componentHeightsAndApplicationIcon() {
-        jobs::JsonProjectStore store;
-        jobs::Document document(store);
+        ppm::JsonProjectStore store;
+        ppm::Document document(store);
         document.create("높이·아이콘 확인", "2026-11-02", {"작업 1", "작업 2"});
         auto scope = document.addWbs("하위 범위");
         document.assignWbs(0, scope);
         document.setDuration(0, 480);
         document.setDuration(1, 960);
-        document.applyCalculation(jobs::calculate(*document.project()));
-        jobs::MainWindow window(document);
+        document.applyCalculation(ppm::calculate(*document.project()));
+        ppm::MainWindow window(document);
         window.show();
         QTest::qWait(30);
         QVERIFY(!window.windowIcon().isNull());
         for (int size : {16, 24, 32, 48, 128, 256})
-            QVERIFY(!jobs::applicationIcon().pixmap(size, size).isNull());
+            QVERIFY(!ppm::applicationIcon().pixmap(size, size).isNull());
         auto *tree = window.findChild<QTreeWidget *>("wbsTree");
         auto *table = taskTable(window);
         auto *gantt = window.findChild<QGraphicsView *>("ganttView");
         QJsonArray measurements;
-        const auto folder = qEnvironmentVariable("JOBS_LAYOUT_OUTPUT_DIR");
+        const auto folder = qEnvironmentVariable("PPM_LAYOUT_OUTPUT_DIR");
         for (const auto &size : {QSize(1024, 650), QSize(1280, 720), QSize(1440, 900)}) {
             window.resize(size);
             QTest::qWait(20);
             QTRY_COMPARE(paneContentHeight(tree), paneContentHeight(table));
-            QTRY_COMPARE(paneContentHeight(gantt) - jobs::GanttView::HeaderHeight, paneContentHeight(table));
+            QTRY_COMPARE(paneContentHeight(gantt) - ppm::GanttView::HeaderHeight, paneContentHeight(table));
             auto *search = window.findChild<QLineEdit *>("taskSearch");
             const int expected = search->height();
             QJsonObject positions;
@@ -155,10 +155,10 @@ private slots:
                          search->mapTo(&window, QPoint()).y());
             for (const auto *name : {"selectedTaskMenu", "analysisMenu"})
                 QCOMPARE(window.findChild<QToolButton *>(name)->height(), expected);
-            QCOMPARE(tree->header()->height(), jobs::GanttView::HeaderHeight);
-            QCOMPARE(tree->visualItemRect(tree->topLevelItem(0)).height(), jobs::GanttView::RowHeight);
+            QCOMPARE(tree->header()->height(), ppm::GanttView::HeaderHeight);
+            QCOMPARE(tree->visualItemRect(tree->topLevelItem(0)).height(), ppm::GanttView::RowHeight);
             QCOMPARE(tree->viewport()->mapTo(&window, QPoint()).y(), table->viewport()->mapTo(&window, QPoint()).y());
-            QVERIFY(table->viewport()->height() >= jobs::GanttView::RowHeight * 4);
+            QVERIFY(table->viewport()->height() >= ppm::GanttView::RowHeight * 4);
         }
         if (!folder.isEmpty()) {
             QFile output(QDir(folder).filePath("geometry.json"));
@@ -167,10 +167,10 @@ private slots:
         }
     }
     void shortWindowPreservesFourRowsAndCommands() {
-        jobs::JsonProjectStore store;
-        jobs::Document document(store);
+        ppm::JsonProjectStore store;
+        ppm::Document document(store);
         document.create("작은 화면 상태", "2026-11-09", {"작업"});
-        jobs::MainWindow window(document);
+        ppm::MainWindow window(document);
         window.resize(1280, 340);
         window.show();
         QTest::qWait(30);
@@ -179,9 +179,9 @@ private slots:
         QVERIFY(window.findChild<QLineEdit *>("taskSearch")->isVisible());
         QVERIFY(window.findChild<QComboBox *>("ganttZoom")->isVisible());
         qInfo() << "short window" << window.size() << "table viewport" << taskTable(window)->viewport()->size();
-        if (const auto folder = qEnvironmentVariable("JOBS_LAYOUT_OUTPUT_DIR"); !folder.isEmpty())
+        if (const auto folder = qEnvironmentVariable("PPM_LAYOUT_OUTPUT_DIR"); !folder.isEmpty())
             QVERIFY(window.grab().save(QDir(folder).filePath("short-window-340.png")));
-        QVERIFY(taskTable(window)->viewport()->height() >= jobs::GanttView::RowHeight * 4);
+        QVERIFY(taskTable(window)->viewport()->height() >= ppm::GanttView::RowHeight * 4);
         QVERIFY(window.statusBar()->currentMessage().contains("미저장"));
         // A scaled Cocoa desktop can constrain a requested 650px window to
         // about 525px. Keep the task rows and commands usable there as well.
@@ -190,7 +190,7 @@ private slots:
         QVERIFY(!window.findChild<QLabel *>("projectTitle")->isVisible());
         QVERIFY(window.findChild<QToolButton *>("toggleDiagnostics")->isVisible());
         QVERIFY(window.findChild<QComboBox *>("ganttZoom")->isVisible());
-        QVERIFY(taskTable(window)->viewport()->height() >= jobs::GanttView::RowHeight * 4);
+        QVERIFY(taskTable(window)->viewport()->height() >= ppm::GanttView::RowHeight * 4);
         window.resize(1280, 720);
         QTest::qWait(30);
         const bool roomy = std::min(window.height(), window.screen()->availableGeometry().height()) >= 600;
@@ -198,9 +198,9 @@ private slots:
         QCOMPARE(window.statusBar()->currentMessage().contains("미저장"), !roomy);
     }
     void compactWindowKeepsCommandsAndRows() {
-        jobs::JsonProjectStore store;
-        jobs::Document document(store);
-        jobs::MainWindow window(document);
+        ppm::JsonProjectStore store;
+        ppm::Document document(store);
+        ppm::MainWindow window(document);
         window.resize(1024, 650);
         window.show();
         QTest::qWait(30);
@@ -209,9 +209,9 @@ private slots:
         QVERIFY(window.findChild<QAction *>("openProject")->isEnabled());
         QVERIFY(window.findChild<QLabel *>("projectTitle")->text().contains("시작"));
         auto *table = taskTable(window);
-        QVERIFY(table->viewport()->height() >= jobs::GanttView::RowHeight * 4);
+        QVERIFY(table->viewport()->height() >= ppm::GanttView::RowHeight * 4);
         auto *gantt = window.findChild<QGraphicsView *>("ganttView");
-        QCOMPARE(table->viewport()->height() + jobs::GanttView::HeaderHeight, gantt->viewport()->height());
+        QCOMPARE(table->viewport()->height() + ppm::GanttView::HeaderHeight, gantt->viewport()->height());
         auto *search = window.findChild<QLineEdit *>("taskSearch");
         QVERIFY(search->isVisible() && search->width() >= 180);
         auto *zoom = window.findChild<QComboBox *>("ganttZoom");
@@ -222,11 +222,11 @@ private slots:
         QVERIFY(!window.findChild<QToolButton *>("cancelEditButton")->isVisible());
     }
     void cancellationCommandStaysAvailableWhenPresentationChanges() {
-        jobs::JsonProjectStore store;
-        jobs::Document document(store);
+        ppm::JsonProjectStore store;
+        ppm::Document document(store);
         document.create("취소 명령", "2026-10-26", {"일정 계산"});
         document.setDuration(0, 480);
-        jobs::MainWindow window(document);
+        ppm::MainWindow window(document);
         window.show();
         auto *cancel = window.findChild<QAction *>("cancelCalculation");
         auto *button = window.findChild<QToolButton *>("cancelCalculationButton");
@@ -244,16 +244,16 @@ private slots:
         QVERIFY(button->isVisible());
         cancel->trigger();
         QTRY_VERIFY(calculate->isEnabled());
-        QCOMPARE(document.calculation()->status, jobs::CalculationStatus::Cancelled);
+        QCOMPARE(document.calculation()->status, ppm::CalculationStatus::Cancelled);
         QVERIFY(!button->isVisible() && cancel->isVisible());
     }
     void wbsTogglePreservesScopeAndSelection() {
-        jobs::JsonProjectStore store;
-        jobs::Document document(store);
+        ppm::JsonProjectStore store;
+        ppm::Document document(store);
         document.create("범위 유지", "2026-10-26", {"설계", "시공", "검수"});
         auto id = document.addWbs("설계 범위");
         document.assignWbs(0, id);
-        jobs::MainWindow window(document);
+        ppm::MainWindow window(document);
         window.show();
         auto *tree = window.findChild<QTreeWidget *>("wbsTree");
         tree->setCurrentItem(tree->topLevelItem(0)->child(0));
@@ -274,11 +274,11 @@ private slots:
         QVERIFY(menu->actions().contains(constraints) && constraints->isEnabled());
     }
     void diagnosticsRevealNewProblemsAndRespectCollapse() {
-        jobs::JsonProjectStore store;
-        jobs::Document document(store);
+        ppm::JsonProjectStore store;
+        ppm::Document document(store);
         document.create("진단", "2026-10-26", {"기간 미정"});
-        document.applyCalculation(jobs::calculate(*document.project()));
-        jobs::MainWindow window(document);
+        document.applyCalculation(ppm::calculate(*document.project()));
+        ppm::MainWindow window(document);
         window.show();
         auto *details = window.findChild<QPlainTextEdit *>("calculationDiagnostics");
         auto *toggle = window.findChild<QToolButton *>("toggleDiagnostics");
@@ -293,8 +293,8 @@ private slots:
         QVERIFY(details->isVisible());
     }
     void calculatedWorkspaceAndNativeCapture() {
-        jobs::JsonProjectStore store;
-        jobs::Document document(store);
+        ppm::JsonProjectStore store;
+        ppm::Document document(store);
         document.create(
             "PPM 사옥 신축 프로젝트", "2026-10-26",
             {"기획 검토", "기본 설계", "인허가 승인", "기반 공사", "구조 공사", "설비 설치", "시험 운전", "준공 검수"});
@@ -306,14 +306,14 @@ private slots:
         const auto wbs = document.addWbs("프로젝트 실행");
         for (std::size_t row = 0; row < document.project()->tasks.size(); ++row)
             document.assignWbs(row, wbs);
-        document.applyCalculation(jobs::calculate(*document.project()));
-        jobs::MainWindow window(document);
+        document.applyCalculation(ppm::calculate(*document.project()));
+        ppm::MainWindow window(document);
         window.resize(1440, 900);
         QVERIFY(window.windowTitle().endsWith("— PPM"));
-        QVERIFY(!window.windowTitle().contains("JOBS"));
+        QVERIFY(!window.windowTitle().contains("PPM"));
         window.show();
         QTest::qWait(40);
-        const bool storeCapture = qEnvironmentVariableIsSet("JOBS_STORE_SCREENSHOT");
+        const bool storeCapture = qEnvironmentVariableIsSet("PPM_STORE_SCREENSHOT");
         if (storeCapture) {
             // Cocoa can cap a newly shown window to the CI display. Render the requested native layout after show.
             window.setFixedSize(1440, 900);
@@ -322,7 +322,7 @@ private slots:
         }
         auto *table = taskTable(window);
         auto *gantt = window.findChild<QGraphicsView *>("ganttView");
-        const auto capture = qEnvironmentVariable("JOBS_UI_SCREENSHOT_DIR");
+        const auto capture = qEnvironmentVariable("PPM_UI_SCREENSHOT_DIR");
         const QJsonObject geometry{{"window_height", window.height()},
                                    {"table_viewport_height", table->viewport()->height()},
                                    {"gantt_viewport_height", gantt->viewport()->height()},
@@ -337,10 +337,10 @@ private slots:
             QVERIFY(output.write(QJsonDocument(geometry).toJson()) > 0);
         }
         QCOMPARE(table->rowCount(), 8);
-        QCOMPARE(table->horizontalHeader()->height(), jobs::GanttView::HeaderHeight);
-        QCOMPARE(table->verticalHeader()->sectionSize(0), jobs::GanttView::RowHeight);
-        QVERIFY(table->viewport()->height() >= 4 * jobs::GanttView::RowHeight);
-        QCOMPARE(table->viewport()->height() + jobs::GanttView::HeaderHeight, gantt->viewport()->height());
+        QCOMPARE(table->horizontalHeader()->height(), ppm::GanttView::HeaderHeight);
+        QCOMPARE(table->verticalHeader()->sectionSize(0), ppm::GanttView::RowHeight);
+        QVERIFY(table->viewport()->height() >= 4 * ppm::GanttView::RowHeight);
+        QCOMPARE(table->viewport()->height() + ppm::GanttView::HeaderHeight, gantt->viewport()->height());
         QCOMPARE(table->horizontalHeader()->mapTo(&window, QPoint()).y(),
                  gantt->viewport()->mapTo(&window, QPoint()).y());
         QVERIFY(!window.findChild<QPlainTextEdit *>("calculationDiagnostics")->isVisible());
@@ -352,7 +352,7 @@ private slots:
             }
             window.resize(1024, 650);
             QTest::qWait(30);
-            QVERIFY(table->viewport()->height() >= 4 * jobs::GanttView::RowHeight);
+            QVERIFY(table->viewport()->height() >= 4 * ppm::GanttView::RowHeight);
             QVERIFY(window.grab().save(QDir(capture).filePath("workspace-1024.png")));
         }
     }

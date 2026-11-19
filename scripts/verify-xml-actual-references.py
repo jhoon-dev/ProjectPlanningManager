@@ -90,8 +90,8 @@ assert select(native, '2026-11-17 18:00')['A'][0] == '2026-11-13T09:00:00'
 udf = {v['externalId']: v for v in mapping['mapping'] if v['kind'] == 'udf'}
 for field in udf.values():
     field['scope'] = {'RSRC': 'RESOURCE', 'ASSIGN': 'ASSIGNMENT'}.get(field['scope'], field['scope'])
-task_ids = {v['xmlUid']: v['jobsId'] for v in mapping['mapping'] if v['kind'] == 'task'}
-wbs_ids = {v['xmlUid']: v['jobsId'] for v in mapping['mapping'] if v['kind'] == 'wbs'}
+task_ids = {v['xmlUid']: v['ppmId'] for v in mapping['mapping'] if v['kind'] == 'task'}
+wbs_ids = {v['xmlUid']: v['ppmId'] for v in mapping['mapping'] if v['kind'] == 'wbs'}
 
 
 def text(node, key, default=''):
@@ -108,8 +108,8 @@ for filename, want in [('actuals.xml', partial), ('complete.xml', finished)]:
         if formula:
             formulae += 1
             assert '[field:' not in formula
-        if udf[fid]['jobsId'] in ('AS', 'AF') and udf[fid]['scope'] == 'TASK':
-            assert formula == ('[Actual Start]' if udf[fid]['jobsId'] == 'AS' else '[Actual Finish]')
+        if udf[fid]['ppmId'] in ('AS', 'AF') and udf[fid]['scope'] == 'TASK':
+            assert formula == ('[Actual Start]' if udf[fid]['ppmId'] == 'AS' else '[Actual Finish]')
 
     def values(row):
         out = {}
@@ -120,7 +120,7 @@ for filename, want in [('actuals.xml', partial), ('complete.xml', finished)]:
                     raw = text(ea, 'Value', None)
             if raw is not None:
                 kind = int(text(definition, 'CFType'))
-                out[udf[fid]['scope'], udf[fid]['jobsId']] = Decimal(raw) if kind == 5 else raw == '1' if kind == 4 else raw
+                out[udf[fid]['scope'], udf[fid]['ppmId']] = Decimal(raw) if kind == 5 else raw == '1' if kind == 4 else raw
         return out
 
     def check(row, scope, owner):

@@ -26,8 +26,8 @@
 #include <QTimer>
 #include <iostream>
 namespace {
-using namespace jobs;
-using namespace jobs::test;
+using namespace ppm;
+using namespace ppm::test;
 void check(bool b, const char *m) {
     if (!b)
         throw std::runtime_error(m);

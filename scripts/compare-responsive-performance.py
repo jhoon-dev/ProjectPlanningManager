@@ -10,9 +10,10 @@ for tasks in (1000, 10000):
         name = f"{tasks}-{baselines}.json"
         before = json.loads((before_dir / name).read_text(encoding="utf-8"))
         after = json.loads((after_dir / name).read_text(encoding="utf-8"))
+        before["fixture"] = before["fixture"].replace("jobs-", "ppm-", 1)
         for key in ("status", "fixture", "os", "platform", "qt", "task_count", "baseline_count", "repeats"):
             assert before[key] == after[key], key
-        assert after["status"] == "success" and after["fixture"] == "jobs-responsive-phases-v1"
+        assert after["status"] == "success" and after["fixture"] == "ppm-responsive-phases-v1"
         phases = {}
         for key in ("request_gui", "prepare_worker", "apply_gui"):
             phases[key] = {"before_median_ms": before[key]["median_ms"], "after_median_ms": after[key]["median_ms"],

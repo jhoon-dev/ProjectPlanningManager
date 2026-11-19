@@ -7,7 +7,7 @@
 #include <QListWidget>
 #include <QPushButton>
 #include <QVBoxLayout>
-namespace jobs {
+namespace ppm {
 std::optional<std::vector<std::size_t>> chooseXerBatch(QWidget *parent, const std::vector<XerBatchChoice> &choices,
                                                        const QString &note) {
     QDialog dialog(parent);
@@ -63,4 +63,4 @@ std::optional<std::vector<std::size_t>> chooseXerBatch(QWidget *parent, const st
         return {};
     return selection();
 }
-} // namespace jobs
+} // namespace ppm

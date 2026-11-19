@@ -4,7 +4,7 @@
 #include "domain/CalculationControl.h"
 #include <algorithm>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &s) {
     throw AppError(ErrorCode::CLASSIFICATION_INVALID, {s});
@@ -250,4 +250,4 @@ void extendRollDownLookups(PlanInput &p) {
                     }
             }
 }
-} // namespace jobs
+} // namespace ppm

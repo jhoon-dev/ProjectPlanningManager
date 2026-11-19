@@ -15,7 +15,7 @@
 #include <QPlainTextEdit>
 #include <QPushButton>
 #include <QVBoxLayout>
-namespace jobs {
+namespace ppm {
 namespace {
 QString currency(QWidget *parent) {
     QDialog d(parent);
@@ -133,4 +133,4 @@ QString importMppPlan(QWidget *parent, Document &document, const std::function<b
     document.open(QDir(folder).filePath("project.ppm").toStdString());
     return folder;
 }
-} // namespace jobs
+} // namespace ppm

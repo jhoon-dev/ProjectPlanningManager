@@ -2,7 +2,7 @@
 #include "domain/MaterialActuals.h"
 #include "domain/ResourcePlan.h"
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 MaterialFloatCheck::MaterialFloatCheck(const Project &p, const ScheduleResult &r) : source_(p) {
     if (r.status != CalculationStatus::Valid || r.tasks.size() != p.tasks.size())
         throw AppError(ErrorCode::WORKSPACE_SOURCE_CHANGED);
@@ -47,4 +47,4 @@ bool MaterialFloatCheck::fits(const std::vector<TaskSchedule> &rows) {
     }
     return true;
 }
-} // namespace jobs
+} // namespace ppm

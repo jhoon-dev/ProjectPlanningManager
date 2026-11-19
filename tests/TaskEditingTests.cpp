@@ -20,8 +20,8 @@ void rejects(const std::function<void()> &f) {
     }
     check(bad, "expected atomic rejection");
 }
-jobs::PlanInput plan(const jobs::Document &d) {
-    return static_cast<const jobs::PlanInput &>(*d.project());
+ppm::PlanInput plan(const ppm::Document &d) {
+    return static_cast<const ppm::PlanInput &>(*d.project());
 }
 QByteArray bytes(const std::string &path) {
     QFile f(QString::fromStdString(path));
@@ -33,22 +33,22 @@ int main(int argc, char **argv) {
     QCoreApplication app(argc, argv);
     try {
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
-        jobs::Document d(store);
+        ppm::JsonProjectStore store;
+        ppm::Document d(store);
         d.create("Editing", "2026-10-26", {"A", "B", "C"});
         for (int i = 0; i < 3; ++i)
             d.setDuration(i, 60);
         const auto a = d.project()->tasks[0].id, b = d.project()->tasks[1].id, c = d.project()->tasks[2].id;
         const auto wbs = d.addWbs("Engineering");
         d.assignWbs(1, wbs);
-        jobs::Resource resource;
+        ppm::Resource resource;
         resource.name = "Engineer";
         const auto rid = d.putResource(resource);
         d.setAssignments(b, {{b, rid, 100}});
         d.setTaskCost({b, 123, "start", "physical"});
-        d.setDependencies(1, {{a, jobs::DependencyType::SS, 60}});
-        d.setDependencies(2, {{b, jobs::DependencyType::FF, -30}});
-        d.setTaskEffort(1, jobs::TaskType::FixedUnits, false, 60, {}, {{"2026-10-26 13:00", "2026-10-26 14:00"}});
+        d.setDependencies(1, {{a, ppm::DependencyType::SS, 60}});
+        d.setDependencies(2, {{b, ppm::DependencyType::FF, -30}});
+        d.setTaskEffort(1, ppm::TaskType::FixedUnits, false, 60, {}, {{"2026-10-26 13:00", "2026-10-26 14:00"}});
         d.captureBaseline("Approved", "PM", "Plan", "2026-10-26T00:00:00Z");
         const auto baselines = d.project()->baselines;
         d.saveAs(dir.filePath("editing.ppm").toStdString());
@@ -104,11 +104,11 @@ int main(int argc, char **argv) {
         rejects([&] { d.duplicateTasks({a, a}); });
         rejects([&] { d.removeTasks({a, "missing"}); });
         check(*d.project() == unchanged && d.undoLabel() == label, "failed structural edit changed history/data");
-        jobs::TaskEdit ea;
+        ppm::TaskEdit ea;
         ea.taskId = a;
         ea.name = "A revised";
         ea.duration.emplace(120);
-        jobs::TaskEdit eb;
+        ppm::TaskEdit eb;
         eb.taskId = b;
         eb.name = "B revised";
         eb.duration.emplace(45);
@@ -123,15 +123,15 @@ int main(int argc, char **argv) {
         eb.name = "";
         rejects([&] { d.editTasks({ea, eb}); });
         eb.name = "Good";
-        eb.edges = std::vector<jobs::Dependency>{{c, jobs::DependencyType::FS, 0}};
+        eb.edges = std::vector<ppm::Dependency>{{c, ppm::DependencyType::FS, 0}};
         rejects([&] { d.editTasks({eb}); });
-        eb.edges = std::vector<jobs::Dependency>{{b, jobs::DependencyType::FS, 0}};
+        eb.edges = std::vector<ppm::Dependency>{{b, ppm::DependencyType::FS, 0}};
         rejects([&] { d.editTasks({eb}); });
-        eb.edges = std::vector<jobs::Dependency>{{"missing", jobs::DependencyType::FS, 0}};
+        eb.edges = std::vector<ppm::Dependency>{{"missing", ppm::DependencyType::FS, 0}};
         rejects([&] { d.editTasks({eb}); });
         check(*d.project() == unchanged && bytes(d.path()) == disk, "batch rejection changed input/file");
         d.setAssignments(a, {{a, rid, 100}});
-        d.setTaskEffort(0, jobs::TaskType::FixedWork, true, 60, 6000, {});
+        d.setTaskEffort(0, ppm::TaskType::FixedWork, true, 60, 6000, {});
         d.setDuration(1, {});
         ea.duration.emplace(120);
         ea.name = "Fixed work";
@@ -142,7 +142,7 @@ int main(int argc, char **argv) {
                   d.project()->assignments.back().units == 50 && d.project()->tasks[1].durationMinutes == 45,
               "batch bypassed fixed-work/unit rules");
         d.setStatusAt("2026-10-26 10:00");
-        jobs::ProgressEntry progress;
+        ppm::ProgressEntry progress;
         progress.taskId = a;
         progress.actualStart = "2026-10-26 09:00";
         progress.actualDurationMinutes = 30;
@@ -151,7 +151,7 @@ int main(int argc, char **argv) {
         progress.reason = "Measured";
         progress.recordedAt = "2026-10-26T01:00:00Z";
         d.recordProgress(progress);
-        jobs::CostEntry cost;
+        ppm::CostEntry cost;
         cost.taskId = c;
         cost.actualMinor = 0;
         cost.physicalBasisPoints = 0;
@@ -171,7 +171,7 @@ int main(int argc, char **argv) {
                   d.project()->baselines == baselines,
               "duplicate copied actual facts");
         d.save();
-        jobs::Document reader(store);
+        ppm::Document reader(store);
         reader.open(d.path(), true);
         check(*reader.project() == *d.project(), "editing save/reopen changed IDs/facts");
         unchanged = *reader.project();
@@ -181,14 +181,14 @@ int main(int argc, char **argv) {
         rejects([&] { reader.editTasks({ea}); });
         check(*reader.project() == unchanged, "readonly batch changed data");
         d.renameTask(1, "Unsaved batch recovery");
-        jobs::JsonRecoveryStore recovery(dir.filePath("recovery"));
+        ppm::JsonRecoveryStore recovery(dir.filePath("recovery"));
         auto session = recovery.newSession();
         session->checkpoint(d.recoverySnapshot("2026-10-26T01:00:01Z"));
         session.reset();
         const auto scan = recovery.scan();
         check(scan.candidates.size() == 1 && scan.candidates[0].valid, "batch recovery missing");
         auto claim = recovery.claim(scan.candidates[0]);
-        jobs::Document restored(store);
+        ppm::Document restored(store);
         restored.recover(claim->snapshot);
         check(plan(restored) == plan(d) && restored.project()->progress == facts &&
                   restored.project()->costEntries == costs && restored.project()->baselines == baselines,

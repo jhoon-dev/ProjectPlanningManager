@@ -1,7 +1,7 @@
 #pragma once
 #include "calculation/Effort.h"
 #include "domain/RemainingWork.h"
-namespace jobs {
+namespace ppm {
 struct RemainingWorkDay {
     std::string date;
     std::int64_t availableMinutes = 0, inheritedWork = 0;
@@ -20,4 +20,4 @@ std::vector<WorkSpan> applyDatedRemainingWork(const std::optional<std::string> &
 void validateRemainingWorkExecution(const Project &, const ScheduleResult &);
 RemainingWorkDescription describeRemainingWork(const Project &, const std::string &taskId,
                                                const std::string &resourceId, std::shared_ptr<CalculationControl> = {});
-} // namespace jobs
+} // namespace ppm

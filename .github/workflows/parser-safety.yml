@@ -46,8 +46,8 @@ jobs:
           clang++ --version > build-sanitized/toolchain.txt
           cmake --version >> build-sanitized/toolchain.txt
           git rev-parse HEAD >> build-sanitized/toolchain.txt
-      - name: Configure instrumented JOBS and parser targets
-        run: cmake -S . -B build-sanitized -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DJOBS_ENABLE_SANITIZERS=ON -DJOBS_BUILD_FUZZERS=ON
+      - name: Configure instrumented PPM and parser targets
+        run: cmake -S . -B build-sanitized -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DPPM_ENABLE_SANITIZERS=ON -DPPM_BUILD_FUZZERS=ON
       - name: Restore instrumented compiler cache
         id: compiler_cache
         uses: actions/cache/restore@v6

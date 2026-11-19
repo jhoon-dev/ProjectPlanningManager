@@ -3,7 +3,7 @@
 #include "domain/Workspace.h"
 #include <functional>
 
-namespace jobs {
+namespace ppm {
 struct StoredWorkspace {
     Workspace workspace;
     std::string path, fingerprint;
@@ -18,4 +18,4 @@ public:
 private:
     ProjectStore &files_;
 };
-} // namespace jobs
+} // namespace ppm

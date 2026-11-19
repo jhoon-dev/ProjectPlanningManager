@@ -32,11 +32,11 @@
 #include <memory>
 
 namespace {
-std::string fixture(jobs::Document &doc) {
+std::string fixture(ppm::Document &doc) {
     doc.create("완료일 비교", "2026-11-02", {"조립", "설치"});
     doc.setDuration(0, 480);
     doc.setDuration(1, 480);
-    jobs::Resource resource;
+    ppm::Resource resource;
     resource.name = "공유 기술자";
     resource.maxUnits = 100;
     const auto id = doc.putResource(resource);
@@ -60,13 +60,13 @@ class OutcomeSummaryUiTests : public QObject {
     Q_OBJECT
 private slots:
     void initTestCase() {
-        jobs::installUiTranslations(*qApp);
+        ppm::installUiTranslations(*qApp);
     }
     void standardButtonsAreKoreanWithoutExternalTranslations() {
         const auto locale = QLocale();
         const auto restore = qScopeGuard([&] { QLocale::setDefault(locale); });
         QLocale::setDefault(QLocale(QLocale::English, QLocale::UnitedStates));
-        jobs::installUiTranslations(*qApp);
+        ppm::installUiTranslations(*qApp);
         QDialogButtonBox buttons(QDialogButtonBox::Close | QDialogButtonBox::Save | QDialogButtonBox::Cancel |
                                  QDialogButtonBox::Ok | QDialogButtonBox::Apply);
         QCOMPARE(buttons.button(QDialogButtonBox::Close)->text(), QString("닫기"));
@@ -114,7 +114,7 @@ private slots:
         QVERIFY(files.labelText(QFileDialog::FileType).contains("파일 형식"));
         QVERIFY(files.labelText(QFileDialog::Accept).contains("열기"));
         const auto capture = [](QWidget &widget, const char *name) {
-            if (const auto path = qEnvironmentVariable("JOBS_OUTCOME_AUDIT_DIR"); !path.isEmpty()) {
+            if (const auto path = qEnvironmentVariable("PPM_OUTCOME_AUDIT_DIR"); !path.isEmpty()) {
                 QVERIFY(QDir().mkpath(path));
                 QTest::qWait(80);
                 QVERIFY(widget.grab().save(QDir(path).filePath(QString::fromLatin1(name) + ".png")));
@@ -141,10 +141,10 @@ private slots:
         inputMenu->close();
     }
     void comparisonUsesFrozenAndCurrentTaskCalendars() {
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("달력별 비교", "2026-11-09", {"설치", "분 단위", "미정"});
-        jobs::TaskCalendar calendar;
+        ppm::TaskCalendar calendar;
         calendar.name = "현장 달력";
         calendar.periods = {{540, 720}, {780, 1020}};
         const auto id = doc.putCalendar(calendar);
@@ -158,7 +158,7 @@ private slots:
         doc.putCalendar(calendar);
         doc.setDuration(0, 1080);
         doc.setStatusAt("2026-11-09 16:00");
-        jobs::ProgressEntry entry;
+        ppm::ProgressEntry entry;
         entry.taskId = doc.project()->tasks[0].id;
         entry.actualStart = "2026-11-09 09:00";
         entry.actualDurationMinutes = 360;
@@ -167,7 +167,7 @@ private slots:
         entry.reason = "현장 확인";
         entry.recordedAt = "2026-11-17T00:00:00Z";
         doc.recordProgress(entry);
-        jobs::ComparisonDialog dialog(doc, baseline);
+        ppm::ComparisonDialog dialog(doc, baseline);
         dialog.show();
         auto *table = dialog.findChild<QTableWidget *>("comparisonTable");
         QTRY_COMPARE(table->rowCount(), 3);
@@ -180,7 +180,7 @@ private slots:
         QVERIFY(table->item(0, 6)->toolTip().contains("1d=6h"));
         table->setCurrentCell(0, 0);
         QVERIFY(dialog.findChild<QPlainTextEdit *>("comparisonDetails")->toPlainText().contains("2d → 3d"));
-        if (const auto folder = qEnvironmentVariable("JOBS_OUTCOME_AUDIT_DIR"); !folder.isEmpty()) {
+        if (const auto folder = qEnvironmentVariable("PPM_OUTCOME_AUDIT_DIR"); !folder.isEmpty()) {
             QVERIFY(QDir().mkpath(folder));
             QTest::qWait(80);
             QVERIFY(dialog.grab().save(QDir(folder).filePath("comparison-calendars.png")));
@@ -195,19 +195,19 @@ private slots:
     }
     void nestedAdoptionAndReleaseRefreshMainViews() {
         QTemporaryDir folder;
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         fixture(doc);
-        doc.applyCalculation(jobs::calculate(*doc.project()));
+        doc.applyCalculation(ppm::calculate(*doc.project()));
         const auto path = folder.filePath("nested.ppm").toStdString();
         doc.saveAs(path);
         const auto disk = bytes(path);
         const auto original = *doc.project();
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.show();
         auto *table = taskTable(window);
-        auto *model = dynamic_cast<jobs::TaskTableModel *>(table->model());
-        auto *gantt = dynamic_cast<jobs::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
+        auto *model = dynamic_cast<ppm::TaskTableModel *>(table->model());
+        auto *gantt = dynamic_cast<ppm::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
         window.findChild<QLineEdit *>("taskSearch")->setText("설치");
         QTRY_COMPARE(model->rowCount(), 1);
         table->selectRow(0);
@@ -238,7 +238,7 @@ private slots:
                         step = 4;
                         modal->reject();
                     }
-                } else if (auto *resources = dynamic_cast<jobs::ResourceComparisonDialog *>(modal)) {
+                } else if (auto *resources = dynamic_cast<ppm::ResourceComparisonDialog *>(modal)) {
                     auto *adopt = resources->findChild<QPushButton *>("adoptLeveling");
                     if (step == 1 && adopt->isEnabled()) {
                         resources->findChild<QLineEdit *>("levelingReason")->setText("통합 경로 확인");
@@ -277,15 +277,15 @@ private slots:
     }
     void candidateAdoptionAndReleaseStayDistinct() {
         QTemporaryDir folder;
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         const auto baseline = fixture(doc);
         const auto path = folder.filePath("review.ppm").toStdString();
         doc.saveAs(path);
         const auto disk = bytes(path);
         const auto original = *doc.project();
-        jobs::ResourceComparisonDialog dialog(doc, nullptr, baseline);
-        jobs::prepareEditorDialog(dialog);
+        ppm::ResourceComparisonDialog dialog(doc, nullptr, baseline);
+        ppm::prepareEditorDialog(dialog);
         dialog.show();
         auto *table = dialog.findChild<QTableWidget *>("levelingOutcomes");
         auto *state = dialog.findChild<QLabel *>("levelingAdoptionState");
@@ -319,8 +319,8 @@ private slots:
         QCOMPARE(cell(table, 2, 2), QString("+1d (+8h)"));
         QVERIFY(state->text().contains("잔여 예측 자원 조정 채택"));
         QVERIFY(doc.project()->tasks == original.tasks && doc.project()->baselines == original.baselines);
-        jobs::ComparisonDialog comparison(doc, baseline);
-        jobs::prepareEditorDialog(comparison);
+        ppm::ComparisonDialog comparison(doc, baseline);
+        ppm::prepareEditorDialog(comparison);
         comparison.show();
         auto *summary = comparison.findChild<QTableWidget *>("comparisonOutcomes");
         QTRY_COMPARE(summary->rowCount(), 4);
@@ -344,10 +344,10 @@ private slots:
         dialog.close();
     }
     void baselineCalendarAndMissingValues() {
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("미정", "2026-11-02", {"기간 미정"});
-        jobs::ComparisonDialog dialog(doc, "");
+        ppm::ComparisonDialog dialog(doc, "");
         dialog.show();
         auto *table = dialog.findChild<QTableWidget *>("comparisonOutcomes");
         QTRY_COMPARE(table->rowCount(), 4);
@@ -357,7 +357,7 @@ private slots:
         QVERIFY(cell(table, 3, 4).contains("불완전"));
         QVERIFY(dialog.findChild<QLabel *>("comparisonAdoption")->text().contains("상태일 미설정"));
         {
-            jobs::ResourceComparisonDialog resources(doc);
+            ppm::ResourceComparisonDialog resources(doc);
             resources.show();
             auto *outcomes = resources.findChild<QTableWidget *>("levelingOutcomes");
             QTRY_COMPARE(outcomes->rowCount(), 4);
@@ -365,23 +365,23 @@ private slots:
             QVERIFY(cell(outcomes, 1, 5).contains("미정"));
             QVERIFY(cell(outcomes, 2, 5).contains("미정"));
         }
-        auto input = static_cast<const jobs::PlanInput &>(*doc.project());
+        auto input = static_cast<const ppm::PlanInput &>(*doc.project());
         input.holidays = {"2026-11-03"};
-        QCOMPARE(jobs::outcomeDelta(&input, "2026-11-02 18:00", "2026-11-04 18:00"), QString("+1d (+8h)"));
-        QCOMPARE(jobs::outcomeDelta(&input, "2026-11-04 18:00", "2026-11-02 18:00"), QString("−1d (−8h)"));
+        QCOMPARE(ppm::outcomeDelta(&input, "2026-11-02 18:00", "2026-11-04 18:00"), QString("+1d (+8h)"));
+        QCOMPARE(ppm::outcomeDelta(&input, "2026-11-04 18:00", "2026-11-02 18:00"), QString("−1d (−8h)"));
         doc.setDuration(0, 480);
         QTRY_COMPARE(table->rowCount(), 0);
         QVERIFY(dialog.findChild<QLabel *>("comparisonAdoption")->text().contains("오래"));
         dialog.close();
     }
     void differentStoredInputsAreNotAPriorityOnlyComparison() {
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         const auto baseline = fixture(doc);
         const auto scenario = doc.saveScenario("이전 입력", "task-order", 260, "2026-11-17T00:00:00Z",
                                                doc.project()->documentId, doc.project()->revision);
         doc.setDuration(0, 960);
-        jobs::ResourceComparisonDialog dialog(doc, nullptr, baseline);
+        ppm::ResourceComparisonDialog dialog(doc, nullptr, baseline);
         dialog.show();
         auto *table = dialog.findChild<QTableWidget *>("levelingOutcomes");
         QTRY_COMPARE(table->rowCount(), 4);

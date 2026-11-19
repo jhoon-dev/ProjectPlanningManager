@@ -4,7 +4,7 @@
 #include <functional>
 #include <optional>
 class QWidget;
-namespace jobs {
+namespace ppm {
 // Returns only after worker cleanup. Publication owns its final cancellation boundary.
 bool runExchangeOperation(QWidget *, Document &, const QString &, std::function<void()> worker,
                           bool publishing = false);
@@ -15,4 +15,4 @@ std::optional<T> prepareExchange(QWidget *parent, Document &document, const QStr
         return {};
     return output;
 }
-} // namespace jobs
+} // namespace ppm

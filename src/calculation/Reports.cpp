@@ -25,7 +25,7 @@
 #include <map>
 #include <unordered_map>
 #include <stdexcept>
-namespace jobs {
+namespace ppm {
 namespace {
 ReportCell text(std::string s) {
     return {std::move(s), CellFormat::Text};
@@ -859,7 +859,7 @@ ProjectReport buildReport(const Project &p, const ReportOptions &o) {
     meta("원가 범위",
          "현재 WBS의 작업 ID. EVM은 선택 기준선과의 교집합. 전체 프로젝트 선택 시 삭제된 기준선 작업도 포함");
     meta("미정 표시", "미정은 누락/분모 0/비교 불가를 뜻하며 숫자 0과 구분. 해당없음은 별도 표시");
-    meta("보고서 정책", "jobs-report-snapshot-v1");
+    meta("보고서 정책", "ppm-report-snapshot-v1");
     if (p.planLeveling || p.remainingLeveling) {
         const auto &s = p.planLeveling ? *p.planLeveling : *p.remainingLeveling;
         meta("평준화 채택 원본", s.sourceDocumentId + " / rev " + std::to_string(s.sourceRevision));
@@ -1168,4 +1168,4 @@ ProjectReport buildReport(const Project &p, const ReportOptions &o) {
     appendFinancialPeriodHistory(report, p);
     return report;
 }
-} // namespace jobs
+} // namespace ppm

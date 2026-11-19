@@ -21,7 +21,7 @@ canonical = json.dumps(native, ensure_ascii=False, sort_keys=True, separators=('
 assert hashlib.sha256(canonical).hexdigest() == envelope['sha256'] == receipt['actualExport']['sourceInputSha256']
 raw = (root / 'project.xml').read_bytes()
 assert hashlib.sha256(raw).hexdigest() == receipt['xmlSha256']
-assert receipt['exportMode'] == 'observed-actuals-v1' and receipt['contract'] == 'jobs-mspdi-observed-v1'
+assert receipt['exportMode'] == 'observed-actuals-v1' and receipt['contract'] == 'ppm-mspdi-observed-v1'
 ns = {'p': 'http://schemas.microsoft.com/project'}
 xml = ET.fromstring(raw)
 text = lambda n, tag: n.findtext('p:' + tag, namespaces=ns)
@@ -62,7 +62,7 @@ def complete_sum(values):
 progress = asof(native['progress'], lambda e: e['taskId'])
 costs = asof(native['costEntries'], lambda e: e['taskId'])
 days = asof(native['periodActuals'], lambda e: (e['taskId'], e['resourceId'], e['date']))
-maps = {kind: {m['xmlUid']: m['jobsId'] for m in receipt['mapping'] if m['kind'] == kind}
+maps = {kind: {m['xmlUid']: m['ppmId'] for m in receipt['mapping'] if m['kind'] == kind}
         for kind in ('task', 'resource')}
 tasks = {maps['task'][text(t, 'UID')]: t for t in xml.findall('p:Tasks/p:Task', ns)
          if text(t, 'UID') in maps['task']}

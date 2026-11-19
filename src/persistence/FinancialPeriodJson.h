@@ -1,7 +1,7 @@
 #pragma once
 #include "domain/FinancialPeriodTypes.h"
 #include <QJsonArray>
-namespace jobs::json {
+namespace ppm::json {
 QJsonArray encodeFinancialPeriodEvents(const std::vector<FinancialPeriodEvent> &);
 std::vector<FinancialPeriodEvent> decodeFinancialPeriodEvents(const QJsonValue &);
-} // namespace jobs::json
+} // namespace ppm::json

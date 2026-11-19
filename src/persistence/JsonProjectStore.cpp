@@ -18,7 +18,7 @@
 #include <stdexcept>
 #include <filesystem>
 
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s.data(), qsizetype(s.size()));
@@ -95,7 +95,7 @@ std::string JsonProjectStore::save(const std::string &path, const Project &proje
     auto body = json::encodeProject(project);
     auto bytes =
         QJsonDocument(
-            QJsonObject{{"format", "JOBS"},
+            QJsonObject{{"format", "PPM"},
                         {"schemaVersion", nativeSchemaFor(project)},
                         {"payload", body},
                         {"sha256", QString::fromLatin1(hash(QJsonDocument(body).toJson(QJsonDocument::Compact)))}})
@@ -123,4 +123,4 @@ std::string JsonProjectStore::save(const std::string &path, const Project &proje
         throw AppError(ErrorCode::FILE_JSONPROJECTSTORE_011, {diagnosticArgument(f.errorString())});
     return hash(bytes).toStdString();
 }
-} // namespace jobs
+} // namespace ppm

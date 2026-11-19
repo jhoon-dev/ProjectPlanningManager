@@ -2,7 +2,7 @@
 #include "domain/Classification.h"
 #include "domain/XmlFormula.h"
 #include <string_view>
-namespace jobs {
+namespace ppm {
 thread_local const XmlScheduleScope::Binding *XmlScheduleScope::current_ = nullptr;
 XmlScheduleScope::XmlScheduleScope() : previous_(current_) {
     current_ = &binding_;
@@ -174,4 +174,4 @@ std::string xmlScheduleCaption(const PlanInput &p) {
         caption += (caption.empty() ? "" : " / ") + values->baselineCaption;
     return caption;
 }
-} // namespace jobs
+} // namespace ppm

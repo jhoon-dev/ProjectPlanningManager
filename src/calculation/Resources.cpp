@@ -16,7 +16,7 @@
 #include <unordered_map>
 #include <stdexcept>
 
-namespace jobs {
+namespace ppm {
 std::vector<ResourceOccupancy> resourceOccupancies(const Project &project, const ScheduleResult &result,
                                                    std::size_t limit, const std::set<std::string> *includedResources) {
     EvaluationScope evaluation;
@@ -554,4 +554,4 @@ Project scenarioProject(const LevelingScenario &s) {
     validate(p);
     return p;
 }
-} // namespace jobs
+} // namespace ppm

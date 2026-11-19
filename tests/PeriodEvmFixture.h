@@ -4,7 +4,7 @@
 #include "calculation/PeriodEvm.h"
 #include <tuple>
 namespace period_evm_fixture {
-using namespace jobs;
+using namespace ppm;
 inline CostEntry cost(const std::string &id, Money amount, std::optional<int> physical) {
     CostEntry e;
     e.taskId = id;

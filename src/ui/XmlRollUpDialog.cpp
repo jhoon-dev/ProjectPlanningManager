@@ -12,7 +12,7 @@
 #include <QPushButton>
 #include <QTableWidget>
 #include <QVBoxLayout>
-namespace jobs {
+namespace ppm {
 void editXmlRollUp(Document &doc, FieldScope scope, const std::string &key, QWidget *parent) {
     if (!doc.project() || doc.readOnly() || (scope != FieldScope::Task && scope != FieldScope::Resource))
         return;
@@ -154,4 +154,4 @@ void editXmlRollUp(Document &doc, FieldScope scope, const std::string &key, QWid
     render();
     dialog.exec();
 }
-} // namespace jobs
+} // namespace ppm

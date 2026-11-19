@@ -2,7 +2,7 @@
 #include "domain/Productivity.h"
 #include <QJsonArray>
 #include <cmath>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void bad() {
     throw AppError(Diagnostic{
@@ -118,4 +118,4 @@ NativeCurve decodeNativeCurve(const QJsonValue &v) {
     }
     return c;
 }
-} // namespace jobs
+} // namespace ppm

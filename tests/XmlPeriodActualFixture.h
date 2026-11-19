@@ -1,7 +1,7 @@
 #pragma once
 #include "persistence/ProjectXml.h"
 #include <stdexcept>
-namespace jobs::test {
+namespace ppm::test {
 inline QByteArray xmlPeriodData(int assignment, int type, const QByteArray &date, const QByteArray &value, int unit = 2,
                                 const QByteArray &finish = {}) {
     return "<TimephasedData><Type>" + QByteArray::number(type) + "</Type><UID>" + QByteArray::number(assignment) +
@@ -133,4 +133,4 @@ inline std::vector<XmlPeriodMapping> xmlPeriodMappings(const ProjectXmlExchange 
             out.push_back({r.key, r.taskUid == "1" ? "TN-A" : "TN-B", r.resourceUid == "1" ? "NR-1" : "NR-2"});
     return out;
 }
-} // namespace jobs::test
+} // namespace ppm::test

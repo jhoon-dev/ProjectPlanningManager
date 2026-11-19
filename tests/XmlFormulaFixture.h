@@ -3,7 +3,7 @@
 #include <tuple>
 #include "domain/Classification.h"
 #include "domain/XmlFormula.h"
-namespace jobs::test {
+namespace ppm::test {
 inline Project xmlFormulaFixture() {
     Project p;
     p.documentId = "xml-formula";
@@ -94,4 +94,4 @@ inline Project xmlFormulaFixture() {
     p.taskSummaryAttributes = {{"field:n", "999"}, {"field:summary", "옛 요약"}, {"field:summaryCost", "999.99"}};
     return p;
 }
-} // namespace jobs::test
+} // namespace ppm::test

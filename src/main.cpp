@@ -4,25 +4,33 @@
 #include "ui/ApplicationIcon.h"
 #include "ui/UiTranslations.h"
 #include "ui/DesktopWorkspace.h"
+#include "persistence/ApplicationStorage.h"
 #include "persistence/JsonRecoveryStore.h"
 #include "updates/UpdateController.h"
 #include "application/ProductIdentity.h"
 #include <QApplication>
+#include <QMessageBox>
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
-    jobs::installUiTranslations(app);
-    QCoreApplication::setApplicationName(jobs::productShortName);
-    QGuiApplication::setApplicationDisplayName(jobs::productDisplayName);
-    QCoreApplication::setApplicationVersion(jobs::appVersion());
-    QCoreApplication::setOrganizationName(jobs::storageOrganizationName);
-    QGuiApplication::setDesktopFileName(jobs::productAppId);
-    QApplication::setWindowIcon(jobs::applicationIcon());
-    jobs::restoreSandboxFolders();
-    auto store = std::make_shared<jobs::JsonProjectStore>();
-    auto recovery = std::make_shared<jobs::JsonRecoveryStore>(jobs::JsonRecoveryStore::defaultDirectory());
-    jobs::UpdateController updates(jobs::updateConfig());
-    jobs::DesktopWorkspace workspace(store, recovery);
+    ppm::installUiTranslations(app);
+    QCoreApplication::setApplicationName(ppm::productShortName);
+    QGuiApplication::setApplicationDisplayName(ppm::productDisplayName);
+    QCoreApplication::setApplicationVersion(ppm::appVersion());
+    QCoreApplication::setOrganizationName(ppm::storageOrganizationName);
+    QGuiApplication::setDesktopFileName(ppm::productAppId);
+    QApplication::setWindowIcon(ppm::applicationIcon());
+    try {
+        ppm::migrateApplicationStorage();
+    } catch (const std::exception &error) {
+        QMessageBox::warning(nullptr, "PPM 데이터 이관", QString::fromUtf8(error.what()));
+        return 1;
+    }
+    ppm::restoreSandboxFolders();
+    auto store = std::make_shared<ppm::JsonProjectStore>();
+    auto recovery = std::make_shared<ppm::JsonRecoveryStore>(ppm::JsonRecoveryStore::defaultDirectory());
+    ppm::UpdateController updates(ppm::updateConfig());
+    ppm::DesktopWorkspace workspace(store, recovery);
     workspace.setUpdates(&updates);
     workspace.newWindow();
     return app.exec();

@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <map>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 LevelingResult levelPdmResources(const Project &p, const std::string &priority, int horizonWorkDays) {
     LevelingResult out;
     out.priority = priority;
@@ -200,4 +200,4 @@ LevelingResult levelPdmResources(const Project &p, const std::string &priority, 
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

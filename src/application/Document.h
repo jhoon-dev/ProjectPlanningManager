@@ -13,7 +13,7 @@
 #include <variant>
 #include <unordered_map>
 
-namespace jobs {
+namespace ppm {
 struct TaskRemoval {
     std::size_t tasks = 0, links = 0, assignments = 0, costs = 0;
     std::vector<std::string> protectedTaskIds;
@@ -327,4 +327,4 @@ private:
     std::optional<bool> replayForward_;
     std::shared_ptr<BulkView> view_;
 };
-} // namespace jobs
+} // namespace ppm

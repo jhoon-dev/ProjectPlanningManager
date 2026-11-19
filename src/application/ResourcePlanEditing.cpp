@@ -1,7 +1,7 @@
 #include "application/Document.h"
 #include <algorithm>
 #include <map>
-namespace jobs {
+namespace ppm {
 void Document::setResourcePlan(ResourcePlan plan) {
     requireEditable();
     if (plan == project_->resourcePlan)
@@ -29,4 +29,4 @@ void Document::setResourcePlan(ResourcePlan plan) {
     p.resourcePlan = std::move(plan);
     edit(std::move(p), "자재·비용·역할 계획");
 }
-} // namespace jobs
+} // namespace ppm

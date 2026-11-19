@@ -26,7 +26,7 @@
 #include <QTimer>
 #include <QVBoxLayout>
 #include <QtConcurrent/QtConcurrentRun>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &v) {
     return QString::fromStdString(v);
@@ -533,4 +533,4 @@ GovernanceDialog::GovernanceDialog(DesktopWorkspace &workspace, QWidget *parent)
     connect(close, &QPushButton::clicked, this, &QDialog::reject);
     prepareEditorDialog(*this);
 }
-} // namespace jobs
+} // namespace ppm

@@ -2,7 +2,7 @@
 #include "reporting/ReportExport.h"
 #include <QStringList>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 QString text(const std::string &s) {
     return QString::fromUtf8(s);
@@ -171,4 +171,4 @@ QVariant UsageModel::headerData(int section, Qt::Orientation orientation, int ro
 Qt::ItemFlags UsageModel::flags(const QModelIndex &i) const {
     return i.isValid() ? Qt::ItemIsEnabled | Qt::ItemIsSelectable : Qt::NoItemFlags;
 }
-} // namespace jobs
+} // namespace ppm

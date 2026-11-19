@@ -2,7 +2,7 @@
 #include "domain/Activities.h"
 #include <algorithm>
 #include <map>
-namespace jobs {
+namespace ppm {
 std::string Document::putActivity(ActivityDefinition activity) {
     requireEditable();
     auto p = *project_;
@@ -52,4 +52,4 @@ void Document::recordSteps(StepReport report) {
     p.stepReports.push_back(std::move(report));
     edit(std::move(p), "Steps 물리 진척 보고·정정");
 }
-} // namespace jobs
+} // namespace ppm

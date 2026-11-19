@@ -1,15 +1,15 @@
 #pragma once
 #include "domain/Project.h"
 namespace repartition_fixture {
-inline jobs::Project project() {
-    jobs::Project p;
+inline ppm::Project project() {
+    ppm::Project p;
     p.documentId = "repartition-float";
     p.name = "구간 소멸과 재분할";
     p.startDate = "2026-11-02";
-    p.calculationProfile = jobs::effortProfile;
+    p.calculationProfile = ppm::effortProfile;
     p.tasks = {{"A", "분할 A", 480, {}}, {"B", "공유 B", 240, {}}, {"C", "독립 C", 1440, {}}};
     p.tasks[0].breaks = {{"2026-11-02 12:00", "2026-11-03 09:00"}};
-    jobs::Resource r;
+    ppm::Resource r;
     r.id = "R";
     r.name = "공유 인력";
     r.rates = {{"2026-11-02", 60}};

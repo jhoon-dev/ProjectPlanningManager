@@ -16,7 +16,7 @@
 #include <cmath>
 #include <functional>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool condition, const char *message) {
     if (!condition)

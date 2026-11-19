@@ -129,21 +129,21 @@ int main(int argc, char **argv) {
     try {
         QTemporaryDir dir;
         check(dir.isValid(), "temporary folder");
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
-        jobs::MainWindow window(doc);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
+        ppm::MainWindow window(doc);
         window.show();
         QTest::qWait(30);
         check(!window.findChild<QAction *>("exportPrimaveraXer")->isEnabled(), "empty export enabled");
         doc.create("기존 프로젝트", "2026-10-26", {"보존 작업"});
         // Refresh through an ordinary public action; a separate preexisting document is what import will replace.
-        jobs::MainWindow current(doc);
+        ppm::MainWindow current(doc);
         current.show();
         QTest::qWait(30);
         const auto original = *doc.project();
         const auto generation = doc.sessionGeneration();
         {
-            Drive drive(QString::fromUtf8(JOBS_XER_FIXTURE), dir.filePath("cancel"));
+            Drive drive(QString::fromUtf8(PPM_XER_FIXTURE), dir.filePath("cancel"));
             drive.accept = false;
             action(current, "importPrimaveraXer");
             check(drive.seenPreview && *doc.project() == original && doc.sessionGeneration() == generation &&
@@ -151,21 +151,21 @@ int main(int argc, char **argv) {
                   "preview cancel changed document/files");
         }
         {
-            Drive drive(QString::fromUtf8(JOBS_XER_FIXTURE), dir.filePath("unsaved-cancel"));
+            Drive drive(QString::fromUtf8(PPM_XER_FIXTURE), dir.filePath("unsaved-cancel"));
             drive.unsaved = QMessageBox::Cancel;
             action(current, "importPrimaveraXer");
             check(drive.seenPreview && *doc.project() == original && !QFileInfo::exists(drive.destination),
                   "unsaved cancel published import");
         }
         {
-            Drive drive(QString::fromUtf8(JOBS_XER_FIXTURE), dir.filePath("encoding-cancel"));
+            Drive drive(QString::fromUtf8(PPM_XER_FIXTURE), dir.filePath("encoding-cancel"));
             drive.cancelEncoding = true;
             action(current, "importPrimaveraXer");
             check(!drive.seenPreview && *doc.project() == original, "encoding cancel changed document");
         }
         const auto destination = dir.filePath("accepted");
         {
-            Drive drive(QString::fromUtf8(JOBS_XER_FIXTURE), destination);
+            Drive drive(QString::fromUtf8(PPM_XER_FIXTURE), destination);
             action(current, "importPrimaveraXer");
             check(drive.seenPreview && drive.captured && doc.project()->tasks.size() == 6 && !doc.dirty() &&
                       doc.sessionGeneration() > generation,
@@ -175,7 +175,7 @@ int main(int argc, char **argv) {
                   QFileInfo::exists(QDir(destination).filePath("conversion.json")),
               "import missing source report");
         auto udfProject = *doc.project();
-        udfProject.customFields = {{"udf", "외부 점수", jobs::CustomFieldType::Number, "", {}}};
+        udfProject.customFields = {{"udf", "외부 점수", ppm::CustomFieldType::Number, "", {}}};
         udfProject.tasks[0].attributes = {{"field:udf", "-2.123456"}};
         const auto udfPath = dir.filePath("udf-source.ppm").toStdString();
         store.save(udfPath, udfProject, {});
@@ -196,8 +196,8 @@ int main(int argc, char **argv) {
             check(drive.seenPreview && *doc.project() == imported && !doc.dirty() && !doc.canUndo() &&
                       doc.path() == importPath && QFileInfo::exists(QDir(drive.destination).filePath("source.ppm")),
                   "export changed document or lacked source");
-            const auto mapped = jobs::importPrimaveraXer(
-                                    jobs::readPrimaveraXer(QDir(drive.destination).filePath("project.xer")), "UI.xer")
+            const auto mapped = ppm::importPrimaveraXer(
+                                    ppm::readPrimaveraXer(QDir(drive.destination).filePath("project.xer")), "UI.xer")
                                     .project;
             check(mapped.customFields.size() == 1 && mapped.tasks[0].attributes[0].value == "-2.123456",
                   "UI UDF export");
@@ -213,7 +213,7 @@ int main(int argc, char **argv) {
             doc.undo();
         }
         {
-            Drive drive(QString::fromUtf8(JOBS_XER_FIXTURE), dir.filePath("stale-import"));
+            Drive drive(QString::fromUtf8(PPM_XER_FIXTURE), dir.filePath("stale-import"));
             drive.errorExpected = true;
             drive.beforeAccept = [&] { doc.renameTask(0, "가져오기 미리보기 이후 변경"); };
             action(current, "importPrimaveraXer");
@@ -235,9 +235,9 @@ int main(int argc, char **argv) {
             action(current, "importPrimaveraXer");
             check(drive.seenError && !drive.seenPreview && *doc.project() == beforeBad, "invalid import changed state");
         }
-        jobs::Document readonly(store);
+        ppm::Document readonly(store);
         readonly.open(importPath, true);
-        jobs::MainWindow reader(readonly);
+        ppm::MainWindow reader(readonly);
         reader.show();
         QTest::qWait(20);
         const auto readSnapshot = *readonly.project();
@@ -250,7 +250,7 @@ int main(int argc, char **argv) {
         }
         {
             const auto before = *doc.project();
-            Drive drive(QString::fromUtf8(JOBS_XER_ACTUAL_FIXTURE), dir.filePath("actual-cancel"));
+            Drive drive(QString::fromUtf8(PPM_XER_ACTUAL_FIXTURE), dir.filePath("actual-cancel"));
             drive.expectActual = true;
             drive.accept = false;
             action(current, "importPrimaveraXer");
@@ -258,7 +258,7 @@ int main(int argc, char **argv) {
                   "actual cost cancellation changed document");
         }
         {
-            Drive drive(QString::fromUtf8(JOBS_XER_ACTUAL_FIXTURE), dir.filePath("actual-accepted"));
+            Drive drive(QString::fromUtf8(PPM_XER_ACTUAL_FIXTURE), dir.filePath("actual-accepted"));
             drive.expectActual = true;
             action(current, "importPrimaveraXer");
             check(drive.seenPreview && doc.project()->periodActuals.size() == 4 &&
@@ -270,19 +270,19 @@ int main(int argc, char **argv) {
             Drive drive({}, dir.filePath("actual-exported"));
             drive.expectActual = true;
             action(current, "exportPrimaveraXer");
-            const auto reopened = jobs::importPrimaveraXer(
-                jobs::readPrimaveraXer(QDir(drive.destination).filePath("project.xer")), "UI actual.xer");
+            const auto reopened = ppm::importPrimaveraXer(
+                ppm::readPrimaveraXer(QDir(drive.destination).filePath("project.xer")), "UI actual.xer");
             check(drive.seenPreview && *doc.project() == before && !doc.dirty() &&
                       reopened.project.periodActuals.size() == 4,
                   "actual export changed document or lost dated actuals");
         }
         // Use a clean project snapshot to check support for empty native projects too.
-        jobs::Project empty;
+        ppm::Project empty;
         empty.documentId = "empty";
         empty.name = "빈 프로젝트";
         empty.startDate = "2026-10-26";
-        auto emptyXml = jobs::exportPrimaveraXer(empty);
-        check(jobs::importPrimaveraXer(emptyXml.xer, "empty.xer").project.tasks.empty(), "empty project exchange");
+        auto emptyXml = ppm::exportPrimaveraXer(empty);
+        check(ppm::importPrimaveraXer(emptyXml.xer, "empty.xer").project.tasks.empty(), "empty project exchange");
         std::cout << "Primavera XER UI preview/cancel/import/export/stale/readonly tests passed\n";
     } catch (const std::exception &e) {
         std::cerr << e.what() << '\n';

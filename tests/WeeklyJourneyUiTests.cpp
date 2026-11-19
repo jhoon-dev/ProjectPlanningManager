@@ -32,7 +32,7 @@ QByteArray bytes(const QString &path) {
     return f.readAll();
 }
 void capture(QWidget &widget, const QString &name) {
-    const auto folder = qEnvironmentVariable("JOBS_JOURNEY_AUDIT_DIR");
+    const auto folder = qEnvironmentVariable("PPM_JOURNEY_AUDIT_DIR");
     if (folder.isEmpty())
         return;
     QVERIFY(QDir().mkpath(folder));
@@ -44,7 +44,7 @@ int rowFor(QTableWidget *table, const std::string &id) {
             return row;
     return -1;
 }
-QAction *actionNamed(jobs::MainWindow &window, const QString &name) {
+QAction *actionNamed(ppm::MainWindow &window, const QString &name) {
     for (auto *action : window.findChildren<QAction *>())
         if (action->text() == name)
             return action;
@@ -78,8 +78,8 @@ private slots:
         QTemporaryDir folder;
         const auto path = folder.filePath("review.ppm");
         QVERIFY(!fixturePath.isEmpty() && QFile::copy(fixturePath, path));
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         try {
             doc.open(path.toStdString());
         } catch (const std::exception &error) {
@@ -91,12 +91,12 @@ private slots:
         const int priorReported = count == 5 ? 2 : 12;
         const auto partsId = original.tasks[1].id, assemblyId = original.tasks[2].id;
         const auto installationId = original.tasks[3].id;
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.resize(1562, 932);
         window.show();
         auto *table = taskTable(window);
-        auto *model = dynamic_cast<jobs::TaskTableModel *>(table->model());
-        auto *gantt = dynamic_cast<jobs::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
+        auto *model = dynamic_cast<ppm::TaskTableModel *>(table->model());
+        auto *gantt = dynamic_cast<ppm::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
         auto *weekly = window.findChild<QAction *>("weeklyUpdate");
         int step = 0;
         QTimer tick;
@@ -181,7 +181,7 @@ private slots:
             modal->findChild<QPushButton *>("weeklyRecalculate")->click();
         });
         weekly->trigger();
-        QTRY_VERIFY(doc.calculation() && doc.calculation()->status == jobs::CalculationStatus::Valid);
+        QTRY_VERIFY(doc.calculation() && doc.calculation()->status == ppm::CalculationStatus::Valid);
         QCOMPARE(*doc.calculation()->projectFinish, std::string("2026-11-20 18:00"));
         QVERIFY(doc.dirty() && bytes(path) == disk);
         window.findChild<QComboBox *>("taskColumnPreset")->setCurrentIndex(2);
@@ -209,7 +209,7 @@ private slots:
                     step = 4;
                     modal->reject();
                 }
-            } else if (auto *resources = dynamic_cast<jobs::ResourceComparisonDialog *>(modal)) {
+            } else if (auto *resources = dynamic_cast<ppm::ResourceComparisonDialog *>(modal)) {
                 auto *adopt = resources->findChild<QPushButton *>("adoptLeveling");
                 auto *outcomes = resources->findChild<QTableWidget *>("levelingOutcomes");
                 if (step == 1 && adopt->isEnabled() && outcomes->rowCount() == 4) {
@@ -295,18 +295,18 @@ private slots:
         doc.open(path.toStdString());
         QVERIFY(!doc.calculation() && *doc.project() == saved && !doc.dirty());
         {
-            jobs::MainWindow reopened(doc);
+            ppm::MainWindow reopened(doc);
             reopened.resize(1562, 932);
             reopened.show();
             QVERIFY(reopened.findChild<QLabel *>("scheduleFreshnessState")->text().contains("계산 필요"));
             reopened.findChild<QToolButton *>("workflowCalculate")->click();
-            QTRY_VERIFY(doc.calculation() && doc.calculation()->status == jobs::CalculationStatus::Valid);
+            QTRY_VERIFY(doc.calculation() && doc.calculation()->status == ppm::CalculationStatus::Valid);
             QCOMPARE(*doc.calculation()->projectFinish, std::string("2026-11-24 18:00"));
             capture(reopened, tag + "-04-reopened-calculated");
             QVERIFY(*doc.project() == saved && bytes(path) == savedDisk && !doc.dirty());
             reopened.close();
         }
-        const auto audit = qEnvironmentVariable("JOBS_JOURNEY_AUDIT_DIR");
+        const auto audit = qEnvironmentVariable("PPM_JOURNEY_AUDIT_DIR");
         if (!audit.isEmpty()) {
             QVERIFY(QFile::copy(path, QDir(audit).filePath(tag + "-final.ppm")));
             QVERIFY(QFile::copy(pdfPath, QDir(audit).filePath(tag + "-meeting.pdf")));

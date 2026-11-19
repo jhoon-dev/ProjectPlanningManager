@@ -1,6 +1,6 @@
 #include "application/Document.h"
 #include "domain/XerSourceRelink.h"
-namespace jobs {
+namespace ppm {
 void Document::recordXerRelink(XerRelinkSubmission s, std::string (*hash)(const Project &)) {
     requireEditable();
     if (!hash)
@@ -27,4 +27,4 @@ void Document::recordXerRelink(XerRelinkSubmission s, std::string (*hash)(const 
     p.xerFinancialRevisions.push_back(std::move(r));
     edit(std::move(p), "새 XER 버전·삭제 ID 재연결");
 }
-} // namespace jobs
+} // namespace ppm

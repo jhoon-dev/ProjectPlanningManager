@@ -6,7 +6,7 @@
 #include <QSignalBlocker>
 #include <algorithm>
 
-namespace jobs {
+namespace ppm {
 bool MainWindow::selectTaskById(const std::string &taskId) {
     if (!document_.project() || std::none_of(document_.project()->tasks.begin(), document_.project()->tasks.end(),
                                              [&](const auto &task) { return task.id == taskId; }))
@@ -43,4 +43,4 @@ bool MainWindow::selectTaskById(const std::string &taskId) {
         }
     return false;
 }
-} // namespace jobs
+} // namespace ppm

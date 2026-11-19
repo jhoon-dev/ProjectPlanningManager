@@ -6,7 +6,7 @@ class QCheckBox;
 class QLineEdit;
 class QSpinBox;
 class QComboBox;
-namespace jobs {
+namespace ppm {
 class XerConversionEditor final : public QGroupBox {
     QCheckBox *enabled_;
     QLineEdit *date_, *reference_;
@@ -23,4 +23,4 @@ public:
 };
 void previewXerConversions(QWidget *parent, const XerFinancialSnapshot &, const XerFinancialSnapshot &,
                            const XerRelinkAudit &);
-} // namespace jobs
+} // namespace ppm

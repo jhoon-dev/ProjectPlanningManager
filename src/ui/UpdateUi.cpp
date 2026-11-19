@@ -19,7 +19,7 @@
 #include <QStatusBar>
 #include <QVBoxLayout>
 
-namespace jobs {
+namespace ppm {
 void attachUpdateUi(QMainWindow &window, UpdateController &controller, UpdateUiHooks hooks) {
     if (!hooks.openUrl)
         hooks.openUrl = [](const QUrl &url) { return QDesktopServices::openUrl(url); };
@@ -136,4 +136,4 @@ void attachUpdateUi(QMainWindow &window, UpdateController &controller, UpdateUiH
         return quintptr(0);
     });
 }
-} // namespace jobs
+} // namespace ppm

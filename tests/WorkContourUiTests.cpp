@@ -15,7 +15,7 @@
 #include <QThreadPool>
 #include <iostream>
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool b, const char *s) {
     if (!b)
         throw std::runtime_error(s);

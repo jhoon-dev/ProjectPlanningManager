@@ -19,7 +19,7 @@
 #include <QVBoxLayout>
 #include <QtConcurrent>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -558,4 +558,4 @@ void XerFinancialMergeDialog::reject() {
         impl_->control->cancel();
     QDialog::reject();
 }
-} // namespace jobs
+} // namespace ppm

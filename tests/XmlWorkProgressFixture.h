@@ -1,6 +1,6 @@
 #pragma once
 #include "persistence/ProjectXml.h"
-namespace jobs::test {
+namespace ppm::test {
 inline QByteArray xmlWorkProgressFixture() {
     Project p;
     p.documentId = "xml-work-progress-source";
@@ -120,4 +120,4 @@ inline XmlProgressOptions xmlWorkProgressOptions() {
 inline std::vector<XmlProgressMapping> xmlWorkProgressMappings() {
     return {{"1", "NA"}, {"2", "NB"}, {"3", "NC"}, {"4", "NZ"}};
 }
-} // namespace jobs::test
+} // namespace ppm::test

@@ -4,7 +4,7 @@
 #include <memory>
 #include <map>
 
-namespace jobs {
+namespace ppm {
 struct ProjectTaskRef {
     std::string projectId, taskId;
     auto operator<=>(const ProjectTaskRef &) const = default;
@@ -36,4 +36,4 @@ struct SharedResourceResult {
 SharedResourceResult calculateSharedResources(const Workspace &, const std::vector<std::shared_ptr<const Project>> &,
                                               bool forecast, const std::shared_ptr<CalculationControl> &control = {},
                                               const std::map<std::string, ScheduleResult> *supplied = nullptr);
-} // namespace jobs
+} // namespace ppm

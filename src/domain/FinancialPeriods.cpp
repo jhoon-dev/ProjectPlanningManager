@@ -2,7 +2,7 @@
 #include "domain/CalculationControl.h"
 #include <algorithm>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &s) {
     throw AppError(ErrorCode::FINANCIAL_PERIOD_INVALID, {s});
@@ -183,4 +183,4 @@ void validateFinancialPeriods(const Project &p) {
     }
     inspectFacts(timeline, locks(p, state), previous, p.revision + 1);
 }
-} // namespace jobs
+} // namespace ppm

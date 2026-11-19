@@ -5,7 +5,7 @@
 #include <QNetworkRequest>
 #include <QTimer>
 #include <stdexcept>
-namespace jobs {
+namespace ppm {
 ServerClient::ServerClient(QObject *parent) : QObject(parent), network_(this) {}
 ServerClient::~ServerClient() {
     following_ = false;
@@ -155,4 +155,4 @@ void ServerClient::poll() {
         },
         true);
 }
-} // namespace jobs
+} // namespace ppm

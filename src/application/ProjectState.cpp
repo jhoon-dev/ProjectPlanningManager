@@ -1,6 +1,6 @@
 #include "application/ProjectState.h"
 
-namespace jobs {
+namespace ppm {
 DirtyState compareSavedInput(const Project &a, const ProjectState &saved) {
     if (!saved)
         return {};
@@ -41,4 +41,4 @@ DirtyState compareSavedInput(const Project &a, const ProjectState &saved) {
                      b.materialActuals);
     return result;
 }
-} // namespace jobs
+} // namespace ppm

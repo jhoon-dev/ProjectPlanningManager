@@ -13,7 +13,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -178,4 +178,4 @@ void MainWindow::chooseTaskCalendar() {
         report(e);
     }
 }
-} // namespace jobs
+} // namespace ppm

@@ -23,7 +23,7 @@
 #include "domain/ProductivityTypes.h"
 #include "domain/XmlBaselineTypes.h"
 
-namespace jobs {
+namespace ppm {
 inline constexpr const char *pdmProfile = "native-pdm-taskcal-v1";
 inline constexpr const char *constraintProfile = "native-pdm-constraints-v1";
 inline constexpr const char *effortProfile = "native-effort-split-v1";
@@ -327,4 +327,4 @@ bool supportsLevelingPolicy(const Project &, const std::string &);
 void validateLevelingSelection(const PlanInput &, const LevelingSelection &);
 // Editing the source schedule invalidates an adoption; history replay restores its exact previous settings.
 void invalidateLevelingSelection(Project &proposal, const Project &before);
-} // namespace jobs
+} // namespace ppm

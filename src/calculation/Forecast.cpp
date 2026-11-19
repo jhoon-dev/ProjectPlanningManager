@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <deque>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 static ScheduleResult calculateForecastCore(const Project &p) {
     EvaluationScope evaluation;
     if (p.remainingLeveling)
@@ -191,4 +191,4 @@ ScheduleResult calculate(const Project &p, const std::shared_ptr<CalculationCont
         return result;
     }
 }
-} // namespace jobs
+} // namespace ppm

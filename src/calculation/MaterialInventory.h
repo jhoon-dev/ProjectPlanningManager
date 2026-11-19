@@ -2,7 +2,7 @@
 #include "calculation/Scheduler.h"
 #include <map>
 #include <set>
-namespace jobs {
+namespace ppm {
 struct MaterialInventoryPoint {
     std::string materialId, name, unit, at, stockAt, issue;
     std::optional<std::int64_t> opening, received, consumed, remaining, available, shortage;
@@ -36,4 +36,4 @@ public:
     std::optional<std::string> firstShortage(const std::string &) const;
 };
 std::vector<Diagnostic> materialInventoryDiagnostics(const Project &, const ScheduleResult &);
-} // namespace jobs
+} // namespace ppm

@@ -6,7 +6,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QSaveFile>
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s);
@@ -134,4 +134,4 @@ void saveProgressPolicyJson(const ProgressPolicyComparison &r, const QString &pa
     if (!file.commit())
         throw std::runtime_error("비교 JSON 파일을 게시할 수 없습니다.");
 }
-} // namespace jobs
+} // namespace ppm

@@ -6,7 +6,7 @@
 #include <cmath>
 #include <map>
 #include <set>
-namespace jobs {
+namespace ppm {
 std::vector<ActivityInterval> activityIntervals(const Project &p, const ScheduleResult &schedule) {
     validate(p);
     std::map<std::string, const TaskSchedule *> rows;
@@ -119,4 +119,4 @@ ActivityProgress activityProgress(const Project &p, const std::string &taskId) {
     }
     return result;
 }
-} // namespace jobs
+} // namespace ppm

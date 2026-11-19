@@ -8,7 +8,7 @@ class QLineEdit;
 class QTableWidget;
 class QPushButton;
 class QCheckBox;
-namespace jobs {
+namespace ppm {
 class WeeklyUpdateDialog final : public QDialog {
 public:
     explicit WeeklyUpdateDialog(Document &, QWidget *parent = nullptr);
@@ -35,4 +35,4 @@ private:
     void selected();
     void editSelected();
 };
-} // namespace jobs
+} // namespace ppm

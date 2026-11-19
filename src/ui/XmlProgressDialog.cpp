@@ -14,7 +14,7 @@
 #include <QTableWidget>
 #include <QVBoxLayout>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 std::optional<ProjectXmlExchange> reviewXmlProgress(QWidget *parent, Document &doc, const ProjectXmlExchange &input) {
     const auto session = doc.sessionGeneration();
     const auto revision = doc.project() ? doc.project()->revision : 0;
@@ -285,4 +285,4 @@ bool reviewXmlProgressMerge(QWidget *parent, Document &doc, const ProjectXmlExch
     prepareEditorDialog(dialog);
     return dialog.exec() == QDialog::Accepted;
 }
-} // namespace jobs
+} // namespace ppm

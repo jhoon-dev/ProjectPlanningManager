@@ -5,7 +5,7 @@
 #include <cmath>
 #include <set>
 #include <map>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &message) {
     throw AppError(ErrorCode::WORKSPACE_INVALID, {message});
@@ -129,4 +129,4 @@ QJsonObject applyAutomation(Document &document, AutomationPreview &preview) {
     preview.edit.reset();
     return preview.receipt;
 }
-} // namespace jobs
+} // namespace ppm

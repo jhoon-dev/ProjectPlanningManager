@@ -5,7 +5,7 @@
 #include <QPdfWriter>
 #include <cmath>
 #include <QTextLayout>
-namespace jobs {
+namespace ppm {
 NetworkPrintLayout buildNetworkPrint(QPicture picture, const QRectF &bounds, const PrintPreferences &s, QString title,
                                      QString provenance, const QStringList &details) {
     Project validation;
@@ -164,4 +164,4 @@ int exportNetworkPdf(const NetworkPrintLayout &l, const QString &path,
     out.commit();
     return count;
 }
-} // namespace jobs
+} // namespace ppm

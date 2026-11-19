@@ -1,7 +1,7 @@
 #include "persistence/ProgressPolicySelectionJson.h"
 #include "domain/Diagnostics.h"
 #include <cmath>
-namespace jobs::json {
+namespace ppm::json {
 QJsonObject encodeProgressPolicySelection(const ProgressPolicySelection &s) {
     const auto q = [](const auto &v) { return QString::fromUtf8(v); };
     return {{"policy", q(s.policy)},
@@ -35,4 +35,4 @@ ProgressPolicySelection decodeProgressPolicySelection(const QJsonValue &v) {
     validateProgressPolicySelection(s);
     return s;
 }
-} // namespace jobs::json
+} // namespace ppm::json

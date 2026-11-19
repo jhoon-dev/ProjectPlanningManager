@@ -1,7 +1,7 @@
 #pragma once
 #include "calculation/SharedResources.h"
 #include "domain/MaterialActuals.h"
-namespace jobs {
+namespace ppm {
 struct IntegratedTask {
     ProjectTaskRef ref;
     std::string projectName, name;
@@ -30,4 +30,4 @@ struct IntegratedResult {
 };
 IntegratedResult calculateIntegratedWorkspace(const Workspace &, const std::vector<std::shared_ptr<const Project>> &,
                                               const std::shared_ptr<CalculationControl> & = {});
-} // namespace jobs
+} // namespace ppm

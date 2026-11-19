@@ -4,7 +4,7 @@
 #include <chrono>
 #include <cstdio>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &message) {
     throw AppError(ErrorCode::EXTERNAL_EVM_INVALID, {message});
@@ -230,4 +230,4 @@ ExternalEvmPoint ExternalEvmIndex::at(const std::string &id, const std::string &
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

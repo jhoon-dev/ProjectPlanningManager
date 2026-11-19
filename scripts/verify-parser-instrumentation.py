@@ -1,4 +1,4 @@
-"""Fail if a purported fuzz build leaves JOBS parser/dependency code uninstrumented."""
+"""Fail if a purported fuzz build leaves PPM parser/dependency code uninstrumented."""
 import json
 from pathlib import Path
 import shlex
@@ -6,7 +6,7 @@ import sys
 
 build = Path(sys.argv[1] if len(sys.argv) > 1 else "build-sanitized")
 commands = json.loads((build / "compile_commands.json").read_text())
-required_coverage = {"jobs_domain", "jobs_formatting", "jobs_application", "jobs_calculation", "jobs_persistence", "jobs_parser_harness"}
+required_coverage = {"ppm_domain", "ppm_formatting", "ppm_application", "ppm_calculation", "ppm_persistence", "ppm_parser_harness"}
 seen = set()
 fuzz_entries = 0
 checked = []

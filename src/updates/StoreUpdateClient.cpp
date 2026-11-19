@@ -11,7 +11,7 @@
 #include <shobjidl.h>
 #endif
 
-namespace jobs {
+namespace ppm {
 #ifdef Q_OS_WIN
 namespace {
 // WinRT ABI slots from Microsoft's Windows.Services.Store metadata. Opaque method calls keep
@@ -171,4 +171,4 @@ std::unique_ptr<StoreUpdateClient> createStoreUpdateClient() {
     return std::make_unique<UnavailableStoreClient>();
 }
 #endif
-} // namespace jobs
+} // namespace ppm

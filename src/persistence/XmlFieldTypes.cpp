@@ -2,7 +2,7 @@
 #include "domain/Classification.h"
 #include <QRegularExpression>
 #include <QString>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void bad(const std::string &s) {
     throw AppError(ErrorCode::CLASSIFICATION_INVALID, {s});
@@ -171,4 +171,4 @@ std::string exportXmlUdfScalar(const PlanInput &p, CustomFieldType type, const s
         return normalizeLookupScalar(type, raw, p.currency);
     return raw;
 }
-} // namespace jobs
+} // namespace ppm

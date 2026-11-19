@@ -22,7 +22,7 @@
 #include <QTimer>
 #include <functional>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool value, const char *message) {
     if (!value)
@@ -144,7 +144,7 @@ void trigger(MainWindow &window) {
 void workflow() {
     QTemporaryDir temp;
     check(temp.isValid(), "temporary dir");
-    const auto source = read(QString::fromUtf8(JOBS_XER_MULTI_FIXTURE));
+    const auto source = read(QString::fromUtf8(PPM_XER_MULTI_FIXTURE));
     const auto input = temp.filePath("multi.xer");
     write(input, source);
     JsonProjectStore store;

@@ -7,7 +7,7 @@
 #include <QCryptographicHash>
 #include <cmath>
 #include <map>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &v) {
     return QString::fromStdString(v);
@@ -393,4 +393,4 @@ std::string xerFinancialProjectionHash(const Project &p) {
 bool xerFinancialsCurrent(const Project &p) {
     return xerFinancialsMatch(p, xerFinancialProjectionHash(p));
 }
-} // namespace jobs
+} // namespace ppm

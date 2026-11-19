@@ -4,7 +4,7 @@
 #include "domain/CalculationControl.h"
 #include <QJsonObject>
 #include <cmath>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -129,4 +129,4 @@ std::vector<XerScheduleAdoption> decodeXerScheduleAdoptions(const QJsonValue &v)
     }
     return result;
 }
-} // namespace jobs
+} // namespace ppm

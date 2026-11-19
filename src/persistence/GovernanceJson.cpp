@@ -2,7 +2,7 @@
 #include "domain/Project.h"
 #include <QJsonArray>
 #include <cmath>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid() {
     throw AppError(ErrorCode::WORKSPACE_INVALID, {"조직 운영 JSON"});
@@ -207,4 +207,4 @@ Governance decodeGovernance(const QJsonObject &o) {
     }
     return result;
 }
-} // namespace jobs
+} // namespace ppm

@@ -21,7 +21,7 @@
 #include <QtConcurrent>
 #include <algorithm>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s);
@@ -345,4 +345,4 @@ void PeriodActualDialog::reject() {
         control_->cancel();
     QDialog::reject();
 }
-} // namespace jobs
+} // namespace ppm

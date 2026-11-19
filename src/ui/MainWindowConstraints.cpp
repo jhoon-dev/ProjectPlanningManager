@@ -16,7 +16,7 @@
 #include <QtConcurrent>
 #include <QTimer>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 void MainWindow::editTaskConstraints() {
     if (!document_.project() || selectedTask_.empty())
         return;
@@ -195,4 +195,4 @@ void MainWindow::showScheduleIssues() {
         refresh();
     }
 }
-} // namespace jobs
+} // namespace ppm

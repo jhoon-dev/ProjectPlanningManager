@@ -11,8 +11,9 @@ for count in (1000, 10000):
         before = json.loads((before_dir / filename).read_text(encoding="utf-8"))
         after = json.loads((after_dir / filename).read_text(encoding="utf-8"))
         for data in (before, after):
+            data["fixture"] = data["fixture"].replace("jobs-", "ppm-", 1)
             assert data["status"] == "success" and data["task_count"] == count
-            assert data["baseline_count"] == baselines and data["fixture"] == "jobs-perf-editing-v1"
+            assert data["baseline_count"] == baselines and data["fixture"] == "ppm-perf-editing-v1"
         for key in ("os", "qt", "platform", "compiler", "build_configuration", "repeats"):
             assert before[key] == after[key], f"Different comparison environment: {key}"
         assert after["retained_undo_after_100_edits"] == 100

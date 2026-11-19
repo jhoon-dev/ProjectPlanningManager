@@ -26,7 +26,7 @@
 #include <QTabWidget>
 #include <QVBoxLayout>
 #include <QtConcurrent>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -387,7 +387,7 @@ struct ProjectCurrencyDialog::Impl {
                         return r;
                     }
                     const auto p = r->edit->previewProject();
-                    const auto storage = QJsonDocument(QJsonObject{{"format", "JOBS"},
+                    const auto storage = QJsonDocument(QJsonObject{{"format", "PPM"},
                                                                    {"schemaVersion", 34},
                                                                    {"payload", json::encodeProject(*p)},
                                                                    {"sha256", QString(64, '0')}})
@@ -424,4 +424,4 @@ void ProjectCurrencyDialog::reject() {
         impl_->control->cancel();
     QDialog::reject();
 }
-} // namespace jobs
+} // namespace ppm

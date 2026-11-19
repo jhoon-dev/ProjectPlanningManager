@@ -1,7 +1,7 @@
 #pragma once
 #include "calculation/ResourceAvailabilityQuery.h"
 #include "domain/Workspace.h"
-namespace jobs {
+namespace ppm {
 struct SharedAvailabilitySource {
     std::string projectId, name, issue;
     std::uint64_t revision = 0;
@@ -54,4 +54,4 @@ public:
     SharedAvailabilityPoint at(const std::string &sharedId, const std::string &civilMinute) const;
     SharedAvailabilityResult allAt(const std::string &) const;
 };
-} // namespace jobs
+} // namespace ppm

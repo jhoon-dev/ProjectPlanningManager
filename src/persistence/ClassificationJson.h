@@ -3,7 +3,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 
-namespace jobs::json {
+namespace ppm::json {
 QJsonArray encodeXmlCodeMasks(const std::vector<XmlCodeMask> &);
 std::vector<XmlCodeMask> decodeXmlCodeMasks(const QJsonValue &);
 QJsonArray encodeCustomFields(const std::vector<CustomField> &);
@@ -17,4 +17,4 @@ std::vector<SavedTaskView> decodeSavedTaskViews(const QJsonValue &);
 QJsonObject encodeTaskViewSettings(const TaskViewSettings &);
 QJsonArray encodeSavedResourceViews(const std::vector<SavedResourceView> &);
 std::vector<SavedResourceView> decodeSavedResourceViews(const QJsonValue &);
-} // namespace jobs::json
+} // namespace ppm::json

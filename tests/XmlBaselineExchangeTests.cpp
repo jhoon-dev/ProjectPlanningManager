@@ -41,8 +41,8 @@
 #include <algorithm>
 #include <iostream>
 namespace {
-using namespace jobs;
-using namespace jobs::test;
+using namespace ppm;
+using namespace ppm::test;
 void check(bool b, const char *m) {
     if (!b)
         throw std::runtime_error(m);
@@ -63,7 +63,7 @@ void save(const QString &path, const QByteArray &bytes) {
 QString xmlUid(const QJsonObject &report, const QString &kind, const QString &id) {
     for (auto value : report["mapping"].toArray()) {
         auto row = value.toObject();
-        if (row["kind"] == kind && row["jobsId"] == id)
+        if (row["kind"] == kind && row["ppmId"] == id)
             return row["xmlUid"].toString();
     }
     throw std::runtime_error("mapping missing");
@@ -573,8 +573,8 @@ void timephased() {
         for (const auto &v : exported.report["mapping"].toArray()) {
             const auto target = v.toObject();
             if (source["kind"] == target["kind"] && source["xmlUid"] == target["xmlUid"])
-                targetIds[{source["kind"].toString().toStdString(), source["jobsId"].toString().toStdString()}] =
-                    target["jobsId"].toString().toStdString();
+                targetIds[{source["kind"].toString().toStdString(), source["ppmId"].toString().toStdString()}] =
+                    target["ppmId"].toString().toStdString();
         }
     }
     auto links = xmlBaselineLinks(*adopted.project.xmlBaselines);

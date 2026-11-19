@@ -37,7 +37,7 @@
 #include <chrono>
 #include "domain/XmlDateFunctions.h"
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool v, const char *s) {
     if (!v)
         throw std::runtime_error(s);

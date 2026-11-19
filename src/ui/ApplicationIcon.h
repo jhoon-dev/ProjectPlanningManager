@@ -1,5 +1,5 @@
 #pragma once
 #include <QIcon>
-namespace jobs {
+namespace ppm {
 QIcon applicationIcon();
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include "domain/Classification.h"
 #include "domain/XmlRollUp.h"
-namespace jobs::test {
+namespace ppm::test {
 inline Project xmlRollUpFixture() {
     Project p;
     p.documentId = "xml-roll-up";
@@ -63,4 +63,4 @@ inline Project xmlRollUpFixture() {
     p.resourceFields = {rf};
     return p;
 }
-} // namespace jobs::test
+} // namespace ppm::test

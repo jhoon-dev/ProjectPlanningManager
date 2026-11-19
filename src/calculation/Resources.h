@@ -1,7 +1,7 @@
 #pragma once
 #include "calculation/Scheduler.h"
 #include <set>
-namespace jobs {
+namespace ppm {
 struct ResourceDay {
     std::string resourceId, date;
     std::optional<int> capacity;
@@ -36,4 +36,4 @@ struct ResourceOccupancy {
 // Civil half-open intervals. Forecasts contain remaining demand only.
 std::vector<ResourceOccupancy> resourceOccupancies(const Project &, const ScheduleResult &, std::size_t limit = 500000,
                                                    const std::set<std::string> *includedResources = nullptr);
-} // namespace jobs
+} // namespace ppm

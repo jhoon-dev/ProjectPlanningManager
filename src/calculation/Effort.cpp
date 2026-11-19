@@ -7,7 +7,7 @@
 #include <stdexcept>
 #include <numeric>
 #include <tuple>
-namespace jobs {
+namespace ppm {
 using Minute = std::int64_t;
 ExecutionInputs::ExecutionInputs(const PlanInput &p) {
     for (const auto &a : p.assignments) {
@@ -432,4 +432,4 @@ std::vector<WorkSpan> executionSpans(const PlanInput &p, const Task &t, const Ta
 std::vector<WorkSpan> executionSpans(const Project &p, const Task &t, const TaskSchedule &row) {
     return TaskExecution(p, t).spans(row);
 }
-} // namespace jobs
+} // namespace ppm

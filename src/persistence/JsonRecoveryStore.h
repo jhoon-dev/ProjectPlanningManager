@@ -4,7 +4,7 @@
 #include <memory>
 #include <vector>
 #include <functional>
-namespace jobs {
+namespace ppm {
 struct RecoveryCandidate {
     QString sessionId, fileHash, error, sourceState, differences;
     std::uint64_t sequence = 0, revision = 0;
@@ -49,9 +49,10 @@ public:
     RecoveryScan scan() const;
     std::unique_ptr<RecoveryClaim> claim(const RecoveryCandidate &) const;
     void discardSession(const QString &sessionId) const;
+    void migrateTo(const QString &destination) const;
 
 private:
     QString root_;
     std::function<void()> beforePublish_;
 };
-} // namespace jobs
+} // namespace ppm

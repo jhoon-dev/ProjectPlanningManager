@@ -2,20 +2,20 @@
 #include "domain/ResourcePlan.h"
 #include "calculation/LevelingFloat.h"
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 std::string selectedEngine(const PlanInput &p) {
     if (levelingFloatVersion() >= 9 && hasMaterialInventory(p))
         return materialFloatEngine;
-    return levelingFloatVersion() == 0   ? "jobs-adopted-leveling-1.0"
-           : levelingFloatVersion() == 1 ? "jobs-adopted-leveling-1.1"
-           : levelingFloatVersion() == 2 ? "jobs-adopted-leveling-1.2"
-           : levelingFloatVersion() == 3 ? "jobs-adopted-leveling-1.3"
-           : levelingFloatVersion() == 4 ? "jobs-adopted-leveling-1.4"
-           : levelingFloatVersion() == 5 ? "jobs-adopted-leveling-1.5"
-           : levelingFloatVersion() == 6 ? "jobs-adopted-leveling-1.6"
-           : levelingFloatVersion() == 7 ? "jobs-adopted-leveling-1.7"
-                                         : "jobs-adopted-leveling-1.8";
+    return levelingFloatVersion() == 0   ? "ppm-adopted-leveling-1.0"
+           : levelingFloatVersion() == 1 ? "ppm-adopted-leveling-1.1"
+           : levelingFloatVersion() == 2 ? "ppm-adopted-leveling-1.2"
+           : levelingFloatVersion() == 3 ? "ppm-adopted-leveling-1.3"
+           : levelingFloatVersion() == 4 ? "ppm-adopted-leveling-1.4"
+           : levelingFloatVersion() == 5 ? "ppm-adopted-leveling-1.5"
+           : levelingFloatVersion() == 6 ? "ppm-adopted-leveling-1.6"
+           : levelingFloatVersion() == 7 ? "ppm-adopted-leveling-1.7"
+                                         : "ppm-adopted-leveling-1.8";
 }
 } // namespace
 ScheduleResult selectedLevelingSchedule(const Project &p, bool remaining) {
@@ -46,8 +46,8 @@ ScheduleResult selectedLevelingSchedule(const Project &p, bool remaining) {
         out.resourceLeveled = true;
         out.forecastFloatCalculated = false;
         out.engineVersion = levelingFloatVersion() >= 9 && hasMaterialInventory(p) ? materialFloatEngine
-                            : hasWorkAssignmentPeriods(p)                          ? "jobs-adopted-work-periods-1.0"
-                            : hasAssignmentPeriods(p)                              ? "jobs-adopted-periods-1.0"
+                            : hasWorkAssignmentPeriods(p)                          ? "ppm-adopted-work-periods-1.0"
+                            : hasAssignmentPeriods(p)                              ? "ppm-adopted-periods-1.0"
                                                                                    : selectedEngine(p);
         out.calculationPolicy = "adopted-leveling-v1/" + out.calculationPolicy;
         if (out.status == CalculationStatus::Valid && r.after.status != CalculationStatus::Valid) {
@@ -75,4 +75,4 @@ ScheduleResult selectedLevelingSchedule(const Project &p, bool remaining) {
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

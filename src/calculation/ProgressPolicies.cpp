@@ -2,7 +2,7 @@
 #include "calculation/WorkCalendar.h"
 #include <algorithm>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 namespace {
 void actualDatesMask(Project &p, std::vector<IgnoredProgressRelation> *historical = nullptr) {
     if (!p.statusAt)
@@ -209,4 +209,4 @@ ScheduleResult selectedProgressSchedule(const Project &p) {
         {"PROGRESS_POLICY_SELECTED", {s.policy, s.adoptedBy, s.reason, s.adoptedAt}, {}, "PROGRESS_POLICY_SELECTED"});
     return result;
 }
-} // namespace jobs
+} // namespace ppm

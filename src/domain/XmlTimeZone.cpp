@@ -12,7 +12,7 @@
 #include <sstream>
 #include <string_view>
 #include <vector>
-namespace jobs {
+namespace ppm {
 namespace {
 using N = std::int64_t;
 constexpr N second = 1000000, namedFinish = 4133980800LL * second;
@@ -238,4 +238,4 @@ std::string xmlParseUtc(const std::string &raw) {
         invalid("초를 포함한 ISO 일시가 필요합니다.");
     return stamp(instant(civil) - N(offset) * second);
 }
-} // namespace jobs
+} // namespace ppm

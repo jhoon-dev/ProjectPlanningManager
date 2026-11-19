@@ -8,7 +8,7 @@
 #include <unordered_map>
 class QGraphicsRectItem;
 class QGraphicsSimpleTextItem;
-namespace jobs {
+namespace ppm {
 class GanttView final : public QGraphicsView {
 public:
     static constexpr int RowHeight = 28, HeaderHeight = 44;
@@ -111,4 +111,4 @@ private:
     void ensureVisibleRows();
     qreal position(const QString &stamp) const;
 };
-} // namespace jobs
+} // namespace ppm

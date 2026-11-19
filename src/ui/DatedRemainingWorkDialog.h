@@ -7,7 +7,7 @@ class QTableWidget;
 class QLabel;
 class QPushButton;
 class QDateEdit;
-namespace jobs {
+namespace ppm {
 class DatedRemainingWorkDialog final : public QDialog {
 public:
     DatedRemainingWorkDialog(Document &, const std::string &taskId = {}, QWidget *parent = nullptr);
@@ -36,4 +36,4 @@ private:
     void prepare(int mode = 0);
     void commit();
 };
-} // namespace jobs
+} // namespace ppm

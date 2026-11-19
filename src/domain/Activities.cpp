@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <map>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &reason) {
     throw AppError(ErrorCode::CLASSIFICATION_INVALID, {reason});
@@ -111,4 +111,4 @@ std::optional<int> stepsPhysicalAsOf(const Project &p, const std::string &taskId
     const auto *r = definition == p.activities.end() ? nullptr : stepsAsOf(p, taskId, at);
     return r ? std::optional<int>{weightedStepProgress(r->steps)} : std::nullopt;
 }
-} // namespace jobs
+} // namespace ppm

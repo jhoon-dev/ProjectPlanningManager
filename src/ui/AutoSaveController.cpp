@@ -4,7 +4,7 @@
 #include <QFutureWatcher>
 #include <QtConcurrent>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 struct Result {
     QString error;
@@ -174,4 +174,4 @@ void AutoSaveController::finishDocument() {
 void AutoSaveController::adoptRecovered(std::shared_ptr<RecoveryClaim> claim) {
     recoveredSession_ = std::move(claim->session);
 }
-} // namespace jobs
+} // namespace ppm

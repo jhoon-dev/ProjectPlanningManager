@@ -2,7 +2,7 @@
 #include "formatting/DiagnosticCatalog.h"
 #include <charconv>
 
-namespace jobs {
+namespace ppm {
 namespace {
 std::string interpolate(std::string_view pattern, const std::vector<std::string> &arguments) {
     std::string result;
@@ -95,4 +95,4 @@ std::string formatDiagnostic(const Diagnostic &diagnostic, DiagnosticLanguage la
 std::string errorText(const std::exception &error, DiagnosticLanguage language) {
     return formatDiagnostic(diagnosticFromException(error), language);
 }
-} // namespace jobs
+} // namespace ppm

@@ -1,7 +1,7 @@
 #pragma once
 #include "persistence/ProjectXml.h"
 class QWidget;
-namespace jobs {
+namespace ppm {
 class Document;
 bool reviewXmlPeriodActuals(QWidget *, Document &, const ProjectXmlExchange &);
-} // namespace jobs
+} // namespace ppm

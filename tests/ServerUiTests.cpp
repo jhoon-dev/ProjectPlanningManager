@@ -18,7 +18,7 @@
 #include <QTemporaryDir>
 #include <QTest>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool ok, const char *message) {
     if (!ok)
@@ -63,8 +63,8 @@ void tests() {
     QTemporaryDir temp;
     const auto ready = temp.filePath("ready.json");
     QProcess process;
-    process.start(JOBS_SERVER_TEST_PYTHON, {JOBS_SERVER_FIXTURE, "--engine", JOBS_SERVER_TEST_ENGINE, "--database",
-                                            temp.filePath("service.sqlite"), "--ready", ready});
+    process.start(PPM_SERVER_TEST_PYTHON, {PPM_SERVER_FIXTURE, "--engine", PPM_SERVER_TEST_ENGINE, "--database",
+                                           temp.filePath("service.sqlite"), "--ready", ready});
     check(process.waitForStarted(), "fixture process failed to start");
     struct Cleanup {
         QProcess &p;
@@ -166,9 +166,8 @@ void tests() {
     check(status->text().contains("로그아웃"), "logout UI failed");
     const auto secureReady = temp.filePath("secure-ready.json");
     QProcess secureProcess;
-    secureProcess.start(JOBS_SERVER_TEST_PYTHON,
-                        {JOBS_SERVER_FIXTURE, "--engine", JOBS_SERVER_TEST_ENGINE, "--database",
-                         temp.filePath("secure.sqlite"), "--ready", secureReady, "--tls"});
+    secureProcess.start(PPM_SERVER_TEST_PYTHON, {PPM_SERVER_FIXTURE, "--engine", PPM_SERVER_TEST_ENGINE, "--database",
+                                                 temp.filePath("secure.sqlite"), "--ready", secureReady, "--tls"});
     check(secureProcess.waitForStarted(), "TLS fixture failed to start");
     Cleanup secureCleanup{secureProcess};
     wait([&] { return QFile::exists(secureReady) || secureProcess.state() == QProcess::NotRunning; });

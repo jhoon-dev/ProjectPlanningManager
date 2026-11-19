@@ -10,7 +10,7 @@
 #include <QSortFilterProxyModel>
 #include <QTableView>
 #include <QVBoxLayout>
-namespace jobs {
+namespace ppm {
 namespace {
 class Projects final : public QAbstractTableModel {
     const std::vector<XerProjectInfo> &projects_;
@@ -147,4 +147,4 @@ std::optional<QString> chooseXerProject(QWidget *parent, const std::vector<XerPr
     search->setFocus(Qt::OtherFocusReason);
     return dialog.exec() == QDialog::Accepted ? std::optional<QString>(selected) : std::nullopt;
 }
-} // namespace jobs
+} // namespace ppm

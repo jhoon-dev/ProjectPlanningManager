@@ -3,7 +3,7 @@
 #include "domain/CalculationControl.h"
 #include <map>
 #include <memory>
-namespace jobs {
+namespace ppm {
 struct FormulaValue {
     std::optional<std::int64_t> number;
     std::string issue;
@@ -25,4 +25,4 @@ std::optional<std::string> formulaRawValue(const FormulaValue &);
 std::vector<std::pair<FieldScope, std::string>> nativeFormulaReferences(const PlanInput &, FieldScope,
                                                                         const std::string &);
 std::vector<std::pair<std::string, std::string>> formulaReferenceChoices(const PlanInput &, FieldScope);
-} // namespace jobs
+} // namespace ppm

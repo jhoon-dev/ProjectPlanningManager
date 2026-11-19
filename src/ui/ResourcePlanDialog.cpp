@@ -14,7 +14,7 @@
 #include <QHBoxLayout>
 #include <QUuid>
 #include <array>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -338,4 +338,4 @@ ResourcePlanDialog::ResourcePlanDialog(Document &document, QWidget *parent) : QD
         });
     prepareEditorDialog(*this);
 }
-} // namespace jobs
+} // namespace ppm

@@ -22,7 +22,7 @@ void check(bool good, const char *message) {
     if (!good)
         throw std::runtime_error(message);
 }
-void ready(jobs::Document &doc, jobs::MainWindow &window) {
+void ready(ppm::Document &doc, ppm::MainWindow &window) {
     bool triggered = false;
     for (auto *action : window.findChildren<QAction *>())
         if (action->text().contains("일정 계산(&C)")) {
@@ -33,11 +33,11 @@ void ready(jobs::Document &doc, jobs::MainWindow &window) {
     check(triggered, "calculate action missing");
     QElapsedTimer timer;
     timer.start();
-    while ((!doc.calculation() || doc.calculation()->status != jobs::CalculationStatus::Valid ||
+    while ((!doc.calculation() || doc.calculation()->status != ppm::CalculationStatus::Valid ||
             doc.calculation()->inputRevision != doc.project()->revision) &&
            timer.elapsed() < 10000)
         QTest::qWait(10);
-    check(doc.calculation() && doc.calculation()->status == jobs::CalculationStatus::Valid &&
+    check(doc.calculation() && doc.calculation()->status == ppm::CalculationStatus::Valid &&
               doc.calculation()->inputRevision == doc.project()->revision,
           "UI calculation did not finish");
     QTest::qWait(30);
@@ -53,8 +53,8 @@ int main(int argc, char **argv) {
         QApplication::setFont(QFont(QFontDatabase::applicationFontFamilies(fontId).first(), 9));
 #endif
     try {
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("잔여 일정 임계 검증", "2026-11-02", {"완료된 기초", "후속 공사 B", "후속 공사 C", "독립 공사 D"});
         for (std::size_t i = 0; i < 4; ++i)
             doc.setDuration(i, 480);
@@ -62,7 +62,7 @@ int main(int argc, char **argv) {
         doc.setPredecessors(2, {doc.project()->tasks[1].id});
         const auto baselineId = doc.captureBaseline("최초 계획", "PM", "승인", "2026-11-02T00:00:00Z");
         doc.setStatusAt("2026-11-02 18:00");
-        jobs::ProgressEntry e;
+        ppm::ProgressEntry e;
         e.taskId = doc.project()->tasks[0].id;
         e.actualStart = "2026-11-02 09:00";
         e.actualFinish = "2026-11-02 18:00";
@@ -71,12 +71,12 @@ int main(int argc, char **argv) {
         e.reason = "완료 보고";
         e.recordedAt = "2026-11-02T09:00:00Z";
         doc.recordProgress(e);
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.resize(1400, 850);
         window.show();
         ready(doc, window);
         auto *table = taskTable(window);
-        auto *gantt = dynamic_cast<jobs::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
+        auto *gantt = dynamic_cast<ppm::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
         check(table && gantt && cellText(table, 0, 5) == "—" && cellText(table, 0, 6) == "실제 완료" &&
                   cellText(table, 1, 5) == "0" && cellText(table, 1, 6) == "예측 임계" &&
                   cellText(table, 3, 5) == "8" && cellText(table, 3, 6) == "예측 여유",
@@ -92,12 +92,12 @@ int main(int argc, char **argv) {
             if (item->data(1) == "dependency") {
                 auto *path = dynamic_cast<QGraphicsPathItem *>(item);
                 if (path && path->pen().color() ==
-                                jobs::ganttCriticalColor(gantt->palette().color(QPalette::Base).lightness() < 128))
+                                ppm::ganttCriticalColor(gantt->palette().color(QPalette::Base).lightness() < 128))
                     ++driving;
             }
         }
         check(criticalLabels == 2 && driving == 1, "future critical labels/driving chain incorrect");
-        jobs::ComparisonDialog comparison(doc, baselineId, &window);
+        ppm::ComparisonDialog comparison(doc, baselineId, &window);
         comparison.show();
         auto *comparisonTable = comparison.findChild<QTableWidget *>("comparisonTable");
         for (int i = 0; i < 500 && comparisonTable->rowCount() != 4; ++i)
@@ -108,11 +108,11 @@ int main(int argc, char **argv) {
               "comparison did not show remaining float");
         comparison.hide();
         const auto original = *doc.project();
-        jobs::ReportOptions options;
+        ppm::ReportOptions options;
         options.reportId = "forecast-float-ui";
         options.generatedAt = "2026-11-02T10:00:00Z";
         options.baselineId = baselineId;
-        auto report = jobs::buildReport(original, options);
+        auto report = ppm::buildReport(original, options);
         const auto kpi = std::find_if(report.kpis.begin(), report.kpis.end(),
                                       [](const auto &k) { return k.id == "forecastCritical"; });
         check(kpi != report.kpis.end() && std::get<std::int64_t>(kpi->value.value) == 2, "forecast KPI mismatch");
@@ -122,10 +122,10 @@ int main(int argc, char **argv) {
         const auto xlsx = artifacts.filePath("forecast.xlsx"), pdf = artifacts.filePath("forecast.pdf");
         QFile::remove(xlsx);
         QFile::remove(pdf);
-        jobs::exportXlsx(report, xlsx, jobs::ReportFamily::Schedule);
-        jobs::PdfOptions pdfOptions;
+        ppm::exportXlsx(report, xlsx, ppm::ReportFamily::Schedule);
+        ppm::PdfOptions pdfOptions;
         pdfOptions.font = QApplication::font();
-        check(jobs::exportPdf(report, pdf, jobs::ReportFamily::Schedule, pdfOptions) > 0, "forecast PDF failed");
+        check(ppm::exportPdf(report, pdf, ppm::ReportFamily::Schedule, pdfOptions) > 0, "forecast PDF failed");
         check(*doc.project() == original, "view/export changed ledger or baseline");
         doc.setDuration(3, 960);
         ready(doc, window);

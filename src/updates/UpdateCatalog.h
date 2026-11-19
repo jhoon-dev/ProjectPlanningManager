@@ -2,7 +2,7 @@
 #include <QString>
 #include <QUrl>
 
-namespace jobs {
+namespace ppm {
 enum class UpdateChannel { Unpackaged, Store, DevelopmentPackage, MacAppStore };
 enum class UpdateState { Idle, Checking, Current, Available, Unsupported, Cancelled, Failed };
 struct UpdateConfig {
@@ -15,4 +15,4 @@ QString appVersion();
 UpdateConfig updateConfig();
 QUrl storeUpdatesUrl();
 QUrl macAppStoreUrl();
-} // namespace jobs
+} // namespace ppm

@@ -56,6 +56,7 @@ baseline["inputRevision"] = 1
 baseline["createdAt"] = "2026-11-09T00:00:00Z"
 baseline["approvedBy"] = "합성 PM"
 baseline["reason"] = "사용자 시험용 최초 계획 · 실제 승인 아님"
+baseline["engineVersion"] = baseline["engineVersion"].replace("jobs-", "ppm-", 1)
 baseline["schedule"] = schedule
 for key in baseline["input"]:
     baseline["input"][key] = deepcopy(p[key])
@@ -65,6 +66,7 @@ def compact(value):
     # This case contains strings, integers, booleans and null only; matches Qt compact JSON.
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
 
+source["format"] = "PPM"
 source["payload"] = p
 source["sha256"] = hashlib.sha256(compact(p)).hexdigest()
 target = folder / "pilot-start.ppm"

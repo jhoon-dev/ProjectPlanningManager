@@ -27,7 +27,7 @@
 #include <algorithm>
 #include <cmath>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 namespace {
 class PrintPreview final : public QWidget {
     std::shared_ptr<const SchedulePrintLayout> layout_;
@@ -602,4 +602,4 @@ void SchedulePrintDialog::output(bool pdf) {
         }
     }));
 }
-} // namespace jobs
+} // namespace ppm

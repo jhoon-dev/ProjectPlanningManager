@@ -20,7 +20,7 @@
 #include <stdexcept>
 #include <unordered_map>
 
-namespace jobs {
+namespace ppm {
 namespace {
 using Minute = std::int64_t;
 const std::string &resume(const TaskSchedule &r) {
@@ -1557,7 +1557,7 @@ void calculateRepartitionLevelingFloat(const Project &source, ScheduleResult &ou
         out.diagnostics.push_back(
             {"MATERIAL_FLOAT_POLICY", {std::to_string(inventory->calls())}, {}, "MATERIAL_FLOAT_POLICY"});
     if (dated && !curvedWork && !material) {
-        out.engineVersion = "jobs-dated-remaining-1.1";
+        out.engineVersion = "ppm-dated-remaining-1.1";
         out.diagnostics.push_back({"LEVELING_DATED_FLOAT_POLICY", {}, {}, "LEVELING_DATED_FLOAT_POLICY"});
     }
     std::erase_if(out.diagnostics, [](const auto &d) {
@@ -1588,4 +1588,4 @@ void calculateRepartitionLevelingFloat(const Project &source, ScheduleResult &ou
              {},
              "LEVELING_PROPAGATION_COST_POLICY"});
 }
-} // namespace jobs
+} // namespace ppm

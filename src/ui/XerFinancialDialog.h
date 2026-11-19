@@ -1,6 +1,6 @@
 #pragma once
 #include "domain/Project.h"
 class QWidget;
-namespace jobs {
+namespace ppm {
 void showXerFinancials(QWidget *, const Project &);
 }

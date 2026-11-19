@@ -127,7 +127,7 @@ def minutes(raw):
 
 udf = {m['externalId']: dict(m, scope={'RSRC': 'RESOURCE', 'ASSIGN': 'ASSIGNMENT'}.get(m['scope'], m['scope']))
        for m in mapping['mapping'] if m['kind'] == 'udf'}
-ids = {kind: {m['xmlUid']: m['jobsId'] for m in mapping['mapping'] if m['kind'] == kind}
+ids = {kind: {m['xmlUid']: m['ppmId'] for m in mapping['mapping'] if m['kind'] == kind}
        for kind in ['task', 'resource', 'assignment', 'wbs']}
 root = ET.parse(args.root/'remaining.xml').getroot()
 definitions = {text(d, 'FieldID'): d for d in root.findall('p:ExtendedAttributes/p:ExtendedAttribute', ns)}
@@ -135,7 +135,7 @@ xml_cells = 0
 formulae = 0
 missing = 0
 for fid, d in definitions.items():
-    if udf[fid]['jobsId'] in {'RD', 'DN', 'RW', 'hours', 'TD', 'TW', 'RWResource', 'PW'}:
+    if udf[fid]['ppmId'] in {'RD', 'DN', 'RW', 'hours', 'TD', 'TW', 'RWResource', 'PW'}:
         assert 'Remaining' in text(d, 'Formula') and '[field:' not in text(d, 'Formula')
         formulae += 1
 
@@ -149,7 +149,7 @@ def check_xml(row, scope, owner):
         if value is not None:
             raw[fid] = value
     for key, want in expected[scope, owner].items():
-        fid = next(fid for fid, d in udf.items() if d['scope'] == lookup_scope and d['jobsId'] == key)
+        fid = next(fid for fid, d in udf.items() if d['scope'] == lookup_scope and d['ppmId'] == key)
         actual = raw.get(fid)
         if actual is not None:
             actual = minutes(actual) if text(definitions[fid], 'CFType') == '2' else Decimal(actual)
@@ -171,7 +171,7 @@ for row in root.findall('p:Tasks/p:Task', ns):
             assert minutes(text(row, 'Duration')) == 9
             assert next(t for t in native['tasks'] if t['id'] == 'B')['durationMinutes'] == 8
         if ids['task'][uid] == 'C':
-            start_id = next(fid for fid, d in udf.items() if d['scope'] == 'TASK' and d['jobsId'] == 'start')
+            start_id = next(fid for fid, d in udf.items() if d['scope'] == 'TASK' and d['ppmId'] == 'start')
             start = next(text(v, 'Value') for v in row.findall('p:ExtendedAttribute', ns)
                          if text(v, 'FieldID') == start_id)
             assert start == '2026-11-12T09:00:00' and rows['C']['start'] == '2026-11-12 09:02'

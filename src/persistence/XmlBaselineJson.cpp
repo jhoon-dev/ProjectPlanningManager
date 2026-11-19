@@ -2,7 +2,7 @@
 #include "domain/Project.h"
 #include <QJsonArray>
 #include <cmath>
-namespace jobs::json {
+namespace ppm::json {
 namespace {
 [[noreturn]] void bad() {
     throw AppError(ErrorCode::FORMULA_INVALID, {"XML 기준선 저장 형식을 확인하세요."});
@@ -275,4 +275,4 @@ std::vector<XmlBaselineMerge> decodeXmlBaselineMerges(const QJsonValue &input) {
     }
     return result;
 }
-} // namespace jobs::json
+} // namespace ppm::json

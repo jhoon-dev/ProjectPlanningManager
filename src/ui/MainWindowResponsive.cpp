@@ -13,7 +13,7 @@
 #include <QJsonDocument>
 #include <QScrollBar>
 
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &value) {
     return QString::fromUtf8(value);
@@ -278,4 +278,4 @@ void MainWindow::refreshStatus() {
     else
         statusBar()->clearMessage();
 }
-} // namespace jobs
+} // namespace ppm

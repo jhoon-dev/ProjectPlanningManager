@@ -8,7 +8,7 @@
 #include <QSplitter>
 #include <QTableView>
 #include <QVBoxLayout>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromUtf8(s);
@@ -153,4 +153,4 @@ LevelingDecisionDialog::LevelingDecisionDialog(Document &document, QWidget *pare
 LevelingDecisionDialog::~LevelingDecisionDialog() {
     document_.unsubscribe(subscription_);
 }
-} // namespace jobs
+} // namespace ppm

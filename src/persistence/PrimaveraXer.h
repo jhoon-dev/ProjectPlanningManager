@@ -3,7 +3,7 @@
 #include <QByteArray>
 #include <QJsonObject>
 #include <QString>
-namespace jobs {
+namespace ppm {
 enum class XerEncoding { Utf8, Windows1252 };
 struct XerProjectInfo {
     QString id, code, name, start;
@@ -24,4 +24,4 @@ PrimaveraXerExchange exportPrimaveraXer(const Project &);
 QByteArray combinePrimaveraXer(std::vector<PrimaveraXerExchange> &);
 QString publishPrimaveraXer(const PrimaveraXerExchange &, const QString &destination);
 QString primaveraXerPreview(const PrimaveraXerExchange &);
-} // namespace jobs
+} // namespace ppm

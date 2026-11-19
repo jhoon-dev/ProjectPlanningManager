@@ -11,7 +11,7 @@
 #include <stdexcept>
 #include <unordered_map>
 
-namespace jobs {
+namespace ppm {
 namespace {
 using Minute = std::int64_t;
 const std::string &resume(const TaskSchedule &row) {
@@ -420,4 +420,4 @@ void calculateSegmentLevelingFloat(const Project &source, ScheduleResult &out) {
     out.calculationPolicy += "/resource-segment-float-v2";
     out.diagnostics.push_back({"LEVELING_SEGMENT_FLOAT_POLICY", {}, {}, "LEVELING_SEGMENT_FLOAT_POLICY"});
 }
-} // namespace jobs
+} // namespace ppm

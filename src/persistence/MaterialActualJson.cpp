@@ -3,7 +3,7 @@
 #include "domain/Project.h"
 #include <QJsonObject>
 #include <cmath>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid() {
     throw AppError(Diagnostic{"MATERIAL_ACTUAL_INVALID", {"원장 JSON 형식"}, {}, "MATERIAL_ACTUAL_INVALID"});
@@ -84,4 +84,4 @@ std::vector<MaterialActualEntry> decodeMaterialActuals(const QJsonValue &value) 
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

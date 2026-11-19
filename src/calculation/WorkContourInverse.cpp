@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <map>
 #include <set>
-namespace jobs {
+namespace ppm {
 void certifyWorkContourDurations(const Project &p, const std::vector<std::size_t> &indices) {
     std::vector<std::size_t> curved;
     for (auto i : indices)
@@ -184,4 +184,4 @@ void scaleWorkContours(Project &p, std::size_t index, Minute target, Minute dura
         invalid("지정 기간·공수의 곡선 검산이 일치하지 않습니다.");
     p.assignments = std::move(candidate.assignments);
 }
-} // namespace jobs
+} // namespace ppm

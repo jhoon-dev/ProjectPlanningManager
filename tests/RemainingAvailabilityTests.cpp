@@ -29,7 +29,7 @@
 #include <cstdio>
 #include <tuple>
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool ok, const char *why) {
     if (!ok)
         throw std::runtime_error(why);

@@ -11,7 +11,7 @@
 #include <memory>
 #include <algorithm>
 #include <cmath>
-namespace jobs {
+namespace ppm {
 namespace {
 struct Wrapped {
     std::unique_ptr<QTextLayout> layout;
@@ -288,4 +288,4 @@ int exportPdf(const ProjectReport &r, const QString &path, ReportFamily family, 
     file.commit();
     return pages;
 }
-} // namespace jobs
+} // namespace ppm

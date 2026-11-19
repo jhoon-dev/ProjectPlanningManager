@@ -19,7 +19,7 @@
 #include <algorithm>
 #include <cmath>
 
-namespace jobs {
+namespace ppm {
 namespace {
 struct EffortPreview {
     std::optional<std::int64_t> duration, work;
@@ -251,4 +251,4 @@ void MainWindow::editTaskEffort() {
         document_.project()->revision != snapshot->revision)
         calculateSchedule();
 }
-} // namespace jobs
+} // namespace ppm

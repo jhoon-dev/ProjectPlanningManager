@@ -7,7 +7,7 @@
 #include <map>
 #include <sstream>
 #include <vector>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &s) {
     throw AppError(ErrorCode::FORMULA_INVALID, {"Format/StrConv: " + s});
@@ -713,4 +713,4 @@ std::optional<std::string> xmlFormat(const XmlFormatInput &v, const std::string 
                                                                           : 0u;
     return encode(decode(numeric(n, sections[index], index == 0)));
 }
-} // namespace jobs
+} // namespace ppm

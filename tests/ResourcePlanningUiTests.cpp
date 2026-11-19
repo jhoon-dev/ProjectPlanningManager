@@ -20,7 +20,7 @@
 #include <QtConcurrent>
 #include <future>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool b, const char *s) {
     if (!b)

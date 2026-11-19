@@ -2,7 +2,7 @@
 #include "domain/Project.h"
 #include <functional>
 #include <map>
-namespace jobs {
+namespace ppm {
 inline constexpr const char *remainingMaterialPolicy = "serial-material-remaining-v1";
 void validateMaterialActuals(const Project &);
 void appendMaterialActuals(Project &, MaterialActualSubmission, const std::function<std::string()> &);
@@ -16,4 +16,4 @@ struct ActualMaterialStock {
 std::vector<ActualMaterialStock> actualMaterialStock(const Project &, const std::string &);
 // An ephemeral inventory input. Actual movements never become new planned consumption/cost.
 Project remainingMaterialInventoryInput(const Project &);
-} // namespace jobs
+} // namespace ppm

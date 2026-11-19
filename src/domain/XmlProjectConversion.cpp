@@ -4,7 +4,7 @@
 #include "domain/XmlFormatting.h"
 #include "domain/CalculationControl.h"
 #include <array>
-namespace jobs {
+namespace ppm {
 namespace {
 using N = std::int64_t;
 constexpr N scale = 1000000, limit = 9000000000000000000LL;
@@ -181,4 +181,4 @@ std::string xmlProjectDurationFormat(N n, int format) {
         q += n < 0 ? -1 : 1;
     return number(q) + ' ' + u.label + (format >= 35 ? "?" : "");
 }
-} // namespace jobs
+} // namespace ppm

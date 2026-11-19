@@ -2,7 +2,7 @@
 #include "application/Document.h"
 #include <QByteArray>
 #include <QJsonObject>
-namespace jobs {
+namespace ppm {
 struct AutomationPreview {
     std::shared_ptr<Document::PreparedEdit> edit;
     QJsonObject receipt;
@@ -10,4 +10,4 @@ struct AutomationPreview {
 AutomationPreview previewAutomation(Document &, const QByteArray &, std::shared_ptr<CalculationControl> = {});
 QJsonObject applyAutomation(Document &, AutomationPreview &);
 QJsonObject describeAutomationProject(const Project &);
-} // namespace jobs
+} // namespace ppm

@@ -4,7 +4,7 @@
 #include <QSettings>
 #include <algorithm>
 
-namespace jobs {
+namespace ppm {
 namespace {
 QSettings settings(const UpdateConfig &config) {
     if (!config.settingsFile.isEmpty())
@@ -105,4 +105,4 @@ void UpdateController::check(quintptr window) {
                               : "Microsoft Store에서 제공하는 최신 버전입니다.");
     });
 }
-} // namespace jobs
+} // namespace ppm

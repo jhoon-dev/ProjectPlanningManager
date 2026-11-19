@@ -1,7 +1,7 @@
 #pragma once
 #include "domain/Project.h"
 #include <QJsonArray>
-namespace jobs {
+namespace ppm {
 class RollDownValues;
 struct ExternalField {
     FieldScope scope;
@@ -29,4 +29,4 @@ ExternalField importUdfField(Project &, bool xml, FieldScope, const std::string 
 void importUdfValue(Project &, const ExternalField &, std::vector<TaskAttribute> &, const std::string &);
 std::optional<std::string> exportUdfValue(const Project &, const ExternalField &, const Task *, const Resource *,
                                           QJsonArray &, const Assignment * = nullptr, const RollDownValues * = nullptr);
-} // namespace jobs
+} // namespace ppm

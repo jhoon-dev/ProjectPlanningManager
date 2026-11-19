@@ -4,7 +4,7 @@
 #include <cctype>
 #include <map>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const char *s) {
     throw AppError(ErrorCode::FILE_PRIMAVERAXER_080, {s});
@@ -189,4 +189,4 @@ void validateXerScheduleAdoptions(const Project &p) {
         previous = &e.after;
     }
 }
-} // namespace jobs
+} // namespace ppm

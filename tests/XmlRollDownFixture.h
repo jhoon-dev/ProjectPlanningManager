@@ -1,7 +1,7 @@
 #pragma once
 #include "domain/Classification.h"
 #include "domain/XmlRollDown.h"
-namespace jobs::test {
+namespace ppm::test {
 inline std::string rollGuid(int n) {
     auto v = std::to_string(n);
     return "66666666-7777-4888-9999-" + std::string(12 - v.size(), '0') + v;
@@ -98,4 +98,4 @@ inline Project xmlRollDownFixture() {
     p.assignments[2].attributes = {{"field:target6", "0 m"}};
     return p;
 }
-} // namespace jobs::test
+} // namespace ppm::test

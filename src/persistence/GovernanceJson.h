@@ -1,7 +1,7 @@
 #pragma once
 #include "domain/Governance.h"
 #include <QJsonObject>
-namespace jobs {
+namespace ppm {
 QJsonObject encodeGovernance(const Governance &);
 Governance decodeGovernance(const QJsonObject &);
-} // namespace jobs
+} // namespace ppm

@@ -35,7 +35,7 @@ def tsv(path):
 def verify(root):
     path = root / "workspace.xer"
     report = json.loads((root / "conversion.json").read_text(encoding="utf-8"))
-    assert report["contract"] == "jobs-xer-workspace-v1"
+    assert report["contract"] == "ppm-xer-workspace-v1"
     assert report["xerSha256"] == hashlib.sha256(path.read_bytes()).hexdigest()
     tables = tsv(path)
     primary = {"CURRTYPE": "curr_id", "SCHEDOPTIONS": "schedoptions_id", "PROJECT": "proj_id", "CALENDAR": "clndr_id", "PROJWBS": "wbs_id", "TASK": "task_id",
@@ -81,7 +81,7 @@ def verify(root):
         native_ids.add(payload["documentId"])
         conversion = json.loads((root / entry["conversion"]).read_text(encoding="utf-8"))
         pid = conversion["combinedProjectId"]
-        task_mapping = {m["jobsId"]: m["xerId"] for m in conversion["combinedMapping"] if m["kind"] == "task"}
+        task_mapping = {m["ppmId"]: m["xerId"] for m in conversion["combinedMapping"] if m["kind"] == "task"}
         assert len(task_mapping) == len(payload["tasks"])
         assert all(owners[uid] == pid for uid in task_mapping.values())
         local = tsv(native.parent / "project.xer")

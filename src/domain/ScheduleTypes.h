@@ -3,7 +3,7 @@
 #include <optional>
 #include <string>
 #include <vector>
-namespace jobs {
+namespace ppm {
 struct TaskSchedule {
     std::string taskId;
     std::int64_t earlyStartMinutes = 0, earlyFinishMinutes = 0;
@@ -14,6 +14,6 @@ struct TaskSchedule {
     std::vector<std::string> drivingPredecessors;
     std::optional<std::string> remainingStart;
     bool completedActual = false;
-    bool operator==(const TaskSchedule&) const = default;
+    bool operator==(const TaskSchedule &) const = default;
 };
-}
+} // namespace ppm

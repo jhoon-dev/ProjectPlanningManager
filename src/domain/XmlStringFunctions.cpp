@@ -3,7 +3,7 @@
 #include "domain/CalculationControl.h"
 #include <algorithm>
 #include <vector>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &message) {
     throw AppError(ErrorCode::FORMULA_INVALID, {"XML 문자열 함수: " + message});
@@ -113,4 +113,4 @@ std::string xmlStrReverse(const std::string &s) {
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

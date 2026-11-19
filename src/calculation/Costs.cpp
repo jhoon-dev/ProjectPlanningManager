@@ -18,7 +18,7 @@
 #include <memory>
 #include <chrono>
 #include <cstdio>
-namespace jobs {
+namespace ppm {
 namespace {
 using Minute = std::int64_t;
 std::string dayEnd(const std::string &date) {
@@ -840,4 +840,4 @@ std::vector<PeriodEvmCurve> nativeEvmCurves(const Project &p, const std::string 
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

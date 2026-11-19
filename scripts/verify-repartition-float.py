@@ -70,7 +70,7 @@ def verify(build):
     assert [r[6] * 60 for r in rows[:2]] == native_oracle["total_minutes"]
     assert [r[9] * 60 for r in rows[:2]] == native_oracle["free_minutes"]
     source = {r[0]: r[1] for r in book["출처와 설정"].iter_rows(min_row=7, values_only=True)}
-    assert source["계산 엔진"] == "jobs-adopted-leveling-1.8"
+    assert source["계산 엔진"] == "ppm-adopted-leveling-1.8"
     assert source["활성 일정 정책"].endswith("resource-repartition-float-v3")
     assert "구간 재생성" in source["평준화 후 여유"]
     kpis = {r[0]: r[1] for r in book["대시보드"].iter_rows(min_row=7, values_only=True)}
@@ -88,7 +88,7 @@ def verify(build):
         assert not any(value in raw for value in ("STALE_FLOAT", "STALE_STATE", "LEVELING_FLOAT_UNAVAILABLE"))
         assert not any(ord(c) < 32 and c not in "\t\r\n" for c in raw)
         pages[stem] = len(pdf.pages)
-    return {"status": "success", "schema": 15, "engine": "jobs-adopted-leveling-1.8",
+    return {"status": "success", "schema": 15, "engine": "ppm-adopted-leveling-1.8",
             "independent_minute_grid": native_oracle, "closed_wednesday_oracle": oracle(True),
             "native_breaks_preserved": True, "witnesses_verified": True, "plan_cost": 720, "pdf_pages": pages}
 

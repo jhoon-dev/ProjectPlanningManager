@@ -32,19 +32,19 @@ int main(int argc, char **argv) {
     QApplication app(argc, argv);
     try {
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
+        ppm::JsonProjectStore store;
         const auto path = dir.filePath("UI.ppm").toUtf8().toStdString();
         store.save(path, performanceFixture(10000, false), {});
-        jobs::Document doc(store);
+        ppm::Document doc(store);
         doc.open(path);
         for (int i = 0; i < 3; ++i)
             doc.captureBaseline("B" + std::to_string(i), "PM", "response", "2026-10-28T00:00:00Z");
         doc.save();
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.show();
         app.processEvents();
         auto *table = taskTable(window);
-        auto *model = dynamic_cast<jobs::TaskTableModel *>(table->model());
+        auto *model = dynamic_cast<ppm::TaskTableModel *>(table->model());
         table->setCurrentCell(9999, 0);
         table->scrollToBottom();
         app.processEvents();
@@ -85,9 +85,9 @@ int main(int argc, char **argv) {
         check(table->rowCount() == 0, "search edit did not take full mapping fallback");
         search->clear();
         check(wait([&] { return table->rowCount() == 10000; }), "clearing search did not restore mapping");
-        doc.applyCalculation(jobs::calculate(*doc.project()));
+        doc.applyCalculation(ppm::calculate(*doc.project()));
         setCellText(table, 0, 0, "Stale calculation");
-        check(model->lastTaskVisits() == 10000 && doc.calculation()->status == jobs::CalculationStatus::Stale &&
+        check(model->lastTaskVisits() == 10000 && doc.calculation()->status == ppm::CalculationStatus::Stale &&
                   cellText(table, 0, 3) == "미계산",
               "calculation invalidation bypassed full fallback");
         setCellText(table, 0, 0, "Next edit");

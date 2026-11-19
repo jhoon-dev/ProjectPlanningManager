@@ -34,23 +34,23 @@ int main(int argc, char **argv) {
         const int baselines = args.value(args.indexOf("--baselines") + 1, "0").toInt();
         check((n == 1000 || n == 10000) && (baselines == 0 || baselines == 3), "fixture bounds");
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
+        ppm::JsonProjectStore store;
         auto path = dir.filePath("Bulk.ppm").toStdString();
         store.save(path, performanceFixture(n, false), {});
-        jobs::Document doc(store);
+        ppm::Document doc(store);
         doc.open(path);
         for (int i = 0; i < baselines; ++i)
             doc.captureBaseline("B" + std::to_string(i), "PM", "measurement", "2026-10-28T00:00:00Z");
         doc.save();
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.show();
         QTest::qWait(30);
         auto *table = taskTable(window);
-        jobs::AsyncEditController *controller = nullptr;
+        ppm::AsyncEditController *controller = nullptr;
         // AsyncEditController has no Q_OBJECT: find by RTTI among QObject children.
         controller = nullptr;
         for (auto *child : window.children())
-            if (auto *c = dynamic_cast<jobs::AsyncEditController *>(child))
+            if (auto *c = dynamic_cast<ppm::AsyncEditController *>(child))
                 controller = c;
         check(controller, "controller missing");
         int resets = 0, inserted = 0, removed = 0;
@@ -148,30 +148,30 @@ int main(int argc, char **argv) {
         check(int(doc.project()->tasks.size()) == n - count, "delete failed");
         measure("undo_delete", "undoEdit");
         check(int(doc.project()->tasks.size()) == n && !doc.dirty(), "undo/save point failed");
-        std::vector<jobs::TaskEdit> changes;
+        std::vector<ppm::TaskEdit> changes;
         for (int i = 0; i < count; ++i) {
-            jobs::TaskEdit edit;
+            ppm::TaskEdit edit;
             edit.taskId = "T" + std::to_string(i);
             edit.name = "Phase " + std::to_string(i);
             changes.push_back(std::move(edit));
         }
         QElapsedTimer phase;
         phase.start();
-        auto request = doc.makeEditRequest(jobs::BatchTaskEdit{std::move(changes)});
+        auto request = doc.makeEditRequest(ppm::BatchTaskEdit{std::move(changes)});
         const double requestMs = phase.nsecsElapsed() / 1e6;
         auto [prepared, workerMs] = std::async(std::launch::async, [request = std::move(request)]() mutable {
                                         QElapsedTimer clock;
                                         clock.start();
-                                        auto result = jobs::Document::prepareEdit(
-                                            std::move(request), std::make_shared<jobs::CalculationControl>());
+                                        auto result = ppm::Document::prepareEdit(
+                                            std::move(request), std::make_shared<ppm::CalculationControl>());
                                         return std::pair{result, clock.nsecsElapsed() / 1e6};
                                     }).get();
-        check(prepared->state() == jobs::EditState::Ready, "phase preparation failed");
+        check(prepared->state() == ppm::EditState::Ready, "phase preparation failed");
         phase.restart();
-        check(doc.applyPreparedEdit(*prepared) == jobs::EditState::Applied, "phase apply failed");
+        check(doc.applyPreparedEdit(*prepared) == ppm::EditState::Applied, "phase apply failed");
         const double applyMs = phase.nsecsElapsed() / 1e6;
         QJsonObject output{
-            {"fixture", "jobs-bulk-ui-v1"},
+            {"fixture", "ppm-bulk-ui-v1"},
             {"status", "success"},
             {"task_count", n},
             {"baseline_count", baselines},
@@ -179,8 +179,8 @@ int main(int argc, char **argv) {
             {"batch_phases_ms",
              QJsonObject{{"request_gui", requestMs}, {"prepare_worker", workerMs}, {"apply_gui", applyMs}}},
             {"operations", operations},
-            {"source_revision", JOBS_PERF_REVISION},
-            {"built_product_source_sha256", JOBS_SOURCE_SHA256},
+            {"source_revision", PPM_PERF_REVISION},
+            {"built_product_source_sha256", PPM_SOURCE_SHA256},
             {"platform", QApplication::platformName()},
             {"scope", "One sample per operation; setup_ready_ms excluded from timing; trigger includes automated modal "
                       "input/confirmation; settled includes worker and GUI refresh, excludes initial "

@@ -15,7 +15,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s.data(), qsizetype(s.size()));
@@ -666,4 +666,4 @@ void GanttView::drawForeground(QPainter *painter, const QRectF &rect) {
     }
     painter->drawLine(QPointF(rect.left(), top + HeaderHeight), QPointF(rect.right(), top + HeaderHeight));
 }
-} // namespace jobs
+} // namespace ppm

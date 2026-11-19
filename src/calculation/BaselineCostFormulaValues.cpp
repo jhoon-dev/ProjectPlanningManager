@@ -1,7 +1,7 @@
 #include "calculation/BaselineCostFormulaValues.h"
 #include "calculation/Costs.h"
 #include "domain/Classification.h"
-namespace jobs {
+namespace ppm {
 void addBaselineCostFormulaValues(const Project &p, const Baseline &b, XmlScheduleValues &out) {
     try {
         validatePlan(b.input);
@@ -66,4 +66,4 @@ void addBaselineCostFormulaValues(const Project &p, const Baseline &b, XmlSchedu
             out.baselineCostIssue = error->diagnostic().arguments.front();
     }
 }
-} // namespace jobs
+} // namespace ppm

@@ -4,7 +4,7 @@ import subprocess
 import sys
 
 build = Path(sys.argv[1] if len(sys.argv) > 1 else "build").resolve()
-name = "jobs_workspace_ui_tests" + (".exe" if sys.platform == "win32" else "")
+name = "ppm_workspace_ui_tests" + (".exe" if sys.platform == "win32" else "")
 binary = next(p for p in (build / name, build / "Release" / name) if p.is_file())
 image = build / "workspace-ui.png"
 image.unlink(missing_ok=True)

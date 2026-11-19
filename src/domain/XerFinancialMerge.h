@@ -1,6 +1,6 @@
 #pragma once
 #include "domain/XerFinancialAllocation.h"
-namespace jobs {
+namespace ppm {
 struct XerFinancialMergeOptions {
     std::vector<std::size_t> replacePeriods;
     std::vector<XerFinancialAssignment> assignmentOverrides;
@@ -23,4 +23,4 @@ struct XerFinancialMergeResult {
 };
 // Pure analysis: native cost/progress/period journals are never mutated.
 XerFinancialMergeResult mergeXerFinancials(const Project &, const XerFinancialMergeOptions & = {});
-} // namespace jobs
+} // namespace ppm

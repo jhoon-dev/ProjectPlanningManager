@@ -1,7 +1,7 @@
 #include "application/Document.h"
 #include "calculation/DatedRemainingWork.h"
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 void Document::setDatedRemainingWork(RemainingWorkPlan plan) {
     requireEditable();
     auto p = *project_;
@@ -59,4 +59,4 @@ void Document::clearDatedRemainingWork() {
     p.remainingWork.clear();
     edit(std::move(p), "날짜별 잔여 공수 전체 해제");
 }
-} // namespace jobs
+} // namespace ppm

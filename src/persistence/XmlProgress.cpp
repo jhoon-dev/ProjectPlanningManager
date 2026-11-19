@@ -8,7 +8,7 @@
 #include <chrono>
 #include <map>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &message) {
     throw AppError(ErrorCode::XML_PROGRESS_INVALID, {message});
@@ -197,4 +197,4 @@ std::vector<ProgressEntry> prepareXmlProgressMerge(const Project &target, const 
     }
     return entries;
 }
-} // namespace jobs
+} // namespace ppm

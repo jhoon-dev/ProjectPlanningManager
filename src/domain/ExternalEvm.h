@@ -1,7 +1,7 @@
 #pragma once
 #include "domain/Project.h"
 #include <map>
-namespace jobs {
+namespace ppm {
 const XerFinancialSnapshot *externalEvmSource(const Project &, const std::string &revisionId);
 std::string latestExternalEvmSourceId(const Project &);
 ExternalEvmSubmission externalEvmDraft(const Project &, const std::string &baselineId);
@@ -27,4 +27,4 @@ private:
     std::map<std::string, Series> tasks_;
 };
 std::pair<std::string, std::string> externalEvmBounds(const XerFinancialSnapshot &, const XerFinancialPeriod &);
-} // namespace jobs
+} // namespace ppm

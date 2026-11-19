@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <cmath>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &message) {
     throw AppError(ErrorCode::WORKSPACE_INVALID, {message});
@@ -153,4 +153,4 @@ std::vector<PortfolioSummary> summarizePortfolio(const Workspace &w,
         result.push_back(row);
     return result;
 }
-} // namespace jobs
+} // namespace ppm

@@ -8,7 +8,7 @@
 #include <QJsonDocument>
 #include <stdexcept>
 
-namespace jobs::fuzz {
+namespace ppm::fuzz {
 namespace {
 template <class F> void attempt(ProbeResult &result, F &&parse) {
     try {
@@ -23,7 +23,7 @@ ProbeResult probe(std::string_view parser, const QByteArray &bytes) {
     ProbeResult result;
     if (std::size_t(bytes.size()) > maxInputBytes)
         return result;
-    if (parser == "jobs") {
+    if (parser == "ppm") {
         attempt(result, [&] { (void)decodeProjectFile(bytes); });
         const auto json = QJsonDocument::fromJson(bytes);
         if (json.isObject()) {
@@ -47,4 +47,4 @@ ProbeResult probe(std::string_view parser, const QByteArray &bytes) {
     }
     return result;
 }
-} // namespace jobs::fuzz
+} // namespace ppm::fuzz

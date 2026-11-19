@@ -26,7 +26,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &reason) {
     throw AppError(ErrorCode::CLASSIFICATION_INVALID, {reason});
@@ -2163,4 +2163,4 @@ int nativeSchemaFor(const Project &p) {
 int nativeReadSchemaFor(const Project &p) {
     return nativeSchemaForImpl(p, true);
 }
-} // namespace jobs
+} // namespace ppm

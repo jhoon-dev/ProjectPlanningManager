@@ -1,6 +1,6 @@
 #pragma once
 #include "persistence/ProjectXml.h"
-namespace jobs {
+namespace ppm {
 enum class XmlAllocationBasis { ElapsedMinutes, WorkingIntersectionMinutes };
 struct XmlAllocationPolicy {
     XmlAllocationBasis basis = XmlAllocationBasis::ElapsedMinutes;
@@ -22,4 +22,4 @@ std::vector<PeriodActualSubmission> confirmXmlActualAllocation(const Project &, 
 QString publishXmlActualAllocation(const Project &, const ProjectXmlExchange &, const XmlProgressOptions &,
                                    const std::vector<XmlPeriodMapping> &, const XmlAllocationPolicy &,
                                    const XmlActualAllocation &, const QString &destination);
-} // namespace jobs
+} // namespace ppm

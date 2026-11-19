@@ -3,7 +3,7 @@
 #include "persistence/PrimaveraXer.h"
 #include <QStringList>
 #include <functional>
-namespace jobs {
+namespace ppm {
 struct XerBatchSource {
     QByteArray bytes;
     QString name;
@@ -22,4 +22,4 @@ XerBatchExchange importXerBatch(const std::vector<XerBatchSource> &);
 XerBatchExchange exportXerBatch(const std::vector<Project> &, const Workspace & = {});
 QString publishXerBatch(const XerBatchExchange &, const QString &destination, std::function<void()> beforePublish = {});
 QString xerBatchPreview(const XerBatchExchange &);
-} // namespace jobs
+} // namespace ppm

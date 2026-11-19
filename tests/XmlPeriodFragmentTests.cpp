@@ -29,8 +29,8 @@
 #include <iostream>
 #include <string_view>
 namespace {
-using namespace jobs;
-using namespace jobs::test;
+using namespace ppm;
+using namespace ppm::test;
 void check(bool ok, const char *s) {
     if (!ok)
         throw std::runtime_error(s);

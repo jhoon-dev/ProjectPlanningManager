@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <chrono>
 #include <charconv>
-namespace jobs {
+namespace ppm {
 namespace {
 using namespace std::chrono;
 using N = std::int64_t;
@@ -241,4 +241,4 @@ std::string xmlTimeValue(const std::string &raw) {
     return normalizeFieldDateTime("1899-12-30T" + pad(h) + ':' + pad(minute) + ':' + pad(seconds) +
                                   (fraction.empty() ? "" : "." + fraction));
 }
-} // namespace jobs
+} // namespace ppm

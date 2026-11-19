@@ -1,6 +1,6 @@
 #include "application/Document.h"
 #include "domain/ProjectCurrency.h"
-namespace jobs {
+namespace ppm {
 void Document::convertCurrency(CurrencyConversionSubmission submission) {
     requireEditable();
     auto before = *project_;
@@ -21,4 +21,4 @@ void Document::convertCurrency(CurrencyConversionSubmission submission) {
     --after.revision;
     edit(std::move(after), "프로젝트 전체 통화 전환");
 }
-} // namespace jobs
+} // namespace ppm

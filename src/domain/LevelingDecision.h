@@ -2,7 +2,7 @@
 #include "domain/LevelingSelection.h"
 #include <optional>
 #include <vector>
-namespace jobs {
+namespace ppm {
 struct Project;
 struct LevelingDecision {
     std::string id, previousEntryId, recordedAt, sourceDocumentId, action, reason;
@@ -15,4 +15,4 @@ struct LevelingDecision {
 void appendLevelingDecision(Project &proposal, const Project &before, const std::string &action,
                             const std::string &reason);
 void validateLevelingDecisions(const Project &);
-} // namespace jobs
+} // namespace ppm

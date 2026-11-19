@@ -1,7 +1,7 @@
 #pragma once
 #include "application/Document.h"
 #include <QString>
-namespace jobs {
+namespace ppm {
 struct TaskViewSpec {
     std::string wbs;
     QString query;
@@ -24,4 +24,4 @@ TaskViewProjection projectTaskView(const Project &, const ScheduleResult *, cons
                                    bool calculateSchedule = false);
 void prepareTaskView(BulkView &, const Project &before, const Project &after, const TaskViewSpec &,
                      std::vector<std::size_t> previousRows, std::string token, std::uint64_t calculationGeneration);
-} // namespace jobs
+} // namespace ppm

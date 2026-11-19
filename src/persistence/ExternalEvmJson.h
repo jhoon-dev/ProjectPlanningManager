@@ -1,7 +1,7 @@
 #pragma once
 #include "domain/ExternalEvmTypes.h"
 #include <QJsonArray>
-namespace jobs {
+namespace ppm {
 QJsonArray encodeExternalEvmAdoptions(const std::vector<ExternalEvmAdoption> &);
 std::vector<ExternalEvmAdoption> decodeExternalEvmAdoptions(const QJsonValue &);
-} // namespace jobs
+} // namespace ppm

@@ -7,7 +7,7 @@
 #include <QStringList>
 class QPainter;
 class QPagedPaintDevice;
-namespace jobs {
+namespace ppm {
 struct NetworkPrintLayout {
     QPicture picture;
     QRectF bounds;
@@ -27,4 +27,4 @@ int paintNetwork(QPagedPaintDevice &, const NetworkPrintLayout &, int first = 1,
                  const std::shared_ptr<CalculationControl> &control = {});
 int exportNetworkPdf(const NetworkPrintLayout &, const QString &,
                      const std::shared_ptr<CalculationControl> &control = {});
-} // namespace jobs
+} // namespace ppm

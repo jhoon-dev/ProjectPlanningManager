@@ -5,7 +5,7 @@
 #include <string_view>
 #include <vector>
 
-namespace jobs {
+namespace ppm {
 enum class CustomFieldType { Text, Number, Date, Choice, Flag, Cost, Duration, Start, Finish };
 enum class FieldScope { Task, Project, Resource, Assignment };
 struct XmlFieldIdentity {
@@ -137,4 +137,4 @@ struct SavedResourceView {
 inline constexpr std::array<std::string_view, 14> builtinTaskColumns{
     "name",      "duration", "predecessors", "start",      "finish",   "totalFloat", "critical",
     "resources", "id",       "calendar",     "constraint", "deadline", "effort",     "breaks"};
-} // namespace jobs
+} // namespace ppm

@@ -51,12 +51,12 @@ def main():
         raise RuntimeError('Commit source before producing a package: ' + dirty.decode('utf-8', errors='replace'))
     environment = os.environ.copy()
     environment['PATH'] = os.pathsep.join((str(qt / 'bin'), str(compiler), environment['PATH']))
-    target = ['JOBS', 'PPM-Automation'] + (['jobs_msix_probe'] if args.include_probe else [])
+    target = ['PPM', 'PPM-Automation'] + (['ppm_msix_probe'] if args.include_probe else [])
     subprocess.run(['cmake', '--build', str(build), '--config', 'Release', '--parallel', '3', '--target', *target],
                    check=True, env=environment)
     if 'CMAKE_BUILD_TYPE:STRING=Release' not in (build / 'CMakeCache.txt').read_text():
         raise RuntimeError('This package pipeline requires a Release MinGW/Ninja build')
-    for executable in ['PPM.exe'] + (['jobs_msix_probe.exe'] if args.include_probe else []):
+    for executable in ['PPM.exe'] + (['ppm_msix_probe.exe'] if args.include_probe else []):
         binary = (build / executable).read_bytes()
         pe = struct.unpack_from('<I', binary, 0x3c)[0]
         if binary[pe:pe+4] != b'PE\0\0' or struct.unpack_from('<H', binary, pe+4)[0] != 0x8664:
@@ -73,7 +73,7 @@ def main():
     for name in ASSETS:
         shutil.copyfile(ROOT / 'packaging/msix/Assets' / name, stage / 'Assets' / name)
     if args.include_probe:
-        shutil.copyfile(build / 'jobs_msix_probe.exe', stage / 'jobs_msix_probe.exe')
+        shutil.copyfile(build / 'ppm_msix_probe.exe', stage / 'ppm_msix_probe.exe')
         shutil.copyfile(qt / 'bin/Qt6Test.dll', stage / 'Qt6Test.dll')
     xml = manifest(config, package_version, args.include_probe)
     (stage / 'AppxManifest.xml').write_bytes(xml)

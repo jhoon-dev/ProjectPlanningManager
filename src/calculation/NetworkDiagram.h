@@ -2,7 +2,7 @@
 #include "calculation/Scheduler.h"
 #include <set>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 enum class NetworkMode { Neighbors, Ancestors, Descendants, DrivingAncestors, DrivingDescendants, All };
 enum class NetworkDriving { Unknown, No, Yes, NotApplicable, Inactive };
 struct NetworkNode {
@@ -54,4 +54,4 @@ struct NetworkWindow {
 NetworkGraph buildNetworkGraph(const Project &, const std::shared_ptr<CalculationControl> &control = {});
 NetworkWindow networkWindow(const NetworkGraph &, const NetworkQuery &,
                             const std::shared_ptr<CalculationControl> &control = {});
-} // namespace jobs
+} // namespace ppm

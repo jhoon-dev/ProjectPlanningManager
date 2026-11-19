@@ -3,7 +3,7 @@
 #include "domain/CalculationControl.h"
 #include <QJsonObject>
 #include <cmath>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid() {
     throw AppError(ErrorCode::CLASSIFICATION_INVALID, {"활동 확장 JSON 형식·필드를 확인하세요."});
@@ -131,4 +131,4 @@ std::vector<StepReport> decodeStepReports(const QJsonValue &v) {
     }
     return result;
 }
-} // namespace jobs
+} // namespace ppm

@@ -11,7 +11,7 @@
 #include <QXmlStreamWriter>
 #include <algorithm>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -214,7 +214,8 @@ std::vector<XmlBaselineCandidate> readXmlBaselines(const QByteArray &bytes, cons
     std::map<std::pair<std::string, std::string>, std::string> ids;
     for (auto v : mapping) {
         auto r = v.toObject();
-        ids[{str(r["kind"].toString()), str(r["xmlUid"].toString())}] = str(r["jobsId"].toString());
+        const auto nativeId = r.contains("ppmId") ? r["ppmId"] : r["jobsId"];
+        ids[{str(r["kind"].toString()), str(r["xmlUid"].toString())}] = str(nativeId.toString());
     }
     QXmlStreamReader reader(bytes);
     std::vector<QString> path;
@@ -717,4 +718,4 @@ std::vector<XmlBaselineRow> projectXmlBaselines(const Project &p, QJsonArray &di
     });
     return rows;
 }
-} // namespace jobs
+} // namespace ppm

@@ -9,7 +9,7 @@ import sys
 def verify(build):
     root = build / "governance-qa"
     envelope = json.loads((root / "governance.ppmworkspace").read_text(encoding="utf-8"))
-    assert envelope["format"] == "JOBS-WORKSPACE" and envelope["schemaVersion"] == 3
+    assert envelope["format"] == "PPM-WORKSPACE" and envelope["schemaVersion"] == 3
     body = envelope["payload"]
     canonical = json.dumps(body, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
     assert hashlib.sha256(canonical).hexdigest() == envelope["sha256"]

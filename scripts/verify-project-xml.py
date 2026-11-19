@@ -43,7 +43,7 @@ assignments = doc.findall("p:Assignments/p:Assignment", ns)
 assert [a.findtext("p:Units", namespaces=ns) for a in assignments] == ["0.50", "1.25"]
 assert all(a.findtext("p:TaskUID", namespaces=ns) in ids for a in assignments)
 assert report["xmlSha256"] == hashlib.sha256(payload).hexdigest()
-assert report["compatibility"]["jobsRecomputation"] == "unverified"
+assert report["compatibility"]["ppmRecomputation"] == "unverified"
 assert report["compatibility"]["externalRoundTrip"] == "unverified"
 assert len(report["mapping"]) == 13
 print("Independent Project XML reader: namespace, identities, four links, calendars, resource units and source verdicts passed")

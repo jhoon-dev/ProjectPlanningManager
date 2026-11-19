@@ -21,7 +21,7 @@
 #include <algorithm>
 #include <set>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -551,4 +551,4 @@ void AssignmentPeriodsDialog::submit() {
         showEditorError(*message_, e);
     }
 }
-} // namespace jobs
+} // namespace ppm

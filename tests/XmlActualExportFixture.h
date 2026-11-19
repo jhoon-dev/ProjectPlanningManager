@@ -1,7 +1,7 @@
 #pragma once
 #include "XmlPeriodFragmentFixture.h"
 #include "application/PeriodActualEditing.h"
-namespace jobs::test {
+namespace ppm::test {
 inline Project xmlActualExportFixture() {
     auto p = xmlPeriodTarget();
     p.name = "표준 실적 출력";
@@ -116,4 +116,4 @@ inline Project xmlActualExportFixture() {
     validate(p);
     return p;
 }
-} // namespace jobs::test
+} // namespace ppm::test

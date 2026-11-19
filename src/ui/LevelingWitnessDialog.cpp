@@ -11,7 +11,7 @@
 #include <QHBoxLayout>
 #include <algorithm>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromStdString(s);
@@ -279,4 +279,4 @@ void LevelingWitnessDialog::refresh() {
         table_->scrollTo(model_->index(row, 0));
     }
 }
-} // namespace jobs
+} // namespace ppm

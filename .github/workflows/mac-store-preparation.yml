@@ -25,7 +25,7 @@ jobs:
           xcodebuild -version
           xcrun --sdk macosx --show-sdk-version
           echo "key=$(xcodebuild -version | shasum -a 256 | cut -d ' ' -f 1)" >> "$GITHUB_OUTPUT"
-          echo "JOBS_QT_PREFIX=$RUNNER_TEMP/qt-appstore-6.8.3" >> "$GITHUB_ENV"
+          echo "PPM_QT_PREFIX=$RUNNER_TEMP/qt-appstore-6.8.3" >> "$GITHUB_ENV"
       - uses: actions/cache/restore@v6
         id: qt
         with:
@@ -42,10 +42,10 @@ jobs:
           tar -xf "$archive" -C "$RUNNER_TEMP"
           mkdir "$RUNNER_TEMP/qtbase-appstore-build"
           cd "$RUNNER_TEMP/qtbase-appstore-build"
-          "$RUNNER_TEMP/qtbase-everywhere-src-6.8.3/configure" -release -opensource -confirm-license -shared -feature-appstore-compliant -nomake examples -nomake tests -no-openssl -prefix "$JOBS_QT_PREFIX" -- '-DCMAKE_OSX_ARCHITECTURES=arm64;x86_64' -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0
+          "$RUNNER_TEMP/qtbase-everywhere-src-6.8.3/configure" -release -opensource -confirm-license -shared -feature-appstore-compliant -nomake examples -nomake tests -no-openssl -prefix "$PPM_QT_PREFIX" -- '-DCMAKE_OSX_ARCHITECTURES=arm64;x86_64' -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0
           cmake --build . --parallel 3
           cmake --install .
-          test -x "$JOBS_QT_PREFIX/bin/macdeployqt"
+          test -x "$PPM_QT_PREFIX/bin/macdeployqt"
       - uses: actions/cache/save@v6
         if: steps.qt.outputs.cache-hit != 'true'
         with:
@@ -54,30 +54,30 @@ jobs:
       - name: Configure and build PPM against the App Store Qt runtime
         shell: bash
         env:
-          JOBS_MAC_BUILD_NUMBER: ${{ inputs.build_number }}
+          PPM_MAC_BUILD_NUMBER: ${{ inputs.build_number }}
         run: |
           set -euo pipefail
-          export PATH="$JOBS_QT_PREFIX/bin:$PATH"
-          cmake -S . -B build-mac-store -DCMAKE_BUILD_TYPE=Release -DJOBS_MAC_APP_STORE=ON "-DJOBS_MAC_BUILD_NUMBER=$JOBS_MAC_BUILD_NUMBER" "-DCMAKE_PREFIX_PATH=$JOBS_QT_PREFIX" '-DCMAKE_OSX_ARCHITECTURES=arm64;x86_64' -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0
+          export PATH="$PPM_QT_PREFIX/bin:$PATH"
+          cmake -S . -B build-mac-store -DCMAKE_BUILD_TYPE=Release -DPPM_MAC_APP_STORE=ON "-DPPM_MAC_BUILD_NUMBER=$PPM_MAC_BUILD_NUMBER" "-DCMAKE_PREFIX_PATH=$PPM_QT_PREFIX" '-DCMAKE_OSX_ARCHITECTURES=arm64;x86_64' -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0
           cmake --build build-mac-store --parallel 3
       - name: Run application regressions and native presentation capture
         shell: bash
         run: |
           set -euo pipefail
-          export PATH="$JOBS_QT_PREFIX/bin:$PATH"
+          export PATH="$PPM_QT_PREFIX/bin:$PATH"
           ctest --test-dir build-mac-store --output-on-failure
           python scripts/capture-workspace-ui.py build-mac-store --store
       - name: Verify actual signed sandbox container lifecycle
         shell: bash
         run: |
           set -euo pipefail
-          python scripts/check-mac-sandbox.py build-mac-store --qt-root "$JOBS_QT_PREFIX"
+          python scripts/check-mac-sandbox.py build-mac-store --qt-root "$PPM_QT_PREFIX"
       - name: Prepare a relocatable development bundle
         shell: bash
         run: |
           set -euo pipefail
           app="$PWD/build-mac-store/PPM.app"
-          "$JOBS_QT_PREFIX/bin/macdeployqt" "$app" -appstore-compliant -verbose=2
+          "$PPM_QT_PREFIX/bin/macdeployqt" "$app" -appstore-compliant -verbose=2
           lipo "$app/Contents/MacOS/PPM" -verify_arch arm64 x86_64
           mkdir -p "$app/Contents/Resources/licenses"
           cp -R packaging/licenses/qtbase "$app/Contents/Resources/licenses/qtbase"

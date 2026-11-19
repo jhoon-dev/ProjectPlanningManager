@@ -9,7 +9,7 @@
 #include <algorithm>
 #include <set>
 
-namespace jobs {
+namespace ppm {
 bool Document::isEditable() const {
     return project_ && !readOnly();
 }
@@ -947,4 +947,4 @@ void Document::recover(const RecoverySnapshot &snapshot) {
     ++sessionGeneration_;
     notify(Event::Replaced);
 }
-} // namespace jobs
+} // namespace ppm

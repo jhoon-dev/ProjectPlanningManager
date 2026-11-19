@@ -2,7 +2,7 @@
 #include "domain/XmlFormula.h"
 #include "domain/Classification.h"
 #include <algorithm>
-namespace jobs::test {
+namespace ppm::test {
 inline Project xmlAdditionalFunctionFixture() {
     Project p;
     p.documentId = "xml-additional-functions";
@@ -73,4 +73,4 @@ inline Project xmlAdditionalFunctionFixture() {
     p.tasks[0].attributes.push_back({"field:eager", "777"});
     return p;
 }
-} // namespace jobs::test
+} // namespace ppm::test

@@ -7,7 +7,7 @@
 #include <cctype>
 #include <cstdio>
 #include <cstdlib>
-namespace jobs {
+namespace ppm {
 namespace {
 using namespace std::chrono;
 using N = std::int64_t;
@@ -317,4 +317,4 @@ std::string xmlCalendarShift(const PlanInput &p, FieldScope scope, const Task *t
     }
     return stamp(lo);
 }
-} // namespace jobs
+} // namespace ppm

@@ -20,7 +20,7 @@ def calendar_minute(stamp):
 
 def verify(build):
     data = json.loads((build / "scaled-repartition-float-qa/metrics.json").read_text(encoding="utf-8"))
-    assert data["engine"] == "jobs-adopted-leveling-1.4"
+    assert data["engine"] == "ppm-adopted-leveling-1.4"
     # Primitive exhaustive check of the bound argument on six unit tasks with two spare minutes.
     for fixed in (0, 3, 6):
         feasible = [delays for delays in itertools.product(range(3), repeat=6)

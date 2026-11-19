@@ -32,7 +32,7 @@
 #include <iostream>
 #include <functional>
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool b, const char *m) {
     if (!b)
         throw std::runtime_error(m);
@@ -53,7 +53,7 @@ void write(const QString &path, const QByteArray &bytes) {
 QByteArray envelope(const QJsonObject &body, int schema) {
     const auto bytes = QJsonDocument(body).toJson(QJsonDocument::Compact);
     return QJsonDocument(
-               QJsonObject{{"format", "JOBS"},
+               QJsonObject{{"format", "PPM"},
                            {"schemaVersion", schema},
                            {"payload", body},
                            {"sha256",
@@ -120,7 +120,7 @@ int main(int argc, char **argv) {
     QObject::connect(&watchdog, &QTimer::timeout, [] { std::_Exit(3); });
     watchdog.start(120000);
     try {
-        const auto source = readPrimaveraXer(QString::fromUtf8(JOBS_XER_FINANCIAL_FIXTURE));
+        const auto source = readPrimaveraXer(QString::fromUtf8(PPM_XER_FINANCIAL_FIXTURE));
         auto imported = importPrimaveraXer(source, "financial-periods.xer");
         const auto p = imported.project;
         check(p.xerFinancials && nativeSchemaFor(p) == 25 && xerFinancialsCurrent(p),

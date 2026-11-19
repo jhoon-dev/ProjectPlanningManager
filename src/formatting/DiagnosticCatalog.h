@@ -1,6 +1,6 @@
 #pragma once
 #include <string_view>
-namespace jobs::diagnosticcatalog {
+namespace ppm::diagnosticcatalog {
 struct Entry {
     std::string_view key, korean, english;
 };
@@ -1132,4 +1132,4 @@ inline constexpr Entry entries[]{
     {"COST_ACTUAL_UNKNOWN", "실제 원가가 입력되지 않았습니다.", "Actual cost is unknown."},
     {"COST_EV_UNKNOWN", "획득가치를 계산할 실적이 없습니다.", "Progress required for earned value is unknown."},
 };
-} // namespace jobs::diagnosticcatalog
+} // namespace ppm::diagnosticcatalog

@@ -2,7 +2,7 @@
 #include <cstdint>
 #include <optional>
 #include <string>
-namespace jobs {
+namespace ppm {
 enum class XmlFormatKind { Null, Number, Text, Boolean, Date };
 struct XmlFormatInput {
     XmlFormatKind kind = XmlFormatKind::Null;
@@ -13,4 +13,4 @@ struct XmlFormatInput {
 std::optional<std::string> xmlFormat(const XmlFormatInput &, const std::string &mask = "", int lcid = 1033,
                                      int firstDay = 1, int firstWeek = 1);
 std::string xmlStrConv(const std::string &, int conversion, int lcid = 1033);
-} // namespace jobs
+} // namespace ppm

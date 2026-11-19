@@ -32,7 +32,7 @@
 #include <QTimer>
 #include <iostream>
 #include <algorithm>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool b, const char *s) {
     if (!b)
@@ -53,7 +53,7 @@ void write(const QString &p, const QByteArray &b) {
 }
 QByteArray envelope(const Project &p, int schema) {
     const auto b = json::encodeProject(p);
-    return QJsonDocument(QJsonObject{{"format", "JOBS"},
+    return QJsonDocument(QJsonObject{{"format", "PPM"},
                                      {"schemaVersion", schema},
                                      {"payload", b},
                                      {"sha256", QString::fromLatin1(QCryptographicHash::hash(
@@ -113,7 +113,7 @@ int main(int argc, char **argv) {
         QTemporaryDir temp;
         JsonProjectStore store;
         auto p =
-            importPrimaveraXer(readPrimaveraXer(QString::fromUtf8(JOBS_XER_FINANCIAL_FIXTURE)), "original.xer").project;
+            importPrimaveraXer(readPrimaveraXer(QString::fromUtf8(PPM_XER_FINANCIAL_FIXTURE)), "original.xer").project;
         const auto initial = (temp.path() + "/initial.ppm").toStdString();
         store.save(initial, p, {});
         {

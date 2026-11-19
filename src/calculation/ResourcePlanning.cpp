@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <map>
 #include <numeric>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &s) {
     throw AppError(Diagnostic{"RESOURCE_PLANNING_INVALID", {s}, {}, "RESOURCE_PLANNING_INVALID"});
@@ -324,4 +324,4 @@ std::vector<CurveTimephase> curveTimephases(const Project &p, const Assignment &
         out.push_back({curve.dates.start, curve.dates.finish, 0, 0});
     return out;
 }
-} // namespace jobs
+} // namespace ppm

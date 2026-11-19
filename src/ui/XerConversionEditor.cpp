@@ -14,7 +14,7 @@
 #include <QTableView>
 #include <QVBoxLayout>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 XerConversionEditor::XerConversionEditor(const QString &title, const QString &prefix, const Project &p, QWidget *parent)
     : QGroupBox(title, parent), targetCurrency_(p.currency) {
     auto *grid = new QGridLayout(this);
@@ -219,4 +219,4 @@ void previewXerConversions(QWidget *parent, const XerFinancialSnapshot &incoming
     prepareEditorDialog(d);
     d.exec();
 }
-} // namespace jobs
+} // namespace ppm

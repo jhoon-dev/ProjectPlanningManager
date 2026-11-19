@@ -14,7 +14,7 @@
 #include <QVBoxLayout>
 #include <QtConcurrent>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -393,4 +393,4 @@ void DatedRemainingWorkDialog::commit() {
         controls();
     }
 }
-} // namespace jobs
+} // namespace ppm

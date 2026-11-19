@@ -21,7 +21,7 @@
 #include <memory>
 #include <numeric>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 using Pair = std::pair<std::string, std::string>;
 [[noreturn]] void invalid(const std::string &s) {
@@ -512,4 +512,4 @@ QString publishXmlActualAllocation(const Project &p, const ProjectXmlExchange &s
     stage.setAutoRemove(false);
     return final;
 }
-} // namespace jobs
+} // namespace ppm

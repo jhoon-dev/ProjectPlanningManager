@@ -16,7 +16,7 @@
 #include <QJsonObject>
 #include <iostream>
 #include <random>
-using namespace jobs;
+using namespace ppm;
 using namespace nonmonotone_fixture;
 namespace {
 void check(bool value, const std::string &message) {
@@ -175,7 +175,7 @@ QJsonArray archiveAndFailures() {
     b.version = 2;
     p.baselines.push_back(b);
     ++p.revision;
-    check(a.engineVersion == "jobs-adopted-leveling-1.6" && b.engineVersion == "jobs-adopted-leveling-1.7" &&
+    check(a.engineVersion == "ppm-adopted-leveling-1.6" && b.engineVersion == "ppm-adopted-leveling-1.7" &&
               a.schedule == b.schedule,
           "baseline replay changed");
     verifyBaseline(a);
@@ -245,7 +245,7 @@ int main(int argc, char **argv) {
         const auto fallback = archiveAndFailures();
         QFile file("nonmonotone-propagation-qa/metrics.json");
         check(file.open(QIODevice::WriteOnly), "metrics write");
-        file.write(QJsonDocument(QJsonObject{{"engine", "jobs-adopted-leveling-1.7"},
+        file.write(QJsonDocument(QJsonObject{{"engine", "ppm-adopted-leveling-1.7"},
                                              {"cases", cases},
                                              {"primitive_trials", 200},
                                              {"fallback_counters", fallback}})

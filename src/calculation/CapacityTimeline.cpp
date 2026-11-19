@@ -2,7 +2,7 @@
 #include "domain/ResourceAvailability.h"
 #include "domain/CalculationControl.h"
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 CapacityTimeline::CapacityTimeline(const Resource &r, const WorkCalendar &clock) {
     const auto first = clock.boundary(0, false), last = clock.boundary(clock.maxOffset() - 1, false);
     const auto periods = resourceAvailabilityIntervals(r);
@@ -33,4 +33,4 @@ std::int64_t CapacityTimeline::next(std::int64_t at, std::int64_t finish) const 
     auto it = values_.upper_bound(at);
     return it == values_.end() ? finish : std::min(finish, it->first);
 }
-} // namespace jobs
+} // namespace ppm

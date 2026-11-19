@@ -1,6 +1,7 @@
 #include "persistence/ApplicationStorage.h"
 #include "domain/Diagnostics.h"
 #include "application/ProductIdentity.h"
+#include "persistence/JsonRecoveryStore.h"
 #include <QCoreApplication>
 #include <QFileInfo>
 #include <QDir>
@@ -15,7 +16,7 @@
 #include <vector>
 #endif
 
-namespace jobs {
+namespace ppm {
 namespace {
 bool brandedApplication() {
     return QCoreApplication::organizationName() == storageOrganizationName &&
@@ -43,17 +44,18 @@ ApplicationStorage applicationStorage() {
             throw AppError(ErrorCode::FILE_OPERATION_FAILED, {"LocalAppData", std::to_string(result)});
         const auto root = QString::fromWCharArray(local);
         CoTaskMemFree(local);
-        storage.stateDirectory =
-            QDir(root).filePath("Packages/" + storage.packageFamilyName + "/LocalState/ToolMoa/JOBS");
+        const auto packageRoot = QDir(root).filePath("Packages/" + storage.packageFamilyName + "/LocalState/ToolMoa");
+        storage.stateDirectory = QDir(packageRoot).filePath("PPM");
+        storage.legacyStateDirectory = QDir(packageRoot).filePath("JOBS");
         storage.recoveryDirectory = QDir(storage.stateDirectory).filePath("recovery");
         storage.settingsFile = QDir(storage.stateDirectory).filePath("settings.ini");
         return storage;
     }
 #endif
     storage.stateDirectory = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-    // Product branding must not orphan existing settings or recovery generations.
+    // Locate legacy state for an explicit, non-destructive startup migration.
     if (brandedApplication())
-        storage.stateDirectory = QDir(QFileInfo(storage.stateDirectory).absolutePath()).filePath("JOBS");
+        storage.legacyStateDirectory = QDir(QFileInfo(storage.stateDirectory).absolutePath()).filePath("JOBS");
     storage.recoveryDirectory = QDir(storage.stateDirectory).filePath("recovery");
     return storage;
 }
@@ -62,7 +64,36 @@ QSettings applicationSettings() {
     if (storage.packaged())
         return QSettings(storage.settingsFile, QSettings::IniFormat);
     if (brandedApplication())
-        return QSettings("ToolMoa", "JOBS");
+        return QSettings("ToolMoa", "PPM");
     return QSettings();
 }
-} // namespace jobs
+void migrateApplicationSettings(QSettings &legacy, QSettings &current) {
+    constexpr auto marker = "migration/ppmIdentifiersImported";
+    if (current.value(marker, false).toBool())
+        return;
+    for (const auto &key : legacy.allKeys())
+        if (!current.contains(key))
+            current.setValue(key, legacy.value(key));
+    if (legacy.status() != QSettings::NoError)
+        throw AppError(ErrorCode::FILE_OPERATION_FAILED, {"legacy settings read"});
+    current.setValue(marker, true);
+    current.sync();
+    if (current.status() != QSettings::NoError)
+        throw AppError(ErrorCode::FILE_OPERATION_FAILED, {"PPM settings migration"});
+}
+void migrateApplicationStorage() {
+    const auto storage = applicationStorage();
+    if (storage.legacyStateDirectory.isEmpty())
+        return;
+    if (storage.packaged()) {
+        QSettings legacy(QDir(storage.legacyStateDirectory).filePath("settings.ini"), QSettings::IniFormat);
+        auto current = applicationSettings();
+        migrateApplicationSettings(legacy, current);
+    } else {
+        QSettings legacy(storageOrganizationName, "JOBS");
+        auto current = applicationSettings();
+        migrateApplicationSettings(legacy, current);
+    }
+    JsonRecoveryStore(QDir(storage.legacyStateDirectory).filePath("recovery")).migrateTo(storage.recoveryDirectory);
+}
+} // namespace ppm

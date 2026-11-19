@@ -1,6 +1,6 @@
 #pragma once
 #include <string_view>
-namespace jobs {
+namespace ppm {
 enum class ErrorCode {
     XML_PROGRESS_INVALID,
     XML_ACTUAL_EXPORT_INVALID,
@@ -1439,4 +1439,4 @@ constexpr std::string_view errorCodeToken(ErrorCode code) {
     }
     return "INTERNAL_ERROR";
 }
-} // namespace jobs
+} // namespace ppm

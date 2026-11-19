@@ -1,4 +1,4 @@
-"""Compare unmodified public P6 fixtures with JOBS and the pinned independent MPXJ reader."""
+"""Compare unmodified public P6 fixtures with PPM and the pinned independent MPXJ reader."""
 import argparse
 from decimal import Decimal
 import hashlib
@@ -15,14 +15,14 @@ args = parser.parse_args()
 source, output = args.corpus.resolve(), args.output.resolve()
 output.mkdir(parents=True, exist_ok=False)
 manifest = json.loads((source/'manifest.json').read_text(encoding='utf-8-sig'))
-name = 'jobs_primavera_corpus_probe' + ('.exe' if sys.platform == 'win32' else '')
+name = 'ppm_primavera_corpus_probe' + ('.exe' if sys.platform == 'win32' else '')
 binary = next(p for p in (args.build_dir/name, args.build_dir/'Release'/name) if p.is_file()).resolve()
 run = subprocess.run([str(binary), str(source), str(output/'exports')], capture_output=True, timeout=120)
-(output/'jobs.json').write_bytes(run.stdout)
-(output/'jobs.log').write_bytes(run.stderr)
+(output/'ppm.json').write_bytes(run.stdout)
+(output/'ppm.log').write_bytes(run.stderr)
 if run.returncode:
-    raise SystemExit(f'JOBS corpus probe exited {run.returncode}; inspect jobs.json/jobs.log and Qt runtime PATH')
-jobs = {r['file']: r for r in json.loads(run.stdout)['files']}
+    raise SystemExit(f'PPM corpus probe exited {run.returncode}; inspect ppm.json/ppm.log and Qt runtime PATH')
+ppm = {r['file']: r for r in json.loads(run.stdout)['files']}
 
 import mpxj
 import jpype
@@ -75,9 +75,9 @@ try:
         data = path.read_bytes()
         assert hashlib.sha256(data).hexdigest() == entry['sha256']
         tables = raw_tables(data, entry['encoding'])
-        native = jobs[path.name]
+        native = ppm[path.name]
         row = {'file': path.name, 'sha256': entry['sha256'], 'source_url': entry['url'],
-               'jobs_status': native['status'], 'jobs_error': native.get('error_code'),
+               'ppm_status': native['status'], 'ppm_error': native.get('error_code'),
                'raw_counts': {t: len(tables.get(t, [])) for t in ('TASK', 'TASKPRED', 'CALENDAR', 'RSRC', 'ROLES', 'TASKRSRC')},
                'p6_execution_equivalence': 'unverified', 'differences': []}
         try:
@@ -118,7 +118,7 @@ try:
                         current = float(duration.convertUnits(TimeUnit.MINUTES, model.getProjectProperties()).getDuration())
                         if abs(current-target['duration_minutes']) > .01:
                             row['differences'].append({'task_id': task['task_id'], 'field': 'current_vs_planned_duration',
-                                                       'mpxj_current_minutes': current, 'jobs_planned_minutes': target['duration_minutes']})
+                                                       'mpxj_current_minutes': current, 'ppm_planned_minutes': target['duration_minutes']})
                 source_calendars = {str(c.getUniqueID()): c for c in model.getCalendars()}
                 for calendar in native['calendars']:
                     independent = source_calendars[calendar['id'].removeprefix('xer-cal-')]
@@ -138,10 +138,10 @@ try:
                 assert sorted(str(t.getName()) for t in exported_tasks) == sorted(t['name'] for t in native['tasks']), 'exported names differ'
                 independent_minutes = sorted(round(float(t.getDuration().convertUnits(TimeUnit.MINUTES, exported_model.getProjectProperties()).getDuration()), 4) for t in exported_tasks)
                 assert independent_minutes == sorted(t['duration_minutes'] for t in native['tasks']), 'exported planned durations differ'
-                assert native['jobs_round_trip_dates_equal'], 'JOBS supported projection dates differ'
+                assert native['ppm_round_trip_dates_equal'], 'PPM supported projection dates differ'
                 row['supported_projection'] = 'passed'
                 row['milestones_checked'] = sum(t['duration_minutes'] == 0 for t in native['tasks'])
-                row['jobs_finish'] = native['finish']
+                row['ppm_finish'] = native['finish']
             else:
                 row['differences'].append({'field': 'native_projection', 'reason': native['reason']})
         except Exception as error:
@@ -152,8 +152,8 @@ try:
 finally:
     jpype.shutdownJVM()
 result = {'status': 'failed' if failed else 'passed', 'mpxj': '16.10.0', 'jpype': '1.6.0',
-          'scope': 'Unmodified public P6 files; independent parsing and supported JOBS projection. No Oracle execution equivalence.',
+          'scope': 'Unmodified public P6 files; independent parsing and supported PPM projection. No Oracle execution equivalence.',
           'files': matrix}
 (output/'matrix.json').write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
-print(json.dumps([{k: r.get(k) for k in ('file', 'jobs_status', 'jobs_error', 'mpxj_status', 'supported_projection', 'independent_error')} for r in matrix], ensure_ascii=False, indent=2))
+print(json.dumps([{k: r.get(k) for k in ('file', 'ppm_status', 'ppm_error', 'mpxj_status', 'supported_projection', 'independent_error')} for r in matrix], ensure_ascii=False, indent=2))
 raise SystemExit(1 if failed else 0)

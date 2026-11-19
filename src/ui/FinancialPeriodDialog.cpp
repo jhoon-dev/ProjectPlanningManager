@@ -23,7 +23,7 @@
 #include <QTabWidget>
 #include <QVBoxLayout>
 #include <QtConcurrent>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -511,4 +511,4 @@ void FinancialPeriodDialog::reject() {
     impl_->invalidate();
     QDialog::reject();
 }
-} // namespace jobs
+} // namespace ppm

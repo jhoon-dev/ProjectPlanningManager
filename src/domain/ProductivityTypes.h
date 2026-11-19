@@ -2,7 +2,7 @@
 #include <cstdint>
 #include <string>
 #include <vector>
-namespace jobs {
+namespace ppm {
 struct ProductivityRate {
     // Thousandths of physical output per resource-hour, independent of prices/capacity.
     std::string unit, effectiveDate, reference, reporter;
@@ -18,4 +18,4 @@ struct ProductivityEstimate {
     std::string reporter;
     bool operator==(const ProductivityEstimate &) const = default;
 };
-} // namespace jobs
+} // namespace ppm

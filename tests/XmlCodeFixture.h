@@ -1,7 +1,7 @@
 #pragma once
 #include "domain/Classification.h"
 #include "domain/XmlCodes.h"
-namespace jobs::test {
+namespace ppm::test {
 inline std::string codeGuid(int n) {
     auto digits = std::to_string(n);
     return "55555555-6666-4777-8888-" + std::string(12 - digits.size(), '0') + digits;
@@ -68,4 +68,4 @@ inline Project xmlCodeFixture() {
         {{"wbs", "G", "PR-AA"}, {"wbs", "H", "PR-AA.001"}, {"task", "T", "PR-AA.001-a"}, {"task", "B", "PR-AA.002"}}};
     return p;
 }
-} // namespace jobs::test
+} // namespace ppm::test

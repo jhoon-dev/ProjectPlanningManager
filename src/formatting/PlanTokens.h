@@ -5,7 +5,7 @@
 #include <string_view>
 #include <utility>
 
-namespace jobs {
+namespace ppm {
 namespace plantokens {
 inline constexpr std::array dependency{
     std::pair{DependencyType::FS, std::string_view{"FS"}}, std::pair{DependencyType::SS, std::string_view{"SS"}},
@@ -94,4 +94,4 @@ inline std::string taskCalendarName(const PlanInput &p, const Task &task) {
             return c.name;
     return "프로젝트 기본 (월–금 09–12 / 13–18)";
 }
-} // namespace jobs
+} // namespace ppm

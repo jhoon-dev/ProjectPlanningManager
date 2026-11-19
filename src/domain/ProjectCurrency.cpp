@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <set>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void bad(const std::string &s) {
     throw AppError(Diagnostic{"CURRENCY_CONVERSION_INVALID", {s}, {}, "CURRENCY_CONVERSION_INVALID"});
@@ -364,4 +364,4 @@ void validateCurrencyCurrent(const Project &p) {
     if (!p.currencyConversions.empty() && p.currencyConversions.back().recordedRevision == p.revision)
         currentMatches(p, p.currencyConversions.back());
 }
-} // namespace jobs
+} // namespace ppm

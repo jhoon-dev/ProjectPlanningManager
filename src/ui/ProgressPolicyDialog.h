@@ -8,7 +8,7 @@ class QLabel;
 class QTableView;
 class QPlainTextEdit;
 class QPushButton;
-namespace jobs {
+namespace ppm {
 class ProgressPolicyModel;
 class ProgressPolicyDialog final : public QDialog {
 public:
@@ -45,4 +45,4 @@ private:
     void selected();
     void save();
 };
-} // namespace jobs
+} // namespace ppm

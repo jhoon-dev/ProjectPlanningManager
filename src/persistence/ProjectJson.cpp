@@ -8,6 +8,7 @@
 #include "formatting/QtDiagnosticText.h"
 #include "formatting/PlanTokens.h"
 #include "persistence/ProjectJson.h"
+#include "domain/BrandIdentifiers.h"
 #include "persistence/XmlBaselineJson.h"
 #include "persistence/XerFinancialJson.h"
 #include "persistence/ExternalEvmJson.h"
@@ -28,7 +29,7 @@
 #include <QJsonArray>
 #include <cmath>
 #include <stdexcept>
-namespace jobs::json {
+namespace ppm::json {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s.data(), qsizetype(s.size()));
@@ -662,7 +663,7 @@ Baseline decodeBaseline(const QJsonObject &o, int schema) {
     b.inputRevision = std::uint64_t(integer(o, "inputRevision"));
     b.version = std::uint64_t(integer(o, "version"));
     b.input = decodePlan(object(o.value("input")), schema);
-    b.engineVersion = string(o, "engineVersion");
+    b.engineVersion = canonicalEngineIdentifier(string(o, "engineVersion"));
     b.projectFinish = string(o, "projectFinish");
     for (const auto &v : array(o, "schedule"))
         b.schedule.push_back(decodeRow(object(v)));
@@ -1040,4 +1041,4 @@ Project decodeProject(const QJsonObject &o, int schema) {
         verifyBaseline(b);
     return p;
 }
-} // namespace jobs::json
+} // namespace ppm::json

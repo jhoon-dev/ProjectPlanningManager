@@ -6,7 +6,7 @@
 #include <map>
 #include <unordered_map>
 #include <stdexcept>
-namespace jobs {
+namespace ppm {
 ConstraintWindow constraintWindow(const PlanInput &p, const Task &t, const WorkCalendar &cal, std::int64_t duration) {
     ConstraintWindow w;
     if (!t.constraintAt)
@@ -239,4 +239,4 @@ ScheduleResult calculateConstrainedPlan(const Project &p, const std::vector<std:
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

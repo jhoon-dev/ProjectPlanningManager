@@ -20,7 +20,7 @@
 #include <QPushButton>
 #include <QTableWidget>
 #include <QVBoxLayout>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -832,4 +832,4 @@ void editXmlFormula(Document &doc, FieldScope scope, const std::string &key, QWi
     render();
     dialog.exec();
 }
-} // namespace jobs
+} // namespace ppm

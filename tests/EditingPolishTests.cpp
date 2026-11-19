@@ -25,12 +25,12 @@ class EditingPolishTests : public QObject {
     Q_OBJECT
 private slots:
     void ganttCacheDoesNotRetainDocumentAndUsesCalculationGeneration() {
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("캐시 수명", "2026-01-05", {"작업"});
         doc.setDuration(0, 480);
-        auto schedule = jobs::calculate(*doc.project());
-        jobs::GanttView gantt;
+        auto schedule = ppm::calculate(*doc.project());
+        ppm::GanttView gantt;
         gantt.setPlan(&*doc.project(), &schedule, {0}, true, doc.snapshot(), 1);
         QVERIFY(!doc.snapshotShared());
         const auto initialWidth = gantt.sceneRect().width();
@@ -47,27 +47,27 @@ private slots:
         QVERIFY(gantt.hasSchedule());
         doc.create("다른 문서", "2026-01-05", {"새 작업"});
         doc.setDuration(0, 480);
-        auto replacement = jobs::calculate(*doc.project());
+        auto replacement = ppm::calculate(*doc.project());
         gantt.setPlan(&*doc.project(), &replacement, {0}, true, doc.snapshot(), 2);
         QCOMPARE(gantt.sceneRect().width(), initialWidth);
         QVERIFY(!doc.snapshotShared());
     }
     void selectionFitAndFilteredScope() {
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("간트 탐색", "2026-01-05", {"긴 공정", "마지막 작업", "완료점"});
         doc.setDuration(0, 48000);
         doc.setDuration(1, 480);
         doc.setDuration(2, 0);
         doc.setPredecessors(1, {doc.project()->tasks[0].id});
         doc.setPredecessors(2, {doc.project()->tasks[1].id});
-        doc.applyCalculation(jobs::calculate(*doc.project()));
-        jobs::MainWindow window(doc);
+        doc.applyCalculation(ppm::calculate(*doc.project()));
+        ppm::MainWindow window(doc);
         window.resize(1280, 720);
         window.show();
         QTest::qWait(30);
         auto *table = taskTable(window);
-        auto *gantt = static_cast<jobs::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
+        auto *gantt = static_cast<ppm::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
         auto *fit = window.findChild<QAction *>("fitGanttSchedule");
         auto *focus = window.findChild<QAction *>("focusGanttSelection");
         const auto revision = doc.project()->revision;
@@ -94,9 +94,9 @@ private slots:
         QCOMPARE(table->verticalScrollBar()->value(), gantt->verticalScrollBar()->value());
     }
     void noScheduleDisablesNavigation() {
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
-        jobs::MainWindow window(doc);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
+        ppm::MainWindow window(doc);
         QVERIFY(!window.findChild<QAction *>("fitGanttSchedule")->isEnabled());
         QVERIFY(!window.findChild<QAction *>("focusGanttSelection")->isEnabled());
     }
@@ -107,8 +107,8 @@ private slots:
     }
     void editorGeometryDraftsAndErrors() {
         QFETCH(bool, dark);
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("상세 편집", "2026-11-02", {"작업"});
         doc.setDuration(0, 480);
         doc.putResource({{}, "검증 팀", "labor", 100, {}});
@@ -136,11 +136,11 @@ private slots:
             palette.setColor(QPalette::ButtonText, Qt::black);
             QApplication::setPalette(palette);
         }
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.show();
         QTest::qWait(30);
         auto *table = taskTable(window);
-        const auto capture = qEnvironmentVariable("JOBS_EDITOR_CAPTURE_DIR");
+        const auto capture = qEnvironmentVariable("PPM_EDITOR_CAPTURE_DIR");
         for (const auto *name : {"taskConstraints", "manageCalendars", "manageResources", "taskCost", "resourceRates",
                                  "taskEffort", "reportTaskProgress"}) {
             table->selectRow(0);

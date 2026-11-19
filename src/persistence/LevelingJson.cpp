@@ -1,7 +1,7 @@
 #include "persistence/LevelingJson.h"
 #include "domain/Diagnostics.h"
 #include <cmath>
-namespace jobs::json {
+namespace ppm::json {
 QJsonObject encodeLeveling(const LevelingSelection &s) {
     const auto q = [](const auto &v) { return QString::fromUtf8(v); };
     return {{"priority", q(s.priority)},
@@ -45,4 +45,4 @@ LevelingSelection decodeLeveling(const QJsonValue &v) {
     s.sourceRevision = number("sourceRevision", 9007199254740991.0);
     return s;
 }
-} // namespace jobs::json
+} // namespace ppm::json

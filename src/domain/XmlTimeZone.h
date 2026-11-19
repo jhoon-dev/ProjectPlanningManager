@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-namespace jobs {
+namespace ppm {
 struct XmlZonedTime {
     std::string civil;
     int offsetSeconds = 0;
@@ -14,4 +14,4 @@ std::string xmlTimeZoneText(const std::string &civil, const std::string &from, c
                             const std::string &overlap = "reject");
 int xmlTimeZoneOffset(const std::string &civil, const std::string &zone, const std::string &overlap = "reject");
 std::string xmlParseUtc(const std::string &isoOffset);
-} // namespace jobs
+} // namespace ppm

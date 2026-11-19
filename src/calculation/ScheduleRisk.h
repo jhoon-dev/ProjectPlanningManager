@@ -2,7 +2,7 @@
 #include "calculation/Scheduler.h"
 #include "domain/Governance.h"
 #include <map>
-namespace jobs {
+namespace ppm {
 struct RiskOptions {
     std::uint64_t seed = 1;
     int iterations = 1000;
@@ -29,4 +29,4 @@ struct PortfolioSummary {
 };
 std::vector<PortfolioSummary> summarizePortfolio(const Workspace &,
                                                  const std::vector<std::shared_ptr<const Project>> &);
-} // namespace jobs
+} // namespace ppm

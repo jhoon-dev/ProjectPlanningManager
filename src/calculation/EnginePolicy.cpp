@@ -1,5 +1,5 @@
 #include "calculation/EnginePolicy.h"
-namespace jobs {
+namespace ppm {
 namespace {
 thread_local bool legacy = false;
 }
@@ -18,4 +18,4 @@ std::string calculationEngineFor(const PlanInput &p) {
 std::string calculationLevelingPolicyFor(const PlanInput &p) {
     return legacy ? legacyLevelingPolicyFor(p) : levelingPolicyFor(p);
 }
-} // namespace jobs
+} // namespace ppm

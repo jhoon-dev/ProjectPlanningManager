@@ -21,7 +21,7 @@
 #include <unordered_map>
 #include <algorithm>
 #include <cstdlib>
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s.data(), qsizetype(s.size()));
@@ -363,4 +363,4 @@ void ComparisonDialog::display(const ComparisonReport &r) {
         diagnostics += "[예측/" + qs(d.code) + "] " + qs(diagnosticMessage(d)) + "\n";
     diagnostics_->setPlainText(diagnostics);
 }
-} // namespace jobs
+} // namespace ppm

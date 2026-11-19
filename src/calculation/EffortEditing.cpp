@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <cmath>
 #include <stdexcept>
-namespace jobs {
+namespace ppm {
 namespace {
 void scaleAssignments(Project &p, std::size_t index, std::int64_t target, std::int64_t duration, bool planOnly = false,
                       const TaskSchedule *source = nullptr) {
@@ -138,4 +138,4 @@ void changeWork(Project &p, std::size_t index, std::int64_t work) {
         t.workDriven = true;
     }
 }
-} // namespace jobs
+} // namespace ppm

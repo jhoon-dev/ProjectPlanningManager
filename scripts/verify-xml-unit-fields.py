@@ -32,8 +32,8 @@ def rounded(value):
     return value.quantize(Decimal("0.000001"), rounding=ROUND_HALF_UP)
 
 
-ids = {(r["kind"], r["xmlUid"]): r["jobsId"] for r in mapping if "xmlUid" in r}
-fields = {(r["scope"], r["externalId"]): r["jobsId"] for r in mapping if r["kind"] == "udf"}
+ids = {(r["kind"], r["xmlUid"]): r["ppmId"] for r in mapping if "xmlUid" in r}
+fields = {(r["scope"], r["externalId"]): r["ppmId"] for r in mapping if r["kind"] == "udf"}
 resources = {r["id"]: r for r in native["resources"]}
 assignments = {r["taskId"] + "/" + r["resourceId"]: r for r in native["assignments"]}
 expected = {}

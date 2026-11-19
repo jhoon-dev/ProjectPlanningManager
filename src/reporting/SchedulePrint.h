@@ -10,7 +10,7 @@
 #include <set>
 class QPainter;
 class QPagedPaintDevice;
-namespace jobs {
+namespace ppm {
 struct SchedulePrintColumn {
     QString key, title;
     double width = 80;
@@ -99,4 +99,4 @@ int paintSchedule(QPagedPaintDevice &, const SchedulePrintLayout &, int first = 
                   bool collate = true);
 int exportSchedulePdf(const SchedulePrintLayout &, const QString &path,
                       const std::shared_ptr<CalculationControl> &control = {});
-} // namespace jobs
+} // namespace ppm

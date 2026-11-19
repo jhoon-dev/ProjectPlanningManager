@@ -1,6 +1,6 @@
 #pragma once
 #include "calculation/Scheduler.h"
-namespace jobs {
+namespace ppm {
 struct ActivityInterval {
     std::string id, name, kind, reason;
     std::optional<std::string> start, finish;
@@ -14,4 +14,4 @@ struct ActivityProgress {
 };
 std::vector<ActivityInterval> activityIntervals(const Project &, const ScheduleResult &);
 ActivityProgress activityProgress(const Project &, const std::string &taskId);
-} // namespace jobs
+} // namespace ppm

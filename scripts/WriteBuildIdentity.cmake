@@ -15,7 +15,7 @@ execute_process(COMMAND git status --porcelain WORKING_DIRECTORY "${SOURCE_DIR}"
 if(dirty)
   string(APPEND revision "+dirty")
 endif()
-set(content "#pragma once\n#define JOBS_PERF_REVISION \"${revision}\"\n#define JOBS_SOURCE_SHA256 \"${source_hash}\"\n")
+set(content "#pragma once\n#define PPM_PERF_REVISION \"${revision}\"\n#define PPM_SOURCE_SHA256 \"${source_hash}\"\n")
 if(EXISTS "${OUTPUT}")
   file(READ "${OUTPUT}" previous)
 endif()

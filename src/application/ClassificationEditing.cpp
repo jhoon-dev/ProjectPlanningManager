@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <unordered_set>
 
-namespace jobs {
+namespace ppm {
 std::string Document::putCustomField(CustomField field, FieldScope scope) {
     requireEditable();
     auto p = *project_;
@@ -44,7 +44,7 @@ void Document::setXmlLookupMasks(FieldScope scope, const std::string &key, std::
                                  bool required) {
     requireEditable();
     auto p = *project_;
-    jobs::setXmlLookupMasks(p, scope, key, masks, required);
+    ppm::setXmlLookupMasks(p, scope, key, masks, required);
     edit(std::move(p), "XML 코드 마스크 변경");
 }
 std::string Document::createXmlLookupCode(FieldScope scope, const std::string &key, const std::string &parent,
@@ -322,4 +322,4 @@ void Document::removeSavedResourceView(const std::string &id) {
         throw AppError(ErrorCode::CLASSIFICATION_NOT_FOUND, {id});
     edit(std::move(p), "자원 보기 삭제", true);
 }
-} // namespace jobs
+} // namespace ppm

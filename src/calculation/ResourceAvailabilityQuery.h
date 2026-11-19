@@ -1,7 +1,7 @@
 #pragma once
 #include "calculation/Resources.h"
 #include <map>
-namespace jobs {
+namespace ppm {
 struct ResourceAvailabilityPoint {
     std::string resourceId, at, issue;
     std::optional<int> capacity;
@@ -29,4 +29,4 @@ public:
         return occupancyCount_;
     }
 };
-} // namespace jobs
+} // namespace ppm

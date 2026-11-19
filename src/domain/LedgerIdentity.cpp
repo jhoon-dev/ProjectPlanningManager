@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <map>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void bad(const char *s) {
     throw AppError(ErrorCode::LEDGER_ID_INVALID, {s});
@@ -403,4 +403,4 @@ void validateLedgerIdCurrent(const Project &p) {
     if (!p.ledgerIdMigrations.empty() && p.ledgerIdMigrations.back().recordedRevision == p.revision)
         currentMatches(p, p.ledgerIdMigrations.back());
 }
-} // namespace jobs
+} // namespace ppm

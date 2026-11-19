@@ -1,8 +1,8 @@
 #pragma once
 #include "domain/Project.h"
-namespace jobs {
+namespace ppm {
 inline constexpr const char *materialArrivalPolicy = "serial-material-arrivals-v1";
-inline constexpr const char *materialFloatEngine = "jobs-adopted-material-leveling-1.0";
+inline constexpr const char *materialFloatEngine = "ppm-adopted-material-leveling-1.0";
 void validateResourcePlan(const PlanInput &);
 bool hasResourcePlan(const PlanInput &);
 bool hasMaterialInventory(const PlanInput &);
@@ -16,4 +16,4 @@ struct PlannedCharge {
 };
 std::vector<PlannedCharge> plannedCharges(const PlanInput &, const std::string &taskId);
 std::vector<Diagnostic> materialReadiness(const PlanInput &);
-} // namespace jobs
+} // namespace ppm

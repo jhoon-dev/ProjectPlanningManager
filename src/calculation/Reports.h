@@ -3,7 +3,7 @@
 #include "calculation/Resources.h"
 #include "calculation/Tracking.h"
 #include <variant>
-namespace jobs {
+namespace ppm {
 enum class ReportFamily { All, Schedule, Resources, Costs };
 enum class CellFormat { Text, Integer, Hours, WorkHours, Money, Units, Ratio, PhysicalPercent, FieldNumber };
 struct ReportCell {
@@ -42,4 +42,4 @@ struct ProjectReport {
 };
 ProjectReport buildReport(const Project &, const ReportOptions &);
 bool includeTable(const ReportTable &, ReportFamily);
-} // namespace jobs
+} // namespace ppm

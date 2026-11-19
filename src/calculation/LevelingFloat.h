@@ -1,6 +1,6 @@
 #pragma once
 #include "calculation/Scheduler.h"
-namespace jobs {
+namespace ppm {
 class LevelingFloatScope {
     int previous_;
 
@@ -16,4 +16,4 @@ void calculateSegmentLevelingFloat(const Project &, ScheduleResult &);
 void calculateRepartitionLevelingFloat(const Project &, ScheduleResult &, bool logicalOnly = false);
 void calculateWorkContourFloat(const Project &, ScheduleResult &);
 void calculateLevelingFloat(const Project &, ScheduleResult &);
-} // namespace jobs
+} // namespace ppm

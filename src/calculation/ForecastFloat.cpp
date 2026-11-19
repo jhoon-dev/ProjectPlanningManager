@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <unordered_map>
 
-namespace jobs {
+namespace ppm {
 void calculateRemainingFloat(const Project &p, ScheduleResult &out, const std::vector<std::size_t> &order,
                              const std::vector<RemainingExecution> &models) {
     if (out.status != CalculationStatus::Valid || !out.projectFinish)
@@ -108,4 +108,4 @@ void calculateRemainingFloat(const Project &p, ScheduleResult &out, const std::v
     out.calculationPolicy += "/remaining-float-v1";
     out.diagnostics.push_back({"FORECAST_FLOAT_POLICY", {}, {}, "FORECAST_FLOAT_POLICY"});
 }
-} // namespace jobs
+} // namespace ppm

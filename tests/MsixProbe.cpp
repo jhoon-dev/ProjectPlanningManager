@@ -52,8 +52,8 @@ void wait(const std::function<bool()> &ready) {
 std::string str(const QString &text) {
     return text.toUtf8().toStdString();
 }
-void fixture(jobs::JsonProjectStore &files, const std::string &path, const std::string &title, int count) {
-    jobs::Document document(files);
+void fixture(ppm::JsonProjectStore &files, const std::string &path, const std::string &title, int count) {
+    ppm::Document document(files);
     std::vector<std::string> names{"기획 검토", "설계",      "인허가",    "기반 공사",
                                    "구조 공사", "설비 설치", "시험 운전", "검수"};
     names.resize(std::size_t(count));
@@ -89,7 +89,7 @@ int main(int argc, char **argv) {
     QObject::connect(&watchdog, &QTimer::timeout, [] { std::exit(3); });
     watchdog.start(90000);
     try {
-        const auto storage = jobs::applicationStorage();
+        const auto storage = ppm::applicationStorage();
         if (!local) {
             root = argument("--root");
             phase = argument("--phase");
@@ -97,7 +97,7 @@ int main(int argc, char **argv) {
             check(QFileInfo(root).fileName().startsWith("msix-smoke-") && !QFileInfo(root).isSymLink(),
                   "not an owned MSIX test directory");
             check(read(QDir(root).filePath("test-owner.json"))["nonce"] == nonce, "probe ownership nonce mismatch");
-            check(storage.packaged() && storage.packageFamilyName.startsWith("ToolMoa.JOBS.MsixDevelopment_"),
+            check(storage.packaged() && storage.packageFamilyName.startsWith("ToolMoa.PPM.MsixDevelopment_"),
                   "probe did not run under development package identity");
             check(storage.settingsFile.contains("/LocalState/") &&
                       storage.recoveryDirectory.startsWith(storage.stateDirectory + "/"),
@@ -108,15 +108,15 @@ int main(int argc, char **argv) {
         check(phase == "initial" || phase == "verify", "unsupported probe phase");
         const auto project = QDir(root).filePath("Project.ppm"), other = QDir(root).filePath("Team.ppm"),
                    workspaceFile = QDir(root).filePath("Projects.ppmworkspace");
-        auto files = std::make_shared<jobs::JsonProjectStore>();
+        auto files = std::make_shared<ppm::JsonProjectStore>();
         auto settings =
-            local ? QSettings(QDir(root).filePath("settings.ini"), QSettings::IniFormat) : jobs::applicationSettings();
+            local ? QSettings(QDir(root).filePath("settings.ini"), QSettings::IniFormat) : ppm::applicationSettings();
         const auto recoveryPath = local ? QDir(root).filePath("recovery") : storage.recoveryDirectory;
-        jobs::JsonRecoveryStore recovery(recoveryPath);
+        ppm::JsonRecoveryStore recovery(recoveryPath);
         if (phase == "initial") {
             fixture(*files, str(project), "샘플 · 연구센터 구축", 8);
             fixture(*files, str(other), "샘플 · 운영 준비", 3);
-            jobs::Document document(*files);
+            ppm::Document document(*files);
             document.open(str(project));
             const auto name = document.project()->tasks[0].name;
             document.renameTask(0, "편집 응답 확인");
@@ -140,23 +140,23 @@ int main(int argc, char **argv) {
                                       [](const auto &value) { return value.valid; });
             check(found != scan.candidates.end(), "update lost recovery checkpoint");
             auto claim = recovery.claim(*found);
-            jobs::Document recovered(*files);
+            ppm::Document recovered(*files);
             recovered.recover(claim->snapshot);
             check(recovered.project()->tasks[0].name == "복구 확인 · 기획 검토", "checkpoint recovery content changed");
         }
         {
-            auto updateOptions = jobs::updateConfig();
+            auto updateOptions = ppm::updateConfig();
             if (local)
                 updateOptions.settingsFile = QDir(root).filePath("updater-contract.ini");
-            jobs::UpdateController updates(updateOptions);
+            ppm::UpdateController updates(updateOptions);
             updates.setAutomatic(false);
-            jobs::DesktopWorkspace workspace(files, {});
+            ppm::DesktopWorkspace workspace(files, {});
             workspace.setUpdates(&updates);
             auto *window = workspace.openProject(str(project));
             check(window->findChild<QAction *>("applicationUpdates"), "update settings entry missing");
             if (!local) {
                 updates.check(quintptr(window->winId()));
-                check(updates.state() == jobs::UpdateState::Unsupported, "development package attempted Store update");
+                check(updates.state() == ppm::UpdateState::Unsupported, "development package attempted Store update");
             }
             workspace.openProject(str(other));
             for (auto *action : window->findChildren<QAction *>())
@@ -167,7 +167,7 @@ int main(int argc, char **argv) {
             const auto first = workspace.snapshots()[0]->documentId;
             auto *source = workspace.document(first);
             wait([&] {
-                return source->calculation() && source->calculation()->status == jobs::CalculationStatus::Valid;
+                return source->calculation() && source->calculation()->status == ppm::CalculationStatus::Valid;
             });
             auto config = workspace.configuration();
             config.resources = {{"shared", "공유 현장팀"}};
@@ -175,22 +175,22 @@ int main(int argc, char **argv) {
                 config.bindings.push_back({snapshot->documentId, snapshot->resources[0].id, "shared"});
             workspace.applyConfiguration(config);
             if (phase == "initial")
-                jobs::JsonWorkspaceStore(*files).save(str(workspaceFile), config, {});
+                ppm::JsonWorkspaceStore(*files).save(str(workspaceFile), config, {});
             else
-                check(jobs::JsonWorkspaceStore(*files).load(str(workspaceFile)).workspace.bindings == config.bindings,
+                check(ppm::JsonWorkspaceStore(*files).load(str(workspaceFile)).workspace.bindings == config.bindings,
                       "saved workspace changed after upgrade");
             window->resize(1440, 900);
             window->show();
             QTest::qWait(100);
             if (!local)
                 check(window->grab().save(QDir(root).filePath("01-schedule.png")), "schedule screenshot failed");
-            jobs::WorkspaceDialog dialog(workspace);
+            ppm::WorkspaceDialog dialog(workspace);
             dialog.resize(1440, 900);
             dialog.show();
             dialog.startAnalysis();
             wait([&] { return !dialog.busy(); });
             check(dialog.result() && !dialog.result()->days.empty() &&
-                      dialog.result()->status == jobs::CalculationStatus::Conflict,
+                      dialog.result()->status == ppm::CalculationStatus::Conflict,
                   "packaged shared load failed");
             if (!local) {
                 dialog.findChild<QTabWidget *>()->setCurrentIndex(2);
@@ -209,13 +209,13 @@ int main(int argc, char **argv) {
                            {"nonce", nonce},
                            {"project", project},
                            {"workspace", workspaceFile},
-                           {"source_revision", QString::fromUtf8(JOBS_PERF_REVISION)}};
+                           {"source_revision", QString::fromUtf8(PPM_PERF_REVISION)}};
         write(QDir(root).filePath("probe-" + phase + ".json"), result);
         std::cout << "PASS: " << phase.toStdString()
                   << " create/save/open, calculate, undo, workspace, settings and checkpoint under "
                   << storage.packageFamilyName.toStdString() << '\n';
     } catch (const std::exception &error) {
-        const auto message = QString::fromStdString(jobs::errorText(error));
+        const auto message = QString::fromStdString(ppm::errorText(error));
         try {
             write(QDir(root).filePath("probe-" + phase + ".json"), {{"status", "failed"}, {"error", message}});
         } catch (...) {

@@ -1,6 +1,6 @@
 #pragma once
 #include "XmlActualFixture.h"
-namespace jobs::test {
+namespace ppm::test {
 inline Project xmlRemainingFixture() {
     Project p;
     p.documentId = "xml-remaining";
@@ -61,4 +61,4 @@ inline Project xmlRemainingFixture() {
     p.resourceFields[0].xmlRollUp = XmlRollUp{2, 0};
     return p;
 }
-} // namespace jobs::test
+} // namespace ppm::test

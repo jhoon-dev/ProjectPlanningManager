@@ -2,7 +2,7 @@
 #include "domain/PeriodActuals.h"
 #include "domain/ActualProvenance.h"
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 namespace {
 ReportCell text(const std::string &s) {
     return {s, CellFormat::Text};
@@ -115,4 +115,4 @@ std::vector<ReportTable> periodActualTables(const Project &p, const std::set<std
         result.push_back(std::move(estimated));
     return result;
 }
-} // namespace jobs
+} // namespace ppm

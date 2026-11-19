@@ -25,7 +25,7 @@
 #include <algorithm>
 #include <cstdio>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool ok, const char *why) {
     if (!ok)
@@ -237,7 +237,7 @@ void contract() {
     selection.sourceRevision = p.revision;
     selection.horizonWorkDays = 2;
     p.planLeveling = selection;
-    auto historical = calculatePlan(p, "jobs-adopted-leveling-1.8");
+    auto historical = calculatePlan(p, "ppm-adopted-leveling-1.8");
     check(historical.status == CalculationStatus::Valid && !historical.levelingFloatCalculated,
           "historical material float changed");
     auto modern = calculatePlan(p);
@@ -265,7 +265,7 @@ void contract() {
             periods.tasks[0].workDriven = true;
             periods.tasks[0].workUnitMinutes = 200;
         }
-        auto oldPeriods = calculatePlan(periods, work ? "jobs-adopted-work-periods-1.0" : "jobs-adopted-periods-1.0");
+        auto oldPeriods = calculatePlan(periods, work ? "ppm-adopted-work-periods-1.0" : "ppm-adopted-periods-1.0");
         check(oldPeriods.status == CalculationStatus::Valid && !oldPeriods.levelingFloatCalculated,
               "old material period engine replay");
         auto frozen = legacy;

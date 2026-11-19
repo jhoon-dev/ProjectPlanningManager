@@ -1,8 +1,9 @@
 #pragma once
 #include "calculation/Scheduler.h"
-namespace jobs {
-Baseline prepareBaseline(const Project& project, std::string name, std::string approvedBy, std::string reason, std::string createdAt);
-void verifyBaseline(const Baseline& baseline);
+namespace ppm {
+Baseline prepareBaseline(const Project &project, std::string name, std::string approvedBy, std::string reason,
+                         std::string createdAt);
+void verifyBaseline(const Baseline &baseline);
 struct TaskComparison {
     std::string taskId, name;
     std::optional<std::string> baselineStart, baselineFinish, planStart, planFinish, forecastStart, forecastFinish;
@@ -26,5 +27,5 @@ struct ComparisonReport {
     std::vector<TaskComparison> tasks;
     std::vector<std::string> contextChanges;
 };
-ComparisonReport compareToBaseline(const Project& project, const std::string& baselineId);
-}
+ComparisonReport compareToBaseline(const Project &project, const std::string &baselineId);
+} // namespace ppm

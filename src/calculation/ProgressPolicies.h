@@ -1,6 +1,6 @@
 #pragma once
 #include "calculation/Scheduler.h"
-namespace jobs {
+namespace ppm {
 struct IgnoredProgressRelation {
     std::string predecessorId, taskId;
     DependencyType type = DependencyType::FS;
@@ -27,4 +27,4 @@ ScheduleResult selectedProgressSchedule(const Project &);
 Project progressPolicyGraph(const Project &);
 // A read-only what-if. Neither output is adopted into the source Document.
 ProgressPolicyComparison compareProgressPolicies(const Project &, const std::shared_ptr<CalculationControl> & = {});
-} // namespace jobs
+} // namespace ppm

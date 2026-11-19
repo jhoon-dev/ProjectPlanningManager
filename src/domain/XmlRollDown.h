@@ -2,7 +2,7 @@
 #include "domain/Project.h"
 #include <map>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 bool hasXmlRollDown(const PlanInput &);
 void validateXmlRollDown(const PlanInput &);
 void extendRollDownLookups(PlanInput &);
@@ -26,4 +26,4 @@ private:
     std::unordered_map<std::string, const Task *> tasks_;
     std::unordered_map<std::string, const Resource *> resources_;
 };
-} // namespace jobs
+} // namespace ppm

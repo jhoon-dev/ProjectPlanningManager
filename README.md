@@ -17,6 +17,8 @@ Windows/macOS · C++20 / Qt 6.8 · 개발 중. 기본 작업은 계정·서버 �
 [주간 갱신 사용법](docs/weekly-update.md) · [첫 사용자와 과업 범위](docs/planning/20-first-user-weekly-update.md) ·
 [빌드·실행 안내](docs/development.md)
 
+코드·저장 식별자와 이전 파일·설정 호환성은 [PPM 식별자 이관](docs/ppm-identity-migration.md)을 참고하세요.
+
 현재는 합성 사례의 자동 검사와 전문가 화면 점검을 마쳤으며, **실제 PM 사용자 시험은 아직 진행하지 않았습니다.**
 준비된 [30개 작업 사례와 시험 계획](docs/planning/22-weekly-pm-pilot.md)은 주간 갱신부터 저장·재개까지를 대상으로 합니다.
 최초 계획 작성·기준선 생성의 실제 사용자 사용성과 Microsoft Project/Primavera 대체 가능성은 별도 검증이 필요합니다.

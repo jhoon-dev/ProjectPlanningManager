@@ -15,7 +15,7 @@
 #include <algorithm>
 #include <map>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s.data(), qsizetype(s.size()));
@@ -30,7 +30,7 @@ QString projectFolder(std::size_t i) {
     return QString("projects/%1").arg(i + 1, 3, 10, QChar('0'));
 }
 QJsonObject manifest(bool importing) {
-    return {{"contract", "jobs-xer-workspace-v1"},
+    return {{"contract", "ppm-xer-workspace-v1"},
             {"direction", importing ? "import" : "export"},
             {"atomicity", "all-or-nothing-new-folder"},
             {"externalRelations", "reject-incoming-and-outgoing"},
@@ -117,7 +117,7 @@ XerBatchExchange importXerBatch(const std::vector<XerBatchSource> &sources) {
                 const auto mapping = item.toObject();
                 if (mapping["kind"].toString() == "resource")
                     resources[digest + "/" + mapping["xerId"].toString()].push_back(
-                        {batch.projects.size(), mapping["jobsId"].toString().toUtf8().toStdString()});
+                        {batch.projects.size(), mapping["ppmId"].toString().toUtf8().toStdString()});
             }
             addProject(batch, std::move(exchange));
         }
@@ -308,4 +308,4 @@ QString xerBatchPreview(const XerBatchExchange &batch) {
     text += QString::fromUtf8(QJsonDocument(batch.report).toJson());
     return text;
 }
-} // namespace jobs
+} // namespace ppm

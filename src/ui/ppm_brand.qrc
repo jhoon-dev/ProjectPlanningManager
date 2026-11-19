@@ -1,5 +1,5 @@
 <RCC>
-  <qresource prefix="/jobs">
+  <qresource prefix="/ppm">
     <file alias="app.ico">../../packaging/icons/PPM.ico</file>
     <file alias="i18n/qtbase_ko.qm">../../resources/i18n/qtbase_ko.qm</file>
   </qresource>

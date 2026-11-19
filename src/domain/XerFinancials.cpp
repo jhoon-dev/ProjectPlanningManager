@@ -7,7 +7,7 @@
 #include <map>
 #include <set>
 #include <tuple>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const char *where) {
     throw AppError(ErrorCode::FILE_PRIMAVERAXER_080, {where});
@@ -310,4 +310,4 @@ void validateXerFinancialRevisions(const Project &p) {
         previousAllocations = r.allocations;
     }
 }
-} // namespace jobs
+} // namespace ppm

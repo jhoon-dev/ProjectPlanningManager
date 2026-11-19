@@ -10,7 +10,7 @@
 #include <QTemporaryDir>
 #include <functional>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool ok, const char *message) {
     if (!ok)
@@ -68,7 +68,7 @@ void codes(const Project &p) {
 int main(int argc, char **argv) {
     QCoreApplication app(argc, argv);
     try {
-        const auto bytes = read(JOBS_XER_MULTI_FIXTURE);
+        const auto bytes = read(PPM_XER_MULTI_FIXTURE);
         auto imported = importXerBatch({{bytes, "two.xer", XerEncoding::Utf8, {"200", "100"}}});
         check(imported.projects.size() == 2 && imported.workspace.projects.size() == 2, "batch import count");
         check(imported.projects[0].report["batchSourceProjectId"] == "200", "explicit selection order");

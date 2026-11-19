@@ -4,7 +4,7 @@
 #include <limits>
 #include <stdexcept>
 #include <vector>
-namespace jobs {
+namespace ppm {
 // Exact pointwise demand, then pointwise minimum across alternatives. Missing
 // resources and gaps contribute zero; bounding envelopes cannot replace this.
 template <class Span, class Check> std::vector<Span> normalizeDemand(const std::vector<Span> &spans, Check check) {
@@ -70,4 +70,4 @@ std::vector<Span> intersectDemand(const std::vector<Span> &a, const std::vector<
     }
     return result;
 }
-} // namespace jobs
+} // namespace ppm

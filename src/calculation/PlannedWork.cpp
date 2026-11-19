@@ -4,7 +4,7 @@
 #include <chrono>
 #include <cstdio>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 using Minute = std::int64_t;
 using Interval = std::pair<Minute, Minute>;
@@ -272,4 +272,4 @@ PlannedWorkResult convertPlannedWork(const Project &source, const std::string &t
     calculationCheckpoint();
     return std::move(basis.result);
 }
-} // namespace jobs
+} // namespace ppm

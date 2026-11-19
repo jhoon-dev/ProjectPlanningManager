@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <chrono>
 #include <set>
-namespace jobs {
+namespace ppm {
 ResourceAvailabilityQuery::ResourceAvailabilityQuery(const Project &p, const ScheduleResult &schedule,
                                                      std::size_t limit,
                                                      const std::set<std::string> *includedResources) {
@@ -118,4 +118,4 @@ ResourceAvailabilityPoint resourceAvailabilityPoint(const Resource &r, const Tas
         out.issue = "지정 시각의 자원 가용량이 미설정입니다.";
     return out;
 }
-} // namespace jobs
+} // namespace ppm

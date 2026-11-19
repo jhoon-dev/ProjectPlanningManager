@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <vector>
 #include <utility>
-namespace jobs {
+namespace ppm {
 // Reversible exclusions over immutable candidate arrays. A zero-sized domain is
 // outside this search unit; the caller keeps its task at the current dates.
 class CandidateDomains {
@@ -41,4 +41,4 @@ public:
         }
     }
 };
-} // namespace jobs
+} // namespace ppm

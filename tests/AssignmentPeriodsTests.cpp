@@ -20,7 +20,7 @@
 #include <future>
 #include <iostream>
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool ok, const char *message) {
     if (!ok)
         throw std::runtime_error(message);
@@ -83,7 +83,7 @@ void run() {
     auto p = fixture();
     validate(p);
     const auto plan = calculatePlan(p);
-    check(plan.status == CalculationStatus::Valid && plan.engineVersion == "jobs-effort-periods-1.0", "period engine");
+    check(plan.status == CalculationStatus::Valid && plan.engineVersion == "ppm-effort-periods-1.0", "period engine");
     const auto load = resourceLoad(p, plan);
     check(load.status == CalculationStatus::Valid && load.days.size() == 3, "shaped load valid");
     check(load.days[0].demandUnitMinutes == 72000 && load.days[1].demandUnitMinutes == 48000 &&
@@ -98,7 +98,7 @@ void run() {
     auto flat = p;
     flat.assignments[0].periods.clear();
     check(calculatePlan(flat).tasks == plan.tasks, "shape changed fixed duration dates");
-    rejects([&] { calculatePlan(p, "jobs-effort-1.1"); });
+    rejects([&] { calculatePlan(p, "ppm-effort-1.1"); });
     auto zero = p;
     zero.assignments[0].periods = {{0, 480, 0}};
     check(TaskExecution(zero, zero.tasks[0]).work(calculatePlan(zero).tasks[0]) == 96000, "zero override/default gaps");
@@ -360,7 +360,7 @@ void run() {
     selection.sourceRevision = adopted.project()->revision;
     adopted.adoptLeveling(selection);
     const auto decisions = adopted.project()->levelingDecisions.size();
-    check(calculatePlan(*adopted.project()).engineVersion == "jobs-adopted-periods-1.0", "adopted engine identity");
+    check(calculatePlan(*adopted.project()).engineVersion == "ppm-adopted-periods-1.0", "adopted engine identity");
     const auto adoptedBaseline = adopted.captureBaseline("승인", "담당", "곡선", "2026-11-05T02:00:00Z");
     (void)adoptedBaseline;
     verifyBaseline(adopted.project()->baselines[0]);

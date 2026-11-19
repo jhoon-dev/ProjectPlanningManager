@@ -26,7 +26,7 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool b, const char *m) {
     if (!b)
@@ -207,7 +207,7 @@ int main(int argc, char **argv) {
         QDir().mkpath("mpp-qa");
         QTemporaryDir temporary;
         JsonProjectStore store;
-        const QString root = QString::fromUtf8(JOBS_MPP_FIXTURES);
+        const QString root = QString::fromUtf8(PPM_MPP_FIXTURES);
         if (!app.arguments().contains("--ui-only")) {
             for (const auto &name : QStringList{"mpp9relations.mpp", "mpp12relations.mpp", "mpp14relations.mpp",
                                                 "assigned-resources-mpp8-project2003.mpp"}) {

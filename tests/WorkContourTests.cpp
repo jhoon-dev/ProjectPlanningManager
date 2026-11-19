@@ -19,7 +19,7 @@
 #include <iostream>
 #include <random>
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool v, const char *s) {
     if (!v)
         throw std::runtime_error(s);
@@ -203,7 +203,7 @@ void contracts() {
         choice.sourceDocumentId = selected.project()->documentId;
         choice.sourceRevision = selected.project()->revision;
         selected.adoptLeveling(choice);
-        check(calculatePlan(*selected.project()).engineVersion == "jobs-adopted-work-periods-1.0",
+        check(calculatePlan(*selected.project()).engineVersion == "ppm-adopted-work-periods-1.0",
               "adopted work engine");
         selected.captureBaseline("채택 곡선", "검토자", "동결", "2026-11-06T01:00:00Z");
         verifyBaseline(selected.project()->baselines.back());
@@ -272,7 +272,7 @@ void contracts() {
     check(TaskExecution(p, p.tasks[0]).spans(completed).empty(), "completed work produced future demand");
     auto row = calculatePlan(p);
     check(row.status == CalculationStatus::Valid && row.tasks[0].finish == "2026-11-02 18:00" &&
-              row.engineVersion == "jobs-effort-work-periods-1.0",
+              row.engineVersion == "ppm-effort-work-periods-1.0",
           "work contour plan");
     check(TaskExecution(p, p.tasks[0]).work(row.tasks[0]) == 48000, "planned work");
     check(nativeSchemaFor(p) == 24 && json::decodeProject(json::encodeProject(p), 24) == p, "schema24");

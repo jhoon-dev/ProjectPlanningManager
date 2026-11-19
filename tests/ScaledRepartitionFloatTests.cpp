@@ -14,7 +14,7 @@
 #include <algorithm>
 #include <iostream>
 
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool value, const std::string &message) {
     if (!value)
@@ -178,8 +178,8 @@ void compatibility() {
     selection.sourceDocumentId = archive.documentId;
     selection.sourceRevision = archive.revision;
     archive.planLeveling = selection;
-    auto legacy = calculatePlan(archive, "jobs-adopted-leveling-1.3");
-    check(legacy.engineVersion == "jobs-adopted-leveling-1.3" && !legacy.levelingFloatCalculated,
+    auto legacy = calculatePlan(archive, "ppm-adopted-leveling-1.3");
+    check(legacy.engineVersion == "ppm-adopted-leveling-1.3" && !legacy.levelingFloatCalculated,
           "legacy selected baseline replay");
     LevelingFloatScope legacyBaseline(3);
     auto baseline = prepareBaseline(archive, "기존 기준선", "PM", "보존", "2026-11-04T00:00:00Z");
@@ -192,7 +192,7 @@ void compatibility() {
     const auto reopened = json::decodeProject(json::encodeProject(archive), 14);
     check(reopened.baselines[0] == baseline, "legacy unavailable baseline archive changed");
     const auto now = calculatePlan(reopened);
-    check(now.engineVersion == "jobs-adopted-leveling-1.4" && now.levelingFloatCalculated && now.tasks != legacy.tasks,
+    check(now.engineVersion == "ppm-adopted-leveling-1.4" && now.levelingFloatCalculated && now.tasks != legacy.tasks,
           "current selected engine did not adopt expanded capability");
     auto result = analyze(chain(65, 2));
     const auto tasks = result.tasks;
@@ -230,7 +230,7 @@ int main(int argc, char **argv) {
         QDir().mkpath("scaled-repartition-float-qa");
         QFile file("scaled-repartition-float-qa/metrics.json");
         check(file.open(QIODevice::WriteOnly), "metrics write failed");
-        file.write(QJsonDocument(QJsonObject{{"engine", "jobs-adopted-leveling-1.4"}, {"cases", cases}}).toJson());
+        file.write(QJsonDocument(QJsonObject{{"engine", "ppm-adopted-leveling-1.4"}, {"cases", cases}}).toJson());
         std::cout << "Scaled repartition: fixed elimination, 128 movable tasks, iterative search, limits, legacy "
                      "replay passed\n";
     } catch (const std::exception &error) {

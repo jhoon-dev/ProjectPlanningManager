@@ -5,7 +5,7 @@ class QComboBox;
 class QCheckBox;
 class QLabel;
 class QTableView;
-namespace jobs {
+namespace ppm {
 class LevelingWitnessModel;
 class LevelingWitnessDialog final : public QDialog {
 public:
@@ -20,4 +20,4 @@ private:
     QTableView *table_;
     void refresh();
 };
-} // namespace jobs
+} // namespace ppm

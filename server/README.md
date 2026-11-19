@@ -10,8 +10,8 @@
 python -m venv .deps/server
 .deps/server/Scripts/python.exe -m pip install -r server/requirements-lock.txt
 # Qt/MinGW 경로를 설정한 셸에서:
-cmake -S . -B build-governance -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$pwd/.deps/Qt/6.8.3/mingw_64 -DCMAKE_CXX_COMPILER=$pwd/.deps/Qt/Tools/mingw1310_64/bin/c++.exe -DJOBS_SERVER_TEST_PYTHON=$pwd/.deps/server/Scripts/python.exe
-cmake --build build-governance --target JOBS PPM-Automation --parallel 4
+cmake -S . -B build-governance -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$pwd/.deps/Qt/6.8.3/mingw_64 -DCMAKE_CXX_COMPILER=$pwd/.deps/Qt/Tools/mingw1310_64/bin/c++.exe -DPPM_SERVER_TEST_PYTHON=$pwd/.deps/server/Scripts/python.exe
+cmake --build build-governance --target PPM PPM-Automation --parallel 4
 # 최초 관리자 생성: 비밀번호를 명령줄이나 파일에 쓰지 않고 프롬프트에서 입력
 ./scripts/server.ps1 -Action init -Username administrator
 ./scripts/server.ps1 -Action serve
@@ -77,7 +77,7 @@ POST /api/v1/projects/{project}/preview
 ## 검증
 
 ```powershell
-cmake -S . -B build-governance -DJOBS_SERVER_TEST_PYTHON=$pwd/.deps/server/Scripts/python.exe
+cmake -S . -B build-governance -DPPM_SERVER_TEST_PYTHON=$pwd/.deps/server/Scripts/python.exe
 cmake --build build-governance --parallel 4
 ctest --test-dir build-governance --output-on-failure
 ```

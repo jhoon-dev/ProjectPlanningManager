@@ -2,7 +2,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -153,4 +153,4 @@ ProjectReport sharedAvailabilityReport(const Workspace &w, const SharedAvailabil
     out.tables = {std::move(points), std::move(detail), std::move(sources)};
     return out;
 }
-} // namespace jobs
+} // namespace ppm

@@ -2,7 +2,7 @@
 #include "domain/Classification.h"
 #include "domain/CalculationControl.h"
 #include <bit>
-namespace jobs {
+namespace ppm {
 std::int64_t xmlSingleNumber(std::int64_t scaled) {
     calculationCheckpoint();
     constexpr std::uint64_t scale = 1000000, limit = 9000000000000000000ULL;
@@ -54,4 +54,4 @@ std::int64_t xmlSingleNumber(std::int64_t scaled) {
     calculationCheckpoint();
     return scaled < 0 ? -std::int64_t(result) : std::int64_t(result);
 }
-} // namespace jobs
+} // namespace ppm

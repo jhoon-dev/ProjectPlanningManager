@@ -15,12 +15,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def microsoft_signature(path):
-    command = "$ErrorActionPreference='Stop'; $s=Get-AuthenticodeSignature -LiteralPath $env:JOBS_SIGNED_TOOL; $s | Select-Object Status,@{Name='Subject';Expression={$_.SignerCertificate.Subject}} | ConvertTo-Json -Compress"
+    command = "$ErrorActionPreference='Stop'; $s=Get-AuthenticodeSignature -LiteralPath $env:PPM_SIGNED_TOOL; $s | Select-Object Status,@{Name='Subject';Expression={$_.SignerCertificate.Subject}} | ConvertTo-Json -Compress"
     import os
     env = os.environ.copy()
     # Windows PowerShell must not inherit PowerShell 7's incompatible module search path.
     env.pop('PSModulePath', None)
-    env['JOBS_SIGNED_TOOL'] = str(path)
+    env['PPM_SIGNED_TOOL'] = str(path)
     shell = shutil.which('pwsh.exe') or 'powershell.exe'
     if shell == 'powershell.exe':
         env['PSModulePath'] = str(Path(env['SystemRoot']) / 'System32/WindowsPowerShell/v1.0/Modules')

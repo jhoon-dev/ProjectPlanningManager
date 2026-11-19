@@ -15,7 +15,7 @@
 #include <QTableWidget>
 #include <QVBoxLayout>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromUtf8(s);
@@ -326,4 +326,4 @@ void editXmlWbsCodes(Document &doc, QWidget *parent) {
     prepareEditorDialog(dialog);
     dialog.exec();
 }
-} // namespace jobs
+} // namespace ppm

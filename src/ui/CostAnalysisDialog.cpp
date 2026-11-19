@@ -16,7 +16,7 @@
 #include <QPainterPath>
 #include <QDate>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s.data(), qsizetype(s.size()));
@@ -300,4 +300,4 @@ void CostAnalysisDialog::display(const CostAnalysis &r) {
     diagnostics_->setPlainText(messages.join('\n'));
     chart_->setReport(r);
 }
-} // namespace jobs
+} // namespace ppm

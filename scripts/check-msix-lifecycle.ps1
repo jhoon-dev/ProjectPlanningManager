@@ -9,7 +9,7 @@ if (-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administra
     throw 'Unsigned executable MSIX validation requires an elevated Windows 11/Server 2025 session. No policy or certificate changes are made.'
 }
 if (-not (Get-Command Add-AppxPackage).Parameters.ContainsKey('AllowUnsigned')) { throw 'AllowUnsigned is unavailable on this OS' }
-$expectedName = 'ToolMoa.JOBS.MsixDevelopment'
+$expectedName = 'ToolMoa.PPM.MsixDevelopment'
 $oid = 'OID.2.25.311729368913984317654407730594956997722=1'
 $initial = Get-Content -Raw ([IO.Path]::ChangeExtension($InitialPackage, '.json')) | ConvertFrom-Json
 $upgrade = Get-Content -Raw ([IO.Path]::ChangeExtension($UpgradePackage, '.json')) | ConvertFrom-Json
@@ -30,7 +30,7 @@ $testRoot = Join-Path $output "msix-smoke-$nonce"
 New-Item -ItemType Directory -Path $testRoot | Out-Null
 @{ nonce=$nonce } | ConvertTo-Json | Set-Content -Encoding UTF8 (Join-Path $testRoot 'test-owner.json')
 $report = [ordered]@{ status='running'; source_revision=$initial.source_revision; os=[Environment]::OSVersion.VersionString; initial_sha256=$initial.sha256; upgrade_sha256=$upgrade.sha256; checks=@(); store_submission=$false; wack='not run' }
-$legacyRoot = Join-Path $env:LOCALAPPDATA 'ToolMoa/JOBS'
+$legacyRoot = Join-Path $env:LOCALAPPDATA 'ToolMoa/PPM'
 $legacyExisted = Test-Path -LiteralPath $legacyRoot
 New-Item -ItemType Directory -Force -Path $legacyRoot | Out-Null
 $sentinel = Join-Path $legacyRoot "msix-smoke-$nonce.txt"
@@ -42,14 +42,14 @@ Add-Type -TypeDefinition @'
 using System;
 using System.Runtime.InteropServices;
 [ComImport, Guid("2e941141-7f97-4756-ba1d-9decde894a3d"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-interface IJobsActivation {
+interface IPpmActivation {
     [PreserveSig] int ActivateApplication([MarshalAs(UnmanagedType.LPWStr)] string id, [MarshalAs(UnmanagedType.LPWStr)] string args, uint options, out uint pid);
     [PreserveSig] int ActivateForFile(IntPtr id, IntPtr items, IntPtr verb, out uint pid);
     [PreserveSig] int ActivateForProtocol(IntPtr id, IntPtr items, out uint pid);
 }
-public static class JobsActivation {
+public static class PpmActivation {
     public static uint Run(string id, string args) {
-        var manager = (IJobsActivation)Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid("45ba127d-10a8-46ea-8ab7-56ea9078943c")));
+        var manager = (IPpmActivation)Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid("45ba127d-10a8-46ea-8ab7-56ea9078943c")));
         uint pid;
         Marshal.ThrowExceptionForHR(manager.ActivateApplication(id, args, 0, out pid));
         return pid;
@@ -58,7 +58,7 @@ public static class JobsActivation {
 '@
 function Invoke-Probe($package, $phase) {
     $args = '--root "' + $testRoot + '" --phase ' + $phase + ' --nonce ' + $nonce
-    $probeId = [JobsActivation]::Run(($package.PackageFamilyName + '!PackageProbe'), $args)
+    $probeId = [PpmActivation]::Run(($package.PackageFamilyName + '!PackageProbe'), $args)
     $script:ownedProcesses += $probeId
     $resultPath = Join-Path $testRoot "probe-$phase.json"
     $timer = [Diagnostics.Stopwatch]::StartNew()
@@ -80,13 +80,13 @@ try {
     $package = Get-AppxPackage -Name $expectedName
     if (-not $package -or [version]$package.Version -ne [version]$initial.version) { throw 'Initial package not registered' }
     $script:installedFamily = $package.PackageFamilyName
-    $mainId = [JobsActivation]::Run(($package.PackageFamilyName + '!JOBS'), '')
+    $mainId = [PpmActivation]::Run(($package.PackageFamilyName + '!PPM'), '')
     $script:ownedProcesses += $mainId
     $main = Get-Process -Id $mainId
-    if (-not $main.WaitForInputIdle(30000)) { throw 'Packaged JOBS did not initialize' }
+    if (-not $main.WaitForInputIdle(30000)) { throw 'Packaged PPM did not initialize' }
     $main.Refresh()
-    if ($main.MainWindowHandle -eq 0 -or -not $main.CloseMainWindow() -or -not $main.WaitForExit(15000)) { throw 'Packaged JOBS window did not open and close normally' }
-    $report.checks += 'production JOBS application entry point opened a native window and closed normally'
+    if ($main.MainWindowHandle -eq 0 -or -not $main.CloseMainWindow() -or -not $main.WaitForExit(15000)) { throw 'Packaged PPM window did not open and close normally' }
+    $report.checks += 'production PPM application entry point opened a native window and closed normally'
     $first = Invoke-Probe $package 'initial'
     $report.checks += 'installed and activated under actual package identity; create/save/open/calculate/undo/workspace/checkpoint'
     $privateRoot = Join-Path $env:LOCALAPPDATA ('Packages/' + $package.PackageFamilyName + '/LocalState')
@@ -117,7 +117,7 @@ try {
 } finally {
     foreach ($processId in $script:ownedProcesses) {
         $process = Get-Process -Id $processId -ErrorAction SilentlyContinue
-        if ($process -and $process.Path -and $process.Path -like '*\ToolMoa.JOBS.MsixDevelopment_*\*' -and $process.ProcessName -in @('PPM','jobs_msix_probe')) { Stop-Process -Id $processId -Force }
+        if ($process -and $process.Path -and $process.Path -like '*\ToolMoa.PPM.MsixDevelopment_*\*' -and $process.ProcessName -in @('PPM','ppm_msix_probe')) { Stop-Process -Id $processId -Force }
     }
     $remaining = Get-AppxPackage -Name $expectedName
     if ($remaining -and $script:installedFamily -eq $remaining.PackageFamilyName) { Remove-AppxPackage -Package $remaining.PackageFullName }

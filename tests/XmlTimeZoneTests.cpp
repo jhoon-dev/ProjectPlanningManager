@@ -40,8 +40,8 @@
 #include <algorithm>
 #include <iostream>
 namespace {
-using namespace jobs;
-using namespace jobs::test;
+using namespace ppm;
+using namespace ppm::test;
 void check(bool v, const char *s) {
     if (!v)
         throw std::runtime_error(s);
@@ -105,7 +105,7 @@ void verify(const Project &p) {
     check(RollUpValues(p).cell("", "field:summary").value == "2026-11-13T09:00:00+09:00", "summary conversion");
 }
 void transitions(const QString &out) {
-    QFile source(QString::fromUtf8(JOBS_TIMEZONE_DATA) + "/tzdb-2026f.inc");
+    QFile source(QString::fromUtf8(PPM_TIMEZONE_DATA) + "/tzdb-2026f.inc");
     check(source.open(QIODevice::ReadOnly), "embedded transition source");
     std::map<int, std::vector<qint64>> points;
     std::map<int, std::string> representatives;

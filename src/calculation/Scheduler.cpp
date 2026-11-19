@@ -1,4 +1,5 @@
 #include "domain/Diagnostics.h"
+#include "domain/BrandIdentifiers.h"
 #include "domain/ResourcePlan.h"
 #include "calculation/Scheduler.h"
 #include "calculation/WorkCalendar.h"
@@ -17,16 +18,16 @@
 #include <stdexcept>
 #include <string_view>
 
-namespace jobs {
+namespace ppm {
 namespace {
 struct EngineReplayPolicy {
     std::string_view engine;
     int levelingFloatVersion;
 };
 constexpr EngineReplayPolicy engineReplayPolicies[]{
-    {"jobs-adopted-leveling-1.0", 0}, {"jobs-adopted-leveling-1.1", 1}, {"jobs-adopted-leveling-1.2", 2},
-    {"jobs-adopted-leveling-1.3", 3}, {"jobs-adopted-leveling-1.4", 4}, {"jobs-adopted-leveling-1.5", 5},
-    {"jobs-adopted-leveling-1.6", 6}, {"jobs-adopted-leveling-1.7", 7}, {"jobs-adopted-leveling-1.8", 8},
+    {"ppm-adopted-leveling-1.0", 0}, {"ppm-adopted-leveling-1.1", 1}, {"ppm-adopted-leveling-1.2", 2},
+    {"ppm-adopted-leveling-1.3", 3}, {"ppm-adopted-leveling-1.4", 4}, {"ppm-adopted-leveling-1.5", 5},
+    {"ppm-adopted-leveling-1.6", 6}, {"ppm-adopted-leveling-1.7", 7}, {"ppm-adopted-leveling-1.8", 8},
     {materialFloatEngine, 9},
 };
 int replayLevelingFloatVersion(std::string_view engine) {
@@ -36,7 +37,8 @@ int replayLevelingFloatVersion(std::string_view engine) {
     return found == std::end(engineReplayPolicies) ? 8 : found->levelingFloatVersion;
 }
 } // namespace
-ScheduleResult calculatePlan(const Project &p, const std::string &engine) {
+ScheduleResult calculatePlan(const Project &p, const std::string &storedEngine) {
+    const auto engine = canonicalEngineIdentifier(storedEngine);
     if (!supportsEngine(p, engine))
         throw AppError(ErrorCode::BASELINE_RESULT_MISMATCH, {});
     LevelingFloatScope leveling(replayLevelingFloatVersion(engine));
@@ -202,4 +204,4 @@ ScheduleResult calculatePlan(const Project &p) {
     result.diagnostics.push_back({"RESOURCE_NOT_CHECKED", {}, {}, "RESOURCE_NOT_CHECKED"});
     return result;
 }
-} // namespace jobs
+} // namespace ppm

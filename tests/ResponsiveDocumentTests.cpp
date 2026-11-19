@@ -11,11 +11,11 @@ void check(bool value, const char *message) {
     if (!value)
         throw std::runtime_error(message);
 }
-bool sameInput(jobs::Project a, const jobs::Project &b) {
+bool sameInput(ppm::Project a, const ppm::Project &b) {
     a.revision = b.revision;
     return a == b;
 }
-void verifyDirty(const jobs::Document &doc, const jobs::Project &saved) {
+void verifyDirty(const ppm::Document &doc, const ppm::Project &saved) {
     check(doc.dirty() == !sameInput(*doc.project(), saved), "incremental dirty disagrees with full value comparison");
 }
 } // namespace
@@ -23,35 +23,35 @@ int main(int argc, char **argv) {
     QCoreApplication app(argc, argv);
     try {
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
+        ppm::JsonProjectStore store;
         const auto path = dir.filePath("Responsive.ppm").toUtf8().toStdString();
         store.save(path, performanceFixture(10000, false), {});
-        jobs::Document doc(store);
+        ppm::Document doc(store);
         doc.open(path);
         for (int i = 0; i < 3; ++i)
             doc.captureBaseline("B" + std::to_string(i), "PM", "large baseline", "2026-10-28T00:00:00Z");
         doc.save();
         auto saved = *doc.project();
         {
-            jobs::ProjectState savedState;
+            ppm::ProjectState savedState;
             savedState = saved;
-            auto control = std::make_shared<jobs::CalculationControl>();
+            auto control = std::make_shared<ppm::CalculationControl>();
             control->cancel();
-            jobs::EvaluationScope scope(control);
-            check(!jobs::compareSavedInput(saved, savedState).dirty(),
+            ppm::EvaluationScope scope(control);
+            check(!ppm::compareSavedInput(saved, savedState).dirty(),
                   "post-commit bookkeeping cooperatively unwound a live edit");
         }
         const auto snapshot = doc.snapshot();
         check(snapshot.get() == doc.snapshot().get(), "snapshot capture copied input");
-        auto oldRequest = doc.makeEditRequest(jobs::DurationEdit{"T9999", 120});
+        auto oldRequest = doc.makeEditRequest(ppm::DurationEdit{"T9999", 120});
         doc.renameTask(9999, "Late edit");
         check(snapshot->tasks.back().name == "Task 9999" && snapshot->revision == saved.revision,
               "synchronous writer modified an owning request snapshot");
         auto old =
             std::async(std::launch::async, [request = std::move(oldRequest)]() mutable {
-                return jobs::Document::prepareEdit(std::move(request), std::make_shared<jobs::CalculationControl>());
+                return ppm::Document::prepareEdit(std::move(request), std::make_shared<ppm::CalculationControl>());
             }).get();
-        check(doc.applyPreparedEdit(*old) == jobs::EditState::Stale, "stale snapshot applied");
+        check(doc.applyPreparedEdit(*old) == ppm::EditState::Stale, "stale snapshot applied");
         check(doc.lastDirtyTaskComparisons() == 2, "name edit scanned saved project");
         verifyDirty(doc, saved);
         doc.renameTask(9999, "Task 9999");
@@ -91,23 +91,23 @@ int main(int argc, char **argv) {
         check(!doc.dirty(), "structural fallback did not restore dirty tracker");
         doc.open(path);
         doc.setDuration(9999, 120);
-        auto request = doc.makeEditRequest(jobs::DurationEdit{"T9999", 60});
+        auto request = doc.makeEditRequest(ppm::DurationEdit{"T9999", 60});
         auto result =
             std::async(std::launch::async, [request = std::move(request)]() mutable {
-                return jobs::Document::prepareEdit(std::move(request), std::make_shared<jobs::CalculationControl>());
+                return ppm::Document::prepareEdit(std::move(request), std::make_shared<ppm::CalculationControl>());
             }).get();
         // The proposal restores the OLD save point, then a regular save moves it.
         // A cached bool would incorrectly mark the proposal clean here.
         doc.save();
         saved = *doc.project();
-        check(doc.applyPreparedEdit(*result) == jobs::EditState::Applied && doc.dirty() &&
+        check(doc.applyPreparedEdit(*result) == ppm::EditState::Applied && doc.dirty() &&
                   doc.lastDirtyTaskComparisons() == 0,
               "prepared dirty did not follow a normal save during preparation");
         verifyDirty(doc, saved);
         doc.setDuration(9999, 120);
         check(!doc.dirty(), "prepared task mismatch count was wrong");
         auto retired = result->takeRetiredProjects();
-        check(doc.applyPreparedEdit(*result) == jobs::EditState::Stale && !retired.empty(),
+        check(doc.applyPreparedEdit(*result) == ppm::EditState::Stale && !retired.empty(),
               "retired proposal was reusable");
         doc.setDuration(0, 120);
         doc.save();

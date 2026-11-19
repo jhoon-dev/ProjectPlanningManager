@@ -32,7 +32,7 @@
 #include <iostream>
 
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool good, const char *message) {
     if (!good)
         throw std::runtime_error(message);
@@ -100,7 +100,7 @@ void workflow() {
     doc.setTaskAttribute({c}, "code:zone", "south");
     doc.captureBaseline("원본 승인", "PM", "검증", "2026-11-02T00:00:00Z");
     const auto frozen = doc.project()->baselines[0];
-    doc.applyCalculation(jobs::calculate(*doc.project()));
+    doc.applyCalculation(ppm::calculate(*doc.project()));
     MainWindow window(doc);
     window.resize(1500, 900);
     window.show();
@@ -203,7 +203,7 @@ void workflow() {
     const auto saved = *doc.project();
     Document readonly(store);
     readonly.open(doc.path(), true);
-    readonly.applyCalculation(jobs::calculate(*readonly.project()));
+    readonly.applyCalculation(ppm::calculate(*readonly.project()));
     MainWindow viewer(readonly);
     viewer.resize(1500, 900);
     viewer.show();
@@ -271,7 +271,7 @@ void performance() {
         store.save(path, p, {});
         Document doc(store);
         doc.open(path);
-        doc.applyCalculation(jobs::calculate(*doc.project()));
+        doc.applyCalculation(ppm::calculate(*doc.project()));
         MainWindow window(doc);
         window.show();
         QJsonArray times;

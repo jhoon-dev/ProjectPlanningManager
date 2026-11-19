@@ -2,25 +2,25 @@
 #include "domain/Project.h"
 #include "calculation/WorkCalendar.h"
 namespace expanded_fixture {
-inline jobs::Project chain(int count, int slack = 2, bool separate = false) {
-    jobs::Project p;
+inline ppm::Project chain(int count, int slack = 2, bool separate = false) {
+    ppm::Project p;
     p.documentId = "expanded-repartition";
     p.name = "128개 초과 재분할";
     p.startDate = "2026-11-02";
-    p.calculationProfile = jobs::constraintProfile;
-    jobs::Resource r;
+    p.calculationProfile = ppm::constraintProfile;
+    ppm::Resource r;
     r.id = "R";
     r.name = "공유 인력";
     r.rates = {{p.startDate, 60}};
     r.exceptions = {{"2026-11-30", 100}};
     p.resources = {r};
-    jobs::WorkCalendar clock(p, jobs::Task{});
+    ppm::WorkCalendar clock(p, ppm::Task{});
     const int step = separate ? 3 : 1;
     for (int i = 0; i < count; ++i) {
         const auto id = "T" + std::to_string(i);
-        jobs::Task t{id, id, 1, i ? std::vector<std::string>{"T" + std::to_string(i - 1)} : std::vector<std::string>{}};
+        ppm::Task t{id, id, 1, i ? std::vector<std::string>{"T" + std::to_string(i - 1)} : std::vector<std::string>{}};
         if (separate) {
-            t.constraintType = jobs::ConstraintType::SNET;
+            t.constraintType = ppm::ConstraintType::SNET;
             t.constraintAt = clock.boundary(i * step, false);
         }
         p.tasks.push_back(t);
@@ -32,8 +32,8 @@ inline jobs::Project chain(int count, int slack = 2, bool separate = false) {
     if (separate)
         for (int i = 0; i < count; ++i) {
             const auto id = "M" + std::to_string(i);
-            jobs::Task marker{id, "고정 완료 경계", 0, {"T" + std::to_string(i)}};
-            marker.constraintType = jobs::ConstraintType::MSO;
+            ppm::Task marker{id, "고정 완료 경계", 0, {"T" + std::to_string(i)}};
+            marker.constraintType = ppm::ConstraintType::MSO;
             marker.constraintAt = clock.boundary(i * step + slack + 1, true);
             p.tasks.push_back(marker);
             p.taskCosts.push_back({id, 0});

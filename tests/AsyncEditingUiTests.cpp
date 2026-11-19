@@ -40,12 +40,12 @@ bool wait(const std::function<bool()> &predicate, int timeout = 30000) {
         QTest::qWait(1);
     return predicate();
 }
-bool calculationRunning(const std::shared_ptr<jobs::CalculationControl> &control) {
+bool calculationRunning(const std::shared_ptr<ppm::CalculationControl> &control) {
     if (!control)
         return false;
     const auto stage = control->stage.load();
-    return (stage == jobs::CalculationStage::Calendars || stage == jobs::CalculationStage::Forward ||
-            stage == jobs::CalculationStage::Backward) &&
+    return (stage == ppm::CalculationStage::Calendars || stage == ppm::CalculationStage::Forward ||
+            stage == ppm::CalculationStage::Backward) &&
            control->completed.load() > 10;
 }
 QByteArray bytes(const std::string &path) {
@@ -82,7 +82,7 @@ void callbackCheck(bool value, const char *message) {
         std::_Exit(2);
     }
 }
-void editDuration(jobs::TaskTableView *table, const QString &text) {
+void editDuration(ppm::TaskTableView *table, const QString &text) {
     table->setCurrentCell(0, 1);
     table->setFocus();
     table->edit(cell(table, 0, 1));
@@ -106,18 +106,17 @@ int main(int argc, char **argv) {
     watchdog.start(150000);
     try {
         QTemporaryDir directory;
-        jobs::JsonProjectStore store;
+        ppm::JsonProjectStore store;
         const auto fixture = performanceFixture(10000, true);
         const auto path = directory.filePath("AsyncPlan.ppm").toUtf8().toStdString();
         store.save(path, fixture, {});
-        jobs::Document document(store);
+        ppm::Document document(store);
         document.open(path);
-        jobs::MainWindow window(document);
+        ppm::MainWindow window(document);
         window.show();
         app.processEvents();
         auto *table = taskTable(window);
-        auto *controller =
-            dynamic_cast<jobs::AsyncEditController *>(window.findChild<QObject *>("asyncEditController"));
+        auto *controller = dynamic_cast<ppm::AsyncEditController *>(window.findChild<QObject *>("asyncEditController"));
         check(table && controller && table->rowCount() == 10000 && window.findChildren<QTableWidget *>().isEmpty(),
               "task table is not model/view only");
         auto before = *document.project();
@@ -194,8 +193,8 @@ int main(int argc, char **argv) {
         const double settledMs = double(elapsed.nsecsElapsed()) / 1000000;
         measuredPhase = false;
         action(window, "undoEdit")->trigger();
-        check(static_cast<const jobs::PlanInput &>(*document.project()) ==
-                      static_cast<const jobs::PlanInput &>(fixture) &&
+        check(static_cast<const ppm::PlanInput &>(*document.project()) ==
+                      static_cast<const ppm::PlanInput &>(fixture) &&
                   !document.dirty(),
               "asynchronous edit was not one undo");
         before = *document.project();
@@ -244,17 +243,17 @@ int main(int argc, char **argv) {
         calculate(window)->trigger();
         check(wait([&] {
                   return !controller->busy() && document.calculation() &&
-                         document.calculation()->status == jobs::CalculationStatus::Valid &&
+                         document.calculation()->status == ppm::CalculationStatus::Valid &&
                          document.calculation()->inputRevision == document.project()->revision;
               }),
               "F9 did not wait for pending edit");
         check(document.project()->tasks[0].durationMinutes == 150, "F9 used the old task input");
-        auto *gantt = dynamic_cast<jobs::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
+        auto *gantt = dynamic_cast<ppm::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
         check(gantt, "Gantt missing");
         gantt->taskEdited(document.project()->documentId, document.project()->revision, "T0", true, "2026-10-27 12:00");
         check(controller->busy() && wait([&] {
                   return !controller->busy() && document.calculation() &&
-                         document.calculation()->status == jobs::CalculationStatus::Valid &&
+                         document.calculation()->status == ppm::CalculationStatus::Valid &&
                          document.calculation()->inputRevision == document.project()->revision;
               }),
               "Gantt effort resize did not prepare/recalculate asynchronously");
@@ -270,7 +269,7 @@ int main(int argc, char **argv) {
               "fixed-work paste did not apply the prepared duration");
         action(window, "undoEdit")->trigger();
         check(wait([&] { return !controller->busy(); }), "paste undo timeout");
-        check(static_cast<const jobs::PlanInput &>(*document.project()) == static_cast<const jobs::PlanInput &>(before),
+        check(static_cast<const ppm::PlanInput &>(*document.project()) == static_cast<const ppm::PlanInput &>(before),
               "asynchronous paste was not one undo");
         std::cout << "stage: deferred save/F9, Gantt and batch inversion" << std::endl;
         table->selectRow(0);
@@ -291,13 +290,13 @@ int main(int argc, char **argv) {
         document.setStatusAt("2026-10-26 18:00");
         calculate(window)->trigger();
         check(wait([&] {
-                  return document.calculation() && document.calculation()->status == jobs::CalculationStatus::Valid &&
+                  return document.calculation() && document.calculation()->status == ppm::CalculationStatus::Valid &&
                          document.calculation()->inputRevision == document.project()->revision;
               }),
               "effort forecast failed");
         check(document.calculation()->plannedTasks.size() == 10000,
               "forecast omitted its worker-prepared plan metadata");
-        const auto summary = jobs::summarizeWbs(*document.project(), &*document.calculation(), {});
+        const auto summary = ppm::summarizeWbs(*document.project(), &*document.calculation(), {});
         check(summary.taskCount == 10000 && summary.missingDurations == 0, "forecast rollup lost planned durations");
         before = *document.project();
         const auto modalDisk = bytes(path);
@@ -360,8 +359,7 @@ int main(int argc, char **argv) {
                   document.project()->progress == before.progress,
               "assignment retry did not retain original work/immutable progress");
         action(window, "undoEdit")->trigger();
-        check(static_cast<const jobs::PlanInput &>(*document.project()) ==
-                      static_cast<const jobs::PlanInput &>(before) &&
+        check(static_cast<const ppm::PlanInput &>(*document.project()) == static_cast<const ppm::PlanInput &>(before) &&
                   document.project()->progress == before.progress,
               "assignment retry was not one undo");
         table->selectRow(10);
@@ -380,7 +378,7 @@ int main(int argc, char **argv) {
                   << std::endl;
         calculate(window)->trigger();
         check(wait([&] {
-                  return document.calculation() && document.calculation()->status == jobs::CalculationStatus::Valid &&
+                  return document.calculation() && document.calculation()->status == ppm::CalculationStatus::Valid &&
                          document.calculation()->inputRevision == document.project()->revision;
               }),
               "final progress forecast failed");
@@ -391,23 +389,23 @@ int main(int argc, char **argv) {
         check(window.grab().save("async-editing-ui.png"), "async UI screenshot failed");
         window.hide();
         // Closing/destroying a view never leaves a worker holding its Document or widgets.
-        jobs::Document temporary(store);
+        ppm::Document temporary(store);
         temporary.open(path, true);
         temporary.saveAs(directory.filePath("Lifetime.ppm").toUtf8().toStdString());
         const auto lifetimeBefore = *temporary.project();
-        jobs::MainWindow *dying = nullptr;
+        ppm::MainWindow *dying = nullptr;
         const auto destructionObserver = temporary.subscribe([&](auto event) {
-            if (event == jobs::Document::Event::Edited && dying) {
+            if (event == ppm::Document::Event::Edited && dying) {
                 delete dying;
                 dying = nullptr;
             }
         });
-        dying = new jobs::MainWindow(temporary);
+        dying = new ppm::MainWindow(temporary);
         dying->show();
         app.processEvents();
         setCellText(taskTable(*dying), 0, 1, "3h");
         auto *dyingController =
-            dynamic_cast<jobs::AsyncEditController *>(dying->findChild<QObject *>("asyncEditController"));
+            dynamic_cast<ppm::AsyncEditController *>(dying->findChild<QObject *>("asyncEditController"));
         auto dyingControl = dyingController->control();
         temporary.renameTask(1, "Destroy during notification");
         check(!dying, "view did not close during observer delivery");
@@ -418,11 +416,11 @@ int main(int argc, char **argv) {
               "view destruction retained callbacks/live document access");
         temporary.unsubscribe(destructionObserver);
         // An observer may also close the view during the worker's GUI commit.
-        dying = new jobs::MainWindow(temporary);
+        dying = new ppm::MainWindow(temporary);
         dying->show();
         app.processEvents();
         const auto commitDestructionObserver = temporary.subscribe([&](auto event) {
-            if (event == jobs::Document::Event::Edited && dying) {
+            if (event == ppm::Document::Event::Edited && dying) {
                 delete dying;
                 dying = nullptr;
             }
@@ -436,12 +434,12 @@ int main(int argc, char **argv) {
             {"status", "success"},
             {"task_count", 10000},
             {"platform", QApplication::platformName()},
-            {"fixture", "jobs-perf-layered-v1"},
-            {"source_revision", JOBS_PERF_REVISION},
-            {"built_product_source_sha256", JOBS_SOURCE_SHA256},
+            {"fixture", "ppm-perf-layered-v1"},
+            {"source_revision", PPM_PERF_REVISION},
+            {"built_product_source_sha256", PPM_SOURCE_SHA256},
             {"qt", qVersion()},
             {"os", QSysInfo::prettyProductName()},
-            {"build_configuration", JOBS_PERF_CONFIG},
+            {"build_configuration", PPM_PERF_CONFIG},
             {"enqueue_gui_ms", enqueueMs},
             {"successful_edit_settled_ms", settledMs},
             {"heartbeat_count_while_editing", heartbeats},

@@ -40,26 +40,26 @@ int main(int argc, char **argv) {
     watchdog.start(60000);
     try {
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
-        jobs::Project p;
+        ppm::JsonProjectStore store;
+        ppm::Project p;
         p.documentId = "large-ui";
         p.name = "Large UI";
         p.startDate = "2026-10-26";
         for (int i = 0; i < 1000; ++i) {
-            jobs::Task t{"T" + std::to_string(i), "Task " + std::to_string(i), 60, {}};
+            ppm::Task t{"T" + std::to_string(i), "Task " + std::to_string(i), 60, {}};
             if (i >= 100)
                 t.predecessors = {"T" + std::to_string(i - 100)};
             p.tasks.push_back(t);
         }
         const auto path = dir.filePath("large.ppm").toStdString();
         store.save(path, p, {});
-        jobs::Document doc(store);
+        ppm::Document doc(store);
         doc.open(path);
-        doc.applyCalculation(jobs::calculate(p));
-        jobs::MainWindow window(doc);
+        doc.applyCalculation(ppm::calculate(p));
+        ppm::MainWindow window(doc);
         window.show();
         app.processEvents();
-        auto *view = dynamic_cast<jobs::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
+        auto *view = dynamic_cast<ppm::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
         auto *table = taskTable(window);
         auto *cancel = window.findChild<QAction *>("cancelCalculation");
         QAction *calculate = nullptr;
@@ -68,7 +68,7 @@ int main(int argc, char **argv) {
                 calculate = a;
         check(view && table && cancel && calculate && table->rowCount() == 1000, "large table or controls missing");
         const auto bound = [&] {
-            return 8 * ((view->viewport()->height() + jobs::GanttView::HeaderHeight) / jobs::GanttView::RowHeight + 12);
+            return 8 * ((view->viewport()->height() + ppm::GanttView::HeaderHeight) / ppm::GanttView::RowHeight + 12);
         };
         check(view->scene()->items().size() < bound(), "gantt created every task graphic");
         view->verticalScrollBar()->setValue(view->verticalScrollBar()->maximum());
@@ -78,7 +78,7 @@ int main(int argc, char **argv) {
             if (item->data(0) == "T999" && item->data(1) == "task")
                 last = true;
         check(last && view->scene()->items().size() < bound(), "scroll omitted final task or exceeded viewport bound");
-        jobs::Baseline baseline;
+        ppm::Baseline baseline;
         baseline.schedule = doc.calculation()->tasks;
         view->setBaseline(&baseline);
         bool baselineLast = false, dependencyLast = false;
@@ -105,7 +105,7 @@ int main(int argc, char **argv) {
         check(cancel->isEnabled(), "cancel not enabled during request");
         cancel->trigger();
         check(wait([&] { return calculate->isEnabled(); }) &&
-                  doc.calculation()->status == jobs::CalculationStatus::Cancelled,
+                  doc.calculation()->status == ppm::CalculationStatus::Cancelled,
               "UI race did not retain cancellation");
         check(doc.calculation()->tasks.empty() && !doc.calculation()->projectFinish && *doc.project() == before &&
                   !doc.dirty(),
@@ -118,8 +118,7 @@ int main(int argc, char **argv) {
         window.grab().save("performance-cancel-smoke.png");
         calculate->trigger();
         check(wait([&] { return calculate->isEnabled(); }) &&
-                  doc.calculation()->status == jobs::CalculationStatus::Valid &&
-                  doc.calculation()->tasks.size() == 1000,
+                  doc.calculation()->status == ppm::CalculationStatus::Valid && doc.calculation()->tasks.size() == 1000,
               "UI restart failed");
         check(!progress->isVisible(), "completed schedule progress still occupies status bar");
         // A drag edit queues a fresh revision while the old snapshot is running.
@@ -130,11 +129,11 @@ int main(int argc, char **argv) {
         check(wait([&] { return calculate->isEnabled(); }), "cancel with queued revision did not finish");
         QTest::qWait(100);
         check(calculate->isEnabled() && doc.project()->revision == editedRevision &&
-                  doc.calculation()->status == jobs::CalculationStatus::Stale && doc.calculation()->tasks.empty(),
+                  doc.calculation()->status == ppm::CalculationStatus::Stale && doc.calculation()->tasks.empty(),
               "explicit cancel restarted queued calculation or exposed old dates");
         calculate->trigger();
         check(wait([&] { return calculate->isEnabled(); }) &&
-                  doc.calculation()->status == jobs::CalculationStatus::Valid,
+                  doc.calculation()->status == ppm::CalculationStatus::Valid,
               "restart after queue cancellation failed");
         // Replacement while a result is queued for the UI must discard that result.
         calculate->trigger();

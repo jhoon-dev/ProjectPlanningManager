@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <map>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &message) {
     throw AppError(ErrorCode::WORKSPACE_INVALID, {message});
@@ -124,4 +124,4 @@ void appendCollaboration(Workspace &w, CollaborationEvent event) {
     validateWorkspace(proposed);
     w = std::move(proposed);
 }
-} // namespace jobs
+} // namespace ppm

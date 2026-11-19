@@ -15,7 +15,7 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 #include <cmath>
-namespace jobs {
+namespace ppm {
 namespace {
 constexpr qsizetype inputLimit = 32 * 1024 * 1024, xmlLimit = 16 * 1024 * 1024;
 [[noreturn]] void bad(const QString &s) {
@@ -334,4 +334,4 @@ QString projectMppPreview(const ProjectMppExchange &e) {
            " · 계획 사본 통화: " + QString::fromStdString(e.project.currency) + " (원가·단가 변환/환산 없음)\n\n" +
            summary + text;
 }
-} // namespace jobs
+} // namespace ppm

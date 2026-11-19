@@ -45,10 +45,10 @@ int main(int argc, char **argv) {
                   repeats % 2,
               "unsupported fixture/repeats");
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
+        ppm::JsonProjectStore store;
         const auto path = dir.filePath("Snapshot.ppm").toUtf8().toStdString();
         store.save(path, performanceFixture(n, true), {});
-        jobs::Document document(store);
+        ppm::Document document(store);
         document.open(path);
         for (int i = 0; i < baselineCount; ++i)
             document.captureBaseline("Baseline " + std::to_string(i), "PM", "response measurement",
@@ -59,44 +59,44 @@ int main(int argc, char **argv) {
         for (int i = 0; i < repeats; ++i) {
             QElapsedTimer timer;
             timer.start();
-            auto request = document.makeEditRequest(jobs::DurationEdit{"T0", 120});
+            auto request = document.makeEditRequest(ppm::DurationEdit{"T0", 120});
             requestTimes.push_back(double(timer.nsecsElapsed()) / 1e6);
             auto worker = std::async(std::launch::async, [request = std::move(request)]() mutable {
                 QElapsedTimer clock;
                 clock.start();
                 auto result =
-                    jobs::Document::prepareEdit(std::move(request), std::make_shared<jobs::CalculationControl>());
+                    ppm::Document::prepareEdit(std::move(request), std::make_shared<ppm::CalculationControl>());
                 return std::pair{std::move(result), double(clock.nsecsElapsed()) / 1e6};
             });
             auto [result, elapsed] = worker.get();
             workerTimes.push_back(elapsed);
-            check(result->state() == jobs::EditState::Ready, "preparation failed");
+            check(result->state() == ppm::EditState::Ready, "preparation failed");
             timer.restart();
             const auto state = document.applyPreparedEdit(*result);
             applyTimes.push_back(double(timer.nsecsElapsed()) / 1e6);
-            check(state == jobs::EditState::Applied && document.dirty() &&
+            check(state == ppm::EditState::Applied && document.dirty() &&
                       document.project()->tasks[0].durationMinutes == 120 &&
                       document.project()->tasks[0].workUnitMinutes == 6000 &&
                       document.project()->assignments[0].units == 50,
                   "prepared edit changed work/failed dirty");
             document.undo();
             check(!document.dirty() &&
-                      static_cast<const jobs::PlanInput &>(*document.project()) ==
-                          static_cast<const jobs::PlanInput &>(original) &&
+                      static_cast<const ppm::PlanInput &>(*document.project()) ==
+                          static_cast<const ppm::PlanInput &>(original) &&
                       document.project()->baselines == original.baselines,
                   "undo did not restore input/save point");
         }
         QJsonObject output{
             {"status", "success"},
-            {"fixture", "jobs-responsive-phases-v1"},
+            {"fixture", "ppm-responsive-phases-v1"},
             {"task_count", n},
             {"baseline_count", baselineCount},
             {"repeats", repeats},
             {"request_gui", samples(requestTimes)},
             {"prepare_worker", samples(workerTimes)},
             {"apply_gui", samples(applyTimes)},
-            {"source_revision", JOBS_PERF_REVISION},
-            {"built_product_source_sha256", JOBS_SOURCE_SHA256},
+            {"source_revision", PPM_PERF_REVISION},
+            {"built_product_source_sha256", PPM_SOURCE_SHA256},
             {"os", QSysInfo::prettyProductName()},
             {"platform", QApplication::platformName()},
             {"qt", qVersion()},

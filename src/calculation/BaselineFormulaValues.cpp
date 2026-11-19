@@ -6,7 +6,7 @@
 #include "domain/XmlBaselines.h"
 #include <set>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 void baselineValues(const Project &p, const Baseline *selected, std::uint64_t version,
                     const std::set<std::string> &references, XmlScheduleValues &out) {
@@ -225,4 +225,4 @@ void addBaselineFormulaValues(const Project &p, XmlScheduleValues &out) {
         }
     }
 }
-} // namespace jobs
+} // namespace ppm

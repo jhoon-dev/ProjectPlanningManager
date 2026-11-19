@@ -35,44 +35,44 @@ QByteArray bytes(const std::string &path) {
     check(file.open(QIODevice::ReadOnly), "saved fixture unreadable");
     return file.readAll();
 }
-std::string setup(jobs::Document &doc, bool fixedUnits, bool nominal = true, bool rounding = false) {
+std::string setup(ppm::Document &doc, bool fixedUnits, bool nominal = true, bool rounding = false) {
     doc.create("Duration follow-ups", "2026-10-26", {"A"});
     const auto id = doc.project()->tasks[0].id;
     const auto resource = doc.putResource({{}, "R", "labor", 100, {}});
     doc.setAssignments(id, {{id, resource, rounding ? 100 : 50}});
-    doc.setTaskEffort(0, fixedUnits ? jobs::TaskType::FixedUnits : jobs::TaskType::FixedWork, true,
+    doc.setTaskEffort(0, fixedUnits ? ppm::TaskType::FixedUnits : ppm::TaskType::FixedWork, true,
                       nominal ? std::optional<std::int64_t>{480} : std::nullopt, rounding ? 1001 : 48000, {});
     return resource;
 }
-jobs::AsyncEditController *controller(jobs::MainWindow &window) {
-    auto *result = dynamic_cast<jobs::AsyncEditController *>(window.findChild<QObject *>("asyncEditController"));
+ppm::AsyncEditController *controller(ppm::MainWindow &window) {
+    auto *result = dynamic_cast<ppm::AsyncEditController *>(window.findChild<QObject *>("asyncEditController"));
     check(result, "edit controller missing");
     return result;
 }
-void paste(jobs::MainWindow &window, const QString &text) {
+void paste(ppm::MainWindow &window, const QString &text) {
     QApplication::clipboard()->setText(text);
     auto *action = window.findChild<QAction *>("pasteTaskCells");
     waitFor([&] { return action && action->isEnabled(); });
     action->trigger();
     waitFor([&] { return !controller(window)->busy(); });
 }
-void pasteRoundtrip(jobs::JsonProjectStore &store, const std::string &path, bool fixedUnits, bool forecast,
-                    bool nominal, bool calculated) {
-    jobs::Document doc(store);
+void pasteRoundtrip(ppm::JsonProjectStore &store, const std::string &path, bool fixedUnits, bool forecast, bool nominal,
+                    bool calculated) {
+    ppm::Document doc(store);
     setup(doc, fixedUnits, nominal, !fixedUnits);
     if (forecast)
         doc.setStatusAt("2026-10-26 09:00");
     doc.renameTask(0, "Temporary");
     doc.undo();
     if (calculated)
-        doc.applyCalculation(jobs::calculate(*doc.project()));
+        doc.applyCalculation(ppm::calculate(*doc.project()));
     doc.saveAs(path);
     const auto source = *doc.project();
     const auto history = doc.historyBytes();
     const auto generation = doc.calculationGeneration();
     const auto redo = doc.redoLabel(), undo = doc.undoLabel();
     const auto disk = bytes(path);
-    jobs::MainWindow window(doc);
+    ppm::MainWindow window(doc);
     window.show();
     auto *view = taskTable(window);
     for (bool wholeRow : {false, true}) {
@@ -140,16 +140,16 @@ public:
         QThreadPool::globalInstance()->setMaxThreadCount(threads_);
     }
 };
-void revertPending(jobs::JsonProjectStore &store, const std::string &path, bool rounding, bool queued, bool late) {
-    jobs::Document doc(store);
+void revertPending(ppm::JsonProjectStore &store, const std::string &path, bool rounding, bool queued, bool late) {
+    ppm::Document doc(store);
     setup(doc, false, true, rounding);
-    doc.applyCalculation(jobs::calculate(*doc.project()));
+    doc.applyCalculation(ppm::calculate(*doc.project()));
     doc.saveAs(path);
     const auto source = *doc.project();
     const auto history = doc.historyBytes();
     const auto generation = doc.calculationGeneration();
     const auto disk = bytes(path);
-    jobs::MainWindow window(doc);
+    ppm::MainWindow window(doc);
     window.show();
     auto *view = taskTable(window);
     const auto original = cellText(view, 0, 1);
@@ -186,16 +186,16 @@ void revertPending(jobs::JsonProjectStore &store, const std::string &path, bool 
           "reverting active/queued/finished duration did not preserve original input/history");
     window.hide();
 }
-void unrelatedPending(jobs::JsonProjectStore &store) {
-    jobs::Document doc(store);
+void unrelatedPending(ppm::JsonProjectStore &store) {
+    ppm::Document doc(store);
     const auto resource = setup(doc, false, true, true);
     doc.addTask("B");
     const auto bid = doc.project()->tasks[1].id;
     doc.setAssignments(bid, {{bid, resource, 100}});
-    doc.setTaskEffort(1, jobs::TaskType::FixedWork, true, 60, 6000, {});
-    doc.applyCalculation(jobs::calculate(*doc.project()));
+    doc.setTaskEffort(1, ppm::TaskType::FixedWork, true, 60, 6000, {});
+    doc.applyCalculation(ppm::calculate(*doc.project()));
     const auto source = *doc.project();
-    jobs::MainWindow window(doc);
+    ppm::MainWindow window(doc);
     window.show();
     auto *view = taskTable(window);
     const auto original = cellText(view, 0, 1);
@@ -209,27 +209,27 @@ void unrelatedPending(jobs::JsonProjectStore &store) {
           "unchanged cell cancelled another task's newer duration request");
     window.hide();
 }
-void sortedPeriods(jobs::JsonProjectStore &store, bool fixedUnits, bool nominal, int other, bool split) {
-    jobs::Document doc(store);
+void sortedPeriods(ppm::JsonProjectStore &store, bool fixedUnits, bool nominal, int other, bool split) {
+    ppm::Document doc(store);
     setup(doc, fixedUnits, nominal);
     if (split)
-        doc.setTaskEffort(0, fixedUnits ? jobs::TaskType::FixedUnits : jobs::TaskType::FixedWork, true,
+        doc.setTaskEffort(0, fixedUnits ? ppm::TaskType::FixedUnits : ppm::TaskType::FixedWork, true,
                           nominal ? std::optional<std::int64_t>{480} : std::nullopt, 48000,
                           {{"2026-10-26 13:00", "2026-10-27 13:00"}});
     doc.addTask("B");
     doc.setDuration(1, other);
-    auto order = [&](const jobs::ScheduleResult *result, int sort) {
-        jobs::TaskViewSpec spec;
+    auto order = [&](const ppm::ScheduleResult *result, int sort) {
+        ppm::TaskViewSpec spec;
         spec.sort = sort;
-        return jobs::projectTaskView(*doc.project(), result, spec).rows;
+        return ppm::projectTaskView(*doc.project(), result, spec).rows;
     };
-    auto plan = jobs::calculate(*doc.project());
+    auto plan = ppm::calculate(*doc.project());
     for (bool forecast : {false, true}) {
         if (forecast) {
             doc.setStatusAt("2026-10-28 09:00");
-            plan = jobs::calculate(*doc.project());
+            plan = ppm::calculate(*doc.project());
         }
-        check(plan.status == jobs::CalculationStatus::Valid, "sort fixture invalid");
+        check(plan.status == ppm::CalculationStatus::Valid, "sort fixture invalid");
         const std::vector<std::size_t> asc =
             other < 960 ? std::vector<std::size_t>{1, 0} : std::vector<std::size_t>{0, 1};
         auto desc = asc;
@@ -239,9 +239,9 @@ void sortedPeriods(jobs::JsonProjectStore &store, bool fixedUnits, bool nominal,
     }
     for (int sort : {3, 4}) {
         check(order(nullptr, sort) == std::vector<std::size_t>({1, 0}), "uncalculated work period sorted as known");
-        plan.status = jobs::CalculationStatus::Stale;
+        plan.status = ppm::CalculationStatus::Stale;
         check(order(&plan, sort) == std::vector<std::size_t>({1, 0}), "stale work period sorted as known");
-        plan.status = jobs::CalculationStatus::Incomplete;
+        plan.status = ppm::CalculationStatus::Incomplete;
         check(order(&plan, sort) == std::vector<std::size_t>({1, 0}), "incomplete work period sorted as known");
     }
 }
@@ -252,7 +252,7 @@ int main(int argc, char **argv) {
     try {
         QTemporaryDir dir;
         check(dir.isValid(), "temporary directory unavailable");
-        jobs::JsonProjectStore store;
+        ppm::JsonProjectStore store;
         int sequence = 0;
         auto path = [&] { return dir.filePath(QString::number(sequence++) + ".ppm").toStdString(); };
         for (bool units : {false, true}) {

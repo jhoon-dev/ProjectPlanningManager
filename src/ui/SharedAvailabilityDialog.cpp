@@ -21,7 +21,7 @@
 #include <QTimer>
 #include <QVBoxLayout>
 #include <QtConcurrent/QtConcurrentRun>
-namespace jobs {
+namespace ppm {
 void showSharedAvailability(DesktopWorkspace &workspace, QWidget *parent) {
     QDialog dialog(parent);
     dialog.setObjectName("sharedAvailabilityDialog");
@@ -273,4 +273,4 @@ void showSharedAvailability(DesktopWorkspace &workspace, QWidget *parent) {
     if (control)
         control->cancel();
 }
-} // namespace jobs
+} // namespace ppm

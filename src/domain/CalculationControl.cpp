@@ -1,6 +1,6 @@
 #include "domain/CalculationControl.h"
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 struct EvaluationScope::State {
     std::shared_ptr<CalculationControl> control;
     std::shared_ptr<EvaluationCache> cache;
@@ -55,4 +55,4 @@ void evaluationRemember(std::string key, std::shared_ptr<const void> value) {
     }
     state->cache->values_.emplace(std::move(key), std::move(value));
 }
-} // namespace jobs
+} // namespace ppm

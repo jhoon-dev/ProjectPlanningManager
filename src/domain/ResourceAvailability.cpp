@@ -4,7 +4,7 @@
 #include <chrono>
 #include <cstdio>
 #include <map>
-namespace jobs {
+namespace ppm {
 namespace {
 std::string shift(const std::string &s, int count) {
     using namespace std::chrono;
@@ -123,4 +123,4 @@ std::vector<AvailabilityPeriod> resourceAvailabilityIntervals(const Resource &r)
     append({});
     return result;
 }
-} // namespace jobs
+} // namespace ppm

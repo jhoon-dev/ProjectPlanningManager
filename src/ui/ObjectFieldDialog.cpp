@@ -25,7 +25,7 @@
 #include <algorithm>
 #include <unordered_map>
 
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromUtf8(s);
@@ -473,4 +473,4 @@ void editObjectAttributes(Document &doc, FieldScope scope, QWidget *parent) {
     ObjectFieldDialog dialog(doc, scope, parent);
     dialog.exec();
 }
-} // namespace jobs
+} // namespace ppm

@@ -1,6 +1,6 @@
 #pragma once
 #include "domain/Project.h"
-namespace jobs {
+namespace ppm {
 // Recovery is a complete input snapshot, separate from an explicitly saved file.
 struct RecoverySnapshot {
     Project project;
@@ -13,4 +13,4 @@ struct RecoveryOrigin {
     std::uint64_t revision = 0;
     std::optional<std::uint64_t> lastSavedRevision;
 };
-}
+} // namespace ppm

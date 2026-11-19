@@ -2,7 +2,7 @@
 #include "domain/Classification.h"
 #include "domain/XmlRollUp.h"
 #include "domain/CalculationControl.h"
-namespace jobs {
+namespace ppm {
 struct ResourceGroupValue {
     std::string token, label;
 };
@@ -19,4 +19,4 @@ void validateResourceView(const PlanInput &, const ResourceViewSettings &);
 void validateSavedResourceViews(const Project &);
 std::vector<ResourceViewRow> projectResources(const Project &, const ResourceViewSettings &,
                                               std::shared_ptr<CalculationControl> = {});
-} // namespace jobs
+} // namespace ppm

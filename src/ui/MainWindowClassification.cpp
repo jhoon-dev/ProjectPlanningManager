@@ -16,7 +16,7 @@
 #include <QTreeWidget>
 #include <QTreeWidgetItemIterator>
 
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s);
@@ -278,4 +278,4 @@ void MainWindow::refreshClassificationGroups(const TaskViewProjection &projectio
     if (wasGroup || !classificationView_.groupPath.empty())
         wbsTree_->setCurrentItem(selected ? selected : root);
 }
-} // namespace jobs
+} // namespace ppm

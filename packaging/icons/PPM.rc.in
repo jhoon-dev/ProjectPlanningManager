@@ -1,4 +1,4 @@
-101 ICON "@JOBS_ICON_PATH@"
+101 ICON "@PPM_ICON_PATH@"
 
 #include <winver.h>
 1 VERSIONINFO

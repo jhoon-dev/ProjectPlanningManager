@@ -2,7 +2,7 @@
 #include "calculation/Reports.h"
 #include <array>
 #include <map>
-namespace jobs {
+namespace ppm {
 enum class UsagePeriod { Day, Week, Month };
 enum class UsageHierarchy { Tasks, Resources };
 struct UsageOptions {
@@ -47,4 +47,4 @@ UsageValue usageTotal(const std::vector<UsageValue> &);
 UsageValue usageReportedTotal(const std::vector<UsageValue> &);
 ProjectReport usageReport(const UsageResult &, UsageHierarchy, const std::string &reportId,
                           const std::string &generatedAt, bool unsaved);
-} // namespace jobs
+} // namespace ppm

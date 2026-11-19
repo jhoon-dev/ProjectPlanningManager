@@ -25,7 +25,7 @@
 #include <set>
 #include <map>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 bool sameLevelingSource(const Project &a, const Project &b) {
     PlanInput x = a, y = b;
@@ -766,4 +766,4 @@ void ResourceComparisonDialog::saveScenario() {
         outcomeState_->setText(qErrorText(e));
     }
 }
-} // namespace jobs
+} // namespace ppm

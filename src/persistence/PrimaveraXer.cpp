@@ -30,7 +30,7 @@
 #include <set>
 #include <stdexcept>
 
-namespace jobs {
+namespace ppm {
 namespace {
 constexpr qsizetype byteLimit = 16 * 1024 * 1024;
 QString qs(const std::string &s) {
@@ -598,7 +598,7 @@ void graph(const Project &p) {
         throw AppError(ErrorCode::FILE_PRIMAVERAXER_038, {});
 }
 QJsonObject reportFor(const Project &p, bool importing) {
-    return {{"contract", "jobs-xer-plan-v1"},
+    return {{"contract", "ppm-xer-plan-v1"},
             {"direction", importing ? "import" : "export"},
             {"documentId", qs(p.documentId)},
             {"revision", QString::number(p.revision)},
@@ -609,7 +609,7 @@ QJsonObject reportFor(const Project &p, bool importing) {
             {"compatibility",
              QJsonObject{{"import", importing ? "mapped-subset" : "not-applicable"},
                          {"originalPreservation", importing ? "exact-xer-bytes" : "exact-native-input-snapshot"},
-                         {"jobsRecomputation", "unverified"},
+                         {"ppmRecomputation", "unverified"},
                          {"externalRoundTrip", "unverified"}}}};
 }
 const std::map<QString, ConstraintType> constraintMap{{"", ConstraintType::ASAP},
@@ -678,7 +678,7 @@ PrimaveraXerExchange importPrimaveraXer(const QByteArray &bytes, const QString &
     auto map = [&](const QString &kind, const QString &source, const std::string &target,
                    const QString &activityCode = QString{}) {
         mapping.append(
-            QJsonObject{{"kind", kind}, {"xerId", source}, {"jobsId", qs(target)}, {"activityCode", activityCode}});
+            QJsonObject{{"kind", kind}, {"xerId", source}, {"ppmId", qs(target)}, {"activityCode", activityCode}});
     };
     const auto &options = table(file, "SCHEDOPTIONS");
     if (options.rows.size() > 1)
@@ -1295,7 +1295,7 @@ PrimaveraXerExchange exportPrimaveraXer(const Project &p) {
     auto map = [&](const QString &kind, int id, const std::string &target) {
         mapping.append(QJsonObject{{"kind", kind},
                                    {"xerId", QString::number(id)},
-                                   {"jobsId", qs(target)},
+                                   {"ppmId", qs(target)},
                                    {"activityCode", kind == "task" ? "J" + QString::number(id) : QString{}}});
     };
     if (!p.activities.empty() || !p.stepReports.empty())
@@ -1794,4 +1794,4 @@ QString primaveraXerPreview(const PrimaveraXerExchange &e) {
     }
     return text;
 }
-} // namespace jobs
+} // namespace ppm

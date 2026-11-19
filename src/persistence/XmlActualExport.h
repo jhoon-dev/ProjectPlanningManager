@@ -3,7 +3,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <map>
-namespace jobs {
+namespace ppm {
 using XmlActualPair = std::pair<std::string, std::string>;
 struct XmlActualProjection {
     std::map<std::string, const ProgressEntry *> progress;
@@ -15,4 +15,4 @@ struct XmlActualProjection {
     QJsonArray diagnostics;
 };
 XmlActualProjection projectXmlActuals(const Project &);
-} // namespace jobs
+} // namespace ppm

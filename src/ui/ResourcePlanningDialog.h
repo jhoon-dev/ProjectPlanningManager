@@ -1,7 +1,7 @@
 #pragma once
 #include <QDialog>
 #include <memory>
-namespace jobs {
+namespace ppm {
 class Document;
 class ResourcePlanningDialog final : public QDialog {
 public:
@@ -12,4 +12,4 @@ private:
     struct Impl;
     std::unique_ptr<Impl> impl_;
 };
-} // namespace jobs
+} // namespace ppm

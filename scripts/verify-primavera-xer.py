@@ -52,7 +52,7 @@ assert [Decimal(r["target_qty_per_hr"]) for r in tables["TASKRSRC"]] == [Decimal
 report = json.loads((root / "primavera-export.json").read_text(encoding="utf-8"))
 assert report["xerSha256"] == hashlib.sha256(source).hexdigest()
 assert report["compatibility"]["externalRoundTrip"] == "unverified"
-assert report["compatibility"]["jobsRecomputation"] == "unverified"
+assert report["compatibility"]["ppmRecomputation"] == "unverified"
 assert report["outputProjectCode"] == tables["PROJECT"][0]["proj_short_name"]
 print("PASS: independent TSV reader, XER tables/fields/references/values/encoding/hash/verdicts")
 

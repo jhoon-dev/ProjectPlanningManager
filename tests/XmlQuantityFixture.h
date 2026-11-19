@@ -1,6 +1,6 @@
 #pragma once
 #include "XmlActualFixture.h"
-namespace jobs::test {
+namespace ppm::test {
 inline PeriodActualEntry quantityEntry(const Project &p, const std::string &id, const std::string &task,
                                        const std::string &resource, const std::string &day, const std::string &status,
                                        std::optional<std::int64_t> work, const std::string &previous = {}) {
@@ -52,4 +52,4 @@ inline Project xmlQuantityFixture() {
                 f.xmlRollUp = XmlRollUp{2, 0};
     return p;
 }
-} // namespace jobs::test
+} // namespace ppm::test

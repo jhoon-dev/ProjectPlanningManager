@@ -6,7 +6,7 @@ class QTableWidget;
 class QLabel;
 class QPushButton;
 class QTimer;
-namespace jobs {
+namespace ppm {
 class AssignmentCurveView;
 class AssignmentPeriodsDialog final : public QDialog {
 public:
@@ -41,4 +41,4 @@ private:
     void plannedWork();
     void submit();
 };
-} // namespace jobs
+} // namespace ppm

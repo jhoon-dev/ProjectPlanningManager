@@ -7,7 +7,7 @@
 #include <unordered_set>
 #include <numeric>
 
-namespace jobs {
+namespace ppm {
 EditCommand::EditCommand() = default;
 EditCommand::EditCommand(const EditCommand &) = default;
 EditCommand::EditCommand(EditCommand &&) noexcept(std::is_nothrow_move_constructible_v<EditCommandValue>) = default;
@@ -385,4 +385,4 @@ std::vector<std::shared_ptr<const Project>> Document::PreparedEdit::takeRetiredP
     proposal_.reset();
     return snapshots;
 }
-} // namespace jobs
+} // namespace ppm

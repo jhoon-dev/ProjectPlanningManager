@@ -10,7 +10,7 @@
 #include <QSaveFile>
 #include <QTemporaryDir>
 #include <stdexcept>
-namespace jobs {
+namespace ppm {
 namespace {} // namespace
 QString publishPlanExchange(const Project &project, const QByteArray &payload, QJsonObject report, bool importing,
                             const QString &extension, const QString &destination, std::function<void()> beforePublish) {
@@ -39,14 +39,14 @@ QString publishPlanExchange(const Project &project, const QByteArray &payload, Q
             throw AppError(ErrorCode::FILE_EXCHANGEPACKAGE_005, {diagnosticArgument(name)});
     };
     JsonProjectStore store;
-    auto jobsName = importing ? "project.ppm" : "source.ppm";
-    store.save(stage.filePath(jobsName).toUtf8().toStdString(), project, {});
+    auto ppmName = importing ? "project.ppm" : "source.ppm";
+    store.save(stage.filePath(ppmName).toUtf8().toStdString(), project, {});
     calculationCheckpoint();
-    if (store.load(stage.filePath(jobsName).toUtf8().toStdString()).project != project)
+    if (store.load(stage.filePath(ppmName).toUtf8().toStdString()).project != project)
         throw AppError(ErrorCode::FILE_EXCHANGEPACKAGE_006, {});
     write((importing ? "original." : "project.") + extension, payload);
     if (!importing) {
-        QFile f(stage.filePath(jobsName));
+        QFile f(stage.filePath(ppmName));
         if (!f.open(QIODevice::ReadOnly))
             throw AppError(ErrorCode::FILE_EXCHANGEPACKAGE_007, {});
         auto source = report["source"].toObject();
@@ -64,4 +64,4 @@ QString publishPlanExchange(const Project &project, const QByteArray &payload, Q
     stage.setAutoRemove(false);
     return finalPath;
 }
-} // namespace jobs
+} // namespace ppm

@@ -25,7 +25,7 @@
 #include <QTimer>
 #include <QUuid>
 #include <QVBoxLayout>
-namespace jobs {
+namespace ppm {
 namespace {
 struct State {
     QJsonObject current, preview;
@@ -381,7 +381,7 @@ ServerDialog::ServerDialog(DesktopWorkspace &workspace, QWidget *parent) : QDial
     auto *createJob = button(schedule, "현재 변경으로 예약", "serverSchedule");
     auto *history = button(schedule, "예약·실행 이력", "serverHistory");
     auto *jobChoice = new QComboBox;
-    jobChoice->setObjectName("serverJobs");
+    jobChoice->setObjectName("serverPpm");
     schedule->addWidget(jobChoice);
     auto *cancel = button(schedule, "예약 취소", "serverCancelJob");
     const auto jobs = [=] {
@@ -431,4 +431,4 @@ ServerDialog::ServerDialog(DesktopWorkspace &workspace, QWidget *parent) : QDial
     connect(this, &QDialog::finished, client, [client] { client->stopFollowing(); });
     prepareEditorDialog(*this);
 }
-} // namespace jobs
+} // namespace ppm

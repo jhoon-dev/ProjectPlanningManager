@@ -28,7 +28,7 @@ void callbackCheck(bool b, const char *m) {
         std::exit(2);
     }
 }
-bool ready(jobs::ReportDialog &dialog, const QString &needle = "") {
+bool ready(ppm::ReportDialog &dialog, const QString &needle = "") {
     for (int i = 0; i < 500; ++i) {
         QTest::qWait(10);
         if (dialog.findChild<QPushButton *>("exportXlsx")->isEnabled() &&
@@ -37,7 +37,7 @@ bool ready(jobs::ReportDialog &dialog, const QString &needle = "") {
     }
     return false;
 }
-QString cell(jobs::ReportDialog &d, const char *name, int row, int column) {
+QString cell(ppm::ReportDialog &d, const char *name, int row, int column) {
     auto *t = d.findChild<QTableView *>(name);
     check(t && t->model(), "missing table view");
     return t->model()->index(row, column).data().toString();
@@ -55,8 +55,8 @@ int main(int argc, char *argv[]) {
     watchdog.start(30000);
     try {
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("통합 프로젝트 현황", "2026-10-26", {"기본 설계", "전기 설계"});
         doc.setCurrency("USD");
         auto wbs = doc.addWbs("기본 설계 단계");
@@ -73,7 +73,7 @@ int main(int argc, char *argv[]) {
         doc.setStatusAt("2026-10-26 18:00");
         const std::vector<std::string> taskIds{id, doc.project()->tasks[1].id};
         for (const auto &taskId : taskIds) {
-            jobs::CostEntry e;
+            ppm::CostEntry e;
             e.taskId = taskId;
             e.actualMinor = taskId == id ? 600 : 0;
             e.physicalBasisPoints = taskId == id ? 4000 : 0;
@@ -84,10 +84,10 @@ int main(int argc, char *argv[]) {
         }
         auto original = *doc.project();
         auto dirty = doc.dirty();
-        jobs::MainWindow main(doc);
+        ppm::MainWindow main(doc);
         main.show();
         check(main.findChild<QAction *>("projectReports")->isEnabled(), "report menu disabled");
-        jobs::ReportDialog dialog(doc, {}, baseline, &main);
+        ppm::ReportDialog dialog(doc, {}, baseline, &main);
         dialog.show();
         check(ready(dialog), "report preparation failed");
         check(dialog.findChild<QLabel *>("dashboard_tasks")->text() == "2 개" &&
@@ -156,15 +156,15 @@ int main(int argc, char *argv[]) {
               "stale worker result displayed");
         dialog.reject();
         doc.saveAs(dir.filePath("report-source.ppm").toStdString());
-        jobs::Document viewer(store);
+        ppm::Document viewer(store);
         viewer.open(doc.path(), true);
-        jobs::ReportDialog readonly(viewer, wbs, baseline);
+        ppm::ReportDialog readonly(viewer, wbs, baseline);
         readonly.show();
         check(ready(readonly) && readonly.findChild<QPushButton *>("exportPdf")->isEnabled(),
               "readonly reports unavailable");
         readonly.reject();
         doc.renameWbs(wbs, std::string("invalid-control-") + '\x01');
-        jobs::ReportDialog invalid(doc, wbs, baseline);
+        ppm::ReportDialog invalid(doc, wbs, baseline);
         invalid.show();
         for (int i = 0; i < 100 && !invalid.findChild<QLabel *>("reportMessage")->text().contains("보고서 오류"); ++i)
             QTest::qWait(10);

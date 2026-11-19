@@ -14,7 +14,7 @@
 #include <unordered_set>
 #include <QtConcurrent/QtConcurrentRun>
 
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &value) {
     return QString::fromUtf8(value);
@@ -689,4 +689,4 @@ void TaskTableModel::synchronize(const std::vector<std::size_t> &rows) {
         emit dataChanged(index(first, 0), index(i - 1, columnCount() - 1));
     }
 }
-} // namespace jobs
+} // namespace ppm

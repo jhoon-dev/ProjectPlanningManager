@@ -3,7 +3,7 @@
 #include <QString>
 #include <functional>
 class QWidget;
-namespace jobs {
+namespace ppm {
 // Opens only a fully published, independently saved native copy after the review.
 QString importMppPlan(QWidget *, Document &, const std::function<bool()> &beforeReplace);
-} // namespace jobs
+} // namespace ppm

@@ -16,7 +16,7 @@
 #include <iostream>
 #include <map>
 #include <tuple>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool v, const std::string &m) {
     if (!v)
@@ -226,7 +226,7 @@ void archive() {
     b.version = 2;
     p.baselines.push_back(b);
     ++p.revision;
-    check(a.engineVersion == "jobs-adopted-leveling-1.5" && b.engineVersion == "jobs-adopted-leveling-1.6" &&
+    check(a.engineVersion == "ppm-adopted-leveling-1.5" && b.engineVersion == "ppm-adopted-leveling-1.6" &&
               a.schedule == b.schedule,
           "archive engine replay changed");
     verifyBaseline(a);
@@ -252,9 +252,9 @@ int main(int argc, char **argv) {
         archive();
         QFile f("candidate-propagation-qa/metrics.json");
         check(f.open(QIODevice::WriteOnly), "metrics write");
-        f.write(QJsonDocument(
-                    QJsonObject{{"engine", "jobs-adopted-leveling-1.6"}, {"cases", cases}, {"nonmonotone", small}})
-                    .toJson(QJsonDocument::Compact));
+        f.write(
+            QJsonDocument(QJsonObject{{"engine", "ppm-adopted-leveling-1.6"}, {"cases", cases}, {"nonmonotone", small}})
+                .toJson(QJsonDocument::Compact));
         std::cout << "Candidate bounds, reversible propagation, native certificates, legacy replay and paired "
                      "measurements passed\n";
     } catch (const std::exception &e) {

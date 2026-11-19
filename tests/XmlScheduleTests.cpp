@@ -28,7 +28,7 @@
 #include <QTest>
 #include <QTemporaryDir>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool b, const char *m) {
     if (!b)

@@ -2,7 +2,7 @@
 #include "domain/XmlFormatting.h"
 #include "domain/Classification.h"
 #include "domain/CalculationControl.h"
-namespace jobs {
+namespace ppm {
 std::string xmlNumericDisplay(XmlNumericDisplayKind kind, std::int64_t scaled, int digits, int leading, int parentheses,
                               int grouping) {
     calculationCheckpoint();
@@ -35,4 +35,4 @@ std::string xmlNumericDisplay(XmlNumericDisplayKind kind, std::int64_t scaled, i
     input.scaled = scaled;
     return *xmlFormat(input, mask + ';' + negative, 1033);
 }
-} // namespace jobs
+} // namespace ppm

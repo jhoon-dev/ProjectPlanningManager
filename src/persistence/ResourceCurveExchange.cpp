@@ -1,7 +1,7 @@
 #include "persistence/ResourceCurveExchange.h"
 #include "domain/Project.h"
 #include <QRegularExpression>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void bad() {
     throw AppError(Diagnostic{"RESOURCE_PLANNING_INVALID",
@@ -63,4 +63,4 @@ QString curveHourText(std::int64_t work) {
     const auto whole = work / 6000, micro = ((work % 6000) * 1000000 + 3000) / 6000;
     return QString::number(whole) + "." + QString::number(micro).rightJustified(6, '0');
 }
-} // namespace jobs
+} // namespace ppm

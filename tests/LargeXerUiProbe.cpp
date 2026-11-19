@@ -45,10 +45,10 @@ QJsonObject distribution(const std::vector<double> &samples) {
 } // namespace
 int main(int argc, char **argv) {
     QApplication app(argc, argv);
-    QApplication::setApplicationName("JOBS native XER measurement");
+    QApplication::setApplicationName("PPM native XER measurement");
     const auto args = app.arguments();
     if (args.size() != 3) {
-        std::cerr << "usage: jobs_large_xer_ui_probe input.xer result.json\n";
+        std::cerr << "usage: ppm_large_xer_ui_probe input.xer result.json\n";
         return 2;
     }
     QJsonObject report{
@@ -60,8 +60,8 @@ int main(int argc, char **argv) {
     try {
         QElapsedTimer clock;
         clock.start();
-        auto bytes = jobs::readPrimaveraXer(args[1]);
-        auto exchange = jobs::importPrimaveraXer(bytes, QFileInfo(args[1]).fileName());
+        auto bytes = ppm::readPrimaveraXer(args[1]);
+        auto exchange = ppm::importPrimaveraXer(bytes, QFileInfo(args[1]).fileName());
         report["read_import_ms"] = milliseconds(clock);
         report["source_sha256"] =
             QString::fromLatin1(QCryptographicHash::hash(bytes, QCryptographicHash::Sha256).toHex());
@@ -71,19 +71,19 @@ int main(int argc, char **argv) {
         QTemporaryDir dir;
         require(dir.isValid(), "temporary directory unavailable");
         clock.restart();
-        auto published = jobs::publishPrimaveraXer(exchange, dir.filePath("exchange"));
+        auto published = ppm::publishPrimaveraXer(exchange, dir.filePath("exchange"));
         report["publish_exchange_ms"] = milliseconds(clock);
-        jobs::JsonProjectStore files;
-        jobs::Document document(files);
+        ppm::JsonProjectStore files;
+        ppm::Document document(files);
         clock.restart();
         document.open((published + "/project.ppm").toUtf8().toStdString());
         report["open_document_ms"] = milliseconds(clock);
         clock.restart();
-        jobs::MainWindow window(document);
+        ppm::MainWindow window(document);
         window.resize(1440, 900);
         report["construct_window_ms"] = milliseconds(clock);
         auto *table = taskTable(window);
-        auto *gantt = dynamic_cast<jobs::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
+        auto *gantt = dynamic_cast<ppm::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
         require(table && gantt, "working panes missing");
         clock.restart();
         window.show();
@@ -122,7 +122,7 @@ int main(int argc, char **argv) {
         report["worker_ms"] = window.property("scheduleWorkerMs").toDouble();
         report["gui_commit_ms"] = window.property("scheduleCommitMs").toDouble();
         require(calculate->isEnabled(), "180 second calculation timeout");
-        require(document.calculation() && document.calculation()->status == jobs::CalculationStatus::Valid,
+        require(document.calculation() && document.calculation()->status == ppm::CalculationStatus::Valid,
                 "calculation incomplete or conflicting");
         clock.restart();
         paint();
@@ -181,7 +181,7 @@ int main(int argc, char **argv) {
                 "view navigation changed document");
         report["fit_scene_width"] = gantt->sceneRect().width();
         report["fit_viewport_width"] = gantt->viewport()->width();
-        const auto capture = qEnvironmentVariable("JOBS_GANTT_FIT_CAPTURE");
+        const auto capture = qEnvironmentVariable("PPM_GANTT_FIT_CAPTURE");
         if (!capture.isEmpty())
             require(window.grab().save(capture), "fit screenshot failed");
         report["status"] = "passed";

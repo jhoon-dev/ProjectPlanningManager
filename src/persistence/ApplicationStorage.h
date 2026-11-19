@@ -2,12 +2,13 @@
 #include <QSettings>
 #include <QString>
 
-namespace jobs {
+namespace ppm {
 struct ApplicationStorage {
     QString packageFamilyName;
     QString stateDirectory;
     QString recoveryDirectory;
     QString settingsFile;
+    QString legacyStateDirectory;
     bool packaged() const {
         return !packageFamilyName.isEmpty();
     }
@@ -15,4 +16,7 @@ struct ApplicationStorage {
 // No directory creation, settings migration or fallback to another package's state.
 ApplicationStorage applicationStorage();
 QSettings applicationSettings();
-} // namespace jobs
+// Copies missing settings and validated recovery generations once; legacy state is retained.
+void migrateApplicationStorage();
+void migrateApplicationSettings(QSettings &legacy, QSettings &current);
+} // namespace ppm

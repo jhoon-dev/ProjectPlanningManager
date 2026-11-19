@@ -3,7 +3,7 @@
 #include <QDateTime>
 #include <QFileInfo>
 #include <QJsonDocument>
-namespace jobs {
+namespace ppm {
 XerScheduleSource importXerScheduleSource(const QByteArray &bytes, const QString &name, XerEncoding encoding,
                                           const QString &projectId) {
     const auto imported = importPrimaveraXer(bytes, name, encoding, projectId);
@@ -17,4 +17,4 @@ XerScheduleSource importXerScheduleSource(const QByteArray &bytes, const QString
     s.reportJson = QJsonDocument(imported.report).toJson(QJsonDocument::Compact).toStdString();
     return s;
 }
-} // namespace jobs
+} // namespace ppm

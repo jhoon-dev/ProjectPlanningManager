@@ -4,7 +4,7 @@
 #include <map>
 #include <set>
 #include <limits>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &s) {
     throw AppError(Diagnostic{"RESOURCE_PLAN_INVALID", {s}, {}});
@@ -180,4 +180,4 @@ std::size_t resourcePlanBytes(const ResourcePlan &r) {
         n += sizeof(d) + d.id.size() + d.taskId.size() + d.roleId.size() + d.resourceId.size();
     return n;
 }
-} // namespace jobs
+} // namespace ppm

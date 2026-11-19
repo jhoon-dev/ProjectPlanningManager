@@ -2,7 +2,7 @@
 #include "calculation/WorkCalendar.h"
 #include "calculation/Resources.h"
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 struct ExecutionInputs {
     std::unordered_map<std::string, std::vector<Assignment>> assignments;
     std::unordered_map<std::string, const Resource *> resources;
@@ -64,4 +64,4 @@ void changeDuration(Project &, std::size_t, std::optional<std::int64_t>, bool pl
 // Requested durations are already stored in the proposal's fixed-work tasks.
 void changeFixedWorkDurations(Project &, const std::vector<std::size_t> &);
 void changeWork(Project &, std::size_t, std::int64_t);
-} // namespace jobs
+} // namespace ppm

@@ -1,4 +1,4 @@
-"""Read exports from jobs_report_tests independently; never rewrite them.
+"""Read exports from ppm_report_tests independently; never rewrite them.
 
 Optional development/CI dependencies: openpyxl==3.1.5, pypdf==6.10.0.
 Usage: python scripts/verify-report-fixtures.py build

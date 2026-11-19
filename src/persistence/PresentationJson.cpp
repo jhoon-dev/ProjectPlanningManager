@@ -2,7 +2,7 @@
 #include "domain/Diagnostics.h"
 #include <QJsonArray>
 #include <cmath>
-namespace jobs::json {
+namespace ppm::json {
 namespace {
 [[noreturn]] void bad() {
     throw AppError(Diagnostic{"PRESENTATION_INVALID", {}, {}});
@@ -102,4 +102,4 @@ void decodePresentation(Project &p, const QJsonObject &o) {
         }
     }
 }
-} // namespace jobs::json
+} // namespace ppm::json

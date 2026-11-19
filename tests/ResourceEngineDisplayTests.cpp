@@ -34,9 +34,9 @@ QByteArray bytes(const std::string &path) {
     check(file.open(QIODevice::ReadOnly), "fixture read failed");
     return file.readAll();
 }
-void splitDelay(jobs::JsonProjectStore &store, bool reverse, bool explicitCalendar, bool forecast, bool effort = true,
+void splitDelay(ppm::JsonProjectStore &store, bool reverse, bool explicitCalendar, bool forecast, bool effort = true,
                 bool split = true, int plainMinutes = 1440) {
-    jobs::Document doc(store);
+    ppm::Document doc(store);
     doc.create("Split delay", "2026-10-26",
                reverse ? std::vector<std::string>{"B plain", "A split"}
                        : std::vector<std::string>{"A split", "B plain"});
@@ -53,22 +53,22 @@ void splitDelay(jobs::JsonProjectStore &store, bool reverse, bool explicitCalend
     doc.setAssignments(aid, {{aid, rid, 100}});
     doc.setAssignments(bid, {{bid, rid, 100}});
     if (effort) {
-        doc.setTaskEffort(ai, jobs::TaskType::FixedDuration, false, 480, {},
-                          split ? std::vector<jobs::TaskBreak>{{"2026-10-26 13:00", "2026-10-27 13:00"}}
-                                : std::vector<jobs::TaskBreak>{});
-        doc.setTaskEffort(bi, jobs::TaskType::FixedDuration, false, plainMinutes, {}, {});
+        doc.setTaskEffort(ai, ppm::TaskType::FixedDuration, false, 480, {},
+                          split ? std::vector<ppm::TaskBreak>{{"2026-10-26 13:00", "2026-10-27 13:00"}}
+                                : std::vector<ppm::TaskBreak>{});
+        doc.setTaskEffort(bi, ppm::TaskType::FixedDuration, false, plainMinutes, {}, {});
     }
     if (forecast)
         doc.setStatusAt("2026-10-26 09:00");
     const auto source = *doc.project();
-    const auto level = jobs::levelResources(source, "shortest-first", 20);
-    check(level.leveled.status == jobs::CalculationStatus::Valid, "delay fixture did not level");
+    const auto level = ppm::levelResources(source, "shortest-first", 20);
+    check(level.leveled.status == ppm::CalculationStatus::Valid, "delay fixture did not level");
     const auto &before = level.original.tasks[bi], &after = level.leveled.tasks[bi];
-    jobs::WorkCalendar ownCalendar(source, source.tasks[bi]);
+    ppm::WorkCalendar ownCalendar(source, source.tasks[bi]);
     const auto delay = ownCalendar.offset(after.remainingStart.value_or(after.start)) -
                        ownCalendar.offset(before.remainingStart.value_or(before.start));
     check(delay == (effort && split ? 960 : 480), "unexpected true task-calendar delay");
-    jobs::ResourceComparisonDialog dialog(doc);
+    ppm::ResourceComparisonDialog dialog(doc);
     dialog.show();
     auto *priority = dialog.findChild<QComboBox *>("levelingPriority");
     priority->setCurrentIndex(priority->findData("shortest-first"));
@@ -81,7 +81,7 @@ void splitDelay(jobs::JsonProjectStore &store, bool reverse, bool explicitCalend
           "shared calendar cache mixed task breaks or display modified the document");
     dialog.hide();
 }
-std::string sourceValue(const jobs::ProjectReport &report, const std::string &key) {
+std::string sourceValue(const ppm::ProjectReport &report, const std::string &key) {
     const auto source = std::find_if(report.tables.begin(), report.tables.end(),
                                      [](const auto &table) { return table.id == "source"; });
     check(source != report.tables.end(), "source table missing");
@@ -90,21 +90,21 @@ std::string sourceValue(const jobs::ProjectReport &report, const std::string &ke
             return std::get<std::string>(row[1].value);
     throw std::runtime_error("source engine field missing");
 }
-void engineProvenance(jobs::JsonProjectStore &store, const std::string &path, int mode) {
-    jobs::Project p;
+void engineProvenance(ppm::JsonProjectStore &store, const std::string &path, int mode) {
+    ppm::Project p;
     p.documentId = "engine-provenance";
     p.name = "Engine provenance";
     p.startDate = "2026-10-26";
-    p.calculationProfile = jobs::constraintProfile;
+    p.calculationProfile = ppm::constraintProfile;
     p.tasks = {{"M", "M", 0, {}}};
-    p.tasks[0].constraintType = jobs::ConstraintType::SNET;
+    p.tasks[0].constraintType = ppm::ConstraintType::SNET;
     p.tasks[0].constraintAt = "2026-10-27 09:00";
     p.taskCosts = {{"M", 100, "uniform", "physical"}};
     p.statusAt = "2026-10-27 09:00";
     std::string baselineId, baselineEngine = "없음";
     if (mode != 2) {
-        const auto plan = jobs::calculatePlan(p, mode == 0 ? jobs::legacyEngineFor(p) : jobs::engineFor(p));
-        jobs::Baseline b;
+        const auto plan = ppm::calculatePlan(p, mode == 0 ? ppm::legacyEngineFor(p) : ppm::engineFor(p));
+        ppm::Baseline b;
         b.id = "B";
         b.version = 1;
         b.name = "Approved";
@@ -124,9 +124,9 @@ void engineProvenance(jobs::JsonProjectStore &store, const std::string &path, in
     }
     store.save(path, p, {});
     const auto disk = bytes(path);
-    jobs::Document doc(store);
+    ppm::Document doc(store);
     doc.open(path);
-    const auto comparison = jobs::compareToBaseline(*doc.project(), baselineId);
+    const auto comparison = ppm::compareToBaseline(*doc.project(), baselineId);
     const auto currentEngine = comparison.plan.engineVersion;
     const auto change = "계산 엔진 변경: " + baselineEngine + " → " + currentEngine;
     check(comparison.tasks[0].changes.empty(), "fixture unexpectedly changed task input");
@@ -135,7 +135,7 @@ void engineProvenance(jobs::JsonProjectStore &store, const std::string &path, in
               "engine-only finish variance has no explanation with both versions");
     else
         check(comparison.contextChanges.empty(), "same/no baseline engine created a false change label");
-    jobs::ComparisonDialog dialog(doc, baselineId);
+    ppm::ComparisonDialog dialog(doc, baselineId);
     dialog.show();
     auto *summary = dialog.findChild<QLabel *>("comparisonSummary");
     waitFor([&] { return summary->text().contains("현재 계획 계산 엔진"); });
@@ -150,11 +150,11 @@ void engineProvenance(jobs::JsonProjectStore &store, const std::string &path, in
         check(text.contains("기준선 없음"), "comparison UI did not identify missing baseline");
     check(text.contains("계산 엔진 변경:") == (mode == 0), "comparison UI engine-change explanation is wrong");
     dialog.hide();
-    jobs::ReportOptions options;
+    ppm::ReportOptions options;
     options.baselineId = baselineId;
     options.reportId = "engine-provenance";
     options.generatedAt = "2026-10-30T00:00:00Z";
-    const auto report = jobs::buildReport(*doc.project(), options);
+    const auto report = ppm::buildReport(*doc.project(), options);
     check(sourceValue(report, "기준선 계산 엔진") == baselineEngine &&
               sourceValue(report, "현재 계획 계산 엔진") == currentEngine &&
               sourceValue(report, "계산 엔진") == comparison.forecast.engineVersion,
@@ -168,7 +168,7 @@ int main(int argc, char **argv) {
     app.setQuitOnLastWindowClosed(false);
     try {
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
+        ppm::JsonProjectStore store;
         for (bool reverse : {false, true})
             for (bool calendar : {false, true})
                 for (bool forecast : {false, true})

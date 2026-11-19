@@ -7,7 +7,7 @@
 #include "domain/FormulaFields.h"
 #include <algorithm>
 #include <unordered_set>
-namespace jobs {
+namespace ppm {
 TaskViewProjection projectTaskView(const Project &p, const ScheduleResult *result, const TaskViewSpec &spec,
                                    bool calculateSchedule) {
     EvaluationScope evaluation;
@@ -303,4 +303,4 @@ void prepareTaskView(BulkView &view, const Project &before, const Project &after
         view.survivorOldOrderRows.push_back(std::size_t(view.numbers.at(id) - 1));
     calculationCheckpoint();
 }
-} // namespace jobs
+} // namespace ppm

@@ -47,7 +47,7 @@ void trigger(QWidget &w, const QString &label) {
         }
     throw std::runtime_error("tracking action missing");
 }
-int count(jobs::GanttView *view, const QString &kind) {
+int count(ppm::GanttView *view, const QString &kind) {
     int n = 0;
     for (auto *i : view->scene()->items())
         if (i->data(1).toString() == kind)
@@ -68,19 +68,19 @@ int main(int argc, char *argv[]) {
     try {
         QTemporaryDir dir;
         check(dir.isValid(), "temporary directory failed");
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("기준선·실적 검증", "2026-10-26", {"설계", "계획 승인"});
         doc.setDuration(0, 960);
         doc.setDuration(1, 0);
         const auto aid = doc.project()->tasks[0].id;
         doc.setPredecessors(1, {aid});
-        doc.applyCalculation(jobs::calculate(*doc.project()));
-        jobs::MainWindow window(doc);
+        doc.applyCalculation(ppm::calculate(*doc.project()));
+        ppm::MainWindow window(doc);
         window.show();
         QTest::qWait(60);
         auto *table = taskTable(window);
-        auto *gantt = dynamic_cast<jobs::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
+        auto *gantt = dynamic_cast<ppm::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
         auto baseline = [&](const QString &name) {
             QTimer::singleShot(50, [name] {
                 auto *dialog = QApplication::activeModalWidget();
@@ -134,7 +134,7 @@ int main(int argc, char *argv[]) {
                 if (!window.findChild<QPlainTextEdit *>("calculationDiagnostics")->toPlainText().startsWith("계산 중"))
                     break;
             }
-            check(doc.calculation() && doc.calculation()->status == jobs::CalculationStatus::Valid,
+            check(doc.calculation() && doc.calculation()->status == ppm::CalculationStatus::Valid,
                   "forecast UI failed");
         };
         recalculate();
@@ -267,20 +267,20 @@ int main(int argc, char *argv[]) {
         trigger(window, "저장(&S)");
         check(!doc.dirty() && store.load(path.toUtf8().toStdString()).project == *doc.project(),
               "UI save lost baseline/progress history");
-        jobs::Document reopened(store);
+        ppm::Document reopened(store);
         reopened.open(path.toUtf8().toStdString(), true);
         check(reopened.project()->baselines[0] == frozen && reopened.project()->progress.size() == 2 &&
-                  jobs::compareToBaseline(*reopened.project(), frozen.id).forecastFinishVariance == 720,
+                  ppm::compareToBaseline(*reopened.project(), frozen.id).forecastFinishVariance == 720,
               "reopened UI input comparison mismatch");
         window.close();
-        jobs::Document seq(store);
+        ppm::Document seq(store);
         seq.create("F08 Gantt", "2026-10-26", {"A", "B"});
         seq.setDuration(0, 960);
         seq.setDuration(1, 480);
         seq.setPredecessors(1, {seq.project()->tasks[0].id});
         seq.setStatusAt("2026-10-27 14:00");
         for (int i = 0; i < 2; ++i) {
-            jobs::ProgressEntry e;
+            ppm::ProgressEntry e;
             e.taskId = seq.project()->tasks[std::size_t(i)].id;
             e.actualStart = i ? "2026-10-26 14:00" : "2026-10-26 09:00";
             e.actualDurationMinutes = i ? 240 : 480;
@@ -290,8 +290,8 @@ int main(int argc, char *argv[]) {
             e.recordedAt = "2026-10-27T05:00:00Z";
             seq.recordProgress(e);
         }
-        auto result = jobs::calculate(*seq.project());
-        jobs::GanttView retained;
+        auto result = ppm::calculate(*seq.project());
+        ppm::GanttView retained;
         retained.setPlan(&*seq.project(), &result, {0, 1});
         bool foundLink = false;
         for (auto *item : retained.scene()->items())

@@ -2,7 +2,7 @@
 #include "domain/ProgressSource.h"
 #include <map>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 void appendXmlProgressAudit(ProjectReport &report, const Project &p, const std::set<std::string> &included) {
     std::set<std::string> imported;
     for (const auto &e : p.progress)
@@ -70,4 +70,4 @@ void appendXmlProgressAudit(ProjectReport &report, const Project &p, const std::
     }
     report.tables.push_back(std::move(t));
 }
-} // namespace jobs
+} // namespace ppm

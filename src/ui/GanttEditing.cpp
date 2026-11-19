@@ -13,7 +13,7 @@
 #include <algorithm>
 #include <cmath>
 #include <stdexcept>
-namespace jobs {
+namespace ppm {
 namespace {
 QString shifted(const QString &stamp, qint64 delta) {
     auto date = QDate::fromString(stamp.left(10), Qt::ISODate);
@@ -177,4 +177,4 @@ bool GanttView::event(QEvent *e) {
         cancelDrag();
     return QGraphicsView::event(e);
 }
-} // namespace jobs
+} // namespace ppm

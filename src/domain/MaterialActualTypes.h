@@ -2,7 +2,7 @@
 #include <cstdint>
 #include <string>
 #include <vector>
-namespace jobs {
+namespace ppm {
 // A correction replaces the value of one stable transaction; zero voids a movement.
 struct MaterialActualEntry {
     std::string id, transactionId, materialId, kind, at, taskId, useId, receiptId;
@@ -18,4 +18,4 @@ struct MaterialActualSubmission {
     std::vector<MaterialActualEntry> entries;
     std::string reporter, reason, recordedAt;
 };
-} // namespace jobs
+} // namespace ppm

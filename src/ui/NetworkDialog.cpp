@@ -31,7 +31,7 @@
 #include <QtConcurrent/QtConcurrentRun>
 #include <algorithm>
 #include <chrono>
-namespace jobs {
+namespace ppm {
 namespace {
 constexpr double cardWidth = 300, cardHeight = 150, columnStep = 440, rowStep = 216;
 QString qs(const std::string &s) {
@@ -857,4 +857,4 @@ void NetworkDialog::find() {
     }
     found_->setToolTip(QString("검색 일치 %1개 · 최대 50개 후보 · 정확한 원본 번호/ID로 이동 가능").arg(matches));
 }
-} // namespace jobs
+} // namespace ppm

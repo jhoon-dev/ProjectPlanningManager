@@ -25,22 +25,22 @@ QByteArray read(const QString &p) {
     return f.readAll();
 }
 struct State {
-    jobs::PlanInput plan;
+    ppm::PlanInput plan;
     std::optional<std::string> status;
 };
-State state(const jobs::Document &d) {
-    return {static_cast<const jobs::PlanInput &>(*d.project()), d.project()->statusAt};
+State state(const ppm::Document &d) {
+    return {static_cast<const ppm::PlanInput &>(*d.project()), d.project()->statusAt};
 }
-bool same(const jobs::Document &d, const State &s) {
-    return static_cast<const jobs::PlanInput &>(*d.project()) == s.plan && d.project()->statusAt == s.status;
+bool same(const ppm::Document &d, const State &s) {
+    return static_cast<const ppm::PlanInput &>(*d.project()) == s.plan && d.project()->statusAt == s.status;
 }
 } // namespace
 int main(int argc, char *argv[]) {
     QCoreApplication app(argc, argv);
     try {
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
-        jobs::Document d(store);
+        ppm::JsonProjectStore store;
+        ppm::Document d(store);
         rejects([&] { d.undo(); });
         d.create("undo", "2026-10-26", {"A", "B"});
         check(!d.canUndo(), "creation undo crossed document boundary");
@@ -51,11 +51,11 @@ int main(int argc, char *argv[]) {
         const auto disk = read(path);
         const auto saved = *d.project();
         d.renameTask(0, "changed");
-        d.applyCalculation(jobs::calculate(*d.project()));
+        d.applyCalculation(ppm::calculate(*d.project()));
         const auto revision = d.project()->revision;
         d.undo();
         check(d.project()->tasks[0].name == "A" && d.project()->revision > revision && !d.dirty() &&
-                  !d.revisionSaved() && d.canRedo() && d.calculation()->status == jobs::CalculationStatus::Stale,
+                  !d.revisionSaved() && d.canRedo() && d.calculation()->status == ppm::CalculationStatus::Stale,
               "undo rolled revision backward or falsely claimed saved revision/STALE");
         d.undo();
         check(!d.project()->tasks[0].durationMinutes && d.dirty(), "undo over save point failed");
@@ -121,7 +121,7 @@ int main(int argc, char *argv[]) {
         d.setDuration(0, 960);
         d.undo();
         check(d.project()->baselines == frozen, "undo rewrote frozen baseline");
-        jobs::ProgressEntry progress;
+        ppm::ProgressEntry progress;
         progress.taskId = id;
         progress.actualStart = "2026-10-26 09:00";
         progress.actualDurationMinutes = 240;
@@ -131,7 +131,7 @@ int main(int argc, char *argv[]) {
         progress.recordedAt = "2026-10-26T09:00:00Z";
         d.recordProgress(progress);
         check(!d.canUndo(), "submitted progress can be erased");
-        jobs::CostEntry cost;
+        ppm::CostEntry cost;
         cost.taskId = id;
         cost.actualMinor = 100;
         cost.physicalBasisPoints = 4000;
@@ -151,12 +151,12 @@ int main(int argc, char *argv[]) {
         d.renameTask(0, "pending");
         d.saveAs(dir.filePath("independent.ppm").toStdString());
         check(!d.canUndo(), "independent copy retained source history");
-        jobs::Document viewer(store);
+        ppm::Document viewer(store);
         viewer.open(d.path(), true);
         rejects([&] { viewer.undo(); });
         rejects([&] { viewer.redo(); });
         check(!viewer.canUndo() && !viewer.canRedo(), "readonly history enabled");
-        jobs::Document bounded(store);
+        ppm::Document bounded(store);
         bounded.create("bounded", "2026-10-26", {"task"});
         for (int i = 1; i <= 150; ++i)
             bounded.renameTask(0, "task" + std::to_string(i));
@@ -166,7 +166,7 @@ int main(int argc, char *argv[]) {
             ++undos;
         }
         check(undos == 100 && bounded.project()->tasks[0].name == "task50", "history count limit failed");
-        jobs::Document large(store);
+        ppm::Document large(store);
         large.create("large", "2026-10-26", {std::string(17 * 1024 * 1024, 'a')});
         large.setDuration(0, 480);
         check(!large.canUndo() && large.historyNotice().find("32 MiB") != std::string::npos,
@@ -177,7 +177,7 @@ int main(int argc, char *argv[]) {
         d.unsubscribe(token);
         d.renameTask(0, "after unsubscribe");
         check(events == 1, "document listener lifetime failed");
-        jobs::Project big;
+        ppm::Project big;
         big.documentId = store.newId();
         big.name = "large undo";
         big.startDate = "2026-10-26";
@@ -185,7 +185,7 @@ int main(int argc, char *argv[]) {
             big.tasks.push_back({store.newId(), "Task " + std::to_string(i), 60, {}});
         const auto bigPath = dir.filePath("large-history.ppm").toUtf8().toStdString();
         store.save(bigPath, big, {});
-        jobs::Document retained(store);
+        ppm::Document retained(store);
         retained.open(bigPath);
         for (int i = 0; i < 3; ++i)
             retained.captureBaseline("Approval " + std::to_string(i), "PM", "test", "2026-10-27T00:00:00Z");
@@ -193,7 +193,7 @@ int main(int argc, char *argv[]) {
         const auto frozenLarge = retained.project()->baselines;
         for (bool duration : {false, true}) {
             retained.open(bigPath);
-            const auto originalPlan = static_cast<const jobs::PlanInput &>(*retained.project());
+            const auto originalPlan = static_cast<const ppm::PlanInput &>(*retained.project());
             for (int i = 0; i < 100; ++i) {
                 if (duration)
                     retained.setDuration(std::size_t(i), 120 + i);
@@ -201,18 +201,18 @@ int main(int argc, char *argv[]) {
                     retained.renameTask(std::size_t(i), "Changed " + std::to_string(i));
             }
             check(retained.historyBytes() < 32 * 1024 * 1024, "sparse history exceeded budget");
-            const auto editedPlan = static_cast<const jobs::PlanInput &>(*retained.project());
+            const auto editedPlan = static_cast<const ppm::PlanInput &>(*retained.project());
             int count = 0;
             while (retained.canUndo()) {
                 retained.undo();
                 ++count;
             }
             check(count == 100 && !retained.dirty() &&
-                      static_cast<const jobs::PlanInput &>(*retained.project()) == originalPlan,
+                      static_cast<const ppm::PlanInput &>(*retained.project()) == originalPlan,
                   "100 sparse edits were not retained/restored for 10000 tasks and 3 baselines");
             while (retained.canRedo())
                 retained.redo();
-            check(static_cast<const jobs::PlanInput &>(*retained.project()) == editedPlan &&
+            check(static_cast<const ppm::PlanInput &>(*retained.project()) == editedPlan &&
                       retained.project()->baselines == frozenLarge,
                   "large sparse redo changed the plan or immutable baseline");
         }
@@ -224,7 +224,7 @@ int main(int argc, char *argv[]) {
         retained.undo();
         retained.undo();
         retained.undo();
-        check(static_cast<const jobs::PlanInput &>(*retained.project()) == static_cast<const jobs::PlanInput &>(big),
+        check(static_cast<const ppm::PlanInput &>(*retained.project()) == static_cast<const ppm::PlanInput &>(big),
               "name and structural deltas did not compose");
         const auto stable = *retained.project();
         const auto redoName = retained.redoLabel();

@@ -4,7 +4,7 @@
 #include <functional>
 #include <memory>
 
-namespace jobs {
+namespace ppm {
 struct StoreUpdateResult {
     bool success = false;
     unsigned count = 0;
@@ -18,4 +18,4 @@ public:
     virtual void cancel() = 0;
 };
 std::unique_ptr<StoreUpdateClient> createStoreUpdateClient();
-} // namespace jobs
+} // namespace ppm

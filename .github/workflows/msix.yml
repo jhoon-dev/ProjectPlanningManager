@@ -55,7 +55,7 @@ jobs:
           ./scripts/check-msix-lifecycle.ps1 -InitialPackage $initial -UpgradePackage $upgrade
       - name: Verify update service and native widgets
         run: |
-          cmake --build build --target jobs_update_tests --parallel 3
+          cmake --build build --target ppm_update_tests --parallel 3
           ctest --test-dir build -R "^application_updates$" --output-on-failure
       - name: Preserve package validation logs and actual UI evidence
         if: always()

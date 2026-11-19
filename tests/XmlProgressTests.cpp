@@ -35,8 +35,8 @@
 #include <iostream>
 #include <algorithm>
 namespace {
-using namespace jobs;
-using namespace jobs::test;
+using namespace ppm;
+using namespace ppm::test;
 void check(bool b, const char *message) {
     if (!b)
         throw std::runtime_error(message);

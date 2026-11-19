@@ -18,7 +18,7 @@
 #include <future>
 #include <iostream>
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool x, const char *s) {
     if (!x)
         throw std::runtime_error(s);
@@ -223,7 +223,7 @@ void run() {
           "plan dates/budget changed");
     const auto schedule = calculate(*d.project());
     check(schedule.status == CalculationStatus::Valid && schedule.isForecast &&
-              schedule.engineVersion == "jobs-dated-remaining-1.0",
+              schedule.engineVersion == "ppm-dated-remaining-1.0",
           "dated forecast engine");
     minuteOracle(*d.project(), schedule, target);
     const auto load = resourceLoad(*d.project(), schedule);
@@ -412,7 +412,7 @@ int main(int argc, char **argv) {
 #endif
     try {
         run();
-    } catch (const jobs::AppError &e) {
+    } catch (const ppm::AppError &e) {
         std::cerr << e.code();
         for (const auto &a : e.diagnostic().arguments)
             std::cerr << " " << a;

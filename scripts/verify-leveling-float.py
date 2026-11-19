@@ -28,7 +28,7 @@ def verify(build):
     kpis = {r[0]: r[1] for r in book["대시보드"].iter_rows(min_row=7, values_only=True)}
     assert kpis["계획 임계 작업"] == 2 and kpis["현재 계획 예산"] == 960
     source = {r[0]: r[1] for r in book["출처와 설정"].iter_rows(min_row=7, values_only=True)}
-    assert source["계산 엔진"] == "jobs-adopted-leveling-1.8"
+    assert source["계산 엔진"] == "ppm-adopted-leveling-1.8"
     assert "resource-order-float-v1" in source["활성 일정 정책"]
     pages = {}
     for name in ("report", "print"):
@@ -41,7 +41,7 @@ def verify(build):
         pages[name] = len(pdf.pages)
     return {"status": "success", "A_total_free_hours": [0, 0], "B_total_free_hours": [0, 0],
             "C_total_free_hours": [8, 8], "critical_tasks": 2, "resource_driving_links": 1,
-            "plan_cost": 960, "dates_preserved": True, "engine": "jobs-adopted-leveling-1.8", "pdf_pages": pages}
+            "plan_cost": 960, "dates_preserved": True, "engine": "ppm-adopted-leveling-1.8", "pdf_pages": pages}
 
 
 if __name__ == "__main__":

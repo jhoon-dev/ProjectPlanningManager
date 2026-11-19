@@ -46,14 +46,14 @@ int main(int argc, char *argv[]) {
         check(dir.isValid(), "temporary directory unavailable");
         auto a = dir.filePath(QString::fromUtf8("프로젝트 α.ppm"));
         auto b = dir.filePath("copy.ppm");
-        jobs::JsonProjectStore store;
+        ppm::JsonProjectStore store;
         {
             QDir caseDirectory(dir.filePath("MixedCaseFolder"));
             check(QDir().mkpath(caseDirectory.path()), "case directory creation failed");
             const auto filename = QString::fromUtf8("MyPlan_한글_Α.ppm");
             const auto mixedPath = caseDirectory.filePath(filename);
             const auto mixedUtf8 = mixedPath.toUtf8().toStdString();
-            jobs::Document mixed(store);
+            ppm::Document mixed(store);
             mixed.create("case preservation", "2026-10-26", {"task"});
             mixed.saveAs(mixedUtf8);
             const auto entries = caseDirectory.entryList({"*.ppm"}, QDir::Files);
@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
             mixed.open(relative);
             check(mixed.project()->documentId == originalId, "relative same-file reopen failed");
             rejects([&] { mixed.saveAs(relative); });
-            jobs::Document contender(store);
+            ppm::Document contender(store);
             rejects([&] { contender.open(relative); });
             contender.open(mixedUtf8, true);
             check(*contender.project() == *mixed.project(), "mixed-case read-only open failed");
@@ -76,7 +76,7 @@ int main(int argc, char *argv[]) {
             if (store.sameFile(mixedUtf8, alternate)) {
                 // Standard NTFS/macOS: a spelling alias must not obtain a second lease.
                 rejects([&] {
-                    jobs::Document other(store);
+                    ppm::Document other(store);
                     other.open(alternate);
                 });
                 rejects([&] { mixed.saveAs(alternate); });
@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
             } else {
                 // Case-sensitive filesystems must keep distinct names distinct.
                 check(!QFileInfo::exists(QString::fromUtf8(alternate)), "unexpected case alias");
-                jobs::Document distinct(store);
+                ppm::Document distinct(store);
                 distinct.create("distinct", "2026-10-26", {});
                 distinct.saveAs(alternate);
                 check(!store.sameFile(mixedUtf8, alternate), "distinct files conflated");
@@ -98,7 +98,7 @@ int main(int argc, char *argv[]) {
                 originalNameFound = originalNameFound || nfc(entry) == nfc(filename);
             check(originalNameFound, "saving an existing file changed its name");
         }
-        jobs::Document doc(store);
+        ppm::Document doc(store);
         rejects([&] { doc.create("", "2026-10-26", {}); });
         rejects([&] { doc.create("test", "2026-02-30", {}); });
         check(!doc.project(), "invalid create changed document");
@@ -112,7 +112,7 @@ int main(int argc, char *argv[]) {
             auto extensionRejected = [&](const std::function<void()> &operation) {
                 try {
                     operation();
-                } catch (const jobs::AppError &error) {
+                } catch (const ppm::AppError &error) {
                     check(error.code() == "FILE_EXTENSION_UNSUPPORTED", "wrong extension rejection");
                     return;
                 }
@@ -123,7 +123,7 @@ int main(int argc, char *argv[]) {
             const auto savedPath = doc.path();
             const auto generation = doc.sessionGeneration();
             const auto history = doc.historyBytes();
-            for (const auto &name : {"Old.jobs", "Old.JOBS", "Wrong.txt", "NoExtension"}) {
+            for (const auto &name : {"Old.jobs", "Old.PPM", "Wrong.txt", "NoExtension"}) {
                 const auto path = dir.filePath(name);
                 write(path, bytes);
                 const auto input = path.toUtf8().toStdString();
@@ -137,7 +137,7 @@ int main(int argc, char *argv[]) {
                           doc.sessionGeneration() == generation && doc.historyBytes() == history,
                       "extension rejection changed document state");
             }
-            jobs::Document uppercase(store);
+            ppm::Document uppercase(store);
             uppercase.create("uppercase extension", "2026-10-26", {"task"});
             const auto path = dir.filePath("Uppercase.PPM").toUtf8().toStdString();
             uppercase.saveAs(path);
@@ -148,7 +148,7 @@ int main(int argc, char *argv[]) {
             check(*doc.project() == snapshot && doc.path() == savedPath && !doc.dirty(),
                   "PPM image rejection changed the document");
         }
-        jobs::Document second(store);
+        ppm::Document second(store);
         rejects([&] { second.open(a.toUtf8().toStdString()); });
         second.open(a.toUtf8().toStdString(), true);
         rejects([&] { second.addTask("blocked"); });
@@ -175,7 +175,7 @@ int main(int argc, char *argv[]) {
         rejects([&] { doc.open(broken.toStdString()); });
         check(*doc.project() == beforeFailedOpen, "failed open replaced active document");
         auto future = QJsonDocument::fromJson(originalBytes).object();
-        future["schemaVersion"] = jobs::maximumNativeSchema + 1;
+        future["schemaVersion"] = ppm::maximumNativeSchema + 1;
         write(broken, QJsonDocument(future).toJson());
         rejects([&] { store.load(broken.toStdString()); });
         auto corrupt = QJsonDocument::fromJson(originalBytes).object();
@@ -218,17 +218,17 @@ int main(int argc, char *argv[]) {
         second.setDuration(1, 240);
         second.setPredecessors(1, {second.project()->tasks[0].id});
         second.setHolidays({"2026-11-02"});
-        auto result = jobs::calculate(*second.project());
+        auto result = ppm::calculate(*second.project());
         second.applyCalculation(result);
-        check(second.calculation()->status == jobs::CalculationStatus::Incomplete, "missing task duration ignored");
+        check(second.calculation()->status == ppm::CalculationStatus::Incomplete, "missing task duration ignored");
         second.setDuration(2, 60);
-        second.applyCalculation(jobs::calculate(*second.project()));
-        check(second.calculation()->status == jobs::CalculationStatus::Valid, "application calculation rejected");
+        second.applyCalculation(ppm::calculate(*second.project()));
+        check(second.calculation()->status == ppm::CalculationStatus::Valid, "application calculation rejected");
         auto oldResult = *second.calculation();
         second.setDuration(0, 960);
-        check(second.calculation()->status == jobs::CalculationStatus::Stale, "edit failed to invalidate calculation");
+        check(second.calculation()->status == ppm::CalculationStatus::Stale, "edit failed to invalidate calculation");
         second.applyCalculation(oldResult);
-        check(second.calculation()->status == jobs::CalculationStatus::Stale, "old revision overwrote current result");
+        check(second.calculation()->status == ppm::CalculationStatus::Stale, "old revision overwrote current result");
         second.save();
         check(store.load(second.path()).project == *second.project(), "schedule input roundtrip mismatch");
         auto beforeBadHoliday = *second.project();
@@ -236,7 +236,7 @@ int main(int argc, char *argv[]) {
         check(*second.project() == beforeBadHoliday, "invalid holiday changed project");
         second.create("different document", "2026-10-26", {"task"});
         second.applyCalculation(oldResult);
-        check(second.calculation()->status == jobs::CalculationStatus::Stale, "wrong document calculation accepted");
+        check(second.calculation()->status == ppm::CalculationStatus::Stale, "wrong document calculation accepted");
         // Construct an actual schema-1 payload, then check original-preserving migration by Save As.
         auto legacy = QJsonDocument::fromJson(originalBytes).object();
         auto legacyPayload = legacy["payload"].toObject();
@@ -271,7 +271,7 @@ int main(int argc, char *argv[]) {
         auto legacyPath = dir.filePath("legacy.ppm");
         const auto legacyBytes = QJsonDocument(legacy).toJson();
         write(legacyPath, legacyBytes);
-        jobs::Document migrated(store);
+        ppm::Document migrated(store);
         migrated.open(legacyPath.toStdString());
         check(migrated.requiresSaveAs() && migrated.project()->documentId == initial.documentId &&
                   !migrated.project()->tasks[0].durationMinutes,
@@ -317,7 +317,7 @@ int main(int argc, char *argv[]) {
         const auto bytes2 = QJsonDocument(version2).toJson();
         auto path2 = dir.filePath("version2.ppm");
         write(path2, bytes2);
-        jobs::Document from2(store);
+        ppm::Document from2(store);
         from2.open(path2.toStdString());
         check(from2.requiresSaveAs() && from2.project()->wbsNodes.empty() && from2.project()->tasks[0].wbsId.empty() &&
                   from2.project()->tasks[0].id == migrated.project()->tasks[0].id &&

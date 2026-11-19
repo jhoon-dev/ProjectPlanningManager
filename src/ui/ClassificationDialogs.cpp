@@ -29,7 +29,7 @@
 #include <QVBoxLayout>
 #include <algorithm>
 
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s);
@@ -917,4 +917,4 @@ std::optional<TaskViewSettings> editTaskViewSettings(const Project &p, const Tas
     dialog.exec();
     return result;
 }
-} // namespace jobs
+} // namespace ppm

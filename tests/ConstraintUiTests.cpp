@@ -41,33 +41,33 @@ void action(QWidget &w, const char *id) {
     check(a && a->isEnabled(), "action unavailable");
     a->trigger();
 }
-jobs::GanttView *gantt(QWidget &w) {
-    auto *g = dynamic_cast<jobs::GanttView *>(w.findChild<QGraphicsView *>("ganttView"));
+ppm::GanttView *gantt(QWidget &w) {
+    auto *g = dynamic_cast<ppm::GanttView *>(w.findChild<QGraphicsView *>("ganttView"));
     check(g, "gantt missing");
     return g;
 }
-QGraphicsItem *bar(jobs::GanttView *view, const std::string &id) {
+QGraphicsItem *bar(ppm::GanttView *view, const std::string &id) {
     for (auto *item : view->scene()->items())
         if ((item->data(1) == "task" || item->data(1) == "milestone") && item->data(0).toString().toStdString() == id)
             return item;
     throw std::runtime_error("bar missing");
 }
-void calculate(jobs::MainWindow &w, jobs::Document &doc) {
+void calculate(ppm::MainWindow &w, ppm::Document &doc) {
     for (auto *a : w.findChildren<QAction *>())
         if (a->shortcut() == QKeySequence(Qt::Key_F9))
             a->trigger();
     check(wait([&] {
-              return doc.calculation() && doc.calculation()->status != jobs::CalculationStatus::Stale &&
+              return doc.calculation() && doc.calculation()->status != ppm::CalculationStatus::Stale &&
                      doc.calculation()->inputRevision == doc.project()->revision;
           }),
           "calculation timeout");
 }
-void mouse(jobs::GanttView *view, QEvent::Type type, const QPoint &point, Qt::MouseButton button,
+void mouse(ppm::GanttView *view, QEvent::Type type, const QPoint &point, Qt::MouseButton button,
            Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers = {}) {
     QMouseEvent event(type, QPointF(point), QPointF(view->viewport()->mapToGlobal(point)), button, buttons, modifiers);
     QApplication::sendEvent(view->viewport(), &event);
 }
-void drag(jobs::GanttView *view, const QPoint &from, const QPoint &to, bool escape = false,
+void drag(ppm::GanttView *view, const QPoint &from, const QPoint &to, bool escape = false,
           Qt::KeyboardModifiers modifiers = {}) {
     mouse(view, QEvent::MouseButtonPress, from, Qt::LeftButton, Qt::LeftButton, modifiers);
     mouse(view, QEvent::MouseMove, to, Qt::NoButton, Qt::LeftButton, modifiers);
@@ -75,7 +75,7 @@ void drag(jobs::GanttView *view, const QPoint &from, const QPoint &to, bool esca
         QTest::keyClick(view, Qt::Key_Escape);
     mouse(view, QEvent::MouseButtonRelease, to, Qt::LeftButton, Qt::NoButton, modifiers);
 }
-QPoint center(jobs::GanttView *view, const std::string &id) {
+QPoint center(ppm::GanttView *view, const std::string &id) {
     auto *b = bar(view, id);
     return view->mapFromScene(b->sceneBoundingRect().center());
 }
@@ -92,14 +92,14 @@ int main(int argc, char **argv) {
     watchdog.start(45000);
     try {
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("간트 날짜 편집", "2026-10-26", {"작업 A", "작업 B"});
         doc.setDuration(0, 480);
         doc.setDuration(1, 240);
         auto id = doc.project()->tasks[0].id;
         doc.setPredecessors(1, {id});
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.show();
         auto *table = taskTable(window);
         table->selectRow(0);
@@ -119,7 +119,7 @@ int main(int argc, char **argv) {
             d->findChild<QPushButton *>("applyConstraints")->click();
         });
         action(window, "taskConstraints");
-        check(wait([&] { return doc.calculation() && doc.calculation()->status == jobs::CalculationStatus::Valid; }),
+        check(wait([&] { return doc.calculation() && doc.calculation()->status == ppm::CalculationStatus::Valid; }),
               "constraint auto calculation failed");
         check(cellText(table, 0, 10).contains("SNET") && cellText(table, 0, 11) == "2026-10-27 17:00",
               "table timing fields missing");
@@ -134,7 +134,7 @@ int main(int argc, char **argv) {
         drag(view, pos, pos + QPoint(64, 0));
         check(wait([&] {
                   return doc.project()->revision == revision + 1 && doc.calculation() &&
-                         doc.calculation()->status == jobs::CalculationStatus::Valid;
+                         doc.calculation()->status == ppm::CalculationStatus::Valid;
               }),
               "move did not commit/recalculate");
         check(doc.project()->tasks[0].constraintAt == "2026-10-28 09:00" &&
@@ -157,7 +157,7 @@ int main(int argc, char **argv) {
         drag(view, end, end + QPoint(64, 0), false, Qt::ShiftModifier);
         check(wait([&] {
                   return doc.project()->revision == revision + 1 && doc.calculation() &&
-                         doc.calculation()->status == jobs::CalculationStatus::Valid;
+                         doc.calculation()->status == ppm::CalculationStatus::Valid;
               }),
               "resize failed");
         check(doc.project()->tasks[0].durationMinutes == 960 &&
@@ -207,7 +207,7 @@ int main(int argc, char **argv) {
         drag(view, pos, pos + QPoint(16, 0));
         check(wait([&] {
                   return doc.project()->revision == revision + 1 && doc.calculation() &&
-                         doc.calculation()->status == jobs::CalculationStatus::Valid;
+                         doc.calculation()->status == ppm::CalculationStatus::Valid;
               }),
               "week zoom move failed");
         doc.setStatusAt("2026-10-26 18:00");
@@ -218,9 +218,9 @@ int main(int argc, char **argv) {
         check(doc.project()->revision == revision, "forecast drag changed input");
         doc.setStatusAt({});
         calculate(window, doc);
-        doc.setTaskTiming(1, jobs::ConstraintType::SNLT, "2026-10-26 17:00", {});
+        doc.setTaskTiming(1, ppm::ConstraintType::SNLT, "2026-10-26 17:00", {});
         calculate(window, doc);
-        check(doc.calculation()->status == jobs::CalculationStatus::Conflict, "hard conflict hidden");
+        check(doc.calculation()->status == ppm::CalculationStatus::Conflict, "hard conflict hidden");
         QTimer hardPoll;
         hardPoll.setInterval(10);
         bool hardSelected = false;
@@ -252,14 +252,14 @@ int main(int argc, char **argv) {
             d->findChild<QPushButton *>("applyConstraints")->click();
         });
         action(window, "taskConstraints");
-        check(wait([&] { return doc.calculation() && doc.calculation()->status == jobs::CalculationStatus::Valid; }),
+        check(wait([&] { return doc.calculation() && doc.calculation()->status == ppm::CalculationStatus::Valid; }),
               "repair did not restore schedule");
         auto path = dir.filePath("readonly.ppm");
         doc.saveAs(path.toStdString());
-        jobs::Document readonly(store);
+        ppm::Document readonly(store);
         readonly.open(path.toStdString(), true);
-        readonly.applyCalculation(jobs::calculate(*readonly.project()));
-        jobs::MainWindow readWindow(readonly);
+        readonly.applyCalculation(ppm::calculate(*readonly.project()));
+        ppm::MainWindow readWindow(readonly);
         readWindow.show();
         auto *readTable = taskTable(readWindow);
         readTable->selectRow(0);

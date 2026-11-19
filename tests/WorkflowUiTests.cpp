@@ -23,16 +23,16 @@ class WorkflowUiTests : public QObject {
 private slots:
     void savingAndCalculationAreIndependent() {
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         {
-            jobs::MainWindow empty(doc);
+            ppm::MainWindow empty(doc);
             empty.show();
             QVERIFY(!empty.findChild<QWidget *>("workflowStatus")->isVisible());
         }
         doc.create("주간 검증", "2026-11-09", {"작업"});
         doc.setDuration(0, 960);
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.show();
         auto *panel = window.findChild<QWidget *>("workflowStatus");
         auto *file = window.findChild<QLabel *>("fileSaveState");
@@ -48,7 +48,7 @@ private slots:
         QVERIFY(schedule->text().contains("계산 필요"));
         const auto disk = bytes(path);
         calculate->click();
-        QTRY_VERIFY(doc.calculation() && doc.calculation()->status == jobs::CalculationStatus::Valid);
+        QTRY_VERIFY(doc.calculation() && doc.calculation()->status == ppm::CalculationStatus::Valid);
         QTRY_VERIFY(schedule->text().contains("계산 완료"));
         QVERIFY(!doc.dirty() && bytes(path) == disk);
         doc.captureBaseline("최초 계획", "PM", "승인", "2026-11-17T00:00:00Z");
@@ -58,9 +58,9 @@ private slots:
         save->click();
         QTRY_VERIFY(file->text().contains("저장됨"));
         QCOMPARE(doc.calculationGeneration(), stale);
-        QCOMPARE(doc.calculation()->status, jobs::CalculationStatus::Stale);
+        QCOMPARE(doc.calculation()->status, ppm::CalculationStatus::Stale);
         doc.setStatusAt("2026-11-13 09:00");
-        jobs::ProgressEntry e;
+        ppm::ProgressEntry e;
         e.taskId = doc.project()->tasks[0].id;
         e.actualStart = "2026-11-09 09:00";
         e.actualDurationMinutes = 480;
@@ -71,7 +71,7 @@ private slots:
         doc.recordProgress(e);
         const auto beforeCalculation = bytes(path);
         calculate->click();
-        QTRY_VERIFY(doc.calculation() && doc.calculation()->status == jobs::CalculationStatus::Valid &&
+        QTRY_VERIFY(doc.calculation() && doc.calculation()->status == ppm::CalculationStatus::Valid &&
                     doc.calculation()->isForecast);
         QTRY_VERIFY(schedule->text().contains("재예측 완료"));
         QVERIFY(file->text().contains("미저장") && hint->text().contains("파일을 저장"));
@@ -91,15 +91,15 @@ private slots:
     }
     void weeklyFinishIsExplicitAndDoesNotSave() {
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("연결", "2026-11-09", {"작업"});
         doc.setDuration(0, 480);
         doc.setStatusAt("2026-11-13 09:00");
         const auto path = dir.filePath("weekly.ppm").toStdString();
         doc.saveAs(path);
         const auto disk = bytes(path);
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.show();
         auto *open = window.findChild<QAction *>("weeklyUpdate");
         QTimer::singleShot(50, [&] {
@@ -115,7 +115,7 @@ private slots:
             dialog->findChild<QPushButton *>("weeklyRecalculate")->click();
         });
         open->trigger();
-        QTRY_VERIFY(doc.calculation() && doc.calculation()->status == jobs::CalculationStatus::Valid);
+        QTRY_VERIFY(doc.calculation() && doc.calculation()->status == ppm::CalculationStatus::Valid);
         QVERIFY(!doc.dirty() && bytes(path) == disk);
         doc.setDuration(0, 960);
         QTimer::singleShot(50, [&] {
@@ -124,32 +124,32 @@ private slots:
             dialog->findChild<QPushButton *>("weeklyRecalculate")->click();
         });
         open->trigger();
-        QTRY_VERIFY(doc.calculation() && doc.calculation()->status == jobs::CalculationStatus::Valid);
+        QTRY_VERIFY(doc.calculation() && doc.calculation()->status == ppm::CalculationStatus::Valid);
         QVERIFY(doc.dirty() && bytes(path) == disk);
         doc.save();
         window.close();
     }
     void incompleteAndCancelledAreNotCompletion() {
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("미완료", "2026-11-09", {"기간 없음"});
         const auto path = dir.filePath("incomplete.ppm").toStdString();
         doc.saveAs(path);
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.show();
         auto *schedule = window.findChild<QLabel *>("scheduleFreshnessState");
         window.findChild<QToolButton *>("workflowCalculate")->click();
-        QTRY_VERIFY(doc.calculation() && doc.calculation()->status == jobs::CalculationStatus::Incomplete);
+        QTRY_VERIFY(doc.calculation() && doc.calculation()->status == ppm::CalculationStatus::Incomplete);
         QTRY_VERIFY(schedule->text().contains("입력 불완전"));
         QVERIFY(window.findChild<QLabel *>("workflowNextStep")->text().contains("진단 보기"));
         auto result = *doc.calculation();
-        result.status = jobs::CalculationStatus::Cancelled;
+        result.status = ppm::CalculationStatus::Cancelled;
         doc.applyCalculation(result);
         doc.save();
         QTRY_VERIFY(schedule->text().contains("취소됨"));
         QVERIFY(!doc.calculation()->projectFinish);
-        result.status = jobs::CalculationStatus::Conflict;
+        result.status = ppm::CalculationStatus::Conflict;
         doc.applyCalculation(result);
         doc.save();
         QTRY_VERIFY(schedule->text().contains("계산 충돌"));

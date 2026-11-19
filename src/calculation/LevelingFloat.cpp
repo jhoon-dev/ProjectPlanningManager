@@ -13,7 +13,7 @@
 #include <memory>
 #include <set>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 namespace {
 thread_local int version = 9;
 struct Unavailable {
@@ -453,4 +453,4 @@ void calculateLevelingFloat(const Project &p, ScheduleResult &out) {
         out.diagnostics.push_back(
             {"LEVELING_FLOAT_UNAVAILABLE", {out.levelingFloatReason}, {}, "LEVELING_FLOAT_UNAVAILABLE"});
 }
-} // namespace jobs
+} // namespace ppm

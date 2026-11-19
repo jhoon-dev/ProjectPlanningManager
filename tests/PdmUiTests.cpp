@@ -55,12 +55,12 @@ int main(int argc, char **argv) {
     watchdog.start(30000);
     try {
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("교대 일정", "2026-10-26", {"설계", "시공"});
         doc.setDuration(0, 480);
         doc.setDuration(1, 240);
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.show();
         auto *table = taskTable(window);
         QTimer::singleShot(30, [&] {
@@ -100,16 +100,16 @@ int main(int argc, char **argv) {
         action(window, "undoEdit");
         check(doc.project()->tasks[1].predecessors.empty(), "relationship undo failed");
         action(window, "redoEdit");
-        check(doc.project()->tasks[1].dependencyRules[0].type == jobs::DependencyType::SS, "relationship redo failed");
+        check(doc.project()->tasks[1].dependencyRules[0].type == ppm::DependencyType::SS, "relationship redo failed");
         for (auto *a : window.findChildren<QAction *>()) {
             if (a->shortcut() == QKeySequence(Qt::Key_F9))
                 a->trigger();
         }
-        check(wait([&] { return doc.calculation() && doc.calculation()->status == jobs::CalculationStatus::Valid; }),
+        check(wait([&] { return doc.calculation() && doc.calculation()->status == ppm::CalculationStatus::Valid; }),
               "PDM UI calculation failed");
         check(cellText(table, 1, 3) == "2026-10-26 14:30" && cellText(table, 1, 4) == "2026-10-28 14:30",
               "calendar UI dates wrong");
-        auto *gantt = dynamic_cast<jobs::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
+        auto *gantt = dynamic_cast<ppm::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
         check(gantt, "Gantt view missing");
         bool edge = false, calendar = false;
         for (auto *item : gantt->scene()->items()) {
@@ -120,12 +120,12 @@ int main(int argc, char **argv) {
         }
         check(edge && calendar, "Gantt relation/calendar provenance missing");
         window.grab().save("pdm-main-smoke.png");
-        jobs::Document readonly(store);
+        ppm::Document readonly(store);
         auto path = dir.filePath("pdm-ui.ppm");
         doc.saveAs(path.toStdString());
         readonly.open(path.toStdString(), true);
         {
-            jobs::MainWindow view(readonly);
+            ppm::MainWindow view(readonly);
             view.show();
             auto *t = taskTable(view);
             t->selectRow(1);

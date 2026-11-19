@@ -4,7 +4,7 @@
 #include <QPointer>
 #include <QtConcurrent/QtConcurrentRun>
 
-namespace jobs {
+namespace ppm {
 AsyncEditController::AsyncEditController(Document &document, QObject *parent) : QObject(parent), document_(document) {
     setObjectName("asyncEditController");
     listener_ = document_.subscribe([this](Document::Event event) {
@@ -169,4 +169,4 @@ void AsyncEditController::start(Pending pending) {
     if (stateChanged)
         stateChanged();
 }
-} // namespace jobs
+} // namespace ppm

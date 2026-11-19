@@ -2,7 +2,7 @@
 #include "domain/XmlFormatting.h"
 #include "domain/Classification.h"
 #include "domain/CalculationControl.h"
-namespace jobs {
+namespace ppm {
 std::string xmlMonthName(int month, bool abbreviate) {
     calculationCheckpoint();
     if (month < 1 || month > 12)
@@ -25,4 +25,4 @@ std::string xmlWeekdayName(int weekday, bool abbreviate, int firstDay) {
     input.text = "2000-01-0" + std::to_string(day) + "T00:00:00";
     return *xmlFormat(input, abbreviate ? "ddd" : "dddd", 1033);
 }
-} // namespace jobs
+} // namespace ppm

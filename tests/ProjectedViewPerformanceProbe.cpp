@@ -41,27 +41,27 @@ int main(int argc, char **argv) {
         const auto mode = args.value(args.indexOf("--view") + 1);
         check(mode == "search" || mode == "sort" || mode == "wbs" || mode == "combined", "unknown view");
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
+        ppm::JsonProjectStore store;
         auto path = dir.filePath("Bulk.ppm").toStdString();
         auto fixture = performanceFixture(n, false);
         fixture.wbsNodes = {{"A", "Scope A", {}}, {"A1", "Child", "A"}, {"B", "Other scope", {}}};
         for (int i = 0; i < n; ++i)
             fixture.tasks[std::size_t(i)].wbsId = i < n / 2 ? "A1" : "B";
         store.save(path, fixture, {});
-        jobs::Document doc(store);
+        ppm::Document doc(store);
         doc.open(path);
         for (int i = 0; i < baselines; ++i)
             doc.captureBaseline("B" + std::to_string(i), "PM", "measurement", "2026-10-28T00:00:00Z");
         doc.save();
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.show();
         QTest::qWait(30);
         auto *table = taskTable(window);
-        jobs::AsyncEditController *controller = nullptr;
+        ppm::AsyncEditController *controller = nullptr;
         // AsyncEditController has no Q_OBJECT: find by RTTI among QObject children.
         controller = nullptr;
         for (auto *child : window.children())
-            if (auto *c = dynamic_cast<jobs::AsyncEditController *>(child))
+            if (auto *c = dynamic_cast<ppm::AsyncEditController *>(child))
                 controller = c;
         check(controller, "controller missing");
         if (mode == "wbs" || mode == "combined") {
@@ -126,7 +126,7 @@ int main(int argc, char **argv) {
                             {"observed_max_heartbeat_gap_ms", maxGap},
                             {"model_resets", resets - r},
                             {"gui_model_task_visits",
-                             qint64(dynamic_cast<jobs::TaskTableModel *>(table->model())->lastTaskVisits())},
+                             qint64(dynamic_cast<ppm::TaskTableModel *>(table->model())->lastTaskVisits())},
                             {"layout_signals", layouts - l},
                             {"row_insert_signals", inserted - i},
                             {"row_remove_signals", removed - d}});
@@ -178,15 +178,15 @@ int main(int argc, char **argv) {
         check(int(doc.project()->tasks.size()) == n - count, "delete failed");
         measure("undo_delete", "undoEdit");
         check(int(doc.project()->tasks.size()) == n && !doc.dirty(), "undo/save point failed");
-        QJsonObject output{{"fixture", "jobs-projected-view-ui-v1"},
+        QJsonObject output{{"fixture", "ppm-projected-view-ui-v1"},
                            {"status", "success"},
                            {"task_count", n},
                            {"baseline_count", baselines},
                            {"affected_tasks", count},
                            {"view", mode},
                            {"operations", operations},
-                           {"source_revision", JOBS_PERF_REVISION},
-                           {"built_product_source_sha256", JOBS_SOURCE_SHA256},
+                           {"source_revision", PPM_PERF_REVISION},
+                           {"built_product_source_sha256", PPM_SOURCE_SHA256},
                            {"platform", QApplication::platformName()},
                            {"scope", "One sample per operation; setup_ready_ms excluded from timing; trigger includes "
                                      "automated modal input/confirmation; settled includes worker and GUI refresh, "

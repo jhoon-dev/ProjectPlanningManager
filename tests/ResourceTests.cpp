@@ -27,8 +27,8 @@ void rejects(const std::function<void()> &f) {
     }
     check(bad, "expected resource rejection");
 }
-jobs::Project project() {
-    jobs::Project p;
+ppm::Project project() {
+    ppm::Project p;
     p.documentId = "resources";
     p.name = "F05";
     p.startDate = "2026-10-26";
@@ -37,7 +37,7 @@ jobs::Project project() {
     p.assignments = {{"a", "r", 100}, {"b", "r", 100}};
     return p;
 }
-std::int64_t work(const jobs::ResourceLoad &l) {
+std::int64_t work(const ppm::ResourceLoad &l) {
     std::int64_t n = 0;
     for (const auto &d : l.days)
         n += d.demandUnitMinutes;
@@ -66,63 +66,63 @@ int main(int argc, char *argv[]) {
     try {
         auto p = project();
         const auto input = p;
-        auto r = jobs::levelResources(p, "task-order", 260);
-        check(r.before.status == jobs::CalculationStatus::Conflict && r.before.days.size() == 1 &&
+        auto r = ppm::levelResources(p, "task-order", 260);
+        check(r.before.status == ppm::CalculationStatus::Conflict && r.before.days.size() == 1 &&
                   r.before.days[0].peakUnits == 200 && r.before.days[0].overloadMinutes == 480 &&
                   work(r.before) == 96000,
               "F05 peak200/work16h mismatch");
-        check(r.leveled.status == jobs::CalculationStatus::Valid && r.after.status == jobs::CalculationStatus::Valid &&
+        check(r.leveled.status == ppm::CalculationStatus::Valid && r.after.status == ppm::CalculationStatus::Valid &&
                   r.leveled.tasks[0].start == "2026-10-26 09:00" && r.leveled.tasks[1].start == "2026-10-27 09:00" &&
                   r.leveled.projectFinish == "2026-10-27 18:00" && work(r.after) == work(r.before) && p == input,
               "F05 leveling did not preserve original/work/duration");
-        check(jobs::levelResources(p, "task-order", 260).leveled.tasks == r.leveled.tasks, "nondeterministic leveling");
+        check(ppm::levelResources(p, "task-order", 260).leveled.tasks == r.leveled.tasks, "nondeterministic leveling");
         p.tasks[0].durationMinutes = p.tasks[1].durationMinutes = 20;
-        r = jobs::levelResources(p, "task-order", 10);
+        r = ppm::levelResources(p, "task-order", 10);
         check(r.before.days[0].overloadMinutes == 20 && r.before.days[0].peakUnits == 200 &&
                   r.before.days[0].demandUnitMinutes == 4000 && r.after.days[0].overloadMinutes == 0 &&
                   r.leveled.tasks[1].start == "2026-10-26 09:20",
               "daily averaging concealed short overlap");
         p = project();
         p.assignments[0].units = p.assignments[1].units = 50;
-        r = jobs::levelResources(p, "task-order", 10);
-        check(r.before.status == jobs::CalculationStatus::Valid &&
-                  r.leveled.tasks == jobs::levelResources(p, "shortest-first", 10).leveled.tasks &&
+        r = ppm::levelResources(p, "task-order", 10);
+        check(r.before.status == ppm::CalculationStatus::Valid &&
+                  r.leveled.tasks == ppm::levelResources(p, "shortest-first", 10).leveled.tasks &&
                   r.leveled.projectFinish == "2026-10-26 18:00",
               "fractional assignments falsely delayed");
         p = project();
         p.resources[0].maxUnits = 0;
-        r = jobs::levelResources(p, "task-order", 3);
-        check(r.leveled.status == jobs::CalculationStatus::Conflict && r.leveled.tasks.empty() &&
-                  !r.leveled.projectFinish && r.before.status == jobs::CalculationStatus::Conflict,
+        r = ppm::levelResources(p, "task-order", 3);
+        check(r.leveled.status == ppm::CalculationStatus::Conflict && r.leveled.tasks.empty() &&
+                  !r.leveled.projectFinish && r.before.status == ppm::CalculationStatus::Conflict,
               "zero capacity treated as unknown or partial success");
         p.resources[0].maxUnits.reset();
-        r = jobs::levelResources(p, "task-order", 3);
-        check(r.before.status == jobs::CalculationStatus::Incomplete &&
-                  r.leveled.status == jobs::CalculationStatus::Incomplete && r.leveled.tasks.empty(),
+        r = ppm::levelResources(p, "task-order", 3);
+        check(r.before.status == ppm::CalculationStatus::Incomplete &&
+                  r.leveled.status == ppm::CalculationStatus::Incomplete && r.leveled.tasks.empty(),
               "unknown capacity silently treated as zero/available");
         auto tiny = project();
         tiny.tasks[0].durationMinutes = tiny.tasks[1].durationMinutes = 1;
         tiny.resources[0].maxUnits = 0;
-        check(jobs::levelResources(tiny, "task-order", 5200).leveled.status == jobs::CalculationStatus::Conflict,
+        check(ppm::levelResources(tiny, "task-order", 5200).leveled.status == ppm::CalculationStatus::Conflict,
               "long unavailable horizon produced a false schedule");
         p.resources[0].exceptions = {{"2026-10-27", 200}};
-        r = jobs::levelResources(p, "task-order", 3);
-        check(r.leveled.status == jobs::CalculationStatus::Valid && r.after.status == jobs::CalculationStatus::Valid &&
+        r = ppm::levelResources(p, "task-order", 3);
+        check(r.leveled.status == ppm::CalculationStatus::Valid && r.after.status == ppm::CalculationStatus::Valid &&
                   r.leveled.tasks[0].start == "2026-10-27 09:00",
               "known capacity exception not used after unknown day");
         p = project();
         p.holidays = {"2026-10-27"};
         p.resources[0].exceptions = {{"2026-10-26", 0}};
-        r = jobs::levelResources(p, "task-order", 10);
+        r = ppm::levelResources(p, "task-order", 10);
         check(r.leveled.tasks[0].start == "2026-10-28 09:00" && r.leveled.tasks[1].start == "2026-10-29 09:00",
               "calendar holiday/capacity zero ignored");
         p = project();
         p.resources.push_back({"machine", "공유 장비", "equipment", 100, {{"2026-10-26", 0}}});
         p.assignments.push_back({"a", "machine", 100});
         p.assignments.push_back({"b", "machine", 100});
-        r = jobs::levelResources(p, "task-order", 10);
+        r = ppm::levelResources(p, "task-order", 10);
         check(r.leveled.tasks[0].start == "2026-10-27 09:00" && r.leveled.tasks[1].start == "2026-10-28 09:00" &&
-                  r.after.status == jobs::CalculationStatus::Valid,
+                  r.after.status == ppm::CalculationStatus::Valid,
               "multiple simultaneous resource constraints ignored");
         for (const auto &resource : p.resources) {
             std::int64_t beforeWork = 0, afterWork = 0;
@@ -137,8 +137,7 @@ int main(int argc, char *argv[]) {
         p = project();
         p.tasks[0].durationMinutes = 960;
         p.tasks.push_back({"c", "C", 960, {"b"}});
-        auto order = jobs::levelResources(p, "task-order", 20),
-             shortest = jobs::levelResources(p, "shortest-first", 20);
+        auto order = ppm::levelResources(p, "task-order", 20), shortest = ppm::levelResources(p, "shortest-first", 20);
         check(order.leveled.projectFinish == "2026-10-30 18:00" &&
                   shortest.leveled.projectFinish == "2026-10-28 18:00" &&
                   shortest.leveled.tasks[2].earlyStartMinutes >= shortest.leveled.tasks[1].earlyFinishMinutes &&
@@ -146,7 +145,7 @@ int main(int argc, char *argv[]) {
               "priority scenario/FS/work comparison failed");
         p = project();
         p.statusAt = "2026-10-26 18:00";
-        jobs::ProgressEntry e;
+        ppm::ProgressEntry e;
         e.id = "report";
         e.taskId = "b";
         e.statusAt = *p.statusAt;
@@ -160,14 +159,14 @@ int main(int argc, char *argv[]) {
         e.actualDurationMinutes = 120;
         e.remainingMinutes = 480;
         p.progress.push_back(e);
-        r = jobs::levelResources(p, "task-order", 20);
+        r = ppm::levelResources(p, "task-order", 20);
         check(r.leveled.tasks[1].start == *e.actualStart && r.leveled.tasks[1].remainingStart == "2026-10-28 09:00" &&
                   r.leveled.tasks[1].finish == "2026-10-28 18:00" && work(r.before) == 96000 &&
                   work(r.after) == 96000 && p.progress[0] == e,
               "leveling moved actual start or invented historical demand");
         p.progress[0].actualFinish = "2026-10-26 18:00";
         p.progress[0].remainingMinutes = 0;
-        r = jobs::levelResources(p, "task-order", 20);
+        r = ppm::levelResources(p, "task-order", 20);
         check(r.leveled.tasks[1].completedActual && r.leveled.tasks[1].finish == "2026-10-26 18:00" &&
                   work(r.before) == 48000,
               "completed actual allocated future demand");
@@ -185,8 +184,8 @@ int main(int argc, char *argv[]) {
                 p.tasks.push_back({id, id, 60 * (1 + (i * 7 + seed) % 8), preds});
                 p.assignments.push_back({id, "r", 25 * (1 + (i + seed) % 4)});
             }
-            r = jobs::levelResources(p, seed % 2 ? "shortest-first" : "longest-first", 30);
-            check(r.leveled.status == jobs::CalculationStatus::Valid && work(r.before) == work(r.after),
+            r = ppm::levelResources(p, seed % 2 ? "shortest-first" : "longest-first", 30);
+            check(r.leveled.status == ppm::CalculationStatus::Valid && work(r.before) == work(r.after),
                   "oracle fixture failed/work changed");
             std::vector<int> demand(30 * 480, 0);
             for (std::size_t i = 0; i < p.tasks.size(); ++i) {
@@ -207,8 +206,8 @@ int main(int argc, char *argv[]) {
         }
         QTemporaryDir dir;
         check(dir.isValid(), "temporary folder failed");
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("자원 검증", "2026-10-26", {"A", "B"});
         doc.setDuration(0, 480);
         doc.setDuration(1, 480);
@@ -224,12 +223,12 @@ int main(int argc, char *argv[]) {
         bad.exceptions.push_back(bad.exceptions[0]);
         rejects([&] { doc.putResource(bad); });
         check(*doc.project() == before, "invalid resource edit changed revision/data");
-        doc.applyCalculation(jobs::calculate(*doc.project()));
+        doc.applyCalculation(ppm::calculate(*doc.project()));
         auto preparedRevision = doc.project()->revision;
         auto scenarioId = doc.saveScenario("최초 A", "task-order", 260, "2026-10-26T00:00:00Z",
                                            doc.project()->documentId, preparedRevision);
         auto frozen = doc.project()->scenarios[0];
-        check(doc.calculation()->status == jobs::CalculationStatus::Stale && frozen.input.resources == before.resources,
+        check(doc.calculation()->status == ppm::CalculationStatus::Stale && frozen.input.resources == before.resources,
               "scenario snapshot/cache mismatch");
         rejects([&] {
             doc.saveScenario("stale", "task-order", 260, "2026-10-26T00:00:00Z", doc.project()->documentId,
@@ -237,7 +236,7 @@ int main(int argc, char *argv[]) {
         });
         doc.captureBaseline("resource baseline", "PM", "approval", "2026-10-26T00:00:00Z");
         doc.setAssignments(a, {{a, rid, 50}});
-        auto assignmentComparison = jobs::compareToBaseline(*doc.project(), doc.project()->baselines[0].id);
+        auto assignmentComparison = ppm::compareToBaseline(*doc.project(), doc.project()->baselines[0].id);
         check(std::find(assignmentComparison.tasks[0].changes.begin(), assignmentComparison.tasks[0].changes.end(),
                         "자원 배정 변경") != assignmentComparison.tasks[0].changes.end() &&
                   assignmentComparison.tasks[0].baselineAssignments != assignmentComparison.tasks[0].planAssignments,
@@ -247,7 +246,7 @@ int main(int argc, char *argv[]) {
         doc.putResource(bad);
         check(doc.project()->scenarios[0] == frozen && doc.project()->baselines[0].input.resources[0].maxUnits == 100,
               "resource edit changed frozen scenario/baseline");
-        auto comparison = jobs::compareToBaseline(*doc.project(), doc.project()->baselines[0].id);
+        auto comparison = ppm::compareToBaseline(*doc.project(), doc.project()->baselines[0].id);
         check(std::find(comparison.contextChanges.begin(), comparison.contextChanges.end(),
                         "자원 정의/날짜별 가용량 변경") != comparison.contextChanges.end(),
               "baseline comparison omitted capacity change");
@@ -255,11 +254,11 @@ int main(int argc, char *argv[]) {
         doc.saveAs(path.toStdString());
         auto bytes = read(path);
         check(store.load(doc.path()).project == *doc.project(), "resource/scenario file roundtrip failed");
-        auto restored = jobs::scenarioProject(store.load(doc.path()).project.scenarios[0]);
-        check(jobs::levelResources(restored, frozen.priority, frozen.horizonWorkDays).leveled.projectFinish ==
+        auto restored = ppm::scenarioProject(store.load(doc.path()).project.scenarios[0]);
+        check(ppm::levelResources(restored, frozen.priority, frozen.horizonWorkDays).leveled.projectFinish ==
                   "2026-10-27 18:00",
               "saved scenario recomputation mismatch");
-        jobs::Document clone(store);
+        ppm::Document clone(store);
         clone.open(doc.path(), true);
         rejects([&] { clone.putResource({{}, "blocked", "labor", 100, {}}); });
         clone.saveAs(dir.filePath("copy.ppm").toStdString());
@@ -292,7 +291,7 @@ int main(int argc, char *argv[]) {
         const auto oldBytes = sign(root, legacy);
         auto oldPath = dir.filePath("v4.ppm");
         write(oldPath, oldBytes);
-        jobs::Document migrated(store);
+        ppm::Document migrated(store);
         migrated.open(oldPath.toStdString());
         check(migrated.requiresSaveAs() && migrated.project()->resources.empty() &&
                   migrated.project()->scenarios.empty(),

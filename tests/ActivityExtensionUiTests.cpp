@@ -24,7 +24,7 @@
 #include <QTest>
 #include <QTimer>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool ok, const char *message) {
     if (!ok)

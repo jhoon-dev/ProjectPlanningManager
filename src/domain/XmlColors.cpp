@@ -3,7 +3,7 @@
 #include "domain/CalculationControl.h"
 #include <algorithm>
 #include <array>
-namespace jobs {
+namespace ppm {
 std::int64_t xmlRgbColor(std::int64_t red, std::int64_t green, std::int64_t blue) {
     calculationCheckpoint();
     for (const auto n : {red, green, blue})
@@ -22,4 +22,4 @@ std::int64_t xmlQbColor(std::int64_t color) {
                                                              0x0000ff, 0xff00ff, 0x00ffff, 0xffffff};
     return palette[std::size_t(color)];
 }
-} // namespace jobs
+} // namespace ppm

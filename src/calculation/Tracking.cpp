@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <stdexcept>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 namespace {
 Project baselineProject(const Baseline &b) {
     Project p;
@@ -264,4 +264,4 @@ ComparisonReport compareToBaseline(const Project &p, const std::string &baseline
             }
     return report;
 }
-} // namespace jobs
+} // namespace ppm

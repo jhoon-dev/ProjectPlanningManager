@@ -1,5 +1,5 @@
 #pragma once
 #include <string_view>
-namespace jobs {
+namespace ppm {
 inline constexpr std::string_view xmlProgressSourcePrefix = "[XML-PROGRESS sha256=";
-} // namespace jobs
+} // namespace ppm

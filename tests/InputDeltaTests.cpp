@@ -7,8 +7,8 @@ void check(bool value, const char *message) {
     if (!value)
         throw std::runtime_error(message);
 }
-void roundtrip(const jobs::Project &before, const jobs::Project &after) {
-    jobs::InputDelta delta(before, after);
+void roundtrip(const ppm::Project &before, const ppm::Project &after) {
+    ppm::InputDelta delta(before, after);
     auto actual = before;
     delta.apply(actual, true);
     check(actual == after, "forward delta lost an input field or order");
@@ -18,7 +18,7 @@ void roundtrip(const jobs::Project &before, const jobs::Project &after) {
 } // namespace
 int main() {
     try {
-        jobs::Project before;
+        ppm::Project before;
         before.documentId = "document";
         before.name = "before";
         before.startDate = "2026-10-26";
@@ -27,7 +27,7 @@ int main() {
         auto after = before;
         after.tasks[1].durationMinutes = 240;
         after.tasks[9998].name = "Distant edit";
-        jobs::InputDelta sparse(before, after);
+        ppm::InputDelta sparse(before, after);
         check(sparse.bytes() < 10000, "distant edits retained intervening tasks");
         roundtrip(before, after);
         after = before;
@@ -43,7 +43,7 @@ int main() {
         after.name = "after";
         after.startDate = "2026-11-02";
         after.calendar = "other-calendar";
-        after.calculationProfile = jobs::effortProfile;
+        after.calculationProfile = ppm::effortProfile;
         after.currency = "USD";
         after.costProfile = "other-cost-profile";
         after.statusAt = "2026-11-02 18:00";
@@ -57,12 +57,12 @@ int main() {
         task.name = "updated";
         task.predecessors = {"T0"};
         task.wbsId = "W";
-        task.dependencyRules = {{"T0", jobs::DependencyType::SS, -30}};
+        task.dependencyRules = {{"T0", ppm::DependencyType::SS, -30}};
         task.calendarId = "C";
-        task.constraintType = jobs::ConstraintType::SNET;
+        task.constraintType = ppm::ConstraintType::SNET;
         task.constraintAt = "2026-11-02 09:00";
         task.deadlineAt = "2026-11-03 18:00";
-        task.taskType = jobs::TaskType::FixedWork;
+        task.taskType = ppm::TaskType::FixedWork;
         task.workUnitMinutes = 6000;
         task.workDriven = true;
         task.breaks = {{"2026-11-02 10:00", "2026-11-02 11:00"}};

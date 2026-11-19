@@ -19,7 +19,7 @@
 #include <iostream>
 #include <random>
 #include <numeric>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool v, const char *s) {
     if (!v)

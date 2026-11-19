@@ -6,7 +6,7 @@
 #include <cmath>
 #include <stdexcept>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 int taskDayMinutes(const PlanInput &plan, const Task &task) {
     if (task.calendarId.empty())
         return 480;
@@ -178,4 +178,4 @@ QList<QStringList> decodeTaskTsv(const QString &text) {
         finishRow();
     return rows;
 }
-} // namespace jobs
+} // namespace ppm

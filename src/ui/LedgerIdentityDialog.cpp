@@ -27,7 +27,7 @@
 #include <QVBoxLayout>
 #include <QtConcurrent>
 #include <map>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -562,4 +562,4 @@ void LedgerIdentityDialog::reject() {
         impl_->control->cancel();
     QDialog::reject();
 }
-} // namespace jobs
+} // namespace ppm

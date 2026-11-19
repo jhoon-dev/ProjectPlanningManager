@@ -11,7 +11,7 @@ class QTreeWidget;
 class QLabel;
 class QPushButton;
 class QTimer;
-namespace jobs {
+namespace ppm {
 class ResourceViewDialog final : public QDialog {
 public:
     explicit ResourceViewDialog(Document &, QWidget *parent = nullptr);
@@ -45,4 +45,4 @@ private:
     void controls();
     void exportView(bool pdf);
 };
-} // namespace jobs
+} // namespace ppm

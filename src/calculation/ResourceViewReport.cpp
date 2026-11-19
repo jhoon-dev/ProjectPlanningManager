@@ -2,7 +2,7 @@
 #include "calculation/ResourceViewReport.h"
 #include "calculation/FormulaFieldReports.h"
 #include "domain/FormulaFields.h"
-namespace jobs {
+namespace ppm {
 ProjectReport resourceViewReport(const Project &p, const ResourceViewSettings &settings, const ReportOptions &options) {
     EvaluationScope evaluation;
     ScheduleFormulaScope formulaSchedule(p, nullptr, ScheduleFormulaMode::Active);
@@ -110,4 +110,4 @@ ProjectReport resourceViewReport(const Project &p, const ResourceViewSettings &s
         throw AppError(ErrorCode::REPORT_CELL_LIMIT);
     return report;
 }
-} // namespace jobs
+} // namespace ppm

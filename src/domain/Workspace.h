@@ -2,7 +2,7 @@
 #include "domain/Project.h"
 #include "domain/Governance.h"
 
-namespace jobs {
+namespace ppm {
 inline constexpr int maxSharedResourceUnits = 10000000;
 struct ProjectReference {
     std::string documentId, path, name;
@@ -46,4 +46,4 @@ struct Workspace {
 void validateWorkspace(const Workspace &, bool requirePaths = false);
 bool hasSharedResourceAvailability(const SharedResource &);
 Resource sharedResourceCapacity(const SharedResource &);
-} // namespace jobs
+} // namespace ppm

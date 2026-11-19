@@ -4,7 +4,7 @@
 #include <QJsonObject>
 #include <QString>
 
-namespace jobs {
+namespace ppm {
 struct XmlProgressCandidate {
     std::string xmlUid, taskId, name, issue;
     std::optional<std::string> actualStart, actualFinish;
@@ -88,4 +88,4 @@ std::vector<PeriodActualSubmission> prepareXmlPeriodMerge(const Project &, const
 // Create-only directory publication on the same filesystem. Returns the new directory.
 QString publishProjectXml(const ProjectXmlExchange &, const QString &destination);
 QString projectXmlPreview(const ProjectXmlExchange &);
-} // namespace jobs
+} // namespace ppm

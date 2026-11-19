@@ -1,7 +1,7 @@
 #include "calculation/AssignmentPeriods.h"
 #include "domain/Diagnostics.h"
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 std::vector<AssignmentPeriod> assignmentCurve(std::int64_t duration, int units, AssignmentCurve curve) {
     if (duration <= 0 || duration > 5000000 || units <= 0 || units > 100000 ||
         (curve != AssignmentCurve::Flat && curve != AssignmentCurve::Front && curve != AssignmentCurve::Back &&
@@ -46,4 +46,4 @@ std::vector<AssignmentPeriod> assignmentCurve(std::int64_t duration, int units, 
     }
     return result;
 }
-} // namespace jobs
+} // namespace ppm

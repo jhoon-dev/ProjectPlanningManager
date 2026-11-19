@@ -109,7 +109,7 @@ assert body["resourcePlan"]["autoDelayForReceipts"]
 assert body["planLeveling"]["policy"] == "serial-material-arrivals-v1"
 assert body["baselines"][0]["input"]["resourcePlan"]["autoDelayForReceipts"]
 if native["schemaVersion"] == 84:
-    assert body["baselines"][0]["engineVersion"] == "jobs-adopted-material-leveling-1.0"
+    assert body["baselines"][0]["engineVersion"] == "ppm-adopted-material-leveling-1.0"
 assert body["scenarios"][0]["input"]["resourcePlan"]["autoDelayForReceipts"]
 book = openpyxl.load_workbook(root / "report.xlsx", data_only=True)
 assert any("serial-material-arrivals-v1" == value for row in book["자재 입고 자동 대기"].values for value in row)

@@ -6,7 +6,7 @@ class QComboBox;
 class QTableWidget;
 class QLabel;
 class QPushButton;
-namespace jobs {
+namespace ppm {
 class PlannedWorkDialog final : public QDialog {
 public:
     PlannedWorkDialog(Document &, std::shared_ptr<const Project>, std::string taskId, std::string resourceId,
@@ -33,4 +33,4 @@ private:
     void controls();
     void run(bool convert);
 };
-} // namespace jobs
+} // namespace ppm

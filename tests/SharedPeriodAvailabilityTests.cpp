@@ -37,7 +37,7 @@
 #include <functional>
 #include <iostream>
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool v, const char *why) {
     if (!v)
         throw std::runtime_error(why);

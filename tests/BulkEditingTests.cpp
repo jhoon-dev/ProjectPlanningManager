@@ -26,11 +26,11 @@ void check(bool value, const char *message) {
     if (!value)
         throw std::runtime_error(message);
 }
-auto prepare(jobs::Document &doc, jobs::EditCommand command,
-             std::shared_ptr<jobs::CalculationControl> control = std::make_shared<jobs::CalculationControl>()) {
+auto prepare(ppm::Document &doc, ppm::EditCommand command,
+             std::shared_ptr<ppm::CalculationControl> control = std::make_shared<ppm::CalculationControl>()) {
     return std::async(std::launch::async,
                       [request = doc.makeEditRequest(std::move(command)), control]() mutable {
-                          return jobs::Document::prepareEdit(std::move(request), control);
+                          return ppm::Document::prepareEdit(std::move(request), control);
                       })
         .get();
 }
@@ -43,48 +43,48 @@ QByteArray bytes(const std::string &path) {
 int main(int argc, char **argv) {
     QApplication app(argc, argv);
     try {
-        using jobs::EditState;
+        using ppm::EditState;
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
+        ppm::JsonProjectStore store;
         const auto path = dir.filePath("Bulk.ppm").toStdString();
         auto fixture = performanceFixture(1000, false);
         store.save(path, fixture, {});
-        jobs::Document doc(store);
+        ppm::Document doc(store);
         doc.open(path);
         for (int i = 0; i < 3; ++i)
             doc.captureBaseline("B" + std::to_string(i), "PM", "bulk regression", "2026-10-28T00:00:00Z");
         doc.save();
         const auto original = *doc.project();
         const auto disk = bytes(path);
-        auto result = prepare(doc, jobs::InsertTasksEdit{{"First", "Second"}, "T0", {}});
+        auto result = prepare(doc, ppm::InsertTasksEdit{{"First", "Second"}, "T0", {}});
         check(result->state() == EditState::Ready && *doc.project() == original, "preparation mutated source");
         doc.save();
         check(doc.applyPreparedEdit(*result) == EditState::Applied, "normal save invalidated bulk edit");
         const auto ids = doc.bulkView()->createdIds;
         check(ids.size() == 2 && ids[0] != ids[1] && doc.project()->tasks[0].id == ids[0], "reserved IDs/order");
-        jobs::validate(*doc.project());
+        ppm::validate(*doc.project());
         check(doc.project()->baselines == original.baselines && doc.historyNeedsWorker(false),
               "history changed immutable records");
-        const auto edited = static_cast<const jobs::PlanInput &>(*doc.project());
-        auto undo = prepare(doc, jobs::HistoryEdit{false});
+        const auto edited = static_cast<const ppm::PlanInput &>(*doc.project());
+        auto undo = prepare(doc, ppm::HistoryEdit{false});
         check(doc.applyPreparedEdit(*undo) == EditState::Applied && !doc.dirty() && doc.canRedo(),
               "async undo/save point");
-        check(static_cast<const jobs::PlanInput &>(*doc.project()) == static_cast<const jobs::PlanInput &>(original),
+        check(static_cast<const ppm::PlanInput &>(*doc.project()) == static_cast<const ppm::PlanInput &>(original),
               "undo input mismatch");
-        auto redo = prepare(doc, jobs::HistoryEdit{true});
+        auto redo = prepare(doc, ppm::HistoryEdit{true});
         check(doc.applyPreparedEdit(*redo) == EditState::Applied &&
-                  static_cast<const jobs::PlanInput &>(*doc.project()) == edited,
+                  static_cast<const ppm::PlanInput &>(*doc.project()) == edited,
               "redo changed stable IDs");
         check(doc.applyPreparedEdit(*redo) == EditState::Stale, "replayed twice");
         doc.undo();
         const auto before = *doc.project();
         const auto weight = doc.historyBytes();
-        auto cancelled = std::make_shared<jobs::CalculationControl>();
+        auto cancelled = std::make_shared<ppm::CalculationControl>();
         cancelled->cancel();
-        result = prepare(doc, jobs::DuplicateTasksEdit{{"T0", "T1"}}, cancelled);
+        result = prepare(doc, ppm::DuplicateTasksEdit{{"T0", "T1"}}, cancelled);
         check(result->state() == EditState::Cancelled, "early cancel");
-        cancelled = std::make_shared<jobs::CalculationControl>();
-        result = prepare(doc, jobs::RemoveTasksEdit{{"T0"}}, cancelled);
+        cancelled = std::make_shared<ppm::CalculationControl>();
+        result = prepare(doc, ppm::RemoveTasksEdit{{"T0"}}, cancelled);
         cancelled->cancel();
         check(doc.applyPreparedEdit(*result) == EditState::Cancelled && *doc.project() == before &&
                   doc.historyBytes() == weight && doc.canRedo(),
@@ -92,15 +92,15 @@ int main(int argc, char **argv) {
         // Deterministically cancel while the decoder is running, before any proposal exists.
         auto entered = std::make_shared<std::promise<void>>();
         auto enteredFuture = entered->get_future();
-        cancelled = std::make_shared<jobs::CalculationControl>();
+        cancelled = std::make_shared<ppm::CalculationControl>();
         auto runningRequest =
-            doc.makeEditRequest(jobs::DeferredTaskEdit{[entered](const jobs::Project &) -> jobs::BulkTaskCommand {
+            doc.makeEditRequest(ppm::DeferredTaskEdit{[entered](const ppm::Project &) -> ppm::BulkTaskCommand {
                 entered->set_value();
                 for (;;)
-                    jobs::calculationCheckpoint();
+                    ppm::calculationCheckpoint();
             }});
         auto running = std::async(std::launch::async, [request = std::move(runningRequest), cancelled]() mutable {
-            return jobs::Document::prepareEdit(std::move(request), cancelled);
+            return ppm::Document::prepareEdit(std::move(request), cancelled);
         });
         const bool started = enteredFuture.wait_for(std::chrono::seconds(5)) == std::future_status::ready;
         cancelled->cancel();
@@ -108,36 +108,36 @@ int main(int argc, char **argv) {
         check(running.get()->state() == EditState::Cancelled && *doc.project() == before &&
                   doc.historyBytes() == weight,
               "in-flight cancellation changed source");
-        result = prepare(doc, jobs::InsertTasksEdit{{"stale"}, {}, {}});
+        result = prepare(doc, ppm::InsertTasksEdit{{"stale"}, {}, {}});
         doc.open(path);
         check(doc.applyPreparedEdit(*result) == EditState::Stale, "same revision reload accepted stale result");
-        std::vector<jobs::TaskEdit> edits;
+        std::vector<ppm::TaskEdit> edits;
         for (int i = 0; i < 1000; ++i) {
-            jobs::TaskEdit edit;
+            ppm::TaskEdit edit;
             edit.taskId = "T" + std::to_string(i);
             edit.name = "Changed " + std::to_string(i);
             edits.push_back(edit);
         }
         edits.back().name = "";
-        result = prepare(doc, jobs::BatchTaskEdit{edits});
+        result = prepare(doc, ppm::BatchTaskEdit{edits});
         check(result->state() == EditState::Failed && *doc.project() == original,
               "last row failure partially committed");
-        jobs::TaskEdit cycle;
+        ppm::TaskEdit cycle;
         cycle.taskId = "T0";
-        cycle.edges = std::vector<jobs::Dependency>{{"T100", jobs::DependencyType::FS, 0}};
-        result = prepare(doc, jobs::BatchTaskEdit{{cycle}});
+        cycle.edges = std::vector<ppm::Dependency>{{"T100", ppm::DependencyType::FS, 0}};
+        result = prepare(doc, ppm::BatchTaskEdit{{cycle}});
         check(result->state() == EditState::Failed && *doc.project() == original, "cycle accepted");
-        result = prepare(doc, jobs::DuplicateTasksEdit{{"T0", "T100"}});
+        result = prepare(doc, ppm::DuplicateTasksEdit{{"T0", "T100"}});
         check(doc.applyPreparedEdit(*result) == EditState::Applied, "duplicate failed");
         auto copies = doc.bulkView()->createdIds;
         check(doc.project()->tasks[102].predecessors == std::vector<std::string>{copies[0]},
               "duplicate internal edge not remapped");
-        jobs::validate(*doc.project());
+        ppm::validate(*doc.project());
         doc.undo();
         check(bytes(path) == disk, "preparation/edit/undo wrote source file");
         // A report task is protected even though historical input validation is skipped.
         doc.setStatusAt("2026-10-26 17:00");
-        jobs::ProgressEntry progress;
+        ppm::ProgressEntry progress;
         progress.taskId = "T0";
         progress.actualStart = "2026-10-26 09:00";
         progress.remainingMinutes = 30;
@@ -146,7 +146,7 @@ int main(int argc, char **argv) {
         progress.reason = "protected task";
         doc.recordProgress(progress);
         const auto protectedSource = *doc.project();
-        result = prepare(doc, jobs::RemoveTasksEdit{{"T0", "T1"}});
+        result = prepare(doc, ppm::RemoveTasksEdit{{"T0", "T1"}});
         check(result->state() == EditState::Failed && *doc.project() == protectedSource,
               "protected removal partially committed");
         doc.open(path);
@@ -157,9 +157,9 @@ int main(int argc, char **argv) {
             effortFixture.tasks[0].durationMinutes = 120;
             const auto effortPath = dir.filePath("Effort.ppm").toStdString();
             store.save(effortPath, effortFixture, {});
-            jobs::Document effortDoc(store);
+            ppm::Document effortDoc(store);
             effortDoc.open(effortPath);
-            jobs::TaskTableModel model(effortDoc);
+            ppm::TaskTableModel model(effortDoc);
             std::vector<std::size_t> rows(1000);
             std::iota(rows.begin(), rows.end(), std::size_t{0});
             model.synchronize(rows);
@@ -169,10 +169,10 @@ int main(int argc, char **argv) {
                                  if (first.row() == 0 && last.row() >= 0 && first.column() <= 7 && last.column() >= 7)
                                      assignmentChanged = true;
                              });
-            jobs::TaskEdit inverse;
+            ppm::TaskEdit inverse;
             inverse.taskId = "T0";
             inverse.duration.emplace(120);
-            auto prepared = prepare(effortDoc, jobs::BatchTaskEdit{{inverse}});
+            auto prepared = prepare(effortDoc, ppm::BatchTaskEdit{{inverse}});
             check(effortDoc.applyPreparedEdit(*prepared) == EditState::Applied &&
                       effortDoc.project()->tasks[0] == effortFixture.tasks[0],
                   "assignment-only inverse setup");
@@ -185,12 +185,12 @@ int main(int argc, char **argv) {
             limitFixture.revision = 9007199254740990ULL;
             const auto limitPath = dir.filePath("Limit.ppm").toStdString();
             store.save(limitPath, limitFixture, {});
-            jobs::Document limitDoc(store);
+            ppm::Document limitDoc(store);
             limitDoc.open(limitPath);
             limitDoc.insertTasks({"last revision"});
             const auto atLimit = *limitDoc.project();
             const auto limitWeight = limitDoc.historyBytes();
-            auto rejected = prepare(limitDoc, jobs::HistoryEdit{false});
+            auto rejected = prepare(limitDoc, ppm::HistoryEdit{false});
             check(rejected->state() == EditState::Failed && *limitDoc.project() == atLimit &&
                       limitDoc.historyBytes() == limitWeight && limitDoc.canUndo(),
                   "revision limit bypassed in prepared undo");
@@ -203,13 +203,13 @@ int main(int argc, char **argv) {
             check(failed && *limitDoc.project() == atLimit && limitDoc.canUndo(),
                   "revision limit bypassed in direct undo");
         }
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.show();
         QTest::qWait(20);
         auto *table = taskTable(window);
-        jobs::AsyncEditController *controller = nullptr;
+        ppm::AsyncEditController *controller = nullptr;
         for (auto *child : window.children())
-            if (auto *c = dynamic_cast<jobs::AsyncEditController *>(child))
+            if (auto *c = dynamic_cast<ppm::AsyncEditController *>(child))
                 controller = c;
         check(controller, "controller missing");
         auto settle = [&] {

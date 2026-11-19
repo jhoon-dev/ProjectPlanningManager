@@ -11,7 +11,7 @@
 #include <QFutureWatcher>
 #include <QCloseEvent>
 #include <QtConcurrent>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -256,4 +256,4 @@ void RecoveryDialog::closeEvent(QCloseEvent *e) {
     else
         QDialog::closeEvent(e);
 }
-} // namespace jobs
+} // namespace ppm

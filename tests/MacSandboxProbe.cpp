@@ -24,43 +24,43 @@ int main(int argc, char **argv) {
     QCoreApplication::setOrganizationName("ToolMoa");
     QCoreApplication::setApplicationName("PPM");
     try {
-        check(jobs::sandboxActive(), "sandbox entitlement is not active in the running process");
+        check(ppm::sandboxActive(), "sandbox entitlement is not active in the running process");
         check(QDir::homePath().contains("/Library/Containers/com.toolmoa.ppmsandboxvalidation/Data"),
               "test process is not using its isolated sandbox container");
         check(argc == 3, "expected write/read phase and external denied file");
         QFile denied(QString::fromUtf8(argv[2]));
         check(!denied.open(QIODevice::WriteOnly | QIODevice::Append), "sandbox allowed an unselected external write");
-        const auto root = jobs::applicationStorage().stateDirectory;
+        const auto root = ppm::applicationStorage().stateDirectory;
         check(root.startsWith(QDir::homePath() + '/'), "test storage escapes its sandbox container");
         check(QDir().mkpath(root), "cannot create container state");
-        jobs::restoreSandboxFolders();
+        ppm::restoreSandboxFolders();
         const auto project = QDir(root).filePath("Project.ppm");
         const auto workspace = QDir(root).filePath("Projects.ppmworkspace");
-        check(jobs::authorizeSandboxFile(nullptr, project), "container access incorrectly requires a folder prompt");
-        jobs::JsonProjectStore files;
-        jobs::JsonWorkspaceStore spaces(files);
-        jobs::JsonRecoveryStore recovery(jobs::JsonRecoveryStore::defaultDirectory());
-        auto settings = jobs::applicationSettings();
+        check(ppm::authorizeSandboxFile(nullptr, project), "container access incorrectly requires a folder prompt");
+        ppm::JsonProjectStore files;
+        ppm::JsonWorkspaceStore spaces(files);
+        ppm::JsonRecoveryStore recovery(ppm::JsonRecoveryStore::defaultDirectory());
+        auto settings = ppm::applicationSettings();
         if (QString::fromUtf8(argv[1]) == "write") {
             check(!QFileInfo::exists(project), "test state already exists; preserve it");
-            jobs::Document document(files);
+            ppm::Document document(files);
             document.create("Sandbox validation", "2026-11-02", {"Initial task"});
             document.saveAs(project.toStdString());
             document.renameTask(0, "Saved edit");
             document.save();
-            jobs::Workspace config;
+            ppm::Workspace config;
             config.id = "sandbox-workspace";
             config.projects = {{document.project()->documentId, project.toStdString(), "Sandbox validation"}};
             const auto lease = files.lock(workspace.toStdString());
             spaces.save(workspace.toStdString(), config, {});
-            jobs::ReportOptions options;
+            ppm::ReportOptions options;
             options.reportId = "sandbox-report";
             options.generatedAt = "2026-11-01T00:00:00Z";
-            const auto report = jobs::buildReport(*document.project(), options);
-            jobs::exportXlsx(report, QDir(root).filePath("Report.xlsx"));
-            jobs::exportPdf(report, QDir(root).filePath("Report.pdf"));
-            jobs::publishProjectXml(jobs::exportProjectXml(*document.project()), QDir(root).filePath("XML"));
-            jobs::publishPrimaveraXer(jobs::exportPrimaveraXer(*document.project()), QDir(root).filePath("XER"));
+            const auto report = ppm::buildReport(*document.project(), options);
+            ppm::exportXlsx(report, QDir(root).filePath("Report.xlsx"));
+            ppm::exportPdf(report, QDir(root).filePath("Report.pdf"));
+            ppm::publishProjectXml(ppm::exportProjectXml(*document.project()), QDir(root).filePath("XML"));
+            ppm::publishPrimaveraXer(ppm::exportPrimaveraXer(*document.project()), QDir(root).filePath("XER"));
             document.renameTask(0, "Unsaved recovered edit");
             auto session = recovery.newSession();
             session->checkpoint(document.recoverySnapshot("2026-11-01T00:00:00Z"));
@@ -69,7 +69,7 @@ int main(int argc, char **argv) {
             check(settings.status() == QSettings::NoError, "sandbox settings did not persist");
         } else {
             check(QString::fromUtf8(argv[1]) == "read", "unknown phase");
-            jobs::Document document(files);
+            ppm::Document document(files);
             document.open(project.toStdString());
             check(document.project()->tasks[0].name == "Saved edit", "project atomic save did not survive restart");
             const auto config = spaces.load(workspace.toStdString());

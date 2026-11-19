@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <chrono>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void bad(const std::string &s) {
     throw AppError(ErrorCode::FORMULA_INVALID, {"기준선 시간분포: " + s});
@@ -184,4 +184,4 @@ void addNativeBaselineTimephased(const Project &current, const Baseline &b, std:
                                    {"costBlocks", int(costBlocks)},
                                    {"unknownCostBlocks", int(unknownCosts)}});
 }
-} // namespace jobs
+} // namespace ppm

@@ -15,13 +15,13 @@ namespace {
 QString q(const std::string &value) {
     return QString::fromStdString(value);
 }
-QJsonArray tasks(const jobs::Project &project) {
+QJsonArray tasks(const ppm::Project &project) {
     QJsonArray rows;
     for (const auto &task : project.tasks) {
         QJsonArray relations;
-        for (const auto &edge : jobs::dependencies(task))
+        for (const auto &edge : ppm::dependencies(task))
             relations.append(QJsonObject{{"predecessor", q(edge.predecessorId)},
-                                         {"type", q(jobs::enumToken(edge.type))},
+                                         {"type", q(ppm::enumToken(edge.type))},
                                          {"lag_minutes", qint64(edge.lagMinutes)}});
         rows.append(QJsonObject{
             {"id", q(task.id)},
@@ -29,11 +29,11 @@ QJsonArray tasks(const jobs::Project &project) {
             {"duration_minutes", task.durationMinutes ? QJsonValue(qint64(*task.durationMinutes)) : QJsonValue()},
             {"calendar_id", q(task.calendarId)},
             {"relations", relations},
-            {"constraint", q(jobs::enumToken(task.constraintType))}});
+            {"constraint", q(ppm::enumToken(task.constraintType))}});
     }
     return rows;
 }
-QJsonArray calendars(const jobs::Project &project) {
+QJsonArray calendars(const ppm::Project &project) {
     QJsonArray rows;
     for (const auto &calendar : project.calendars) {
         QJsonArray days, periods, holidays;
@@ -51,7 +51,7 @@ QJsonArray calendars(const jobs::Project &project) {
     }
     return rows;
 }
-bool sameDates(const jobs::ScheduleResult &a, const jobs::ScheduleResult &b) {
+bool sameDates(const ppm::ScheduleResult &a, const ppm::ScheduleResult &b) {
     if (a.status != b.status || a.projectFinish != b.projectFinish || a.tasks.size() != b.tasks.size())
         return false;
     for (std::size_t i = 0; i < a.tasks.size(); ++i)
@@ -75,30 +75,30 @@ int main(int argc, char **argv) {
         const auto entry = entryValue.toObject();
         const auto file = entry["file"].toString();
         QJsonObject row{{"file", file}};
-        const auto bytes = jobs::readPrimaveraXer(source.filePath(file));
+        const auto bytes = ppm::readPrimaveraXer(source.filePath(file));
         const auto digest = QString::fromLatin1(QCryptographicHash::hash(bytes, QCryptographicHash::Sha256).toHex());
         if (digest != entry["sha256"].toString())
             return 2;
         row["sha256"] = digest;
         try {
             const auto encoding =
-                entry["encoding"] == "windows-1252" ? jobs::XerEncoding::Windows1252 : jobs::XerEncoding::Utf8;
-            auto exchange = jobs::importPrimaveraXer(bytes, file, encoding);
+                entry["encoding"] == "windows-1252" ? ppm::XerEncoding::Windows1252 : ppm::XerEncoding::Utf8;
+            auto exchange = ppm::importPrimaveraXer(bytes, file, encoding);
             row["status"] = "imported";
             row["tasks"] = tasks(exchange.project);
             row["calendars"] = calendars(exchange.project);
             row["resources"] = qint64(exchange.project.resources.size());
             row["assignments"] = qint64(exchange.project.assignments.size());
             row["exchange"] = exchange.report;
-            const auto schedule = jobs::calculate(exchange.project);
+            const auto schedule = ppm::calculate(exchange.project);
             row["calculation_status"] = int(schedule.status);
             row["finish"] = q(schedule.projectFinish.value_or(""));
             try {
-                const auto exported = jobs::exportPrimaveraXer(exchange.project);
-                const auto around = jobs::importPrimaveraXer(exported.xer, "round-trip.xer");
+                const auto exported = ppm::exportPrimaveraXer(exchange.project);
+                const auto around = ppm::importPrimaveraXer(exported.xer, "round-trip.xer");
                 const bool equal = exchange.project.tasks.size() == around.project.tasks.size() &&
-                                   sameDates(schedule, jobs::calculate(around.project));
-                row["jobs_round_trip_dates_equal"] = equal;
+                                   sameDates(schedule, ppm::calculate(around.project));
+                row["ppm_round_trip_dates_equal"] = equal;
                 matched = matched && equal;
                 if (app.arguments().size() == 3) {
                     QDir output(app.arguments()[2]);
@@ -110,13 +110,13 @@ int main(int argc, char **argv) {
                         return 2;
                 }
             } catch (const std::exception &error) {
-                row["round_trip_error"] = q(jobs::diagnosticFromException(error).code);
+                row["round_trip_error"] = q(ppm::diagnosticFromException(error).code);
                 matched = false;
             }
         } catch (const std::exception &error) {
             row["status"] = "rejected";
-            row["error_code"] = q(jobs::diagnosticFromException(error).code);
-            row["reason"] = q(jobs::errorText(error));
+            row["error_code"] = q(ppm::diagnosticFromException(error).code);
+            row["reason"] = q(ppm::errorText(error));
         }
         if (entry.contains("expected_status")) {
             matched = matched && row["status"] == entry["expected_status"];

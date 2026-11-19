@@ -2,7 +2,7 @@
 #include "domain/Classification.h"
 #include "domain/CalculationControl.h"
 #include <bit>
-namespace jobs {
+namespace ppm {
 namespace {
 constexpr std::int64_t scale = 1000000;
 [[noreturn]] void invalid(const std::string &message) {
@@ -69,4 +69,4 @@ std::int64_t xmlLogicalNumber(const std::string &op, std::int64_t left, std::int
     const auto bits = op == "eqv" ? ~(a ^ b) : (~a | b);
     return std::int64_t(std::bit_cast<std::int32_t>(bits)) * scale;
 }
-} // namespace jobs
+} // namespace ppm

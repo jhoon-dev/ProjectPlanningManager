@@ -18,7 +18,7 @@
 #include <future>
 #include <iostream>
 namespace {
-using namespace jobs;
+using namespace ppm;
 void check(bool ok, const char *message) {
     if (!ok)
         throw std::runtime_error(message);
@@ -187,7 +187,7 @@ int main(int argc, char **argv) {
 #endif
     try {
         run();
-    } catch (const jobs::AppError &e) {
+    } catch (const ppm::AppError &e) {
         std::cerr << "FAIL: " << e.code();
         for (const auto &a : e.diagnostic().arguments)
             std::cerr << " " << a;

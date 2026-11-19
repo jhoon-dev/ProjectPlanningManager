@@ -39,7 +39,7 @@
 #include <unordered_set>
 #include <QFutureWatcher>
 #include <QtConcurrent/QtConcurrentRun>
-namespace jobs {
+namespace ppm {
 void MainWindow::setupTaskEditing(QMenu *menu, QVBoxLayout *layout) {
     table_->setObjectName("taskTable");
     table_->setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -569,4 +569,4 @@ void MainWindow::pasteCells() {
         report(e);
     }
 }
-} // namespace jobs
+} // namespace ppm

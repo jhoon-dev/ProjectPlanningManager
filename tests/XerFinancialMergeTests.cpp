@@ -32,7 +32,7 @@
 #include <QTimer>
 #include <iostream>
 #include <set>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool b, const char *m) {
     if (!b)
@@ -52,7 +52,7 @@ void write(const QString &path, const QByteArray &b) {
     check(f.open(QIODevice::WriteOnly) && f.write(b) == b.size(), "write QA artifact");
 }
 QByteArray envelope(const QJsonObject &o, int version) {
-    return QJsonDocument(QJsonObject{{"format", "JOBS"},
+    return QJsonDocument(QJsonObject{{"format", "PPM"},
                                      {"schemaVersion", version},
                                      {"payload", o},
                                      {"sha256", QString::fromLatin1(QCryptographicHash::hash(
@@ -176,7 +176,7 @@ int main(int argc, char **argv) {
     watchdog.start(150000);
     try {
         QDir().mkpath("xer-merge-qa");
-        const auto bytes = readPrimaveraXer(QString::fromUtf8(JOBS_XER_FINANCIAL_FIXTURE));
+        const auto bytes = readPrimaveraXer(QString::fromUtf8(PPM_XER_FINANCIAL_FIXTURE));
         const auto p = importPrimaveraXer(bytes, "financial-periods.xer").project;
         QTemporaryDir temp;
         JsonProjectStore store;

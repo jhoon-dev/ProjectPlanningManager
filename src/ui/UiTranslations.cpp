@@ -6,7 +6,7 @@
 #include <string_view>
 
 static void initializeTranslationResources() {
-    Q_INIT_RESOURCE(jobs_brand);
+    Q_INIT_RESOURCE(ppm_brand);
 }
 
 namespace {
@@ -27,7 +27,7 @@ public:
     }
 };
 } // namespace
-namespace jobs {
+namespace ppm {
 void installUiTranslations(QCoreApplication &app) {
     constexpr auto name = "ppmQtKoreanTranslation";
     if (app.findChild<QTranslator *>(name))
@@ -37,10 +37,10 @@ void installUiTranslations(QCoreApplication &app) {
     translator->setObjectName(name);
     // A compatible replacement catalog next to the executable takes precedence.
     const auto directory = QDir(QCoreApplication::applicationDirPath()).filePath("translations");
-    if (translator->load("qtbase_ko", directory) || translator->load(":/jobs/i18n/qtbase_ko.qm"))
+    if (translator->load("qtbase_ko", directory) || translator->load(":/ppm/i18n/qtbase_ko.qm"))
         app.installTranslator(translator);
     else
         qWarning("Cannot load the Korean Qt translation catalog; continuing with Qt's default language");
     app.installTranslator(new SaveDecisionTranslation(&app));
 }
-} // namespace jobs
+} // namespace ppm

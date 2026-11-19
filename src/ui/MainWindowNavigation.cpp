@@ -16,7 +16,7 @@
 #include <QVBoxLayout>
 #include <algorithm>
 
-namespace jobs {
+namespace ppm {
 void MainWindow::setupNavigationUi() {
     QMenu *resourceMenu = nullptr, *viewMenu = nullptr;
     for (auto *action : menuBar()->actions()) {
@@ -206,4 +206,4 @@ void MainWindow::refreshNavigationUi() {
     details->setText(text);
     taskViewStatus_->setToolTip(text);
 }
-} // namespace jobs
+} // namespace ppm

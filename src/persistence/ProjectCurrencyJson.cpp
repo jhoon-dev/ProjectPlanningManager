@@ -5,7 +5,7 @@
 #include "domain/LedgerIdentity.h"
 #include "domain/CalculationControl.h"
 #include <cmath>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -113,4 +113,4 @@ std::vector<CurrencyConversion> decodeCurrencyConversions(const QJsonValue &v) {
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

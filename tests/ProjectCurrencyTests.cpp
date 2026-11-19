@@ -36,7 +36,7 @@
 #include <QTimer>
 #include <algorithm>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool b, const char *m) {
     if (!b)
@@ -58,7 +58,7 @@ void write(const QString &name, const QByteArray &bytes) {
 QByteArray envelope(const Project &p, int version = 34) {
     const auto body = json::encodeProject(p);
     return QJsonDocument(
-               QJsonObject{{"format", "JOBS"},
+               QJsonObject{{"format", "PPM"},
                            {"schemaVersion", version},
                            {"payload", body},
                            {"sha256", QString::fromLatin1(
@@ -132,7 +132,7 @@ int main(int argc, char **argv) {
         QTemporaryDir temp;
         JsonProjectStore store;
         auto original =
-            importPrimaveraXer(readPrimaveraXer(QString::fromUtf8(JOBS_CURRENCY_FIXTURE)), "original.xer").project;
+            importPrimaveraXer(readPrimaveraXer(QString::fromUtf8(PPM_CURRENCY_FIXTURE)), "original.xer").project;
         original.resourcePlan.materials = {{"M", "보존 자재", "개", 200, 2000}};
         original.resourcePlan.uses = {{"U", original.tasks[0].id, "M", 1000, "start"}};
         original.resourcePlan.expenses = {{"E", original.tasks[0].id, "운반", "비용", 100, "uniform"}};

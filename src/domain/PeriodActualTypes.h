@@ -3,7 +3,7 @@
 #include <optional>
 #include <string>
 #include <vector>
-namespace jobs {
+namespace ppm {
 struct PeriodActualEntry {
     std::string id, taskId, resourceId, resourceType, date;
     std::string statusAt, recordedAt, reporter, reason, previousEntryId, sourceDocumentId, currency, costEntryId;
@@ -20,4 +20,4 @@ struct PeriodActualSubmission {
     std::vector<PeriodTaskTotal> totals; // Explicit cumulative AC including dated allocations, never added to them.
     std::string reporter, reason, recordedAt;
 };
-} // namespace jobs
+} // namespace ppm

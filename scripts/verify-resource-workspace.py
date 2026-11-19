@@ -11,7 +11,7 @@ from openpyxl import load_workbook
 from pypdf import PdfReader
 
 
-def native(path, schema, kind="JOBS"):
+def native(path, schema, kind="PPM"):
     root = json.loads(path.read_text(encoding="utf-8"))
     assert root["schemaVersion"] == schema and root["format"] == kind
     payload = root["payload"]
@@ -45,12 +45,12 @@ def verify(build):
     assert any(r[0] == "E" and r[1:6] == ["A", "운송", "운송비", 101, "uniform"] for r in rr)
     assert any(r[0] == "D" and r[1:5] == ["A", "설치조", "R", 100] for r in rr)
     integrated = build / "integrated-workspace-qa"
-    workspace = native(integrated / "integrated.ppmworkspace", 2, "JOBS-WORKSPACE")
+    workspace = native(integrated / "integrated.ppmworkspace", 2, "PPM-WORKSPACE")
     assert workspace["links"][0] == {"id": "L", "predecessorProjectId": "P", "predecessorTaskId": "A", "successorProjectId": "Q", "successorTaskId": "A", "type": "FS", "lagMinutes": 0}
     assert workspace["integrated"]["priority"] == "deadline-first"
     assert all(not Path(ref["path"]).is_absolute() for ref in workspace["projects"])
     result = json.loads((integrated / "integrated-workspace.json").read_text(encoding="utf-8"))
-    assert result["contract"] == "jobs-integrated-workspace-v1" and result["generation"] == 42
+    assert result["contract"] == "ppm-integrated-workspace-v1" and result["generation"] == 42
     tasks = {(r["projectId"], r["taskId"]): r for r in result["tasks"]}
     assert set(tasks) == {("P", "A"), ("Q", "A")}
     assert tasks["P", "A"]["finish"] == "2026-11-02 18:00"

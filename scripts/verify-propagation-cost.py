@@ -23,7 +23,7 @@ def verify(build):
     split_oracle = module("verify-repartition-float").oracle()
     root = build / "propagation-cost-qa"
     data = json.loads((root / "metrics.json").read_text(encoding="utf-8"))
-    assert data["engine"] == "jobs-adopted-leveling-1.8"
+    assert data["engine"] == "ppm-adopted-leveling-1.8"
     names = ["holes-small", "fractional", "fractional-long", "varying", "holes-96", "late-tiny", "adaptive-observed", "split"]
     assert [c["name"] for c in data["cases"]] == names
     observations, counts = [], {}
@@ -115,11 +115,11 @@ def verify(build):
     canonical = json.dumps(native["payload"], sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()
     assert hashlib.sha256(canonical).hexdigest() == native["sha256"] and native["schemaVersion"] == 12
     baselines = native["payload"]["baselines"]
-    assert [b["engineVersion"] for b in baselines] == ["jobs-adopted-leveling-1.7", "jobs-adopted-leveling-1.8"]
+    assert [b["engineVersion"] for b in baselines] == ["ppm-adopted-leveling-1.7", "ppm-adopted-leveling-1.8"]
     assert baselines[0]["schedule"] == baselines[1]["schedule"]
     book = load_workbook(root / "report.xlsx", data_only=False)
     source = {r[0]: r[1] for r in book["출처와 설정"].iter_rows(min_row=7, values_only=True)}
-    assert source["계산 엔진"] == "jobs-adopted-leveling-1.8"
+    assert source["계산 엔진"] == "ppm-adopted-leveling-1.8"
     rows = list(book["계획 일정"].iter_rows(min_row=7, values_only=True))
     assert [round(r[6] * 60) for r in rows] == [0, 0, 1, 1, 0]
     assert [round(r[9] * 60) for r in rows] == [0, 0, 1, 1, 0]

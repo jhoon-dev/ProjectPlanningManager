@@ -5,7 +5,7 @@
 #include <QDataStream>
 #include <functional>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 constexpr auto mainNs = "http://schemas.openxmlformats.org/spreadsheetml/2006/main";
 constexpr auto relNs = "http://schemas.openxmlformats.org/officeDocument/2006/relationships";
@@ -415,4 +415,4 @@ void exportXlsx(const ProjectReport &r, const QString &path, ReportFamily family
     zip.finish();
     file.commit();
 }
-} // namespace jobs
+} // namespace ppm

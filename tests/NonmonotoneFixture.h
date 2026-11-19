@@ -1,7 +1,7 @@
 #pragma once
 #include "domain/Project.h"
 namespace nonmonotone_fixture {
-using namespace jobs;
+using namespace ppm;
 inline Project base(int minutes) {
     Project p;
     p.documentId = "nonmonotone-propagation";

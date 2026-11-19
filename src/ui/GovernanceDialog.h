@@ -1,9 +1,9 @@
 #pragma once
 #include <QDialog>
-namespace jobs {
+namespace ppm {
 class DesktopWorkspace;
 class GovernanceDialog final : public QDialog {
 public:
     explicit GovernanceDialog(DesktopWorkspace &, QWidget *parent = nullptr);
 };
-} // namespace jobs
+} // namespace ppm

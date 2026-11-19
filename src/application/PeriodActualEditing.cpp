@@ -3,7 +3,7 @@
 #include "domain/PeriodActuals.h"
 #include <algorithm>
 #include <set>
-namespace jobs {
+namespace ppm {
 void Document::recordPeriodActuals(PeriodActualSubmission submission) {
     requireEditable();
     auto p = *project_;
@@ -114,4 +114,4 @@ void appendPeriodActuals(Project &p, PeriodActualSubmission submission, const st
         p.periodActuals.push_back(std::move(e));
     }
 }
-} // namespace jobs
+} // namespace ppm

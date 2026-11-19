@@ -33,7 +33,7 @@
 #include <QTest>
 #include <QTimer>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool b, const char *message) {
     if (!b)
@@ -54,7 +54,7 @@ void write(const QString &path, const QByteArray &bytes) {
 }
 QByteArray envelope(const QJsonObject &o, int version) {
     const auto b = QJsonDocument(o).toJson(QJsonDocument::Compact);
-    return QJsonDocument(QJsonObject{{"format", "JOBS"},
+    return QJsonDocument(QJsonObject{{"format", "PPM"},
                                      {"schemaVersion", version},
                                      {"payload", o},
                                      {"sha256", QString::fromLatin1(
@@ -156,7 +156,7 @@ int main(int argc, char **argv) {
     watchdog.start(150000);
     try {
         QDir().mkpath("xer-allocation-qa");
-        const auto source = readPrimaveraXer(QString::fromUtf8(JOBS_XER_FINANCIAL_FIXTURE));
+        const auto source = readPrimaveraXer(QString::fromUtf8(PPM_XER_FINANCIAL_FIXTURE));
         const auto p = importPrimaveraXer(source, "financial-periods.xer").project;
         auto s = submission(p);
         s.financials.tasks[0].actualMinor = 14001;

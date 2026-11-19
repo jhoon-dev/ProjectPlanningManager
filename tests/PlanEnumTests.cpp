@@ -15,7 +15,7 @@
 #include <set>
 #include <type_traits>
 
-using namespace jobs;
+using namespace ppm;
 static_assert(std::is_same_v<decltype(Dependency{}.type), DependencyType>);
 static_assert(std::is_same_v<decltype(Task{}.constraintType), ConstraintType>);
 static_assert(std::is_same_v<decltype(Task{}.taskType), TaskType>);
@@ -149,7 +149,7 @@ void history(const Project &p, JsonProjectStore &store, QTemporaryDir &dir) {
           "pre-enum immutable history missing");
     invalidValues(p);
     Document doc(store);
-    doc.open((QString(JOBS_ENUM_FIXTURES) + "/history.ppm").toStdString(), true);
+    doc.open((QString(PPM_ENUM_FIXTURES) + "/history.ppm").toStdString(), true);
     doc.saveAs(dir.filePath("History Copy.ppm").toStdString());
     const auto saved = *doc.project();
     doc.renameTask(8, "Enum undo edit");
@@ -190,7 +190,7 @@ int main(int argc, char **argv) {
         QTemporaryDir dir;
         check(dir.isValid(), "temporary directory");
         JsonProjectStore store;
-        const QDir fixture(JOBS_ENUM_FIXTURES);
+        const QDir fixture(PPM_ENUM_FIXTURES);
         const auto manifest =
             QJsonDocument::fromJson(read(fixture.filePath("manifest.json"))).object()["files"].toArray();
         check(manifest.size() == 13, "fixture manifest coverage");
@@ -208,9 +208,21 @@ int main(int argc, char **argv) {
             check(p == loaded.project && loaded.requiresSaveAs == (version != 9), "legacy load/upgrade metadata");
             const auto encoded = json::encodeProject(p);
             nestedWire(encoded);
-            if (version == 9)
-                check(encoded == root["payload"].toObject(),
-                      "current writer changed old schema9 payload: " + name.toStdString());
+            if (version == 9) {
+                auto expected = root["payload"].toObject();
+                auto baselines = expected["baselines"].toArray();
+                for (qsizetype index = 0; index < baselines.size(); ++index) {
+                    auto baseline = baselines[index].toObject();
+                    auto engine = baseline["engineVersion"].toString();
+                    if (engine.startsWith("jobs-"))
+                        engine.replace(0, 5, "ppm-");
+                    baseline["engineVersion"] = engine;
+                    baselines[index] = baseline;
+                }
+                expected["baselines"] = baselines;
+                check(encoded == expected,
+                      "writer changed old schema9 data outside the engine brand: " + name.toStdString());
+            }
             if (version < 7)
                 for (const auto &t : p.tasks) {
                     check(t.constraintType == ConstraintType::ASAP && t.taskType == TaskType::FixedDuration,

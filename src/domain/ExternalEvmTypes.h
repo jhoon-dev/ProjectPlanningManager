@@ -3,7 +3,7 @@
 #include <optional>
 #include <string>
 #include <vector>
-namespace jobs {
+namespace ppm {
 struct ExternalEvmRow {
     std::size_t periodIndex = 0;
     std::optional<std::int64_t> openingEv, openingPv;
@@ -23,4 +23,4 @@ struct ExternalEvmAdoption : ExternalEvmSubmission {
     std::uint64_t recordedRevision = 0;
     bool operator==(const ExternalEvmAdoption &) const = default;
 };
-} // namespace jobs
+} // namespace ppm

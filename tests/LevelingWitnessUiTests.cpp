@@ -26,7 +26,7 @@
 #include <QTest>
 #include <algorithm>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool value, const char *message) {
     if (!value)

@@ -58,7 +58,7 @@ bool wait(const std::function<bool()> &f) {
 }
 void settle(QWidget &w) {
     for (auto *child : w.children())
-        if (auto *c = dynamic_cast<jobs::AsyncEditController *>(child))
+        if (auto *c = dynamic_cast<ppm::AsyncEditController *>(child))
             check(wait([&] { return !c->busy(); }), "async edit timeout");
 }
 void action(QWidget &w, const char *id) {
@@ -83,28 +83,28 @@ void dismissError(const std::function<void()> &f) {
     settle(*w);
     check(!w->findChild<QStatusBar *>()->currentMessage().isEmpty(), "missing async error");
 }
-void calculate(jobs::MainWindow &w, jobs::Document &d) {
+void calculate(ppm::MainWindow &w, ppm::Document &d) {
     for (auto *a : w.findChildren<QAction *>())
         if (a->shortcut() == QKeySequence(Qt::Key_F9)) {
             a->trigger();
             break;
         }
     check(wait([&] {
-              return d.calculation() && d.calculation()->status == jobs::CalculationStatus::Valid &&
+              return d.calculation() && d.calculation()->status == ppm::CalculationStatus::Valid &&
                      d.calculation()->inputRevision == d.project()->revision;
           }),
           "calculation failed");
 }
-QString id(jobs::TaskTableView *t, int row) {
+QString id(ppm::TaskTableView *t, int row) {
     return cellText(t, row, 8);
 }
-void focus(jobs::MainWindow &w, jobs::TaskTableView *t) {
+void focus(ppm::MainWindow &w, ppm::TaskTableView *t) {
     w.activateWindow();
     QTest::qWait(20);
     t->setFocus();
     QTest::qWait(1);
 }
-void select(jobs::TaskTableView *t, int first, int last, int column = 0) {
+void select(ppm::TaskTableView *t, int first, int last, int column = 0) {
     t->clearSelection();
     t->setCurrentCell(first, column);
     selectCellRange(t, first, column, last, column, true);
@@ -123,21 +123,21 @@ int main(int argc, char **argv) {
     try {
         ClipboardRestore clipboardRestore;
         const QList<QStringList> fields{{"A\tB", "quote \"name\"", "line\nnext"}, {"", "0", "1SS+2h"}};
-        check(jobs::decodeTaskTsv(jobs::encodeTaskTsv(fields)) == fields, "quoted TSV roundtrip");
-        check(jobs::decodeTaskTsv("A\t1\r\nB\t2\r\n").size() == 2, "CRLF terminal row");
-        check(jobs::decodeTaskTsv("\t") == QList<QStringList>{{"", ""}}, "empty cells lost");
-        rejects([] { jobs::decodeTaskTsv("A\t1\nB"); });
-        rejects([] { jobs::decodeTaskTsv("\"unterminated"); });
-        rejects([] { jobs::decodeTaskTsv("\"closed\"junk"); });
-        rejects([] { jobs::decodeTaskTsv(QString(4 * 1024 * 1024 + 1, 'x')); });
-        rejects([] { jobs::decodeTaskTsv(QString("a\n").repeated(10001)); });
-        rejects([] { jobs::decodeTaskTsv(QString("a\t").repeated(30000)); });
-        rejects([] { jobs::taskDurationInput("0.001"); });
-        rejects([] { jobs::taskDurationInput("-1"); });
-        check(jobs::taskDurationInput("1m") == 1 && !jobs::taskDurationInput(""), "duration grammar changed");
+        check(ppm::decodeTaskTsv(ppm::encodeTaskTsv(fields)) == fields, "quoted TSV roundtrip");
+        check(ppm::decodeTaskTsv("A\t1\r\nB\t2\r\n").size() == 2, "CRLF terminal row");
+        check(ppm::decodeTaskTsv("\t") == QList<QStringList>{{"", ""}}, "empty cells lost");
+        rejects([] { ppm::decodeTaskTsv("A\t1\nB"); });
+        rejects([] { ppm::decodeTaskTsv("\"unterminated"); });
+        rejects([] { ppm::decodeTaskTsv("\"closed\"junk"); });
+        rejects([] { ppm::decodeTaskTsv(QString(4 * 1024 * 1024 + 1, 'x')); });
+        rejects([] { ppm::decodeTaskTsv(QString("a\n").repeated(10001)); });
+        rejects([] { ppm::decodeTaskTsv(QString("a\t").repeated(30000)); });
+        rejects([] { ppm::taskDurationInput("0.001"); });
+        rejects([] { ppm::taskDurationInput("-1"); });
+        check(ppm::taskDurationInput("1m") == 1 && !ppm::taskDurationInput(""), "duration grammar changed");
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("Task editing", "2026-10-26", {"Zulu", "Alpha", "Bravo"});
         doc.setDuration(0, 60);
         doc.setDuration(1, 120);
@@ -145,20 +145,20 @@ int main(int argc, char **argv) {
         const auto a = doc.project()->tasks[0].id, b = doc.project()->tasks[1].id, c = doc.project()->tasks[2].id;
         doc.setPredecessors(1, {a});
         doc.saveAs(dir.filePath("tasks.ppm").toStdString());
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.show();
         QTest::qWait(30);
         auto *table = taskTable(window);
         auto *sort = window.findChild<QComboBox *>("taskSort");
         auto *filter = window.findChild<QComboBox *>("taskFilter");
         auto *search = window.findChild<QLineEdit *>("taskSearch");
-        auto *view = dynamic_cast<jobs::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
+        auto *view = dynamic_cast<ppm::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
         check(table && sort && filter && search && view, "editing widgets missing");
         calculate(window, doc);
         if (app.arguments().contains("--capture-only")) {
             window.resize(1024, 650);
             app.processEvents();
-            check(table->viewport()->height() >= 4 * jobs::GanttView::RowHeight,
+            check(table->viewport()->height() >= 4 * ppm::GanttView::RowHeight,
                   "native compact window hid working rows");
             sort->setCurrentIndex(1);
             table->selectRow(0);
@@ -170,7 +170,7 @@ int main(int argc, char **argv) {
         }
         window.resize(1024, 650);
         app.processEvents();
-        check(table->viewport()->height() >= 4 * jobs::GanttView::RowHeight &&
+        check(table->viewport()->height() >= 4 * ppm::GanttView::RowHeight &&
                   !window.findChild<QLabel *>("taskInputHelp")->isVisible(),
               "compact window hid the working rows");
         QTimer::singleShot(20, [] {
@@ -194,7 +194,7 @@ int main(int argc, char **argv) {
         for (auto *item : view->scene()->items())
             if (item->data(0) == QString::fromStdString(b) && item->data(1) == "task")
                 aligned =
-                    item->sceneBoundingRect().center().y() < jobs::GanttView::HeaderHeight + jobs::GanttView::RowHeight;
+                    item->sceneBoundingRect().center().y() < ppm::GanttView::HeaderHeight + ppm::GanttView::RowHeight;
         check(aligned, "gantt did not follow sorted table order");
         sort->setCurrentIndex(5);
         check(id(table, 0) == QString::fromStdString(a) && id(table, 1) == QString::fromStdString(c),
@@ -210,10 +210,10 @@ int main(int argc, char **argv) {
                   doc.project()->tasks[2].predecessors == std::vector<std::string>{b},
               "sorted paste changed wrong IDs/fields or shortcut failed");
         action(window, "undoEdit");
-        check(static_cast<const jobs::PlanInput &>(*doc.project()) == static_cast<const jobs::PlanInput &>(original),
+        check(static_cast<const ppm::PlanInput &>(*doc.project()) == static_cast<const ppm::PlanInput &>(original),
               "paste was not one undo");
         action(window, "redoEdit");
-        check(doc.project()->tasks[2].dependencyRules[0].type == jobs::DependencyType::SS,
+        check(doc.project()->tasks[2].dependencyRules[0].type == ppm::DependencyType::SS,
               "paste redo lost relationship");
         auto before = *doc.project();
         select(table, 0, 1, 0);
@@ -227,12 +227,12 @@ int main(int argc, char **argv) {
         table->selectRow(0);
         focus(window, table);
         QTest::keySequence(table, QKeySequence::Copy);
-        check(jobs::decodeTaskTsv(QApplication::clipboard()->text()).front().size() == 3,
+        check(ppm::decodeTaskTsv(QApplication::clipboard()->text()).front().size() == 3,
               "whole row copy leaked output columns/IDs");
         select(table, 0, 1, 0);
         selectCellRange(table, 0, 0, 1, 2, true);
         QTest::keySequence(table, QKeySequence::Copy);
-        check(jobs::decodeTaskTsv(QApplication::clipboard()->text()).size() == 2, "rectangular cell copy failed");
+        check(ppm::decodeTaskTsv(QApplication::clipboard()->text()).size() == 2, "rectangular cell copy failed");
         search->setText("zULu");
         check(wait([&] { return table->rowCount() == 1; }), "name search failed");
         check(id(table, 0) == QString::fromStdString(a) && *doc.project() == before, "filter changed data");
@@ -282,7 +282,7 @@ int main(int argc, char **argv) {
         check(doc.project()->tasks.size() == oldSize + 4 && doc.project()->revision == before.revision + 1,
               "multi-selection duplicate shortcut");
         action(window, "undoEdit");
-        check(static_cast<const jobs::PlanInput &>(*doc.project()) == static_cast<const jobs::PlanInput &>(before),
+        check(static_cast<const ppm::PlanInput &>(*doc.project()) == static_cast<const ppm::PlanInput &>(before),
               "duplicate UI undo");
         // Select the inserted tasks again, inspect/cancel deletion, then confirm once.
         search->setText("Inserted");
@@ -332,9 +332,9 @@ int main(int argc, char **argv) {
         check(*doc.project() == editorBefore, "Escape committed cell draft");
         window.grab().save("task-editing-smoke.png");
         doc.save();
-        jobs::Document reader(store);
+        ppm::Document reader(store);
         reader.open(doc.path(), true);
-        jobs::MainWindow readonly(reader);
+        ppm::MainWindow readonly(reader);
         readonly.show();
         auto *rt = taskTable(readonly);
         rt->selectRow(0);

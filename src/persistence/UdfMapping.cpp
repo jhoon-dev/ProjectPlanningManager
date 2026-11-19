@@ -9,7 +9,7 @@
 #include <algorithm>
 #include <map>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -119,7 +119,7 @@ ExternalField importUdfField(Project &p, bool xml, FieldScope scope, const std::
     mapping.append(QJsonObject{{"kind", "udf"},
                                {"scope", q(scopeName(scope))},
                                {"externalId", q(id)},
-                               {"jobsId", q(native)},
+                               {"ppmId", q(native)},
                                {"name", q(fields.back().name)},
                                {"type", q(fieldTypeToken(type))}});
     return {scope, native, id, fields.back().name, type};
@@ -229,7 +229,7 @@ std::vector<ExternalField> exportUdfFields(const Project &p, bool xml, QJsonArra
             mapping.append(QJsonObject{{"kind", "udf"},
                                        {"scope", q(scopeName(scope))},
                                        {"externalId", q(id)},
-                                       {"jobsId", q(f.id)},
+                                       {"ppmId", q(f.id)},
                                        {"name", q(f.name)},
                                        {"type", q(fieldTypeToken(effective))}});
             if (identity) {
@@ -342,4 +342,4 @@ std::optional<std::string> exportUdfValue(const Project &p, const ExternalField 
         return attributeText(p, key, *value, f.scope);
     return value;
 }
-} // namespace jobs
+} // namespace ppm

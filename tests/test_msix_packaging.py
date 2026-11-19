@@ -18,7 +18,7 @@ from windows_payload import inventory
 
 class PackagingContract(unittest.TestCase):
     def setUp(self):
-        self.config = {'IdentityName': '12345.AccountJOBS', 'Publisher': 'CN=12345678-1234-1234-1234-123456789012',
+        self.config = {'IdentityName': '12345.AccountPPM', 'Publisher': 'CN=12345678-1234-1234-1234-123456789012',
                        'PublisherDisplayName': '검증 전용 & Test', 'DisplayName': 'Project Planning Manager'}
 
     def test_unsigned_packages_cannot_be_written_to_public_distribution(self):
@@ -63,7 +63,7 @@ class PackagingContract(unittest.TestCase):
         self.assertEqual([c.get('Name') for c in root.find('f:Capabilities', ns)], ['runFullTrust'])
         self.assertEqual(len(root.find('f:Applications', ns)), 1)
         app = root.find('f:Applications', ns)[0]
-        self.assertEqual(app.get('Id'), 'JOBS')  # Preserve the registered activation identity.
+        self.assertEqual(app.get('Id'), 'PPM')
         self.assertEqual(app.get('Executable'), 'PPM.exe')
         self.assertEqual(root.find('f:Properties/f:DisplayName', ns).text, 'Project Planning Manager')
         dev = ET.fromstring(manifest(identity('development'), '1.0.0.0', True))
@@ -78,7 +78,7 @@ class PackagingContract(unittest.TestCase):
             (folder / 'PPM.exe').write_bytes(b'executable')
             (folder / 'AppxManifest.xml').write_bytes(b'manifest')
             validate_payload(folder, 'store')
-            for name in ('key.pfx', 'Uninstall.exe', 'app-Setup.exe', 'jobs_msix_probe.exe', 'Qt6Test.dll', 'run.ps1'):
+            for name in ('key.pfx', 'Uninstall.exe', 'app-Setup.exe', 'ppm_msix_probe.exe', 'Qt6Test.dll', 'run.ps1', 'ppm_task_tests.exe', 'jobs_legacy_test.exe'):
                 with self.subTest(name=name):
                     path = folder / name
                     path.write_bytes(b'bad')
@@ -129,7 +129,7 @@ class PackagingContract(unittest.TestCase):
             folder = Path(temporary)
             (folder / 'PPM.exe').write_bytes(b'executable')
             (folder / 'AppxManifest.xml').write_bytes(b'manifest')
-            (folder / 'jobs_msix_probe.exe').write_bytes(b'probe')
+            (folder / 'ppm_msix_probe.exe').write_bytes(b'probe')
             (folder / 'Qt6Test.dll').write_bytes(b'test')
             self.assertEqual(validate_payload(folder, 'development', probe=True), 27)
             with self.assertRaisesRegex(ValueError, 'size/count limit'):
@@ -139,7 +139,7 @@ class PackagingContract(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'size/count limit'):
                 validate_payload(folder, 'development', probe=True)
             extra.unlink()
-            (folder / 'jobs_msix_probe.exe').write_bytes(b'too big')
+            (folder / 'ppm_msix_probe.exe').write_bytes(b'too big')
             with self.assertRaisesRegex(ValueError, 'size/count limit'):
                 validate_payload(folder, 'development', probe=True)
 

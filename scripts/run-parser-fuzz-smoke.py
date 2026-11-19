@@ -42,11 +42,11 @@ def record(command, name, timeout):
 
 
 try:
-    record([build / "jobs_parser_seed_tests", "--write-corpus", output / "corpus"], "seeds", 120)
-    for kind in ("jobs", "xml", "xer", "workspace"):
+    record([build / "ppm_parser_seed_tests", "--write-corpus", output / "corpus"], "seeds", 120)
+    for kind in ("ppm", "xml", "xer", "workspace"):
         artifacts = output / "artifacts" / kind
         artifacts.mkdir(parents=True, exist_ok=True)
-        binary = build / f"jobs_fuzz_{kind}"
+        binary = build / f"ppm_fuzz_{kind}"
         corpus = output / "corpus" / kind
         limits = ["-max_len=65536", "-timeout=10", "-rss_limit_mb=2048", "-malloc_limit_mb=1024",
                   f"-artifact_prefix={artifacts}{os.sep}", "-print_final_stats=1"]

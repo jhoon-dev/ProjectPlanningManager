@@ -5,7 +5,7 @@
 #include <QUrl>
 #include <functional>
 #include <set>
-namespace jobs {
+namespace ppm {
 class ServerClient final : public QObject {
 public:
     struct Result {
@@ -48,4 +48,4 @@ private:
     void send(const QByteArray &, const QString &, QByteArray, QByteArray, Callback, bool poll = false);
     void poll();
 };
-} // namespace jobs
+} // namespace ppm

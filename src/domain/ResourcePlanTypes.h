@@ -3,7 +3,7 @@
 #include <optional>
 #include <string>
 #include <vector>
-namespace jobs {
+namespace ppm {
 struct Material {
     std::string id, name, unit;
     std::optional<std::int64_t> unitPriceMinor, stockMilli;
@@ -47,4 +47,4 @@ struct ResourcePlan {
     bool autoDelayRemainingForReceipts = false;
     bool operator==(const ResourcePlan &) const = default;
 };
-} // namespace jobs
+} // namespace ppm

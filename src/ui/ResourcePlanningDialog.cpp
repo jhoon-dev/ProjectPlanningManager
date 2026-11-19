@@ -21,7 +21,7 @@
 #include <QVBoxLayout>
 #include <QtConcurrent>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromStdString(s);
@@ -528,4 +528,4 @@ ResourcePlanningDialog::ResourcePlanningDialog(Document &doc, QWidget *parent) :
     impl_ = std::make_unique<Impl>(*this, doc);
 }
 ResourcePlanningDialog::~ResourcePlanningDialog() = default;
-} // namespace jobs
+} // namespace ppm

@@ -21,7 +21,7 @@
 #include <QTableWidget>
 #include <QTimeZone>
 #include <cmath>
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s.data(), qsizetype(s.size()));
@@ -363,4 +363,4 @@ void MainWindow::showComparison() {
     dialog.exec();
     refresh();
 }
-} // namespace jobs
+} // namespace ppm

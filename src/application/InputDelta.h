@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <utility>
 
-namespace jobs {
+namespace ppm {
 // Dynamic bytes owned by a value, excluding sizeof(value) and allocator overhead.
 inline std::size_t inputExtraBytes(const NetworkPosition &v) {
     return v.taskId.size();
@@ -138,4 +138,4 @@ private:
     ValueDelta<std::optional<LevelingSelection>> planLeveling_, remainingLeveling_;
     ValueDelta<std::optional<ProgressPolicySelection>> progressPolicy_;
 };
-} // namespace jobs
+} // namespace ppm

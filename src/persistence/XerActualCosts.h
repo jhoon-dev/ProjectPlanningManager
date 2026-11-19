@@ -5,7 +5,7 @@
 #include <QStringList>
 #include <map>
 #include <set>
-namespace jobs {
+namespace ppm {
 // Internal XER records shared by the plan and actual/cost converters.
 struct XerRow {
     QStringList cells;
@@ -23,4 +23,4 @@ QJsonObject importXerActualCosts(Project &, XerTables &, QJsonArray &);
 QJsonObject exportXerActualCosts(const Project &, XerTables &, QJsonArray &);
 void captureXerFinancials(Project &, XerTables &, const QString &sourceName, const QString &sha256,
                           const QString &projectId);
-} // namespace jobs
+} // namespace ppm

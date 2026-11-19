@@ -49,12 +49,12 @@ int main(int argc, char *argv[]) {
     });
     watchdog.start(30000);
     try {
-        check(jobs::moneyui::parse("90000000000.00", "USD") == jobs::maxMoney &&
-                  jobs::moneyui::parse("0.01", "USD") == 1 && jobs::moneyui::format(-123, "USD") == "-1.23",
+        check(ppm::moneyui::parse("90000000000.00", "USD") == ppm::maxMoney &&
+                  ppm::moneyui::parse("0.01", "USD") == 1 && ppm::moneyui::format(-123, "USD") == "-1.23",
               "money fields lost minor units");
         QTemporaryDir dir;
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("EVM 원가 검증", "2026-10-26", {"설계"});
         doc.setDuration(0, 960);
         auto id = doc.project()->tasks[0].id;
@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
         doc.assignWbs(0, wbs);
         auto resource = doc.putResource({{}, "설계팀", "labor", 100, {}});
         doc.setAssignments(id, {{id, resource, 100}});
-        jobs::MainWindow window(doc);
+        ppm::MainWindow window(doc);
         window.show();
         QTest::qWait(50);
         auto *table = taskTable(window);
@@ -195,9 +195,9 @@ int main(int argc, char *argv[]) {
               "cost correction mutated history");
         doc.saveAs(dir.filePath("cost-ui.ppm").toStdString());
         check(store.load(doc.path()).project == *doc.project(), "cost UI persistence mismatch");
-        jobs::Document reader(store);
+        ppm::Document reader(store);
         reader.open(doc.path(), true);
-        jobs::MainWindow viewer(reader);
+        ppm::MainWindow viewer(reader);
         viewer.show();
         taskTable(viewer)->selectRow(0);
         check(!viewer.findChild<QAction *>("costReport")->isEnabled() &&

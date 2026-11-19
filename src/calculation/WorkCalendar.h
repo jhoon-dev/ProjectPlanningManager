@@ -2,7 +2,7 @@
 #include "domain/Project.h"
 #include <chrono>
 #include <memory>
-namespace jobs {
+namespace ppm {
 class WorkCalendar {
     struct Interval {
         std::int64_t begin, end, prefix;
@@ -40,4 +40,4 @@ public:
         return cacheKey_;
     }
 };
-} // namespace jobs
+} // namespace ppm

@@ -9,7 +9,7 @@
 #include "calculation/WorkCalendar.h"
 #include <atomic>
 #include <set>
-namespace jobs {
+namespace ppm {
 namespace {
 void actualValues(const Project &p, XmlScheduleValues &out) {
     if (!hasXmlActualReferences(p, true))
@@ -368,4 +368,4 @@ ScheduleFormulaScope::ScheduleFormulaScope(const Project &p, const ScheduleResul
     values_ = makeScheduleFormulaValues(p, result, remainingCalculated_ ? &*remainingCalculated_ : nullptr);
     scope_ = std::make_unique<XmlScheduleScope>(p, values_);
 }
-} // namespace jobs
+} // namespace ppm

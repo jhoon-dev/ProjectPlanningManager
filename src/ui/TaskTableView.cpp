@@ -3,12 +3,14 @@
 #include <QLineEdit>
 #include <QPointer>
 
-namespace jobs {
+namespace ppm {
 void TaskTableView::commitEditors() {
-    for (auto* editor : findChildren<QLineEdit*>()) if (editor->isVisible()) {
-        QPointer<QWidget> guard(editor);
-        commitData(editor);
-        if (guard) closeEditor(guard.data(), QAbstractItemDelegate::NoHint);
-    }
+    for (auto *editor : findChildren<QLineEdit *>())
+        if (editor->isVisible()) {
+            QPointer<QWidget> guard(editor);
+            commitData(editor);
+            if (guard)
+                closeEditor(guard.data(), QAbstractItemDelegate::NoHint);
+        }
 }
-}
+} // namespace ppm

@@ -46,14 +46,14 @@ void selectWbs(QTreeWidget *tree, const std::string &id) {
         }
     throw std::runtime_error("WBS tree item missing");
 }
-int count(jobs::GanttView *view, const QString &kind) {
+int count(ppm::GanttView *view, const QString &kind) {
     int result = 0;
     for (auto *item : view->scene()->items())
         if (item->data(1).toString() == kind)
             ++result;
     return result;
 }
-QGraphicsItem *bar(jobs::GanttView *view, const std::string &id) {
+QGraphicsItem *bar(ppm::GanttView *view, const std::string &id) {
     for (auto *item : view->scene()->items())
         if (item->data(0).toString().toStdString() == id &&
             (item->data(1).toString() == "task" || item->data(1).toString() == "milestone"))
@@ -72,8 +72,8 @@ int main(int argc, char *argv[]) {
     });
     watchdog.start(20000);
     try {
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
         doc.create("WBS·간트 검증", "2026-10-26", {"설계", "개발", "승인", "조달"});
         const auto a = doc.project()->tasks[0].id, b = doc.project()->tasks[1].id;
         doc.setDuration(0, 480);
@@ -86,14 +86,14 @@ int main(int argc, char *argv[]) {
         doc.assignWbs(0, w1);
         doc.assignWbs(1, child);
         doc.assignWbs(3, w1);
-        doc.applyCalculation(jobs::calculate(*doc.project()));
-        jobs::MainWindow window(doc);
+        doc.applyCalculation(ppm::calculate(*doc.project()));
+        ppm::MainWindow window(doc);
         window.show();
         QTest::qWait(80);
         auto *table = taskTable(window);
         auto *tree = window.findChild<QTreeWidget *>("wbsTree");
         // GanttView has no custom metaobject; find by the base class and cast explicitly.
-        auto *gantt = dynamic_cast<jobs::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
+        auto *gantt = dynamic_cast<ppm::GanttView *>(window.findChild<QGraphicsView *>("ganttView"));
         check(gantt && table && tree, "missing WBS/table/Gantt pane");
         check(table->rowCount() == 4 && count(gantt, "task") == 3 && count(gantt, "milestone") == 1 &&
                   count(gantt, "dependency") == 2,
@@ -127,7 +127,7 @@ int main(int argc, char *argv[]) {
                 if (!window.findChild<QPlainTextEdit *>("calculationDiagnostics")->toPlainText().startsWith("계산 중"))
                     break;
             }
-            check(doc.calculation()->status == jobs::CalculationStatus::Valid, "WBS calculation not valid");
+            check(doc.calculation()->status == ppm::CalculationStatus::Valid, "WBS calculation not valid");
         };
         recalculate();
         check(count(gantt, "task") == 1, "filtered Gantt failed after recalculation");
@@ -189,7 +189,7 @@ int main(int argc, char *argv[]) {
             doc.addTask("extra" + std::to_string(i));
             doc.setDuration(doc.project()->tasks.size() - 1, 0);
         }
-        doc.applyCalculation(jobs::calculate(*doc.project()));
+        doc.applyCalculation(ppm::calculate(*doc.project()));
         selectWbs(tree, w1);
         selectWbs(tree, "");
         table->verticalScrollBar()->setValue(120);

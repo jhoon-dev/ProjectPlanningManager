@@ -17,7 +17,7 @@
 #include <algorithm>
 #include <functional>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool c, const char *m) {
     if (!c)
@@ -356,7 +356,7 @@ void externalSeparation() {
     QTemporaryDir tmp;
     JsonProjectStore store;
     auto imported =
-        importPrimaveraXer(readPrimaveraXer(QString::fromUtf8(JOBS_PERIOD_XER_FIXTURE)), "source.xer").project;
+        importPrimaveraXer(readPrimaveraXer(QString::fromUtf8(PPM_PERIOD_XER_FIXTURE)), "source.xer").project;
     check(imported.xerFinancials.has_value() &&
               std::any_of(imported.xerFinancials->periods.begin(), imported.xerFinancials->periods.end(),
                           [](const auto &v) { return v.bcwp && *v.bcwp > 0; }),

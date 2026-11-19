@@ -1,5 +1,5 @@
 {
-    "format": "JOBS",
+    "format": "PPM",
     "payload": {
         "assignments": [
             {
@@ -67,7 +67,7 @@
             {
                 "approvedBy": "합성 PM",
                 "createdAt": "2026-11-09T00:00:00Z",
-                "engineVersion": "jobs-cpm-0.2",
+                "engineVersion": "ppm-cpm-0.2",
                 "id": "pilot-baseline-v1",
                 "input": {
                     "assignments": [
@@ -1500,5 +1500,5 @@
         "wbsNodes": []
     },
     "schemaVersion": 15,
-    "sha256": "d3e1e31f32cd436b3b4db584888cc449bef2c90a70550b64b0572283401cb30a"
+    "sha256": "c35b591af9a6768b1c734bdcace5d1a0a10b0b28b9717777396a053e918183a4"
 }

@@ -49,9 +49,9 @@ int main(int argc, char *argv[]) {
     try {
         QTemporaryDir dir;
         check(dir.isValid(), "temp directory failed");
-        jobs::JsonProjectStore store;
-        jobs::Document doc(store);
-        jobs::MainWindow window(doc);
+        ppm::JsonProjectStore store;
+        ppm::Document doc(store);
+        ppm::MainWindow window(doc);
         window.show();
         QTest::qWait(50);
         QTimer::singleShot(50, [&] {
@@ -108,15 +108,15 @@ int main(int argc, char *argv[]) {
         };
         trigger(window, "일정 계산");
         waitResult();
-        check(doc.calculation()->status == jobs::CalculationStatus::Valid && cellText(table, 0, 3) != "미계산",
+        check(doc.calculation()->status == ppm::CalculationStatus::Valid && cellText(table, 0, 3) != "미계산",
               "calculation UI failed");
         setCellText(table, 0, 1, "16h");
-        check(doc.calculation()->status == jobs::CalculationStatus::Stale && cellText(table, 0, 3) == "미계산",
+        check(doc.calculation()->status == ppm::CalculationStatus::Stale && cellText(table, 0, 3) == "미계산",
               "stale dates remained visible");
         trigger(window, "일정 계산");
         doc.setDuration(0, 960 + 60); // Edit before the worker completion reaches the event loop.
         waitResult();
-        check(doc.calculation()->status == jobs::CalculationStatus::Stale, "in-flight outdated result was applied");
+        check(doc.calculation()->status == ppm::CalculationStatus::Stale, "in-flight outdated result was applied");
         QTimer::singleShot(50, [] {
             auto *dialog = qobject_cast<QDialog *>(QApplication::activeModalWidget());
             if (!dialog)
@@ -129,18 +129,18 @@ int main(int argc, char *argv[]) {
         setCellText(table, 2, 1, "");
         trigger(window, "일정 계산");
         waitResult();
-        check(doc.calculation()->status == jobs::CalculationStatus::Incomplete && cellText(table, 0, 3) == "미계산",
+        check(doc.calculation()->status == ppm::CalculationStatus::Incomplete && cellText(table, 0, 3) == "미계산",
               "incomplete forecast remained visible");
         setCellText(table, 2, 1, "1m");
         setCellText(table, 0, 2, "2");
         trigger(window, "일정 계산");
         waitResult();
-        check(doc.calculation()->status == jobs::CalculationStatus::Conflict && cellText(table, 0, 3) == "미계산",
+        check(doc.calculation()->status == ppm::CalculationStatus::Conflict && cellText(table, 0, 3) == "미계산",
               "cycle forecast remained visible");
         setCellText(table, 0, 2, "");
         trigger(window, "일정 계산");
         waitResult();
-        check(doc.calculation()->status == jobs::CalculationStatus::Valid, "corrected cycle did not recalculate");
+        check(doc.calculation()->status == ppm::CalculationStatus::Valid, "corrected cycle did not recalculate");
         window.grab().save("ui-smoke.png");
         QTimer::singleShot(50, [] {
             if (auto *box = qobject_cast<QMessageBox *>(QApplication::activeModalWidget()))

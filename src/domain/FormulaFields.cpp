@@ -5,7 +5,7 @@
 #include <cctype>
 #include <functional>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 namespace {
 using Number = std::int64_t;
 constexpr Number limit = 999999999999999LL;
@@ -646,4 +646,4 @@ std::vector<std::pair<std::string, std::string>> formulaReferenceChoices(const P
     }
     return out;
 }
-} // namespace jobs
+} // namespace ppm

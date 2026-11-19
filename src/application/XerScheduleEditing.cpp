@@ -1,6 +1,6 @@
 #include "application/Document.h"
 #include "domain/XerScheduleAdoption.h"
-namespace jobs {
+namespace ppm {
 void Document::recordXerSchedule(XerScheduleSubmission submission) {
     requireEditable();
     auto p = *project_;
@@ -25,4 +25,4 @@ void Document::recordXerSchedule(XerScheduleSubmission submission) {
     p.xerScheduleAdoptions.push_back(std::move(event));
     edit(std::move(p), "새 XER 일정·WBS·달력 채택");
 }
-} // namespace jobs
+} // namespace ppm

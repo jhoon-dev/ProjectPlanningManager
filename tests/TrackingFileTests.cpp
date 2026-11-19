@@ -43,8 +43,8 @@ QByteArray signedPayload(QJsonObject root, QJsonObject payload) {
             .toHex());
     return QJsonDocument(root).toJson();
 }
-void archivedBaselines(jobs::JsonProjectStore &store) {
-    const QDir directory(QString::fromUtf8(JOBS_NATIVE_HISTORY_FIXTURES));
+void archivedBaselines(ppm::JsonProjectStore &store) {
+    const QDir directory(QString::fromUtf8(PPM_NATIVE_HISTORY_FIXTURES));
     const auto manifest = QJsonDocument::fromJson(read(directory.filePath("manifest.json"))).object();
     check(manifest["sourceCommit"] == "77bb5a1cead1cb2c47f36e57b00d478746f32434", "archive provenance changed");
     const auto files = manifest["files"].toArray();
@@ -62,7 +62,7 @@ void archivedBaselines(jobs::JsonProjectStore &store) {
             check(loaded.project.baselines.size() == std::size_t(entry["baselines"].toInt()),
                   "historical baseline coverage changed");
             for (const auto &baseline : loaded.project.baselines)
-                jobs::verifyBaseline(baseline);
+                ppm::verifyBaseline(baseline);
             baselines += loaded.project.baselines.size();
             check(read(path) == bytes, "historical input was modified");
         } catch (const std::exception &e) {
@@ -78,9 +78,9 @@ int main(int argc, char *argv[]) {
     try {
         QTemporaryDir dir;
         check(dir.isValid(), "temporary folder failed");
-        jobs::JsonProjectStore store;
+        ppm::JsonProjectStore store;
         archivedBaselines(store);
-        jobs::Document doc(store);
+        ppm::Document doc(store);
         doc.create("기준선·실적", "2026-10-26", {"설계"});
         doc.setDuration(0, 960);
         auto wbs = doc.addWbs("단계");
@@ -88,7 +88,7 @@ int main(int argc, char *argv[]) {
         const auto baselineId = doc.captureBaseline("최초", "PM", "승인", "2026-10-26T00:00:00Z");
         const auto baseline = doc.project()->baselines[0];
         doc.setStatusAt("2026-10-26 18:00");
-        jobs::ProgressEntry e;
+        ppm::ProgressEntry e;
         e.taskId = doc.project()->tasks[0].id;
         e.actualStart = "2026-10-26 09:00";
         e.actualDurationMinutes = 480;
@@ -108,10 +108,10 @@ int main(int argc, char *argv[]) {
         check(!loaded.requiresSaveAs && loaded.project == *doc.project() && loaded.project.baselines[0] == baseline &&
                   loaded.project.progress[0] == firstReport,
               "tracking input/snapshot/ledger roundtrip mismatch");
-        auto comparison = jobs::compareToBaseline(loaded.project, baselineId);
+        auto comparison = ppm::compareToBaseline(loaded.project, baselineId);
         check(comparison.forecastFinishVariance == 720 && comparison.tasks[0].actualStart == "2026-10-26 09:00",
               "reload comparison mismatch");
-        jobs::Document clone(store);
+        ppm::Document clone(store);
         clone.open(path.toUtf8().toStdString(), true);
         clone.saveAs(dir.filePath("copy.ppm").toStdString());
         check(clone.project()->documentId != doc.project()->documentId &&
@@ -183,7 +183,7 @@ int main(int argc, char *argv[]) {
         const auto legacyBytes = signedPayload(v3, legacy);
         const auto legacyPath = dir.filePath("v3.ppm");
         write(legacyPath, legacyBytes);
-        jobs::Document migrated(store);
+        ppm::Document migrated(store);
         migrated.open(legacyPath.toStdString());
         check(migrated.requiresSaveAs() && migrated.project()->baselines.empty() &&
                   migrated.project()->progress.empty() && !migrated.project()->statusAt &&

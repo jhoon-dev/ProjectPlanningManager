@@ -1,7 +1,7 @@
 #include "domain/ResourcePlan.h"
 #include "application/InputDelta.h"
 
-namespace jobs {
+namespace ppm {
 namespace {
 std::size_t optionalBytes(const std::optional<std::string> &value) {
     return value ? value->size() : 0;
@@ -217,4 +217,4 @@ std::size_t InputDelta::bytes() const {
            taskSummaryAttributes_.bytes() + codeTypes_.bytes() + savedTaskViews_.bytes() +
            selectionBytes(planLeveling_) + selectionBytes(remainingLeveling_);
 }
-} // namespace jobs
+} // namespace ppm

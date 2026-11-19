@@ -1,7 +1,7 @@
 #pragma once
 #include "domain/Classification.h"
 #include "domain/XmlFormula.h"
-namespace jobs::test {
+namespace ppm::test {
 inline void actualField(Project &p, FieldScope scope, const std::string &id, CustomFieldType type,
                         const std::string &source) {
     CustomField f{id, id, type, "", {}};
@@ -88,4 +88,4 @@ inline Project actualComplete(Project p) {
         actualEntry(p, "M1", "M", "2026-11-13 18:00", "2026-11-13 15:00", "2026-11-13 15:00", 0, 0, "M0"));
     return p;
 }
-} // namespace jobs::test
+} // namespace ppm::test

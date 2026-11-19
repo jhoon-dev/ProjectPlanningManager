@@ -8,7 +8,7 @@
 #include "persistence/ClassificationJson.h"
 #include "domain/Classification.h"
 
-namespace jobs::json {
+namespace ppm::json {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s);
@@ -423,4 +423,4 @@ std::vector<SavedResourceView> decodeSavedResourceViews(const QJsonValue &value)
     }
     return result;
 }
-} // namespace jobs::json
+} // namespace ppm::json

@@ -10,7 +10,7 @@
 #include <stdexcept>
 #include <algorithm>
 #include <set>
-namespace jobs {
+namespace ppm {
 QString reportText(const std::string &s) {
     auto text = QString::fromUtf8(s.data(), qsizetype(s.size()));
     if (text.toUtf8().toStdString() != s)
@@ -154,4 +154,4 @@ void paintCostTrend(QPainter &p, const QRectF &area, const ProjectReport &r, con
                reportText(r.costTrend.back().date));
     p.restore();
 }
-} // namespace jobs
+} // namespace ppm

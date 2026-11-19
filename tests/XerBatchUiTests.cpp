@@ -20,7 +20,7 @@
 #include <QTimer>
 #include <functional>
 #include <iostream>
-using namespace jobs;
+using namespace ppm;
 namespace {
 void check(bool ok, const char *message) {
     if (!ok)
@@ -44,7 +44,7 @@ struct Drive {
             if (!modal)
                 return;
             if (auto *file = qobject_cast<QFileDialog *>(modal)) {
-                file->findChild<QLineEdit *>("fileNameEdit")->setText(JOBS_XER_MULTI_FIXTURE);
+                file->findChild<QLineEdit *>("fileNameEdit")->setText(PPM_XER_MULTI_FIXTURE);
                 QMetaObject::invokeMethod(file, "accept");
             } else if (modal->objectName() == "xerEncodingDialog") {
                 modal->findChild<QDialogButtonBox *>()->button(QDialogButtonBox::Ok)->click();

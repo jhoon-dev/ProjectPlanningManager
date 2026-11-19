@@ -7,7 +7,7 @@
 #include <QJsonObject>
 #include <stdexcept>
 
-namespace jobs {
+namespace ppm {
 Project decodeProjectFile(const QByteArray &bytes) {
     if (bytes.size() > projectFileLimitBytes)
         throw AppError(ErrorCode::FILE_SIZE_LIMIT, {});
@@ -20,7 +20,7 @@ Project decodeProjectFile(const QByteArray &bytes) {
     for (const auto &key : root.keys())
         if (!allowed.contains(key))
             throw AppError(ErrorCode::FILE_UNKNOWN_FIELD, {diagnosticArgument(key)});
-    if (root.value("format") != "JOBS")
+    if (root.value("format") != "PPM" && root.value("format") != "JOBS")
         throw AppError(ErrorCode::FILE_PROJECTFILE_004, {});
     const auto version = root.value("schemaVersion");
     if (!version.isDouble() || version.toDouble() != version.toInt() || version.toInt() < 1 ||
@@ -36,4 +36,4 @@ Project decodeProjectFile(const QByteArray &bytes) {
         throw AppError(ErrorCode::FILE_INTEGRITY_FAILED, {});
     return json::decodeProject(body, version.toInt());
 }
-} // namespace jobs
+} // namespace ppm

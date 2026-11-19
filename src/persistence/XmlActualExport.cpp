@@ -8,7 +8,7 @@
 #include <QJsonDocument>
 #include <set>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 [[noreturn]] void invalid(const std::string &s) {
     throw AppError(ErrorCode::XML_ACTUAL_EXPORT_INVALID, {s});
@@ -205,4 +205,4 @@ XmlActualProjection projectXmlActuals(const Project &p) {
                                     "필드/수식의 계획 기준 결과는 source.ppm에 보존됩니다.");
     return out;
 }
-} // namespace jobs
+} // namespace ppm

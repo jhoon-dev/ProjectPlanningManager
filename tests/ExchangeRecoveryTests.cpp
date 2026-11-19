@@ -53,21 +53,21 @@ void cancelDialog() {
         std::_Exit(2);
     dialog->findChild<QPushButton *>("exchangeCancel")->click();
 }
-void publication(const QTemporaryDir &directory, jobs::JsonProjectStore &store) {
-    jobs::Document doc(store);
+void publication(const QTemporaryDir &directory, ppm::JsonProjectStore &store) {
+    ppm::Document doc(store);
     doc.create("Publication", "2026-10-26", {"Task"});
     doc.setDuration(0, 60);
     doc.saveAs(directory.filePath("Source.ppm").toStdString());
-    auto exchange = jobs::exportProjectXml(*doc.project());
+    auto exchange = ppm::exportProjectXml(*doc.project());
     const auto source = read(QString::fromStdString(doc.path()));
     const auto original = *doc.project();
     QWidget parent;
     const auto publish = [&](const QString &path, const std::function<void()> &boundary) {
-        return jobs::runExchangeOperation(
+        return ppm::runExchangeOperation(
             &parent, doc, "Publication boundary test",
             [&] {
-                jobs::publishPlanExchange(exchange.project, exchange.xml, exchange.report, false, "xml", path,
-                                          [&] { onGui(parent, boundary); });
+                ppm::publishPlanExchange(exchange.project, exchange.xml, exchange.report, false, "xml", path,
+                                         [&] { onGui(parent, boundary); });
             },
             true);
     };
@@ -79,7 +79,7 @@ void publication(const QTemporaryDir &directory, jobs::JsonProjectStore &store) 
     const auto changed = directory.filePath("changed");
     try {
         publish(changed, [&] { doc.renameTask(0, "Concurrent edit"); });
-    } catch (const jobs::AppError &error) {
+    } catch (const ppm::AppError &error) {
         stale = error.code() == "EXCHANGE_SOURCE_CHANGED";
     }
     check(stale && !QFileInfo::exists(changed) && doc.project()->tasks[0].name == "Concurrent edit",
@@ -89,17 +89,17 @@ void publication(const QTemporaryDir &directory, jobs::JsonProjectStore &store) 
     const auto reloaded = directory.filePath("reloaded");
     try {
         publish(reloaded, [&] { doc.open(doc.path()); });
-    } catch (const jobs::AppError &error) {
+    } catch (const ppm::AppError &error) {
         stale = error.code() == "EXCHANGE_SOURCE_CHANGED";
     }
     check(stale && !QFileInfo::exists(reloaded), "same ID/revision reload accepted old publication");
     check(publish(directory.filePath("normal-save"), [&] { doc.save(); }),
           "normal save incorrectly cancelled exchange");
     const auto completed = directory.filePath("completed");
-    check(jobs::runExchangeOperation(
+    check(ppm::runExchangeOperation(
               &parent, doc, "Late cancellation",
               [&] {
-                  jobs::publishProjectXml(exchange, completed);
+                  ppm::publishProjectXml(exchange, completed);
                   onGui(parent, cancelDialog);
               },
               true) &&
@@ -111,23 +111,23 @@ void publication(const QTemporaryDir &directory, jobs::JsonProjectStore &store) 
     bool rejected = false;
     try {
         publish(existing, [] {});
-    } catch (const jobs::AppError &) {
+    } catch (const ppm::AppError &) {
         rejected = true;
     }
     check(rejected && read(QDir(existing).filePath("sentinel")) == "preserved", "existing destination overwritten");
     check(QDir(directory.path()).entryList({".ppm-exchange-*"}, QDir::Dirs | QDir::Hidden).isEmpty(),
           "cancelled/failed exchange leaked staged files");
 }
-void recoveryErrors(const QTemporaryDir &directory, jobs::JsonProjectStore &files) {
-    jobs::Document doc(files);
+void recoveryErrors(const QTemporaryDir &directory, ppm::JsonProjectStore &files) {
+    ppm::Document doc(files);
     doc.create("Recovery", "2026-10-26", {"Task"});
-    jobs::JsonRecoveryStore recovery(directory.filePath("recovery"));
+    ppm::JsonRecoveryStore recovery(directory.filePath("recovery"));
     for (int kind = 0; kind < 3; ++kind) {
         auto session = recovery.newSession();
         const auto id = session->id();
         session->checkpoint(doc.recoverySnapshot("2026-10-30T00:00:00Z"));
         session.reset();
-        const auto path = QDir(recovery.directory()).filePath(id + "/checkpoint-000000001.jobrecovery");
+        const auto path = QDir(recovery.directory()).filePath(id + "/checkpoint-000000001.ppmrecovery");
         auto root = QJsonDocument::fromJson(read(path)).object();
         if (kind == 1)
             root["schemaVersion"] = 99;
@@ -147,12 +147,12 @@ void recoveryErrors(const QTemporaryDir &directory, jobs::JsonProjectStore &file
                               : kind == 1 ? "FILE_JSONRECOVERYSTORE_016"
                                           : "FILE_JSONRECOVERYSTORE_017";
         check(found->failure->code == expected &&
-                  jobs::formatDiagnostic(*found->failure, jobs::DiagnosticLanguage::English) !=
+                  ppm::formatDiagnostic(*found->failure, ppm::DiagnosticLanguage::English) !=
                       found->error.toStdString(),
               "recovery diagnostic lost its stable code or language rendering");
-        jobs::RecoveryScan one;
+        ppm::RecoveryScan one;
         one.candidates.push_back(*found);
-        jobs::RecoveryDialog dialog(recovery, nullptr, one);
+        ppm::RecoveryDialog dialog(recovery, nullptr, one);
         dialog.show();
         dialog.findChild<QTableWidget *>("recoveryList")->selectRow(0);
         const auto text = dialog.findChild<QLabel *>("recoveryDetails")->text();
@@ -175,23 +175,23 @@ void recoveryErrors(const QTemporaryDir &directory, jobs::JsonProjectStore &file
               found->error.contains("복구") && !found->failure->path.empty(),
           "session-level recovery failure lost its diagnostic");
 }
-jobs::Project largeProject() {
-    jobs::Project project;
+ppm::Project largeProject() {
+    ppm::Project project;
     project.documentId = "exchange-performance";
     project.name = "Exchange performance";
     project.startDate = "2026-10-26";
-    project.calculationProfile = jobs::pdmProfile;
+    project.calculationProfile = ppm::pdmProfile;
     for (int i = 0; i < 10000; ++i) {
-        jobs::Task task{"T" + std::to_string(i), "Task " + std::to_string(i), 60, {}};
+        ppm::Task task{"T" + std::to_string(i), "Task " + std::to_string(i), 60, {}};
         if (i >= 100)
             task.predecessors = {"T" + std::to_string(i - 100)};
         project.tasks.push_back(std::move(task));
     }
     return project;
 }
-void exportUi(const QTemporaryDir &directory, jobs::JsonProjectStore &store, jobs::Project project, bool xer,
+void exportUi(const QTemporaryDir &directory, ppm::JsonProjectStore &store, ppm::Project project, bool xer,
               bool cancelPublication) {
-    auto baseline = jobs::prepareBaseline(project, "Approved", "PM", "Reviewed", "2026-10-30T00:00:00Z");
+    auto baseline = ppm::prepareBaseline(project, "Approved", "PM", "Reviewed", "2026-10-30T00:00:00Z");
     baseline.id = store.newId();
     baseline.version = 1;
     project.baselines.push_back(std::move(baseline));
@@ -199,11 +199,11 @@ void exportUi(const QTemporaryDir &directory, jobs::JsonProjectStore &store, job
     const auto name = QString(xer ? "xer" : "xml") + (cancelPublication ? "-cancel" : "-success");
     const auto path = directory.filePath(name + ".ppm");
     store.save(path.toStdString(), project, {});
-    jobs::Document doc(store);
+    ppm::Document doc(store);
     doc.open(path.toStdString());
     const auto before = *doc.project();
     const auto source = read(path);
-    jobs::MainWindow window(doc);
+    ppm::MainWindow window(doc);
     window.show();
     QTest::qWait(20);
     const auto destination = directory.filePath(name + "-output");
@@ -242,9 +242,9 @@ void exportUi(const QTemporaryDir &directory, jobs::JsonProjectStore &store, job
     gap.start();
     elapsed.start();
     heartbeat.start(5);
-    auto mainControl = std::make_shared<jobs::CalculationControl>();
+    auto mainControl = std::make_shared<ppm::CalculationControl>();
     {
-        jobs::EvaluationScope scope(mainControl);
+        ppm::EvaluationScope scope(mainControl);
         window.findChild<QAction *>(xer ? "exportPrimaveraXer" : "exportProjectXml")->trigger();
     }
     heartbeat.stop();
@@ -268,7 +268,7 @@ int main(int argc, char **argv) {
     try {
         QTemporaryDir directory;
         check(directory.isValid(), "temporary directory failed");
-        jobs::JsonProjectStore store;
+        ppm::JsonProjectStore store;
         publication(directory, store);
         recoveryErrors(directory, store);
         auto project = largeProject();
@@ -276,8 +276,7 @@ int main(int argc, char **argv) {
         exportUi(directory, store, project, true, true);
         const auto option = app.arguments().indexOf("--xer");
         if (option >= 0 && option + 1 < app.arguments().size())
-            project =
-                jobs::importPrimaveraXer(jobs::readPrimaveraXer(app.arguments()[option + 1]), "review.xer").project;
+            project = ppm::importPrimaveraXer(ppm::readPrimaveraXer(app.arguments()[option + 1]), "review.xer").project;
         exportUi(directory, store, std::move(project), true, false);
         std::cout << "PASS: asynchronous XML/XER, cancellation/cleanup, stale source/session, late commit, source "
                      "preservation, 10k heartbeat and localized recovery diagnostics\n";

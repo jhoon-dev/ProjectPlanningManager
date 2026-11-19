@@ -54,7 +54,7 @@ assert actual == expected and len(actual) == 7
 ns = {"p": "http://schemas.microsoft.com/project"}
 text = lambda node, name: node.findtext("p:" + name, None, ns)
 mapping = load("mapping.json")
-ids = {(row["kind"], row["xmlUid"]): row["jobsId"] for row in mapping["mapping"] if "xmlUid" in row and "kind" in row}
+ids = {(row["kind"], row["xmlUid"]): row["ppmId"] for row in mapping["mapping"] if "xmlUid" in row and "kind" in row}
 
 def minutes(raw):
     if raw is None:

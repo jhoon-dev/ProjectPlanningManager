@@ -16,7 +16,7 @@
 #include <QVBoxLayout>
 #include <algorithm>
 #include <unordered_map>
-namespace jobs {
+namespace ppm {
 namespace {
 QString q(const std::string &s) {
     return QString::fromUtf8(s);
@@ -201,4 +201,4 @@ void editXmlRollDown(Document &doc, FieldScope scope, const std::string &key, QW
     }
     dialog.exec();
 }
-} // namespace jobs
+} // namespace ppm

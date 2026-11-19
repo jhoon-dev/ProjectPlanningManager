@@ -24,7 +24,7 @@
 #include <QVBoxLayout>
 #include <QtConcurrent>
 #include <algorithm>
-namespace jobs {
+namespace ppm {
 namespace {
 QString qs(const std::string &s) {
     return QString::fromUtf8(s);
@@ -348,4 +348,4 @@ void UsageDialog::closeEvent(QCloseEvent *e) {
         QDialog::closeEvent(e);
     }
 }
-} // namespace jobs
+} // namespace ppm

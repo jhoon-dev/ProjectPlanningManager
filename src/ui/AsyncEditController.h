@@ -3,7 +3,7 @@
 #include <QObject>
 #include <QString>
 
-namespace jobs {
+namespace ppm {
 class AsyncEditController final : public QObject {
 public:
     using Completion = std::function<void(EditState, const QString &)>;
@@ -45,4 +45,4 @@ private:
     void start(Pending);
     void invalidate(EditState);
 };
-} // namespace jobs
+} // namespace ppm

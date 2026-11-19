@@ -2,7 +2,7 @@
 #include "domain/Project.h"
 #include <unordered_map>
 
-namespace jobs {
+namespace ppm {
 inline constexpr std::int64_t fieldNumberScale = 1000000;
 std::int64_t parseFieldNumber(const std::string &);
 std::string formatFieldNumber(std::int64_t);
@@ -54,4 +54,4 @@ std::string choiceValue(const CustomField &, const std::vector<std::string> &);
 std::string normalizeLookupScalar(CustomFieldType, const std::string &, const std::string &currency = "KRW");
 std::string assignmentAttributeId(const Assignment &);
 int nativeSchemaFor(const Project &);
-} // namespace jobs
+} // namespace ppm

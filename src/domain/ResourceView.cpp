@@ -3,7 +3,7 @@
 #include "domain/CalculationControl.h"
 #include <algorithm>
 #include <unordered_set>
-namespace jobs {
+namespace ppm {
 std::vector<RollUpGroup> resourceRollUpGroups(const std::vector<ResourceViewRow> &rows) {
     std::vector<RollUpGroup> groups{{"", {}, {}}};
     std::map<std::string, std::size_t> indices{{"", 0}};
@@ -242,4 +242,4 @@ std::vector<ResourceViewRow> projectResources(const Project &p, const ResourceVi
         result.push_back(std::move(c.row));
     return result;
 }
-} // namespace jobs
+} // namespace ppm

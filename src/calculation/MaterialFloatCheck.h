@@ -1,6 +1,6 @@
 #pragma once
 #include "calculation/MaterialInventory.h"
-namespace jobs {
+namespace ppm {
 // Exact inventory certification of complete or partial nonnegative-consumption plans.
 class MaterialFloatCheck {
     const Project &source_;
@@ -21,4 +21,4 @@ public:
         return calls_;
     }
 };
-} // namespace jobs
+} // namespace ppm
