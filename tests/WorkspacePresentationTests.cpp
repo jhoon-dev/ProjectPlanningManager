@@ -310,7 +310,7 @@ private slots:
         ppm::MainWindow window(document);
         window.resize(1440, 900);
         QVERIFY(window.windowTitle().endsWith("— PPM"));
-        QVERIFY(!window.windowTitle().contains("PPM"));
+        QVERIFY(!window.windowTitle().contains("JOBS"));
         window.show();
         QTest::qWait(40);
         const bool storeCapture = qEnvironmentVariableIsSet("PPM_STORE_SCREENSHOT");

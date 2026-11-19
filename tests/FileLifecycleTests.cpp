@@ -123,7 +123,7 @@ int main(int argc, char *argv[]) {
             const auto savedPath = doc.path();
             const auto generation = doc.sessionGeneration();
             const auto history = doc.historyBytes();
-            for (const auto &name : {"Old.jobs", "Old.PPM", "Wrong.txt", "NoExtension"}) {
+            for (const auto &name : {"Old.jobs", "Old.JOBS", "Wrong.txt", "NoExtension"}) {
                 const auto path = dir.filePath(name);
                 write(path, bytes);
                 const auto input = path.toUtf8().toStdString();
