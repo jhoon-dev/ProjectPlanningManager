@@ -33,6 +33,21 @@ jobs:
           path: build/ci-action-artifacts/input/
           if-no-files-found: error
       - name: Download with the release workflow token and run-id contract
+        id: download_action_artifact
+        continue-on-error: true
+        uses: actions/download-artifact@v8
+        with:
+          name: action-runtime-contract-${{ runner.os }}
+          path: build/ci-action-artifacts/restored
+          github-token: ${{ github.token }}
+          run-id: ${{ github.run_id }}
+      # A newly uploaded artifact can be listed before its REST ZIP is available.
+      # Retry once without weakening the token/run-id contract or final failure.
+      - name: Wait for artifact availability before retrying
+        if: steps.download_action_artifact.outcome == 'failure'
+        run: python -c "import time; time.sleep(5)"
+      - name: Retry the release workflow artifact download
+        if: steps.download_action_artifact.outcome == 'failure'
         uses: actions/download-artifact@v8
         with:
           name: action-runtime-contract-${{ runner.os }}
@@ -98,9 +113,10 @@ jobs:
             build/Testing/Temporary/LastTest.log
           if-no-files-found: warn
       - name: Capture task and Gantt workspace presentation
+        id: capture_workspace
         run: python scripts/capture-workspace-ui.py build --store
       - name: Preserve task and Gantt workspace screens
-        if: always()
+        if: always() && steps.capture_workspace.outcome == 'success'
         uses: actions/upload-artifact@v7
         with:
           archive: true

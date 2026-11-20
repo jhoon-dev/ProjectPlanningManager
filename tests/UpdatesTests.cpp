@@ -57,12 +57,14 @@ private slots:
         window.findChild<QDialog *>("applicationUpdateDialog")->close();
         QString aboutText;
         QTimer::singleShot(0, &window, [&] {
-            if (auto *box = qobject_cast<QMessageBox *>(QApplication::activeModalWidget())) {
+            // QMessageBox::about is modeless on macOS; scope the lookup to its owner.
+            if (auto *box = window.findChild<QMessageBox *>()) {
                 aboutText = box->text();
                 box->accept();
             }
         });
         window.findChild<QAction *>("applicationAbout")->trigger();
+        QTRY_VERIFY_WITH_TIMEOUT(!aboutText.isEmpty(), 2000);
         QVERIFY(aboutText.contains("버전 " + appVersion()));
     }
     void unpackagedBuildDoesNotUseReleaseUpdates() {
