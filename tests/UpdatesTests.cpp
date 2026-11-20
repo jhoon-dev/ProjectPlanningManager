@@ -5,10 +5,12 @@
 #include <QDialog>
 #include <QLabel>
 #include <QMainWindow>
+#include <QMessageBox>
 #include <QPushButton>
 #include <QSettings>
 #include <QTemporaryDir>
 #include <QTest>
+#include <QTimer>
 
 using namespace ppm;
 namespace {
@@ -34,7 +36,7 @@ public:
 };
 UpdateConfig config(const QTemporaryDir &dir, UpdateChannel channel = UpdateChannel::Store) {
     UpdateConfig value;
-    value.currentVersion = "0.2.0";
+    value.currentVersion = appVersion();
     value.channel = channel;
     value.stateDirectory = dir.filePath("state");
     value.settingsFile = dir.filePath("preferences.ini");
@@ -44,6 +46,25 @@ UpdateConfig config(const QTemporaryDir &dir, UpdateChannel channel = UpdateChan
 class UpdatesTests final : public QObject {
     Q_OBJECT
 private slots:
+    void aboutAndUpdatesShowTheSameApplicationVersion() {
+        QTemporaryDir dir;
+        UpdateController controller(config(dir));
+        controller.setAutomatic(false);
+        QMainWindow window;
+        attachUpdateUi(window, controller);
+        window.findChild<QAction *>("applicationUpdates")->trigger();
+        QCOMPARE(window.findChild<QLabel *>("applicationVersion")->text(), "현재 앱 버전: " + appVersion());
+        window.findChild<QDialog *>("applicationUpdateDialog")->close();
+        QString aboutText;
+        QTimer::singleShot(0, &window, [&] {
+            if (auto *box = qobject_cast<QMessageBox *>(QApplication::activeModalWidget())) {
+                aboutText = box->text();
+                box->accept();
+            }
+        });
+        window.findChild<QAction *>("applicationAbout")->trigger();
+        QVERIFY(aboutText.contains("버전 " + appVersion()));
+    }
     void unpackagedBuildDoesNotUseReleaseUpdates() {
         const auto options = updateConfig();
 #ifdef PPM_MAC_APP_STORE

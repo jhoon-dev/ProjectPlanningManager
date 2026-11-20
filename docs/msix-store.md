@@ -28,6 +28,8 @@ Developer `jhoon-dev`, Brand `Toolmoa`, 제품 App ID `app.toolmoa.ppm`, Display
 
 ## 내부 패키지 출력과 CI 첨부
 
+2026-11-20: Windows 표시 버전의 기본값은 `packaging/msix/version.txt`(1.0.7.0)다. CMake의 `PPM_MSIX_VERSION`을 앱 정보·업데이트 화면과 EXE의 숫자/문자열 파일·제품 버전에 함께 사용한다. 패키징의 `--version`은 CMake를 먼저 재구성하여 같은 값을 전달하고 EXE의 실제 버전 리소스가 일치하지 않으면 중단한다. 개발용 설치·업그레이드 CI도 설치된 패키지 버전과 앱 표시를 비교한다. macOS의 제품 버전은 별도로 유지한다. 이미 제출한 패키지의 내부 표시는 소스 수정만으로 바뀌지 않으며 수정 패키지 제출이 필요하다.
+
 `python scripts/package-msix.py`는 개발용 unsigned MSIX를 `build/msix-development`에 생성한다. `--mode store --identity <실제 Partner Center JSON>`은 `build/msix-store-upload`에 업로드 준비 파일을 생성한다. 이는 Microsoft가 서명하기 전의 입력 파일이며 사용자가 직접 설치하는 배포 파일이 아니다. 사용자 배포는 Store 인증·서명 후에만 진행한다.
 
 MSIX CI는 개발 패키지를 실제 설치·업그레이드·복구·제거하지만 artifact에는 로그·PNG 화면·JSON 검사 결과만 올린다. `dist/`나 MSIX/EXE/DLL/앱 payload 전체를 업로드하지 않는다. 제출용 소개·아이콘·화면 묶음은 `build/store-materials`의 내부 준비 자료다.

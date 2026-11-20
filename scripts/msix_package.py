@@ -33,6 +33,55 @@ def version(value):
     return value
 
 
+def verify_executable_version(executable, expected):
+    """Read the built PE version resource through Windows, independently of CMake."""
+    import ctypes
+    from ctypes import wintypes
+    api = ctypes.WinDLL('version', use_last_error=True)
+    api.GetFileVersionInfoSizeW.argtypes = [wintypes.LPCWSTR, ctypes.POINTER(wintypes.DWORD)]
+    api.GetFileVersionInfoSizeW.restype = wintypes.DWORD
+    api.GetFileVersionInfoW.argtypes = [wintypes.LPCWSTR, wintypes.DWORD, wintypes.DWORD, ctypes.c_void_p]
+    api.GetFileVersionInfoW.restype = wintypes.BOOL
+    api.VerQueryValueW.argtypes = [ctypes.c_void_p, wintypes.LPCWSTR, ctypes.POINTER(ctypes.c_void_p),
+                                   ctypes.POINTER(wintypes.UINT)]
+    api.VerQueryValueW.restype = wintypes.BOOL
+    path = str(Path(executable).resolve())
+    unused = wintypes.DWORD()
+    size = api.GetFileVersionInfoSizeW(path, ctypes.byref(unused))
+    if not size:
+        raise ValueError('Missing executable version resource: ' + path)
+    buffer = ctypes.create_string_buffer(size)
+    if not api.GetFileVersionInfoW(path, 0, size, buffer):
+        raise ctypes.WinError(ctypes.get_last_error())
+
+    def query(key):
+        pointer, length = ctypes.c_void_p(), wintypes.UINT()
+        if not api.VerQueryValueW(buffer, key, ctypes.byref(pointer), ctypes.byref(length)):
+            raise ValueError('Missing executable version field: ' + key)
+        return pointer, length.value
+
+    pointer, length = query('\\')
+    if length < 52:
+        raise ValueError('Invalid fixed executable version resource')
+    fixed = struct.unpack('<13I', ctypes.string_at(pointer, 52))
+    if fixed[0] != 0xFEEF04BD:
+        raise ValueError('Invalid executable version signature')
+    result = {}
+    for name, high, low in [('file_numeric', fixed[2], fixed[3]), ('product_numeric', fixed[4], fixed[5])]:
+        result[name] = f'{high >> 16}.{high & 65535}.{low >> 16}.{low & 65535}'
+    pointer, length = query('\\VarFileInfo\\Translation')
+    translations = ctypes.string_at(pointer, length)
+    if not translations or len(translations) % 4:
+        raise ValueError('Invalid executable version translations')
+    for language, codepage in struct.iter_unpack('<HH', translations):
+        for name in ('FileVersion', 'ProductVersion'):
+            pointer, length = query(f'\\StringFileInfo\\{language:04x}{codepage:04x}\\{name}')
+            result[f'{language:04x}{codepage:04x}/{name}'] = ctypes.wstring_at(pointer, length).rstrip('\0')
+    if any(value != expected for value in result.values()):
+        raise ValueError(f'Executable version differs from MSIX {expected}: {result}')
+    return result
+
+
 def identity(mode, config=None):
     if mode == 'development':
         if config is not None:

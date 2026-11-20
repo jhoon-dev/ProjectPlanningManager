@@ -68,7 +68,8 @@ function Invoke-Probe($package, $phase) {
     }
     $result = Get-Content -Raw -LiteralPath $resultPath | ConvertFrom-Json
     if ($result.status -ne 'success' -or -not $result.packaged -or $result.nonce -ne $nonce -or
-        $result.package_family -ne $package.PackageFamilyName -or $result.source_revision -ne $initial.source_revision) {
+        $result.package_family -ne $package.PackageFamilyName -or $result.source_revision -ne $initial.source_revision -or
+        $result.application_version -ne $package.Version.ToString()) {
         throw "Packaged $phase probe failed: $($result | ConvertTo-Json -Compress)"
     }
     $process = Get-Process -Id $probeId -ErrorAction SilentlyContinue

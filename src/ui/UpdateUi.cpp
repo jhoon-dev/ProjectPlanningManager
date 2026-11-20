@@ -66,6 +66,7 @@ void attachUpdateUi(QMainWindow &window, UpdateController &controller, UpdateUiH
         dialog->resize(650, 270);
         auto *layout = new QVBoxLayout(dialog);
         auto *version = new QLabel("현재 앱 버전: " + controller.config().currentVersion, dialog);
+        version->setObjectName("applicationVersion");
         const auto channel = controller.config().channel;
         const bool windowsStore = channel == UpdateChannel::Store;
         const bool macStore = channel == UpdateChannel::MacAppStore;

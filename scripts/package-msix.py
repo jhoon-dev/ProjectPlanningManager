@@ -10,7 +10,8 @@ import subprocess
 import sys
 import uuid
 from windows_payload import deploy, inventory, sha256
-from msix_package import ASSETS, identity, manifest, package_output, validate_assets, validate_payload, verify_archive, version
+from msix_package import (ASSETS, identity, manifest, package_output, validate_assets, validate_payload,
+                          verify_archive, verify_executable_version, version)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -30,7 +31,7 @@ def main():
     config = identity(args.mode, json.loads(args.identity.read_text(encoding='utf-8-sig')) if args.identity else None)
     if args.include_probe and args.mode != 'development':
         parser.error('--include-probe is allowed only in development packages')
-    package_version = version(args.version or '1.0.2.0')
+    package_version = version(args.version or (ROOT / 'packaging/msix/version.txt').read_text().strip())
     if args.mode == 'store' and int(package_version.split('.')[0]) == 0:
         parser.error('Store package major version must be positive')
     if sys.platform != 'win32':
@@ -51,16 +52,19 @@ def main():
         raise RuntimeError('Commit source before producing a package: ' + dirty.decode('utf-8', errors='replace'))
     environment = os.environ.copy()
     environment['PATH'] = os.pathsep.join((str(qt / 'bin'), str(compiler), environment['PATH']))
+    if 'CMAKE_BUILD_TYPE:STRING=Release' not in (build / 'CMakeCache.txt').read_text():
+        raise RuntimeError('This package pipeline requires a Release MinGW/Ninja build')
+    subprocess.run(['cmake', '-S', str(ROOT), '-B', str(build),
+                    '-DPPM_MSIX_VERSION:STRING=' + package_version], check=True, env=environment)
     target = ['PPM', 'PPM-Automation'] + (['ppm_msix_probe'] if args.include_probe else [])
     subprocess.run(['cmake', '--build', str(build), '--config', 'Release', '--parallel', '3', '--target', *target],
                    check=True, env=environment)
-    if 'CMAKE_BUILD_TYPE:STRING=Release' not in (build / 'CMakeCache.txt').read_text():
-        raise RuntimeError('This package pipeline requires a Release MinGW/Ninja build')
     for executable in ['PPM.exe'] + (['ppm_msix_probe.exe'] if args.include_probe else []):
         binary = (build / executable).read_bytes()
         pe = struct.unpack_from('<I', binary, 0x3c)[0]
         if binary[pe:pe+4] != b'PE\0\0' or struct.unpack_from('<H', binary, pe+4)[0] != 0x8664:
             raise RuntimeError('The application must be a Windows x64 executable')
+    executable_version = verify_executable_version(build / 'PPM.exe', package_version)
     deploy_version = subprocess.check_output([str(qt / 'bin/windeployqt.exe'), '--version'], env=environment).decode()
     if '6.8.3' not in deploy_version:
         raise RuntimeError('Qt 6.8.3 required')
@@ -89,11 +93,13 @@ def main():
                        check=True, stdout=log, stderr=subprocess.STDOUT)
     verify_archive(package, files, xml)
     result = {'product': 'PPM', 'source_revision': revision, 'mode': args.mode, 'version': package_version,
+              'application_version': package_version, 'executable_version': executable_version,
               'architecture': 'x64', 'identity': config, 'signed': False, 'submitted': False, 'store_approved': False,
               'store_identity_supplied': args.mode == 'store', 'test_probe_included': args.include_probe,
               'package': str(package), 'bytes': package.stat().st_size, 'sha256': sha256(package),
               'stage': str(stage), 'logs': str(workspace), 'sdk': tools, 'files': files,
-              'verification': ['MakeAppx schema/semantic validation', 'independent ZIP/manifest/file SHA roundtrip'],
+              'verification': ['MakeAppx schema/semantic validation', 'independent ZIP/manifest/file SHA roundtrip',
+                               'EXE numeric and string file/product versions match MSIX'],
               'next_step': 'Partner Center certification' if args.mode == 'store' else 'Development validation only; reserve Store identity before submission'}
     package.with_suffix('.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     package.with_suffix('.sha256.txt').write_text(result['sha256'] + '  ' + package.name + '\n', encoding='ascii')

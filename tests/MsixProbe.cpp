@@ -202,6 +202,7 @@ int main(int argc, char **argv) {
         QJsonObject result{{"status", "success"},
                            {"phase", phase},
                            {"packaged", storage.packaged()},
+                           {"application_version", ppm::appVersion()},
                            {"package_family", storage.packageFamilyName},
                            {"state_directory", storage.stateDirectory},
                            {"settings_file", settings.fileName()},

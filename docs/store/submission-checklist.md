@@ -13,7 +13,7 @@
 - `packaging/msix/store-identity.template.json`: 실제 ID 입력용 서식. 빈 값으로는 Store 패키지를 만들 수 없다.
 - `docs/store/listing.ko.md`, `privacy-policy.ko.md`, 벡터 아이콘과 PNG 자산, 실제 앱 화면, 검증 결과.
 
-Microsoft Store는 단일 아키텍처 `.msix` 제출을 지원한다. 이 파이프라인은 x64 패키지이며 UWP 전용 업로드/심볼 묶음으로 가장하는 빈 `.msixupload`를 만들지 않는다. 앱 표시 버전 0.2.0과 Windows 패키지 버전 1.0.2.0은 별개다.
+Microsoft Store는 단일 아키텍처 `.msix` 제출을 지원한다. 이 파이프라인은 x64 패키지이며 UWP 전용 업로드/심볼 묶음으로 가장하는 빈 `.msixupload`를 만들지 않는다. 2026-11-20부터 Windows 앱 표시와 EXE 파일/제품 버전은 MSIX의 네 자리 버전과 일치시킨다. 이전 0.2.0 표시는 과거 패키지의 불일치 이력이다.
 
 ## 2. 계정 소유자가 확정할 항목
 
